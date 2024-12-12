@@ -1,0 +1,1516 @@
+{
+  "texts": [
+    {
+      "DataId": "RookieName",
+      "KOR": "김용길"
+    },
+    {
+      "DataId": "ChloeName",
+      "KOR": "클로이"
+    },
+    {
+      "DataId": "SamName",
+      "KOR": "쌤"
+    },
+    {
+      "DataId": "LukeName",
+      "KOR": "루크"
+    },
+    {
+      "DataId": "DukName",
+      "KOR": "덕"
+    },
+    {
+      "DataId": "TomName",
+      "KOR": "도적 톰"
+    },
+    {
+      "DataId": "MarieName",
+      "KOR": "마리"
+    },
+    {
+      "DataId": "AndreName",
+      "KOR": "안드레"
+    },
+    {
+      "DataId": "LaraName",
+      "KOR": "라라"
+    },
+    {
+      "DataId": "MichelleName",
+      "KOR": "미쉘"
+    },
+    {
+      "DataId": "YulieName",
+      "KOR": "율리"
+    },
+    {
+      "DataId": "StormName",
+      "KOR": "스톰"
+    },
+    {
+      "DataId": "EllieName",
+      "KOR": "엘리"
+    },
+    {
+      "DataId": "LeonName",
+      "KOR": "레온"
+    },
+    {
+      "DataId": "WaltName",
+      "KOR": "월트&비비"
+    },
+    {
+      "DataId": "XionName",
+      "KOR": "시온"
+    },
+    {
+      "DataId": "AlexName",
+      "KOR": "알렉스"
+    },
+    {
+      "DataId": "LaurenName",
+      "KOR": "로렌"
+    },
+    {
+      "DataId": "OwenName",
+      "KOR": "오웬"
+    },
+    {
+      "DataId": "BellaName",
+      "KOR": "벨라"
+    },
+    {
+      "DataId": "BettyName",
+      "KOR": "베티"
+    },
+    {
+      "DataId": "ValakName",
+      "KOR": "발락"
+    },
+    {
+      "DataId": "VanessaName",
+      "KOR": "바네사"
+    },
+    {
+      "DataId": "AranName",
+      "KOR": "아란"
+    },
+    {
+      "DataId": "SylviaName",
+      "KOR": "실비아"
+    },
+    {
+      "DataId": "HardyName",
+      "KOR": "하디"
+    },
+    {
+      "DataId": "LouisName",
+      "KOR": "루이"
+    },
+    {
+      "DataId": "LucyName",
+      "KOR": "루시"
+    },
+    {
+      "DataId": "SierraName",
+      "KOR": "시에라"
+    },
+    {
+      "DataId": "KunName",
+      "KOR": "쿤"
+    },
+    {
+      "DataId": "RookieSubName",
+      "KOR": "겁쟁이모험가"
+    },
+    {
+      "DataId": "ChloeSubName",
+      "KOR": "유쾌한마녀"
+    },
+    {
+      "DataId": "SamSubName",
+      "KOR": "농부"
+    },
+    {
+      "DataId": "LukeSubName",
+      "KOR": "사냥꾼"
+    },
+    {
+      "DataId": "DukSubName",
+      "KOR": "도축가"
+    },
+    {
+      "DataId": "TomSubName",
+      "KOR": "도적"
+    },
+    {
+      "DataId": "MarieSubName",
+      "KOR": "견습마법사"
+    },
+    {
+      "DataId": "AndreSubName",
+      "KOR": "뱀파이어"
+    },
+    {
+      "DataId": "LaraSubName",
+      "KOR": "견습사제"
+    },
+    {
+      "DataId": "MichelleSubName",
+      "KOR": "훈련교관"
+    },
+    {
+      "DataId": "YulieSubName",
+      "KOR": "음유시인"
+    },
+    {
+      "DataId": "StormSubName",
+      "KOR": "방랑기사"
+    },
+    {
+      "DataId": "EllieSubName",
+      "KOR": "레인져"
+    },
+    {
+      "DataId": "LeonSubName",
+      "KOR": "격투가"
+    },
+    {
+      "DataId": "WaltSubName",
+      "KOR": "문지기"
+    },
+    {
+      "DataId": "XionSubName",
+      "KOR": "네크로맨서"
+    },
+    {
+      "DataId": "AlexSubName",
+      "KOR": "성기사"
+    },
+    {
+      "DataId": "LaurenSubName",
+      "KOR": "연금술사"
+    },
+    {
+      "DataId": "OwenSubName",
+      "KOR": "오웬"
+    },
+    {
+      "DataId": "BellaSubName",
+      "KOR": "무희"
+    },
+    {
+      "DataId": "BettySubName",
+      "KOR": "인형술사"
+    },
+    {
+      "DataId": "ValakSubName",
+      "KOR": "드래고노이드"
+    },
+    {
+      "DataId": "VanessaSubName",
+      "KOR": "서큐버스"
+    },
+    {
+      "DataId": "AranSubName",
+      "KOR": "배틀메이지"
+    },
+    {
+      "DataId": "SylviaSubName",
+      "KOR": "정령사"
+    },
+    {
+      "DataId": "HardySubName",
+      "KOR": "숲의수호자"
+    },
+    {
+      "DataId": "LouisSubName",
+      "KOR": "창술사"
+    },
+    {
+      "DataId": "LucySubName",
+      "KOR": "암살자"
+    },
+    {
+      "DataId": "SierraSubName",
+      "KOR": "데스나이트"
+    },
+    {
+      "DataId": "KunSubName",
+      "KOR": "광대"
+    },
+    {
+      "DataId": "RookieDescription",
+      "KOR": "마족을 동경하여 마족이 되고싶은 인간"
+    },
+    {
+      "DataId": "ChloeDescription",
+      "KOR": "전쟁으로 몸이 아픈 사람들을 치료하기 위해 합류"
+    },
+    {
+      "DataId": "SamDescription",
+      "KOR": "농작지에 살던 농부. 마계의 농작물을 얻기위해 합류"
+    },
+    {
+      "DataId": "LukeDescription",
+      "KOR": "전쟁으로 딸과 헤어진 인간계에 남은 사냥꾼. 마계에 딸이 있다는 소식을 듣고 합류"
+    },
+    {
+      "DataId": "DukDescription",
+      "KOR": "마을에서 도축사업을 하던 도축가. 마계의 고기를 얻기위해 합류"
+    },
+    {
+      "DataId": "TomDescription",
+      "KOR": "전쟁으로 인해 인간계에 갇혀 도적질로 연명하는 꼬마마족. 마계로 돌아가기 위해 합류"
+    },
+    {
+      "DataId": "MarieDescription",
+      "KOR": "스승을 찾아 헤매는 견습마법사. 마계에서 스승을 찾기위해 합류"
+    },
+    {
+      "DataId": "AndreDescription",
+      "KOR": "마계의 몰락 귀족. 여성을 좋아하는 카사노바. 전세계 여성을 만나기 위해 합류."
+    },
+    {
+      "DataId": "LaraDescription",
+      "KOR": "전쟁으로 몸이 아픈 사람들을 치료하기 위해 합류"
+    },
+    {
+      "DataId": "MichelleDescription",
+      "KOR": "마계에 갇혀버린 자신의 생도들을 찾기위해 합류"
+    },
+    {
+      "DataId": "YulieDescription",
+      "KOR": "마계에 자신의 음악을 선사하기 위해 합류"
+    },
+    {
+      "DataId": "StormDescription",
+      "KOR": "인간에 대한 호기심이 가득한 마녀. 주인공을 마계로 안내한다."
+    },
+    {
+      "DataId": "EllieDescription",
+      "KOR": "전쟁중 지휘관에게 배신당했다. 지휘관에게 복수를 위해 합류"
+    },
+    {
+      "DataId": "LeonDescription",
+      "KOR": "세계의 강자들과 대결하기 위해 떠돌아다닌다. 마계에서 자신의 대결 상대를 찾기위해 합류"
+    },
+    {
+      "DataId": "WaltDescription",
+      "KOR": "인간계에 잔류되어 인간마을의 수문장 역할을 한다. 하지만 늘상 졸고 있어 박대를 당하여 마계로 돌아가고 싶어 합류"
+    },
+    {
+      "DataId": "XionDescription",
+      "KOR": "해골을 가지고 놀기 좋아하는 어린이 마족. "
+    },
+    {
+      "DataId": "AlexDescription",
+      "KOR": "마계와의 전쟁때 영웅으로 칭송 받던 인간. 전쟁이 끝난 후 신탁을 받고 합류."
+    },
+    {
+      "DataId": "LaurenDescription",
+      "KOR": "\"마계를 연구하던 연금술사"
+    },
+    {
+      "DataId": "OwenDescription",
+      "KOR": "\"전쟁 시절 군을 통제하던 장교"
+    },
+    {
+      "DataId": "BellaDescription",
+      "KOR": "세계를 떠돌아 다니던 유랑단 단원 마계 공연을 위해 합류"
+    },
+    {
+      "DataId": "BettyDescription",
+      "KOR": "전쟁중 엄마를 잃어버렸다.슬퍼하는 딸을 위해 베티의 아버지는 인형탈을 뒤집어 쓰고 있다. 엄마를 찾기 위해 합류."
+    },
+    {
+      "DataId": "ValakDescription",
+      "KOR": "인간계에 있던 용족 전사. 항상 화가 나있다. 자신의 잠을 방해했던 마왕과 싸우기 위해 합류"
+    },
+    {
+      "DataId": "VanessaDescription",
+      "KOR": "인간의 꿈을 먹고 사는 마족. 인간의 꿈속에 들어가 괴롭히는걸 좋아한다. 맛있는 인간의 꿈을 수집하기 위해 합류"
+    },
+    {
+      "DataId": "AranDescription",
+      "KOR": "거인족의 손에 자라 땅의 힘을 사용하는 수인. 마계에 있는 거인족의 고향을 찾아 합류"
+    },
+    {
+      "DataId": "SylviaDescription",
+      "KOR": "정령의 숲에 살고 있는 정령들의 수호자. 마왕에게 잡혀있는 정령들을 구출하기 위해 합류"
+    },
+    {
+      "DataId": "HardyDescription",
+      "KOR": "정령의 숲을 지키던 가디언. 마기로 침식당한 숲을 구하기 위해 합류."
+    },
+    {
+      "DataId": "LouisDescription",
+      "KOR": "열대에 살고 있던 늑대 부족. 마기로 늑대들이 미쳐 날뒤고 있다. 늑대들을 원래대로 되돌리기 위해 합류."
+    },
+    {
+      "DataId": "LucyDescription",
+      "KOR": "청부를 받아 마족을 암살하는 어쌔신. 이번 타깃은 마왕이다. 마왕을 암살하기 위해 합류."
+    },
+    {
+      "DataId": "SierraDescription",
+      "KOR": "영혼을 좋아하는 마계 군단장. 마왕으로부터 자신의 소중한 영혼 일부를 잃어버렸다. 소중한 영혼을 찾기 위해 합류"
+    },
+    {
+      "DataId": "KunDescription",
+      "KOR": "자신의 묘기를 마계에 선사하기 위해 합류"
+    },
+    {
+      "DataId": "RookieSkillAName",
+      "KOR": "강하게 내려치기"
+    },
+    {
+      "DataId": "RookieSkillBName",
+      "KOR": "방패로 밀치기"
+    },
+    {
+      "DataId": "ChloeSkillAName",
+      "KOR": "파이어볼"
+    },
+    {
+      "DataId": "ChloeSkillBName",
+      "KOR": "라이트닝"
+    },
+    {
+      "DataId": "SamSkillAName",
+      "KOR": "연속 찌르기"
+    },
+    {
+      "DataId": "SamSkillBName",
+      "KOR": "곡식의 축복"
+    },
+    {
+      "DataId": "LukeSkillAName",
+      "KOR": "연사"
+    },
+    {
+      "DataId": "LukeSkillBName",
+      "KOR": "날렵한 몸놀림"
+    },
+    {
+      "DataId": "DukSkillAName",
+      "KOR": "강하게 내려치기"
+    },
+    {
+      "DataId": "DukSkillBName",
+      "KOR": "소고기의 힘"
+    },
+    {
+      "DataId": "TomSkillAName",
+      "KOR": "단도 뿌리기"
+    },
+    {
+      "DataId": "TomSkillBName",
+      "KOR": "예리한 시선"
+    },
+    {
+      "DataId": "MarieSkillAName",
+      "KOR": "마력탄"
+    },
+    {
+      "DataId": "MarieSkillBName",
+      "KOR": "치유"
+    },
+    {
+      "DataId": "AndreSkillAName",
+      "KOR": "피의 송곳"
+    },
+    {
+      "DataId": "AndreSkillBName",
+      "KOR": "흡혈"
+    },
+    {
+      "DataId": "LaraSkillAName",
+      "KOR": "치유"
+    },
+    {
+      "DataId": "LaraSkillBName",
+      "KOR": "생명의 기운"
+    },
+    {
+      "DataId": "MichelleSkillAName",
+      "KOR": "도약"
+    },
+    {
+      "DataId": "MichelleSkillBName",
+      "KOR": "휩쓸기"
+    },
+    {
+      "DataId": "YulieSkillAName",
+      "KOR": "치유의 노래"
+    },
+    {
+      "DataId": "YulieSkillBName",
+      "KOR": "전장의 서곡"
+    },
+    {
+      "DataId": "StormSkillAName",
+      "KOR": "마구찌르기"
+    },
+    {
+      "DataId": "StormSkillBName",
+      "KOR": "바람 가르기"
+    },
+    {
+      "DataId": "EllieSkillAName",
+      "KOR": "맹독화살"
+    },
+    {
+      "DataId": "EllieSkillBName",
+      "KOR": "멀티샷"
+    },
+    {
+      "DataId": "LeonSkillAName",
+      "KOR": "권법연타"
+    },
+    {
+      "DataId": "LeonSkillBName",
+      "KOR": "포효"
+    },
+    {
+      "DataId": "WaltSkillAName",
+      "KOR": "방패 돌진"
+    },
+    {
+      "DataId": "WaltSkillBName",
+      "KOR": "비비 돌진"
+    },
+    {
+      "DataId": "XionSkillAName",
+      "KOR": "해골 부대"
+    },
+    {
+      "DataId": "XionSkillBName",
+      "KOR": "자폭 해골"
+    },
+    {
+      "DataId": "AlexSkillAName",
+      "KOR": "저스티스 해머"
+    },
+    {
+      "DataId": "AlexSkillBName",
+      "KOR": "신성화"
+    },
+    {
+      "DataId": "LaurenSkillAName",
+      "KOR": "맹독 확산"
+    },
+    {
+      "DataId": "LaurenSkillBName",
+      "KOR": "냉기 확산"
+    },
+    {
+      "DataId": "OwenSkillAName",
+      "KOR": "화염검"
+    },
+    {
+      "DataId": "OwenSkillBName",
+      "KOR": "다중 화염검"
+    },
+    {
+      "DataId": "BellaSkillAName",
+      "KOR": "조련의 채찍"
+    },
+    {
+      "DataId": "BellaSkillBName",
+      "KOR": "매혹의 춤"
+    },
+    {
+      "DataId": "BettySkillAName",
+      "KOR": "인형의 난타"
+    },
+    {
+      "DataId": "BettySkillBName",
+      "KOR": "인형의 브레스"
+    },
+    {
+      "DataId": "ValakSkillAName",
+      "KOR": "화염 가르기"
+    },
+    {
+      "DataId": "ValakSkillBName",
+      "KOR": "화염 브레스"
+    },
+    {
+      "DataId": "VanessaSkillAName",
+      "KOR": "매혹"
+    },
+    {
+      "DataId": "VanessaSkillBName",
+      "KOR": "악마의 날개"
+    },
+    {
+      "DataId": "AranSkillAName",
+      "KOR": "대지 분쇄"
+    },
+    {
+      "DataId": "AranSkillBName",
+      "KOR": "거인의 손"
+    },
+    {
+      "DataId": "SylviaSkillAName",
+      "KOR": "정령 소환"
+    },
+    {
+      "DataId": "SylviaSkillBName",
+      "KOR": "대지의 축복"
+    },
+    {
+      "DataId": "HardySkillAName",
+      "KOR": "지진"
+    },
+    {
+      "DataId": "HardySkillBName",
+      "KOR": "숲의 보호"
+    },
+    {
+      "DataId": "LouisSkillAName",
+      "KOR": "투창"
+    },
+    {
+      "DataId": "LouisSkillBName",
+      "KOR": "늑대 소환"
+    },
+    {
+      "DataId": "LucySkillAName",
+      "KOR": "그림자 베기"
+    },
+    {
+      "DataId": "LucySkillBName",
+      "KOR": "그림자 늪"
+    },
+    {
+      "DataId": "SierraSkillAName",
+      "KOR": "영혼 수확"
+    },
+    {
+      "DataId": "SierraSkillBName",
+      "KOR": "망자의 대검"
+    },
+    {
+      "DataId": "KunSkillAName",
+      "KOR": "폭탄 뿌리기"
+    },
+    {
+      "DataId": "KunSkillBName",
+      "KOR": "스마일 폭탄"
+    },
+    {
+      "DataId": "RookieSkillADescription",
+      "KOR": "강한 힘으로 적을 내려친다."
+    },
+    {
+      "DataId": "RookieSkillBDescription",
+      "KOR": "적을 방패로 공격하고 기절시킨다."
+    },
+    {
+      "DataId": "ChloeSkillADescription",
+      "KOR": "좁은 범위에 광역 피해를 입히는 불덩어리를 소환한다"
+    },
+    {
+      "DataId": "ChloeSkillBDescription",
+      "KOR": "단일 데미지를 주는 강력한 번개를 소환한다"
+    },
+    {
+      "DataId": "SamSkillADescription",
+      "KOR": "2회 연달아 공격하여 피해를 준다. 두번째 공격은 더 큰 피해를 준다"
+    },
+    {
+      "DataId": "SamSkillBDescription",
+      "KOR": "파티에 포함된 영웅 체력 증가"
+    },
+    {
+      "DataId": "LukeSkillADescription",
+      "KOR": "2회 연달아 화살을 날린다. 두번째 화살은 더 큰 피해를 준다"
+    },
+    {
+      "DataId": "LukeSkillBDescription",
+      "KOR": "파티에 포함된 모든 영웅 회피 증가"
+    },
+    {
+      "DataId": "DukSkillADescription",
+      "KOR": "전방의 적을 연속적으로 내려친다."
+    },
+    {
+      "DataId": "DukSkillBDescription",
+      "KOR": "파티에 포함된 모든 영웅 공격력 증가"
+    },
+    {
+      "DataId": "TomSkillADescription",
+      "KOR": "적 2명에게 단도를 던진다."
+    },
+    {
+      "DataId": "TomSkillBDescription",
+      "KOR": "파티에 포함된 모든 영웅 원거리 공격 증가"
+    },
+    {
+      "DataId": "MarieSkillADescription",
+      "KOR": "강력한 에너지가 담긴 마력탄을 발사한다"
+    },
+    {
+      "DataId": "MarieSkillBDescription",
+      "KOR": "아군 1명을 치유한다."
+    },
+    {
+      "DataId": "AndreSkillADescription",
+      "KOR": "주변 적들에게 광역 피해를 주고 출혈을 일으킨다."
+    },
+    {
+      "DataId": "AndreSkillBDescription",
+      "KOR": "주변 적들에게 피해를 주고 피해량에 비례해 생명력을 흡수한다. 출형 상태인 적에게는 더 큰 피해를 준다"
+    },
+    {
+      "DataId": "LaraSkillADescription",
+      "KOR": "기본 공격 대신 아군 1명을 치유한다."
+    },
+    {
+      "DataId": "LaraSkillBDescription",
+      "KOR": "생명의 기운을 발산하여 주변 아군을 치유한다."
+    },
+    {
+      "DataId": "MichelleSkillADescription",
+      "KOR": "적을 향하여 도약하며 검을 휘둘러 광역 피해를 입힌다."
+    },
+    {
+      "DataId": "MichelleSkillBDescription",
+      "KOR": "자신을 중심으로 검을 크게 휘둘러 주변 적들에게 광역 피해를 입힌다."
+    },
+    {
+      "DataId": "YulieSkillADescription",
+      "KOR": "아군의 상처를 잊게 만드는 연주를 하여 연주를 듣는 모든 아군의 생명력을 회복시킨다."
+    },
+    {
+      "DataId": "YulieSkillBDescription",
+      "KOR": "사기를 올려주는 연주를 하여 아군의 공격력을 상승 시킨다."
+    },
+    {
+      "DataId": "StormSkillADescription",
+      "KOR": "단일 대상에게 연속적으로 4번찔러 몸 곳곳에 상처를 남겨 출혈시킨다."
+    },
+    {
+      "DataId": "StormSkillBDescription",
+      "KOR": "전방으로 검기를 날려 검기가 지나간 자리에 있는 모든 적에게 데미지를 준다."
+    },
+    {
+      "DataId": "EllieSkillADescription",
+      "KOR": "단일 적을 항하여 독이 묻은 화살을 날린다"
+    },
+    {
+      "DataId": "EllieSkillBDescription",
+      "KOR": "부채꼴 모양으로 5개의 화살을 발사한다."
+    },
+    {
+      "DataId": "LeonSkillADescription",
+      "KOR": "적 1명을 수차례 가격하여 피해를 준다"
+    },
+    {
+      "DataId": "LeonSkillBDescription",
+      "KOR": "크게 포효하여 적들에게 광역 피해를 입히고 아군의 공격력을 상승시킨다"
+    },
+    {
+      "DataId": "WaltSkillADescription",
+      "KOR": "방패를 앞세워 돌진한다. 경로상에 있는 적들을 공중으로 띄운다"
+    },
+    {
+      "DataId": "WaltSkillBDescription",
+      "KOR": "비비가 전방으로 돌진하여 적들을 관통한다. 돌진을 마친 후 월트에게 돌아와 월트의 체력을 회복시킨다."
+    },
+    {
+      "DataId": "XionSkillADescription",
+      "KOR": "공격을 돕는 해골을 소환한다."
+    },
+    {
+      "DataId": "XionSkillBDescription",
+      "KOR": "소환된 해골 중 한마리를 적에게 돌진시켜 광역 피해를 입히고 중독 시킨다."
+    },
+    {
+      "DataId": "AlexSkillADescription",
+      "KOR": "전방의 땅을 강하게 내려쳐 광역 피해를 주고 기절시킨다."
+    },
+    {
+      "DataId": "AlexSkillBDescription",
+      "KOR": "자신을 주위로 넓은 범위를 신성한 땅으로 만들어 아군을 지속적으로 치유한다"
+    },
+    {
+      "DataId": "LaurenSkillADescription",
+      "KOR": "독이 든 병을 던져 지역을 오염시키고 지속적으로 데미지를 준다."
+    },
+    {
+      "DataId": "LaurenSkillBDescription",
+      "KOR": "온 세상을 얼려버릴것 같은 한기가 가득찬 병을 던져 광역 범위에 있는 적을 얼리고 피해를 준다."
+    },
+    {
+      "DataId": "OwenSkillADescription",
+      "KOR": "화염으로 이루어진 검을 휘둘러 전방 90도에 데미지를 주고 화상 상태로 만든다"
+    },
+    {
+      "DataId": "OwenSkillBDescription",
+      "KOR": "화염으로 이루어진 검을 소환하여 광역 피해를 준다"
+    },
+    {
+      "DataId": "BellaSkillADescription",
+      "KOR": "자신을 중심으로 적들을 끌어 당기며 광역 피해를 준다"
+    },
+    {
+      "DataId": "BellaSkillBDescription",
+      "KOR": "아군의 공격속도와 이동속도를 증가시킨다"
+    },
+    {
+      "DataId": "BettySkillADescription",
+      "KOR": "인형이 커다란 손을 6번 휘둘러 전방의 적들에게 광역 피해를 입힌다. "
+    },
+    {
+      "DataId": "BettySkillBDescription",
+      "KOR": "전방에 혹독한 한기를 뱉어 광역 피해를 주고 얼린다."
+    },
+    {
+      "DataId": "ValakSkillADescription",
+      "KOR": "양손을 휘둘러 전방에 피해를 준다."
+    },
+    {
+      "DataId": "ValakSkillBDescription",
+      "KOR": "\"일직선으로 브레스를 뱉어 피해를 주고"
+    },
+    {
+      "DataId": "VanessaSkillADescription",
+      "KOR": "거부할 수 없는 강력한 매력으로 유혹한다. 유혹당한 적은 기절 상태에 빠진다."
+    },
+    {
+      "DataId": "VanessaSkillBDescription",
+      "KOR": "Empty"
+    },
+    {
+      "DataId": "AranSkillADescription",
+      "KOR": "강력한 힘으로 지면을 내려쳐 주변 적들을 공중으로 띄우고 기절시킨다."
+    },
+    {
+      "DataId": "AranSkillBDescription",
+      "KOR": "광폭화 상태가 되어 수초간 공격력이 상승한다."
+    },
+    {
+      "DataId": "SylviaSkillADescription",
+      "KOR": "정령을 소환하여 상처 입은 아군을 치유한다"
+    },
+    {
+      "DataId": "SylviaSkillBDescription",
+      "KOR": "주변을 축복의 대지로 만들어 범위 안의 아군을 지속적으로 치유한다"
+    },
+    {
+      "DataId": "HardySkillADescription",
+      "KOR": "땅에 줄기를 박아 넣어 광역 범위에 피해를 주고 적들을 기절 시킨다"
+    },
+    {
+      "DataId": "HardySkillBDescription",
+      "KOR": "주변 아군을 숲의 기운이 담긴 보호막을 부여하여 피해로부터 보호한다"
+    },
+    {
+      "DataId": "LouisSkillADescription",
+      "KOR": "관통하는 창을 연속으로 5개 던진다. 창에 맞은 적들은 출혈을 일으킨다"
+    },
+    {
+      "DataId": "LouisSkillBDescription",
+      "KOR": "늑대의 힘을 빌려와 주변 아군과 함께 공격속도와 공격력을 상승시킨다"
+    },
+    {
+      "DataId": "LucySkillADescription",
+      "KOR": "적의 뒤에 그림자를 소환하여 적을 베어 강력한 데미지를 준다"
+    },
+    {
+      "DataId": "LucySkillBDescription",
+      "KOR": "일정 지역에 그림자를 전개하여 적들의 속도를 늦추고 공격한다"
+    },
+    {
+      "DataId": "SierraSkillADescription",
+      "KOR": "검을 휘둘러 단일 적에게 피해를 주고 영혼을 흡수하여 생명력을 회복한다"
+    },
+    {
+      "DataId": "SierraSkillBDescription",
+      "KOR": "망자의 한기가 서린 대검을 휘둘러 광역 피해를 입히고 피해를 받은 적들을 얼린다"
+    },
+    {
+      "DataId": "KunSkillADescription",
+      "KOR": "여러 개의 폭탄을 던져 광역 피해를 준다"
+    },
+    {
+      "DataId": "KunSkillBDescription",
+      "KOR": "광역 피해를 주고 적들을 중독 상태에 빠뜨리는 커다란 폭탄을 던진다"
+    },
+    {
+      "DataId": "RookieSkillADescription_2",
+      "KOR": "강한 힘으로 적을 내려친다."
+    },
+    {
+      "DataId": "RookieSkillBDescription_2",
+      "KOR": "적을 방패로 공격하고 기절시킨다."
+    },
+    {
+      "DataId": "ChloeSkillADescription_2",
+      "KOR": "좁은 범위에 광역 피해를 입히는 불덩어리를 소환한다"
+    },
+    {
+      "DataId": "ChloeSkillBDescription_2",
+      "KOR": "단일 데미지를 주는 강력한 번개를 소환한다"
+    },
+    {
+      "DataId": "SamSkillADescription_2",
+      "KOR": "2회 연달아 공격하여 피해를 준다. 두번째 공격은 더 큰 피해를 준다"
+    },
+    {
+      "DataId": "SamSkillBDescription_2",
+      "KOR": "파티에 포함된 영웅 체력 증가"
+    },
+    {
+      "DataId": "LukeSkillADescription_2",
+      "KOR": "2회 연달아 화살을 날린다. 두번째 화살은 더 큰 피해를 준다"
+    },
+    {
+      "DataId": "LukeSkillBDescription_2",
+      "KOR": "파티에 포함된 모든 영웅 회피 증가"
+    },
+    {
+      "DataId": "DukSkillADescription_2",
+      "KOR": "전방의 적을 연속적으로 내려친다."
+    },
+    {
+      "DataId": "DukSkillBDescription_2",
+      "KOR": "파티에 포함된 모든 영웅 공격력 증가"
+    },
+    {
+      "DataId": "TomSkillADescription_2",
+      "KOR": "적 2명에게 단도를 던진다."
+    },
+    {
+      "DataId": "TomSkillBDescription_2",
+      "KOR": "파티에 포함된 모든 영웅 원거리 공격 증가"
+    },
+    {
+      "DataId": "MarieSkillADescription_2",
+      "KOR": "강력한 에너지가 담긴 마력탄을 발사한다"
+    },
+    {
+      "DataId": "MarieSkillBDescription_2",
+      "KOR": "아군 1명을 치유한다."
+    },
+    {
+      "DataId": "AndreSkillADescription_2",
+      "KOR": "주변 적들에게 광역 피해를 주고 출혈을 일으킨다."
+    },
+    {
+      "DataId": "AndreSkillBDescription_2",
+      "KOR": "주변 적들에게 피해를 주고 피해량에 비례해 생명력을 흡수한다. 출형 상태인 적에게는 더 큰 피해를 준다"
+    },
+    {
+      "DataId": "LaraSkillADescription_2",
+      "KOR": "기본 공격 대신 아군 1명을 치유한다."
+    },
+    {
+      "DataId": "LaraSkillBDescription_2",
+      "KOR": "생명의 기운을 발산하여 주변 아군을 치유한다."
+    },
+    {
+      "DataId": "MichelleSkillADescription_2",
+      "KOR": "적을 향하여 도약하며 검을 휘둘러 광역 피해를 입힌다."
+    },
+    {
+      "DataId": "MichelleSkillBDescription_2",
+      "KOR": "자신을 중심으로 검을 크게 휘둘러 주변 적들에게 광역 피해를 입힌다."
+    },
+    {
+      "DataId": "YulieSkillADescription_2",
+      "KOR": "아군의 상처를 잊게 만드는 연주를 하여 연주를 듣는 모든 아군의 생명력을 회복시킨다."
+    },
+    {
+      "DataId": "YulieSkillBDescription_2",
+      "KOR": "사기를 올려주는 연주를 하여 아군의 공격력을 상승 시킨다."
+    },
+    {
+      "DataId": "StormSkillADescription_2",
+      "KOR": "단일 대상에게 연속적으로 4번찔러 몸 곳곳에 상처를 남겨 출혈시킨다."
+    },
+    {
+      "DataId": "StormSkillBDescription_2",
+      "KOR": "전방으로 검기를 날려 검기가 지나간 자리에 있는 모든 적에게 데미지를 준다."
+    },
+    {
+      "DataId": "EllieSkillADescription_2",
+      "KOR": "단일 적을 항하여 독이 묻은 화살을 날린다"
+    },
+    {
+      "DataId": "EllieSkillBDescription_2",
+      "KOR": "부채꼴 모양으로 5개의 화살을 발사한다."
+    },
+    {
+      "DataId": "LeonSkillADescription_2",
+      "KOR": "적 1명을 수차례 가격하여 피해를 준다"
+    },
+    {
+      "DataId": "LeonSkillBDescription_2",
+      "KOR": "크게 포효하여 적들에게 광역 피해를 입히고 아군의 공격력을 상승시킨다"
+    },
+    {
+      "DataId": "WaltSkillADescription_2",
+      "KOR": "방패를 앞세워 돌진한다. 경로상에 있는 적들을 공중으로 띄운다"
+    },
+    {
+      "DataId": "WaltSkillBDescription_2",
+      "KOR": "비비가 전방으로 돌진하여 적들을 관통한다. 돌진을 마친 후 월트에게 돌아와 월트의 체력을 회복시킨다."
+    },
+    {
+      "DataId": "XionSkillADescription_2",
+      "KOR": "공격을 돕는 해골을 소환한다."
+    },
+    {
+      "DataId": "XionSkillBDescription_2",
+      "KOR": "소환된 해골 중 한마리를 적에게 돌진시켜 광역 피해를 입히고 중독 시킨다."
+    },
+    {
+      "DataId": "AlexSkillADescription_2",
+      "KOR": "전방의 땅을 강하게 내려쳐 광역 피해를 주고 기절시킨다."
+    },
+    {
+      "DataId": "AlexSkillBDescription_2",
+      "KOR": "자신을 주위로 넓은 범위를 신성한 땅으로 만들어 아군을 지속적으로 치유한다"
+    },
+    {
+      "DataId": "LaurenSkillADescription_2",
+      "KOR": "독이 든 병을 던져 지역을 오염시키고 지속적으로 데미지를 준다."
+    },
+    {
+      "DataId": "LaurenSkillBDescription_2",
+      "KOR": "온 세상을 얼려버릴것 같은 한기가 가득찬 병을 던져 광역 범위에 있는 적을 얼리고 피해를 준다."
+    },
+    {
+      "DataId": "OwenSkillADescription_2",
+      "KOR": "화염으로 이루어진 검을 휘둘러 전방 90도에 데미지를 주고 화상 상태로 만든다"
+    },
+    {
+      "DataId": "OwenSkillBDescription_2",
+      "KOR": "화염으로 이루어진 검을 소환하여 광역 피해를 준다"
+    },
+    {
+      "DataId": "BellaSkillADescription_2",
+      "KOR": "자신을 중심으로 적들을 끌어 당기며 광역 피해를 준다"
+    },
+    {
+      "DataId": "BellaSkillBDescription_2",
+      "KOR": "아군의 공격속도와 이동속도를 증가시킨다"
+    },
+    {
+      "DataId": "BettySkillADescription_2",
+      "KOR": "인형이 커다란 손을 6번 휘둘러 전방의 적들에게 광역 피해를 입힌다. "
+    },
+    {
+      "DataId": "BettySkillBDescription_2",
+      "KOR": "전방에 혹독한 한기를 뱉어 광역 피해를 주고 얼린다."
+    },
+    {
+      "DataId": "ValakSkillADescription_2",
+      "KOR": "양손을 휘둘러 전방에 피해를 준다."
+    },
+    {
+      "DataId": "ValakSkillBDescription_2",
+      "KOR": "\"일직선으로 브레스를 뱉어 피해를 주고"
+    },
+    {
+      "DataId": "VanessaSkillADescription_2",
+      "KOR": "거부할 수 없는 강력한 매력으로 유혹한다. 유혹당한 적은 기절 상태에 빠진다."
+    },
+    {
+      "DataId": "VanessaSkillBDescription_2",
+      "KOR": "Empty"
+    },
+    {
+      "DataId": "AranSkillADescription_2",
+      "KOR": "강력한 힘으로 지면을 내려쳐 주변 적들을 공중으로 띄우고 기절시킨다."
+    },
+    {
+      "DataId": "AranSkillBDescription_2",
+      "KOR": "광폭화 상태가 되어 수초간 공격력이 상승한다."
+    },
+    {
+      "DataId": "SylviaSkillADescription_2",
+      "KOR": "정령을 소환하여 상처 입은 아군을 치유한다"
+    },
+    {
+      "DataId": "SylviaSkillBDescription_2",
+      "KOR": "주변을 축복의 대지로 만들어 범위 안의 아군을 지속적으로 치유한다"
+    },
+    {
+      "DataId": "HardySkillADescription_2",
+      "KOR": "땅에 줄기를 박아 넣어 광역 범위에 피해를 주고 적들을 기절 시킨다"
+    },
+    {
+      "DataId": "HardySkillBDescription_2",
+      "KOR": "주변 아군을 숲의 기운이 담긴 보호막을 부여하여 피해로부터 보호한다"
+    },
+    {
+      "DataId": "LouisSkillADescription_2",
+      "KOR": "관통하는 창을 연속으로 5개 던진다. 창에 맞은 적들은 출혈을 일으킨다"
+    },
+    {
+      "DataId": "LouisSkillBDescription_2",
+      "KOR": "늑대의 힘을 빌려와 주변 아군과 함께 공격속도와 공격력을 상승시킨다"
+    },
+    {
+      "DataId": "LucySkillADescription_2",
+      "KOR": "적의 뒤에 그림자를 소환하여 적을 베어 강력한 데미지를 준다"
+    },
+    {
+      "DataId": "LucySkillBDescription_2",
+      "KOR": "일정 지역에 그림자를 전개하여 적들의 속도를 늦추고 공격한다"
+    },
+    {
+      "DataId": "SierraSkillADescription_2",
+      "KOR": "검을 휘둘러 단일 적에게 피해를 주고 영혼을 흡수하여 생명력을 회복한다"
+    },
+    {
+      "DataId": "SierraSkillBDescription_2",
+      "KOR": "망자의 한기가 서린 대검을 휘둘러 광역 피해를 입히고 피해를 받은 적들을 얼린다"
+    },
+    {
+      "DataId": "KunSkillADescription_2",
+      "KOR": "여러 개의 폭탄을 던져 광역 피해를 준다"
+    },
+    {
+      "DataId": "KunSkillBDescription_2",
+      "KOR": "광역 피해를 주고 적들을 중독 상태에 빠뜨리는 커다란 폭탄을 던진다"
+    },
+    {
+      "DataId": "RookieSkillADescription_3",
+      "KOR": "강한 힘으로 적을 내려친다."
+    },
+    {
+      "DataId": "RookieSkillBDescription_3",
+      "KOR": "적을 방패로 공격하고 기절시킨다."
+    },
+    {
+      "DataId": "ChloeSkillADescription_3",
+      "KOR": "좁은 범위에 광역 피해를 입히는 불덩어리를 소환한다"
+    },
+    {
+      "DataId": "ChloeSkillBDescription_3",
+      "KOR": "단일 데미지를 주는 강력한 번개를 소환한다"
+    },
+    {
+      "DataId": "SamSkillADescription_3",
+      "KOR": "2회 연달아 공격하여 피해를 준다. 두번째 공격은 더 큰 피해를 준다"
+    },
+    {
+      "DataId": "SamSkillBDescription_3",
+      "KOR": "파티에 포함된 영웅 체력 증가"
+    },
+    {
+      "DataId": "LukeSkillADescription_3",
+      "KOR": "2회 연달아 화살을 날린다. 두번째 화살은 더 큰 피해를 준다"
+    },
+    {
+      "DataId": "LukeSkillBDescription_3",
+      "KOR": "파티에 포함된 모든 영웅 회피 증가"
+    },
+    {
+      "DataId": "DukSkillADescription_3",
+      "KOR": "전방의 적을 연속적으로 내려친다."
+    },
+    {
+      "DataId": "DukSkillBDescription_3",
+      "KOR": "파티에 포함된 모든 영웅 공격력 증가"
+    },
+    {
+      "DataId": "TomSkillADescription_3",
+      "KOR": "적 2명에게 단도를 던진다."
+    },
+    {
+      "DataId": "TomSkillBDescription_3",
+      "KOR": "파티에 포함된 모든 영웅 원거리 공격 증가"
+    },
+    {
+      "DataId": "MarieSkillADescription_3",
+      "KOR": "강력한 에너지가 담긴 마력탄을 발사한다"
+    },
+    {
+      "DataId": "MarieSkillBDescription_3",
+      "KOR": "아군 1명을 치유한다."
+    },
+    {
+      "DataId": "AndreSkillADescription_3",
+      "KOR": "주변 적들에게 광역 피해를 주고 출혈을 일으킨다."
+    },
+    {
+      "DataId": "AndreSkillBDescription_3",
+      "KOR": "주변 적들에게 피해를 주고 피해량에 비례해 생명력을 흡수한다. 출형 상태인 적에게는 더 큰 피해를 준다"
+    },
+    {
+      "DataId": "LaraSkillADescription_3",
+      "KOR": "기본 공격 대신 아군 1명을 치유한다."
+    },
+    {
+      "DataId": "LaraSkillBDescription_3",
+      "KOR": "생명의 기운을 발산하여 주변 아군을 치유한다."
+    },
+    {
+      "DataId": "MichelleSkillADescription_3",
+      "KOR": "적을 향하여 도약하며 검을 휘둘러 광역 피해를 입힌다."
+    },
+    {
+      "DataId": "MichelleSkillBDescription_3",
+      "KOR": "자신을 중심으로 검을 크게 휘둘러 주변 적들에게 광역 피해를 입힌다."
+    },
+    {
+      "DataId": "YulieSkillADescription_3",
+      "KOR": "아군의 상처를 잊게 만드는 연주를 하여 연주를 듣는 모든 아군의 생명력을 회복시킨다."
+    },
+    {
+      "DataId": "YulieSkillBDescription_3",
+      "KOR": "사기를 올려주는 연주를 하여 아군의 공격력을 상승 시킨다."
+    },
+    {
+      "DataId": "StormSkillADescription_3",
+      "KOR": "단일 대상에게 연속적으로 4번찔러 몸 곳곳에 상처를 남겨 출혈시킨다."
+    },
+    {
+      "DataId": "StormSkillBDescription_3",
+      "KOR": "전방으로 검기를 날려 검기가 지나간 자리에 있는 모든 적에게 데미지를 준다."
+    },
+    {
+      "DataId": "EllieSkillADescription_3",
+      "KOR": "단일 적을 항하여 독이 묻은 화살을 날린다"
+    },
+    {
+      "DataId": "EllieSkillBDescription_3",
+      "KOR": "부채꼴 모양으로 5개의 화살을 발사한다."
+    },
+    {
+      "DataId": "LeonSkillADescription_3",
+      "KOR": "적 1명을 수차례 가격하여 피해를 준다"
+    },
+    {
+      "DataId": "LeonSkillBDescription_3",
+      "KOR": "크게 포효하여 적들에게 광역 피해를 입히고 아군의 공격력을 상승시킨다"
+    },
+    {
+      "DataId": "WaltSkillADescription_3",
+      "KOR": "방패를 앞세워 돌진한다. 경로상에 있는 적들을 공중으로 띄운다"
+    },
+    {
+      "DataId": "WaltSkillBDescription_3",
+      "KOR": "비비가 전방으로 돌진하여 적들을 관통한다. 돌진을 마친 후 월트에게 돌아와 월트의 체력을 회복시킨다."
+    },
+    {
+      "DataId": "XionSkillADescription_3",
+      "KOR": "공격을 돕는 해골을 소환한다."
+    },
+    {
+      "DataId": "XionSkillBDescription_3",
+      "KOR": "소환된 해골 중 한마리를 적에게 돌진시켜 광역 피해를 입히고 중독 시킨다."
+    },
+    {
+      "DataId": "AlexSkillADescription_3",
+      "KOR": "전방의 땅을 강하게 내려쳐 광역 피해를 주고 기절시킨다."
+    },
+    {
+      "DataId": "AlexSkillBDescription_3",
+      "KOR": "자신을 주위로 넓은 범위를 신성한 땅으로 만들어 아군을 지속적으로 치유한다"
+    },
+    {
+      "DataId": "LaurenSkillADescription_3",
+      "KOR": "독이 든 병을 던져 지역을 오염시키고 지속적으로 데미지를 준다."
+    },
+    {
+      "DataId": "LaurenSkillBDescription_3",
+      "KOR": "온 세상을 얼려버릴것 같은 한기가 가득찬 병을 던져 광역 범위에 있는 적을 얼리고 피해를 준다."
+    },
+    {
+      "DataId": "OwenSkillADescription_3",
+      "KOR": "화염으로 이루어진 검을 휘둘러 전방 90도에 데미지를 주고 화상 상태로 만든다"
+    },
+    {
+      "DataId": "OwenSkillBDescription_3",
+      "KOR": "화염으로 이루어진 검을 소환하여 광역 피해를 준다"
+    },
+    {
+      "DataId": "BellaSkillADescription_3",
+      "KOR": "자신을 중심으로 적들을 끌어 당기며 광역 피해를 준다"
+    },
+    {
+      "DataId": "BellaSkillBDescription_3",
+      "KOR": "아군의 공격속도와 이동속도를 증가시킨다"
+    },
+    {
+      "DataId": "BettySkillADescription_3",
+      "KOR": "인형이 커다란 손을 6번 휘둘러 전방의 적들에게 광역 피해를 입힌다. "
+    },
+    {
+      "DataId": "BettySkillBDescription_3",
+      "KOR": "전방에 혹독한 한기를 뱉어 광역 피해를 주고 얼린다."
+    },
+    {
+      "DataId": "ValakSkillADescription_3",
+      "KOR": "양손을 휘둘러 전방에 피해를 준다."
+    },
+    {
+      "DataId": "ValakSkillBDescription_3",
+      "KOR": "\"일직선으로 브레스를 뱉어 피해를 주고"
+    },
+    {
+      "DataId": "VanessaSkillADescription_3",
+      "KOR": "거부할 수 없는 강력한 매력으로 유혹한다. 유혹당한 적은 기절 상태에 빠진다."
+    },
+    {
+      "DataId": "VanessaSkillBDescription_3",
+      "KOR": "Empty"
+    },
+    {
+      "DataId": "AranSkillADescription_3",
+      "KOR": "강력한 힘으로 지면을 내려쳐 주변 적들을 공중으로 띄우고 기절시킨다."
+    },
+    {
+      "DataId": "AranSkillBDescription_3",
+      "KOR": "광폭화 상태가 되어 수초간 공격력이 상승한다."
+    },
+    {
+      "DataId": "SylviaSkillADescription_3",
+      "KOR": "정령을 소환하여 상처 입은 아군을 치유한다"
+    },
+    {
+      "DataId": "SylviaSkillBDescription_3",
+      "KOR": "주변을 축복의 대지로 만들어 범위 안의 아군을 지속적으로 치유한다"
+    },
+    {
+      "DataId": "HardySkillADescription_3",
+      "KOR": "땅에 줄기를 박아 넣어 광역 범위에 피해를 주고 적들을 기절 시킨다"
+    },
+    {
+      "DataId": "HardySkillBDescription_3",
+      "KOR": "주변 아군을 숲의 기운이 담긴 보호막을 부여하여 피해로부터 보호한다"
+    },
+    {
+      "DataId": "LouisSkillADescription_3",
+      "KOR": "관통하는 창을 연속으로 5개 던진다. 창에 맞은 적들은 출혈을 일으킨다"
+    },
+    {
+      "DataId": "LouisSkillBDescription_3",
+      "KOR": "늑대의 힘을 빌려와 주변 아군과 함께 공격속도와 공격력을 상승시킨다"
+    },
+    {
+      "DataId": "LucySkillADescription_3",
+      "KOR": "적의 뒤에 그림자를 소환하여 적을 베어 강력한 데미지를 준다"
+    },
+    {
+      "DataId": "LucySkillBDescription_3",
+      "KOR": "일정 지역에 그림자를 전개하여 적들의 속도를 늦추고 공격한다"
+    },
+    {
+      "DataId": "SierraSkillADescription_3",
+      "KOR": "검을 휘둘러 단일 적에게 피해를 주고 영혼을 흡수하여 생명력을 회복한다"
+    },
+    {
+      "DataId": "SierraSkillBDescription_3",
+      "KOR": "망자의 한기가 서린 대검을 휘둘러 광역 피해를 입히고 피해를 받은 적들을 얼린다"
+    },
+    {
+      "DataId": "KunSkillADescription_3",
+      "KOR": "여러 개의 폭탄을 던져 광역 피해를 준다"
+    },
+    {
+      "DataId": "KunSkillBDescription_3",
+      "KOR": "광역 피해를 주고 적들을 중독 상태에 빠뜨리는 커다란 폭탄을 던진다"
+    },
+    {
+      "DataId": "EarnedGoldObjectiveDescription",
+      "KOR": "골드 획득"
+    },
+    {
+      "DataId": "SpendGoldObjectiveDescription",
+      "KOR": "골드 소모"
+    },
+    {
+      "DataId": "EarnedMeatObjectiveDescription",
+      "KOR": "고기 획득"
+    },
+    {
+      "DataId": "SpendMeatObjectiveDescription",
+      "KOR": "고기 소모"
+    },
+    {
+      "DataId": "EarnedWoodObjectiveDescription",
+      "KOR": "나무 획득"
+    },
+    {
+      "DataId": "SpendWoodObjectiveDescription",
+      "KOR": "나무 소모"
+    },
+    {
+      "DataId": "KilledMonsterDescription",
+      "KOR": "몬스터 사냥"
+    },
+    {
+      "DataId": "Atk",
+      "KOR": "공격력"
+    },
+    {
+      "DataId": "ReduceDamage",
+      "KOR": "고정피해감소"
+    },
+    {
+      "DataId": "ReduceDamageRate",
+      "KOR": "피해감소"
+    },
+    {
+      "DataId": "AttackSpeedRate",
+      "KOR": "공격속도"
+    },
+    {
+      "DataId": "Critical",
+      "KOR": "치명타"
+    },
+    {
+      "DataId": "CriticalDamage",
+      "KOR": "치명타데미지"
+    },
+    {
+      "DataId": "MissChance",
+      "KOR": "회피"
+    },
+    {
+      "DataId": "MoveSpeed",
+      "KOR": "이동속도"
+    },
+    {
+      "DataId": "CooldownReduction",
+      "KOR": "재사용시간"
+    },
+    {
+      "DataId": "LifeSteal",
+      "KOR": "흡혈"
+    },
+    {
+      "DataId": "Portal",
+      "KOR": "포탈"
+    },
+    {
+      "DataId": "UnlockPortal",
+      "KOR": "포탈 사용가능"
+    },
+    {
+      "DataId": "Camp",
+      "KOR": "캠프"
+    },
+    {
+      "DataId": "UnlockCamp",
+      "KOR": "캠프 사용 가능"
+    },
+    {
+      "DataId": "MaxHp",
+      "KOR": "최대 체력"
+    },
+    {
+      "DataId": "LifeStealRate",
+      "KOR": "흡혈"
+    },
+    {
+      "DataId": "ThornsDamageRate",
+      "KOR": "데미지 반사"
+    },
+    {
+      "DataId": "MaxMembers",
+      "KOR": "최대영웅 + 1"
+    },
+    {
+      "DataId": "Meat",
+      "KOR": "생고기"
+    },
+    {
+      "DataId": "Wood",
+      "KOR": "장작"
+    },
+    {
+      "DataId": "Mineral",
+      "KOR": "미네랄"
+    },
+    {
+      "DataId": "Gold",
+      "KOR": "골드"
+    },
+    {
+      "DataId": "Ruby",
+      "KOR": "루비"
+    },
+    {
+      "DataId": "Fragments",
+      "KOR": "룬 잔해"
+    },
+    {
+      "DataId": "ForestMarble",
+      "KOR": "초원의구슬"
+    },
+    {
+      "DataId": "MeatDesc",
+      "KOR": "몬스터 잡으면 나오는 고기"
+    },
+    {
+      "DataId": "WoodDesc",
+      "KOR": "나무캐면 나옴"
+    },
+    {
+      "DataId": "MineralDesc",
+      "KOR": "광물캐면 나옴"
+    },
+    {
+      "DataId": "GoldDesc",
+      "KOR": "돈"
+    },
+    {
+      "DataId": "RubyDesc",
+      "KOR": "트레이닝에 사용되는 빨간 보석"
+    },
+    {
+      "DataId": "FragmentsDesc",
+      "KOR": "무기 갈아서 나오는 잔해"
+    },
+    {
+      "DataId": "ForestMarbleDesc",
+      "KOR": "숲의 구슬"
+    },
+    {
+      "DataId": "QD_9_1",
+      "KOR": " 안녕하세요 루키스."
+    },
+    {
+      "DataId": "QD_9_2",
+      "KOR": " 안녕하세요 Npc님."
+    },
+    {
+      "DataId": "QD_9_3",
+      "KOR": " 퀘스트 받으세요."
+    },
+    {
+      "DataId": "QD_9_4",
+      "KOR": " 조금 위험 합니다."
+    },
+    {
+      "DataId": "QD_9_5",
+      "KOR": " 네."
+    },
+    {
+      "DataId": "QD_9_6",
+      "KOR": " ㅂㅂ."
+    },
+    {
+      "DataId": "QD_9_7",
+      "KOR": " 휴 고맙습니다"
+    },
+    {
+      "DataId": "QD_9_8",
+      "KOR": " 네."
+    },
+    {
+      "DataId": "QD_9_9",
+      "KOR": " 따라다닐게요"
+    }
+  ]
+}

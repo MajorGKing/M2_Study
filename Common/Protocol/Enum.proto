@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package Protocol;
+option csharp_namespace = "Google.Protobuf.Protocol";
+
+enum ECreatureState 
+{
+	ECREATURE_STATE_IDLE = 0;
+	ECREATURE_STATE_MOVING = 1;
+	ECREATURE_STATE_SKILL = 2;
+	ECREATURE_STATE_DEAD = 3;
+}
+
+enum EMoveDir
+{
+	EMOVE_DIR_NONE = 0;
+	EMOVE_DIR_UP = 1;
+	EMOVE_DIR_DOWN = 2;
+	EMOVE_DIR_LEFT = 3;
+	EMOVE_DIR_RIGHT = 4;
+	EMOVE_DIR_UP_LEFT = 5;
+	EMOVE_DIR_UP_RIGHT = 6;
+	EMOVE_DIR_DOWN_LEFT = 7;
+	EMOVE_DIR_DOWN_RIGHT = 8;
+}

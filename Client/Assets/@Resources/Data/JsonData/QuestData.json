@@ -1,0 +1,44 @@
+{
+  "quests": [
+    {
+      "TemplateId": 0,
+      "Name": "",
+      "QuestPeriodType": 0,
+      "RewardType": 0,
+      "RewardDataId": 0,
+      "RewardCount": 0,
+      "RewardIcon": "",
+      "QuestTasks": [
+        {
+          "TemplateId": 22,
+          "DescriptionTextId": "2",
+          "ObjectiveType": 4,
+          "ObjectiveIcon": "1",
+          "ObjectiveDataId": 24,
+          "ObjectiveCount": 0,
+          "DialogueId": ""
+        },
+        {
+          "TemplateId": 0,
+          "DescriptionTextId": "1",
+          "ObjectiveType": 0,
+          "ObjectiveIcon": "1",
+          "ObjectiveDataId": 0,
+          "ObjectiveCount": 0,
+          "DialogueId": "1"
+        },
+        {
+          "TemplateId": 0,
+          "DescriptionTextId": "",
+          "ObjectiveType": 2,
+          "ObjectiveIcon": "",
+          "ObjectiveDataId": 2,
+          "ObjectiveCount": 0,
+          "DialogueId": ""
+        }
+      ],
+      "name": "Quest001",
+      "hideFlags": 0
+    }
+  ]
+}

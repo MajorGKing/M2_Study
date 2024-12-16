@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Server.Data;
+using Server;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Server.Game
+namespace GameServer
 {
 	public class GameDbContext : DbContext
 	{

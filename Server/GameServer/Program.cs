@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Google.Protobuf;
 using Microsoft.Extensions.Configuration;
 using Server.Data;
-using Server.Game;
+using GameServer;
 using ServerCore;
 
 namespace Server
@@ -45,6 +45,12 @@ namespace Server
         {
             ConfigManager.LoadConfig();
             DataManager.LoadData();
+
+            // TEMP 방 하나 파두기
+            GameLogic.Instance.Push(() =>
+            {
+                GameLogic.Instance.Add(1);
+            });
 
             IPAddress ipAddr = IPAddress.Parse(ConfigManager.Config.ip);
             IPEndPoint endPoint = new IPEndPoint(ipAddr, ConfigManager.Config.port);

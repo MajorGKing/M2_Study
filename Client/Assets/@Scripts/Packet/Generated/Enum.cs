@@ -24,28 +24,40 @@ namespace Google.Protobuf.Protocol {
     static EnumReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CgpFbnVtLnByb3RvEghQcm90b2NvbCp7Cg5FQ3JlYXR1cmVTdGF0ZRIYChRF",
-            "Q1JFQVRVUkVfU1RBVEVfSURMRRAAEhoKFkVDUkVBVFVSRV9TVEFURV9NT1ZJ",
-            "TkcQARIZChVFQ1JFQVRVUkVfU1RBVEVfU0tJTEwQAhIYChRFQ1JFQVRVUkVf",
-            "U1RBVEVfREVBRBADKs8BCghFTW92ZURpchISCg5FTU9WRV9ESVJfTk9ORRAA",
-            "EhAKDEVNT1ZFX0RJUl9VUBABEhIKDkVNT1ZFX0RJUl9ET1dOEAISEgoORU1P",
-            "VkVfRElSX0xFRlQQAxITCg9FTU9WRV9ESVJfUklHSFQQBBIVChFFTU9WRV9E",
-            "SVJfVVBfTEVGVBAFEhYKEkVNT1ZFX0RJUl9VUF9SSUdIVBAGEhcKE0VNT1ZF",
-            "X0RJUl9ET1dOX0xFRlQQBxIYChRFTU9WRV9ESVJfRE9XTl9SSUdIVBAIQhuq",
-            "AhhHb29nbGUuUHJvdG9idWYuUHJvdG9jb2xiBnByb3RvMw=="));
+            "CgpFbnVtLnByb3RvEghQcm90b2NvbCqHAQoMRU9iamVjdFN0YXRlEhYKEkVP",
+            "QkpFQ1RfU1RBVEVfTk9ORRAAEhYKEkVPQkpFQ1RfU1RBVEVfSURMRRABEhYK",
+            "EkVPQkpFQ1RfU1RBVEVfTU9WRRACEhcKE0VPQkpFQ1RfU1RBVEVfU0tJTEwQ",
+            "AxIWChJFT0JKRUNUX1NUQVRFX0RFQUQQBCrPAQoIRU1vdmVEaXISEgoORU1P",
+            "VkVfRElSX05PTkUQABIQCgxFTU9WRV9ESVJfVVAQARISCg5FTU9WRV9ESVJf",
+            "RE9XThACEhIKDkVNT1ZFX0RJUl9MRUZUEAMSEwoPRU1PVkVfRElSX1JJR0hU",
+            "EAQSFQoRRU1PVkVfRElSX1VQX0xFRlQQBRIWChJFTU9WRV9ESVJfVVBfUklH",
+            "SFQQBhIXChNFTU9WRV9ESVJfRE9XTl9MRUZUEAcSGAoURU1PVkVfRElSX0RP",
+            "V05fUklHSFQQCCqtAQoPRUdhbWVPYmplY3RUeXBlEhoKFkVHQU1FX09CSkVD",
+            "VF9UWVBFX05PTkUQABIaChZFR0FNRV9PQkpFQ1RfVFlQRV9IRVJPEAESHQoZ",
+            "RUdBTUVfT0JKRUNUX1RZUEVfTU9OU1RFUhACEiAKHEVHQU1FX09CSkVDVF9U",
+            "WVBFX1BST0pFQ1RJTEUQAxIhCh1FR0FNRV9PQkpFQ1RfVFlQRV9JVEVNX0hP",
+            "TERFUhAEKlIKEkVDZWxsQ29sbGlzaW9uVHlwZRIdChlFQ0VMTF9DT0xMSVNJ",
+            "T05fVFlQRV9OT05FEAASHQoZRUNFTExfQ09MTElTSU9OX1RZUEVfV0FMTBAB",
+            "KuMBCg9FRmluZFBhdGhSZXN1bHQSGgoWRUZJTkRfUEFUSF9SRVNVTFRfTk9O",
+            "RRAAEiMKH0VGSU5EX1BBVEhfUkVTVUxUX0ZBSUxfTEVSUENFTEwQARIiCh5F",
+            "RklORF9QQVRIX1JFU1VMVF9GQUlMX05PX1BBVEgQAhIiCh5FRklORF9QQVRI",
+            "X1JFU1VMVF9GQUlMX01PVkVfVE8QAxIoCiRFRklORF9QQVRIX1JFU1VMVF9G",
+            "QUlMX1NBTUVfUE9TSVRJT04QBBIdChlFRklORF9QQVRIX1JFU1VMVF9TVUND",
+            "RVNTEAVCG6oCGEdvb2dsZS5Qcm90b2J1Zi5Qcm90b2NvbGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.ECreatureState), typeof(global::Google.Protobuf.Protocol.EMoveDir), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.EObjectState), typeof(global::Google.Protobuf.Protocol.EMoveDir), typeof(global::Google.Protobuf.Protocol.EGameObjectType), typeof(global::Google.Protobuf.Protocol.ECellCollisionType), typeof(global::Google.Protobuf.Protocol.EFindPathResult), }, null, null));
     }
     #endregion
 
   }
   #region Enums
-  public enum ECreatureState {
-    [pbr::OriginalName("ECREATURE_STATE_IDLE")] Idle = 0,
-    [pbr::OriginalName("ECREATURE_STATE_MOVING")] Moving = 1,
-    [pbr::OriginalName("ECREATURE_STATE_SKILL")] Skill = 2,
-    [pbr::OriginalName("ECREATURE_STATE_DEAD")] Dead = 3,
+  public enum EObjectState {
+    [pbr::OriginalName("EOBJECT_STATE_NONE")] None = 0,
+    [pbr::OriginalName("EOBJECT_STATE_IDLE")] Idle = 1,
+    [pbr::OriginalName("EOBJECT_STATE_MOVE")] Move = 2,
+    [pbr::OriginalName("EOBJECT_STATE_SKILL")] Skill = 3,
+    [pbr::OriginalName("EOBJECT_STATE_DEAD")] Dead = 4,
   }
 
   public enum EMoveDir {
@@ -58,6 +70,28 @@ namespace Google.Protobuf.Protocol {
     [pbr::OriginalName("EMOVE_DIR_UP_RIGHT")] UpRight = 6,
     [pbr::OriginalName("EMOVE_DIR_DOWN_LEFT")] DownLeft = 7,
     [pbr::OriginalName("EMOVE_DIR_DOWN_RIGHT")] DownRight = 8,
+  }
+
+  public enum EGameObjectType {
+    [pbr::OriginalName("EGAME_OBJECT_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("EGAME_OBJECT_TYPE_HERO")] Hero = 1,
+    [pbr::OriginalName("EGAME_OBJECT_TYPE_MONSTER")] Monster = 2,
+    [pbr::OriginalName("EGAME_OBJECT_TYPE_PROJECTILE")] Projectile = 3,
+    [pbr::OriginalName("EGAME_OBJECT_TYPE_ITEM_HOLDER")] ItemHolder = 4,
+  }
+
+  public enum ECellCollisionType {
+    [pbr::OriginalName("ECELL_COLLISION_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("ECELL_COLLISION_TYPE_WALL")] Wall = 1,
+  }
+
+  public enum EFindPathResult {
+    [pbr::OriginalName("EFIND_PATH_RESULT_NONE")] None = 0,
+    [pbr::OriginalName("EFIND_PATH_RESULT_FAIL_LERPCELL")] FailLerpcell = 1,
+    [pbr::OriginalName("EFIND_PATH_RESULT_FAIL_NO_PATH")] FailNoPath = 2,
+    [pbr::OriginalName("EFIND_PATH_RESULT_FAIL_MOVE_TO")] FailMoveTo = 3,
+    [pbr::OriginalName("EFIND_PATH_RESULT_FAIL_SAME_POSITION")] FailSamePosition = 4,
+    [pbr::OriginalName("EFIND_PATH_RESULT_SUCCESS")] Success = 5,
   }
 
   #endregion

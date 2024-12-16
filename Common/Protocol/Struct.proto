@@ -10,3 +10,48 @@ message RoomInfo
 	int32 roomId = 1;
 	int32 mapId = 2;
 }
+
+message StatInfo 
+{
+	int32 level = 1;
+	int32 hp = 2;
+	int32 maxHp = 3;
+	float speed = 4;
+	int32 attack = 5;
+	int32 defence = 6;
+	int32 exp = 7;
+	int32 totalExp = 8;
+}
+
+message PositionInfo 
+{
+	EObjectState state = 1;
+	EMoveDir moveDir = 2;
+	int32 posX = 3;
+	int32 posY = 4;
+}
+
+message ObjectInfo 
+{
+	int32 objectId = 1;
+	PositionInfo posInfo = 2;  
+}
+
+message CreatureInfo 
+{
+	ObjectInfo objectInfo = 1;
+	StatInfo statInfo = 2;
+	int32 stateFlag = 3;
+}
+
+message HeroInfo
+{
+	CreatureInfo creatureInfo = 1;
+	string name = 2;
+}
+
+message MyHeroInfo
+{
+	HeroInfo heroInfo = 1;
+	StatInfo baseStatInfo = 2;
+}

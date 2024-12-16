@@ -10,7 +10,39 @@ message S_Connected
 {
 }
 
-message C_Test 
+
+message C_EnterGame 
 {
-	int32 temp = 1;
+}
+
+message S_EnterGame 
+{
+	MyHeroInfo myHeroInfo = 1;
+	bool respawn = 2;
+}
+
+message S_LeaveGame
+{
+
+}
+
+message S_Spawn 
+{
+	repeated HeroInfo heroes = 1;
+}
+
+message S_Despawn 
+{
+	repeated int32 objectIds = 1;
+}
+
+message C_Move 
+{
+	PositionInfo posInfo = 1;
+}
+
+message S_Move 
+{
+	int32 objectId = 1;
+	PositionInfo posInfo = 2;
 }

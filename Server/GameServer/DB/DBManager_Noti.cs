@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Server.Game
+namespace GameServer
 {
 	// 게임 로직에서 완료 콜백을 받을 필요 없는 경우
 	public partial class DBManager : JobSerializer

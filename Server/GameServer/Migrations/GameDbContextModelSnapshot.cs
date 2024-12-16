@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Server.Game;
+using GameServer;
 
 #nullable disable
 
@@ -22,7 +22,7 @@ namespace GameServer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Server.Game.HeroDb", b =>
+            modelBuilder.Entity("GameServer.HeroDb", b =>
                 {
                     b.Property<int>("HeroDbId")
                         .ValueGeneratedOnAdd()
@@ -45,7 +45,7 @@ namespace GameServer.Migrations
                     b.ToTable("Hero");
                 });
 
-            modelBuilder.Entity("Server.Game.ItemDb", b =>
+            modelBuilder.Entity("GameServer.ItemDb", b =>
                 {
                     b.Property<long>("ItemDbId")
                         .ValueGeneratedOnAdd()

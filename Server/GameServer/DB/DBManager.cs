@@ -4,7 +4,7 @@ using System.Text;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
-namespace Server.Game
+namespace GameServer
 {
     // 게임 로직에서 완료 콜백을 받아 이어서 처리하는 경우
     public partial class DBManager : JobSerializer

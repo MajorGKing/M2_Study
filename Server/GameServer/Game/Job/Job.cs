@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace Server.Game
+namespace GameServer
 {
 	public abstract class IJob
 	{

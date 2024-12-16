@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Server.Game
+namespace GameServer
 {
     [Table("Hero")]
     public class HeroDb

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20a05a478284f5184018bddc2154b28, type: 3}
+  m_Name: ScareCrow
+  m_EditorClassIdentifier: 
+  TemplateId: 1
+  NameTextId: 1
+  IconImage: 
+  PrefabName: ScareCrow
+  Stat:
+    Hp: 100
+    MaxHp: 100
+    Speed: 3
+    Attack: 3
+    Defence: 0
+    CriRate: 0
+    CriDamage: 0
+  IsBoss: 0
+  IsAggressive: 0
+  ExtraCells: 0
+  IconImageName: 
+  MainSkill: {fileID: 11400000, guid: 145e913c3ff95b649a74766cab91eea5, type: 2}
+  SkillA: {fileID: 0}
+  SkillB: {fileID: 0}
+  SearchCellDist: 10
+  ChaseCellDist: 10
+  PatrolCellDist: 1

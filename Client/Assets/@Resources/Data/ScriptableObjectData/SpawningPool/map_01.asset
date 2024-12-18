@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ee82dfaa8fe4e268db15d3a38a05e4a, type: 3}
+  m_Name: map_01
+  m_EditorClassIdentifier: 
+  id: 1
+  size: 10
+  Monsters:
+  - TemplateId: 3
+    MonsterData: {fileID: 11400000, guid: 8021145313029e0419d5165c8f6d5d23, type: 2}
+    Count: 1
+    RespawnType: 0
+    Interval: 0
+    respawnTime: 5
+  - TemplateId: 2
+    MonsterData: {fileID: 11400000, guid: 68162d1fb1c5308469092a9f4b5677ac, type: 2}
+    Count: 3
+    RespawnType: 0
+    Interval: 0
+    respawnTime: 5

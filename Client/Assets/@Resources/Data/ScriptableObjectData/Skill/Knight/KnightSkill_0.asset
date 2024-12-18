@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae05612c4d40491d9ac64c4f4fe734a6, type: 3}
+  m_Name: KnightSkill_0
+  m_EditorClassIdentifier: 
+  SkillType: 3
+  TemplateId: 1
+  Name: "\uAE30\uC0AC \uAE30\uBCF8\uACF5\uACA9"
+  NameTextId: 
+  DescriptionTextId: 
+  Projectile: {fileID: 0}
+  IconLabel: 
+  Cooldown: 2.5
+  Duration: 0
+  SkillRange: 1
+  AnimName: attack
+  EventTimes:
+  - 0.3333
+  - 0.6667
+  - 1
+  Effects:
+  - {fileID: 11400000, guid: ae3ce71601047364bb15d93827381d8e, type: 2}
+  NextLevelSkill: {fileID: 0}
+  AoEs: []

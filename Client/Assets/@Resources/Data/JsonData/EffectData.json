@@ -1,0 +1,19 @@
+{
+  "datas": [
+    {
+      "TemplateId": 1,
+      "Name": "기본공격",
+      "DescriptionTextID": "기본공격",
+      "PrefabName": "",
+      "SkeletonDataID": "",
+      "IconLabel": "",
+      "SoundLabel": "",
+      "SkillRatio": 1.0,
+      "Duration": 0.0,
+      "EffectType": 0,
+      "StatType": 1,
+      "name": "InstantEffect",
+      "hideFlags": 0
+    }
+  ]
+}

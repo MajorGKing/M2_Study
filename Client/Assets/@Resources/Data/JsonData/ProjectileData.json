@@ -1,0 +1,14 @@
+{
+  "datas": [
+    {
+      "TemplateId": 1,
+      "Name": "고블린화살",
+      "PrefabName": "GoblinProjectile",
+      "Duration": 0.0,
+      "ProjRange": 30.0,
+      "ProjSpeed": 20.0,
+      "name": "GoblinProjectile",
+      "hideFlags": 0
+    }
+  ]
+}

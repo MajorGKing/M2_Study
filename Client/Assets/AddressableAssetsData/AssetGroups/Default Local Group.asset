@@ -17,20 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 96ac468329098d84f84540101ae8f696
   m_SerializeEntries:
-  - m_GUID: 1c2ad1ad8ae65194aa075f32d95f3eae
-    m_Address: MonsterPrefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7f7a40ec42da8d34bbf4961710c928e1
     m_Address: MMO_edu_map
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 82120fbb903c40d4f88f7b70503c90e2
-    m_Address: 001_SkeletonData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

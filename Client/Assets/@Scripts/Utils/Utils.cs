@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Google.Protobuf.Protocol;
+using System;
 using System.Net;
 using UnityEngine;
 using static Define;
 using Object = UnityEngine.Object;
-using Random = UnityEngine.Random;
 
 public static class Utils
 {
@@ -25,7 +25,7 @@ public static class Utils
                 return component;
             t = t.parent;
         }
-        return null; 
+        return null;
     }
 
     public static GameObject FindChild(GameObject go, string name = null, bool recursive = false)
@@ -97,12 +97,12 @@ public static class Utils
 
         return false;
     }
-    
+
     public static T ParseEnum<T>(string value)
     {
         return (T)Enum.Parse(typeof(T), value, true);
     }
-    
+
     public static IPAddress GetIpv4Address(string hostAddress)
     {
         IPAddress[] ipAddr = Dns.GetHostAddresses(hostAddress);
@@ -123,5 +123,24 @@ public static class Utils
 
         Debug.LogError("AuthServer IPv4 Failed");
         return null;
-    } 
+    }
+
+    // [OBJ_TYPE(4)][TEMPLATE_ID(8)][ID(20)]
+    public static EGameObjectType GetObjectTypeFromId(int id)
+    {
+        int type = (id >> 28) & 0x0F;
+        return (EGameObjectType)type;
+    }
+
+    public static int GetTemplateIdFromId(int id)
+    {
+        int templateId = (id >> 20) & 0xFF;
+        return templateId;
+    }
+
+    static int _counter = 1;
+    public static int GenerateId(EGameObjectType type, int templateId)
+    {
+        return ((int)type << 28) | (templateId << 20) | (_counter++);
+    }
 }

@@ -28,25 +28,13 @@ public class ResourceManager
 
         return false;
     }
-    
+
     public T Load<T>(string key) where T : Object
     {
         if (_resources.TryGetValue(key, out Object resource))
         {
             return resource as T;
         }
-
-        //스프라이트 로드할때 항상 .sprite가 붙어 있어야하는데 데이터시트에 .sprite가 붙어있지 않은 데이터가 많음
-        //임시로 붙임 -드래곤
-        if (typeof(T) == typeof(Sprite))
-        {
-            key = key + ".sprite";
-            if (_resources.TryGetValue(key, out Object temp))
-            {
-                return temp as T;
-            }
-        }
-
         return null;
     }
 
@@ -80,15 +68,17 @@ public class ResourceManager
     }
 
     #endregion
- 
+
     #region 어드레서블
 
     public void LoadAsync<T>(string key, Action<T> callback = null) where T : UnityEngine.Object
     {
         //스프라이트인 경우 하위객체의 찐이름으로 로드하면 스프라이트로 로딩이 됌
         string loadKey = key;
-        if (key.Contains(".sprite"))
-            loadKey = $"{key}[{key.Replace(".sprite", "")}]";
+        if (typeof(T) == typeof(Sprite))
+        {
+            loadKey = $"{key}[{key}]";
+        }
 
         var asyncOperation = Addressables.LoadAssetAsync<T>(loadKey);
         asyncOperation.Completed += (op) =>
@@ -116,7 +106,7 @@ public class ResourceManager
 
             foreach (var result in op.Result)
             {
-                if (result.PrimaryKey.Contains(".sprite"))
+                if (result.ResourceType == typeof(Texture2D) || result.ResourceType == typeof(Sprite))
                 {
                     LoadAsync<Sprite>(result.PrimaryKey, (obj) =>
                     {
@@ -125,7 +115,7 @@ public class ResourceManager
                     });
                 }
                 else
-                { 
+                {
                     LoadAsync<T>(result.PrimaryKey, (obj) =>
                     {
                         loadCount++;

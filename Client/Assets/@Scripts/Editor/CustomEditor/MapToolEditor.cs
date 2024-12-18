@@ -2,8 +2,8 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[CustomEditor(typeof(Tilemap))]
-public class TilemapEditor : Editor
+[CustomEditor(typeof(MapTool))]
+public class MapToolEditor : Editor
 {
     private Tilemap _tilemap;
 
@@ -11,18 +11,18 @@ public class TilemapEditor : Editor
     {
         base.OnInspectorGUI();
 
-        _tilemap = (Tilemap)target;
+        MapTool tool = (MapTool)target;
 
         EditorGUILayout.Space(20);
-        // DrawUILine(thickness: 3);
+        DrawUILine(thickness: 3);
         GUILayout.Label("Tools", EditorStyles.boldLabel);
 
-        if (GUILayout.Button("선택한 타일맵 초기화(삭제)"))
+        if (GUILayout.Button("Draw Collision"))
         {
-            _tilemap.ClearAllTiles();
+            tool.DrawCollision();
         }
+        DrawUILine(thickness: 3);
 
-        // _tilemap.cellBounds.center에 빨간색 아이콘 그리기
     }
 
     #region Helper
@@ -50,5 +50,4 @@ public class TilemapEditor : Editor
     }
 
     #endregion
-
 }

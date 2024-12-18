@@ -5,41 +5,25 @@ using static Define;
 
 namespace Data
 {
-    #region CreatureData
+    #region TextData
     [Serializable]
-    public class CreatureData
+    public class TextData
     {
-        public int TemplateId;
-        public string NameTextID;
-        public float ColliderOffsetX;
-        public float ColliderOffsetY;
-        public float ColliderRadius;
-        public float MaxHp;
-        public float UpMaxHpBonus;
-        public float Atk;
-        public float MissChance;
-        public float AtkBonus;
-        public float MoveSpeed;
-        public float CriRate;
-        public float CriDamage;
-        public string IconImage;
-        public string SkeletonDataID;
-        public int DefaultSkillId;
-        public int EnvSkillId;
-        public int SkillAId;
-        public int SkillBId;
-       
+        public string TemplateId;
+        public string KOR;
     }
 
     [Serializable]
-    public class CreatureDataLoader : ILoader<int, CreatureData>
+    public class TextDataLoader : ILoader<string, TextData>
     {
-        public List<CreatureData> creatures = new List<CreatureData>();
-        public Dictionary<int, CreatureData> MakeDict()
+        public List<TextData> texts = new List<TextData>();
+
+        public Dictionary<string, TextData> MakeDict()
         {
-            Dictionary<int, CreatureData> dict = new Dictionary<int, CreatureData>();
-            foreach (CreatureData creature in creatures)
-                dict.Add(creature.TemplateId, creature);
+            Dictionary<string, TextData> dict = new Dictionary<string, TextData>();
+            foreach (TextData text in texts)
+                dict.Add(text.TemplateId, text);
+
             return dict;
         }
 
@@ -50,4 +34,58 @@ namespace Data
     }
     #endregion
 
+    [Serializable]
+    public class CreatureData
+    {
+        public int TemplateId;
+        public string NameTextId;
+        public string IconImage;
+        public string SkeletonDataId;
+
+        public virtual bool Validate()
+        {
+            return true;
+        }
+    }
+    #region HeroData
+    [Serializable]
+    public class HeroData : CreatureData
+    {
+        public string DescriptionTextId;
+
+        public override bool Validate()
+        {
+            bool validate = base.Validate();
+            return validate;
+        }
+    }
+
+    [Serializable]
+    public class HeroDataLoader : ILoader<int, HeroData>
+    {
+        public List<HeroData> Heroes = new List<HeroData>();
+
+        public Dictionary<int, HeroData> MakeDict()
+        {
+            Dictionary<int, HeroData> dict = new Dictionary<int, HeroData>();
+            foreach (HeroData heroData in Heroes)
+                dict.Add(heroData.TemplateId, heroData);
+
+            return dict;
+        }
+
+        public bool Validate()
+        {
+            bool validate = true;
+
+            foreach (var hero in Heroes)
+            {
+                if (hero.Validate() == false)
+                    validate = false;
+            }
+
+            return validate;
+        }
+    }
+    #endregion
 }

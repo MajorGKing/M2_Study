@@ -16,35 +16,19 @@ public class TitleScene : BaseScene
         SceneType = Define.EScene.TitleScene;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         Application.targetFrameRate = 60;
-        QualitySettings.vSyncCount = 0;  
+        QualitySettings.vSyncCount = 0;
         GraphicsSettings.transparencySortMode = TransparencySortMode.CustomAxis;
         GraphicsSettings.transparencySortAxis = new Vector3(0.0f, 1.0f, 0.0f);
-	}
+        Application.runInBackground = true;
+    }
 
-	protected override void Start()
+    protected override void Start()
     {
         base.Start();
+    }
 
-		//IPAddress ipAddr = IPAddress.Parse("127.0.0.1");
-		//IPEndPoint endPoint = new IPEndPoint(ipAddr, 7777);
-		//Managers.Network.GameServer.Connect(endPoint);
-		//CoSendTestPackets();
-	}
+    public override void Clear()
+    {
 
-	public override void Clear()
-	{
-
-	}
-
-	//IEnumerator CoSendTestPackets()
-	//{
-	//	while (true)
-	//	{
-	//		yield return new WaitForSeconds(1);
-
-	//		C_Test pkt = new C_Test();
-	//		pkt.Temp = 1;
-	//		Managers.Network.Send(pkt);
-	//	}
-	//}
+    }
 }

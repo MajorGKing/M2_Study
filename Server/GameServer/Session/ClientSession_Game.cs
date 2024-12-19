@@ -23,6 +23,28 @@ namespace Server
             Send(resPacket);
         }
 
+        public void HandleHeroListReq()
+        {
+            if(Heroes.Count == 0)
+            {
+                List<HeroDb> heroDbs = DBManager.LoadHeroDb(AccountDbId);
+                foreach(HeroDb heroDb in heroDbs)
+                {
+                    Hero hero = MakeHeroFromHeroDb(heroDb);
+                    Heroes.Add(hero);
+                }
+            }
+
+            S_HeroListRes resPacket = new S_HeroListRes();
+            foreach (Hero hero in Heroes)
+            {
+                Console.WriteLine($"Hero data{hero.Name}");
+                resPacket.Heroes.Add(hero.MyHeroInfo);
+            }
+
+            Send(resPacket);
+        }
+
         public void HandleEnterGame(C_EnterGame enterGamePacket)
         {
             // TODO : 인증 토큰 
@@ -49,6 +71,24 @@ namespace Server
                     room.EnterGame(hero, respawn: false, pos: null);
                 });
             });
+
+        }
+        Hero MakeHeroFromHeroDb(HeroDb heroDb)
+        {
+            Hero hero = ObjectManager.Instance.Spawn<Hero>(1);
+            {
+                hero.HeroDbId = heroDb.HeroDbId;
+                hero.ObjectInfo.PosInfo.State = EObjectState.Idle;
+                hero.ObjectInfo.PosInfo.PosX = heroDb.PosX;
+                hero.ObjectInfo.PosInfo.PosY = heroDb.PosY;
+                hero.HeroInfo.Level = heroDb.Level;
+                hero.HeroInfo.Name = heroDb.Name;
+                hero.HeroInfo.Gender = heroDb.Gender;
+                hero.HeroInfo.ClassType = heroDb.ClassType;
+                hero.Session = this;
+            }
+
+            return hero;
         }
     }
 }

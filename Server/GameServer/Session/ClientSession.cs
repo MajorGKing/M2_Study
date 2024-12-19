@@ -17,7 +17,7 @@ namespace Server
     {
         public long AccountDbId { get; set; }
         public int SessionId { get; set; }
-
+        public List<Hero> Heroes { get; set; } = new List<Hero>();
         public Hero MyHero { get; set; }
         object _lock = new object();
 

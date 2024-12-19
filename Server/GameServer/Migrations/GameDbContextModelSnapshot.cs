@@ -33,10 +33,35 @@ namespace GameServer.Migrations
                     b.Property<long>("AccountDbId")
                         .HasColumnType("bigint");
 
+                    b.Property<int>("ClassType")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<int>("Exp")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MapId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PosX")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PosY")
+                        .HasColumnType("int");
 
                     b.HasKey("HeroDbId");
 

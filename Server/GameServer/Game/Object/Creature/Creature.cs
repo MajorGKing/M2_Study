@@ -10,6 +10,7 @@ namespace GameServer
     public class Creature : BaseObject
     {
         public CreatureInfo CreatureInfo { get; private set; } = new CreatureInfo();
+        public StatInfo BaseStat { get; protected set; } = new StatInfo();
 
         public Creature()
         {

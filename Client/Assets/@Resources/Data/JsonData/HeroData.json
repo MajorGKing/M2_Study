@@ -1,11 +1,75 @@
 {
-  "Heroes": [
+  "heroes": [
     {
-      "DescriptionTextId": null,
+      "IconImageName": "",
+      "MainSkill": {
+        "SkillType": 3,
+        "TemplateId": 1,
+        "Name": "기사 기본공격",
+        "NameTextId": "",
+        "DescriptionTextId": "",
+        "Projectile": null,
+        "IconLabel": "",
+        "Cooldown": 2.5,
+        "Duration": 0.0,
+        "SkillRange": 1,
+        "AnimName": "attack",
+        "EventTimes": [
+          0.3333,
+          0.6667,
+          1.0
+        ],
+        "Effects": [
+          {
+            "TemplateId": 1,
+            "Name": "기본공격",
+            "DescriptionTextID": "기본공격",
+            "PrefabName": "",
+            "SkeletonDataID": "",
+            "IconLabel": "",
+            "SoundLabel": "",
+            "SkillRatio": 1.0,
+            "Duration": 0.0,
+            "EffectType": 0,
+            "StatType": 1,
+            "name": "InstantEffect",
+            "hideFlags": 0
+          }
+        ],
+        "NextLevelSkill": null,
+        "AoEs": [],
+        "name": "KnightSkill_0",
+        "hideFlags": 0
+      },
+      "SkillA": null,
+      "SkillB": null,
+      "SkillC": null,
+      "SkillD": null,
+      "SkillE": null,
       "TemplateId": 1,
-      "NameTextId": null,
-      "IconImage": null,
-      "SkeletonDataId": "001_SkeletonData"
+      "NameTextId": "",
+      "IconImage": "",
+      "PrefabName": "KnightPrefab",
+      "Stat": {
+        "Hp": 500.0,
+        "MaxHp": 500.0,
+        "Speed": 5.0,
+        "Attack": 5.0,
+        "Defence": 0.0,
+        "CriRate": 0,
+        "CriDamage": 0,
+        "StatInfo": {
+          "Hp": 500.0,
+          "MaxHp": 500.0,
+          "Speed": 5.0,
+          "Attack": 5.0,
+          "Defence": 0.0,
+          "CriRate": 0,
+          "CriDamage": 0
+        }
+      },
+      "name": "Knight",
+      "hideFlags": 0
     }
   ]
 }

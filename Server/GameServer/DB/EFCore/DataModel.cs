@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Google.Protobuf.Protocol;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,6 +12,14 @@ namespace GameServer
         public int HeroDbId { get; set; }
         public long AccountDbId { get; set; }
         public DateTime CreateDate { get; private set; }
+        public EHeroGender Gender { get; set; }
+        public EHeroClass ClassType { get; set; }
+        public string Name { get; set; }
+        public int Level { get; set; }
+        public int Exp { get; set; }
+        public int MapId { get; set; }
+        public int PosX { get; set; }
+        public int PosY { get; set; }
     }
 
     [Table("Item")]

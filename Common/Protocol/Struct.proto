@@ -13,14 +13,13 @@ message RoomInfo
 
 message StatInfo 
 {
-	int32 level = 1;
-	int32 hp = 2;
-	int32 maxHp = 3;
-	float speed = 4;
-	int32 attack = 5;
-	int32 defence = 6;
-	int32 exp = 7;
-	int32 totalExp = 8;
+	float hp = 1;
+	float maxHp = 2;
+	float speed = 3;
+	float attack = 4;
+	float defence = 5;
+	int32 criRate = 6;
+	int32 criDamage = 7;
 }
 
 message PositionInfo 
@@ -47,7 +46,10 @@ message CreatureInfo
 message HeroInfo
 {
 	CreatureInfo creatureInfo = 1;
-	string name = 2;
+	int32 level = 2;
+	string name = 3;
+	EHeroGender gender = 4;
+	EHeroClass classType = 5;
 }
 
 message MyHeroInfo

@@ -1,12 +1,12 @@
 {
   "quests": [
     {
-      "TemplateId": 0,
+      "TemplateId": 12,
       "Name": "",
-      "QuestPeriodType": 0,
-      "RewardType": 0,
-      "RewardDataId": 0,
-      "RewardCount": 0,
+      "QuestPeriodType": 1,
+      "RewardType": 1,
+      "RewardDataId": 14,
+      "RewardCount": 4,
       "RewardIcon": "",
       "QuestTasks": [
         {
@@ -40,5 +40,7 @@
       "name": "Quest001",
       "hideFlags": 0
     }
-  ]
+  ],
+  "name": "",
+  "hideFlags": 0
 }

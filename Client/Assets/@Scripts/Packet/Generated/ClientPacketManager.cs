@@ -9,13 +9,15 @@ public enum MsgId
 	S_Connected = 1,
 	C_AuthReq = 2,
 	S_AuthRes = 3,
-	C_EnterGame = 4,
-	S_EnterGame = 5,
-	S_LeaveGame = 6,
-	S_Spawn = 7,
-	S_Despawn = 8,
-	C_Move = 9,
-	S_Move = 10,
+	C_HeroListReq = 4,
+	S_HeroListRes = 5,
+	C_EnterGame = 6,
+	S_EnterGame = 7,
+	S_LeaveGame = 8,
+	S_Spawn = 9,
+	S_Despawn = 10,
+	C_Move = 11,
+	S_Move = 12,
 }
 
 class PacketManager
@@ -41,6 +43,8 @@ class PacketManager
 		_handler.Add((ushort)MsgId.S_Connected, PacketHandler.S_ConnectedHandler);		
 		_onRecv.Add((ushort)MsgId.S_AuthRes, MakePacket<S_AuthRes>);
 		_handler.Add((ushort)MsgId.S_AuthRes, PacketHandler.S_AuthResHandler);		
+		_onRecv.Add((ushort)MsgId.S_HeroListRes, MakePacket<S_HeroListRes>);
+		_handler.Add((ushort)MsgId.S_HeroListRes, PacketHandler.S_HeroListResHandler);		
 		_onRecv.Add((ushort)MsgId.S_EnterGame, MakePacket<S_EnterGame>);
 		_handler.Add((ushort)MsgId.S_EnterGame, PacketHandler.S_EnterGameHandler);		
 		_onRecv.Add((ushort)MsgId.S_LeaveGame, MakePacket<S_LeaveGame>);

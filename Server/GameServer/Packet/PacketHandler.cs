@@ -20,6 +20,13 @@ class PacketHandler
         ClientSession clientSession = (ClientSession)session;
         clientSession.HandleAuthReq(reqPacket);
     }
+
+    public static void C_HeroListReqHandler(PacketSession session, IMessage packet)
+    {
+        C_HeroListReq reqPacket = (C_HeroListReq)packet;
+        ClientSession clientSession = (ClientSession)session;
+        clientSession.HandleHeroListReq();
+    }
     public static void C_EnterGameHandler(PacketSession session, IMessage packet)
     {
         C_EnterGame enterGamePacket = (C_EnterGame)packet;
@@ -42,5 +49,4 @@ class PacketHandler
 
         room.Push(room.HandleMove, hero, movePacket);
     }
-
 }

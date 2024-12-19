@@ -29,6 +29,11 @@ class PacketHandler
         sceneUI.OnAuthResHandler(resPacket);
     }
 
+    public static void S_HeroListResHandler(PacketSession session, IMessage packet)
+    {
+        Debug.Log("S_HeroListResHandler");
+    }
+
     public static void S_EnterGameHandler(PacketSession session, IMessage packet)
     {
         Debug.Log("S_EnterGameHandler");

@@ -20,6 +20,14 @@ message S_AuthRes
 	bool success = 1;
 }
 
+message C_HeroListReq
+{
+}
+
+message S_HeroListRes
+{
+	repeated MyHeroInfo heroes = 1;
+}
 
 message C_EnterGame 
 {

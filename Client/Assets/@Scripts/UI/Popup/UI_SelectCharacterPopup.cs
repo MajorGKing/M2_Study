@@ -69,4 +69,10 @@ public class UI_SelectCharacterPopup : UI_Popup
 
     }
 
+    public void SendHeroListReqPacket()
+    {
+        C_HeroListReq reqPacket = new C_HeroListReq();
+        Managers.Network.Send(reqPacket);
+    }
+
 }

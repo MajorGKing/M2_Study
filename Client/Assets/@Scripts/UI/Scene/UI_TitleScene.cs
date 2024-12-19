@@ -178,6 +178,8 @@ public class UI_TitleScene : UI_Scene
             return;
 
         Debug.Log("Sucess!!");
+        // 게임서버가 인증 통과 해주면 캐릭터 목록 요청.
+        UI_SelectCharacterPopup popup = Managers.UI.ShowPopupUI<UI_SelectCharacterPopup>();
     }
 
     private void OnClickChooseServerButton(PointerEventData evt)

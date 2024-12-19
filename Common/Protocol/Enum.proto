@@ -3,6 +3,29 @@ syntax = "proto3";
 package Protocol;
 option csharp_namespace = "Google.Protobuf.Protocol";
 
+enum EHeroGender
+{
+	EHERO_GENDER_NONE = 0;
+	EHERO_GENDER_MALE = 1;
+	EHERO_GENDER_FEMALE = 2;
+}
+
+enum EHeroClass
+{
+	EHERO_CLASS_NONE = 0;
+	EHERO_CLASS_WARRIOR = 1;
+	EHERO_CLASS_RANGER = 2;
+	EHERO_CLASS_WIZARD = 3;
+	EHERO_CLASS_ROGUE = 4;
+}
+
+enum ECreateHeroResult
+{
+	ECREATE_HERO_RESULT_NONE = 0;
+	ECREATE_HERO_RESULT_SUCCESS = 1;
+	ECREATE_HERO_RESULT_FAIL_DUPLICATE_NAME = 2;
+}
+
 enum EObjectState 
 {
 	EOBJECT_STATE_NONE = 0;

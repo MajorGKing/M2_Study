@@ -1,37 +1,22 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Define;
 
 public class SceneManagerEx
 {
     public BaseScene CurrentScene { get { return GameObject.FindObjectOfType<BaseScene>(); } }
+    public EScene NextSceneType;
 
-    public void LoadScene(Define.EScene type, Transform parents = null)
+    public void LoadScene(EScene type, Transform parents = null)
     {
+        NextSceneType = type;
         Managers.Clear();
-        SceneManager.LoadScene(GetSceneName(type));
-        //switch (CurrentScene.SceneType)
-        //{
-        //    case Define.Scene.TitleScene:
-        //        Managers.Clear();
-        //        SceneManager.LoadScene(GetSceneName(type));
-        //        break;
-        //    case Define.Scene.GameScene:
-        //        Managers.Resource.Destroy(Managers.UI.SceneUI.gameObject);
-        //        Managers.Clear();
-        //        SceneManager.LoadScene(GetSceneName(type));
-        //        break;
-        //    case Define.Scene.LobbyScene:
-        //        Managers.Resource.Destroy(Managers.UI.SceneUI.gameObject);
-        //        Managers.Clear();
-        //        SceneManager.LoadScene(GetSceneName(type));
-        //        break;
-        //}
-
+        SceneManager.LoadScene(GetSceneName(EScene.LoadingScene));
     }
 
-    private string GetSceneName(Define.EScene type)
+    public string GetSceneName(EScene type)
     {
-        string name = System.Enum.GetName(typeof(Define.EScene), type);
+        string name = System.Enum.GetName(typeof(EScene), type);
         return name;
     }
 

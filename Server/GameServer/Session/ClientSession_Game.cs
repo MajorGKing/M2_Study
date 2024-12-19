@@ -12,6 +12,17 @@ namespace Server
 {
     public partial class ClientSession : PacketSession
     {
+        public void HandleAuthReq(C_AuthReq reqPacket)
+        {
+            // TODO : Validation
+            // reqPacket.Jwt
+
+            S_AuthRes resPacket = new S_AuthRes();
+            resPacket.Success = true;
+
+            Send(resPacket);
+        }
+
         public void HandleEnterGame(C_EnterGame enterGamePacket)
         {
             // TODO : 인증 토큰 

@@ -14,6 +14,12 @@ class PacketHandler
 {
     ///////////////////////////////////// Client - Game Server /////////////////////////////////////
 
+    public static void C_AuthReqHandler(PacketSession session, IMessage packet)
+    {
+        C_AuthReq reqPacket = (C_AuthReq)packet;
+        ClientSession clientSession = (ClientSession)session;
+        clientSession.HandleAuthReq(reqPacket);
+    }
     public static void C_EnterGameHandler(PacketSession session, IMessage packet)
     {
         C_EnterGame enterGamePacket = (C_EnterGame)packet;

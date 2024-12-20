@@ -156,6 +156,13 @@ public class UIManager
         return popup as T;
     }
 
+    public T GetLastPopupUI<T>() where T : UI_Popup
+    {
+        _popupStack.TryPeek(out UI_Popup popup);
+        return popup as T;
+    }
+
+
     public void ClosePopupUI(UI_Popup popup)
     {
         if (_popupStack.Count == 0)

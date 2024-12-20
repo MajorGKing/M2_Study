@@ -55,7 +55,7 @@ namespace GameServer.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("PosX")
                         .HasColumnType("int");
@@ -66,6 +66,8 @@ namespace GameServer.Migrations
                     b.HasKey("HeroDbId");
 
                     b.HasIndex("AccountDbId");
+
+                    b.HasIndex("Name");
 
                     b.ToTable("Hero");
                 });

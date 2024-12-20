@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using VFolders.Libs;
 using static Define;
 
 public class UI_SelectCharacterPopup : UI_Popup
@@ -19,8 +20,12 @@ public class UI_SelectCharacterPopup : UI_Popup
         CharacterList,
     }
 
+    // 캐릭터 슬롯
     Transform _parent;
     List<UI_CharacterSlotItem> _slots = new List<UI_CharacterSlotItem>();
+
+    // 데이터
+    List<MyHeroInfo> _heroes = new List<MyHeroInfo>();
 
     protected override void Awake()
     {
@@ -39,14 +44,50 @@ public class UI_SelectCharacterPopup : UI_Popup
         RefreshUI();
     }
 
+    public void SetInfo(List<MyHeroInfo> heroes)
+    {
+        _heroes = heroes;
+
+        RefreshUI();
+    }
+
     void PopulateSlots()
     {
+        _parent.DestroyChildren();
+        _slots.Clear();
 
+        for (int i = 0; i < MAX_LOBBY_HERO_COUNT; i++)
+        {
+            UI_CharacterSlotItem item = Managers.UI.MakeSubItem<UI_CharacterSlotItem>(_parent);
+            item.gameObject.SetActive(false);
+            _slots.Add(item);
+        }
     }
+
+    int _selectedHeroIndex = 0;
 
     public void RefreshUI()
     {
+        for (int i = 0; i < MAX_LOBBY_HERO_COUNT; i++)
+        {
+            if (i < _heroes.Count)
+            {
+                MyHeroInfo myHeroInfo = _heroes[i];
 
+                _slots[i].SetInfo(i, myHeroInfo, _selectedHeroIndex == i, OnHeroSelected);
+                _slots[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                _slots[i].gameObject.SetActive(false);
+            }
+        }
+    }
+
+    void OnHeroSelected(int index)
+    {
+        _selectedHeroIndex = index;
+        RefreshUI();
     }
 
     void OnClickStartButton(PointerEventData evt)
@@ -74,5 +115,4 @@ public class UI_SelectCharacterPopup : UI_Popup
         C_HeroListReq reqPacket = new C_HeroListReq();
         Managers.Network.Send(reqPacket);
     }
-
 }

@@ -56,4 +56,6 @@ message MyHeroInfo
 {
 	HeroInfo heroInfo = 1;
 	StatInfo baseStatInfo = 2;
+	int32 exp = 3;
+	int32 mapId = 4;
 }

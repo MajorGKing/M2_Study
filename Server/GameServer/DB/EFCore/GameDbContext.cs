@@ -31,19 +31,22 @@ namespace GameServer
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
-			// AccountDbId에 인덱스 걸어준다
-			builder.Entity<HeroDb>()
-				.HasIndex(t => t.AccountDbId);
+            // AccountDbId에 인덱스 걸어준다
+            builder.Entity<HeroDb>()
+                .HasIndex(t => t.AccountDbId);
 
-			builder.Entity<HeroDb>()
-				.Property(nameof(HeroDb.CreateDate))
-				.HasDefaultValueSql("CURRENT_TIMESTAMP");
+            builder.Entity<HeroDb>()
+                .Property(nameof(HeroDb.CreateDate))
+                .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-			builder.Entity<ItemDb>()
-				.HasIndex(i => i.AccountDbId);
+            builder.Entity<HeroDb>()
+                .HasIndex(t => t.Name);
 
-			builder.Entity<ItemDb>()
-				.HasIndex(t => t.OwnerDbId);			
-		}
+            builder.Entity<ItemDb>()
+                .HasIndex(i => i.AccountDbId);
+
+            builder.Entity<ItemDb>()
+                .HasIndex(t => t.OwnerDbId);
+        }
 	}
 }

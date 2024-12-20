@@ -39,9 +39,10 @@ namespace Google.Protobuf.Protocol {
             "ASABKAsyFi5Qcm90b2NvbC5DcmVhdHVyZUluZm8SDQoFbGV2ZWwYAiABKAUS",
             "DAoEbmFtZRgDIAEoCRIlCgZnZW5kZXIYBCABKA4yFS5Qcm90b2NvbC5FSGVy",
             "b0dlbmRlchInCgljbGFzc1R5cGUYBSABKA4yFC5Qcm90b2NvbC5FSGVyb0Ns",
-            "YXNzIlwKCk15SGVyb0luZm8SJAoIaGVyb0luZm8YASABKAsyEi5Qcm90b2Nv",
+            "YXNzIngKCk15SGVyb0luZm8SJAoIaGVyb0luZm8YASABKAsyEi5Qcm90b2Nv",
             "bC5IZXJvSW5mbxIoCgxiYXNlU3RhdEluZm8YAiABKAsyEi5Qcm90b2NvbC5T",
-            "dGF0SW5mb0IbqgIYR29vZ2xlLlByb3RvYnVmLlByb3RvY29sYgZwcm90bzM="));
+            "dGF0SW5mbxILCgNleHAYAyABKAUSDQoFbWFwSWQYBCABKAVCG6oCGEdvb2ds",
+            "ZS5Qcm90b2J1Zi5Qcm90b2NvbGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Protocol.EnumReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -51,7 +52,7 @@ namespace Google.Protobuf.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ObjectInfo), global::Google.Protobuf.Protocol.ObjectInfo.Parser, new[]{ "ObjectId", "PosInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.CreatureInfo), global::Google.Protobuf.Protocol.CreatureInfo.Parser, new[]{ "ObjectInfo", "StatInfo", "StateFlag" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.HeroInfo), global::Google.Protobuf.Protocol.HeroInfo.Parser, new[]{ "CreatureInfo", "Level", "Name", "Gender", "ClassType" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.MyHeroInfo), global::Google.Protobuf.Protocol.MyHeroInfo.Parser, new[]{ "HeroInfo", "BaseStatInfo" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.MyHeroInfo), global::Google.Protobuf.Protocol.MyHeroInfo.Parser, new[]{ "HeroInfo", "BaseStatInfo", "Exp", "MapId" }, null, null, null, null)
           }));
     }
     #endregion
@@ -1359,6 +1360,8 @@ namespace Google.Protobuf.Protocol {
     public MyHeroInfo(MyHeroInfo other) : this() {
       heroInfo_ = other.heroInfo_ != null ? other.heroInfo_.Clone() : null;
       baseStatInfo_ = other.baseStatInfo_ != null ? other.baseStatInfo_.Clone() : null;
+      exp_ = other.exp_;
+      mapId_ = other.mapId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1389,6 +1392,28 @@ namespace Google.Protobuf.Protocol {
       }
     }
 
+    /// <summary>Field number for the "exp" field.</summary>
+    public const int ExpFieldNumber = 3;
+    private int exp_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Exp {
+      get { return exp_; }
+      set {
+        exp_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "mapId" field.</summary>
+    public const int MapIdFieldNumber = 4;
+    private int mapId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int MapId {
+      get { return mapId_; }
+      set {
+        mapId_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as MyHeroInfo);
@@ -1404,6 +1429,8 @@ namespace Google.Protobuf.Protocol {
       }
       if (!object.Equals(HeroInfo, other.HeroInfo)) return false;
       if (!object.Equals(BaseStatInfo, other.BaseStatInfo)) return false;
+      if (Exp != other.Exp) return false;
+      if (MapId != other.MapId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1412,6 +1439,8 @@ namespace Google.Protobuf.Protocol {
       int hash = 1;
       if (heroInfo_ != null) hash ^= HeroInfo.GetHashCode();
       if (baseStatInfo_ != null) hash ^= BaseStatInfo.GetHashCode();
+      if (Exp != 0) hash ^= Exp.GetHashCode();
+      if (MapId != 0) hash ^= MapId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1433,6 +1462,14 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(18);
         output.WriteMessage(BaseStatInfo);
       }
+      if (Exp != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Exp);
+      }
+      if (MapId != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(MapId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1446,6 +1483,12 @@ namespace Google.Protobuf.Protocol {
       }
       if (baseStatInfo_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(BaseStatInfo);
+      }
+      if (Exp != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Exp);
+      }
+      if (MapId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MapId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1470,6 +1513,12 @@ namespace Google.Protobuf.Protocol {
         }
         BaseStatInfo.MergeFrom(other.BaseStatInfo);
       }
+      if (other.Exp != 0) {
+        Exp = other.Exp;
+      }
+      if (other.MapId != 0) {
+        MapId = other.MapId;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -1493,6 +1542,14 @@ namespace Google.Protobuf.Protocol {
               BaseStatInfo = new global::Google.Protobuf.Protocol.StatInfo();
             }
             input.ReadMessage(BaseStatInfo);
+            break;
+          }
+          case 24: {
+            Exp = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            MapId = input.ReadInt32();
             break;
           }
         }

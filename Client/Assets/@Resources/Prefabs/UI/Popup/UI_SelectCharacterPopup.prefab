@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1405544587747149739}
   - component: {fileID: 1405544587747149738}
   - component: {fileID: 1405544587747149733}
-  - component: {fileID: 4142460645449158346}
+  - component: {fileID: 4404656647016469619}
   m_Layer: 5
   m_Name: UI_SelectCharacterPopup
   m_TagString: Untagged
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4142460645449158346
+--- !u!114 &4404656647016469619
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1153,32 +1153,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_SelectHeroPopupSlotItem
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -4805447789287805924, guid: 746dc0bb35c2d5e449bf068b124b453b, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 621011945448231289, guid: 746dc0bb35c2d5e449bf068b124b453b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2450223124740567998}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 746dc0bb35c2d5e449bf068b124b453b, type: 3}
---- !u!1 &129184146153045796 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 621011945448231289, guid: 746dc0bb35c2d5e449bf068b124b453b, type: 3}
-  m_PrefabInstance: {fileID: 672359439749557853}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2450223124740567998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129184146153045796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e165aa5a9233554b8e01d0989921715, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &129184146153045797 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 621011945448231288, guid: 746dc0bb35c2d5e449bf068b124b453b, type: 3}

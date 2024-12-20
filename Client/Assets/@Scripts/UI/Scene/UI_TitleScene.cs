@@ -177,10 +177,20 @@ public class UI_TitleScene : UI_Scene
         if (resPacket.Success == false)
             return;
 
-        Debug.Log("Sucess!!");
         // 게임서버가 인증 통과 해주면 캐릭터 목록 요청.
         UI_SelectCharacterPopup popup = Managers.UI.ShowPopupUI<UI_SelectCharacterPopup>();
         popup.SendHeroListReqPacket();
+    }
+
+    public void OnHeroListResHandler(S_HeroListRes resPacket)
+    {
+        List<MyHeroInfo> heroes = resPacket.Heroes.ToList();
+
+        UI_SelectCharacterPopup popup = Managers.UI.GetLastPopupUI<UI_SelectCharacterPopup>();
+        if (popup == null)
+            popup = Managers.UI.ShowPopupUI<UI_SelectCharacterPopup>();
+
+        popup.SetInfo(heroes);
     }
 
     private void OnClickChooseServerButton(PointerEventData evt)

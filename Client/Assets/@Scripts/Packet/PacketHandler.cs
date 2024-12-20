@@ -32,6 +32,13 @@ class PacketHandler
     public static void S_HeroListResHandler(PacketSession session, IMessage packet)
     {
         Debug.Log("S_HeroListResHandler");
+
+        UI_TitleScene sceneUI = Managers.UI.GetSceneUI<UI_TitleScene>();
+        if(sceneUI == null)
+            return;
+
+        S_HeroListRes resPacket = packet as S_HeroListRes;
+        sceneUI.OnHeroListResHandler(resPacket);
     }
 
     public static void S_EnterGameHandler(PacketSession session, IMessage packet)

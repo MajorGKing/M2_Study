@@ -6,7 +6,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using VFolders.Libs;
 using static Define;
 
 public class UI_SelectCharacterPopup : UI_Popup

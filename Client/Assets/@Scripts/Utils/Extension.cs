@@ -36,6 +36,18 @@ public static class Extension
     {
         mask &= ~(1 << (int)layer);
     }
+    public static void DestroyChildren(this GameObject go)
+    {
+        DestroyChildren(go.transform);
+    }
+
+    public static void DestroyChildren(this Transform t)
+    {
+        foreach (Transform child in t)
+        {
+            Managers.Resource.Destroy(child.gameObject);
+        }
+    }
 
     public static void Shuffle<T>(this IList<T> list)
     {

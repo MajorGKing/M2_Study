@@ -45,6 +45,53 @@ namespace Server
             Send(resPacket);
         }
 
+        public void HandleCreateHeroReq(C_CreateHeroReq reqPacket)
+        {
+            S_CreateHeroRes resPacket = new S_CreateHeroRes();
+
+            // 1) 이름이 안 겹치는지 확인
+            // 2) 생성 진행
+            HeroDb heroDb = DBManager.CreateHeroDb(AccountDbId, reqPacket);
+            if (heroDb != null)
+            {
+                resPacket.Result = ECreateHeroResult.Success;
+                // 메모리에 캐싱
+                Hero hero = MakeHeroFromHeroDb(heroDb);
+                Heroes.Add(hero);
+            }
+            else
+            {
+                resPacket.Result = ECreateHeroResult.FailDuplicateName;
+            }
+
+            Send(resPacket);
+        }
+
+        public void HandleDeleteHeroReq(C_DeleteHeroReq reqPacket)
+        {
+            Console.WriteLine("HandleEnterGame");
+
+            int index = reqPacket.HeroIndex;
+            if (index < 0 || index >= Heroes.Count)
+                return;
+
+            Hero hero = Heroes[index];
+            if (hero == null)
+                return;
+
+            bool sucess = DBManager.DeleteHeroDb(hero.HeroDbId);
+
+            if(sucess)
+            {
+                Heroes.Remove(hero);
+            }
+
+            S_DeleteHeroRes resPacket = new S_DeleteHeroRes();
+            resPacket.Success = sucess;
+            reqPacket.HeroIndex = index;
+            Send(resPacket);
+        }
+
         public void HandleEnterGame(C_EnterGame enterGamePacket)
         {
             // TODO : 인증 토큰 

@@ -41,6 +41,30 @@ class PacketHandler
         sceneUI.OnHeroListResHandler(resPacket);
     }
 
+    public static void S_CreateHeroResHandler(PacketSession session, IMessage packet)
+    {
+        Debug.Log("S_CreateHeroResHandler");
+
+        UI_CreateCharacterPopup popupUI = Managers.UI.GetLastPopupUI<UI_CreateCharacterPopup>();
+        if (popupUI == null)
+            return;
+
+        S_CreateHeroRes resPacket = packet as S_CreateHeroRes;
+        popupUI.OnCreateHeroResHandler(resPacket);
+    }
+
+    public static void S_DeleteHeroResHandler(PacketSession session, IMessage packet)
+    {
+        Debug.Log("S_DeleteHeroResHandler");
+
+        UI_SelectCharacterPopup popupUI = Managers.UI.GetLastPopupUI<UI_SelectCharacterPopup>();
+        if (popupUI == null)
+            return;
+
+        S_DeleteHeroRes resPacket = packet as S_DeleteHeroRes;
+        popupUI.OnDeleteHeroResHandler(resPacket);
+    }
+
     public static void S_EnterGameHandler(PacketSession session, IMessage packet)
     {
         Debug.Log("S_EnterGameHandler");

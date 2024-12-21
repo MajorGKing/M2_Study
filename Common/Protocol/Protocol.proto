@@ -29,6 +29,29 @@ message S_HeroListRes
 	repeated MyHeroInfo heroes = 1;
 }
 
+message C_CreateHeroReq
+{
+	string name = 1;
+	EHeroGender gender = 2;
+	EHeroClass classType = 3;
+}
+
+message S_CreateHeroRes
+{
+	ECreateHeroResult result = 1;
+}
+
+message C_DeleteHeroReq
+{
+	int32 heroIndex = 1;
+}
+
+message S_DeleteHeroRes
+{
+	bool success = 1;
+	int32 heroIndex = 2;
+}
+
 message C_EnterGame 
 {
 }

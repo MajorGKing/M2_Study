@@ -21,5 +21,47 @@ namespace GameServer
                 return heroDbs;
             }
         }
+
+        public static HeroDb CreateHeroDb(long accountDbId, C_CreateHeroReq reqPacket)
+        {
+            using(GameDbContext db = new GameDbContext())
+            {
+                HeroDb heroDb = db.Heroes.Where(h => h.Name == reqPacket.Name).FirstOrDefault();
+                if (heroDb != null)
+                    return null;
+
+                heroDb = new HeroDb()
+                {
+                    AccountDbId = accountDbId,
+                    Name = reqPacket.Name,
+                    Gender = reqPacket.Gender,
+                    ClassType = reqPacket.ClassType,
+                };
+
+                db.Heroes.Add(heroDb);
+
+                if (db.SaveChangesEx())
+                    return heroDb;
+
+                return null;
+            }
+        }
+
+        public static bool DeleteHeroDb(int heroDbId)
+        {
+            using (GameDbContext db = new GameDbContext())
+            {
+                HeroDb heroDb = db.Heroes.Where(h => h.HeroDbId == heroDbId).FirstOrDefault();
+                if (heroDb == null)
+                    return false;
+
+                db.Heroes.Remove(heroDb);
+
+                if (db.SaveChangesEx())
+                    return true;
+            }
+
+            return true;
+        }
     }
 }

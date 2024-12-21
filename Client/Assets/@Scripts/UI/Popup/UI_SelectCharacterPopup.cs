@@ -96,12 +96,20 @@ public class UI_SelectCharacterPopup : UI_Popup
 
     void OnClickCreateCharacterButton(PointerEventData evt)
     {
-
+        // 1) 캐릭터 최대 개수 확인 후, 바로 팝업.
+        // 2) UI_CreateCharacterPopup에서 나머지 진행.
+        // 3) 캐릭터 생성 팝업 닫힐 때, 캐릭터 목록 다시 요청.
+        var popup = Managers.UI.ShowPopupUI<UI_CreateCharacterPopup>();
+        popup.SetInfo(onHeroChanged: SendHeroListReqPacket);
     }
 
     void OnClickDeleteCharacterButton(PointerEventData evt)
     {
-
+        // 1) 패킷 전송
+        // 2) 답장 오면 캐릭터 삭제 후 Refresh
+        C_DeleteHeroReq reqPacket = new C_DeleteHeroReq();
+        reqPacket.HeroIndex = _selectedHeroIndex;
+        Managers.Network.Send(reqPacket);
     }
 
     void OnClickCloseButton(PointerEventData evt)
@@ -113,5 +121,14 @@ public class UI_SelectCharacterPopup : UI_Popup
     {
         C_HeroListReq reqPacket = new C_HeroListReq();
         Managers.Network.Send(reqPacket);
+    }
+
+    public void OnDeleteHeroResHandler(S_DeleteHeroRes resPacket)
+    {
+        if(resPacket.Success)
+        {
+            _heroes.RemoveAt(resPacket.HeroIndex);
+            RefreshUI();
+        }
     }
 }

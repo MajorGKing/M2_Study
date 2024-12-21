@@ -27,6 +27,20 @@ class PacketHandler
         ClientSession clientSession = (ClientSession)session;
         clientSession.HandleHeroListReq();
     }
+
+    public static void C_CreateHeroReqHandler(PacketSession session, IMessage packet)
+    {
+        C_CreateHeroReq reqPacket = (C_CreateHeroReq)packet;
+        ClientSession clientSession = (ClientSession)session;
+        clientSession.HandleCreateHeroReq(reqPacket);
+    }
+
+    public static void C_DeleteHeroReqHandler(PacketSession session, IMessage packet)
+    {
+        C_DeleteHeroReq repPacket = (C_DeleteHeroReq)packet;
+        ClientSession clientSession = (ClientSession)session;
+        clientSession.HandleDeleteHeroReq(repPacket);
+    }
     public static void C_EnterGameHandler(PacketSession session, IMessage packet)
     {
         C_EnterGame enterGamePacket = (C_EnterGame)packet;

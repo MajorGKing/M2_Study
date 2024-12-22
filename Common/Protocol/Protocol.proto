@@ -54,6 +54,7 @@ message S_DeleteHeroRes
 
 message C_EnterGame 
 {
+	int32 heroIndex = 1;
 }
 
 message S_EnterGame 

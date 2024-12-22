@@ -91,7 +91,10 @@ public class UI_SelectCharacterPopup : UI_Popup
 
     void OnClickStartButton(PointerEventData evt)
     {
-
+        // 1) 게임씬 전환
+        // 2) C_EnterGame 패킷 전송
+        Managers.Game.SelectedHeroIndex = _selectedHeroIndex;
+        Managers.Scene.LoadScene(EScene.GameScene);
     }
 
     void OnClickCreateCharacterButton(PointerEventData evt)

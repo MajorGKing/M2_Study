@@ -68,6 +68,7 @@ namespace GameServer
                 obj.CellPos = GetRandomSpawnPos(obj, checkObjects: true);
 
             EGameObjectType type = ObjectManager.GetObjectTypeFromId(obj.ObjectId);
+
             if (type == EGameObjectType.Hero)
             {
                 Hero hero = (Hero)obj;
@@ -95,6 +96,8 @@ namespace GameServer
                 S_Spawn spawnPacket = new S_Spawn();
                 spawnPacket.Heroes.Add(hero.HeroInfo);
                 Broadcast(obj.CellPos, spawnPacket);
+
+                Console.WriteLine($"Number of heros: {_heroes.Count}");
             }
         }
 

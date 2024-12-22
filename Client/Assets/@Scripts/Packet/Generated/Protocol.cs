@@ -34,14 +34,15 @@ namespace Google.Protobuf.Protocol {
             "cmVhdGVIZXJvUmVzEisKBnJlc3VsdBgBIAEoDjIbLlByb3RvY29sLkVDcmVh",
             "dGVIZXJvUmVzdWx0IiQKD0NfRGVsZXRlSGVyb1JlcRIRCgloZXJvSW5kZXgY",
             "ASABKAUiNQoPU19EZWxldGVIZXJvUmVzEg8KB3N1Y2Nlc3MYASABKAgSEQoJ",
-            "aGVyb0luZGV4GAIgASgFIg0KC0NfRW50ZXJHYW1lIkgKC1NfRW50ZXJHYW1l",
-            "EigKCm15SGVyb0luZm8YASABKAsyFC5Qcm90b2NvbC5NeUhlcm9JbmZvEg8K",
-            "B3Jlc3Bhd24YAiABKAgiDQoLU19MZWF2ZUdhbWUiLQoHU19TcGF3bhIiCgZo",
-            "ZXJvZXMYASADKAsyEi5Qcm90b2NvbC5IZXJvSW5mbyIeCglTX0Rlc3Bhd24S",
-            "EQoJb2JqZWN0SWRzGAEgAygFIjEKBkNfTW92ZRInCgdwb3NJbmZvGAEgASgL",
-            "MhYuUHJvdG9jb2wuUG9zaXRpb25JbmZvIkMKBlNfTW92ZRIQCghvYmplY3RJ",
-            "ZBgBIAEoBRInCgdwb3NJbmZvGAIgASgLMhYuUHJvdG9jb2wuUG9zaXRpb25J",
-            "bmZvQhuqAhhHb29nbGUuUHJvdG9idWYuUHJvdG9jb2xQAFABYgZwcm90bzM="));
+            "aGVyb0luZGV4GAIgASgFIiAKC0NfRW50ZXJHYW1lEhEKCWhlcm9JbmRleBgB",
+            "IAEoBSJICgtTX0VudGVyR2FtZRIoCgpteUhlcm9JbmZvGAEgASgLMhQuUHJv",
+            "dG9jb2wuTXlIZXJvSW5mbxIPCgdyZXNwYXduGAIgASgIIg0KC1NfTGVhdmVH",
+            "YW1lIi0KB1NfU3Bhd24SIgoGaGVyb2VzGAEgAygLMhIuUHJvdG9jb2wuSGVy",
+            "b0luZm8iHgoJU19EZXNwYXduEhEKCW9iamVjdElkcxgBIAMoBSIxCgZDX01v",
+            "dmUSJwoHcG9zSW5mbxgBIAEoCzIWLlByb3RvY29sLlBvc2l0aW9uSW5mbyJD",
+            "CgZTX01vdmUSEAoIb2JqZWN0SWQYASABKAUSJwoHcG9zSW5mbxgCIAEoCzIW",
+            "LlByb3RvY29sLlBvc2l0aW9uSW5mb0IbqgIYR29vZ2xlLlByb3RvYnVmLlBy",
+            "b3RvY29sUABQAWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Protocol.EnumReflection.Descriptor, global::Google.Protobuf.Protocol.StructReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -54,7 +55,7 @@ namespace Google.Protobuf.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_CreateHeroRes), global::Google.Protobuf.Protocol.S_CreateHeroRes.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.C_DeleteHeroReq), global::Google.Protobuf.Protocol.C_DeleteHeroReq.Parser, new[]{ "HeroIndex" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_DeleteHeroRes), global::Google.Protobuf.Protocol.S_DeleteHeroRes.Parser, new[]{ "Success", "HeroIndex" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.C_EnterGame), global::Google.Protobuf.Protocol.C_EnterGame.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.C_EnterGame), global::Google.Protobuf.Protocol.C_EnterGame.Parser, new[]{ "HeroIndex" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_EnterGame), global::Google.Protobuf.Protocol.S_EnterGame.Parser, new[]{ "MyHeroInfo", "Respawn" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_LeaveGame), global::Google.Protobuf.Protocol.S_LeaveGame.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_Spawn), global::Google.Protobuf.Protocol.S_Spawn.Parser, new[]{ "Heroes" }, null, null, null, null),
@@ -1273,12 +1274,24 @@ namespace Google.Protobuf.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public C_EnterGame(C_EnterGame other) : this() {
+      heroIndex_ = other.heroIndex_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public C_EnterGame Clone() {
       return new C_EnterGame(this);
+    }
+
+    /// <summary>Field number for the "heroIndex" field.</summary>
+    public const int HeroIndexFieldNumber = 1;
+    private int heroIndex_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int HeroIndex {
+      get { return heroIndex_; }
+      set {
+        heroIndex_ = value;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1294,12 +1307,14 @@ namespace Google.Protobuf.Protocol {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (HeroIndex != other.HeroIndex) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (HeroIndex != 0) hash ^= HeroIndex.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1313,6 +1328,10 @@ namespace Google.Protobuf.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+      if (HeroIndex != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(HeroIndex);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1321,6 +1340,9 @@ namespace Google.Protobuf.Protocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (HeroIndex != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(HeroIndex);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -1331,6 +1353,9 @@ namespace Google.Protobuf.Protocol {
     public void MergeFrom(C_EnterGame other) {
       if (other == null) {
         return;
+      }
+      if (other.HeroIndex != 0) {
+        HeroIndex = other.HeroIndex;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1343,6 +1368,10 @@ namespace Google.Protobuf.Protocol {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
+          case 8: {
+            HeroIndex = input.ReadInt32();
+            break;
+          }
         }
       }
     }

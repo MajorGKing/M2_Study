@@ -117,6 +117,14 @@ namespace Server
             });
 
         }
+
+        public void HandleLeaveGame()
+        {
+            Console.WriteLine("HandleLeaveGame");
+
+            Disconnect();
+        }
+
         Hero MakeHeroFromHeroDb(HeroDb heroDb)
         {
             Hero hero = ObjectManager.Instance.Spawn<Hero>(1);

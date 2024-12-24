@@ -5,6 +5,21 @@ using UnityEngine;
 
 public class Creature : BaseObject
 {
+    StatInfo _stat = new StatInfo();
+    public virtual StatInfo TotalStat
+    {
+        get { return _stat; }
+        set
+        {
+            if (_stat.Equals(value))
+                return;
+
+            _stat.MergeFrom(value);
+        }
+    }
+
+    public int TemplateId { get; private set; }
+
     protected override void Awake()
     {
         base.Awake();
@@ -18,6 +33,12 @@ public class Creature : BaseObject
     protected override void Update()
     {
 
+    }
+
+    public virtual void SetInfo(int templateId)
+    {
+        TemplateId = templateId;
+        SetSpineAnimation(SortingLayers.HERO, "SkeletonAnimation");
     }
 
     protected override void UpdateMove()
@@ -78,6 +99,29 @@ public class Creature : BaseObject
             return false;
 
         return Managers.Map.MoveTo(this, destCellPos);
+    }
+
+    #endregion
+
+    #region Wait
+    protected Coroutine _coWait;
+    protected void StartWait(float seconds)
+    {
+        CancelWait();
+        _coWait = StartCoroutine(CoWait(seconds));
+    }
+
+    IEnumerator CoWait(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        _coWait = null;
+    }
+
+    protected void CancelWait()
+    {
+        if(_coWait != null )
+            StopCoroutine(_coWait);
+        _coWait = null;
     }
 
     #endregion

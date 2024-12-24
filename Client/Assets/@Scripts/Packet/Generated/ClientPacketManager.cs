@@ -17,11 +17,12 @@ public enum MsgId
 	S_DeleteHeroRes = 9,
 	C_EnterGame = 10,
 	S_EnterGame = 11,
-	S_LeaveGame = 12,
-	S_Spawn = 13,
-	S_Despawn = 14,
-	C_Move = 15,
-	S_Move = 16,
+	C_LeaveGame = 12,
+	S_LeaveGame = 13,
+	S_Spawn = 14,
+	S_Despawn = 15,
+	C_Move = 16,
+	S_Move = 17,
 }
 
 class PacketManager

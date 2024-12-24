@@ -55,25 +55,30 @@ namespace GameServer
                 BaseStat.CriRate = heroData.Stat.StatInfo.CriRate;
                 BaseStat.CriDamage = heroData.Stat.StatInfo.CriDamage;
             }
+
+            RefreshTotalStat();
         }
 
-        Hero MakeHeroFromHeroDb(HeroDb heroDb)
+        public void RefreshTotalStat(bool notifyToClient = false)
         {
-            // TEMP : 데이트시트 참고해서 만들기
-            Hero hero = ObjectManager.Instance.Spawn<Hero>(1);
-            {
-                hero.HeroDbId = heroDb.HeroDbId;
-                hero.ObjectInfo.PosInfo.State = EObjectState.Idle;
-                hero.ObjectInfo.PosInfo.PosX = heroDb.PosX;
-                hero.ObjectInfo.PosInfo.PosY = heroDb.PosY;
-                //hero.HeroInfo.Level = heroDb.Level;
-                //hero.HeroInfo.Name = heroDb.Name;
-                //hero.HeroInfo.Gender = heroDb.Gender;
-                //hero.HeroInfo.ClassType = heroDb.ClassType;
-                //hero.Session = this;
-            }
+            TotalStat.MergeFrom(BaseStat);
 
-            return hero;
+            int extraAttack = 0;
+            int extraDefence = 0;
+            float extraSpeed = 0.0f;
+
+            StatInfo curStat = new StatInfo();
+            DataManager.HeroDict.TryGetValue(1, out HeroData data);
+            curStat.MergeFrom(data.Stat.StatInfo);
+
+            BaseStat.MaxHp = curStat.MaxHp;
+
+            TotalStat.Attack = BaseStat.Attack + extraAttack;
+            TotalStat.Defence = BaseStat.Defence + extraDefence;
+            TotalStat.CriRate = BaseStat.CriRate;
+            TotalStat.CriDamage = BaseStat.CriDamage;
+            TotalStat.Defence = BaseStat.Defence + extraDefence;
+            TotalStat.Speed = MathF.Max(1, extraSpeed) * BaseStat.Speed;
         }
     }
 }

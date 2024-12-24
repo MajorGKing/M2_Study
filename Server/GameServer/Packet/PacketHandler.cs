@@ -48,6 +48,13 @@ class PacketHandler
         clientSession.HandleEnterGame(enterGamePacket);
     }
 
+    public static void C_LeaveGameHandler(PacketSession session, IMessage packet)
+    {
+        C_LeaveGame enterGamePacket = (C_LeaveGame)packet;
+        ClientSession clientSession = (ClientSession)session;
+        clientSession.HandleLeaveGame();
+    }
+
     public static void C_MoveHandler(PacketSession session, IMessage packet)
     {
         C_Move movePacket = (C_Move)packet;

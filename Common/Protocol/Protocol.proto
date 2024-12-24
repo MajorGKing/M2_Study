@@ -63,6 +63,10 @@ message S_EnterGame
 	bool respawn = 2;
 }
 
+message C_LeaveGame
+{
+}
+
 message S_LeaveGame
 {
 

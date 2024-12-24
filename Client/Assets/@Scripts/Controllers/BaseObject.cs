@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Google.Protobuf.Protocol;
 using Spine;
 using Spine.Unity;
@@ -11,10 +12,11 @@ public class BaseObject : MonoBehaviour
     public int ObjectId { get; set; }
     public virtual EGameObjectType ObjectType { get { return EGameObjectType.None; } }
     public SkeletonAnimation SkeletonAnim { get; set; }
+    public float UpdateAITick { get; protected set; }
 
     public int ExtraCells = 0;
     // TEMP
-    public float MoveSpeed = 5.0f;
+    public virtual float MoveSpeed { get; set; } = 5f;
 
     bool _lookLeft = true;
     public bool LookLeft
@@ -43,7 +45,7 @@ public class BaseObject : MonoBehaviour
             if (isMyHero == false)
                 ObjectState = value.State;
 
-            Dir = value.MoveDir;
+            MoveDir = value.MoveDir;
         }
     }
 
@@ -64,22 +66,28 @@ public class BaseObject : MonoBehaviour
     }
 
     [SerializeField]
-    protected EMoveDir _dir = EMoveDir.None;
-    public EMoveDir Dir
+    protected EMoveDir _moveDir = EMoveDir.None;
+    public EMoveDir MoveDir
     {
         get { return PosInfo.MoveDir; }
         set
         {
-            if (_dir == value)
+            if (_moveDir == value)
                 return;
 
-            _dir = value;
+            _moveDir = value;
             PosInfo.MoveDir = value;
         }
     }
 
     protected virtual void Awake()
     {
+
+    }
+
+    protected virtual void OnEnable()
+    {
+        StartCoroutine(CoUpdateAI());
 
     }
 
@@ -94,22 +102,34 @@ public class BaseObject : MonoBehaviour
     }
 
     #region AI (FSM)
-    protected virtual void UpdateAI()
+    protected virtual IEnumerator CoUpdateAI()
     {
-        switch (ObjectState)
+        while (true)
         {
-            case EObjectState.Idle:
-                UpdateIdle();
-                break;
-            case EObjectState.Move:
-                UpdateMove();
-                break;
-            case EObjectState.Skill:
-                UpdateSkill();
-                break;
-            case EObjectState.Dead:
-                UpdateDead();
-                break;
+            switch (ObjectState)
+            {
+                case EObjectState.Idle:
+                    UpdateIdle();
+                    UpdateAITick = 0.0f;
+                    break;
+                case EObjectState.Move:
+                    UpdateAITick = 0.0f;
+                    UpdateMove();
+                    break;
+                case EObjectState.Skill:
+                    UpdateAITick = 0.1f;
+                    UpdateSkill();
+                    break;
+                case EObjectState.Dead:
+                    UpdateAITick = 1f;
+                    UpdateDead();
+                    break;
+            }
+
+            if (UpdateAITick > 0)
+                yield return new WaitForSeconds(UpdateAITick);
+            else
+                yield return null;
         }
     }
 
@@ -122,6 +142,7 @@ public class BaseObject : MonoBehaviour
     #region Animation
     protected virtual void UpdateAnimation()
     {
+        Debug.Log("Update anim : " + ObjectState);
         switch (ObjectState)
         {
             case EObjectState.Idle:
@@ -138,15 +159,13 @@ public class BaseObject : MonoBehaviour
         }
     }
 
-    protected void SetSpineAnimation(string spineName, int sortingOrder, string objName)
+    protected void SetSpineAnimation(int sortingOrder, string objName)
     {
         SkeletonAnim = GetComponent<SkeletonAnimation>();
         if (SkeletonAnim == null)
             SkeletonAnim = Utils.FindChild<SkeletonAnimation>(gameObject, objName);
 
-        SkeletonAnim.skeletonDataAsset = Managers.Resource.Load<SkeletonDataAsset>(spineName);
-        SkeletonAnim.clearStateOnDisable = true;
-        SkeletonAnim.Initialize(true);
+        //SkeletonAnim.Initialize(true);
         RegisterAnimEvent();
 
         SortingGroup sg = Utils.GetOrAddComponent<SortingGroup>(SkeletonAnim.gameObject);

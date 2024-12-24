@@ -12,6 +12,24 @@ public class Define
 
     public const int MAX_LOBBY_HERO_COUNT = 10;
 
+    public enum EHeroMoveState
+    {
+        None,
+        TargetMonster,
+        ForceMove,
+    }
+
+    public enum EJoystickState
+    {
+        None,
+        PointerDown,
+        Drag,
+        PointerUp,
+        Attack,
+        Auto,
+        Pickup,
+    }
+
     public enum EScene
     {
         Unknown,

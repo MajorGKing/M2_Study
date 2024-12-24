@@ -72,8 +72,8 @@ class PacketHandler
         S_EnterGame enterGamePacket = packet as S_EnterGame;
         MyHero myHero = Managers.Object.Spawn(enterGamePacket.MyHeroInfo);
         // TEMP
-        myHero.SetInfo(1);
         myHero.ObjectState = EObjectState.Idle;
+        myHero.TotalStat = enterGamePacket.MyHeroInfo.HeroInfo.CreatureInfo.StatInfo;
     }
 
     public static void S_LeaveGameHandler(PacketSession session, IMessage packet)
@@ -119,7 +119,8 @@ class PacketHandler
         BaseObject bo = go.GetComponent<BaseObject>();
         if (bo == null)
             return;
-
+        
+        Debug.Log($"{movePacket.PosInfo.PosX}, {movePacket.PosInfo.PosY}, {movePacket.PosInfo.State}");        
         bo.PosInfo = movePacket.PosInfo;
     }
 

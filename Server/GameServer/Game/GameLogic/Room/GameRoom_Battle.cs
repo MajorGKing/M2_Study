@@ -22,6 +22,8 @@ namespace GameServer
             PositionInfo movePosInfo = movePacket.PosInfo;
             ObjectInfo info = hero.ObjectInfo;
 
+            Console.WriteLine(movePosInfo.State);
+
             // TODO : 거리 검증 등
 
             if (Map.CanGo(hero, new Vector2Int(movePosInfo.PosX, movePosInfo.PosY)) == false)
@@ -30,6 +32,8 @@ namespace GameServer
             info.PosInfo.State = movePosInfo.State;
             info.PosInfo.MoveDir = movePosInfo.MoveDir;
             Map.ApplyMove(hero, new Vector2Int(movePosInfo.PosX, movePosInfo.PosY));
+
+            Console.WriteLine($"POSX : {movePosInfo.PosX} POSY : {movePosInfo.PosY}");
 
             hero.BroadcastMove();
         }

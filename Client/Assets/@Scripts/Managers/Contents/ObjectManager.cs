@@ -46,13 +46,15 @@ public class ObjectManager
         EGameObjectType objectType = Utils.GetObjectTypeFromId(objectInfo.ObjectId);
         if (objectType != EGameObjectType.Hero)
             return null;
-
+        
+        int templateId = Utils.GetTemplateIdFromId(objectInfo.ObjectId);
         GameObject go = Managers.Resource.Instantiate("KnightPrefab"); // TEMP		
         go.name = info.Name;
         go.transform.parent = HeroRoot;
         _objects.Add(objectInfo.ObjectId, go);
 
         MyHero = Utils.GetOrAddComponent<MyHero>(go);
+        MyHero.SetInfo(templateId);
         MyHero.ObjectId = objectInfo.ObjectId;
         MyHero.PosInfo = objectInfo.PosInfo;
 

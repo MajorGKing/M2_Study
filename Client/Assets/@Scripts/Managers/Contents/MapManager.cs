@@ -227,6 +227,17 @@ public class MapManager
         _cells.Clear();
     }
 
+    public Vector3Int GetFrontCellPos(EMoveDir dir)
+    {
+        if (dir == EMoveDir.None)
+            return Vector3Int.zero;
+        else
+        {
+            //delta에 0,0이없으니까 -1
+            return _delta[(int)dir - 1];
+        }
+    }
+
     #endregion
 
     #region A* PathFinding
@@ -247,14 +258,15 @@ public class MapManager
 
     List<Vector3Int> _delta = new List<Vector3Int>()
     {
-        new Vector3Int(0, 1, 0), // U
-        new Vector3Int(1, 1, 0), // UR
-        new Vector3Int(1, 0, 0), // R
-        new Vector3Int(1, -1, 0), // DR
-        new Vector3Int(0, -1, 0), // D
-        new Vector3Int(-1, -1, 0), // LD
-        new Vector3Int(-1, 0, 0), // L
-        new Vector3Int(-1, 1, 0), // LU
+		//EMoveDir 이랑 순서 맞춤
+		new Vector3Int(1, 1, 0), // U
+		new Vector3Int(-1, -1, 0), // D
+		new Vector3Int(-1, 1, 0), // L
+		new Vector3Int(1, -1, 0), // R
+		new Vector3Int(0, 1, 0), // UL
+		new Vector3Int(1, 0, 0), // UR
+		new Vector3Int(-1, 0, 0), // DL
+		new Vector3Int(0, -1, 0), // DR
     };
 
     public List<Vector3Int> FindPath(BaseObject self, Vector3Int startCellPos, Vector3Int destCellPos, int maxDepth = 10)

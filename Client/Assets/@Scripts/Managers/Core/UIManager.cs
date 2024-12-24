@@ -40,9 +40,7 @@ public class UIManager
             .Where(type => type.IsSubclassOf(typeof(UI_Popup)));
 
         foreach (Type type in list)
-        {
             CachePopupUI(type);
-        }
 
         CloseAllPopupUI();
     }
@@ -202,6 +200,8 @@ public class UIManager
     public void Clear()
     {
         CloseAllPopupUI();
+        _popups.Clear();
+        Root.gameObject.DestroyChildren();
         Time.timeScale = 1;
         _sceneUI = null;
     }

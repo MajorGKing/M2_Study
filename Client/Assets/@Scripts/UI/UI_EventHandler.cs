@@ -11,6 +11,15 @@ public class UI_EventHandler : MonoBehaviour, IPointerClickHandler, IPointerDown
     public Action<PointerEventData> OnBeginDragHandler = null;
     public Action<PointerEventData> OnEndDragHandler = null;
 
+    private bool _isDragging = false;
+    private PointerEventData _currentEventData;
+
+    private void Update()
+    {
+        if (_isDragging)
+            OnDragHandler?.Invoke(_currentEventData);
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
 		OnClickHandler?.Invoke(eventData);
@@ -28,16 +37,20 @@ public class UI_EventHandler : MonoBehaviour, IPointerClickHandler, IPointerDown
 
     public void OnDrag(PointerEventData eventData)
     {
-        OnDragHandler?.Invoke(eventData);
+        //드래그중 포인터를 가만히 있으면 이벤트가 발생하지 않기때문에 Update에서 따로 이벤트 발생시킴
+        _currentEventData = eventData;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        _currentEventData = eventData;
         OnBeginDragHandler?.Invoke(eventData);
+        _isDragging = true;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        _isDragging = false;
         OnEndDragHandler?.Invoke(eventData);
     }
 }

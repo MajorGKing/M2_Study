@@ -62,7 +62,7 @@ namespace GameServer
             if (obj == null)
                 return;
 
-            if (pos.HasValue)
+            if (pos.HasValue && Map.CanGo(obj, pos.Value, checkObjects: true))
                 obj.CellPos = pos.Value;
             else
                 obj.CellPos = GetRandomSpawnPos(obj, checkObjects: true);
@@ -85,6 +85,7 @@ namespace GameServer
                 {
                     S_EnterGame enterPacket = new S_EnterGame();
                     enterPacket.MyHeroInfo = hero.MyHeroInfo;
+                    Console.WriteLine($"enterPacket.MyHeroInfo.HeroInfo.CreatureInfo.StatInfo.Speed {enterPacket.MyHeroInfo.HeroInfo.CreatureInfo.StatInfo.Speed}");
                     enterPacket.Respawn = respawn;
 
                     hero.Session?.Send(enterPacket);

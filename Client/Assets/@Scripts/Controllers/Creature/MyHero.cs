@@ -1,11 +1,18 @@
+using System;
 using Data;
 using Google.Protobuf.Protocol;
 using System.Collections.Generic;
+using Scripts.Data;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using static Define;
 
 public class MyHero : Hero
 {
+    //Temp
+    public override float MoveSpeed => TotalStat.Speed;
+
     // VisionCells 범위그리기
     private Color _lineColor = Color.red;
     private float _lineWidth = 0.1f;
@@ -13,6 +20,7 @@ public class MyHero : Hero
     private LineRenderer _lineRenderer;
     private GameObject _moveCursor;
 
+    private Monster _target;
     // 이동 패킷 전송 관련 (일종의 dirty flag)
     protected bool _sendMovePacket = false;
     Vector3Int _destPos;
@@ -30,10 +38,58 @@ public class MyHero : Hero
     }
 
     Vector3? _desiredDestPos;
+    private EMoveDir _joystickDir;
+
+    [SerializeField] private EHeroMoveState _heroMoveState = EHeroMoveState.None;
+    public EHeroMoveState HeroMoveState
+    {
+        get => _heroMoveState;
+        set
+        {
+            if (_heroMoveState == value)
+                return;
+
+            if (_heroMoveState != value)
+            {
+                if (value == EHeroMoveState.ForceMove)
+                {
+                    _isAutoMode = false;
+                    CancelWait();
+                    _target = null;
+                    // Skills.CurrentSkill.CancelSkill();
+                }
+            }
+            _heroMoveState = value;
+        }
+    }
+
+    private bool _isAutoMode = false;
+    [SerializeField] private EJoystickState _joystickState;
+
+
+    #region LifeCycle
+
+    public override void SetInfo(int templatedId)
+    {
+        base.SetInfo(templatedId);
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        Managers.Game.OnJoystickChanged -= HandleJoystickChanged;
+    }
 
     protected override void Awake()
     {
         base.Awake();
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        Managers.Game.OnJoystickChanged -= HandleJoystickChanged;
+        Managers.Game.OnJoystickChanged += HandleJoystickChanged;
     }
 
     protected override void Start()
@@ -61,9 +117,6 @@ public class MyHero : Hero
         // 입력 처리
         UpdateInput();
 
-        // FSM 방식의 상태 관리.
-        UpdateAI();
-
         // 기본적으로 모든 물체는 칸 단위로 움직이지만, 클라에서 '스르륵' 움직이는 보정 처리를 해준다.
         UpdateLerpToCellPos(MoveSpeed, true);
 
@@ -73,6 +126,7 @@ public class MyHero : Hero
         // 디버그 용도
         DrawVisionCells();
     }
+    #endregion
 
     #region AI (FSM)
     protected override void UpdateIdle()
@@ -91,8 +145,6 @@ public class MyHero : Hero
             }
         }
 
-        // 2. 공격 대상을 찾았다.
-
         if (LerpCellPosCompleted == false)
         {
             ObjectState = EObjectState.Move;
@@ -101,24 +153,20 @@ public class MyHero : Hero
     }
 
     protected override void UpdateMove()
-    {
+    {   
         // base.UpdateMove();
-
-        // 1. 이동 위치에 도착.
-        if (_desiredDestPos.HasValue == false)
-        {
-            ObjectState = EObjectState.Idle;
-            return;
-        }
-        else
+        if (_heroMoveState == EHeroMoveState.ForceMove)
         {
             // 이동
-            List<Vector3Int> path = new List<Vector3Int>();
-            EFindPathResult res = FindPathToCellPos(_desiredDestPos.Value, Define.HERO_DEFAULT_MOVE_DEPTH, out path);
-            if (res == EFindPathResult.Success)
+            if (_desiredDestPos.HasValue)
             {
-                DestPos = path[1];
-                return;
+                List<Vector3Int> path = new List<Vector3Int>();
+                EFindPathResult res = FindPathToCellPos(_desiredDestPos.Value, HERO_DEFAULT_MOVE_DEPTH, out path);
+                if (res == EFindPathResult.Success)
+                {
+                    DestPos = path[1];
+                    return;
+                }
             }
         }
 
@@ -127,8 +175,7 @@ public class MyHero : Hero
         {
             ObjectState = EObjectState.Idle;
             _desiredDestPos = null;
-            Managers.Resource.Destroy(_moveCursor);
-            _moveCursor = null;
+            DespawnMoveCursor();
             return;
         }
     }
@@ -148,12 +195,39 @@ public class MyHero : Hero
     #endregion
 
     #region 이동 동기화
+    protected override void UpdateAnimation()
+    {
+        base.UpdateAnimation();
+        switch (ObjectState)
+        {
+            case EObjectState.Idle:
+                HeroMoveState = EHeroMoveState.None;
+                break;
+            case EObjectState.Skill:
+                HeroMoveState = EHeroMoveState.None;
+                break;
+            case EObjectState.Move:
+                break;
+            case EObjectState.Dead:
+                break;
+        }
+    }
     void UpdateInput()
     {
         if (Input.GetMouseButton(0))
         {
+            if (_joystickState == EJoystickState.Drag)
+                return;
+
+            // UI 클릭을 무시
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+            //
+            //TODO 타일(몬스터, NPC)클릭
+
             Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             _desiredDestPos = mouseWorldPos;
+            HeroMoveState = EHeroMoveState.ForceMove;
 
             SpawnOrMoveCursor(mouseWorldPos);
         }
@@ -172,12 +246,19 @@ public class MyHero : Hero
         }
     }
 
+    void DespawnMoveCursor()
+    {
+        Managers.Resource.Destroy(_moveCursor);
+        _moveCursor = null;
+    }
+
     void UpdateSendMovePacket()
     {
         if (_sendMovePacket)
         {
             C_Move movePacket = new C_Move() { PosInfo = new PositionInfo() };
             movePacket.PosInfo.MergeFrom(PosInfo);
+            movePacket.PosInfo.State = EObjectState.Move;
             movePacket.PosInfo.PosX = DestPos.x;
             movePacket.PosInfo.PosY = DestPos.y;
             Managers.Network.GameServer.Send(movePacket);
@@ -186,9 +267,58 @@ public class MyHero : Hero
             Debug.Log($@"@>> C_Move , {DestPos.x},{DestPos.y}");
         }
     }
+
+    void HandleJoystickChanged(EJoystickState joystickState, EMoveDir dir)
+    {
+        _joystickState = joystickState;
+        switch (joystickState)
+        {
+            case EJoystickState.None:
+                break;
+            case EJoystickState.PointerDown:
+                break;
+            case EJoystickState.Drag:
+                DespawnMoveCursor();
+                ForceMove(dir);
+                break;
+            case EJoystickState.PointerUp:
+                break;
+            case EJoystickState.Attack:
+                Debug.Log("Attack Button");
+                break;
+            case EJoystickState.Auto:
+                Debug.Log("Auto Button");
+                _isAutoMode = !_isAutoMode;
+                break;
+            case EJoystickState.Pickup:
+                Debug.Log("Pickup Button");
+                break;
+        }
+    }
+
+    private void ForceMove(EMoveDir dir)
+    {
+        if (dir == EMoveDir.None)
+        {
+            return;
+        }
+
+        if (LerpCellPosCompleted == false)
+        {
+            return;
+        }
+
+        Debug.Log($"After Ch EMoveDir : {dir}");
+
+        HeroMoveState = EHeroMoveState.ForceMove;
+        MoveDir = dir;
+        Vector3Int dest = CellPos + Managers.Map.GetFrontCellPos(dir);
+        _desiredDestPos = Managers.Map.Cell2World(dest);
+        _isAutoMode = false;
+    }
     #endregion
 
-    #region 디버깅
+        #region 디버깅
     void DrawVisionCells()
     {
         Vector3Int bottomLeft = CellPos + new Vector3Int(-_visionCells, -_visionCells, 0);

@@ -120,7 +120,6 @@ class PacketHandler
         if (bo == null)
             return;
         
-        Debug.Log($"{movePacket.PosInfo.PosX}, {movePacket.PosInfo.PosY}, {movePacket.PosInfo.State}");        
         bo.PosInfo = movePacket.PosInfo;
     }
 

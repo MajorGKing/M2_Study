@@ -142,7 +142,6 @@ public class BaseObject : MonoBehaviour
     #region Animation
     protected virtual void UpdateAnimation()
     {
-        Debug.Log("Update anim : " + ObjectState);
         switch (ObjectState)
         {
             case EObjectState.Idle:

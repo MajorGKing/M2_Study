@@ -85,7 +85,6 @@ namespace GameServer
                 {
                     S_EnterGame enterPacket = new S_EnterGame();
                     enterPacket.MyHeroInfo = hero.MyHeroInfo;
-                    Console.WriteLine($"enterPacket.MyHeroInfo.HeroInfo.CreatureInfo.StatInfo.Speed {enterPacket.MyHeroInfo.HeroInfo.CreatureInfo.StatInfo.Speed}");
                     enterPacket.Respawn = respawn;
 
                     hero.Session?.Send(enterPacket);
@@ -97,8 +96,6 @@ namespace GameServer
                 S_Spawn spawnPacket = new S_Spawn();
                 spawnPacket.Heroes.Add(hero.HeroInfo);
                 Broadcast(obj.CellPos, spawnPacket);
-
-                Console.WriteLine($"Number of heros: {_heroes.Count}");
             }
         }
 

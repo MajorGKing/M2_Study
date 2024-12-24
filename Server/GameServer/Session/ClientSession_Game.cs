@@ -37,10 +37,7 @@ namespace Server
 
             S_HeroListRes resPacket = new S_HeroListRes();
             foreach (Hero hero in Heroes)
-            {
-                Console.WriteLine($"Hero data{hero.Name}");
                 resPacket.Heroes.Add(hero.MyHeroInfo);
-            }
 
             Send(resPacket);
         }

@@ -308,8 +308,6 @@ public class MyHero : Hero
             return;
         }
 
-        Debug.Log($"After Ch EMoveDir : {dir}");
-
         HeroMoveState = EHeroMoveState.ForceMove;
         MoveDir = dir;
         Vector3Int dest = CellPos + Managers.Map.GetFrontCellPos(dir);

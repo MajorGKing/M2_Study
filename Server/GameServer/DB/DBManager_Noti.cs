@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,18 +8,6 @@ namespace GameServer
 	// 게임 로직에서 완료 콜백을 받을 필요 없는 경우
 	public partial class DBManager : JobSerializer
 	{
-		public static void TestDB()
-		{
-			HeroDb heroDb = new HeroDb();
-			heroDb.AccountDbId = new Random().Next(0, 100);
-
-			using (GameDbContext db = new GameDbContext())
-			{
-				db.Add(heroDb);
-				db.SaveChangesEx();
-			}
-		}
-
 		/*
 		public static void EquipItemNoti(Player player, Item item)
 		{
@@ -48,5 +37,32 @@ namespace GameServer
 			});
 		}
 		*/
+
+		public static void SaveHeroDbNoti(Hero hero)
+		{
+			if (hero == null)
+				return;
+
+			Instance.Push(() =>
+			{
+				using(GameDbContext db = new GameDbContext())
+				{
+					HeroDb heroDb = db.Heroes.Where(h => h.HeroDbId == hero.HeroDbId).FirstOrDefault();
+					if (heroDb == null)
+						return;
+
+					heroDb.Level = hero.HeroInfo.Level;
+                    // heroDb.Exp = 0;
+                    heroDb.PosX = hero.PosInfo.PosX;
+                    heroDb.PosY = hero.PosInfo.PosY;
+
+					bool success = db.SaveChangesEx();
+					if(success == false)
+					{
+                        // 실패했으면 Kick
+                    }
+                }
+			});
+		}
 	}
 }

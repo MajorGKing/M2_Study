@@ -13,6 +13,12 @@ namespace GameServer
 {
     public class Hero : Creature
     {
+        public HeroData HeroData { get; set; }
+        public override CreatureData Data
+        {
+            get { return HeroData; }
+        }
+
         public ClientSession Session { get; set; }
         public VisionCubeComponent Vision { get; protected set; }
 
@@ -37,23 +43,51 @@ namespace GameServer
         public Hero()
         {
             ObjectType = EGameObjectType.Hero;
-            MyHeroInfo.HeroInfo = HeroInfo;
-            MyHeroInfo.BaseStatInfo = BaseStat;
-            HeroInfo.CreatureInfo = CreatureInfo;
-            HeroInfo.CreatureInfo.StatInfo = TotalStat; // 플레이어는 최종 스탯으로 보내주도록
 
             Vision = new VisionCubeComponent(this);
+        }
 
-            //TEMP
-            if (DataManager.HeroDict.TryGetValue(1, out HeroData heroData))
+        public void Init(HeroDb heroDb)
+        {
+            HeroDbId = heroDb.HeroDbId;
+            ObjectInfo.PosInfo.State = EObjectState.Idle;
+            ObjectInfo.PosInfo.PosX = heroDb.PosX;
+            ObjectInfo.PosInfo.PosY = heroDb.PosY;
+            HeroInfo.Level = heroDb.Level;
+            HeroInfo.Name = heroDb.Name;
+            HeroInfo.Gender = heroDb.Gender;
+            HeroInfo.ClassType = heroDb.ClassType;
+            MyHeroInfo.HeroInfo = HeroInfo;
+            HeroInfo.CreatureInfo = CreatureInfo;
+
+            TemplateId = ObjectManager.GetTemplateIdFromId(ObjectId);
+
+            if (DataManager.HeroDict.TryGetValue(TemplateId, out HeroData heroData))
             {
-                BaseStat.Hp = heroData.Stat.StatInfo.MaxHp;
-                BaseStat.MaxHp = heroData.Stat.StatInfo.MaxHp;
-                BaseStat.Attack = heroData.Stat.StatInfo.Attack;
-                BaseStat.Speed = heroData.Stat.StatInfo.Speed;
-                BaseStat.Defence = heroData.Stat.StatInfo.Defence;
-                BaseStat.CriRate = heroData.Stat.StatInfo.CriRate;
-                BaseStat.CriDamage = heroData.Stat.StatInfo.CriDamage;
+                HeroData = heroData;
+
+                BaseStat.MergeFrom(heroData.Stat.StatInfo);
+                BaseStat.Hp = BaseStat.MaxHp;
+
+                TotalStat.MergeFrom(BaseStat);
+
+                SetupStatMappings();
+
+                MyHeroInfo.TotalStatInfo = TotalStat;
+                HeroInfo.CreatureInfo.StatInfo = TotalStat; // 플레이어는 최종 스탯으로 보내주도록
+
+                //if (heroData.MainSkill != null)
+                //    SkillBook.RegisterSkill(heroData.MainSkill.TemplateId);
+
+                //if (heroData.SkillA != null)
+                //    SkillBook.RegisterSkill(heroData.SkillA.TemplateId);
+
+                //if (heroData.SkillB != null)
+                //    SkillBook.RegisterSkill(heroData.SkillB.TemplateId);
+
+                //if (heroData.SkillC != null)
+                //    SkillBook.RegisterSkill(heroData.SkillC.TemplateId);
+
             }
 
             RefreshTotalStat();
@@ -61,24 +95,12 @@ namespace GameServer
 
         public void RefreshTotalStat(bool notifyToClient = false)
         {
-            TotalStat.MergeFrom(BaseStat);
-
-            int extraAttack = 0;
-            int extraDefence = 0;
-            float extraSpeed = 0.0f;
-
-            StatInfo curStat = new StatInfo();
-            DataManager.HeroDict.TryGetValue(1, out HeroData data);
-            curStat.MergeFrom(data.Stat.StatInfo);
-
-            BaseStat.MaxHp = curStat.MaxHp;
-
-            TotalStat.Attack = BaseStat.Attack + extraAttack;
-            TotalStat.Defence = BaseStat.Defence + extraDefence;
-            TotalStat.CriRate = BaseStat.CriRate;
-            TotalStat.CriDamage = BaseStat.CriDamage;
-            TotalStat.Defence = BaseStat.Defence + extraDefence;
-            TotalStat.Speed = MathF.Max(1, extraSpeed) * BaseStat.Speed;
+            //if (notifyToClient)
+            //{
+            //    S_ChangeStat changeStat = new S_ChangeStat();
+            //    changeStat.TotalStatInfo = TotalStat;
+            //    Session?.Send(changeStat);
+            //}
         }
     }
 }

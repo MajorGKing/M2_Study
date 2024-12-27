@@ -24,13 +24,24 @@ namespace Server.Data
     [Serializable]
     public class StatInfoWrapper
     {
-        public float hp;
-        public float maxHp;
-        public float speed;
-        public float attack;
-        public float defence;
-        public int criRate;
-        public int criDamage;
+        public float MaxHp;
+        public float Hp;
+        public float HpRegen;
+        public float MaxMp;
+        public float Mp;
+        public float MpRegen;
+        public float Attack;
+        public float Defence;
+        public float MissChance;
+        public float AttackSpeed;
+        public float MoveSpeed;
+        public float CriRate;
+        public float CriDamage;
+        public int Str;
+        public int Dex;
+        public int Int;
+        public int Con;
+        public int Wis;
 
         public StatInfo StatInfo
         {
@@ -38,13 +49,24 @@ namespace Server.Data
             {
                 return new StatInfo
                 {
-                    Hp = hp,
-                    MaxHp = maxHp,
-                    Speed = speed,
-                    Attack = attack,
-                    Defence = defence,
-                    CriRate = criRate,
-                    CriDamage = criDamage
+                    MaxHp = this.MaxHp,
+                    Hp = this.Hp,
+                    HpRegen = this.HpRegen,
+                    MaxMp = this.MaxMp,
+                    Mp = this.Mp,
+                    MpRegen = this.MpRegen,
+                    Attack = this.Attack,
+                    Defence = this.Defence,
+                    MissChance = this.MissChance,
+                    AttackSpeed = this.AttackSpeed,
+                    MoveSpeed = this.MoveSpeed,
+                    CriRate = this.CriRate,
+                    CriDamage = this.CriDamage,
+                    Str = this.Str,
+                    Dex = this.Dex,
+                    Int = this.Int,
+                    Con = this.Con,
+                    Wis = this.Wis,
                 };
             }
         }
@@ -78,4 +100,221 @@ namespace Server.Data
     }
     #endregion
 
+    #region Monster
+    public class MonsterData : CreatureData
+    {
+        public bool IsBoss = false;
+        public bool IsAggressive;
+        public int ExtraCells;
+
+        public string IconImageName;
+
+        public SkillData MainSkill;
+        public SkillData SkillA;
+        public SkillData SkillB;
+
+        // AI
+        public int SearchCellDist;
+        public int ChaseCellDist;
+        public int PatrolCellDist;
+
+        // 스폰 정보
+
+        // 드롭아이템
+
+        // ItemHolder items(경험치는 홀더안에?)
     }
+
+    [Serializable]
+    public class MonsterDataLoader : ILoader<int, MonsterData>
+    {
+        public List<MonsterData> monsters = new List<MonsterData>();
+        public Dictionary<int, MonsterData> MakeDict()
+        {
+            Dictionary<int, MonsterData> dict = new Dictionary<int, MonsterData>();
+            foreach (MonsterData monster in monsters)
+                dict.Add(monster.TemplateId, monster);
+
+            return dict;
+        }
+
+        public bool Validate()
+        {
+            bool validate = true;
+            return validate;
+        }
+    }
+    #endregion
+
+    #region Projectile
+
+    public class ProjectileData
+    {
+        public int TemplateId;
+        public string Name;
+        public string PrefabName;
+        public float Duration;
+        public float ProjRange;
+        public float ProjSpeed;
+    }
+
+    [Serializable]
+    public class ProjectileDataLoader : ILoader<int, ProjectileData>
+    {
+        public List<ProjectileData> datas = new List<ProjectileData>();
+
+        public Dictionary<int, ProjectileData> MakeDict()
+        {
+            Dictionary<int, ProjectileData> dict = new Dictionary<int, ProjectileData>();
+            foreach (ProjectileData data in datas)
+                dict.Add(data.TemplateId, data);
+
+            return dict;
+        }
+
+        public bool Validate()
+        {
+            bool validate = true;
+            return validate;
+        }
+    }
+    #endregion
+
+    #region Skill
+
+    public class SkillData
+    {
+        public ESkillType SkillType;
+        public int TemplateId;
+        public string Name;
+        public string NameTextId;
+        public string DescriptionTextId;
+        public ProjectileData Projectile;
+        public string IconLabel;
+        public float Cooldown;
+        public float Duration;
+        public int SkillRange;
+        public string AnimName;
+        public List<float> EventTimes;
+        public List<EffectData> Effects;
+        public SkillData NextLevelSkill;
+        public List<AOEData> AoEs;
+    }
+
+    [Serializable]
+    public class SkillDataLoader : ILoader<int, SkillData>
+    {
+        public List<SkillData> skills = new List<SkillData>();
+
+        public Dictionary<int, SkillData> MakeDict()
+        {
+            Dictionary<int, SkillData> dict = new Dictionary<int, SkillData>();
+            foreach (SkillData skillData in skills)
+                dict.Add(skillData.TemplateId, skillData);
+
+            return dict;
+        }
+
+        public bool Validate()
+        {
+            bool validate = true;
+            return validate;
+        }
+    }
+
+    #endregion
+
+    #region Effect
+    public class EffectData
+    {
+        public int TemplateId;
+        public string Name;
+        public string DescriptionTextID;
+        public string PrefabName;
+        public string IconLabel;
+        public string SoundLabel;
+
+        public EEffectType EffectType;
+        public EDurationPolicy DurationPolicy;
+        public float Duration;
+        public EOwnerStat OwnerStat;
+        public EStatType StatType;
+        public float ModifierAdd; //상수
+        public float SkillRatio; // StatType의 계수
+        public EStatType ApplyStatType;
+    }
+
+    #endregion
+
+    #region AOE
+    public class AOEData
+    {
+        public int TemplateId;
+        public string Name;
+        public string PrefabName;
+        public string SoundLabel;
+        public List<EffectData> AllyEffects;
+        public List<EffectData> EnemyEffects;
+        public int Range;
+    }
+
+    [Serializable]
+    public class AOEDataLoader : ILoader<int, AOEData>
+    {
+        public List<AOEData> datas = new List<AOEData>();
+
+        public Dictionary<int, AOEData> MakeDict()
+        {
+            Dictionary<int, AOEData> dict = new Dictionary<int, AOEData>();
+            foreach (AOEData data in datas)
+                dict.Add(data.TemplateId, data);
+
+            return dict;
+        }
+
+        public bool Validate()
+        {
+            bool validate = true;
+            return validate;
+        }
+    }
+    #endregion
+
+    #region SpawningPool
+    [Serializable]
+    public class RespawnInfo
+    {
+        public int TemplateId; // MonsterData의 TemplateId
+        public MonsterData MonsterData;
+        public int Count;
+        public ERespawnType RespawnType;
+        public float Interval;
+        public int respawnTime;
+    }
+
+    [Serializable]
+    public class SpawningPoolData
+    {
+        public int id;
+        public int size;
+        public List<RespawnInfo> monsters;
+    }
+
+    [Serializable]
+    public class SpawningPoolDataLoader : ILoader<int, SpawningPoolData>
+    {
+        public List<SpawningPoolData> spawningPools = new List<SpawningPoolData> { };
+
+        public Dictionary<int, SpawningPoolData> MakeDict()
+        {
+            Dictionary<int, SpawningPoolData> dict = new Dictionary<int, SpawningPoolData>();
+            foreach (SpawningPoolData spawningPool in spawningPools)
+            {
+                dict.Add(spawningPool.id, spawningPool);
+            }
+            return dict;
+        }
+    }
+    #endregion
+
+}

@@ -1,4 +1,5 @@
-﻿using Google.Protobuf;
+﻿using GameServer.Game;
+using Google.Protobuf;
 using Google.Protobuf.Protocol;
 using Server;
 using System;
@@ -17,8 +18,11 @@ namespace GameServer
         public int TemplateId { get; set; }
 
         Dictionary<int, Hero> _heroes = new Dictionary<int, Hero>();
+        Dictionary<int, Monster> _monsters = new Dictionary<int, Monster>();
 
         public MapComponent Map { get; private set; } = new MapComponent();
+        public SpawningPoolComponent SpawningPool { get; private set; } = new SpawningPoolComponent();
+
         // GameRoom이라는 거대한 공간을 Zone이라는 단위로 균일하게 세분화
         public Zone[,] Zones { get; private set; } // 인근 오브젝트를 빠르게 찾기 위한 일종의 캐시이다
         public int ZoneCells { get; private set; } // 하나의 존을 구성하는 셀 개수
@@ -47,6 +51,9 @@ namespace GameServer
                     Zones[x, y] = new Zone(x, y);
                 }
             }
+
+            SpawningPool.Init(this);
+            Push(SpawningPool.Update);
         }
 
         // 누군가 주기적으로 호출해줘야 한다
@@ -57,44 +64,77 @@ namespace GameServer
             Flush();
         }
 
-        public void EnterGame(BaseObject obj, bool respawn = false, Vector2Int? pos = null)
+        public void EnterGame(BaseObject obj, bool respawn = false, Vector2Int? cellPos = null)
         {
             if (obj == null)
                 return;
-
-            if (pos.HasValue && Map.CanGo(obj, pos.Value, checkObjects: true))
-                obj.CellPos = pos.Value;
-            else
-                obj.CellPos = GetRandomSpawnPos(obj, checkObjects: true);
 
             EGameObjectType type = ObjectManager.GetObjectTypeFromId(obj.ObjectId);
 
             if (type == EGameObjectType.Hero)
             {
                 Hero hero = (Hero)obj;
+
+                // 1. 오브젝트 추가 및 방 설정
                 _heroes.Add(obj.ObjectId, hero);
                 hero.Room = this;
 
-                Map.ApplyMove(hero, new Vector2Int(hero.CellPos.x, hero.CellPos.y));
+                // 2. 아직 점유되지 않는 알맞는 좌표를 찾아주기.
+                FindAndSetCellPos(obj, cellPos);
+
+                // 3. 맵에 실제 적용하고 충돌 그리드 갱신한다.
+                Map.ApplyMove(hero, hero.CellPos);
+
+                // 4. 존(캐싱)에도 해당 정보 추가.
                 GetZone(hero.CellPos).Heroes.Add(hero);
 
+                // 5. 틱 시작.
                 hero.State = EObjectState.Idle;
                 hero.Update();
 
-                // 입장한 사람한테 패킷 보내기.
+                // 6. 입장한 사람한테 패킷 보내기.
                 {
                     S_EnterGame enterPacket = new S_EnterGame();
                     enterPacket.MyHeroInfo = hero.MyHeroInfo;
                     enterPacket.Respawn = respawn;
 
                     hero.Session?.Send(enterPacket);
-
-                    hero.Vision?.Update();
                 }
 
-                // 다른 사람들한테 입장 알려주기.
+                // 7. 다른 사람들한테 입장 알려주기.
                 S_Spawn spawnPacket = new S_Spawn();
                 spawnPacket.Heroes.Add(hero.HeroInfo);
+                Broadcast(obj.CellPos, spawnPacket);
+
+
+                // 8. AOI 틱 시작.
+                hero.Vision?.Update();
+            }
+            else if(type == EGameObjectType.Monster)
+            {
+                Console.WriteLine("Monster spawned");
+                Monster monster = (Monster)obj;
+
+                // 1. 오브젝트 추가 및 방 설정.
+                _monsters.Add(obj.ObjectId, monster);
+                monster.Room = this;
+
+                // 2. 아직 점유되지 않는 알맞는 좌표를 찾아주기.
+                FindAndSetCellPos(obj, cellPos);
+
+                // 3. 맵에 실제 적용하고 충돌 그리드 갱신한다.
+                Map.ApplyMove(monster, monster.CellPos);
+
+                // 4. 존(캐싱)에도 해당 정보 추가.
+                GetZone(monster.CellPos).Monsters.Add(monster);
+
+                // 5. 틱 시작.
+                monster.State = EObjectState.Idle;
+                monster.Update();
+
+                // 6. 다른 사람들한테 입장 알려주기.
+                S_Spawn spawnPacket = new S_Spawn();
+                spawnPacket.Creatures.Add(monster.CreatureInfo);
                 Broadcast(obj.CellPos, spawnPacket);
             }
         }
@@ -110,36 +150,58 @@ namespace GameServer
                 if (_heroes.Remove(objectId, out Hero hero) == false)
                     return;
 
-                //OnLeaveGame(hero);
-
-                cellPos = hero.CellPos;
-
+                // 1. 맵에 실제 적용하고 충돌 그리드 갱신한다.
                 Map.ApplyLeave(hero);
+
+                // 2. 오브젝트 제거 및 방 제거.
+                _heroes.Remove(objectId);
                 hero.Room = null;
 
-                // 본인한테 정보 전송
+                // 3. 퇴장한 사람한테 패킷 보내기.
                 {
                     S_LeaveGame leavePacket = new S_LeaveGame();
                     hero.Session?.Send(leavePacket);
                 }
 
-                if (kick)
-                {
-                    // 로비로 강퇴
-                    //S_Kick kickPacket = new S_Kick();
-                    //player.Session?.Send(kickPacket);
-                }
+                // 4. 다른 사람들한테 퇴장 알려주기.
+                S_Despawn despawnPacket = new S_Despawn();
+                despawnPacket.ObjectIds.Add(objectId);
+                Broadcast(hero.CellPos, despawnPacket);
+
+                // 5. AOI 정리.
+                hero.Vision?.Clear();
+
+                // 6. DB에 좌표 등 정보 저장.
+                DBManager.SaveHeroDbNoti(hero);
+
+                //if (kick)
+                //{
+                //    // 로비로 강퇴
+                //    //S_Kick kickPacket = new S_Kick();
+                //    //player.Session?.Send(kickPacket);
+                //}
+            }
+            else if(type == EGameObjectType.Monster)
+            {
+                Console.WriteLine("Monster leaved");
+                if (_monsters.TryGetValue(objectId, out Monster monster) == false)
+                    return;
+
+                // 1. 맵에 실제 적용하고 충돌 그리드 갱신한다.
+                Map.ApplyLeave(monster);
+
+                // 2. 오브젝트 제거 및 방 제거.
+                _monsters.Remove(objectId);
+                monster.Room = null;
+
+                // 3. 다른 사람들한테 퇴장 알려주기.
+                S_Despawn despawnPacket = new S_Despawn();
+                despawnPacket.ObjectIds.Add(objectId);
+                Broadcast(monster.CellPos, despawnPacket);
             }
             else
             {
                 return;
-            }
-
-            // 타인한테 정보 전송
-            {
-                S_Despawn despawnPacket = new S_Despawn();
-                despawnPacket.ObjectIds.Add(objectId);
-                Broadcast(cellPos, despawnPacket);
             }
         }
 
@@ -216,22 +278,35 @@ namespace GameServer
             return zones.ToList();
         }
 
+        // TODO : 임시 버전
         public Vector2Int GetRandomSpawnPos(BaseObject obj, bool checkObjects = true)
         {
             Vector2Int randomPos;
 
+            int delta = 10;
+            const int tryCount = 100;
+
             while (true)
             {
-                //randomPos.x = _rand.Next(Map.MinX, Map.MaxX + 1);
-                //randomPos.y = _rand.Next(Map.MinY, Map.MaxY + 1);
+                for (int i = 0; i < tryCount; i++)
+                {
+                    randomPos.x = _rand.Next(-delta, delta) + obj.CellPos.x;
+                    randomPos.y = _rand.Next(-delta, delta) + obj.CellPos.x;
 
-                randomPos.x = _rand.Next(0, 5);
-                randomPos.y = _rand.Next(0, 5);
+                    if (Map.CanGo(obj, randomPos, checkObjects: true))
+                        return randomPos;
+                }
 
-                if (Map.CanGo(obj, randomPos, checkObjects: true))
-                    return randomPos;
+                delta *= 2;
             }
         }
 
+        private void FindAndSetCellPos(BaseObject obj, Vector2Int? pos = null)
+        {
+            if(pos.HasValue && Map.CanGo(obj, pos.Value, checkObjects:true))
+                obj.CellPos = pos.Value;
+            else
+                obj.CellPos = GetRandomSpawnPos(obj, checkObjects:true);
+        }
     }
 }

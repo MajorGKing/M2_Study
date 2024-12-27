@@ -35,12 +35,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3e693195d6c74b84eac76e6eacd00065
-    m_Address: HeroData
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2abfe8aca8d1c5542a5f87fa86bdf4c7
     m_Address: MonsterData
     m_ReadOnly: 0

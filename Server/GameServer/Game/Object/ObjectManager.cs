@@ -31,6 +31,9 @@ namespace GameServer
                 }
             }
 
+            if (obj.ObjectType == EGameObjectType.Monster)
+                (obj as Monster).Init(templateId);
+
             return obj;
         }
 

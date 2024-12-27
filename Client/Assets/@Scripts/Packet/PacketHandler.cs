@@ -119,7 +119,8 @@ class PacketHandler
         BaseObject bo = go.GetComponent<BaseObject>();
         if (bo == null)
             return;
-        
+
+        Debug.Log($"{go.name} , CellPos : {movePacket.PosInfo.PosX}, {movePacket.PosInfo.PosY}");
         bo.PosInfo = movePacket.PosInfo;
     }
 

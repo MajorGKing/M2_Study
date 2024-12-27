@@ -75,6 +75,8 @@ message S_LeaveGame
 message S_Spawn 
 {
 	repeated HeroInfo heroes = 1;
+	repeated CreatureInfo creatures = 2;  
+	repeated ObjectInfo objects = 3;  
 }
 
 message S_Despawn 

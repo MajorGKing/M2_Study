@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Reflection;
 using NUnit.Framework.Interfaces;
 using Scripts.Data;
+using Scripts.Data.SO;
 
 
 public class DataTransformer : EditorWindow

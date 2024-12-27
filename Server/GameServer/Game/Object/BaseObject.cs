@@ -15,6 +15,7 @@ namespace GameServer
             get { return ObjectInfo.ObjectId; }
             set { ObjectInfo.ObjectId = value; }
         }
+        public int TemplateId { get; protected set; }
 
         public int ExtraCells { get; protected set; } = 0;
 

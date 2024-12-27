@@ -30,7 +30,7 @@ public class BaseObject : MonoBehaviour
     }
 
     PositionInfo _positionInfo = new PositionInfo();
-    public PositionInfo PosInfo
+    public virtual PositionInfo PosInfo
     {
         get { return _positionInfo; }
         set
@@ -38,14 +38,17 @@ public class BaseObject : MonoBehaviour
             if (_positionInfo.Equals(value))
                 return;
 
-            CellPos = new Vector3Int(value.PosX, value.PosY, 0);
+            var cellPos = new Vector3Int(value.PosX, value.PosY, 0);
+            MoveDir = value.MoveDir;
+
+            Managers.Map.MoveTo(this, cellPos);
 
             // 내 플레이어는 상태 덮어쓰지 않고, 알아서 관리한다.
             bool isMyHero = this is MyHero;
             if (isMyHero == false)
+            {
                 ObjectState = value.State;
-
-            MoveDir = value.MoveDir;
+            }
         }
     }
 

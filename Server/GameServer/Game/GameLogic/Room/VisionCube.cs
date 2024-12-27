@@ -39,6 +39,18 @@ namespace GameServer
                         continue;
                     objects.Add(hero);
                 }
+
+                foreach (Monster monster in zone.Monsters)
+                {
+                    int dx = monster.CellPos.x - cellPos.x;
+                    int dy = monster.CellPos.y - cellPos.y;
+                    if (Math.Abs(dx) > GameRoom.VisionCells)
+                        continue;
+                    if (Math.Abs(dy) > GameRoom.VisionCells)
+                        continue;
+
+                    objects.Add(monster);
+                }
             }
 
             return objects;
@@ -65,6 +77,13 @@ namespace GameServer
                         HeroInfo info = new HeroInfo(); // TODO CHECK
                         info.MergeFrom(player.HeroInfo);
                         spawnPacket.Heroes.Add(info);
+                    }
+                    else if (obj.ObjectType == EGameObjectType.Monster)
+                    {
+                        Monster monster = (Monster)obj;
+                        CreatureInfo info = new CreatureInfo();
+                        info.MergeFrom(monster.CreatureInfo);
+                        spawnPacket.Creatures.Add(info);
                     }
                 }
 

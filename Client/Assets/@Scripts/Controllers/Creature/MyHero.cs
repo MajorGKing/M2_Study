@@ -11,7 +11,7 @@ using static Define;
 public class MyHero : Hero
 {
     //Temp
-    public override float MoveSpeed => TotalStat.Speed;
+    public override float MoveSpeed => TotalStat.MoveSpeed;
 
     // VisionCells 범위그리기
     private Color _lineColor = Color.red;

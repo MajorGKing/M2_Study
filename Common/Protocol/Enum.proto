@@ -72,3 +72,64 @@ enum EFindPathResult
     EFIND_PATH_RESULT_FAIL_SAME_POSITION = 4;
     EFIND_PATH_RESULT_SUCCESS = 5;
 }
+
+enum ERespawnType 
+{
+	RESPAWN_TYPE_NONE = 0;
+	RESPAWN_TYPE_RANDOM_INTERVAL = 1;
+	RESPAWN_TYPE_MAINTAIN_COUNT = 2;
+}
+
+enum EEffectType
+{
+   EEFFECT_TYPE_NONE = 0;
+   EEFFECT_TYPE_LIFESTEAL = 1;
+   EEFFECT_TYPE_BUFF = 2;
+   EEFFECT_TYPE_STUN = 3;
+   EEFFECT_TYPE_DOT = 4;
+
+}  
+
+enum EDurationPolicy
+{
+	Instant = 0;
+	Duration = 1;
+	Infinite = 2;
+}
+
+enum EOwnerStat
+{
+	SkillCaster =0;
+	EffectOwner = 1;
+}
+
+enum EStatType
+{
+	MaxHp = 0;
+	Hp = 1;
+	HpRegen = 2;
+	MaxMp = 3;
+	Mp = 4;
+	MpRegen = 5;
+	Attack = 6;
+	Defence = 7;
+	MissChance = 8;
+	AttackSpeed = 9;
+	MoveSpeed = 10;
+	CriRate = 11;
+	CriDamage = 12;
+	Str = 13;
+	Dex = 14;
+	Int = 15;
+	Con = 16;
+	Wis =17;
+}
+
+enum ESkillType
+{
+	ESKILL_TYPE_NONE = 0;
+	ESKILL_TYPE_SELF_CENTERED_AREA_SKILL = 1;
+	ESKILL_TYPE_TARGET_CENTERED_AREA_SKILL = 2;
+	ESKILL_TYPE_TARGET_SKILL = 3;
+	ESKILL_TYPE_PROJECTILE_SKILL = 4;
+}

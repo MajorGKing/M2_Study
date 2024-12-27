@@ -13,13 +13,24 @@ message RoomInfo
 
 message StatInfo 
 {
-	float hp = 1;
-	float maxHp = 2;
-	float speed = 3;
-	float attack = 4;
-	float defence = 5;
-	int32 criRate = 6;
-	int32 criDamage = 7;
+    float maxHp = 1;
+    float hp = 2;
+    float hpRegen = 3;
+    float maxMp = 4;
+    float mp = 5;
+    float mpRegen = 6;
+    float attack = 7;
+    float defence = 8;
+    float missChance = 9;
+    float attackSpeed = 10;
+    float moveSpeed = 11;
+    float criRate = 12;
+    float criDamage = 13;
+    int32 str = 14;
+    int32 dex = 15;
+    int32 int = 16;
+    int32 con = 17;
+    int32 wis = 18;
 }
 
 message PositionInfo 
@@ -55,7 +66,20 @@ message HeroInfo
 message MyHeroInfo
 {
 	HeroInfo heroInfo = 1;
-	StatInfo baseStatInfo = 2;
+	StatInfo totalStatInfo = 2;
 	int32 exp = 3;
 	int32 mapId = 4;
+}
+
+message SkillContext 
+{
+	int32 targetId = 1;
+	int32 posX = 2;
+	int32 posY = 3;
+}
+
+message SkillCoolTime 
+{
+	int32 skillId = 1;
+	int32 remainingTicks = 2;
 }

@@ -144,7 +144,6 @@ namespace GameServer
 
             int extraCells = obj.ExtraCells;
 
-            PositionInfo posInfo = obj.PosInfo;
             if (CanGo(obj, dest, checkObjects) == false)
                 return false;
 
@@ -152,8 +151,8 @@ namespace GameServer
             {
                 // 기존의 좌표 제거
                 {
-                    int x = posInfo.PosX - MinX;
-                    int y = MaxY - posInfo.PosY;
+                    int x = obj.PosInfo.PosX - MinX;
+                    int y = MaxY - obj.PosInfo.PosY;
 
                     for (int dx = -extraCells; dx <= extraCells; dx++)
                     {
@@ -179,25 +178,41 @@ namespace GameServer
                 }
             }
 
+            UpdateZone(obj, dest);
+
+            // 실제 셀 좌표 이동
+            obj.PosInfo.PosX = dest.x;
+            obj.PosInfo.PosY = dest.y;
+
+            return true;
+        }
+
+        public void UpdateZone(BaseObject obj, Vector2Int dest)
+        {
             // Zone
             EGameObjectType type = ObjectManager.GetObjectTypeFromId(obj.ObjectId);
-            if (type == EGameObjectType.Hero)
+            if(type == EGameObjectType.Hero)
             {
                 Hero hero = (Hero)obj;
                 Zone now = obj.Room.GetZone(obj.CellPos);
                 Zone after = obj.Room.GetZone(dest);
-                if (now != after)
+                if(now != after)
                 {
                     now.Heroes.Remove(hero);
                     after.Heroes.Add(hero);
                 }
             }
-
-            // 실제 좌표 이동
-            posInfo.PosX = dest.x;
-            posInfo.PosY = dest.y;
-
-            return true;
+            else if(type == EGameObjectType.Monster)
+            {
+                Monster monster = (Monster)obj;
+                Zone now = obj.Room.GetZone(obj.CellPos);
+                Zone after = obj.Room.GetZone(dest);
+                if (now != after)
+                {
+                    now.Monsters.Remove(monster);
+                    after.Monsters.Add(monster);
+                }
+            }
         }
 
         public void LoadMap()

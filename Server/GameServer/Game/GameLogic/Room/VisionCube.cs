@@ -84,6 +84,8 @@ namespace GameServer
                         CreatureInfo info = new CreatureInfo();
                         info.MergeFrom(monster.CreatureInfo);
                         spawnPacket.Creatures.Add(info);
+
+                        Console.WriteLine("AOI Monster Spawn");
                     }
                 }
 

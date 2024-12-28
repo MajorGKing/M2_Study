@@ -1,4 +1,5 @@
 using Google.Protobuf.Protocol;
+using Scripts.Data.SO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ public class ObjectManager
 {
     public MyHero MyHero { get; set; }
     Dictionary<int, GameObject> _objects = new Dictionary<int, GameObject>();
+    Dictionary<int, Monster> _monsters = new Dictionary<int, Monster>();
 
     #region Roots
     public Transform GetRootTransform(string name)
@@ -91,6 +93,34 @@ public class ObjectManager
         return hero;
     }
 
+    public Monster Spawn(CreatureInfo info)
+    {
+        if(info == null || info.ObjectInfo == null)
+            return null;
+        ObjectInfo objectInfo = info.ObjectInfo;
+        if(_objects.ContainsKey(objectInfo.ObjectId))
+            return null;
+        EGameObjectType objectType = Utils.GetObjectTypeFromId(objectInfo.ObjectId);
+        if(objectType != EGameObjectType.Monster)
+            return null;
+        int templateId = Utils.GetTemplateIdFromId(objectInfo.ObjectId);
+        if(Managers.Data.MonsterDic.TryGetValue(templateId, out MonsterData monsterData) == false)
+            return null;
+
+        GameObject go = Managers.Resource.Instantiate(monsterData.PrefabName); // TEMP
+        go.name = $"Monster_{objectInfo.ObjectId}";
+        go.transform.parent = MonsterRoot;
+        _objects.Add(objectInfo.ObjectId, go);
+        Monster monster = Utils.GetOrAddComponent<Monster>(go);
+        monster.SetInfo(templateId);
+        monster.ObjectId = objectInfo.ObjectId;
+        monster.PosInfo = objectInfo.PosInfo;
+        _monsters.Add(objectInfo.ObjectId, monster);
+
+        monster.SyncWorldPosWithCellPos();
+        return monster;
+    }
+
     public void Despawn(int objectId)
     {
         if (MyHero != null && MyHero.ObjectId == objectId)
@@ -108,7 +138,10 @@ public class ObjectManager
 
         }
 
+        Managers.Map.RemoveObject(bo);
         _objects.Remove(objectId);
+        _monsters.Remove(objectId);
+
         Managers.Resource.Destroy(go);
     }
 

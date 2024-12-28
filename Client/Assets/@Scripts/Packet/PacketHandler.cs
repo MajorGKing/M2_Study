@@ -104,6 +104,11 @@ class PacketHandler
         {
             Managers.Object.Spawn(obj);
         }
+
+        foreach (CreatureInfo obj in spawnPacket.Creatures)
+        {
+            Managers.Object.Spawn(obj);
+        }
     }
 
     public static void S_MoveHandler(PacketSession session, IMessage packet)

@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c77cea5ee4e84a189a322dc69332f467, type: 3}
+  m_Name: SO_Hero_Knight_MALE
+  m_EditorClassIdentifier: 
+  TemplateId: 1
+  NameTextId: 
+  IconImage: 
+  PrefabName: KnightPrefab
+  Stat:
+    MaxHp: 500
+    Hp: 500
+    HpRegen: 0
+    MaxMp: 0
+    Mp: 0
+    MpRegen: 0
+    Attack: 5
+    Defence: 0
+    MissChance: 0
+    AttackSpeed: 1
+    MoveSpeed: 5
+    CriRate: 0
+    CriDamage: 0
+    Str: 0
+    Dex: 0
+    Int: 0
+    Con: 0
+    Wis: 0
+  HeroClass: 1
+  MainSkill: {fileID: 11400000, guid: 4edebdd81414b0e42b52a15e0c38ff19, type: 2}
+  SkillA: {fileID: 11400000, guid: 2d4c6dd050b4f2a4e9cc365eebfaa2ab, type: 2}
+  SkillB: {fileID: 11400000, guid: f6779ba89f1042b4eb83f719f20fad6f, type: 2}
+  SkillC: {fileID: 11400000, guid: 289e5a651b1ca3947a6c7d7b838cd3ce, type: 2}
+  SkillD: {fileID: 0}
+  SkillE: {fileID: 0}

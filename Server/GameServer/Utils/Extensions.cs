@@ -1,4 +1,5 @@
 ﻿using GameServer;
+using Google.Protobuf.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,6 +19,23 @@ namespace GameServer
             {
                 return false;
             }
+        }
+
+        public static bool IsValid(this BaseObject bc)
+        {
+            if (bc == null)
+                return false;
+
+            if (bc.Room == null)
+                return false;
+
+            switch (bc.ObjectType)
+            {
+                case EGameObjectType.Monster:
+                case EGameObjectType.Hero:
+                    return ((Creature)bc).State != EObjectState.Dead;
+            }
+            return true;
         }
     }
 }

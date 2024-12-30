@@ -10,7 +10,7 @@ using Event = Spine.Event;
 public class BaseObject : MonoBehaviour
 {
     public int ObjectId { get; set; }
-    public virtual EGameObjectType ObjectType { get { return EGameObjectType.None; } }
+    public EGameObjectType ObjectType { get; protected set; } = EGameObjectType.None;
     public SkeletonAnimation SkeletonAnim { get; set; }
     public float UpdateAITick { get; protected set; }
 

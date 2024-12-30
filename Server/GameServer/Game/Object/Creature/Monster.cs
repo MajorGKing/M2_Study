@@ -1,5 +1,6 @@
 ﻿using Google.Protobuf.Protocol;
 using Server.Data;
+using Server.Game;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace GameServer
         {
             get { return MonsterData; }
         }
+
+        MonsterAIController _ai;
 
         public bool Boss { get; private set; }
 
@@ -32,6 +35,7 @@ namespace GameServer
             }
 
             TemplateId = templateId;
+            _ai = new MonsterAIController(this);
 
             MonsterData = monsterData;
             BaseStat.MergeFrom(monsterData.Stat.StatInfo);
@@ -42,7 +46,13 @@ namespace GameServer
             Boss = monsterData.IsBoss;
             ExtraCells = monsterData.ExtraCells;
 
-            
+            SetupStatMappings();
         }
+
+        public override void Update()
+        {
+            _ai.Update();
+        }
+
     }
 }

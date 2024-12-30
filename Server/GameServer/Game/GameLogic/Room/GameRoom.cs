@@ -301,6 +301,47 @@ namespace GameServer
             }
         }
 
+        public List<T> FindAdjacents<T>(Vector2Int pos, Func<T, bool> condition = null, int cells = GameRoom.VisionCells) where T : BaseObject
+        {
+            List<T> objs = new List<T>();
+            List<Zone> zones = GetAdjacentZones(pos, cells);
+
+            if (typeof(T) == typeof(Hero))
+            {
+                foreach (Hero p in zones.SelectMany(z => z.Heroes))
+                {
+                    int dx = p.CellPos.x - pos.x;
+                    int dy = p.CellPos.y - pos.y;
+                    if (Math.Abs(dx) > GameRoom.VisionCells)
+                        continue;
+                    if (Math.Abs(dy) > GameRoom.VisionCells)
+                        continue;
+                    if (condition == null || condition.Invoke(p as T) == false)
+                        continue;
+
+                    objs.Add(p as T);
+                }
+            }
+            else if (typeof(T) == typeof(Monster))
+            {
+                foreach(Monster m in zones.SelectMany(z => z.Monsters))
+                {
+                    int dx = m.CellPos.x - pos.x;
+                    int dy = m.CellPos.y - pos.y;
+                    if (Math.Abs(dx) > GameRoom.VisionCells)
+                        continue;
+                    if (Math.Abs(dy) > GameRoom.VisionCells)
+                        continue;
+                    if (condition == null || condition.Invoke(m as T) == false)
+                        continue;
+
+                    objs.Add(m as T);
+                }
+            }
+
+            return objs;
+        }
+
         private void FindAndSetCellPos(BaseObject obj, Vector2Int? pos = null)
         {
             if(pos.HasValue && Map.CanGo(obj, pos.Value, checkObjects:true))

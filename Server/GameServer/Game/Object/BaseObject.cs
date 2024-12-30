@@ -68,5 +68,44 @@ namespace GameServer
             movePacket.PosInfo = PosInfo;
             Room?.Broadcast(CellPos, movePacket);
         }
+
+        // 체스판 거리
+        public int GetDistance(BaseObject target)
+        {
+            Vector2Int pos = GetClosestBodyCellPointToTarget(target);
+            return GetDistance(pos);
+        }
+
+        public int GetDistance(Vector2Int pos)
+        {
+            int dist = Math.Max(Math.Abs(pos.x - CellPos.x), Math.Abs(pos.y - CellPos.y));
+            return dist;
+        }
+
+        public Vector2Int GetClosestBodyCellPointToTarget(BaseObject target)
+        {
+            Vector2Int cellPoint = Vector2Int.zero;
+            int minDist = int.MaxValue;
+            for (int dx = -target.ExtraCells; dx <= target.ExtraCells; dx++)
+            {
+                for(int dy = -target.ExtraCells; dy <= target.ExtraCells; dy++)
+                {
+                    Vector2Int checkPos = new Vector2Int(target.CellPos.x + dx, target.CellPos.y + dy);
+                    int dist = GetDistance(checkPos);
+                    if(dist < minDist)
+                    {
+                        minDist = dist;
+                        cellPoint = checkPos;
+                    }
+                }
+            }
+
+            return cellPoint;
+        }
+
+        public virtual BaseObject GetOwner()
+        {
+            return this;
+        }
     }
 }

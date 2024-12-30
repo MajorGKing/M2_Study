@@ -17,26 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 9a3b2525873b55c458754d88c665857e
   m_SerializeEntries:
-  - m_GUID: 31b22a4b19ab814428e387765123fb6f
-    m_Address: TextData
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c8f0776a72e1f7f4eacccfe1a41b6ef3
-    m_Address: QuestData
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: db0a3de78441b2d4aa99ee8599dcd58e
-    m_Address: SkillData
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2abfe8aca8d1c5542a5f87fa86bdf4c7
-    m_Address: MonsterData
+  - m_GUID: 67db427a9fbe8a54ab705419144755a0
+    m_Address: SpawningPoolData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
@@ -47,8 +29,38 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e5c01452f4456144b26bb9a05906c00
+    m_Address: HeroData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c9f0c8a12cb443440ada24120a9af1fa
     m_Address: ProjectileData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c8f0776a72e1f7f4eacccfe1a41b6ef3
+    m_Address: QuestData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2abfe8aca8d1c5542a5f87fa86bdf4c7
+    m_Address: MonsterData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db0a3de78441b2d4aa99ee8599dcd58e
+    m_Address: SkillData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 31b22a4b19ab814428e387765123fb6f
+    m_Address: TextData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

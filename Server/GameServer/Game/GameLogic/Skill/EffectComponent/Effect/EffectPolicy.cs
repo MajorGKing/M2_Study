@@ -42,8 +42,7 @@ namespace GameServer.Game
         }
 
         public void Revert(Creature owner, EffectData effectData)
-        {
-            
+        { 
         }
     }
 
@@ -57,12 +56,41 @@ namespace GameServer.Game
             EStatType statType = effectData.StatType;
             float value = effectData.StatAddValue;
 
-            float prevValue = owner.
+            float prevValue = owner.GetTotalStat(statType);
+            float finalValue = prevValue + value;
+            owner.SetTotalStat(statType, finalValue);
         }
 
         public void Revert(Creature owner, EffectData effectData)
         {
-            throw new NotImplementedException();
+            if (owner == null)
+                return;
+
+            EStatType statType = effectData.StatType;
+            float value = effectData.StatAddValue;
+
+            float prevValue = owner.GetTotalStat(statType);
+            float finalValue = prevValue - value;
+            owner.SetTotalStat(statType, finalValue);
+        }
+    }
+
+    public class BuffStunPolicy : IEffectPolicy
+    {
+        public void Apply(Creature owner, Creature caster, EffectData effectData)
+        {
+            if (owner == null)
+                return;
+
+            owner.IsStunned = true;
+        }
+
+        public void Revert(Creature owner, EffectData effectData)
+        {
+            if (owner == null)
+                return;
+
+            owner.IsStunned = false;
         }
     }
 }

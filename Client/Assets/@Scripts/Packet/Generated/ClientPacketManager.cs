@@ -23,6 +23,14 @@ public enum MsgId
 	S_Despawn = 15,
 	C_Move = 16,
 	S_Move = 17,
+	S_Ping = 18,
+	C_Pong = 19,
+	C_Skill = 20,
+	S_Skill = 21,
+	S_ChangeHp = 22,
+	S_ChangeEffects = 23,
+	S_Die = 24,
+	S_ChangeStat = 25,
 }
 
 class PacketManager
@@ -63,7 +71,19 @@ class PacketManager
 		_onRecv.Add((ushort)MsgId.S_Despawn, MakePacket<S_Despawn>);
 		_handler.Add((ushort)MsgId.S_Despawn, PacketHandler.S_DespawnHandler);		
 		_onRecv.Add((ushort)MsgId.S_Move, MakePacket<S_Move>);
-		_handler.Add((ushort)MsgId.S_Move, PacketHandler.S_MoveHandler);
+		_handler.Add((ushort)MsgId.S_Move, PacketHandler.S_MoveHandler);		
+		_onRecv.Add((ushort)MsgId.S_Ping, MakePacket<S_Ping>);
+		_handler.Add((ushort)MsgId.S_Ping, PacketHandler.S_PingHandler);		
+		_onRecv.Add((ushort)MsgId.S_Skill, MakePacket<S_Skill>);
+		_handler.Add((ushort)MsgId.S_Skill, PacketHandler.S_SkillHandler);		
+		_onRecv.Add((ushort)MsgId.S_ChangeHp, MakePacket<S_ChangeHp>);
+		_handler.Add((ushort)MsgId.S_ChangeHp, PacketHandler.S_ChangeHpHandler);		
+		_onRecv.Add((ushort)MsgId.S_ChangeEffects, MakePacket<S_ChangeEffects>);
+		_handler.Add((ushort)MsgId.S_ChangeEffects, PacketHandler.S_ChangeEffectsHandler);		
+		_onRecv.Add((ushort)MsgId.S_Die, MakePacket<S_Die>);
+		_handler.Add((ushort)MsgId.S_Die, PacketHandler.S_DieHandler);		
+		_onRecv.Add((ushort)MsgId.S_ChangeStat, MakePacket<S_ChangeStat>);
+		_handler.Add((ushort)MsgId.S_ChangeStat, PacketHandler.S_ChangeStatHandler);
 	}
 
 	public void OnRecvPacket(PacketSession session, ArraySegment<byte> buffer)

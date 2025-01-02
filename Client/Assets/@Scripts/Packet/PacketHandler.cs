@@ -129,4 +129,40 @@ class PacketHandler
         bo.PosInfo = movePacket.PosInfo;
     }
 
+    // TODO
+    public static void S_PingHandler(PacketSession session, IMessage packet)
+    {
+
+    }
+
+    // TODO
+    public static void S_SkillHandler(PacketSession session, IMessage packet)
+    {
+
+    }
+
+    // TODO
+    public static void S_ChangeHpHandler(PacketSession session, IMessage packet)
+    {
+
+    }
+
+    // TODO
+    public static void S_ChangeEffectsHandler(PacketSession session, IMessage packet)
+    {
+
+    }
+
+    // TODO
+    public static void S_DieHandler(PacketSession session, IMessage packet)
+    {
+
+    }
+
+    // TODO
+    public static void S_ChangeStatHandler(PacketSession session, IMessage packet)
+    {
+
+    }
+
 }

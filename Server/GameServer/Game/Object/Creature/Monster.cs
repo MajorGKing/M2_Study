@@ -46,7 +46,7 @@ namespace GameServer
             Boss = monsterData.IsBoss;
             ExtraCells = monsterData.ExtraCells;
 
-            SetupStatMappings();
+            //SetupStatMappings();
         }
 
         public override void Update()

@@ -103,12 +103,12 @@ namespace GameServer
 
         public void RefreshTotalStat(bool notifyToClient = false)
         {
-            //if (notifyToClient)
-            //{
-            //    S_ChangeStat changeStat = new S_ChangeStat();
-            //    changeStat.TotalStatInfo = TotalStat;
-            //    Session?.Send(changeStat);
-            //}
+            if (notifyToClient)
+            {
+                S_ChangeStat changeStat = new S_ChangeStat();
+                changeStat.TotalStatInfo = TotalStat;
+                Session?.Send(changeStat);
+            }
         }
 
         #region Init

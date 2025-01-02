@@ -9,6 +9,7 @@ using System.Text;
 using Server.Data;
 using Google.Protobuf.Protocol;
 using System.Numerics;
+using GameServer.Game;
 
 class PacketHandler
 {
@@ -69,5 +70,16 @@ class PacketHandler
             return;
 
         room.Push(room.HandleMove, hero, movePacket);
+    }
+
+    public static void C_PongHandler(PacketSession session, IMessage packet)
+    {
+        ClientSession clientSession = (ClientSession)session;
+        //clientSession.HandlePong();
+    }
+
+    public static void C_SkillHandler(PacketSession session, IMessage packet)
+    {
+        
     }
 }

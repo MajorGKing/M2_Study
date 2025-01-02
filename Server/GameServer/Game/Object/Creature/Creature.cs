@@ -17,14 +17,6 @@ namespace GameServer
         public Dictionary<EStatType, Func<float>> BaseStats { get; set; }
         public Dictionary<EStatType, Func<float>> TotalStats { get; set; }
 
-
-        public Creature()
-        {
-            CreatureInfo.ObjectInfo = ObjectInfo;
-            //CreatureInfo.StatInfo = BaseStat;
-
-        }
-
         public static readonly Dictionary<EStatType, Func<StatInfo, float>> StatGetters = new Dictionary<EStatType, Func<StatInfo, float>>()
         {
             { EStatType.MaxHp, (s) => s.MaxHp },
@@ -69,53 +61,6 @@ namespace GameServer
             { EStatType.Wis, (s, v) => s.Wis = (int)v }
         };
 
-        public void SetupStatMappings()
-        {
-            BaseStats = new Dictionary<EStatType, Func<float>>
-                {
-                    { EStatType.MaxHp, () => BaseStat.MaxHp },
-                    { EStatType.Hp, () => BaseStat.Hp },
-                    { EStatType.HpRegen, () => BaseStat.HpRegen },
-                    { EStatType.MaxMp, () => BaseStat.MaxMp },
-                    { EStatType.Mp, () => BaseStat.Mp },
-                    { EStatType.MpRegen, () => BaseStat.MpRegen },
-                    { EStatType.Attack, () => BaseStat.Attack },
-                    { EStatType.Defence, () => BaseStat.Defence },
-                    { EStatType.MissChance, () => BaseStat.MissChance },
-                    { EStatType.AttackSpeed, () => BaseStat.AttackSpeed },
-                    { EStatType.MoveSpeed, () => BaseStat.MoveSpeed },
-                    { EStatType.CriRate, () => BaseStat.CriRate },
-                    { EStatType.CriDamage, () => BaseStat.CriDamage },
-                    { EStatType.Str, () => BaseStat.Str },
-                    { EStatType.Dex, () => BaseStat.Dex },
-                    { EStatType.Int, () => BaseStat.Int },
-                    { EStatType.Con, () => BaseStat.Con },
-                    { EStatType.Wis, () => BaseStat.Wis }
-                };
-
-            TotalStats = new Dictionary<EStatType, Func<float>>
-                {
-                    { EStatType.MaxHp, () => TotalStat.MaxHp },
-                    { EStatType.Hp, () => TotalStat.Hp },
-                    { EStatType.HpRegen, () => TotalStat.HpRegen },
-                    { EStatType.MaxMp, () => TotalStat.MaxMp },
-                    { EStatType.Mp, () => TotalStat.Mp },
-                    { EStatType.MpRegen, () => TotalStat.MpRegen },
-                    { EStatType.Attack, () => TotalStat.Attack },
-                    { EStatType.Defence, () => TotalStat.Defence },
-                    { EStatType.MissChance, () => TotalStat.MissChance },
-                    { EStatType.AttackSpeed, () => TotalStat.AttackSpeed },
-                    { EStatType.MoveSpeed, () => TotalStat.MoveSpeed },
-                    { EStatType.CriRate, () => TotalStat.CriRate },
-                    { EStatType.CriDamage, () => TotalStat.CriDamage },
-                    { EStatType.Str, () => TotalStat.Str },
-                    { EStatType.Dex, () => TotalStat.Dex },
-                    { EStatType.Int, () => TotalStat.Int },
-                    { EStatType.Con, () => TotalStat.Con },
-                    { EStatType.Wis, () => TotalStat.Wis }
-                };
-        }
-
         public float Hp
         {
             get { return TotalStat.Hp; }
@@ -150,21 +95,33 @@ namespace GameServer
             }
         }
 
+        public void ClearStateFlags()
+        {
+            for (int flag = 0; flag < (int)ECreatureStateFlag.MaxCount; flag++)
+            {
+                SetStateFlag((ECreatureStateFlag)flag, false);
+            }
+        }
+
         public bool IsStunned
         {
             get { return GetStateFlag(ECreatureStateFlag.Stun); }
             set { SetStateFlag(ECreatureStateFlag.Stun, value); }
         }
 
-        public virtual bool IsEnemy(BaseObject target)
+        public Creature()
         {
-            if(target == null)
-                return false;
-            if (target == this)
-                return false;
+            CreatureInfo.ObjectInfo = ObjectInfo;
+            CreatureInfo.StatInfo = TotalStat;
 
-            return Room == target.Room;
+            //SkillComp = new SkillComponent(this);
+            //EffectComp = new EffectComponent(this);
         }
+
+        public float GetBaseStat(EStatType statType) { return StatGetters[statType](BaseStat); }
+        public float GetTotalStat(EStatType statType) { return StatGetters[statType](TotalStat); }
+        public void SetBaseStat(EStatType statType, float value) { StatSetters[statType](BaseStat, value); }
+        public void SetTotalStat(EStatType statType, float value) { StatSetters[statType](TotalStat, value); }
 
         public override float OnDamaged(BaseObject attacker, float damage)
         {
@@ -179,6 +136,16 @@ namespace GameServer
             TotalStat.Hp = Math.Max(TotalStat.Hp - damage, 0);
 
             return damage;
+        }
+
+        public virtual bool IsEnemy(BaseObject target)
+        {
+            if (target == null)
+                return false;
+            if (target == this)
+                return false;
+
+            return Room == target.Room;
         }
 
         public virtual bool IsFriend(BaseObject target)

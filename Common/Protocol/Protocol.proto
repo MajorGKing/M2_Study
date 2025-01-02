@@ -94,3 +94,43 @@ message S_Move
 	int32 objectId = 1;
 	PositionInfo posInfo = 2;
 }
+
+message S_Ping {
+}
+
+message C_Pong {
+}
+
+message C_Skill {
+	int32 skillId = 1;
+	SkillContext optionalContext = 2;
+}
+
+message S_Skill {
+	int32 objectId = 1;
+	int32 skillId = 2;
+	SkillContext optionalContext = 3;
+}
+
+message S_ChangeHp {
+	int32 objectId = 1;
+	float hp = 2;
+	float mp = 3;
+	float damage = 4;
+	EDamageType damageType = 5;
+}
+
+message S_ChangeEffects {
+	int32 objectId = 1;
+	repeated int32 effectIds = 2;
+	int32 stateFlag = 3;
+}
+
+message S_Die {
+	int32 objectId = 1;
+	int32 attackerId = 2;
+}
+
+message S_ChangeStat {
+	StatInfo totalStatInfo = 1;
+}

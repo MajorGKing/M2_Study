@@ -88,24 +88,24 @@ enum EOwnerStat
 
 enum EStatType
 {
-	MaxHp = 0;
-	Hp = 1;
-	HpRegen = 2;
-	MaxMp = 3;
-	Mp = 4;
-	MpRegen = 5;
-	Attack = 6;
-	Defence = 7;
-	MissChance = 8;
-	AttackSpeed = 9;
-	MoveSpeed = 10;
-	CriRate = 11;
-	CriDamage = 12;
-	Str = 13;
-	Dex = 14;
-	Int = 15;
-	Con = 16;
-	Wis =17;
+    ESTAT_TYPE_MAX_HP = 0;
+    ESTAT_TYPE_HP = 1;
+    ESTAT_TYPE_HP_REGEN = 2;
+    ESTAT_TYPE_MAX_MP = 3;
+    ESTAT_TYPE_MP = 4;
+    ESTAT_TYPE_MP_REGEN = 5;
+    ESTAT_TYPE_ATTACK = 6;
+    ESTAT_TYPE_DEFENCE = 7;
+    ESTAT_TYPE_MISS_CHANCE = 8;
+    ESTAT_TYPE_ATTACK_SPEED = 9;
+    ESTAT_TYPE_MOVE_SPEED = 10;
+    ESTAT_TYPE_CRI_RATE = 11;
+    ESTAT_TYPE_CRI_DAMAGE = 12;
+    ESTAT_TYPE_STR = 13;
+    ESTAT_TYPE_DEX = 14;
+    ESTAT_TYPE_INT = 15;
+    ESTAT_TYPE_CON = 16;
+    ESTAT_TYPE_WIS = 17;
 }
 
 enum ECreatureStateFlag

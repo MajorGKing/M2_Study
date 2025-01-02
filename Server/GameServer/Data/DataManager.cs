@@ -18,6 +18,7 @@ namespace GameServer
         public static Dictionary<int, HeroData> HeroDict { get; private set; } = new Dictionary<int, HeroData>();
         public static Dictionary<int, MonsterData> MonsterDict { get; private set; } = new Dictionary<int, MonsterData>();
         public static Dictionary<int, SkillData> SkillDict { get; private set; } = new Dictionary<int, SkillData>();
+        public static Dictionary<int, EffectData> EffectDict { get; private set; } = new Dictionary<int, EffectData>();
         public static Dictionary<int, SpawningPoolData> SpawningPoolDict { get; private set; } = new Dictionary<int, SpawningPoolData>();
 
         public static void LoadData()
@@ -26,6 +27,7 @@ namespace GameServer
             MonsterDict = LoadJson<MonsterDataLoader, int, MonsterData>("MonsterData").MakeDict();
             SkillDict = LoadJson<SkillDataLoader, int, SkillData>("SkillData").MakeDict();
             SpawningPoolDict = LoadJson<SpawningPoolDataLoader, int, SpawningPoolData>("SpawningPoolData").MakeDict();
+            EffectDict = LoadJson<EffectDataLoader, int, EffectData>("EffectData").MakeDict();
         }
 
         static Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>

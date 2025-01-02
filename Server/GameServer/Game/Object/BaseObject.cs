@@ -69,6 +69,11 @@ namespace GameServer
             Room?.Broadcast(CellPos, movePacket);
         }
 
+        public virtual float OnDamaged(BaseObject attacker, float damage)
+        {
+            return 0;
+        }
+
         // 체스판 거리
         public int GetDistance(BaseObject target)
         {

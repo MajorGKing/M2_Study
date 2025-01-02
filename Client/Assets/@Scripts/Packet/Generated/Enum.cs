@@ -53,25 +53,39 @@ namespace Google.Protobuf.Protocol {
             "SVRJT04QBBIdChlFRklORF9QQVRIX1JFU1VMVF9TVUNDRVNTEAUqaAoMRVJl",
             "c3Bhd25UeXBlEhUKEVJFU1BBV05fVFlQRV9OT05FEAASIAocUkVTUEFXTl9U",
             "WVBFX1JBTkRPTV9JTlRFUlZBTBABEh8KG1JFU1BBV05fVFlQRV9NQUlOVEFJ",
-            "Tl9DT1VOVBACKoQBCgtFRWZmZWN0VHlwZRIVChFFRUZGRUNUX1RZUEVfTk9O",
-            "RRAAEhoKFkVFRkZFQ1RfVFlQRV9MSUZFU1RFQUwQARIVChFFRUZGRUNUX1RZ",
-            "UEVfQlVGRhACEhUKEUVFRkZFQ1RfVFlQRV9TVFVOEAMSFAoQRUVGRkVDVF9U",
-            "WVBFX0RPVBAEKjoKD0VEdXJhdGlvblBvbGljeRILCgdJbnN0YW50EAASDAoI",
-            "RHVyYXRpb24QARIMCghJbmZpbml0ZRACKi4KCkVPd25lclN0YXQSDwoLU2tp",
-            "bGxDYXN0ZXIQABIPCgtFZmZlY3RPd25lchABKt0BCglFU3RhdFR5cGUSCQoF",
-            "TWF4SHAQABIGCgJIcBABEgsKB0hwUmVnZW4QAhIJCgVNYXhNcBADEgYKAk1w",
-            "EAQSCwoHTXBSZWdlbhAFEgoKBkF0dGFjaxAGEgsKB0RlZmVuY2UQBxIOCgpN",
-            "aXNzQ2hhbmNlEAgSDwoLQXR0YWNrU3BlZWQQCRINCglNb3ZlU3BlZWQQChIL",
-            "CgdDcmlSYXRlEAsSDQoJQ3JpRGFtYWdlEAwSBwoDU3RyEA0SBwoDRGV4EA4S",
-            "BwoDSW50EA8SBwoDQ29uEBASBwoDV2lzEBEquAEKCkVTa2lsbFR5cGUSFAoQ",
-            "RVNLSUxMX1RZUEVfTk9ORRAAEigKJEVTS0lMTF9UWVBFX1NFTEZfQ0VOVEVS",
-            "RURfQVJFQV9TS0lMTBABEioKJkVTS0lMTF9UWVBFX1RBUkdFVF9DRU5URVJF",
-            "RF9BUkVBX1NLSUxMEAISHAoYRVNLSUxMX1RZUEVfVEFSR0VUX1NLSUxMEAMS",
-            "IAocRVNLSUxMX1RZUEVfUFJPSkVDVElMRV9TS0lMTBAEQhuqAhhHb29nbGUu",
-            "UHJvdG9idWYuUHJvdG9jb2xiBnByb3RvMw=="));
+            "Tl9DT1VOVBACKi4KCkVPd25lclN0YXQSDwoLU2tpbGxDYXN0ZXIQABIPCgtF",
+            "ZmZlY3RPd25lchABKt0BCglFU3RhdFR5cGUSCQoFTWF4SHAQABIGCgJIcBAB",
+            "EgsKB0hwUmVnZW4QAhIJCgVNYXhNcBADEgYKAk1wEAQSCwoHTXBSZWdlbhAF",
+            "EgoKBkF0dGFjaxAGEgsKB0RlZmVuY2UQBxIOCgpNaXNzQ2hhbmNlEAgSDwoL",
+            "QXR0YWNrU3BlZWQQCRINCglNb3ZlU3BlZWQQChILCgdDcmlSYXRlEAsSDQoJ",
+            "Q3JpRGFtYWdlEAwSBwoDU3RyEA0SBwoDRGV4EA4SBwoDSW50EA8SBwoDQ29u",
+            "EBASBwoDV2lzEBEq1wEKEkVDcmVhdHVyZVN0YXRlRmxhZxIdChlFQ1JFQVRV",
+            "UkVfU1RBVEVfRkxBR19OT05FEAASHQoZRUNSRUFUVVJFX1NUQVRFX0ZMQUdf",
+            "U0xPVxABEh0KGUVDUkVBVFVSRV9TVEFURV9GTEFHX1NUVU4QAhIfChtFQ1JF",
+            "QVRVUkVfU1RBVEVfRkxBR19GQVNURVIQAxIfChtFQ1JFQVRVUkVfU1RBVEVf",
+            "RkxBR19QT0lTT04QBBIiCh5FQ1JFQVRVUkVfU1RBVEVfRkxBR19NQVhfQ09V",
+            "TlQQBSoiCgpFU2tpbGxUeXBlEhQKEEVTS0lMTF9UWVBFX05PTkUQACqZAQoT",
+            "RVVzZVNraWxsVGFyZ2V0VHlwZRIfChtFVVNFX1NLSUxMX1RBUkdFVF9UWVBF",
+            "X05PTkUQABIfChtFVVNFX1NLSUxMX1RBUkdFVF9UWVBFX1NFTEYQARIgChxF",
+            "VVNFX1NLSUxMX1RBUkdFVF9UWVBFX09USEVSEAISHgoaRVVTRV9TS0lMTF9U",
+            "QVJHRVRfVFlQRV9BTlkQAyqNAQoRRVRhcmdldEZyaWVuZFR5cGUSHAoYRVRB",
+            "UkdFVF9GUklFTkRfVFlQRV9OT05FEAASHgoaRVRBUkdFVF9GUklFTkRfVFlQ",
+            "RV9GUklFTkQQARIdChlFVEFSR0VUX0ZSSUVORF9UWVBFX0VORU1ZEAISGwoX",
+            "RVRBUkdFVF9GUklFTkRfVFlQRV9BTlkQAyquAQoLRUVmZmVjdFR5cGUSFQoR",
+            "RUVGRkVDVF9UWVBFX05PTkUQABIXChNFRUZGRUNUX1RZUEVfREFNQUdFEAES",
+            "FQoRRUVGRkVDVF9UWVBFX0hFQUwQAhIaChZFRUZGRUNUX1RZUEVfQlVGRl9T",
+            "VEFUEAMSIAocRUVGRkVDVF9UWVBFX0JVRkZfTElGRV9TVEVBTBAEEhoKFkVF",
+            "RkZFQ1RfVFlQRV9CVUZGX1NUVU4QBSptCg9FRHVyYXRpb25Qb2xpY3kSHAoY",
+            "RURVUkFUSU9OX1BPTElDWV9JTlNUQU5UEAASHQoZRURVUkFUSU9OX1BPTElD",
+            "WV9EVVJBVElPThABEh0KGUVEVVJBVElPTl9QT0xJQ1lfSU5GSU5JVEUQAiqa",
+            "AQoLRURhbWFnZVR5cGUSFQoRRURBTUFHRV9UWVBFX05PTkUQABIUChBFREFN",
+            "QUdFX1RZUEVfSElUEAESGQoVRURBTUFHRV9UWVBFX0NSSVRJQ0FMEAISFQoR",
+            "RURBTUFHRV9UWVBFX01JU1MQAxIVChFFREFNQUdFX1RZUEVfSEVBTBAEEhUK",
+            "EUVEQU1BR0VfVFlQRV9TVFVOEAVCG6oCGEdvb2dsZS5Qcm90b2J1Zi5Qcm90",
+            "b2NvbGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.EHeroGender), typeof(global::Google.Protobuf.Protocol.EHeroClass), typeof(global::Google.Protobuf.Protocol.ECreateHeroResult), typeof(global::Google.Protobuf.Protocol.EObjectState), typeof(global::Google.Protobuf.Protocol.EMoveDir), typeof(global::Google.Protobuf.Protocol.EGameObjectType), typeof(global::Google.Protobuf.Protocol.ECellCollisionType), typeof(global::Google.Protobuf.Protocol.EFindPathResult), typeof(global::Google.Protobuf.Protocol.ERespawnType), typeof(global::Google.Protobuf.Protocol.EEffectType), typeof(global::Google.Protobuf.Protocol.EDurationPolicy), typeof(global::Google.Protobuf.Protocol.EOwnerStat), typeof(global::Google.Protobuf.Protocol.EStatType), typeof(global::Google.Protobuf.Protocol.ESkillType), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.EHeroGender), typeof(global::Google.Protobuf.Protocol.EHeroClass), typeof(global::Google.Protobuf.Protocol.ECreateHeroResult), typeof(global::Google.Protobuf.Protocol.EObjectState), typeof(global::Google.Protobuf.Protocol.EMoveDir), typeof(global::Google.Protobuf.Protocol.EGameObjectType), typeof(global::Google.Protobuf.Protocol.ECellCollisionType), typeof(global::Google.Protobuf.Protocol.EFindPathResult), typeof(global::Google.Protobuf.Protocol.ERespawnType), typeof(global::Google.Protobuf.Protocol.EOwnerStat), typeof(global::Google.Protobuf.Protocol.EStatType), typeof(global::Google.Protobuf.Protocol.ECreatureStateFlag), typeof(global::Google.Protobuf.Protocol.ESkillType), typeof(global::Google.Protobuf.Protocol.EUseSkillTargetType), typeof(global::Google.Protobuf.Protocol.ETargetFriendType), typeof(global::Google.Protobuf.Protocol.EEffectType), typeof(global::Google.Protobuf.Protocol.EDurationPolicy), typeof(global::Google.Protobuf.Protocol.EDamageType), }, null, null));
     }
     #endregion
 
@@ -145,20 +159,6 @@ namespace Google.Protobuf.Protocol {
     [pbr::OriginalName("RESPAWN_TYPE_MAINTAIN_COUNT")] RespawnTypeMaintainCount = 2,
   }
 
-  public enum EEffectType {
-    [pbr::OriginalName("EEFFECT_TYPE_NONE")] None = 0,
-    [pbr::OriginalName("EEFFECT_TYPE_LIFESTEAL")] Lifesteal = 1,
-    [pbr::OriginalName("EEFFECT_TYPE_BUFF")] Buff = 2,
-    [pbr::OriginalName("EEFFECT_TYPE_STUN")] Stun = 3,
-    [pbr::OriginalName("EEFFECT_TYPE_DOT")] Dot = 4,
-  }
-
-  public enum EDurationPolicy {
-    [pbr::OriginalName("Instant")] Instant = 0,
-    [pbr::OriginalName("Duration")] Duration = 1,
-    [pbr::OriginalName("Infinite")] Infinite = 2,
-  }
-
   public enum EOwnerStat {
     [pbr::OriginalName("SkillCaster")] SkillCaster = 0,
     [pbr::OriginalName("EffectOwner")] EffectOwner = 1,
@@ -185,12 +185,58 @@ namespace Google.Protobuf.Protocol {
     [pbr::OriginalName("Wis")] Wis = 17,
   }
 
+  public enum ECreatureStateFlag {
+    [pbr::OriginalName("ECREATURE_STATE_FLAG_NONE")] None = 0,
+    [pbr::OriginalName("ECREATURE_STATE_FLAG_SLOW")] Slow = 1,
+    [pbr::OriginalName("ECREATURE_STATE_FLAG_STUN")] Stun = 2,
+    [pbr::OriginalName("ECREATURE_STATE_FLAG_FASTER")] Faster = 3,
+    [pbr::OriginalName("ECREATURE_STATE_FLAG_POISON")] Poison = 4,
+    [pbr::OriginalName("ECREATURE_STATE_FLAG_MAX_COUNT")] MaxCount = 5,
+  }
+
   public enum ESkillType {
+    /// <summary>
+    /// 패시브? 액티브? 움직이면서 쓰기 가능? 등 분류가 좋아보임.
+    /// </summary>
     [pbr::OriginalName("ESKILL_TYPE_NONE")] None = 0,
-    [pbr::OriginalName("ESKILL_TYPE_SELF_CENTERED_AREA_SKILL")] SelfCenteredAreaSkill = 1,
-    [pbr::OriginalName("ESKILL_TYPE_TARGET_CENTERED_AREA_SKILL")] TargetCenteredAreaSkill = 2,
-    [pbr::OriginalName("ESKILL_TYPE_TARGET_SKILL")] TargetSkill = 3,
-    [pbr::OriginalName("ESKILL_TYPE_PROJECTILE_SKILL")] ProjectileSkill = 4,
+  }
+
+  public enum EUseSkillTargetType {
+    [pbr::OriginalName("EUSE_SKILL_TARGET_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("EUSE_SKILL_TARGET_TYPE_SELF")] Self = 1,
+    [pbr::OriginalName("EUSE_SKILL_TARGET_TYPE_OTHER")] Other = 2,
+    [pbr::OriginalName("EUSE_SKILL_TARGET_TYPE_ANY")] Any = 3,
+  }
+
+  public enum ETargetFriendType {
+    [pbr::OriginalName("ETARGET_FRIEND_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("ETARGET_FRIEND_TYPE_FRIEND")] Friend = 1,
+    [pbr::OriginalName("ETARGET_FRIEND_TYPE_ENEMY")] Enemy = 2,
+    [pbr::OriginalName("ETARGET_FRIEND_TYPE_ANY")] Any = 3,
+  }
+
+  public enum EEffectType {
+    [pbr::OriginalName("EEFFECT_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("EEFFECT_TYPE_DAMAGE")] Damage = 1,
+    [pbr::OriginalName("EEFFECT_TYPE_HEAL")] Heal = 2,
+    [pbr::OriginalName("EEFFECT_TYPE_BUFF_STAT")] BuffStat = 3,
+    [pbr::OriginalName("EEFFECT_TYPE_BUFF_LIFE_STEAL")] BuffLifeSteal = 4,
+    [pbr::OriginalName("EEFFECT_TYPE_BUFF_STUN")] BuffStun = 5,
+  }
+
+  public enum EDurationPolicy {
+    [pbr::OriginalName("EDURATION_POLICY_INSTANT")] Instant = 0,
+    [pbr::OriginalName("EDURATION_POLICY_DURATION")] Duration = 1,
+    [pbr::OriginalName("EDURATION_POLICY_INFINITE")] Infinite = 2,
+  }
+
+  public enum EDamageType {
+    [pbr::OriginalName("EDAMAGE_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("EDAMAGE_TYPE_HIT")] Hit = 1,
+    [pbr::OriginalName("EDAMAGE_TYPE_CRITICAL")] Critical = 2,
+    [pbr::OriginalName("EDAMAGE_TYPE_MISS")] Miss = 3,
+    [pbr::OriginalName("EDAMAGE_TYPE_HEAL")] Heal = 4,
+    [pbr::OriginalName("EDAMAGE_TYPE_STUN")] Stun = 5,
   }
 
   #endregion

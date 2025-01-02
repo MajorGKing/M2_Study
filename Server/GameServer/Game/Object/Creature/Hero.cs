@@ -50,9 +50,12 @@ namespace GameServer
         public void Init(HeroDb heroDb)
         {
             HeroDbId = heroDb.HeroDbId;
+            //Pos
             ObjectInfo.PosInfo.State = EObjectState.Idle;
             ObjectInfo.PosInfo.PosX = heroDb.PosX;
             ObjectInfo.PosInfo.PosY = heroDb.PosY;
+
+            //HeroInfo
             HeroInfo.Level = heroDb.Level;
             HeroInfo.Name = heroDb.Name;
             HeroInfo.Gender = heroDb.Gender;
@@ -60,37 +63,42 @@ namespace GameServer
             MyHeroInfo.HeroInfo = HeroInfo;
             HeroInfo.CreatureInfo = CreatureInfo;
 
-            TemplateId = ObjectManager.GetTemplateIdFromId(ObjectId);
-
-            if (DataManager.HeroDict.TryGetValue(TemplateId, out HeroData heroData))
-            {
-                HeroData = heroData;
-
-                BaseStat.MergeFrom(heroData.Stat.StatInfo);
-                BaseStat.Hp = BaseStat.MaxHp;
-
-                TotalStat.MergeFrom(BaseStat);
-
-                SetupStatMappings();
-
-                MyHeroInfo.TotalStatInfo = TotalStat;
-                HeroInfo.CreatureInfo.StatInfo = TotalStat; // 플레이어는 최종 스탯으로 보내주도록
-
-                //if (heroData.MainSkill != null)
-                //    SkillBook.RegisterSkill(heroData.MainSkill.TemplateId);
-
-                //if (heroData.SkillA != null)
-                //    SkillBook.RegisterSkill(heroData.SkillA.TemplateId);
-
-                //if (heroData.SkillB != null)
-                //    SkillBook.RegisterSkill(heroData.SkillB.TemplateId);
-
-                //if (heroData.SkillC != null)
-                //    SkillBook.RegisterSkill(heroData.SkillC.TemplateId);
-
-            }
+            InitializeHeroData();
+            InitializeSkills();
 
             RefreshTotalStat();
+
+            //TemplateId = ObjectManager.GetTemplateIdFromId(ObjectId);
+
+            //if (DataManager.HeroDict.TryGetValue(TemplateId, out HeroData heroData))
+            //{
+            //    HeroData = heroData;
+
+            //    BaseStat.MergeFrom(heroData.Stat.StatInfo);
+            //    BaseStat.Hp = BaseStat.MaxHp;
+
+            //    TotalStat.MergeFrom(BaseStat);
+
+            //    SetupStatMappings();
+
+            //    MyHeroInfo.TotalStatInfo = TotalStat;
+            //    HeroInfo.CreatureInfo.StatInfo = TotalStat; // 플레이어는 최종 스탯으로 보내주도록
+
+            //    //if (heroData.MainSkill != null)
+            //    //    SkillBook.RegisterSkill(heroData.MainSkill.TemplateId);
+
+            //    //if (heroData.SkillA != null)
+            //    //    SkillBook.RegisterSkill(heroData.SkillA.TemplateId);
+
+            //    //if (heroData.SkillB != null)
+            //    //    SkillBook.RegisterSkill(heroData.SkillB.TemplateId);
+
+            //    //if (heroData.SkillC != null)
+            //    //    SkillBook.RegisterSkill(heroData.SkillC.TemplateId);
+
+            //}
+
+            //RefreshTotalStat();
         }
 
         public void RefreshTotalStat(bool notifyToClient = false)
@@ -102,5 +110,30 @@ namespace GameServer
             //    Session?.Send(changeStat);
             //}
         }
+
+        #region Init
+        private void InitializeHeroData()
+        {
+            TemplateId = ObjectManager.GetTemplateIdFromId(ObjectId);
+
+            if(DataManager.HeroDict.TryGetValue(TemplateId, out HeroData heroData))
+            {
+                HeroData = heroData;
+                BaseStat.MergeFrom(heroData.Stat.StatInfo);
+                BaseStat.Hp = BaseStat.MaxHp;
+                TotalStat.MergeFrom(BaseStat);
+
+                MyHeroInfo.TotalStatInfo = TotalStat;
+                HeroInfo.CreatureInfo.StatInfo = TotalStat; // 플레이어는 최종 스탯으로 보내주도록
+            }
+        }
+
+        // TODO
+        private void InitializeSkills()
+        {
+            if (HeroData == null)
+                return;
+        }
+        #endregion
     }
 }

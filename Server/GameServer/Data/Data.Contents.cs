@@ -6,19 +6,18 @@ using System.Text;
 
 namespace Server.Data
 {
-    public class CreatureData
+    public class BaseData
     {
         public int TemplateId;
+        public string Name;//개발용
         public string NameTextId;
+        public string DescriptionTextID;
         public string IconImage;
         public string PrefabName;
+    }
+    public class CreatureData : BaseData
+    {
         public StatInfoWrapper Stat;
-
-        public virtual bool Validate()
-        {
-            return true;
-        }
-
     }
 
     [Serializable]
@@ -76,6 +75,13 @@ namespace Server.Data
     public class HeroData : CreatureData
     {
         public string IconImageName;
+
+        public SkillData MainSkill;
+        public SkillData SkillA;
+        public SkillData SkillB;
+        public SkillData SkillC;
+        public SkillData SkillD;
+        public SkillData SkillE;
     }
 
     [Serializable]
@@ -148,14 +154,11 @@ namespace Server.Data
 
     #region Projectile
 
-    public class ProjectileData
+    public class ProjectileData : BaseData
     {
-        public int TemplateId;
-        public string Name;
-        public string PrefabName;
         public float Duration;
         public float ProjRange;
-        public float ProjSpeed;
+        public float ProjSpeed; 
     }
 
     [Serializable]
@@ -182,23 +185,36 @@ namespace Server.Data
 
     #region Skill
 
-    public class SkillData
+    public class SkillData : BaseData
     {
         public ESkillType SkillType;
-        public int TemplateId;
-        public string Name;
-        public string NameTextId;
         public string DescriptionTextId;
-        public ProjectileData Projectile;
         public string IconLabel;
         public float Cooldown;
-        public float Duration;
         public int SkillRange;
         public string AnimName;
-        public List<float> EventTimes;
-        public List<EffectData> Effects;
+
+        // 애니메이션 모션 기다리기 위한 딜레이.
+        public float DelayTime; // EventTime
+
+        // 투사체를 날릴 경우.
+        public ProjectileData Projectile;
+
+        // 누구한테 시전?
+        public EUseSkillTargetType UseSkillTargetType;
+
+        // 효과 대상 범위는? (0이면 단일 스킬)
+        public int GatherTargetRange;
+        public string GatherPrefabName; // AoE
+
+        // 피아식별
+        public ETargetFriendType TargetFriendType;
+
+        // 어떤 효과를?
+        public EffectData EffectData;
+
+        // 다음 레벨 스킬.
         public SkillData NextLevelSkill;
-        public List<AOEData> AoEs;
     }
 
     [Serializable]
@@ -225,23 +241,53 @@ namespace Server.Data
     #endregion
 
     #region Effect
-    public class EffectData
+    public class EffectData :BaseData
     {
-        public int TemplateId;
-        public string Name;
-        public string DescriptionTextID;
-        public string PrefabName;
-        public string IconLabel;
         public string SoundLabel;
 
+        // 효과 분류.
         public EEffectType EffectType;
+
+        // 즉발 vs 주기적 vs 영구적.
         public EDurationPolicy DurationPolicy;
         public float Duration;
-        public EOwnerStat OwnerStat;
+
+        // EFFECT_TYPE_DAMAGE
+        public float DamageValue;
+
+        // EFFECT_TYPE_HEAL
+        public float HealValue;
+
+        // EFFECT_TYPE_BUFF_STAT
         public EStatType StatType;
-        public float ModifierAdd; //상수
-        public float SkillRatio; // StatType의 계수
-        public EStatType ApplyStatType;
+        public float StatAddValue;
+
+        // EFFECT_TYPE_BUFF_LIFE_STEAL
+        public float LifeStealValue;
+
+        // EFFECT_TYPE_BUFF_LIFE_STUN
+        public float StunValue;
+    }
+
+    [Serializable]
+    public class EffectDataLoader : ILoader<int, EffectData>
+    {
+        public List<EffectData> datas = new List<EffectData>();
+
+        public Dictionary<int, EffectData> MakeDict()
+        {
+            Dictionary<int, EffectData> dict = new Dictionary<int, EffectData>();
+            foreach (EffectData data in datas)
+                dict.Add(data.TemplateId, data);
+
+            return dict;
+        }
+
+        public bool Validate()
+        {
+            bool validate = true;
+            return validate;
+        }
     }
 
     #endregion

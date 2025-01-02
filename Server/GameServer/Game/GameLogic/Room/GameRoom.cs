@@ -342,6 +342,84 @@ namespace GameServer
             return objs;
         }
 
+        public List<Hero> FindAdjacentHeroes(Vector2Int pos, Func<Hero, bool> condition = null, int cells = GameRoom.VisionCells)
+        {
+            List<Hero> objs = new List<Hero>();
+            List<Zone> zones = GetAdjacentZones(pos, cells);
+
+            foreach(Hero hero in zones.SelectMany(z => z.Heroes))
+            {
+                int dx = hero.CellPos.x - pos.x;
+                int dy = hero.CellPos.y - pos.y;
+                if (Math.Abs(dx) > GameRoom.VisionCells)
+                    continue;
+                if (Math.Abs(dy) > GameRoom.VisionCells)
+                    continue;
+                if (condition == null || condition.Invoke(hero) == false)
+                    continue;
+
+                objs.Add(hero);
+            }
+
+            return objs;
+        }
+
+        public List<Monster> FindAdjacentMonsters(Vector2Int pos, Func<Monster, bool> condition = null, int cells = GameRoom.VisionCells)
+        {
+            List<Monster> objs = new List<Monster>();
+            List<Zone> zones = GetAdjacentZones(pos, cells);
+
+            foreach (Monster monster in zones.SelectMany(z => z.Monsters))
+            {
+                int dx = monster.CellPos.x - pos.x;
+                int dy = monster.CellPos.y - pos.y;
+                if (Math.Abs(dx) > GameRoom.VisionCells)
+                    continue;
+                if (Math.Abs(dy) > GameRoom.VisionCells)
+                    continue;
+                if (condition == null || condition.Invoke(monster) == false)
+                    continue;
+
+                objs.Add(monster);
+            }
+
+            return objs;
+        }
+
+        public List<Creature> FindAdjancentCreatures(Vector2Int pos, Func<Creature, bool> condition = null, int cells = GameRoom.VisionCells)
+        {
+            List<Creature> objs = new List<Creature>();
+
+            return objs;
+        }
+
+        public Hero GetHeroById(int id)
+        {
+            Hero hero = null;
+            _heroes.TryGetValue(id, out hero);
+            return hero;
+        }
+
+        public Monster GetMonsterById(int id)
+        {
+            Monster monster = null;
+            _monsters.TryGetValue(id, out monster);
+            return monster;
+        }
+
+        public Creature GetCreatureById(int id)
+        {
+            Hero p = GetHeroById(id);
+            if (p != null)
+                return p as Creature;
+
+            Monster m = GetMonsterById(id);
+            if (m != null)
+                return m as Creature;
+
+            return null;
+        }
+
         private void FindAndSetCellPos(BaseObject obj, Vector2Int? pos = null)
         {
             if(pos.HasValue && Map.CanGo(obj, pos.Value, checkObjects:true))

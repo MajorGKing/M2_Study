@@ -3,6 +3,7 @@ using ServerCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -181,6 +182,8 @@ namespace GameServer
             UpdateZone(obj, dest);
 
             // 실제 셀 좌표 이동
+            Vector2Int dir = dest - obj.CellPos;
+            obj.PosInfo.MoveDir = GetMoveDirection(dir);
             obj.PosInfo.PosX = dest.x;
             obj.PosInfo.PosY = dest.y;
 
@@ -249,6 +252,50 @@ namespace GameServer
                     }
                 }
             }
+        }
+
+        // 월드 좌표를 셀 좌표로 변환
+        public Vector2Int WorldToCell(float x, float y)
+        {
+            return WorldToCell(x, y);
+        }
+
+        public Vector2Int WorldToCell(Vector2 worldPos)
+        {
+            // 새로운 아이소메트릭 변환 수식
+            int cellX = (int)Math.Floor(worldPos.X / Define.TILE_WIDTH + worldPos.Y / Define.TILE_HEIGHT);
+            int cellY = (int)Math.Floor(worldPos.Y / Define.TILE_HEIGHT - worldPos.X / Define.TILE_WIDTH);
+
+            return new Vector2Int(cellX, cellY);
+        }
+
+        // 셀 좌표를 월드 좌표로 변환
+        public Vector2 CellToWorld(int x, int y)
+        {
+            return CellToWorld(new Vector2Int(x, y));
+        }
+
+        public Vector2 CellToWorld(Vector2Int cellPos)
+        {
+            // 아이소메트릭 변환 수식
+            float worldX = (cellPos.x - cellPos.y) * Define.TILE_WIDTH * 0.5f;
+            float worldY = (cellPos.x + cellPos.y) * Define.TILE_HEIGHT * 0.5f;
+
+            return new Vector2(worldX, worldY);
+        }
+
+        public EMoveDir GetMoveDirection(Vector2Int normalizedDir)
+        {
+            if (normalizedDir == Vector2Int.zero)
+                return EMoveDir.None;
+
+            for (int i = 0; i < _delta.Count; i++)
+            {
+                if (_delta[i] == normalizedDir)
+                    return (EMoveDir)i + 1;
+            }
+
+            return EMoveDir.None;
         }
 
         #region A* PathFinding

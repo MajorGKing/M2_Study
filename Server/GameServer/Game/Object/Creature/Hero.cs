@@ -133,6 +133,11 @@ namespace GameServer
         {
             if (HeroData == null)
                 return;
+
+            SkillComp.RegisterSkill(HeroData.MainSkill.TemplateId);
+            SkillComp.RegisterSkill(HeroData.SkillA.TemplateId);
+            SkillComp.RegisterSkill(HeroData.SkillB.TemplateId);
+            SkillComp.RegisterSkill(HeroData.SkillC.TemplateId);
         }
         #endregion
     }

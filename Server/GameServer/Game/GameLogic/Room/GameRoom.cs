@@ -2,6 +2,7 @@
 using Google.Protobuf;
 using Google.Protobuf.Protocol;
 using Server;
+using Server.Game;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace GameServer
 
         Dictionary<int, Hero> _heroes = new Dictionary<int, Hero>();
         Dictionary<int, Monster> _monsters = new Dictionary<int, Monster>();
+        Dictionary<int, Projectile> _projectiles = new Dictionary<int, Projectile>();
 
         public MapComponent Map { get; private set; } = new MapComponent();
         public SpawningPoolComponent SpawningPool { get; private set; } = new SpawningPoolComponent();
@@ -137,6 +139,27 @@ namespace GameServer
                 spawnPacket.Creatures.Add(monster.CreatureInfo);
                 Broadcast(obj.CellPos, spawnPacket);
             }
+            else if(type == EGameObjectType.Projectile)
+            {
+                Projectile projectile = (Projectile)obj;
+
+                // 1. 오브젝트 추가 및 방 설정.
+                _projectiles.Add(obj.ObjectId, projectile);
+                projectile.Room = this;
+
+                // 2. 좌표 설정.
+                if (cellPos.HasValue)
+                    projectile.CellPos = cellPos.Value;
+
+                // 3. 틱 시작.
+                projectile.State = EObjectState.Move;
+                projectile.Update();
+
+                // 4. 다른 사람들한테 입장 알려주기.
+                S_Spawn spawnPacket = new S_Spawn();
+                spawnPacket.Projectiles.Add(projectile.ProjectileInfo);
+                Broadcast(projectile.CellPos, spawnPacket);
+            }
         }
 
         public void LeaveGame(int objectId, bool kick = false)
@@ -198,6 +221,20 @@ namespace GameServer
                 S_Despawn despawnPacket = new S_Despawn();
                 despawnPacket.ObjectIds.Add(objectId);
                 Broadcast(monster.CellPos, despawnPacket);
+            }
+            else if (type == EGameObjectType.Projectile)
+            {
+                if (_projectiles.TryGetValue(objectId, out Projectile projectile) == false)
+                    return;
+
+                // 1. 오브젝트 제거 및 방 제거.
+                _projectiles.Remove(objectId);
+                projectile.Room = null;
+
+                // 2. 다른 사람들한테 퇴장 알려주기.
+                S_Despawn despawnPacket = new S_Despawn();
+                despawnPacket.ObjectIds.Add(objectId);
+                Broadcast(projectile.CellPos, despawnPacket);
             }
             else
             {
@@ -386,7 +423,7 @@ namespace GameServer
             return objs;
         }
 
-        public List<Creature> FindAdjancentCreatures(Vector2Int pos, Func<Creature, bool> condition = null, int cells = GameRoom.VisionCells)
+        public List<Creature> FindAdjacentCreatures(Vector2Int pos, Func<Creature, bool> condition = null, int cells = GameRoom.VisionCells)
         {
             List<Creature> objs = new List<Creature>();
 

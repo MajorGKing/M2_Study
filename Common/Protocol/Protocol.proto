@@ -72,11 +72,11 @@ message S_LeaveGame
 
 }
 
-message S_Spawn 
-{
+message S_Spawn {
 	repeated HeroInfo heroes = 1;
 	repeated CreatureInfo creatures = 2;  
-	repeated ObjectInfo objects = 3;  
+	repeated ProjectileInfo projectiles = 3;
+	repeated ObjectInfo objects = 4;
 }
 
 message S_Despawn 

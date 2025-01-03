@@ -37,5 +37,13 @@ namespace GameServer
 
             hero.BroadcastMove();
         }
+
+        public void UseSkill(Creature owner, int templateId, SkillContext skillContext)
+        {
+            if (owner == null)
+                return;
+
+            owner.SkillComp.UseSkill(templateId, skillContext);
+        }
     }
 }

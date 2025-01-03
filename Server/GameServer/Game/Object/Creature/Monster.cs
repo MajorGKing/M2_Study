@@ -46,7 +46,7 @@ namespace GameServer
             Boss = monsterData.IsBoss;
             ExtraCells = monsterData.ExtraCells;
 
-            //SetupStatMappings();
+            SkillComp.RegisterSkill(monsterData.MainSkill.TemplateId);
         }
 
         public override void Update()

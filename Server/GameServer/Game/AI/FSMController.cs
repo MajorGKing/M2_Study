@@ -81,6 +81,7 @@ namespace Server.Game
 
                 // 2-3. 스킬로 넘어감.
                 {
+                    Console.WriteLine("Change Skill");
                     SetState(EObjectState.Skill);
                     return;
                 }
@@ -151,7 +152,7 @@ namespace Server.Game
                 context.PosY = cellPos.y;
                 context.TargetId = _target.ObjectId;
 
-                //Owner.Room?.UseSkill(Owner, _skillTemplateId, context);
+                Owner.Room?.UseSkill(Owner, _skillTemplateId, context);
             }
         }
 

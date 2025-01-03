@@ -81,7 +81,7 @@ namespace GameServer.Game
             {
                 cooltimes.Add(new SkillCoolTime()
                 {
-                    SkillId = skill.TemplatedId,
+                    SkillId = skill.TemplateId,
                     RemainingTicks = (int)skill.GetRemainingCooltimeInTicks()
                 });
             }

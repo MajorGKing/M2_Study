@@ -37,25 +37,26 @@ namespace Google.Protobuf.Protocol {
             "aGVyb0luZGV4GAIgASgFIiAKC0NfRW50ZXJHYW1lEhEKCWhlcm9JbmRleBgB",
             "IAEoBSJICgtTX0VudGVyR2FtZRIoCgpteUhlcm9JbmZvGAEgASgLMhQuUHJv",
             "dG9jb2wuTXlIZXJvSW5mbxIPCgdyZXNwYXduGAIgASgIIg0KC0NfTGVhdmVH",
-            "YW1lIg0KC1NfTGVhdmVHYW1lIn8KB1NfU3Bhd24SIgoGaGVyb2VzGAEgAygL",
-            "MhIuUHJvdG9jb2wuSGVyb0luZm8SKQoJY3JlYXR1cmVzGAIgAygLMhYuUHJv",
-            "dG9jb2wuQ3JlYXR1cmVJbmZvEiUKB29iamVjdHMYAyADKAsyFC5Qcm90b2Nv",
-            "bC5PYmplY3RJbmZvIh4KCVNfRGVzcGF3bhIRCglvYmplY3RJZHMYASADKAUi",
-            "MQoGQ19Nb3ZlEicKB3Bvc0luZm8YASABKAsyFi5Qcm90b2NvbC5Qb3NpdGlv",
-            "bkluZm8iQwoGU19Nb3ZlEhAKCG9iamVjdElkGAEgASgFEicKB3Bvc0luZm8Y",
-            "AiABKAsyFi5Qcm90b2NvbC5Qb3NpdGlvbkluZm8iCAoGU19QaW5nIggKBkNf",
-            "UG9uZyJLCgdDX1NraWxsEg8KB3NraWxsSWQYASABKAUSLwoPb3B0aW9uYWxD",
-            "b250ZXh0GAIgASgLMhYuUHJvdG9jb2wuU2tpbGxDb250ZXh0Il0KB1NfU2tp",
-            "bGwSEAoIb2JqZWN0SWQYASABKAUSDwoHc2tpbGxJZBgCIAEoBRIvCg9vcHRp",
-            "b25hbENvbnRleHQYAyABKAsyFi5Qcm90b2NvbC5Ta2lsbENvbnRleHQicQoK",
-            "U19DaGFuZ2VIcBIQCghvYmplY3RJZBgBIAEoBRIKCgJocBgCIAEoAhIKCgJt",
-            "cBgDIAEoAhIOCgZkYW1hZ2UYBCABKAISKQoKZGFtYWdlVHlwZRgFIAEoDjIV",
-            "LlByb3RvY29sLkVEYW1hZ2VUeXBlIkkKD1NfQ2hhbmdlRWZmZWN0cxIQCghv",
-            "YmplY3RJZBgBIAEoBRIRCgllZmZlY3RJZHMYAiADKAUSEQoJc3RhdGVGbGFn",
-            "GAMgASgFIi0KBVNfRGllEhAKCG9iamVjdElkGAEgASgFEhIKCmF0dGFja2Vy",
-            "SWQYAiABKAUiOQoMU19DaGFuZ2VTdGF0EikKDXRvdGFsU3RhdEluZm8YASAB",
-            "KAsyEi5Qcm90b2NvbC5TdGF0SW5mb0IbqgIYR29vZ2xlLlByb3RvYnVmLlBy",
-            "b3RvY29sUABQAWIGcHJvdG8z"));
+            "YW1lIg0KC1NfTGVhdmVHYW1lIq4BCgdTX1NwYXduEiIKBmhlcm9lcxgBIAMo",
+            "CzISLlByb3RvY29sLkhlcm9JbmZvEikKCWNyZWF0dXJlcxgCIAMoCzIWLlBy",
+            "b3RvY29sLkNyZWF0dXJlSW5mbxItCgtwcm9qZWN0aWxlcxgDIAMoCzIYLlBy",
+            "b3RvY29sLlByb2plY3RpbGVJbmZvEiUKB29iamVjdHMYBCADKAsyFC5Qcm90",
+            "b2NvbC5PYmplY3RJbmZvIh4KCVNfRGVzcGF3bhIRCglvYmplY3RJZHMYASAD",
+            "KAUiMQoGQ19Nb3ZlEicKB3Bvc0luZm8YASABKAsyFi5Qcm90b2NvbC5Qb3Np",
+            "dGlvbkluZm8iQwoGU19Nb3ZlEhAKCG9iamVjdElkGAEgASgFEicKB3Bvc0lu",
+            "Zm8YAiABKAsyFi5Qcm90b2NvbC5Qb3NpdGlvbkluZm8iCAoGU19QaW5nIggK",
+            "BkNfUG9uZyJLCgdDX1NraWxsEg8KB3NraWxsSWQYASABKAUSLwoPb3B0aW9u",
+            "YWxDb250ZXh0GAIgASgLMhYuUHJvdG9jb2wuU2tpbGxDb250ZXh0Il0KB1Nf",
+            "U2tpbGwSEAoIb2JqZWN0SWQYASABKAUSDwoHc2tpbGxJZBgCIAEoBRIvCg9v",
+            "cHRpb25hbENvbnRleHQYAyABKAsyFi5Qcm90b2NvbC5Ta2lsbENvbnRleHQi",
+            "cQoKU19DaGFuZ2VIcBIQCghvYmplY3RJZBgBIAEoBRIKCgJocBgCIAEoAhIK",
+            "CgJtcBgDIAEoAhIOCgZkYW1hZ2UYBCABKAISKQoKZGFtYWdlVHlwZRgFIAEo",
+            "DjIVLlByb3RvY29sLkVEYW1hZ2VUeXBlIkkKD1NfQ2hhbmdlRWZmZWN0cxIQ",
+            "CghvYmplY3RJZBgBIAEoBRIRCgllZmZlY3RJZHMYAiADKAUSEQoJc3RhdGVG",
+            "bGFnGAMgASgFIi0KBVNfRGllEhAKCG9iamVjdElkGAEgASgFEhIKCmF0dGFj",
+            "a2VySWQYAiABKAUiOQoMU19DaGFuZ2VTdGF0EikKDXRvdGFsU3RhdEluZm8Y",
+            "ASABKAsyEi5Qcm90b2NvbC5TdGF0SW5mb0IbqgIYR29vZ2xlLlByb3RvYnVm",
+            "LlByb3RvY29sUABQAWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Protocol.EnumReflection.Descriptor, global::Google.Protobuf.Protocol.StructReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -72,7 +73,7 @@ namespace Google.Protobuf.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_EnterGame), global::Google.Protobuf.Protocol.S_EnterGame.Parser, new[]{ "MyHeroInfo", "Respawn" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.C_LeaveGame), global::Google.Protobuf.Protocol.C_LeaveGame.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_LeaveGame), global::Google.Protobuf.Protocol.S_LeaveGame.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_Spawn), global::Google.Protobuf.Protocol.S_Spawn.Parser, new[]{ "Heroes", "Creatures", "Objects" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_Spawn), global::Google.Protobuf.Protocol.S_Spawn.Parser, new[]{ "Heroes", "Creatures", "Projectiles", "Objects" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_Despawn), global::Google.Protobuf.Protocol.S_Despawn.Parser, new[]{ "ObjectIds" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.C_Move), global::Google.Protobuf.Protocol.C_Move.Parser, new[]{ "PosInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_Move), global::Google.Protobuf.Protocol.S_Move.Parser, new[]{ "ObjectId", "PosInfo" }, null, null, null, null),
@@ -1792,6 +1793,7 @@ namespace Google.Protobuf.Protocol {
     public S_Spawn(S_Spawn other) : this() {
       heroes_ = other.heroes_.Clone();
       creatures_ = other.creatures_.Clone();
+      projectiles_ = other.projectiles_.Clone();
       objects_ = other.objects_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -1821,10 +1823,20 @@ namespace Google.Protobuf.Protocol {
       get { return creatures_; }
     }
 
+    /// <summary>Field number for the "projectiles" field.</summary>
+    public const int ProjectilesFieldNumber = 3;
+    private static readonly pb::FieldCodec<global::Google.Protobuf.Protocol.ProjectileInfo> _repeated_projectiles_codec
+        = pb::FieldCodec.ForMessage(26, global::Google.Protobuf.Protocol.ProjectileInfo.Parser);
+    private readonly pbc::RepeatedField<global::Google.Protobuf.Protocol.ProjectileInfo> projectiles_ = new pbc::RepeatedField<global::Google.Protobuf.Protocol.ProjectileInfo>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Google.Protobuf.Protocol.ProjectileInfo> Projectiles {
+      get { return projectiles_; }
+    }
+
     /// <summary>Field number for the "objects" field.</summary>
-    public const int ObjectsFieldNumber = 3;
+    public const int ObjectsFieldNumber = 4;
     private static readonly pb::FieldCodec<global::Google.Protobuf.Protocol.ObjectInfo> _repeated_objects_codec
-        = pb::FieldCodec.ForMessage(26, global::Google.Protobuf.Protocol.ObjectInfo.Parser);
+        = pb::FieldCodec.ForMessage(34, global::Google.Protobuf.Protocol.ObjectInfo.Parser);
     private readonly pbc::RepeatedField<global::Google.Protobuf.Protocol.ObjectInfo> objects_ = new pbc::RepeatedField<global::Google.Protobuf.Protocol.ObjectInfo>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<global::Google.Protobuf.Protocol.ObjectInfo> Objects {
@@ -1846,6 +1858,7 @@ namespace Google.Protobuf.Protocol {
       }
       if(!heroes_.Equals(other.heroes_)) return false;
       if(!creatures_.Equals(other.creatures_)) return false;
+      if(!projectiles_.Equals(other.projectiles_)) return false;
       if(!objects_.Equals(other.objects_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -1855,6 +1868,7 @@ namespace Google.Protobuf.Protocol {
       int hash = 1;
       hash ^= heroes_.GetHashCode();
       hash ^= creatures_.GetHashCode();
+      hash ^= projectiles_.GetHashCode();
       hash ^= objects_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -1871,6 +1885,7 @@ namespace Google.Protobuf.Protocol {
     public void WriteTo(pb::CodedOutputStream output) {
       heroes_.WriteTo(output, _repeated_heroes_codec);
       creatures_.WriteTo(output, _repeated_creatures_codec);
+      projectiles_.WriteTo(output, _repeated_projectiles_codec);
       objects_.WriteTo(output, _repeated_objects_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -1882,6 +1897,7 @@ namespace Google.Protobuf.Protocol {
       int size = 0;
       size += heroes_.CalculateSize(_repeated_heroes_codec);
       size += creatures_.CalculateSize(_repeated_creatures_codec);
+      size += projectiles_.CalculateSize(_repeated_projectiles_codec);
       size += objects_.CalculateSize(_repeated_objects_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1896,6 +1912,7 @@ namespace Google.Protobuf.Protocol {
       }
       heroes_.Add(other.heroes_);
       creatures_.Add(other.creatures_);
+      projectiles_.Add(other.projectiles_);
       objects_.Add(other.objects_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1917,6 +1934,10 @@ namespace Google.Protobuf.Protocol {
             break;
           }
           case 26: {
+            projectiles_.AddEntriesFrom(input, _repeated_projectiles_codec);
+            break;
+          }
+          case 34: {
             objects_.AddEntriesFrom(input, _repeated_objects_codec);
             break;
           }

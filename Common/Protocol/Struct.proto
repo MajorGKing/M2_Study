@@ -47,6 +47,12 @@ message ObjectInfo
 	PositionInfo posInfo = 2;  
 }
 
+message ProjectileInfo
+{
+	ObjectInfo objectInfo = 1;
+	int32 targetId = 2;
+}
+
 message CreatureInfo 
 {
 	ObjectInfo objectInfo = 1;

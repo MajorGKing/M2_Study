@@ -1,13 +1,29 @@
 {
   "datas": [
     {
+      "Duration": 0.0,
+      "ProjRange": 10.0,
+      "ProjSpeed": 30.0,
       "TemplateId": 1,
       "Name": "고블린화살",
+      "NameTextId": "",
+      "DescriptionTextID": "",
+      "IconImage": "",
       "PrefabName": "GoblinProjectile",
+      "name": "SO_GoblinProjectile",
+      "hideFlags": 0
+    },
+    {
       "Duration": 0.0,
-      "ProjRange": 30.0,
+      "ProjRange": 10.0,
       "ProjSpeed": 20.0,
-      "name": "GoblinProjectile",
+      "TemplateId": 2,
+      "Name": "기사 발사체",
+      "NameTextId": "",
+      "DescriptionTextID": "",
+      "IconImage": "",
+      "PrefabName": "Knight_Skill_C_Trail",
+      "name": "SO_KnightProjectile",
       "hideFlags": 0
     }
   ]

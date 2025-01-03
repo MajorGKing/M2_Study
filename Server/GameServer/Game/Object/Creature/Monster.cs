@@ -1,4 +1,5 @@
-﻿using Google.Protobuf.Protocol;
+﻿using GameServer.Game;
+using Google.Protobuf.Protocol;
 using Server.Data;
 using Server.Game;
 using System;
@@ -24,6 +25,7 @@ namespace GameServer
         public Monster()
         {
             ObjectType = EGameObjectType.Monster;
+            SkillComp = new SkillComponent(this);
         }
 
         public void Init(int templateId)

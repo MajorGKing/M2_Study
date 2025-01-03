@@ -117,8 +117,8 @@ namespace GameServer
             CreatureInfo.ObjectInfo = ObjectInfo;
             CreatureInfo.StatInfo = TotalStat;
 
-            //SkillComp = new SkillComponent(this);
-            //EffectComp = new EffectComponent(this);
+            SkillComp = new SkillComponent(this);
+            EffectComp = new EffectComponent(this);
         }
 
         public float GetBaseStat(EStatType statType) { return StatGetters[statType](BaseStat); }

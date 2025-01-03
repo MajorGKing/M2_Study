@@ -11,19 +11,19 @@ namespace GameServer.Game
     public abstract class Skill
     {
         public Creature Owner { get; protected set; }
-        public int TemplatedId {get; protected set; }
+        public int TemplateId { get; protected set; }
 
         protected SkillData _skillData;
 
         // 쿨타임 관리
         public long NextUseTick { get; protected set; } = 0;
 
-        public Skill(int templatedId, Creature owner)
+        public Skill(int templateId, Creature owner)
         {
-            TemplatedId = templatedId;
+            TemplateId = templateId;
             Owner = owner;
 
-            DataManager.SkillDict.TryGetValue(TemplatedId, out SkillData skillData);
+            DataManager.SkillDict.TryGetValue(TemplateId, out SkillData skillData);
             _skillData = skillData;
         }
 
@@ -52,7 +52,7 @@ namespace GameServer.Game
         {
             if (CheckCooltime() == false)
                 return false;
-            if(Owner.Room == null)
+            if (Owner.Room == null)
                 return false;
             if (Owner.State == EObjectState.Dead)
                 return false;
@@ -75,7 +75,7 @@ namespace GameServer.Game
             if (target == null)
                 return false;
             int dist = Owner.GetDistance(target);
-            if(dist > _skillData.SkillRange)
+            if (dist > _skillData.SkillRange)
                 return false;
 
             return true;
@@ -83,7 +83,7 @@ namespace GameServer.Game
 
         public static bool IsValidUseSkillTargetType(Creature owner, Creature target, EUseSkillTargetType targetType)
         {
-            switch(targetType)
+            switch (targetType)
             {
                 case EUseSkillTargetType.Self:
                     return owner == target;
@@ -96,7 +96,7 @@ namespace GameServer.Game
 
         public static bool IsValidTargetFriendType(Creature owner, Creature target, ETargetFriendType targetType)
         {
-            switch(targetType)
+            switch (targetType)
             {
                 case ETargetFriendType.Friend:
                     return owner.IsFriend(target);
@@ -134,14 +134,14 @@ namespace GameServer.Game
 
             bool isSingleTarget = (skillData.GatherTargetRange == 0);
 
-            if(isSingleTarget)
+            if (isSingleTarget)
             {
-                if(IsValidTargetFriendType(owner, target, skillData.TargetFriendType))
+                if (IsValidTargetFriendType(owner, target, skillData.TargetFriendType))
                     targets.Add(target);
             }
             else
             {
-                targets = owner.Room.FindAdjancentCreatures(owner.CellPos, (c) =>
+                targets = owner.Room.FindAdjacentCreatures(owner.CellPos, (c) =>
                 {
                     if (IsValidTargetFriendType(owner, c, skillData.TargetFriendType) == false)
                         return false;
@@ -159,12 +159,29 @@ namespace GameServer.Game
 
         protected static void AddEffect(Creature target, Creature caster, EffectData effectData)
         {
-            
+            target.EffectComp.ApplyEffect(effectData.TemplateId, caster);
         }
 
         protected void BroadcastSkill(Creature target)
         {
+            if (Owner.Room == null)
+                return;
 
+            // TEMP : 스킬 사용 Broadcast (꼭 상태 변화가 필요할까?)
+            Owner.ObjectInfo.PosInfo.State = EObjectState.Skill;
+
+            S_Skill skillPacket = new S_Skill()
+            {
+                OptionalContext = new SkillContext(),
+                ObjectId = Owner.ObjectInfo.ObjectId,
+                SkillId = _skillData.TemplateId
+            };
+
+            skillPacket.OptionalContext.PosX = target.CellPos.x;
+            skillPacket.OptionalContext.PosY = target.CellPos.y;
+            skillPacket.OptionalContext.TargetId = target.ObjectId;
+
+            Owner.Room.Broadcast(Owner.CellPos, skillPacket);
         }
         #endregion
     }

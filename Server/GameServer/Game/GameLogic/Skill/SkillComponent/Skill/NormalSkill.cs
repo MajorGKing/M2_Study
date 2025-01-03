@@ -18,12 +18,32 @@ namespace GameServer.Game
 
         public override bool CanUseSkill(SkillContext skillContext)
         {
-            throw new NotImplementedException();
+            if (CheckCooltimeAndState() == false)
+                return false;
+            if (CheckTargetAndRange(skillContext) == false)
+                return false;
+
+            return true;
         }
 
         public override void UseSkill(SkillContext skillContext)
         {
-            throw new NotImplementedException();
+            if (CanUseSkill(skillContext) == false)
+                return;
+            GameRoom room = Owner.Room;
+            if (room == null)
+                return;
+
+            Creature target = GetUseSkillTarget(Owner, _skillData, skillContext);
+
+            // 이펙트(효과 및 데미지) 적용
+            List<Creature> targets = GatherSkillEffectTargets(Owner, _skillData, target);
+            foreach(Creature t in targets)
+            {
+                room.PushAfter((int)(_skillData.DelayTime * 1000), AddEffect, t, Owner, _skillData.EffectData);
+            }
+
+            BroadcastSkill(target);
         }
     }
 }

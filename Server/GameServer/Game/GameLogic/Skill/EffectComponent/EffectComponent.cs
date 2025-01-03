@@ -29,7 +29,7 @@ namespace GameServer.Game
             Owner = owner;
         }
 
-        public void AppyEffect(int templateId, Creature caster)
+        public void ApplyEffect(int templateId, Creature caster)
         {
             if(DataManager.EffectDict.TryGetValue(templateId, out EffectData effectData) == false)
                 return;

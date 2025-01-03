@@ -1,4 +1,5 @@
-﻿using Google.Protobuf.Protocol;
+﻿using GameServer.Game;
+using Google.Protobuf.Protocol;
 using Server.Data;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ namespace GameServer
     public class Creature : BaseObject
     {
         public virtual CreatureData Data { get; set; }
+        public SkillComponent SkillComp { get; protected set; }
+        public EffectComponent EffectComp { get; protected set; }
         public CreatureInfo CreatureInfo { get; private set; } = new CreatureInfo();
         public StatInfo BaseStat { get; protected set; } = new StatInfo();
         public StatInfo TotalStat { get; protected set; } = new StatInfo();

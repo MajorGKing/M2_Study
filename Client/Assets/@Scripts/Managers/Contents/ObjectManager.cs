@@ -147,6 +147,15 @@ public class ObjectManager
         return projectile;
     }
 
+    public void Spawn(ObjectInfo info)
+    {
+        if (_objects.ContainsKey(info.ObjectId))
+            return;
+
+        EGameObjectType objectType = Utils.GetObjectTypeFromId(info.ObjectId);
+        int templateId = Utils.GetTemplateIdFromId(info.ObjectId);
+    }
+
     public ParticleController SpawnParticle(string name, Transform parent = null)
     {
         GameObject go = Managers.Resource.Instantiate(name, pooling: true);

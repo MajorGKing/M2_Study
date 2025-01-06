@@ -109,6 +109,16 @@ class PacketHandler
         {
             Managers.Object.Spawn(obj);
         }
+
+        foreach(ProjectileInfo obj in spawnPacket.Projectiles)
+        {
+            Managers.Object.Spawn(obj);
+        }
+
+        foreach (ObjectInfo obj in spawnPacket.Objects)
+        {
+            Managers.Object.Spawn(obj);
+        }
     }
 
     public static void S_MoveHandler(PacketSession session, IMessage packet)

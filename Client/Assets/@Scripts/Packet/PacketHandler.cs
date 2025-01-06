@@ -138,31 +138,42 @@ class PacketHandler
     // TODO
     public static void S_SkillHandler(PacketSession session, IMessage packet)
     {
+        Debug.Log("S_SkillHandler");
 
+        S_Skill skillPacket = packet as S_Skill;
+
+        GameObject go =Managers.Object.FindById(skillPacket.ObjectId);
+        if (go == null)
+            return;
+
+        Creature cc = go.GetComponent<Creature>();
+        if (cc != null) 
+            cc.HandleSkillPacket(skillPacket);
+            
     }
 
     // TODO
     public static void S_ChangeHpHandler(PacketSession session, IMessage packet)
     {
-
+        Debug.Log("S_ChangeHpHandler");
     }
 
     // TODO
     public static void S_ChangeEffectsHandler(PacketSession session, IMessage packet)
     {
-
+        Debug.Log("S_ChangeEffectsHandler");
     }
 
     // TODO
     public static void S_DieHandler(PacketSession session, IMessage packet)
     {
-
+        Debug.Log("S_DieHandler");
     }
 
     // TODO
     public static void S_ChangeStatHandler(PacketSession session, IMessage packet)
     {
-
+        Debug.Log("S_ChangeStatHandler");
     }
 
 }

@@ -46,6 +46,15 @@ namespace GameServer.Game
             projectile.Owner = Owner;
             projectile.PosInfo.State = EObjectState.Move;
             projectile.PosInfo.MergeFrom(Owner.PosInfo);
+
+            // 애니메이션 이벤트타임에 맞게 프로젝타일 생성
+            Vector2Int spawnPos = new Vector2Int(Owner.PosInfo.PosX, Owner.PosInfo.PosY);
+            room.PushAfter((int)(_skillData.DelayTime * 1000), () =>
+            {
+                room.EnterGame(projectile, false, spawnPos);
+            });
+
+            BroadcastSkill(target);
         }
     }
 }

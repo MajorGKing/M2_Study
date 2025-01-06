@@ -1,4 +1,5 @@
 using Google.Protobuf.Protocol;
+using Scripts.Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -126,4 +127,55 @@ public class Creature : BaseObject
 
     #endregion
 
+    #region Battle
+    public virtual void HandleSkillPacket(S_Skill packet)
+    {
+        // 스킬 데이터 찾아내기
+        if (Managers.Data.SkillDic.TryGetValue(packet.SkillId, out SkillData skillData) == false)
+            return;
+
+        ObjectState = EObjectState.Skill;
+
+        Vector3 aoePos = transform.position;
+
+        // 타겟에 공격하는 연출을 위한 과정
+        if (packet.OptionalContext != null)
+        {
+            GameObject target = Managers.Object.FindById(packet.OptionalContext.TargetId);
+            if(target != null )
+            {
+                LookAtTarget(target);
+                // aoe 나타날 지점 보여주기
+                aoePos = target.transform.position;
+            }
+        }
+
+        // 스킬 보여주기
+        // TODO SkillSound
+        PlayAnimation(0, skillData.AnimName, false);
+        AddAnimation(0, AnimName.IDLE, true, 0);
+
+        // 스킬 이펙트
+        if(string.IsNullOrEmpty(skillData.PrefabName) == false)
+        {
+            // 스킬 이펙트가 나에게 나타나는 것
+            ParticleController pc = Managers.Object.SpawnParticle(skillData.PrefabName, transform);
+
+            if (LookLeft)
+            {
+                pc.transform.Rotate(0, 180, 0);
+            }
+            else
+            {
+                pc.transform.Rotate(0, 0, 0);
+            }
+        }
+
+        //AoE예약
+        //foreach (var time in skillData.EventTimes)
+        {
+            //ILHAK START
+        }
+    }
+    #endregion
 }

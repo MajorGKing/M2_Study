@@ -29,17 +29,22 @@ public class DataManager
     public Dictionary<int, QuestData> QuestDic { get; private set; } = new Dictionary<int, QuestData>();
     public Dictionary<int, SkillData> SkillDic { get; private set; } = new Dictionary<int, SkillData>();
     public Dictionary<int, MonsterData> MonsterDic { get; private set; } = new Dictionary<int, MonsterData>();
+    public Dictionary<int, ProjectileData> ProjectileDic { get; private set; } = new Dictionary<int, ProjectileData>();
 
     public void Init()
     {
         TextDic = LoadJson<TextDataLoader, string, TextData>("TextData").MakeDict();
-        MonsterDic = LoadJson<MonsterDataLoader, int, MonsterData>("MonsterData").MakeDict();
-        HeroDic = LoadJson<HeroDataLoader, int, HeroData>("HeroData").MakeDict();
+
 
         //TODO 경고문 없애기  JsonConvert.DeserializeObject이 내부적으로 new를 하는데 SO클래스기 때문에 경고남
         //SO
+        MonsterDic = LoadJson<MonsterDataLoader, int, MonsterData>("MonsterData").MakeDict();
+        HeroDic = LoadJson<HeroDataLoader, int, HeroData>("HeroData").MakeDict();
         SkillDic = LoadJson<SkillDataLoader, int, SkillData>("SkillData").MakeDict();
         QuestDic = LoadJson<QuestDataLoader, int, QuestData>("QuestData").MakeDict();
+        ProjectileDic = LoadJson<ProjectileDataLoader, int, ProjectileData>("ProjectileData").MakeDict();
+
+
 
         Validate();
     }

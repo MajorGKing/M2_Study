@@ -29,7 +29,7 @@ public class BaseObject : MonoBehaviour
         }
     }
 
-    PositionInfo _positionInfo = new PositionInfo();
+    protected PositionInfo _positionInfo = new PositionInfo();
     public virtual PositionInfo PosInfo
     {
         get { return _positionInfo; }
@@ -312,6 +312,32 @@ public class BaseObject : MonoBehaviour
     public void SyncWorldPosWithCellPos()
     {
         Managers.Map.MoveTo(this, CellPos, forceMove: true);
+    }
+    #endregion
+
+    #region Helper
+    public void LookAtTarget(GameObject target)
+    {
+        if (target == null)
+            return;
+        Vector2 dir = target.transform.position - transform.position;
+        LookAtTarget(dir);
+    }
+
+    public void LookAtTarget(BaseObject target)
+    {
+        if (target == null)
+            return;
+        Vector2 dir = target.transform.position - transform.position;
+        LookAtTarget(dir);
+    }
+    
+    public void LookAtTarget(Vector3 dir)
+    {
+        if (dir.x < 0)
+            LookLeft = true;
+        else if (dir.x > 0)
+            LookLeft = false;
     }
     #endregion
 }

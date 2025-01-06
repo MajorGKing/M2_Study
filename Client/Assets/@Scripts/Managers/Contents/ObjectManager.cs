@@ -1,4 +1,5 @@
 using Google.Protobuf.Protocol;
+using Scripts.Data;
 using Scripts.Data.SO;
 using System;
 using System.Collections.Generic;
@@ -119,6 +120,45 @@ public class ObjectManager
 
         monster.SyncWorldPosWithCellPos();
         return monster;
+    }
+
+    public Projectile Spawn(ProjectileInfo info)
+    {
+        if (info == null || info.ObjectInfo == null)
+            return null;
+        ObjectInfo objectInfo = info.ObjectInfo;
+        if (_objects.ContainsKey(info.ObjectInfo.ObjectId))
+            return null;
+
+        EGameObjectType objectType = Utils.GetObjectTypeFromId(objectInfo.ObjectId);
+        int templateId = Utils.GetTemplateIdFromId(objectInfo.ObjectId);
+
+        if (Managers.Data.ProjectileDic.TryGetValue(templateId, out ProjectileData projectileData) == false)
+            return null;
+
+        GameObject go = Managers.Resource.Instantiate(projectileData.PrefabName, pooling: true);
+        _objects.Add(objectInfo.ObjectId, go);
+
+        Projectile projectile = Utils.GetOrAddComponent<Projectile>(go);
+        projectile.ObjectId = objectInfo.ObjectId;
+        projectile.PosInfo = objectInfo.PosInfo;
+        projectile.SetInfo(templateId, info.TargetId);
+
+        return projectile;
+    }
+
+    public ParticleController SpawnParticle(string name, Transform parent = null)
+    {
+        GameObject go = Managers.Resource.Instantiate(name, pooling: true);
+
+        if (parent != null)
+            go.transform.parent = parent;
+        go.transform.localPosition = Vector3.zero;
+        go.transform.rotation = Quaternion.identity;
+
+        ParticleController pc = go.GetOrAddComponent<ParticleController>();
+
+        return pc;
     }
 
     public void Despawn(int objectId)

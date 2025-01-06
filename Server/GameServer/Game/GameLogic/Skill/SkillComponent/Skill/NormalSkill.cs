@@ -40,7 +40,7 @@ namespace GameServer.Game
             List<Creature> targets = GatherSkillEffectTargets(Owner, _skillData, target);
             foreach(Creature t in targets)
             {
-                Console.WriteLine($"{Owner} attack {t.ObjectId} by normal");
+                Console.WriteLine($"{Owner} attack {t.ObjectId} by normal {_skillData.EffectData.Name}!");
                 room.PushAfter((int)(_skillData.DelayTime * 1000), AddEffect, t, Owner, _skillData.EffectData);
             }
 

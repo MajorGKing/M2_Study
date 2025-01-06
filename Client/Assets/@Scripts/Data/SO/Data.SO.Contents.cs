@@ -1,17 +1,21 @@
 using Google.Protobuf.Protocol;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Scripts.Data.SO
 {
-    public class CreatureData : ScriptableObject
+    public class BaseData : ScriptableObject
     {
         public int TemplateId;
+        public string Name;//°³¹ß¿ë
         public string NameTextId;
+        public string DescriptionTextID;
         public string IconImage;
         public string PrefabName;
+    }
+
+    public class CreatureData : BaseData
+    {
         public StatInfoWrapper Stat;
 
         public virtual bool Validate()

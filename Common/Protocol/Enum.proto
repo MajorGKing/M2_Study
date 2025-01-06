@@ -166,3 +166,12 @@ enum EDamageType
     EDAMAGE_TYPE_HEAL = 4;
     EDAMAGE_TYPE_STUN = 5;
 }
+
+enum EItemGrade 
+{
+    EITEM_GRADE_NONE = 0;
+    EITEM_GRADE_NORMAL = 1;
+    EITEM_GRADE_RARE = 2;
+    EITEM_GRADE_EPIC = 3;
+    EITEM_GRADE_LEGENDARY = 4;
+}

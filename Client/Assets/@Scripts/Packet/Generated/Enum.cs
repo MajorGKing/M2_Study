@@ -86,10 +86,13 @@ namespace Google.Protobuf.Protocol {
             "RURBTUFHRV9UWVBFX05PTkUQABIUChBFREFNQUdFX1RZUEVfSElUEAESGQoV",
             "RURBTUFHRV9UWVBFX0NSSVRJQ0FMEAISFQoRRURBTUFHRV9UWVBFX01JU1MQ",
             "AxIVChFFREFNQUdFX1RZUEVfSEVBTBAEEhUKEUVEQU1BR0VfVFlQRV9TVFVO",
-            "EAVCG6oCGEdvb2dsZS5Qcm90b2J1Zi5Qcm90b2NvbGIGcHJvdG8z"));
+            "EAUqgQEKCkVJdGVtR3JhZGUSFAoQRUlURU1fR1JBREVfTk9ORRAAEhYKEkVJ",
+            "VEVNX0dSQURFX05PUk1BTBABEhQKEEVJVEVNX0dSQURFX1JBUkUQAhIUChBF",
+            "SVRFTV9HUkFERV9FUElDEAMSGQoVRUlURU1fR1JBREVfTEVHRU5EQVJZEARC",
+            "G6oCGEdvb2dsZS5Qcm90b2J1Zi5Qcm90b2NvbGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.EHeroGender), typeof(global::Google.Protobuf.Protocol.EHeroClass), typeof(global::Google.Protobuf.Protocol.ECreateHeroResult), typeof(global::Google.Protobuf.Protocol.EObjectState), typeof(global::Google.Protobuf.Protocol.EMoveDir), typeof(global::Google.Protobuf.Protocol.EGameObjectType), typeof(global::Google.Protobuf.Protocol.ECellCollisionType), typeof(global::Google.Protobuf.Protocol.EFindPathResult), typeof(global::Google.Protobuf.Protocol.ERespawnType), typeof(global::Google.Protobuf.Protocol.EOwnerStat), typeof(global::Google.Protobuf.Protocol.EStatType), typeof(global::Google.Protobuf.Protocol.ECreatureStateFlag), typeof(global::Google.Protobuf.Protocol.ESkillType), typeof(global::Google.Protobuf.Protocol.EUseSkillTargetType), typeof(global::Google.Protobuf.Protocol.ETargetFriendType), typeof(global::Google.Protobuf.Protocol.EEffectType), typeof(global::Google.Protobuf.Protocol.EDurationPolicy), typeof(global::Google.Protobuf.Protocol.EDamageType), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.EHeroGender), typeof(global::Google.Protobuf.Protocol.EHeroClass), typeof(global::Google.Protobuf.Protocol.ECreateHeroResult), typeof(global::Google.Protobuf.Protocol.EObjectState), typeof(global::Google.Protobuf.Protocol.EMoveDir), typeof(global::Google.Protobuf.Protocol.EGameObjectType), typeof(global::Google.Protobuf.Protocol.ECellCollisionType), typeof(global::Google.Protobuf.Protocol.EFindPathResult), typeof(global::Google.Protobuf.Protocol.ERespawnType), typeof(global::Google.Protobuf.Protocol.EOwnerStat), typeof(global::Google.Protobuf.Protocol.EStatType), typeof(global::Google.Protobuf.Protocol.ECreatureStateFlag), typeof(global::Google.Protobuf.Protocol.ESkillType), typeof(global::Google.Protobuf.Protocol.EUseSkillTargetType), typeof(global::Google.Protobuf.Protocol.ETargetFriendType), typeof(global::Google.Protobuf.Protocol.EEffectType), typeof(global::Google.Protobuf.Protocol.EDurationPolicy), typeof(global::Google.Protobuf.Protocol.EDamageType), typeof(global::Google.Protobuf.Protocol.EItemGrade), }, null, null));
     }
     #endregion
 
@@ -241,6 +244,14 @@ namespace Google.Protobuf.Protocol {
     [pbr::OriginalName("EDAMAGE_TYPE_MISS")] Miss = 3,
     [pbr::OriginalName("EDAMAGE_TYPE_HEAL")] Heal = 4,
     [pbr::OriginalName("EDAMAGE_TYPE_STUN")] Stun = 5,
+  }
+
+  public enum EItemGrade {
+    [pbr::OriginalName("EITEM_GRADE_NONE")] None = 0,
+    [pbr::OriginalName("EITEM_GRADE_NORMAL")] Normal = 1,
+    [pbr::OriginalName("EITEM_GRADE_RARE")] Rare = 2,
+    [pbr::OriginalName("EITEM_GRADE_EPIC")] Epic = 3,
+    [pbr::OriginalName("EITEM_GRADE_LEGENDARY")] Legendary = 4,
   }
 
   #endregion

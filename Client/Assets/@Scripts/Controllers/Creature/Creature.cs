@@ -104,29 +104,6 @@ public class Creature : BaseObject
 
     #endregion
 
-    #region Wait
-    protected Coroutine _coWait;
-    protected void StartWait(float seconds)
-    {
-        CancelWait();
-        _coWait = StartCoroutine(CoWait(seconds));
-    }
-
-    IEnumerator CoWait(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        _coWait = null;
-    }
-
-    protected void CancelWait()
-    {
-        if(_coWait != null )
-            StopCoroutine(_coWait);
-        _coWait = null;
-    }
-
-    #endregion
-
     #region Battle
     public virtual void HandleSkillPacket(S_Skill packet)
     {
@@ -174,8 +151,49 @@ public class Creature : BaseObject
         //AoE예약
         //foreach (var time in skillData.EventTimes)
         {
-            //ILHAK START
+            StartCoroutine(CoSpawnAoE(skillData.DelayTime, skillData, aoePos));
         }
+
+        //각 스킬의 애니메이션 시간(공속 적용)만큼 대기 한다.
+        float delay = 1;
+        var animation = SkeletonAnim.skeleton.Data.FindAnimation(skillData.AnimName);
+
+        //TODO 공속 적용 한 delay 구하기
+        delay = animation.Duration;
+
+        StartWait(delay);
+    }
+    #endregion
+
+    #region Wait
+    protected Coroutine _coWait;
+    protected void StartWait(float seconds)
+    {
+        CancelWait();
+        _coWait = StartCoroutine(CoWait(seconds));
+    }
+
+    IEnumerator CoWait(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        _coWait = null;
+    }
+
+    protected void CancelWait()
+    {
+        if (_coWait != null)
+            StopCoroutine(_coWait);
+        _coWait = null;
+    }
+
+    IEnumerator CoSpawnAoE(float seconds, SkillData skillData, Vector3 pos)
+    {
+        yield return new WaitForSeconds( seconds );
+        if (string.IsNullOrEmpty(skillData.GatherTargetPrefabName))
+            yield break;
+
+        var pc = Managers.Object.SpawnParticle(skillData.GatherTargetPrefabName);
+        pc.gameObject.transform.position = pos;
     }
     #endregion
 }

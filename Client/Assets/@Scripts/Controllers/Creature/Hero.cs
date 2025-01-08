@@ -15,6 +15,12 @@ public class Hero : Creature
         base.Awake();
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        ObjectType = EGameObjectType.Hero;
+    }
+
     protected override void Start()
     {
         base.Start();

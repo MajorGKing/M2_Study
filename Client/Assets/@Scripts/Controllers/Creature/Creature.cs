@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Creature : BaseObject
 {
+    protected UI_HPBar _hpBar;
     StatInfo _stat = new StatInfo();
     public virtual StatInfo TotalStat
     {
@@ -16,6 +17,7 @@ public class Creature : BaseObject
                 return;
 
             _stat.MergeFrom(value);
+            UpdateHpBar();
         }
     }
 
@@ -28,7 +30,7 @@ public class Creature : BaseObject
         {
             float diff = TotalStat.Hp = value;
             TotalStat.Hp = value;
-            
+            UpdateHpBar();
         }
     }
 
@@ -51,6 +53,17 @@ public class Creature : BaseObject
     {
         TemplateId = templateId;
         SetSpineAnimation(SortingLayers.HERO, "SkeletonAnimation");
+    }
+
+    protected void AddHpBar()
+    {
+        if (_hpBar == null)
+        {
+            GameObject obj = Managers.Resource.Instantiate("UI_HPBar", gameObject.transform);
+            _hpBar = obj.GetComponent<UI_HPBar>();
+        }
+
+        _hpBar.SetInfo(this);
     }
 
     protected override void UpdateMove()
@@ -116,6 +129,19 @@ public class Creature : BaseObject
     #endregion
 
     #region Battle
+
+    public virtual void UpdateHpBar()
+    {
+        if (_hpBar == null)
+            return;
+
+        float ratio = 0.0f;
+        if (TotalStat.MaxHp > 0)
+            ratio = (Hp) / TotalStat.MaxHp;
+
+        _hpBar.Refresh(ratio);
+    }
+
     public virtual void HandleSkillPacket(S_Skill packet)
     {
         // 스킬 데이터 찾아내기

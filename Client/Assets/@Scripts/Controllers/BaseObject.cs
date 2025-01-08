@@ -13,7 +13,6 @@ public class BaseObject : MonoBehaviour
     public EGameObjectType ObjectType { get; protected set; } = EGameObjectType.None;
     public SkeletonAnimation SkeletonAnim { get; set; }
     public float UpdateAITick { get; protected set; }
-    
     private GameObject CenterObject { get; set; }
 
     public Vector3 CenterPos
@@ -241,6 +240,7 @@ public class BaseObject : MonoBehaviour
         float x, y, width, height;
         float[] vertexBuffer = null;
         SkeletonAnim.skeleton.GetBounds(out x, out y, out width, out height, ref vertexBuffer);
+        Debug.Log($"GetSpineHeight {height}");
         return height;
     }
 

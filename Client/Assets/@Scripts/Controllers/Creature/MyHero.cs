@@ -108,7 +108,9 @@ public class MyHero : Hero
         if (cc != null)
             cc.Target = this;
 
-        DrawCollision();
+        AddHpBar();
+        //DrawCollision();
+
     }
 
     // TEMP : 강의용 직관적인 코드. 겹치는 부분 상속 구조로 올려버릴 예정.

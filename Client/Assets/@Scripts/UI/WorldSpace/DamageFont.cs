@@ -15,7 +15,6 @@ public class DamageFont : BaseObject
 
     public void SetInfo(Vector2 pos, float damage = 0, Transform parent = null, EDamageType dmgType = EDamageType.Hit)
     {
-        Debug.Log("Damage Font Setting!!");
         _damageText = GetComponent<TextMeshPro>();
         _damageText.sortingOrder = SortingLayers.PROJECTILE;
 

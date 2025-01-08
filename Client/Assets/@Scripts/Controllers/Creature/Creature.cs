@@ -21,6 +21,17 @@ public class Creature : BaseObject
 
     public int TemplateId { get; private set; }
 
+    public float Hp
+    {
+        get { return TotalStat.Hp; }
+        set
+        {
+            float diff = TotalStat.Hp = value;
+            TotalStat.Hp = value;
+            
+        }
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -195,5 +206,9 @@ public class Creature : BaseObject
         var pc = Managers.Object.SpawnParticle(skillData.GatherTargetPrefabName);
         pc.gameObject.transform.position = pos;
     }
+    #endregion
+
+    #region Packet Handler
+
     #endregion
 }

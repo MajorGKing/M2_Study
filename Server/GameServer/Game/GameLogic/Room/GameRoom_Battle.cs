@@ -1,12 +1,7 @@
 ﻿using Google.Protobuf;
 using Google.Protobuf.Protocol;
-using Server;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+using Server.Data;
+using Server.Game;
 
 namespace GameServer
 {
@@ -44,6 +39,36 @@ namespace GameServer
                 return;
 
             owner.SkillComp.UseSkill(templateId, skillContext);
+        }
+
+        public void OnDead(BaseObject gameObject, BaseObject attacker)
+        {
+            if (gameObject.ObjectType == EGameObjectType.Projectile)
+                return;
+            if (gameObject.State == EObjectState.Dead)
+                return;
+
+            gameObject.State = EObjectState.Dead;
+
+            if(gameObject.ObjectType == EGameObjectType.Hero)
+            {
+                LeaveGame(gameObject.ObjectId);
+
+                // TODO : 마을에서 리스폰
+                Hero hero = gameObject as Hero;
+                hero.Reset();
+
+                PushAfter(3000, () =>
+                {
+                    EnterGame(hero);
+                });
+
+                return;
+            }
+            else if(gameObject.ObjectType == EGameObjectType.Monster)
+            {
+                gameObject.Room.SpawningPool.Respawn(gameObject);
+            }
         }
     }
 }

@@ -166,12 +166,29 @@ class PacketHandler
     public static void S_ChangeHpHandler(PacketSession session, IMessage packet)
     {
         Debug.Log("S_ChangeHpHandler");
+
+        S_ChangeHp changePacket = packet as S_ChangeHp;
+
+        GameObject go = Managers.Object.FindById(changePacket.ObjectId);
+        if (go == null)
+            return;
+
+        Creature cc = go.GetComponent<Creature>();
+        if (cc != null)
+        {
+            int damage = (int)changePacket.Damage;
+            cc.Hp = changePacket.Hp;
+            Managers.Object.ShowDamageFont(cc.CenterPos, damage, cc.transform, changePacket.DamageType);
+        }
+
     }
 
     // TODO
     public static void S_ChangeEffectsHandler(PacketSession session, IMessage packet)
     {
         Debug.Log("S_ChangeEffectsHandler");
+
+        
     }
 
     // TODO

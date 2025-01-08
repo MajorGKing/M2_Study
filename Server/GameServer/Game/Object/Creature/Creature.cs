@@ -138,7 +138,24 @@ namespace GameServer
             damage = damage - (TotalStat.Defence * damage);
             TotalStat.Hp = Math.Max(TotalStat.Hp - damage, 0);
 
+            S_ChangeHp changePacket = new S_ChangeHp();
+            changePacket.ObjectId = ObjectId;
+            changePacket.Hp = TotalStat.Hp;
+            changePacket.Damage = damage;
+            changePacket.DamageType = EDamageType.Hit;
+            Room.Broadcast(CellPos, changePacket);
+
+            if(TotalStat.Hp <= 0)
+            {
+                OnDead(attacker);
+            }
+
             return damage;
+        }
+
+        public override void OnDead(BaseObject attacker)
+        {
+            
         }
 
         public virtual bool IsEnemy(BaseObject target)

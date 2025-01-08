@@ -13,6 +13,19 @@ public class BaseObject : MonoBehaviour
     public EGameObjectType ObjectType { get; protected set; } = EGameObjectType.None;
     public SkeletonAnimation SkeletonAnim { get; set; }
     public float UpdateAITick { get; protected set; }
+    
+    private GameObject CenterObject { get; set; }
+
+    public Vector3 CenterPos
+    {
+        get
+        {
+            if (CenterObject == null)
+                return transform.position;
+            else
+                return transform.position + CenterObject.transform.localPosition;
+        }
+    }
 
     public int ExtraCells = 0;
     // TEMP
@@ -85,7 +98,7 @@ public class BaseObject : MonoBehaviour
 
     protected virtual void Awake()
     {
-
+        CenterObject = Utils.FindChild(gameObject, "CenterPosition");
     }
 
     protected virtual void OnEnable()

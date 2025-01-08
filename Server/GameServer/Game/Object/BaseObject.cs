@@ -74,6 +74,19 @@ namespace GameServer
             return 0;
         }
 
+        public virtual void OnDead(BaseObject attacker)
+        {
+            if(Room == null)
+                return;
+
+            S_Die diePacket = new S_Die();
+            diePacket.ObjectId = ObjectId;
+            diePacket.AttackerId = attacker.ObjectId;
+
+            Room.Broadcast(CellPos, diePacket);
+            Room.OnDead(this, attacker);
+        }
+
         // 체스판 거리
         public int GetDistance(BaseObject target)
         {

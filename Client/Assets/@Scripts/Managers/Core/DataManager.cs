@@ -28,6 +28,7 @@ public class DataManager
     public Dictionary<int, HeroData> HeroDic { get; private set; } = new Dictionary<int, HeroData>();
     public Dictionary<int, QuestData> QuestDic { get; private set; } = new Dictionary<int, QuestData>();
     public Dictionary<int, SkillData> SkillDic { get; private set; } = new Dictionary<int, SkillData>();
+    public Dictionary<int, EffectData> EffectDic { get; private set; } = new Dictionary<int, EffectData>();
     public Dictionary<int, MonsterData> MonsterDic { get; private set; } = new Dictionary<int, MonsterData>();
     public Dictionary<int, ProjectileData> ProjectileDic { get; private set; } = new Dictionary<int, ProjectileData>();
 
@@ -38,10 +39,11 @@ public class DataManager
 
         //TODO 경고문 없애기  JsonConvert.DeserializeObject이 내부적으로 new를 하는데 SO클래스기 때문에 경고남
         //SO
-        MonsterDic = LoadJson<MonsterDataLoader, int, MonsterData>("MonsterData").MakeDict();
         HeroDic = LoadJson<HeroDataLoader, int, HeroData>("HeroData").MakeDict();
-        SkillDic = LoadJson<SkillDataLoader, int, SkillData>("SkillData").MakeDict();
+        MonsterDic = LoadJson<MonsterDataLoader, int, MonsterData>("MonsterData").MakeDict();
         QuestDic = LoadJson<QuestDataLoader, int, QuestData>("QuestData").MakeDict();
+        SkillDic = LoadJson<SkillDataLoader, int, SkillData>("SkillData").MakeDict();
+        EffectDic = LoadJson<EffectDataLoader, int, EffectData>("EffectData").MakeDict();
         ProjectileDic = LoadJson<ProjectileDataLoader, int, ProjectileData>("ProjectileData").MakeDict();
 
 

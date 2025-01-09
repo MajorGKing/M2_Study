@@ -2,10 +2,12 @@ using Google.Protobuf.Protocol;
 using Scripts.Data;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Creature : BaseObject
 {
+    public Dictionary< /*templateId*/int, GameObject> CurrentEffects = new Dictionary< /*templateId*/int, GameObject>();
     protected UI_HPBar _hpBar;
     StatInfo _stat = new StatInfo();
     public virtual StatInfo TotalStat
@@ -33,6 +35,44 @@ public class Creature : BaseObject
             UpdateHpBar();
         }
     }
+
+    #region CreatureFlag
+    int _stateFlag = 0;
+    public int StateFlag
+    {
+        get { return _stateFlag; }
+        set { _stateFlag = value; }
+    }
+
+    bool GetStateFlag(ECreatureStateFlag type)
+    {
+        return (StateFlag & (1 << (int)type)) != 0;
+    }
+
+    public void SetStateFlag(ECreatureStateFlag type, bool value)
+    {
+        if(value)
+        {
+            StateFlag |= (1 << (int)type);
+        }
+        else
+        {
+            StateFlag &= ~(1 << (int)type);
+        }
+    }
+
+    public bool IsPoison
+    {
+        get { return GetStateFlag(ECreatureStateFlag.Poison); }
+        set { SetStateFlag(ECreatureStateFlag.Poison, value); }
+    }
+
+    public bool IsStunned
+    {
+        get { return GetStateFlag(ECreatureStateFlag.Poison); }
+        set { SetStateFlag(ECreatureStateFlag.Poison, value); }
+    }
+    #endregion
 
     protected override void Awake()
     {
@@ -235,6 +275,50 @@ public class Creature : BaseObject
     #endregion
 
     #region Packet Handler
+    public void UpdateEffects(List<int> effectIds)
+    {
+        List<int> currentEffects = CurrentEffects.Keys.ToList();
 
+        // 기존엔 없었는데 새로 생긴 애들 Spawn 처리
+        List<int> added = effectIds.Except(currentEffects).ToList();
+        foreach (var effectId in added)
+        {
+            if (Managers.Data.EffectDic.TryGetValue(effectId, out EffectData data) == false)
+                return;
+
+            // 중첩되는 이펙트는 리턴
+            if (CurrentEffects.ContainsKey(effectId))
+                return;
+
+            // 1. 이펙트 스폰
+            if (string.IsNullOrEmpty(data.PrefabName) == false)
+            {
+                ParticleController effect = Managers.Object.SpawnParticle(data.PrefabName, transform);
+
+                if(effect != null)
+                {
+                    CurrentEffects.Add(effectId, effect.gameObject);
+                }
+            }
+
+            // 2. 필요한 경우 데미지폰트 추가
+            if (data.EffectType == EEffectType.BuffStun)
+            {
+                Managers.Object.ShowDamageFont(CenterPos, 0, transform, EDamageType.Stun);
+            }
+            // 3. UI Update
+        }
+
+        // 기존엔 있었는데 사라진 애들 Despawn 처리
+        List<int> removed = currentEffects.Except(effectIds).ToList();
+        foreach (var effectId in removed)
+        {
+            if (CurrentEffects.TryGetValue(effectId, out GameObject effectObj) == false)
+                return;
+
+            Managers.Resource.Destroy(effectObj);
+            CurrentEffects.Remove(effectId);
+        }
+    }
     #endregion
 }

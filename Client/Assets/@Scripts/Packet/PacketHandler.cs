@@ -187,8 +187,20 @@ class PacketHandler
     public static void S_ChangeEffectsHandler(PacketSession session, IMessage packet)
     {
         Debug.Log("S_ChangeEffectsHandler");
+        S_ChangeEffects changeEffectPacket = (S_ChangeEffects)packet;
 
-        
+        GameObject go = Managers.Object.FindById(changeEffectPacket.ObjectId);
+        if (go == null) 
+            return;
+
+        Creature cc = go.GetComponent<Creature>();
+        if (cc != null)
+        {
+            cc.StateFlag = changeEffectPacket.StateFlag;
+            cc.UpdateEffects(changeEffectPacket.EffectIds.ToList());
+        }
+
+
     }
 
     // TODO

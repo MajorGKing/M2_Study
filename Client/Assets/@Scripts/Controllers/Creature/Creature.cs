@@ -240,6 +240,15 @@ public class Creature : BaseObject
 
         StartWait(delay);
     }
+
+    public virtual void OnDamaged()
+    {
+    }
+
+    public virtual void OnDead()
+    {
+        ObjectState = EObjectState.Dead;
+    }
     #endregion
 
     #region Wait

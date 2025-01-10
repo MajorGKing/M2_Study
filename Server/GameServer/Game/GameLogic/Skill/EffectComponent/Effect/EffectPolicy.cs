@@ -35,7 +35,9 @@ namespace GameServer.Game
             if (owner == null)
                 return;
 
-            owner.Hp -= effectData.DamageValue;
+            Console.WriteLine($"effectData.DamageValue; : {effectData.DamageValue}");
+
+            //owner.Hp -= effectData.DamageValue;
 
             Console.WriteLine($"HP : {owner.Hp} \tDamaged : {effectData.DamageValue}");
 

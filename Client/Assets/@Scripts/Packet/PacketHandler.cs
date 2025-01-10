@@ -19,7 +19,7 @@ class PacketHandler
 
     public static void S_AuthResHandler(PacketSession session, IMessage packet)
     {
-        Debug.Log("S_AuthResHandler");
+        //Debug.Log("S_AuthResHandler");
 
         UI_TitleScene sceneUI = Managers.UI.GetSceneUI<UI_TitleScene>();
         if (sceneUI == null)
@@ -31,7 +31,7 @@ class PacketHandler
 
     public static void S_HeroListResHandler(PacketSession session, IMessage packet)
     {
-        Debug.Log("S_HeroListResHandler");
+        //Debug.Log("S_HeroListResHandler");
 
         UI_TitleScene sceneUI = Managers.UI.GetSceneUI<UI_TitleScene>();
         if(sceneUI == null)
@@ -43,7 +43,7 @@ class PacketHandler
 
     public static void S_CreateHeroResHandler(PacketSession session, IMessage packet)
     {
-        Debug.Log("S_CreateHeroResHandler");
+        //Debug.Log("S_CreateHeroResHandler");
 
         UI_CreateCharacterPopup popupUI = Managers.UI.GetLastPopupUI<UI_CreateCharacterPopup>();
         if (popupUI == null)
@@ -55,7 +55,7 @@ class PacketHandler
 
     public static void S_DeleteHeroResHandler(PacketSession session, IMessage packet)
     {
-        Debug.Log("S_DeleteHeroResHandler");
+        //Debug.Log("S_DeleteHeroResHandler");
 
         UI_SelectCharacterPopup popupUI = Managers.UI.GetLastPopupUI<UI_SelectCharacterPopup>();
         if (popupUI == null)
@@ -67,7 +67,7 @@ class PacketHandler
 
     public static void S_EnterGameHandler(PacketSession session, IMessage packet)
     {
-        Debug.Log("S_EnterGameHandler");
+        //Debug.Log("S_EnterGameHandler");
 
         S_EnterGame enterGamePacket = packet as S_EnterGame;
         MyHero myHero = Managers.Object.Spawn(enterGamePacket.MyHeroInfo);
@@ -78,14 +78,14 @@ class PacketHandler
 
     public static void S_LeaveGameHandler(PacketSession session, IMessage packet)
     {
-        Debug.Log("S_LeaveGameHandler");
+        //Debug.Log("S_LeaveGameHandler");
 
         Managers.Object.Clear();
     }
 
     public static void S_DespawnHandler(PacketSession session, IMessage packet)
     {
-        Debug.Log("S_DespawnHandler");
+        //Debug.Log("S_DespawnHandler");
 
         S_Despawn despawnPacket = packet as S_Despawn;
         foreach (int ObjectId in despawnPacket.ObjectIds)
@@ -96,7 +96,7 @@ class PacketHandler
 
     public static void S_SpawnHandler(PacketSession session, IMessage packet)
     {
-        Debug.Log("S_SpawnHandler");
+        //Debug.Log("S_SpawnHandler");
 
         S_Spawn spawnPacket = packet as S_Spawn;
 
@@ -123,7 +123,7 @@ class PacketHandler
 
     public static void S_MoveHandler(PacketSession session, IMessage packet)
     {
-        Debug.Log("S_MoveHandler");
+        //Debug.Log("S_MoveHandler");
 
         S_Move movePacket = packet as S_Move;
 
@@ -148,7 +148,7 @@ class PacketHandler
     // TODO
     public static void S_SkillHandler(PacketSession session, IMessage packet)
     {
-        Debug.Log("S_SkillHandler");
+        //Debug.Log("S_SkillHandler");
 
         S_Skill skillPacket = packet as S_Skill;
 
@@ -165,7 +165,7 @@ class PacketHandler
     // TODO
     public static void S_ChangeHpHandler(PacketSession session, IMessage packet)
     {
-        Debug.Log("S_ChangeHpHandler");
+        //Debug.Log("S_ChangeHpHandler");
 
         S_ChangeHp changePacket = packet as S_ChangeHp;
 
@@ -184,6 +184,31 @@ class PacketHandler
     }
 
     // TODO
+    public static void S_DieHandler(PacketSession session, IMessage packet)
+    {
+        Debug.Log("S_DieHandler");
+
+        S_Die diePacket = packet as S_Die;
+
+        GameObject go = Managers.Object.FindById(diePacket.ObjectId);
+        if (go == null)
+            return;
+
+        Creature cc = go.GetComponent<Creature>();
+        if (cc != null)
+        {
+            cc.Hp = 0;
+            cc.OnDead();
+        }
+    }
+
+    // TODO
+    public static void S_ChangeStatHandler(PacketSession session, IMessage packet)
+    {
+        Debug.Log("S_ChangeStatHandler");
+    }
+
+    // TODO
     public static void S_ChangeEffectsHandler(PacketSession session, IMessage packet)
     {
         Debug.Log("S_ChangeEffectsHandler");
@@ -199,20 +224,8 @@ class PacketHandler
             cc.StateFlag = changeEffectPacket.StateFlag;
             cc.UpdateEffects(changeEffectPacket.EffectIds.ToList());
         }
-
-
     }
 
-    // TODO
-    public static void S_DieHandler(PacketSession session, IMessage packet)
-    {
-        Debug.Log("S_DieHandler");
-    }
 
-    // TODO
-    public static void S_ChangeStatHandler(PacketSession session, IMessage packet)
-    {
-        Debug.Log("S_ChangeStatHandler");
-    }
 
 }

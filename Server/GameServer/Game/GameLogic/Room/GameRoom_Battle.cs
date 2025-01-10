@@ -52,6 +52,7 @@ namespace GameServer
 
             if(gameObject.ObjectType == EGameObjectType.Hero)
             {
+                Console.WriteLine("Hero Dead!");
                 LeaveGame(gameObject.ObjectId);
 
                 // TODO : 마을에서 리스폰

@@ -17,8 +17,6 @@ namespace GameServer
         public CreatureInfo CreatureInfo { get; private set; } = new CreatureInfo();
         public StatInfo BaseStat { get; protected set; } = new StatInfo();
         public StatInfo TotalStat { get; protected set; } = new StatInfo();
-        public Dictionary<EStatType, Func<float>> BaseStats { get; set; }
-        public Dictionary<EStatType, Func<float>> TotalStats { get; set; }
 
         public static readonly Dictionary<EStatType, Func<StatInfo, float>> StatGetters = new Dictionary<EStatType, Func<StatInfo, float>>()
         {
@@ -155,7 +153,7 @@ namespace GameServer
 
         public override void OnDead(BaseObject attacker)
         {
-            
+            base.OnDead(attacker);
         }
 
         public virtual bool IsEnemy(BaseObject target)
@@ -175,7 +173,12 @@ namespace GameServer
 
         public void Reset()
         {
+            Console.WriteLine($"TotalStat.MaxHp {TotalStat.MaxHp}");
+            TotalStat.Hp = TotalStat.MaxHp;
             PosInfo.State = EObjectState.Idle;
+
+            ClearStateFlags();
+            EffectComp.Clear();
         }
     }
 }

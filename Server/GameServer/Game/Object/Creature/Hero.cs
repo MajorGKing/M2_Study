@@ -1,13 +1,7 @@
 ﻿using Google.Protobuf.Protocol;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Server;
 using Server.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using Server.Game;
 
 namespace GameServer
 {
@@ -22,7 +16,7 @@ namespace GameServer
         public ClientSession Session { get; set; }
         public VisionCubeComponent Vision { get; protected set; }
 
-        public StatInfo TotalStat { get; private set; } = new StatInfo();
+        //public StatInfo TotalStat { get; private set; } = new StatInfo();
 
         // DB의 고유 번호
         public int HeroDbId { get; set; }

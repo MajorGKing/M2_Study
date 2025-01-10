@@ -50,7 +50,7 @@ namespace GameServer.Game
 
         void ApplyInstantEffect(EffectData effectData, Creature caster)
         {
-            Console.WriteLine($"Policy Apply {effectData.EffectType}");
+            Console.WriteLine($"Policy Apply {effectData.EffectType} : {effectData.DamageValue}");
             if (effectData == null)
                 return;
 

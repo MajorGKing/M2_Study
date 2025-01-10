@@ -108,6 +108,8 @@ public class ObjectManager
         if(Managers.Data.MonsterDic.TryGetValue(templateId, out MonsterData monsterData) == false)
             return null;
 
+        Debug.Log($"objectInfo.ObjectId : {objectInfo.ObjectId}");
+
         GameObject go = Managers.Resource.Instantiate(monsterData.PrefabName); // TEMP
         go.name = $"Monster_{objectInfo.ObjectId}";
         go.transform.parent = MonsterRoot;
@@ -256,6 +258,7 @@ public class ObjectManager
             Managers.Resource.Destroy(obj);
 
         _objects.Clear();
+        _monsters.Clear();
         MyHero = null;
     }
 }

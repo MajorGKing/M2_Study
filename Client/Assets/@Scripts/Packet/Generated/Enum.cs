@@ -88,11 +88,19 @@ namespace Google.Protobuf.Protocol {
             "AxIVChFFREFNQUdFX1RZUEVfSEVBTBAEEhUKEUVEQU1BR0VfVFlQRV9TVFVO",
             "EAUqgQEKCkVJdGVtR3JhZGUSFAoQRUlURU1fR1JBREVfTk9ORRAAEhYKEkVJ",
             "VEVNX0dSQURFX05PUk1BTBABEhQKEEVJVEVNX0dSQURFX1JBUkUQAhIUChBF",
-            "SVRFTV9HUkFERV9FUElDEAMSGQoVRUlURU1fR1JBREVfTEVHRU5EQVJZEARC",
-            "G6oCGEdvb2dsZS5Qcm90b2J1Zi5Qcm90b2NvbGIGcHJvdG8z"));
+            "SVRFTV9HUkFERV9FUElDEAMSGQoVRUlURU1fR1JBREVfTEVHRU5EQVJZEAQq",
+            "zQIKFkVDYW5Vc2VTa2lsbEZhaWxSZWFzb24SIwofRUNBTl9VU0VfU0tJTExf",
+            "RkFJTF9SRUFTT05fTk9ORRAAEicKI0VDQU5fVVNFX1NLSUxMX0ZBSUxfUkVB",
+            "U09OX0NPT0xUSU1FEAESMgouRUNBTl9VU0VfU0tJTExfRkFJTF9SRUFTT05f",
+            "SU5WQUxJRF9PV05FUl9TVEFURRACEi0KKUVDQU5fVVNFX1NLSUxMX0ZBSUxf",
+            "UkVBU09OX0lOVkFMSURfVEFSR0VUEAMSKwonRUNBTl9VU0VfU0tJTExfRkFJ",
+            "TF9SRUFTT05fSU5WQUxJRF9EQVRBEAQSKQolRUNBTl9VU0VfU0tJTExfRkFJ",
+            "TF9SRUFTT05fU0tJTExfQ09TVBAFEioKJkVDQU5fVVNFX1NLSUxMX0ZBSUxf",
+            "UkVBU09OX1NLSUxMX1JBTkdFEAZCG6oCGEdvb2dsZS5Qcm90b2J1Zi5Qcm90",
+            "b2NvbGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.EHeroGender), typeof(global::Google.Protobuf.Protocol.EHeroClass), typeof(global::Google.Protobuf.Protocol.ECreateHeroResult), typeof(global::Google.Protobuf.Protocol.EObjectState), typeof(global::Google.Protobuf.Protocol.EMoveDir), typeof(global::Google.Protobuf.Protocol.EGameObjectType), typeof(global::Google.Protobuf.Protocol.ECellCollisionType), typeof(global::Google.Protobuf.Protocol.EFindPathResult), typeof(global::Google.Protobuf.Protocol.ERespawnType), typeof(global::Google.Protobuf.Protocol.EOwnerStat), typeof(global::Google.Protobuf.Protocol.EStatType), typeof(global::Google.Protobuf.Protocol.ECreatureStateFlag), typeof(global::Google.Protobuf.Protocol.ESkillType), typeof(global::Google.Protobuf.Protocol.EUseSkillTargetType), typeof(global::Google.Protobuf.Protocol.ETargetFriendType), typeof(global::Google.Protobuf.Protocol.EEffectType), typeof(global::Google.Protobuf.Protocol.EDurationPolicy), typeof(global::Google.Protobuf.Protocol.EDamageType), typeof(global::Google.Protobuf.Protocol.EItemGrade), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.EHeroGender), typeof(global::Google.Protobuf.Protocol.EHeroClass), typeof(global::Google.Protobuf.Protocol.ECreateHeroResult), typeof(global::Google.Protobuf.Protocol.EObjectState), typeof(global::Google.Protobuf.Protocol.EMoveDir), typeof(global::Google.Protobuf.Protocol.EGameObjectType), typeof(global::Google.Protobuf.Protocol.ECellCollisionType), typeof(global::Google.Protobuf.Protocol.EFindPathResult), typeof(global::Google.Protobuf.Protocol.ERespawnType), typeof(global::Google.Protobuf.Protocol.EOwnerStat), typeof(global::Google.Protobuf.Protocol.EStatType), typeof(global::Google.Protobuf.Protocol.ECreatureStateFlag), typeof(global::Google.Protobuf.Protocol.ESkillType), typeof(global::Google.Protobuf.Protocol.EUseSkillTargetType), typeof(global::Google.Protobuf.Protocol.ETargetFriendType), typeof(global::Google.Protobuf.Protocol.EEffectType), typeof(global::Google.Protobuf.Protocol.EDurationPolicy), typeof(global::Google.Protobuf.Protocol.EDamageType), typeof(global::Google.Protobuf.Protocol.EItemGrade), typeof(global::Google.Protobuf.Protocol.ECanUseSkillFailReason), }, null, null));
     }
     #endregion
 
@@ -252,6 +260,16 @@ namespace Google.Protobuf.Protocol {
     [pbr::OriginalName("EITEM_GRADE_RARE")] Rare = 2,
     [pbr::OriginalName("EITEM_GRADE_EPIC")] Epic = 3,
     [pbr::OriginalName("EITEM_GRADE_LEGENDARY")] Legendary = 4,
+  }
+
+  public enum ECanUseSkillFailReason {
+    [pbr::OriginalName("ECAN_USE_SKILL_FAIL_REASON_NONE")] None = 0,
+    [pbr::OriginalName("ECAN_USE_SKILL_FAIL_REASON_COOLTIME")] Cooltime = 1,
+    [pbr::OriginalName("ECAN_USE_SKILL_FAIL_REASON_INVALID_OWNER_STATE")] InvalidOwnerState = 2,
+    [pbr::OriginalName("ECAN_USE_SKILL_FAIL_REASON_INVALID_TARGET")] InvalidTarget = 3,
+    [pbr::OriginalName("ECAN_USE_SKILL_FAIL_REASON_INVALID_DATA")] InvalidData = 4,
+    [pbr::OriginalName("ECAN_USE_SKILL_FAIL_REASON_SKILL_COST")] SkillCost = 5,
+    [pbr::OriginalName("ECAN_USE_SKILL_FAIL_REASON_SKILL_RANGE")] SkillRange = 6,
   }
 
   #endregion

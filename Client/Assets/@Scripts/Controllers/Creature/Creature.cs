@@ -1,5 +1,6 @@
 using Google.Protobuf.Protocol;
 using Scripts.Data;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,10 +31,15 @@ public class Creature : BaseObject
         get { return TotalStat.Hp; }
         set
         {
-            float diff = TotalStat.Hp = value;
-            TotalStat.Hp = value;
+            TotalStat.Hp = Math.Clamp(value, 0, TotalStat.MaxHp);
             UpdateHpBar();
         }
+    }
+
+    public float Mp
+    {
+        get { return TotalStat.Mp; }
+        set { TotalStat.Mp = Math.Clamp(value, 0, TotalStat.MaxMp); }
     }
 
     #region CreatureFlag

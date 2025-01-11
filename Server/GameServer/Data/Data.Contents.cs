@@ -193,6 +193,7 @@ namespace Server.Data
         public float Cooldown;
         public int SkillRange;
         public string AnimName;
+        public int Cost;
 
         // 애니메이션 모션 기다리기 위한 딜레이.
         public float DelayTime; // EventTime

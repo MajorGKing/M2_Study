@@ -3,6 +3,7 @@ using System.Collections;
 using Google.Protobuf.Protocol;
 using Spine;
 using Spine.Unity;
+using Spine.Unity.Examples;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Event = Spine.Event;
@@ -12,6 +13,7 @@ public class BaseObject : MonoBehaviour
     public int ObjectId { get; set; }
     public EGameObjectType ObjectType { get; protected set; } = EGameObjectType.None;
     public SkeletonAnimation SkeletonAnim { get; set; }
+    public OutlineController OutLine { get; set; }
     public float UpdateAITick { get; protected set; }
     private GameObject CenterObject { get; set; }
 
@@ -184,6 +186,11 @@ public class BaseObject : MonoBehaviour
 
         SortingGroup sg = Utils.GetOrAddComponent<SortingGroup>(SkeletonAnim.gameObject);
         sg.sortingOrder = sortingOrder;
+
+        //æ∆øÙ∂Û¿Œ
+        OutLine = Utils.FindChild<OutlineController>(gameObject, recursive: true);
+        if (OutLine)
+            OutLine.SetActive(false, Color.green);
     }
 
     protected void ClearSpineAnimation()

@@ -243,17 +243,49 @@ public class MyHero : Hero
                 return;
 
             // UI 클릭을 무시
-            if (EventSystem.current.IsPointerOverGameObject())
+            //if (EventSystem.current.IsPointerOverGameObject())
+            //    return;
+            if (IsPointerOverUIObject(Input.mousePosition))
                 return;
+
+            // 기존에 선택된 오브젝트 아웃라인 제거.
+            if (SelectedObject != null)
+            {
+                SelectedObject.OutLine.Clear();
+                SelectedObject = null;
+            }
             //
             //TODO 타일(몬스터, NPC)클릭
-
             Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            _desiredDestPos = mouseWorldPos;
-            HeroMoveState = EHeroMoveState.ForceMove;
+            RaycastHit2D hit = Physics2D.Raycast(mouseWorldPos, Vector2.zero, Mathf.Infinity);
+            if (hit.collider != null)
+            {
+                BaseObject obj = hit.collider.gameObject.GetComponent<BaseObject>();
+                if (obj != null)
+                {
+                    // 아웃라인 추가.
+                    SelectedObject = obj;
+                    SelectedObject.OutLine.SetActive(true, Color.yellow);
+                    return;
+                }
+            }
+
+            // 여기까지 왔으면 지형 클릭.
+            ForceMove(mouseWorldPos);
 
             SpawnOrMoveCursor(mouseWorldPos);
         }
+    }
+
+    public bool IsPointerOverUIObject(Vector2 touchPos)
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = touchPos;
+        List<RaycastResult> results = new List<RaycastResult>();
+
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+
+        return results.Count > 0;
     }
 
     void SpawnOrMoveCursor(Vector2 position)
@@ -320,6 +352,18 @@ public class MyHero : Hero
         Vector3Int dest = CellPos + Managers.Map.GetFrontCellPos(dir);
         _desiredDestPos = Managers.Map.Cell2World(dest);
         _isAutoMode = false;
+    }
+
+    private void ForceMove(Vector3 pos)
+    {
+        if (LerpCellPosCompleted == false)
+            return;
+
+        _desiredDestPos = pos;
+        _isAutoMode = false;
+        Target = null;
+
+        CancelWait();
     }
     #endregion
 

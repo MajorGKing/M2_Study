@@ -329,6 +329,39 @@ public class BaseObject : MonoBehaviour
     #endregion
 
     #region Helper
+    // 체스판 거리
+    public int GetDistance(BaseObject target)
+    {
+        Vector3Int pos = GetClosestBodyCellPointToTarget(target);
+        return GetDistance(pos);
+    }
+
+    public int GetDistance(Vector3Int pos)
+    {
+        int dist = Mathf.Max(Mathf.Abs(pos.x - CellPos.x), Mathf.Abs(pos.y - CellPos.y));
+        return dist;
+    }
+
+    public Vector3Int GetClosestBodyCellPointToTarget(BaseObject target)
+    {
+        Vector3Int cellPoint = Vector3Int.zero;
+        int minDist = int.MaxValue;
+        for(int dx = -target.ExtraCells; dx <= target.ExtraCells; dx++)
+        {
+            for(int dy = -target.ExtraCells; dy <= target.ExtraCells; dy++)
+            {
+                Vector3Int checkPos = new Vector3Int(target.CellPos.x + dx, target.CellPos.y + dy);
+                int dist = GetDistance(checkPos);
+                if(dist < minDist)
+                {
+                    minDist = dist;
+                    cellPoint = checkPos;
+                }
+            }
+        }
+
+        return cellPoint;
+    }
     public void LookAtTarget(GameObject target)
     {
         if (target == null)

@@ -65,12 +65,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c310b787f758e3a4db55284145e55bc8
-    m_Address: ToastUI
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 45ad1fe8ae7cffc42bc784774d98e194
     m_Address: DamageFont
     m_ReadOnly: 0
@@ -79,6 +73,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 175a482241a01a042a88b8039041d5b7
     m_Address: UI_HPBar
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c310b787f758e3a4db55284145e55bc8
+    m_Address: ToastUI
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

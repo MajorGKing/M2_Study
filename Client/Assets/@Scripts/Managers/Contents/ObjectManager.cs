@@ -158,14 +158,18 @@ public class ObjectManager
         int templateId = Utils.GetTemplateIdFromId(info.ObjectId);
     }
 
-    public ParticleController SpawnParticle(string name, Transform parent = null)
+    public ParticleController SpawnParticle(string name, bool lookLeft = false, Transform parent = null)
     {
         GameObject go = Managers.Resource.Instantiate(name, pooling: true);
 
         if (parent != null)
             go.transform.parent = parent;
+
         go.transform.localPosition = Vector3.zero;
         go.transform.rotation = Quaternion.identity;
+
+        if (lookLeft)
+            go.transform.Rotate(0, 180, 0);
 
         ParticleController pc = go.GetOrAddComponent<ParticleController>();
 

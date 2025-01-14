@@ -36,13 +36,13 @@ namespace GameServer.Game
             return skill.CheckCooltimeAndState();
         }
 
-        public void UseSkill(int templateId, SkillContext skillContext)
+        public void UseSkill(int templateId, int targetId)
         {
             Skill skill = GetSkill(templateId);
             if (skill == null)
                 return;
 
-            skill.UseSkill(skillContext);
+            skill.UseSkill(targetId);
         }
         #endregion
 

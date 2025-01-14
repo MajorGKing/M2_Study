@@ -12,6 +12,40 @@ public class Define
 
     public const int MAX_LOBBY_HERO_COUNT = 10;
 
+    public enum EEventType
+    {
+        None,
+
+        OnClickAttackButton,
+        OnClickAutoButton,
+        OnClickPickupButton,
+    }
+
+    public enum EToastColor
+    {
+        Black,
+        Red,
+        Purple,
+        Magenta,
+        Blue,
+        Green,
+        Yellow,
+        Orange
+    }
+
+    public enum EToastPosition
+    {
+        TopLeft,
+        TopCenter,
+        TopRight,
+        MiddleLeft,
+        MiddleCenter,
+        MiddleRight,
+        BottomLeft,
+        BottomCenter,
+        BottomRight
+    }
+
     public enum EHeroMoveState
     {
         None,

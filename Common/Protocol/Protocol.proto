@@ -102,14 +102,14 @@ message C_Pong {
 }
 
 message C_Skill {
-	int32 skillId = 1;
-	SkillContext optionalContext = 2;
+	int32 templateId = 1;
+	int32 targetId = 2;
 }
 
 message S_Skill {
 	int32 objectId = 1;
-	int32 skillId = 2;
-	SkillContext optionalContext = 3;
+	int32 templateId = 2;
+	int32 targetId = 3;
 }
 
 message S_ChangeHp {

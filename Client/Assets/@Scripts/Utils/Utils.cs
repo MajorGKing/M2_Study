@@ -7,6 +7,8 @@ using Object = UnityEngine.Object;
 
 public static class Utils
 {
+    public static long TickCount { get { return (long)(Time.time * 1000); } }
+
     public static T GetOrAddComponent<T>(GameObject go) where T : Component
     {
         T component = go.GetComponent<T>();

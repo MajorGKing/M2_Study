@@ -45,18 +45,17 @@ namespace Google.Protobuf.Protocol {
             "KAUiMQoGQ19Nb3ZlEicKB3Bvc0luZm8YASABKAsyFi5Qcm90b2NvbC5Qb3Np",
             "dGlvbkluZm8iQwoGU19Nb3ZlEhAKCG9iamVjdElkGAEgASgFEicKB3Bvc0lu",
             "Zm8YAiABKAsyFi5Qcm90b2NvbC5Qb3NpdGlvbkluZm8iCAoGU19QaW5nIggK",
-            "BkNfUG9uZyJLCgdDX1NraWxsEg8KB3NraWxsSWQYASABKAUSLwoPb3B0aW9u",
-            "YWxDb250ZXh0GAIgASgLMhYuUHJvdG9jb2wuU2tpbGxDb250ZXh0Il0KB1Nf",
-            "U2tpbGwSEAoIb2JqZWN0SWQYASABKAUSDwoHc2tpbGxJZBgCIAEoBRIvCg9v",
-            "cHRpb25hbENvbnRleHQYAyABKAsyFi5Qcm90b2NvbC5Ta2lsbENvbnRleHQi",
-            "cQoKU19DaGFuZ2VIcBIQCghvYmplY3RJZBgBIAEoBRIKCgJocBgCIAEoAhIK",
-            "CgJtcBgDIAEoAhIOCgZkYW1hZ2UYBCABKAISKQoKZGFtYWdlVHlwZRgFIAEo",
-            "DjIVLlByb3RvY29sLkVEYW1hZ2VUeXBlIkkKD1NfQ2hhbmdlRWZmZWN0cxIQ",
-            "CghvYmplY3RJZBgBIAEoBRIRCgllZmZlY3RJZHMYAiADKAUSEQoJc3RhdGVG",
-            "bGFnGAMgASgFIi0KBVNfRGllEhAKCG9iamVjdElkGAEgASgFEhIKCmF0dGFj",
-            "a2VySWQYAiABKAUiOQoMU19DaGFuZ2VTdGF0EikKDXRvdGFsU3RhdEluZm8Y",
-            "ASABKAsyEi5Qcm90b2NvbC5TdGF0SW5mb0IbqgIYR29vZ2xlLlByb3RvYnVm",
-            "LlByb3RvY29sUABQAWIGcHJvdG8z"));
+            "BkNfUG9uZyIvCgdDX1NraWxsEhIKCnRlbXBsYXRlSWQYASABKAUSEAoIdGFy",
+            "Z2V0SWQYAiABKAUiQQoHU19Ta2lsbBIQCghvYmplY3RJZBgBIAEoBRISCgp0",
+            "ZW1wbGF0ZUlkGAIgASgFEhAKCHRhcmdldElkGAMgASgFInEKClNfQ2hhbmdl",
+            "SHASEAoIb2JqZWN0SWQYASABKAUSCgoCaHAYAiABKAISCgoCbXAYAyABKAIS",
+            "DgoGZGFtYWdlGAQgASgCEikKCmRhbWFnZVR5cGUYBSABKA4yFS5Qcm90b2Nv",
+            "bC5FRGFtYWdlVHlwZSJJCg9TX0NoYW5nZUVmZmVjdHMSEAoIb2JqZWN0SWQY",
+            "ASABKAUSEQoJZWZmZWN0SWRzGAIgAygFEhEKCXN0YXRlRmxhZxgDIAEoBSIt",
+            "CgVTX0RpZRIQCghvYmplY3RJZBgBIAEoBRISCgphdHRhY2tlcklkGAIgASgF",
+            "IjkKDFNfQ2hhbmdlU3RhdBIpCg10b3RhbFN0YXRJbmZvGAEgASgLMhIuUHJv",
+            "dG9jb2wuU3RhdEluZm9CG6oCGEdvb2dsZS5Qcm90b2J1Zi5Qcm90b2NvbFAA",
+            "UAFiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Protocol.EnumReflection.Descriptor, global::Google.Protobuf.Protocol.StructReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -79,8 +78,8 @@ namespace Google.Protobuf.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_Move), global::Google.Protobuf.Protocol.S_Move.Parser, new[]{ "ObjectId", "PosInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_Ping), global::Google.Protobuf.Protocol.S_Ping.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.C_Pong), global::Google.Protobuf.Protocol.C_Pong.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.C_Skill), global::Google.Protobuf.Protocol.C_Skill.Parser, new[]{ "SkillId", "OptionalContext" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_Skill), global::Google.Protobuf.Protocol.S_Skill.Parser, new[]{ "ObjectId", "SkillId", "OptionalContext" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.C_Skill), global::Google.Protobuf.Protocol.C_Skill.Parser, new[]{ "TemplateId", "TargetId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_Skill), global::Google.Protobuf.Protocol.S_Skill.Parser, new[]{ "ObjectId", "TemplateId", "TargetId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_ChangeHp), global::Google.Protobuf.Protocol.S_ChangeHp.Parser, new[]{ "ObjectId", "Hp", "Mp", "Damage", "DamageType" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_ChangeEffects), global::Google.Protobuf.Protocol.S_ChangeEffects.Parser, new[]{ "ObjectId", "EffectIds", "StateFlag" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_Die), global::Google.Protobuf.Protocol.S_Die.Parser, new[]{ "ObjectId", "AttackerId" }, null, null, null, null),
@@ -2594,8 +2593,8 @@ namespace Google.Protobuf.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public C_Skill(C_Skill other) : this() {
-      skillId_ = other.skillId_;
-      optionalContext_ = other.optionalContext_ != null ? other.optionalContext_.Clone() : null;
+      templateId_ = other.templateId_;
+      targetId_ = other.targetId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2604,25 +2603,25 @@ namespace Google.Protobuf.Protocol {
       return new C_Skill(this);
     }
 
-    /// <summary>Field number for the "skillId" field.</summary>
-    public const int SkillIdFieldNumber = 1;
-    private int skillId_;
+    /// <summary>Field number for the "templateId" field.</summary>
+    public const int TemplateIdFieldNumber = 1;
+    private int templateId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int SkillId {
-      get { return skillId_; }
+    public int TemplateId {
+      get { return templateId_; }
       set {
-        skillId_ = value;
+        templateId_ = value;
       }
     }
 
-    /// <summary>Field number for the "optionalContext" field.</summary>
-    public const int OptionalContextFieldNumber = 2;
-    private global::Google.Protobuf.Protocol.SkillContext optionalContext_;
+    /// <summary>Field number for the "targetId" field.</summary>
+    public const int TargetIdFieldNumber = 2;
+    private int targetId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Google.Protobuf.Protocol.SkillContext OptionalContext {
-      get { return optionalContext_; }
+    public int TargetId {
+      get { return targetId_; }
       set {
-        optionalContext_ = value;
+        targetId_ = value;
       }
     }
 
@@ -2639,16 +2638,16 @@ namespace Google.Protobuf.Protocol {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (SkillId != other.SkillId) return false;
-      if (!object.Equals(OptionalContext, other.OptionalContext)) return false;
+      if (TemplateId != other.TemplateId) return false;
+      if (TargetId != other.TargetId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (SkillId != 0) hash ^= SkillId.GetHashCode();
-      if (optionalContext_ != null) hash ^= OptionalContext.GetHashCode();
+      if (TemplateId != 0) hash ^= TemplateId.GetHashCode();
+      if (TargetId != 0) hash ^= TargetId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2662,13 +2661,13 @@ namespace Google.Protobuf.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (SkillId != 0) {
+      if (TemplateId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(SkillId);
+        output.WriteInt32(TemplateId);
       }
-      if (optionalContext_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(OptionalContext);
+      if (TargetId != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(TargetId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -2678,11 +2677,11 @@ namespace Google.Protobuf.Protocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (SkillId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(SkillId);
+      if (TemplateId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TemplateId);
       }
-      if (optionalContext_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(OptionalContext);
+      if (TargetId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TargetId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2695,14 +2694,11 @@ namespace Google.Protobuf.Protocol {
       if (other == null) {
         return;
       }
-      if (other.SkillId != 0) {
-        SkillId = other.SkillId;
+      if (other.TemplateId != 0) {
+        TemplateId = other.TemplateId;
       }
-      if (other.optionalContext_ != null) {
-        if (optionalContext_ == null) {
-          OptionalContext = new global::Google.Protobuf.Protocol.SkillContext();
-        }
-        OptionalContext.MergeFrom(other.OptionalContext);
+      if (other.TargetId != 0) {
+        TargetId = other.TargetId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2716,14 +2712,11 @@ namespace Google.Protobuf.Protocol {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            SkillId = input.ReadInt32();
+            TemplateId = input.ReadInt32();
             break;
           }
-          case 18: {
-            if (optionalContext_ == null) {
-              OptionalContext = new global::Google.Protobuf.Protocol.SkillContext();
-            }
-            input.ReadMessage(OptionalContext);
+          case 16: {
+            TargetId = input.ReadInt32();
             break;
           }
         }
@@ -2758,8 +2751,8 @@ namespace Google.Protobuf.Protocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public S_Skill(S_Skill other) : this() {
       objectId_ = other.objectId_;
-      skillId_ = other.skillId_;
-      optionalContext_ = other.optionalContext_ != null ? other.optionalContext_.Clone() : null;
+      templateId_ = other.templateId_;
+      targetId_ = other.targetId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2779,25 +2772,25 @@ namespace Google.Protobuf.Protocol {
       }
     }
 
-    /// <summary>Field number for the "skillId" field.</summary>
-    public const int SkillIdFieldNumber = 2;
-    private int skillId_;
+    /// <summary>Field number for the "templateId" field.</summary>
+    public const int TemplateIdFieldNumber = 2;
+    private int templateId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int SkillId {
-      get { return skillId_; }
+    public int TemplateId {
+      get { return templateId_; }
       set {
-        skillId_ = value;
+        templateId_ = value;
       }
     }
 
-    /// <summary>Field number for the "optionalContext" field.</summary>
-    public const int OptionalContextFieldNumber = 3;
-    private global::Google.Protobuf.Protocol.SkillContext optionalContext_;
+    /// <summary>Field number for the "targetId" field.</summary>
+    public const int TargetIdFieldNumber = 3;
+    private int targetId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Google.Protobuf.Protocol.SkillContext OptionalContext {
-      get { return optionalContext_; }
+    public int TargetId {
+      get { return targetId_; }
       set {
-        optionalContext_ = value;
+        targetId_ = value;
       }
     }
 
@@ -2815,8 +2808,8 @@ namespace Google.Protobuf.Protocol {
         return true;
       }
       if (ObjectId != other.ObjectId) return false;
-      if (SkillId != other.SkillId) return false;
-      if (!object.Equals(OptionalContext, other.OptionalContext)) return false;
+      if (TemplateId != other.TemplateId) return false;
+      if (TargetId != other.TargetId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2824,8 +2817,8 @@ namespace Google.Protobuf.Protocol {
     public override int GetHashCode() {
       int hash = 1;
       if (ObjectId != 0) hash ^= ObjectId.GetHashCode();
-      if (SkillId != 0) hash ^= SkillId.GetHashCode();
-      if (optionalContext_ != null) hash ^= OptionalContext.GetHashCode();
+      if (TemplateId != 0) hash ^= TemplateId.GetHashCode();
+      if (TargetId != 0) hash ^= TargetId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2843,13 +2836,13 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(8);
         output.WriteInt32(ObjectId);
       }
-      if (SkillId != 0) {
+      if (TemplateId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(SkillId);
+        output.WriteInt32(TemplateId);
       }
-      if (optionalContext_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(OptionalContext);
+      if (TargetId != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(TargetId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -2862,11 +2855,11 @@ namespace Google.Protobuf.Protocol {
       if (ObjectId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(ObjectId);
       }
-      if (SkillId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(SkillId);
+      if (TemplateId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TemplateId);
       }
-      if (optionalContext_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(OptionalContext);
+      if (TargetId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TargetId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2882,14 +2875,11 @@ namespace Google.Protobuf.Protocol {
       if (other.ObjectId != 0) {
         ObjectId = other.ObjectId;
       }
-      if (other.SkillId != 0) {
-        SkillId = other.SkillId;
+      if (other.TemplateId != 0) {
+        TemplateId = other.TemplateId;
       }
-      if (other.optionalContext_ != null) {
-        if (optionalContext_ == null) {
-          OptionalContext = new global::Google.Protobuf.Protocol.SkillContext();
-        }
-        OptionalContext.MergeFrom(other.OptionalContext);
+      if (other.TargetId != 0) {
+        TargetId = other.TargetId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2907,14 +2897,11 @@ namespace Google.Protobuf.Protocol {
             break;
           }
           case 16: {
-            SkillId = input.ReadInt32();
+            TemplateId = input.ReadInt32();
             break;
           }
-          case 26: {
-            if (optionalContext_ == null) {
-              OptionalContext = new global::Google.Protobuf.Protocol.SkillContext();
-            }
-            input.ReadMessage(OptionalContext);
+          case 24: {
+            TargetId = input.ReadInt32();
             break;
           }
         }

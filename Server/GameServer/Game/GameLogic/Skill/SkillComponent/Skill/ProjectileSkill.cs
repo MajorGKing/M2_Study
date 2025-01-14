@@ -15,11 +15,11 @@ namespace GameServer.Game
         {
         }
 
-        public override bool CanUseSkill(SkillContext skillContext)
+        public override bool CanUseSkill(int targetId)
         {
             if (CheckCooltimeAndState() == false)
                 return false;
-            if (CheckTargetAndRange(skillContext) == false)
+            if (CheckTargetAndRange(targetId) == false)
                 return false;
             if (_skillData.Projectile == null)
                 return false;
@@ -27,15 +27,15 @@ namespace GameServer.Game
             return true;
         }
 
-        public override void UseSkill(SkillContext skillContext)
+        public override void UseSkill(int targetId)
         {
-            if (CanUseSkill(skillContext) == false)
+            if (CanUseSkill(targetId) == false)
                 return;
 
             GameRoom room = Owner.Room;
             if (room == null)
                 return;
-            Creature target = GetUseSkillTarget(Owner, _skillData, skillContext);
+            Creature target = GetUseSkillTarget(Owner, _skillData, targetId);
             if (target == null)
                 return;
             Projectile projectile = ObjectManager.Instance.Spawn<Projectile>(_skillData.Projectile.TemplateId);

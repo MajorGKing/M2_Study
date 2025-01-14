@@ -147,12 +147,12 @@ namespace Server.Game
             {
                 Vector2Int cellPos = Owner.GetClosestBodyCellPointToTarget(_target);
 
-                SkillContext context = new SkillContext();
-                context.PosX = cellPos.x;
-                context.PosY = cellPos.y;
-                context.TargetId = _target.ObjectId;
+                //SkillContext context = new SkillContext();
+                //context.PosX = cellPos.x;
+                //context.PosY = cellPos.y;
+                //context.TargetId = _target.ObjectId;
 
-                Owner.Room?.UseSkill(Owner, _skillTemplateId, context);
+                Owner.Room?.UseSkill(Owner, _skillTemplateId, _target.ObjectId);
             }
         }
 

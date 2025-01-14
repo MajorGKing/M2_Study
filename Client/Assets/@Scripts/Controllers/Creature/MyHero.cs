@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Data;
 using Google.Protobuf.Protocol;
 using System.Collections.Generic;
@@ -20,9 +21,19 @@ public class MyHero : Hero
     private LineRenderer _lineRenderer;
     private GameObject _moveCursor;
 
-    private Monster _target;
+    public override HeroInfo HeroInfo => MyHeroInfo.HeroInfo;
+    public MyHeroInfo MyHeroInfo { get; set; }
+    public BaseObject SelectedObject { get; private set; }
+
+    private Creature Target { get; set; }
+    //private Creature Target { get => Target; set => Target = value; }
+
     // 이동 패킷 전송 관련 (일종의 dirty flag)
     protected bool _sendMovePacket = false;
+
+    // 스킬 패킷 전송
+    C_Skill _skillPacket = new C_Skill();
+
     Vector3Int _destPos;
     public Vector3Int DestPos
     {
@@ -49,16 +60,16 @@ public class MyHero : Hero
             if (_heroMoveState == value)
                 return;
 
-            if (_heroMoveState != value)
-            {
-                if (value == EHeroMoveState.ForceMove)
-                {
-                    _isAutoMode = false;
-                    CancelWait();
-                    _target = null;
-                    // Skills.CurrentSkill.CancelSkill();
-                }
-            }
+            //if (_heroMoveState != value)
+            //{
+            //    if (value == EHeroMoveState.ForceMove)
+            //    {
+            //        _isAutoMode = false;
+            //        CancelWait();
+            //        _target = null;
+            //        // Skills.CurrentSkill.CancelSkill();
+            //    }
+            //}
             _heroMoveState = value;
         }
     }
@@ -74,10 +85,25 @@ public class MyHero : Hero
         base.SetInfo(templatedId);
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        Managers.Game.OnJoystickChanged -= HandleJoystickChanged;
+        Managers.Game.OnJoystickChanged += HandleJoystickChanged;
+
+        Managers.Event.AddEvent(EEventType.OnClickAttackButton, OnClickAttack);
+        Managers.Event.AddEvent(EEventType.OnClickAutoButton, OnClickAutoMode);
+        Managers.Event.AddEvent(EEventType.OnClickPickupButton, OnClickPickup);
+    }
+
     protected override void OnDisable()
     {
         base.OnDisable();
         Managers.Game.OnJoystickChanged -= HandleJoystickChanged;
+
+        Managers.Event.RemoveEvent(EEventType.OnClickAttackButton, OnClickAttack);
+        Managers.Event.RemoveEvent(EEventType.OnClickAutoButton, OnClickAutoMode);
+        Managers.Event.RemoveEvent(EEventType.OnClickPickupButton, OnClickPickup);
     }
 
     protected override void Awake()
@@ -85,12 +111,7 @@ public class MyHero : Hero
         base.Awake();
     }
 
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        Managers.Game.OnJoystickChanged -= HandleJoystickChanged;
-        Managers.Game.OnJoystickChanged += HandleJoystickChanged;
-    }
+
 
     protected override void Start()
     {
@@ -273,28 +294,12 @@ public class MyHero : Hero
     void HandleJoystickChanged(EJoystickState joystickState, EMoveDir dir)
     {
         _joystickState = joystickState;
-        switch (joystickState)
+
+
+        if (joystickState == EJoystickState.Drag)
         {
-            case EJoystickState.None:
-                break;
-            case EJoystickState.PointerDown:
-                break;
-            case EJoystickState.Drag:
-                DespawnMoveCursor();
-                ForceMove(dir);
-                break;
-            case EJoystickState.PointerUp:
-                break;
-            case EJoystickState.Attack:
-                Debug.Log("Attack Button");
-                break;
-            case EJoystickState.Auto:
-                Debug.Log("Auto Button");
-                _isAutoMode = !_isAutoMode;
-                break;
-            case EJoystickState.Pickup:
-                Debug.Log("Pickup Button");
-                break;
+            DespawnMoveCursor();
+            ForceMove(dir);
         }
     }
 
@@ -318,7 +323,43 @@ public class MyHero : Hero
     }
     #endregion
 
-        #region 디버깅
+    #region OnClick
+    private void OnClickAutoMode()
+    {
+        _isAutoMode = !_isAutoMode;
+    }
+
+    private void OnClickAttack()
+    {
+        if(SelectedObject == null)
+        {
+            Managers.UI.ShowToast("TODO 대상이 없습니다.");
+            return;
+        }
+    }
+
+    private void OnClickPickup()
+    {
+    }
+    #endregion
+
+    #region Skill
+    public void ReUseSkill(int templateId)
+    {
+        if (ObjectState == EObjectState.Dead)
+            return;
+        if (Managers.Data.SkillDic.TryGetValue(templateId, out SkillData skillData) == false)
+            return;
+        if (skillData.UseSkillTargetType != EUseSkillTargetType.Self && Target == null)
+            return;
+
+        _skillPacket.TemplateId = templateId;
+
+
+    }
+    #endregion
+
+    #region 디버깅
     void DrawVisionCells()
     {
         Vector3Int bottomLeft = CellPos + new Vector3Int(-_visionCells, -_visionCells, 0);

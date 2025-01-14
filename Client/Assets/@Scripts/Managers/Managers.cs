@@ -14,10 +14,12 @@ public class Managers : MonoBehaviour
     #region Contents
 
     private GameManager _game = new GameManager();
+    private EventManager _event = new EventManager();
     private ObjectManager _object = new ObjectManager();
     private MapManager _map = new MapManager();
     
     public static GameManager Game { get { return Instance?._game; } }
+    public static EventManager Event { get { return Instance?._event; } }
     public static ObjectManager Object { get { return Instance?._object; } }
     public static MapManager Map { get { return Instance?._map; } }
     

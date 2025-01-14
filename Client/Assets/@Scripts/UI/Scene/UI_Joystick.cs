@@ -44,17 +44,17 @@ public class UI_Joystick : UI_Scene
     #region Event
     private void OnAttackClick(PointerEventData evt)
     {
-        Managers.Game.JoystickState = EJoystickState.Attack;
+        Managers.Event.TriggerEvent(EEventType.OnClickAttackButton);
     }
 
     private void OnAutoClick(PointerEventData evt)
     {
-        Managers.Game.JoystickState = EJoystickState.Auto;
+        Managers.Event.TriggerEvent(EEventType.OnClickAutoButton);
     }
 
     private void OnPickupClick(PointerEventData evt)
     {
-        Managers.Game.JoystickState = EJoystickState.Pickup;
+        Managers.Event.TriggerEvent(EEventType.OnClickPickupButton);
     }
 
     private void OnPointerDown(PointerEventData evt)

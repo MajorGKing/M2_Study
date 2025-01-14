@@ -27,8 +27,8 @@ namespace GameServer.Game
             _skillData = skillData;
         }
 
-        public abstract bool CanUseSkill(SkillContext skillContext);
-        public abstract void UseSkill(SkillContext skillContext);
+        public abstract bool CanUseSkill(int targetId);
+        public abstract void UseSkill(int targetId);
 
         #region 쿨타임 관리
         public long GetRemainingCooltimeInTicks()
@@ -67,11 +67,10 @@ namespace GameServer.Game
             return GetRemainingCooltimeInTicks() == 0;
         }
 
-        public bool CheckTargetAndRange(SkillContext skillContext)
+        public bool CheckTargetAndRange(int targetId)
         {
-            if (skillContext == null)
-                return false;
-            Creature target = GetUseSkillTarget(Owner, _skillData, skillContext);
+            //Creature target = GetUseSkillTarget(Owner, _skillData, skillContext);
+            Creature target = GetUseSkillTarget(Owner, _skillData, targetId);
             if (target == null)
                 return false;
             int dist = Owner.GetDistance(target);
@@ -107,14 +106,13 @@ namespace GameServer.Game
             return true;
         }
 
-        public static Creature GetUseSkillTarget(Creature owner, SkillData skillData, SkillContext skillContext)
+        public static Creature GetUseSkillTarget(Creature owner, SkillData skillData, int targetId)
         {
             if (owner.Room == null)
                 return null;
-            if (skillContext == null)
-                return null;
 
-            Creature target = owner.Room.GetCreatureById(skillContext.TargetId);
+            //Creature target = owner.Room.GetCreatureById(skillContext.TargetId);
+            Creature target = owner.Room.GetCreatureById(targetId);
 
             if (IsValidUseSkillTargetType(owner, target, skillData.UseSkillTargetType) == false)
                 return null;
@@ -172,14 +170,17 @@ namespace GameServer.Game
 
             S_Skill skillPacket = new S_Skill()
             {
-                OptionalContext = new SkillContext(),
+                //OptionalContext = new SkillContext(),
+                //ObjectId = Owner.ObjectInfo.ObjectId,
+                //SkillId = _skillData.TemplateId
                 ObjectId = Owner.ObjectInfo.ObjectId,
-                SkillId = _skillData.TemplateId
+                TemplateId = _skillData.TemplateId,
+                TargetId = target.ObjectId,
             };
 
-            skillPacket.OptionalContext.PosX = target.CellPos.x;
-            skillPacket.OptionalContext.PosY = target.CellPos.y;
-            skillPacket.OptionalContext.TargetId = target.ObjectId;
+            //skillPacket.OptionalContext.PosX = target.CellPos.x;
+            //skillPacket.OptionalContext.PosY = target.CellPos.y;
+            //skillPacket.OptionalContext.TargetId = target.ObjectId;
 
             Owner.Room.Broadcast(Owner.CellPos, skillPacket);
         }

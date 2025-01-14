@@ -33,12 +33,12 @@ namespace GameServer
             hero.BroadcastMove();
         }
 
-        public void UseSkill(Creature owner, int templateId, SkillContext skillContext)
+        public void UseSkill(Creature owner, int templateId, int targetId)
         {
             if (owner == null)
                 return;
 
-            owner.SkillComp.UseSkill(templateId, skillContext);
+            owner.SkillComp.UseSkill(templateId, targetId);
         }
 
         public void OnDead(BaseObject gameObject, BaseObject attacker)

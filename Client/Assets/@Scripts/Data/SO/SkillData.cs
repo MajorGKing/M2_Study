@@ -13,7 +13,7 @@ namespace Scripts.Data
     {
         public ESkillType SkillType;
         public EItemGrade SkillGrade;
-        public float Cooldown;
+        public float Cooltime;
         public int SkillRange;
         public string AnimName;
         public int Cost;

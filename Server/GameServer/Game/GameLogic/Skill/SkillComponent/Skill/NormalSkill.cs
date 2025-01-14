@@ -16,25 +16,25 @@ namespace GameServer.Game
         {
         }
 
-        public override bool CanUseSkill(SkillContext skillContext)
+        public override bool CanUseSkill(int targetId)
         {
             if (CheckCooltimeAndState() == false)
                 return false;
-            if (CheckTargetAndRange(skillContext) == false)
+            if (CheckTargetAndRange(targetId) == false)
                 return false;
 
             return true;
         }
 
-        public override void UseSkill(SkillContext skillContext)
+        public override void UseSkill(int targetId)
         {
-            if (CanUseSkill(skillContext) == false)
+            if (CanUseSkill(targetId) == false)
                 return;
             GameRoom room = Owner.Room;
             if (room == null)
                 return;
 
-            Creature target = GetUseSkillTarget(Owner, _skillData, skillContext);
+            Creature target = GetUseSkillTarget(Owner, _skillData, targetId);
 
             // 이펙트(효과 및 데미지) 적용
             List<Creature> targets = GatherSkillEffectTargets(Owner, _skillData, target);

@@ -8,7 +8,9 @@ using UnityEngine;
 
 public class Creature : BaseObject
 {
-    public Dictionary< /*templateId*/int, GameObject> CurrentEffects = new Dictionary< /*templateId*/int, GameObject>();
+    public Dictionary< /*effectId*/int, GameObject> EffectParticles = new Dictionary< /*effectId*/int, GameObject>();
+    public Dictionary< /*effectId*/int, GameObject> CurrentEffects = new Dictionary< /*effectId*/int, GameObject>();
+
     protected UI_HPBar _hpBar;
     StatInfo _stat = new StatInfo();
     public virtual StatInfo TotalStat
@@ -175,6 +177,20 @@ public class Creature : BaseObject
     #endregion
 
     #region Battle
+    public virtual bool IsEnemy(BaseObject target)
+    {
+        if (target == null)
+            return false;
+        if(target == this)
+            return false;
+
+        return true;
+    }
+
+    public bool IsFriend(BaseObject target)
+    {
+        return IsEnemy(target) == false;
+    }
 
     public virtual void UpdateHpBar()
     {
@@ -191,59 +207,31 @@ public class Creature : BaseObject
     public virtual void HandleSkillPacket(S_Skill packet)
     {
         // 스킬 데이터 찾아내기
-        if (Managers.Data.SkillDic.TryGetValue(packet.SkillId, out SkillData skillData) == false)
+        if (Managers.Data.SkillDic.TryGetValue(packet.TemplateId, out SkillData skillData) == false)
             return;
 
+        // 1. 스킬 상태로 변경.
         ObjectState = EObjectState.Skill;
 
-        Vector3 aoePos = transform.position;
+        // 2. 타겟 방향 주시.
+        GameObject target = Managers.Object.FindById(packet.TargetId);
+        if (target != null && target != this)
+            LookAtTarget(target);
 
-        // 타겟에 공격하는 연출을 위한 과정
-        if (packet.OptionalContext != null)
-        {
-            GameObject target = Managers.Object.FindById(packet.OptionalContext.TargetId);
-            if(target != null )
-            {
-                LookAtTarget(target);
-                // aoe 나타날 지점 보여주기
-                aoePos = target.transform.position;
-            }
-        }
-
-        // 스킬 보여주기
-        // TODO SkillSound
+        // 3. 사운드, 애니메이션 등 실행.
         PlayAnimation(0, skillData.AnimName, false);
         AddAnimation(0, AnimName.IDLE, true, 0);
 
-        // 스킬 이펙트
-        if(string.IsNullOrEmpty(skillData.PrefabName) == false)
+        // 4. 스킬 이펙트
+        if (string.IsNullOrEmpty(skillData.PrefabName) == false)
         {
-            // 스킬 이펙트가 나에게 나타나는 것
-            ParticleController pc = Managers.Object.SpawnParticle(skillData.PrefabName, transform);
-
-            if (LookLeft)
-            {
-                pc.transform.Rotate(0, 180, 0);
-            }
-            else
-            {
-                pc.transform.Rotate(0, 0, 0);
-            }
+            ParticleController pc = Managers.Object.SpawnParticle(skillData.PrefabName, LookLeft, transform);
         }
 
-        //AoE예약
-        //foreach (var time in skillData.EventTimes)
-        {
-            StartCoroutine(CoSpawnAoE(skillData.DelayTime, skillData, aoePos));
-        }
-
-        //각 스킬의 애니메이션 시간(공속 적용)만큼 대기 한다.
-        float delay = 1;
-        var animation = SkeletonAnim.skeleton.Data.FindAnimation(skillData.AnimName);
-
-        //TODO 공속 적용 한 delay 구하기
-        delay = animation.Duration;
-
+        // 5. 각 스킬의 애니메이션 시간(공속 적용)만큼 대기 한다.
+        // TODO 공속 적용 한 delay 구하기
+        Spine.Animation animation = SkeletonAnim.skeleton.Data.FindAnimation(skillData.AnimName);
+        float delay = animation.Duration;
         StartWait(delay);
     }
 

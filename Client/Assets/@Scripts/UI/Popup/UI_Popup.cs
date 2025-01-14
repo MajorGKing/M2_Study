@@ -2,7 +2,7 @@
 
 public class UI_Popup : UI_Base
 {
-    public Canvas UICanvas;
+    [HideInInspector] public Canvas UICanvas { get; set; }
 
     protected override void Awake()
     {

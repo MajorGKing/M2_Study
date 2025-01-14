@@ -29,8 +29,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7a8d41f6e1c1002439d94a5a8f752094
-    m_Address: KnightPrefab
+  - m_GUID: 8ef7b993fa90a46439fe244349a7e3e0
+    m_Address: HeroPrefab_Knight_Male
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
@@ -41,14 +41,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7a84db37e53049d4483ae2f499117407
-    m_Address: ScareCrow
+  - m_GUID: 2b49ebfede482cf4dabfff2355f553cd
+    m_Address: HeroPrefab_Knight_Female
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8f6b7448dac525746abc97c0265ab6c8
     m_Address: GoblinProjectile
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c2ad1ad8ae65194aa075f32d95f3eae
+    m_Address: ScareCrow
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

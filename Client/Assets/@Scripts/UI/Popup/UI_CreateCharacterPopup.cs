@@ -95,10 +95,10 @@ public class UI_CreateCharacterPopup : UI_Popup
     EHeroClass GetClassType()
     {
         if (GetToggle((int)Toggles.WarriorToggle).isOn)
-            return EHeroClass.Warrior;
+            return EHeroClass.Knight;
 
         if (GetToggle((int)Toggles.RangerToggle).isOn)
-            return EHeroClass.Ranger;
+            return EHeroClass.Archer;
 
         if (GetToggle((int)Toggles.WizardToggle).isOn)
             return EHeroClass.Wizard;

@@ -907,7 +907,7 @@ GameObject:
   - component: {fileID: 6783944481326314303}
   - component: {fileID: 6783944481326314302}
   - component: {fileID: 6783944481326314289}
-  - component: {fileID: 6349634967335089905}
+  - component: {fileID: -6881880471751333060}
   m_Layer: 5
   m_Name: UI_LoginPopup
   m_TagString: Untagged
@@ -999,7 +999,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6349634967335089905
+--- !u!114 &-6881880471751333060
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

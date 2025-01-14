@@ -51,7 +51,7 @@ public class ObjectManager
             return null;
         
         int templateId = Utils.GetTemplateIdFromId(objectInfo.ObjectId);
-        GameObject go = Managers.Resource.Instantiate("KnightPrefab"); // TEMP		
+        GameObject go = Managers.Resource.Instantiate($"HeroPrefab_{info.ClassType}_{info.Gender}"); // TEMP	
         go.name = info.Name;
         go.transform.parent = HeroRoot;
         _objects.Add(objectInfo.ObjectId, go);

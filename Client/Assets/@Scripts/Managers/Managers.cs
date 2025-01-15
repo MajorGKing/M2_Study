@@ -17,12 +17,14 @@ public class Managers : MonoBehaviour
     private EventManager _event = new EventManager();
     private ObjectManager _object = new ObjectManager();
     private MapManager _map = new MapManager();
-    
+    private SkillManager _skill = new SkillManager();
+
     public static GameManager Game { get { return Instance?._game; } }
     public static EventManager Event { get { return Instance?._event; } }
     public static ObjectManager Object { get { return Instance?._object; } }
     public static MapManager Map { get { return Instance?._map; } }
-    
+    public static SkillManager Skill { get { return Instance?._skill; } }
+
     #endregion
 
     #region Core

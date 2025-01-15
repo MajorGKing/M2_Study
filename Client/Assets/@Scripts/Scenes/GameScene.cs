@@ -8,6 +8,9 @@ using static Define;
 
 public class GameScene : BaseScene
 {
+    private UI_GameScene _uiGameScene;
+    private UI_Joystick _uiJoystick;
+    private UI_LoadingPopup _loadingPopup;
     protected override void Awake()
     {
         base.Awake();
@@ -20,30 +23,39 @@ public class GameScene : BaseScene
         SceneType = EScene.GameScene;
         Managers.UI.CacheAllPopups();
 
-        #region Scene UI
-
-        var loadingPopup = Managers.UI.ShowPopupUI<UI_LoadingPopup>();
-        Managers.UI.ShowSceneUI<UI_Joystick>();
-
-        // UI_GameScene sceneUI = Managers.UI.ShowSceneUI<UI_GameScene>();
-        // sceneUI.GetComponent<Canvas>().sortingOrder = 1;
-        // Managers.UI.SceneUI = sceneUI;
-        // sceneUI.SetInfo();
-
-        #endregion
-
+        _loadingPopup = Managers.UI.ShowPopupUI<UI_LoadingPopup>();
         Managers.Map.LoadMap("MMO_edu_map");
 
         C_EnterGame enterGame = new C_EnterGame();
         enterGame.HeroIndex = Managers.Game.SelectedHeroIndex;
         Managers.Network.Send(enterGame);
 
-        loadingPopup.ClosePopupUI();
+        //var loadingPopup = Managers.UI.ShowPopupUI<UI_LoadingPopup>();
+        //Managers.UI.ShowSceneUI<UI_Joystick>();
+
+        //loadingPopup.ClosePopupUI();
     }
 
     protected override void Start()
     {
         base.Start();
+    }
+
+    public void HandleEnterGame()
+    {
+        #region Scene UI
+
+        if (_uiGameScene == null)
+        {
+            _uiJoystick = Managers.UI.ShowSceneUI<UI_Joystick>();
+            _uiGameScene = Managers.UI.ShowSceneUI<UI_GameScene>();
+            _uiGameScene.GetComponent<Canvas>().sortingOrder = 1;
+            Managers.UI.SceneUI = _uiGameScene;
+            _uiGameScene.SetInfo();
+            _loadingPopup.ClosePopupUI();
+        }
+        #endregion
+
     }
 
     public override void Clear()

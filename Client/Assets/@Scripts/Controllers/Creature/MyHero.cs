@@ -388,7 +388,7 @@ public class MyHero : Hero
     #endregion
 
     #region Skill
-    public void ReUseSkill(int templateId)
+    public void ReqUseSkill(int templateId)
     {
         if (ObjectState == EObjectState.Dead)
             return;

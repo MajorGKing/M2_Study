@@ -1,18 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Google.Protobuf.Protocol;
 
-public class NormalSkill : MonoBehaviour
+public class NormalSkill : Skill
 {
-    // Start is called before the first frame update
-    void Start()
+    public NormalSkill(int templateId, MyHero owner) : base(templateId, owner)
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public override ECanUseSkillFailReason CanUseSkill(Creature target)
     {
-        
+        ECanUseSkillFailReason result = base.CanUseSkill(target);
+        if (result != ECanUseSkillFailReason.None)
+            return result;
+
+        return ECanUseSkillFailReason.None;
+    }
+
+    public override void UseSkill(Creature target)
+    {
+        if (CanUseSkill(target) == ECanUseSkillFailReason.None)
+            return;
+
+        ReqUseSkill();
     }
 }

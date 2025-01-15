@@ -1,5 +1,6 @@
 using System.Linq;
 using Data;
+using Google.Protobuf.Protocol;
 using UnityEngine;
 using static Define;
 
@@ -8,27 +9,36 @@ public class UI_GameScene : UI_Scene
     #region Enum
     enum GameObjects
     {
-
+        UI_QuickSlot
     }
 
     enum Images
     {
-
+        CharacterImage
     }
 
     enum Buttons
     {
-
+        InventoryButton,
+        CharacterButton,
+        SkillButton,
     }
 
     enum Texts
     {
-        FpsText
+        FpsText,
+        LevelText,
+        HpText,
+        MpText,
+        ExpText,
+        GoldText
     }
 
     enum Sliders
     {
-
+        HpSlider,
+        MpSlider,
+        ExpSlider
     }
 
     #endregion
@@ -64,6 +74,17 @@ public class UI_GameScene : UI_Scene
 
     public void SetInfo()
     {
+        MyHeroInfo info = Managers.Object.MyHero.MyHeroInfo;
+        string iconName = $"HeroIcon_{info.HeroInfo.ClassType}_{info.HeroInfo.Gender}";
+        GetImage((int)Images.CharacterImage).sprite = Managers.Resource.Load<Sprite>(iconName);
+
+        RefreshUI();
+    }
+    
+    private void RefreshUI()
+    {
+        MyHero myHero = Managers.Object.MyHero;
+        MyHeroInfo info = Managers.Object.MyHero.MyHeroInfo;
 
     }
 }

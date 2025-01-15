@@ -67,13 +67,26 @@ class PacketHandler
 
     public static void S_EnterGameHandler(PacketSession session, IMessage packet)
     {
-        //Debug.Log("S_EnterGameHandler");
+        Debug.Log("S_EnterGameHandler");
 
         S_EnterGame enterGamePacket = packet as S_EnterGame;
+        // Hero
         MyHero myHero = Managers.Object.Spawn(enterGamePacket.MyHeroInfo);
-        // TEMP
         myHero.ObjectState = EObjectState.Idle;
         myHero.TotalStat = enterGamePacket.MyHeroInfo.HeroInfo.CreatureInfo.StatInfo;
+
+        //Init
+        //Managers.Inventory.Refresh(enterGamePacket.Items.ToList());
+        Managers.Skill.HandleEnterGame(enterGamePacket);
+
+        //Scene
+        GameScene scene = Managers.Scene.CurrentScene as GameScene;
+        scene.HandleEnterGame();
+
+        //UI
+        var sceneUI = Managers.UI.GetSceneUI<UI_GameScene>();
+        //sceneUI.QuickSlot.SetInfo();
+        //sceneUI.OnHpChanged();
     }
 
     public static void S_LeaveGameHandler(PacketSession session, IMessage packet)

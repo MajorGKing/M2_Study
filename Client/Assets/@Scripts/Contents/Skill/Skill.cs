@@ -8,19 +8,19 @@ using UnityEngine;
 public abstract class Skill
 {
     public MyHero Owner { get; protected set; }
-    public int TemplatedId { get; protected set; }
+    public int TemplateId { get; protected set; }
 
     public SkillData SkillData { get; private set; }
 
     // 酿鸥烙 包府
     public long NextUseTick { get; protected set; } = 0;
 
-    public Skill(int templatedId, MyHero owner)
+    public Skill(int templateId, MyHero owner)
     {
-        TemplatedId = templatedId;
+        TemplateId = templateId;
         Owner = owner;
 
-        Managers.Data.SkillDic.TryGetValue(TemplatedId, out SkillData skillData);
+        Managers.Data.SkillDic.TryGetValue(TemplateId, out SkillData skillData);
         SkillData = skillData;
     }
 
@@ -48,7 +48,6 @@ public abstract class Skill
     public abstract void UseSkill(Creature target);
 
     #region 酿鸥烙 包府
-
     public long GetRemainingCooltimeInTicks()
     {
         return Math.Max(0, (NextUseTick - Utils.TickCount));
@@ -83,7 +82,7 @@ public abstract class Skill
 
     public static bool IsValidUseSkillTargetType(Creature owner, Creature target, EUseSkillTargetType targetType)
     {
-        switch(targetType)
+        switch (targetType)
         {
             case EUseSkillTargetType.Self:
                 return owner == target;
@@ -96,7 +95,7 @@ public abstract class Skill
 
     public static bool IsValidTargetFriendType(Creature owner, Creature target, ETargetFriendType targetType)
     {
-        switch(targetType)
+        switch (targetType)
         {
             case ETargetFriendType.Friend:
                 return owner.IsFriend(target);
@@ -109,14 +108,14 @@ public abstract class Skill
 
     public static bool IsValidSkillTarget(MyHero owner, SkillData skillData, Creature target)
     {
-        if(skillData.UseSkillTargetType == EUseSkillTargetType.Self)
+        if (skillData.UseSkillTargetType == EUseSkillTargetType.Self)
         {
             if (target != owner)
                 return false;
         }
         else
         {
-            if(target == null)
+            if (target == null)
                 return false;
         }
 
@@ -129,13 +128,13 @@ public abstract class Skill
         return true;
     }
 
-    public void ReUseSkill()
+    public void ReqUseSkill()
     {
         MyHero hero = Owner;
         if (hero == null)
             return;
 
-        hero.ReUseSkill(TemplatedId);
+        hero.ReqUseSkill(TemplateId);
     }
     #endregion
 }

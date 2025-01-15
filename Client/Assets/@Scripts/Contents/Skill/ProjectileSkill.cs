@@ -1,18 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Google.Protobuf.Protocol;
+using Scripts.Data;
 
-public class ProjectileSkill : MonoBehaviour
+public class ProjectileSkill : Skill
 {
-    // Start is called before the first frame update
-    void Start()
+    public ProjectileSkill(int templateId, MyHero owner) : base(templateId, owner)
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public override ECanUseSkillFailReason CanUseSkill(Creature useTarget)
     {
-        
+        ECanUseSkillFailReason result = base.CanUseSkill(useTarget);
+        if (result != ECanUseSkillFailReason.None)
+            return result;
+
+        if (SkillData.Projectile == null)
+            return ECanUseSkillFailReason.InvalidData;
+
+        return ECanUseSkillFailReason.None;
+    }
+
+    public override void UseSkill(Creature target)
+    {
+        if (CanUseSkill(target) != ECanUseSkillFailReason.None)
+            return;
+
+        ReqUseSkill();
     }
 }

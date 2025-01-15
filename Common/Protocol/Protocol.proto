@@ -61,6 +61,7 @@ message S_EnterGame
 {
 	MyHeroInfo myHeroInfo = 1;
 	bool respawn = 2;
+	repeated SkillCoolTime cooltimes = 3;
 }
 
 message C_LeaveGame

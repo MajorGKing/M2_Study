@@ -73,7 +73,7 @@ class PacketHandler
         // Hero
         MyHero myHero = Managers.Object.Spawn(enterGamePacket.MyHeroInfo);
         myHero.ObjectState = EObjectState.Idle;
-        myHero.TotalStat = enterGamePacket.MyHeroInfo.HeroInfo.CreatureInfo.StatInfo;
+        myHero.TotalStat = enterGamePacket.MyHeroInfo.HeroInfo.CreatureInfo.TotalStatInfo;
 
         //Init
         //Managers.Inventory.Refresh(enterGamePacket.Items.ToList());
@@ -219,26 +219,43 @@ class PacketHandler
     public static void S_ChangeStatHandler(PacketSession session, IMessage packet)
     {
         Debug.Log("S_ChangeStatHandler");
+
+        S_ChangeStat pkt = (S_ChangeStat)packet;
+
+        MyHero myHero = Managers.Object.MyHero;
+        if (myHero == null)
+            return;
+
+        myHero.HandleChangeStat(pkt);
     }
 
-    // TODO
-    public static void S_ChangeEffectsHandler(PacketSession session, IMessage packet)
+    public static void S_ApplyEffectHandler(PacketSession session, IMessage packet)
     {
-        Debug.Log("S_ChangeEffectsHandler");
-        S_ChangeEffects changeEffectPacket = (S_ChangeEffects)packet;
+        S_ApplyEffect pkt = (S_ApplyEffect)packet;
 
-        GameObject go = Managers.Object.FindById(changeEffectPacket.ObjectId);
-        if (go == null) 
+        GameObject go = Managers.Object.FindById(pkt.ObjectId);
+        if (go == null)
             return;
 
         Creature cc = go.GetComponent<Creature>();
-        if (cc != null)
-        {
-            cc.StateFlag = changeEffectPacket.StateFlag;
-            cc.UpdateEffects(changeEffectPacket.EffectIds.ToList());
-        }
+        if (cc == null)
+            return;
+
+        cc.ApplyEffect(pkt);
     }
 
+    public static void S_RemoveEffectHandler(PacketSession session, IMessage packet)
+    {
+        S_RemoveEffect pkt = (S_RemoveEffect)packet;
 
+        GameObject go = Managers.Object.FindById(pkt.ObjectId);
+        if (go == null)
+            return;
 
+        Creature cc = go.GetComponent<Creature>();
+        if (cc == null)
+            return;
+
+        cc.RemoveEffect(pkt);
+    }
 }

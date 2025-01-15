@@ -121,9 +121,19 @@ message S_ChangeHp {
 	EDamageType damageType = 5;
 }
 
-message S_ChangeEffects {
+message S_ApplyEffect
+{
 	int32 objectId = 1;
-	repeated int32 effectIds = 2;
+	int32 effectTemplateId = 2;
+	int32 effectId = 3;
+	int32 remainingTicks = 4;
+	int32 stateFlag = 5;
+}
+
+message S_RemoveEffect
+{
+	int32 objectId = 1;
+	int32 effectId = 2;
 	int32 stateFlag = 3;
 }
 

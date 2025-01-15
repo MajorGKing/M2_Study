@@ -21,7 +21,7 @@ message StatInfo
     float mpRegen = 6;
     float attack = 7;
     float defence = 8;
-    float missChance = 9;
+    float dodge = 9;
     float attackSpeed = 10;
     float moveSpeed = 11;
     float criRate = 12;
@@ -56,7 +56,7 @@ message ProjectileInfo
 message CreatureInfo 
 {
 	ObjectInfo objectInfo = 1;
-	StatInfo statInfo = 2;
+	StatInfo totalStatInfo = 2;
 	int32 stateFlag = 3;
 }
 
@@ -69,12 +69,18 @@ message HeroInfo
 	EHeroClass classType = 5;
 }
 
+message CurrencyInfo 
+{
+	int32 gold = 1;
+	int32 dia = 2;
+}
+
 message MyHeroInfo
 {
 	HeroInfo heroInfo = 1;
-	StatInfo totalStatInfo = 2;
-	int32 exp = 3;
-	int32 mapId = 4;
+	int32 exp = 2;
+	int32 mapId = 3;
+	CurrencyInfo currencyInfo = 5;
 }
 
 message SkillCoolTime 

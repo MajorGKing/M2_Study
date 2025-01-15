@@ -28,7 +28,7 @@ namespace GameServer
             { EStatType.MpRegen, (s) => s.MpRegen },
             { EStatType.Attack, (s) => s.Attack },
             { EStatType.Defence, (s) => s.Defence },
-            { EStatType.MissChance, (s) => s.MissChance },
+            { EStatType.Dodge, (s) => s.Dodge },
             { EStatType.AttackSpeed, (s) => s.AttackSpeed },
             { EStatType.MoveSpeed, (s) => s.MoveSpeed },
             { EStatType.CriRate, (s) => s.CriRate },
@@ -50,7 +50,7 @@ namespace GameServer
             { EStatType.MpRegen, (s, v) => s.MpRegen= v },
             { EStatType.Attack, (s, v) => s.Attack= v },
             { EStatType.Defence, (s, v) => s.Defence = v },
-            { EStatType.MissChance, (s, v) => s.MissChance = v },
+            { EStatType.Dodge, (s, v) => s.Dodge = v },
             { EStatType.AttackSpeed, (s, v) => s.AttackSpeed = v },
             { EStatType.MoveSpeed, (s, v) => s.MoveSpeed = v },
             { EStatType.CriRate, (s, v) => s.CriRate= v },
@@ -61,6 +61,15 @@ namespace GameServer
             { EStatType.Con, (s, v) => s.Con = (int)v },
             { EStatType.Wis, (s, v) => s.Wis = (int)v }
         };
+
+        public float GetBaseStat(EStatType statType) { return StatGetters[statType](BaseStat); }
+        public float GetTotalStat(EStatType statType) { return StatGetters[statType](TotalStat); }
+        public void SetBaseStat(EStatType statType, float value) { StatSetters[statType](BaseStat, value); }
+        public void SetTotalStat(EStatType statType, float value)
+        {
+            StatSetters[statType](TotalStat, value);
+            StatSetters[statType](CreatureInfo.TotalStatInfo, value);
+        }
 
         public float Hp
         {
@@ -113,16 +122,12 @@ namespace GameServer
         public Creature()
         {
             CreatureInfo.ObjectInfo = ObjectInfo;
-            CreatureInfo.StatInfo = TotalStat;
 
             SkillComp = new SkillComponent(this);
             EffectComp = new EffectComponent(this);
         }
 
-        public float GetBaseStat(EStatType statType) { return StatGetters[statType](BaseStat); }
-        public float GetTotalStat(EStatType statType) { return StatGetters[statType](TotalStat); }
-        public void SetBaseStat(EStatType statType, float value) { StatSetters[statType](BaseStat, value); }
-        public void SetTotalStat(EStatType statType, float value) { StatSetters[statType](TotalStat, value); }
+        
 
         public override float OnDamaged(BaseObject attacker, float damage)
         {
@@ -171,10 +176,10 @@ namespace GameServer
             return IsEnemy(target) == false;
         }
 
-        public void Reset()
+        public virtual void Reset()
         {
-            Console.WriteLine($"TotalStat.MaxHp {TotalStat.MaxHp}");
-            TotalStat.Hp = TotalStat.MaxHp;
+            Console.WriteLine($"GetTotalStat(EStatType.MaxHp) {GetTotalStat(EStatType.MaxHp)}");
+            Hp = Math.Max(0, GetTotalStat(EStatType.MaxHp));
             PosInfo.State = EObjectState.Idle;
 
             ClearStateFlags();

@@ -61,7 +61,7 @@ namespace Scripts.Data.SO
                     MpRegen = this.MpRegen,
                     Attack = this.Attack,
                     Defence = this.Defence,
-                    MissChance = this.MissChance,
+                    Dodge = this.MissChance,
                     AttackSpeed = this.AttackSpeed,
                     MoveSpeed = this.MoveSpeed,
                     CriRate = this.CriRate,

@@ -19,6 +19,10 @@ public class Define
         OnClickAttackButton,
         OnClickAutoButton,
         OnClickPickupButton,
+
+        InventoryChanged,
+        CurrencyChanged,
+        StatChanged,
     }
 
     public enum EToastColor

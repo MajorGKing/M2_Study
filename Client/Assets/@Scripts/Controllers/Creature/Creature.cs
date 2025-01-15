@@ -9,21 +9,16 @@ using UnityEngine;
 public class Creature : BaseObject
 {
     public Dictionary< /*effectId*/int, GameObject> EffectParticles = new Dictionary< /*effectId*/int, GameObject>();
-    public Dictionary< /*effectId*/int, GameObject> CurrentEffects = new Dictionary< /*effectId*/int, GameObject>();
+    public Dictionary< /*effectId*/int, EffectData> CurrentEffects = new Dictionary< /*effectId*/int, EffectData>();
 
     protected UI_HPBar _hpBar;
-    StatInfo _stat = new StatInfo();
-    public virtual StatInfo TotalStat
-    {
-        get { return _stat; }
-        set
-        {
-            if (_stat.Equals(value))
-                return;
 
-            _stat.MergeFrom(value);
-            UpdateHpBar();
-        }
+    protected CreatureInfo _creatureInfo { get; set; } = new CreatureInfo();
+
+    public StatInfo TotalStat
+    {
+        get { return _creatureInfo.TotalStatInfo; }
+        set { _creatureInfo.TotalStatInfo = value; }
     }
 
     public int TemplateId { get; private set; }
@@ -245,6 +240,54 @@ public class Creature : BaseObject
     }
     #endregion
 
+    #region Effect
+    public void ApplyEffect(S_ApplyEffect packet)
+    {
+        if (Managers.Data.EffectDic.TryGetValue(packet.EffectTemplateId, out EffectData effectData) == false)
+            return;
+
+        CurrentEffects.Add(packet.EffectId, effectData);
+        StateFlag = packet.StateFlag; // TEMP
+
+        // 1. 이펙트 파티클스폰.
+        if (string.IsNullOrEmpty(effectData.PrefabName) == false)
+        {
+            // 1-1. 이펙트 파티클 메모리에 저장. 
+            ParticleController effect = Managers.Object.SpawnParticle(effectData.PrefabName, LookLeft, transform);
+            if (effect != null)
+                EffectParticles.Add(packet.EffectId, effect.gameObject);
+
+            // 1-2. 이펙트 파티클 소멸 예약.
+            if (effectData.DurationPolicy == EDurationPolicy.Duration)
+                StartCoroutine(CoRemoveEffect(packet.EffectId, packet.RemainingTicks));
+        }
+    }
+
+    IEnumerator CoRemoveEffect(int effectId, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        RemoveEffect(effectId);
+    }
+
+    public void RemoveEffect(S_RemoveEffect packet)
+    {
+        RemoveEffect(packet.EffectId);
+        StateFlag = packet.StateFlag; // TEMP
+    }
+
+    public void RemoveEffect(int effectId)
+    {
+        CurrentEffects.Remove(effectId);
+
+        if (EffectParticles.TryGetValue(effectId, out GameObject effectObj) == false)
+            return;
+
+        Managers.Resource.Destroy(effectObj);
+        EffectParticles.Remove(effectId);
+    }
+
+    #endregion
+
     #region Wait
     protected Coroutine _coWait;
     protected void StartWait(float seconds)
@@ -274,54 +317,6 @@ public class Creature : BaseObject
 
         var pc = Managers.Object.SpawnParticle(skillData.GatherTargetPrefabName);
         pc.gameObject.transform.position = pos;
-    }
-    #endregion
-
-    #region Packet Handler
-    public void UpdateEffects(List<int> effectIds)
-    {
-        List<int> currentEffects = CurrentEffects.Keys.ToList();
-
-        // 기존엔 없었는데 새로 생긴 애들 Spawn 처리
-        List<int> added = effectIds.Except(currentEffects).ToList();
-        foreach (var effectId in added)
-        {
-            if (Managers.Data.EffectDic.TryGetValue(effectId, out EffectData data) == false)
-                return;
-
-            // 중첩되는 이펙트는 리턴
-            if (CurrentEffects.ContainsKey(effectId))
-                return;
-
-            // 1. 이펙트 스폰
-            if (string.IsNullOrEmpty(data.PrefabName) == false)
-            {
-                ParticleController effect = Managers.Object.SpawnParticle(data.PrefabName, transform);
-
-                if(effect != null)
-                {
-                    CurrentEffects.Add(effectId, effect.gameObject);
-                }
-            }
-
-            // 2. 필요한 경우 데미지폰트 추가
-            if (data.EffectType == EEffectType.BuffStun)
-            {
-                Managers.Object.ShowDamageFont(CenterPos, 0, transform, EDamageType.Stun);
-            }
-            // 3. UI Update
-        }
-
-        // 기존엔 있었는데 사라진 애들 Despawn 처리
-        List<int> removed = currentEffects.Except(effectIds).ToList();
-        foreach (var effectId in removed)
-        {
-            if (CurrentEffects.TryGetValue(effectId, out GameObject effectObj) == false)
-                return;
-
-            Managers.Resource.Destroy(effectObj);
-            CurrentEffects.Remove(effectId);
-        }
     }
     #endregion
 }

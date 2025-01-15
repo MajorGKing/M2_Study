@@ -51,12 +51,14 @@ namespace Google.Protobuf.Protocol {
             "bXBsYXRlSWQYAiABKAUSEAoIdGFyZ2V0SWQYAyABKAUicQoKU19DaGFuZ2VI",
             "cBIQCghvYmplY3RJZBgBIAEoBRIKCgJocBgCIAEoAhIKCgJtcBgDIAEoAhIO",
             "CgZkYW1hZ2UYBCABKAISKQoKZGFtYWdlVHlwZRgFIAEoDjIVLlByb3RvY29s",
-            "LkVEYW1hZ2VUeXBlIkkKD1NfQ2hhbmdlRWZmZWN0cxIQCghvYmplY3RJZBgB",
-            "IAEoBRIRCgllZmZlY3RJZHMYAiADKAUSEQoJc3RhdGVGbGFnGAMgASgFIi0K",
-            "BVNfRGllEhAKCG9iamVjdElkGAEgASgFEhIKCmF0dGFja2VySWQYAiABKAUi",
-            "OQoMU19DaGFuZ2VTdGF0EikKDXRvdGFsU3RhdEluZm8YASABKAsyEi5Qcm90",
-            "b2NvbC5TdGF0SW5mb0IbqgIYR29vZ2xlLlByb3RvYnVmLlByb3RvY29sUABQ",
-            "AWIGcHJvdG8z"));
+            "LkVEYW1hZ2VUeXBlIngKDVNfQXBwbHlFZmZlY3QSEAoIb2JqZWN0SWQYASAB",
+            "KAUSGAoQZWZmZWN0VGVtcGxhdGVJZBgCIAEoBRIQCghlZmZlY3RJZBgDIAEo",
+            "BRIWCg5yZW1haW5pbmdUaWNrcxgEIAEoBRIRCglzdGF0ZUZsYWcYBSABKAUi",
+            "RwoOU19SZW1vdmVFZmZlY3QSEAoIb2JqZWN0SWQYASABKAUSEAoIZWZmZWN0",
+            "SWQYAiABKAUSEQoJc3RhdGVGbGFnGAMgASgFIi0KBVNfRGllEhAKCG9iamVj",
+            "dElkGAEgASgFEhIKCmF0dGFja2VySWQYAiABKAUiOQoMU19DaGFuZ2VTdGF0",
+            "EikKDXRvdGFsU3RhdEluZm8YASABKAsyEi5Qcm90b2NvbC5TdGF0SW5mb0Ib",
+            "qgIYR29vZ2xlLlByb3RvYnVmLlByb3RvY29sUABQAWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Protocol.EnumReflection.Descriptor, global::Google.Protobuf.Protocol.StructReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -82,7 +84,8 @@ namespace Google.Protobuf.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.C_Skill), global::Google.Protobuf.Protocol.C_Skill.Parser, new[]{ "TemplateId", "TargetId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_Skill), global::Google.Protobuf.Protocol.S_Skill.Parser, new[]{ "ObjectId", "TemplateId", "TargetId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_ChangeHp), global::Google.Protobuf.Protocol.S_ChangeHp.Parser, new[]{ "ObjectId", "Hp", "Mp", "Damage", "DamageType" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_ChangeEffects), global::Google.Protobuf.Protocol.S_ChangeEffects.Parser, new[]{ "ObjectId", "EffectIds", "StateFlag" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_ApplyEffect), global::Google.Protobuf.Protocol.S_ApplyEffect.Parser, new[]{ "ObjectId", "EffectTemplateId", "EffectId", "RemainingTicks", "StateFlag" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_RemoveEffect), global::Google.Protobuf.Protocol.S_RemoveEffect.Parser, new[]{ "ObjectId", "EffectId", "StateFlag" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_Die), global::Google.Protobuf.Protocol.S_Die.Parser, new[]{ "ObjectId", "AttackerId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_ChangeStat), global::Google.Protobuf.Protocol.S_ChangeStat.Parser, new[]{ "TotalStatInfo" }, null, null, null, null)
           }));
@@ -3172,11 +3175,11 @@ namespace Google.Protobuf.Protocol {
 
   }
 
-  public sealed partial class S_ChangeEffects : pb::IMessage<S_ChangeEffects> {
-    private static readonly pb::MessageParser<S_ChangeEffects> _parser = new pb::MessageParser<S_ChangeEffects>(() => new S_ChangeEffects());
+  public sealed partial class S_ApplyEffect : pb::IMessage<S_ApplyEffect> {
+    private static readonly pb::MessageParser<S_ApplyEffect> _parser = new pb::MessageParser<S_ApplyEffect>(() => new S_ApplyEffect());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<S_ChangeEffects> Parser { get { return _parser; } }
+    public static pb::MessageParser<S_ApplyEffect> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -3189,23 +3192,25 @@ namespace Google.Protobuf.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public S_ChangeEffects() {
+    public S_ApplyEffect() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public S_ChangeEffects(S_ChangeEffects other) : this() {
+    public S_ApplyEffect(S_ApplyEffect other) : this() {
       objectId_ = other.objectId_;
-      effectIds_ = other.effectIds_.Clone();
+      effectTemplateId_ = other.effectTemplateId_;
+      effectId_ = other.effectId_;
+      remainingTicks_ = other.remainingTicks_;
       stateFlag_ = other.stateFlag_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public S_ChangeEffects Clone() {
-      return new S_ChangeEffects(this);
+    public S_ApplyEffect Clone() {
+      return new S_ApplyEffect(this);
     }
 
     /// <summary>Field number for the "objectId" field.</summary>
@@ -3219,18 +3224,41 @@ namespace Google.Protobuf.Protocol {
       }
     }
 
-    /// <summary>Field number for the "effectIds" field.</summary>
-    public const int EffectIdsFieldNumber = 2;
-    private static readonly pb::FieldCodec<int> _repeated_effectIds_codec
-        = pb::FieldCodec.ForInt32(18);
-    private readonly pbc::RepeatedField<int> effectIds_ = new pbc::RepeatedField<int>();
+    /// <summary>Field number for the "effectTemplateId" field.</summary>
+    public const int EffectTemplateIdFieldNumber = 2;
+    private int effectTemplateId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<int> EffectIds {
-      get { return effectIds_; }
+    public int EffectTemplateId {
+      get { return effectTemplateId_; }
+      set {
+        effectTemplateId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "effectId" field.</summary>
+    public const int EffectIdFieldNumber = 3;
+    private int effectId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int EffectId {
+      get { return effectId_; }
+      set {
+        effectId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "remainingTicks" field.</summary>
+    public const int RemainingTicksFieldNumber = 4;
+    private int remainingTicks_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int RemainingTicks {
+      get { return remainingTicks_; }
+      set {
+        remainingTicks_ = value;
+      }
     }
 
     /// <summary>Field number for the "stateFlag" field.</summary>
-    public const int StateFlagFieldNumber = 3;
+    public const int StateFlagFieldNumber = 5;
     private int stateFlag_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int StateFlag {
@@ -3242,11 +3270,11 @@ namespace Google.Protobuf.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as S_ChangeEffects);
+      return Equals(other as S_ApplyEffect);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(S_ChangeEffects other) {
+    public bool Equals(S_ApplyEffect other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -3254,7 +3282,9 @@ namespace Google.Protobuf.Protocol {
         return true;
       }
       if (ObjectId != other.ObjectId) return false;
-      if(!effectIds_.Equals(other.effectIds_)) return false;
+      if (EffectTemplateId != other.EffectTemplateId) return false;
+      if (EffectId != other.EffectId) return false;
+      if (RemainingTicks != other.RemainingTicks) return false;
       if (StateFlag != other.StateFlag) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -3263,7 +3293,9 @@ namespace Google.Protobuf.Protocol {
     public override int GetHashCode() {
       int hash = 1;
       if (ObjectId != 0) hash ^= ObjectId.GetHashCode();
-      hash ^= effectIds_.GetHashCode();
+      if (EffectTemplateId != 0) hash ^= EffectTemplateId.GetHashCode();
+      if (EffectId != 0) hash ^= EffectId.GetHashCode();
+      if (RemainingTicks != 0) hash ^= RemainingTicks.GetHashCode();
       if (StateFlag != 0) hash ^= StateFlag.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -3282,9 +3314,20 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(8);
         output.WriteInt32(ObjectId);
       }
-      effectIds_.WriteTo(output, _repeated_effectIds_codec);
-      if (StateFlag != 0) {
+      if (EffectTemplateId != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(EffectTemplateId);
+      }
+      if (EffectId != 0) {
         output.WriteRawTag(24);
+        output.WriteInt32(EffectId);
+      }
+      if (RemainingTicks != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(RemainingTicks);
+      }
+      if (StateFlag != 0) {
+        output.WriteRawTag(40);
         output.WriteInt32(StateFlag);
       }
       if (_unknownFields != null) {
@@ -3298,7 +3341,15 @@ namespace Google.Protobuf.Protocol {
       if (ObjectId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(ObjectId);
       }
-      size += effectIds_.CalculateSize(_repeated_effectIds_codec);
+      if (EffectTemplateId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(EffectTemplateId);
+      }
+      if (EffectId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(EffectId);
+      }
+      if (RemainingTicks != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RemainingTicks);
+      }
       if (StateFlag != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(StateFlag);
       }
@@ -3309,14 +3360,22 @@ namespace Google.Protobuf.Protocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(S_ChangeEffects other) {
+    public void MergeFrom(S_ApplyEffect other) {
       if (other == null) {
         return;
       }
       if (other.ObjectId != 0) {
         ObjectId = other.ObjectId;
       }
-      effectIds_.Add(other.effectIds_);
+      if (other.EffectTemplateId != 0) {
+        EffectTemplateId = other.EffectTemplateId;
+      }
+      if (other.EffectId != 0) {
+        EffectId = other.EffectId;
+      }
+      if (other.RemainingTicks != 0) {
+        RemainingTicks = other.RemainingTicks;
+      }
       if (other.StateFlag != 0) {
         StateFlag = other.StateFlag;
       }
@@ -3335,9 +3394,201 @@ namespace Google.Protobuf.Protocol {
             ObjectId = input.ReadInt32();
             break;
           }
-          case 18:
           case 16: {
-            effectIds_.AddEntriesFrom(input, _repeated_effectIds_codec);
+            EffectTemplateId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            EffectId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            RemainingTicks = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            StateFlag = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class S_RemoveEffect : pb::IMessage<S_RemoveEffect> {
+    private static readonly pb::MessageParser<S_RemoveEffect> _parser = new pb::MessageParser<S_RemoveEffect>(() => new S_RemoveEffect());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<S_RemoveEffect> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Google.Protobuf.Protocol.ProtocolReflection.Descriptor.MessageTypes[23]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public S_RemoveEffect() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public S_RemoveEffect(S_RemoveEffect other) : this() {
+      objectId_ = other.objectId_;
+      effectId_ = other.effectId_;
+      stateFlag_ = other.stateFlag_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public S_RemoveEffect Clone() {
+      return new S_RemoveEffect(this);
+    }
+
+    /// <summary>Field number for the "objectId" field.</summary>
+    public const int ObjectIdFieldNumber = 1;
+    private int objectId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int ObjectId {
+      get { return objectId_; }
+      set {
+        objectId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "effectId" field.</summary>
+    public const int EffectIdFieldNumber = 2;
+    private int effectId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int EffectId {
+      get { return effectId_; }
+      set {
+        effectId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "stateFlag" field.</summary>
+    public const int StateFlagFieldNumber = 3;
+    private int stateFlag_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int StateFlag {
+      get { return stateFlag_; }
+      set {
+        stateFlag_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as S_RemoveEffect);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(S_RemoveEffect other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (ObjectId != other.ObjectId) return false;
+      if (EffectId != other.EffectId) return false;
+      if (StateFlag != other.StateFlag) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (ObjectId != 0) hash ^= ObjectId.GetHashCode();
+      if (EffectId != 0) hash ^= EffectId.GetHashCode();
+      if (StateFlag != 0) hash ^= StateFlag.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (ObjectId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(ObjectId);
+      }
+      if (EffectId != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(EffectId);
+      }
+      if (StateFlag != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(StateFlag);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (ObjectId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ObjectId);
+      }
+      if (EffectId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(EffectId);
+      }
+      if (StateFlag != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(StateFlag);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(S_RemoveEffect other) {
+      if (other == null) {
+        return;
+      }
+      if (other.ObjectId != 0) {
+        ObjectId = other.ObjectId;
+      }
+      if (other.EffectId != 0) {
+        EffectId = other.EffectId;
+      }
+      if (other.StateFlag != 0) {
+        StateFlag = other.StateFlag;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            ObjectId = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            EffectId = input.ReadInt32();
             break;
           }
           case 24: {
@@ -3358,7 +3609,7 @@ namespace Google.Protobuf.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Google.Protobuf.Protocol.ProtocolReflection.Descriptor.MessageTypes[23]; }
+      get { return global::Google.Protobuf.Protocol.ProtocolReflection.Descriptor.MessageTypes[24]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3515,7 +3766,7 @@ namespace Google.Protobuf.Protocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Google.Protobuf.Protocol.ProtocolReflection.Descriptor.MessageTypes[24]; }
+      get { return global::Google.Protobuf.Protocol.ProtocolReflection.Descriptor.MessageTypes[25]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

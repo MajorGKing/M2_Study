@@ -403,6 +403,14 @@ public class MyHero : Hero
     }
     #endregion
 
+    #region PacketHandler
+    public void HandleChangeStat(S_ChangeStat packet)
+    {
+        _creatureInfo.TotalStatInfo.MergeFrom((packet.TotalStatInfo));
+        Managers.Event.TriggerEvent(EEventType.StatChanged);
+    }
+    #endregion
+
     #region µð¹ö±ë
     void DrawVisionCells()
     {

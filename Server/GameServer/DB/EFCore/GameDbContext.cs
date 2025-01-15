@@ -41,12 +41,6 @@ namespace GameServer
 
             builder.Entity<HeroDb>()
                 .HasIndex(t => t.Name);
-
-            builder.Entity<ItemDb>()
-                .HasIndex(i => i.AccountDbId);
-
-            builder.Entity<ItemDb>()
-                .HasIndex(t => t.OwnerDbId);
         }
 	}
 }

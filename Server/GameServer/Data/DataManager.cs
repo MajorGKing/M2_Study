@@ -15,6 +15,7 @@ namespace GameServer
 
     public class DataManager
     {
+        public static Dictionary<int, BaseStatData> BaseStatDic { get; private set; } = new Dictionary<int, BaseStatData>();
         public static Dictionary<int, HeroData> HeroDict { get; private set; } = new Dictionary<int, HeroData>();
         public static Dictionary<int, MonsterData> MonsterDict { get; private set; } = new Dictionary<int, MonsterData>();
         public static Dictionary<int, SkillData> SkillDict { get; private set; } = new Dictionary<int, SkillData>();
@@ -23,6 +24,7 @@ namespace GameServer
 
         public static void LoadData()
         {
+            BaseStatDic = LoadJson<BaseStatDataLoader, int, BaseStatData>("BaseStatData").MakeDict();
             HeroDict = LoadJson<HeroDataLoader, int, HeroData>("HeroData").MakeDict();
             MonsterDict = LoadJson<MonsterDataLoader, int, MonsterData>("MonsterData").MakeDict();
             SkillDict = LoadJson<SkillDataLoader, int, SkillData>("SkillData").MakeDict();

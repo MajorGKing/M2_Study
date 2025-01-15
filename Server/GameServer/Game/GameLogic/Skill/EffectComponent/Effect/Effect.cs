@@ -13,8 +13,17 @@ namespace GameServer.Game
         public Creature Owner { get; private set; }
         public Creature Caster { get; private set; }
         public IEffectPolicy Policy { get; private set; }
+        public long DespawnTick { get; private set; }
 
-        protected IJob _job;
+        public int GetRemainingLifetimeInTicks()
+        {
+            return (int)Math.Max(0, (DespawnTick - Utils.TickCount));
+        }
+
+        public float GetRemainingLifetimeInSeconds()
+        {
+            return GetRemainingLifetimeInTicks() / 1000.0f;
+        }
 
         public Effect(int effectId, int templateId, Creature owner, Creature caster, IEffectPolicy policy)
         {
@@ -24,6 +33,9 @@ namespace GameServer.Game
             Owner = owner;
             Caster = caster;
             Policy = policy;
+
+            if (effectData.DurationPolicy == EDurationPolicy.Duration)
+                DespawnTick = Utils.TickCount + (long)(1000 * effectData.Duration);
         }
 
         public virtual void Update()
@@ -38,13 +50,6 @@ namespace GameServer.Game
         public virtual void Revert()
         {
             Policy?.Revert(Owner, EffectData);
-
-            // Job취소
-            if (_job != null)
-            {
-                _job.Cancel = true;
-                _job = null;
-            }
         }
     }
 }

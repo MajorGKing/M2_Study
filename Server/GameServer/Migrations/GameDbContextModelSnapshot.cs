@@ -41,16 +41,28 @@ namespace GameServer.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
+                    b.Property<int>("Dia")
+                        .HasColumnType("int");
+
                     b.Property<int>("Exp")
                         .HasColumnType("int");
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");
 
+                    b.Property<int>("Gold")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Hp")
+                        .HasColumnType("int");
+
                     b.Property<int>("Level")
                         .HasColumnType("int");
 
                     b.Property<int>("MapId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Mp")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -92,6 +104,9 @@ namespace GameServer.Migrations
                     b.Property<int>("EquipSlot")
                         .HasColumnType("int");
 
+                    b.Property<int?>("HeroDbId")
+                        .HasColumnType("int");
+
                     b.Property<int>("OwnerDbId")
                         .HasColumnType("int");
 
@@ -100,11 +115,21 @@ namespace GameServer.Migrations
 
                     b.HasKey("ItemDbId");
 
-                    b.HasIndex("AccountDbId");
-
-                    b.HasIndex("OwnerDbId");
+                    b.HasIndex("HeroDbId");
 
                     b.ToTable("Item");
+                });
+
+            modelBuilder.Entity("GameServer.ItemDb", b =>
+                {
+                    b.HasOne("GameServer.HeroDb", null)
+                        .WithMany("Items")
+                        .HasForeignKey("HeroDbId");
+                });
+
+            modelBuilder.Entity("GameServer.HeroDb", b =>
+                {
+                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }

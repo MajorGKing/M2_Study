@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace GameServer.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +18,19 @@ namespace GameServer.Migrations
                     HeroDbId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AccountDbId = table.Column<long>(type: "bigint", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    Gender = table.Column<int>(type: "int", nullable: false),
+                    ClassType = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Level = table.Column<int>(type: "int", nullable: false),
+                    Hp = table.Column<int>(type: "int", nullable: false),
+                    Mp = table.Column<int>(type: "int", nullable: false),
+                    Exp = table.Column<int>(type: "int", nullable: false),
+                    MapId = table.Column<int>(type: "int", nullable: false),
+                    PosX = table.Column<int>(type: "int", nullable: false),
+                    PosY = table.Column<int>(type: "int", nullable: false),
+                    Gold = table.Column<int>(type: "int", nullable: false),
+                    Dia = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -36,11 +48,17 @@ namespace GameServer.Migrations
                     AccountDbId = table.Column<long>(type: "bigint", nullable: false),
                     Count = table.Column<int>(type: "int", nullable: false),
                     OwnerDbId = table.Column<int>(type: "int", nullable: false),
-                    EnchantCount = table.Column<int>(type: "int", nullable: false)
+                    EnchantCount = table.Column<int>(type: "int", nullable: false),
+                    HeroDbId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Item", x => x.ItemDbId);
+                    table.ForeignKey(
+                        name: "FK_Item_Hero_HeroDbId",
+                        column: x => x.HeroDbId,
+                        principalTable: "Hero",
+                        principalColumn: "HeroDbId");
                 });
 
             migrationBuilder.CreateIndex(
@@ -49,24 +67,24 @@ namespace GameServer.Migrations
                 column: "AccountDbId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Item_AccountDbId",
-                table: "Item",
-                column: "AccountDbId");
+                name: "IX_Hero_Name",
+                table: "Hero",
+                column: "Name");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Item_OwnerDbId",
+                name: "IX_Item_HeroDbId",
                 table: "Item",
-                column: "OwnerDbId");
+                column: "HeroDbId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Hero");
+                name: "Item");
 
             migrationBuilder.DropTable(
-                name: "Item");
+                name: "Hero");
         }
     }
 }

@@ -52,16 +52,19 @@ public class ObjectManager
         
         int templateId = Utils.GetTemplateIdFromId(objectInfo.ObjectId);
         GameObject go = Managers.Resource.Instantiate($"HeroPrefab_{info.ClassType}_{info.Gender}"); // TEMP	
-        go.name = info.Name;
+        //go.name = info.Name;
+        go.name = "MyHero";
         go.transform.parent = HeroRoot;
         _objects.Add(objectInfo.ObjectId, go);
 
         MyHero = Utils.GetOrAddComponent<MyHero>(go);
         MyHero.SetInfo(templateId);
+        MyHero.MyHeroInfo = myHeroInfo;
         MyHero.ObjectId = objectInfo.ObjectId;
         MyHero.PosInfo = objectInfo.PosInfo;
-
         MyHero.SyncWorldPosWithCellPos();
+
+        Managers.Skill.Init(templateId);
 
         return MyHero;
     }
@@ -79,16 +82,17 @@ public class ObjectManager
         if (objectType != EGameObjectType.Hero)
             return null;
 
-        GameObject go = Managers.Resource.Instantiate("KnightPrefab"); // TEMP
-        go.name = info.Name;
+        int templateId = Utils.GetTemplateIdFromId(objectInfo.ObjectId);
+        GameObject go = Managers.Resource.Instantiate($"HeroPrefab_{info.ClassType}_{info.Gender}"); // TEMP
+        go.name = $"Hero_{objectInfo.ObjectId}";
         go.transform.parent = HeroRoot;
         _objects.Add(objectInfo.ObjectId, go);
 
         Hero hero = Utils.GetOrAddComponent<Hero>(go);
+        MyHero.HeroInfo = info;
+        hero.SetInfo(templateId);
         hero.ObjectId = objectInfo.ObjectId;
         hero.PosInfo = objectInfo.PosInfo;
-        hero.SetInfo(1);
-
         hero.SyncWorldPosWithCellPos();
 
         return hero;

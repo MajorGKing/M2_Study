@@ -80,6 +80,17 @@ class PacketHandler
 
     public static void C_SkillHandler(PacketSession session, IMessage packet)
     {
-        
+        C_Skill skillPacket = packet as C_Skill;
+        ClientSession clientSession = session as ClientSession;
+
+        Hero hero = clientSession.MyHero;
+        if (hero == null)
+            return;
+
+        GameRoom room = hero.Room;
+        if (room == null)
+            return;
+
+        room.Push(room.UseSkill, hero, skillPacket.TemplateId, skillPacket.TargetId);
     }
 }

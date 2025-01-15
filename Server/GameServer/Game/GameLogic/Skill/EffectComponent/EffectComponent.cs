@@ -33,17 +33,28 @@ namespace GameServer.Game
         {
             if(DataManager.EffectDict.TryGetValue(templateId, out EffectData effectData) == false)
                 return;
+            
+            ApplyEffect(effectData, caster);
+        }
 
+        public static Effect SpawnEffect(int effectId, int templateId, Creature owner, Creature caster, IEffectPolicy policy)
+        {
+            Effect effect = new Effect(effectId, templateId, owner, caster, policy);
+            return effect;
+        }
+
+        public void ApplyEffect(EffectData effectData, Creature caster, bool send = true)
+        {
             switch (effectData.DurationPolicy)
             {
                 case EDurationPolicy.Instant:
                     ApplyInstantEffect(effectData, caster);
                     break;
                 case EDurationPolicy.Duration:
-                    ApplyDurationEffect(effectData, caster);
+                    ApplyDurationEffect(effectData, caster, send);
                     break;
                 case EDurationPolicy.Infinite:
-                    ApplyInfiniteEffect(effectData, caster);
+                    ApplyInfiniteEffect(effectData, caster, send);
                     break;
             }
         }
@@ -57,10 +68,11 @@ namespace GameServer.Game
             if (_policies.TryGetValue(effectData.EffectType, out IEffectPolicy policy) == false)
                 return;
 
+            // 1. 이펙트 적용.
             policy.Apply(Owner, caster, effectData);
         }
 
-        void ApplyDurationEffect(EffectData effectData, Creature caster)
+        void ApplyDurationEffect(EffectData effectData, Creature caster, bool send)
         {
             if (effectData == null)
                 return;
@@ -69,29 +81,41 @@ namespace GameServer.Game
             if (_policies.TryGetValue(effectData.EffectType, out IEffectPolicy policy) == false)
                 return;
 
+            // 1. 이펙트 생성.
             int effectId = GenerateEffectId();
-            Effect effect = new Effect(effectId, effectData.TemplateId, Owner, caster, policy);
+            Effect effect = SpawnEffect(effectId, effectData.TemplateId, Owner, caster, policy);
             _effects.Add(effectId, effect);
 
+            // 2. 이펙트 적용.
             effect.Apply();
 
-            Owner.Room.PushAfter((int)(effectData.Duration * 1000), () => { RemoveEffect(effect); });
+            // 3. 모두에게 알림.
+            if (send)
+                SendApply(effect);
+
+            // 4. 이펙트 소멸 예약.
+            Owner.Room?.PushAfter((int)(effectData.Duration * 1000), () => { RemoveEffect(effect); });
         }
 
-        void ApplyInfiniteEffect(EffectData effectData, Creature caster)
+        void ApplyInfiniteEffect(EffectData effectData, Creature caster, bool send)
         {
             if (effectData == null)
                 return;
-            if (effectData.Duration == 0)
-                return;
+
             if (_policies.TryGetValue(effectData.EffectType, out IEffectPolicy policy) == false)
                 return;
 
+            // 1. 이펙트 생성.
             int effectId = GenerateEffectId();
-            Effect effect = new Effect(effectId, effectData.TemplateId, Owner, caster, policy);
+            Effect effect = SpawnEffect(effectId, effectData.TemplateId, Owner, caster, policy);
             _effects.Add(effectId, effect);
 
+            // 2. 이펙트 적용.
             effect.Apply();
+
+            // 3. 모두에게 알림.
+            if (send)
+                SendApply(effect);
         }
 
         public void RemoveEffect(int effectId, bool send = true)
@@ -107,7 +131,7 @@ namespace GameServer.Game
             effect.Revert();
 
             if (send)
-                SendChangeEffectPacket();
+                SendRemove(effect);
         }
 
         public void Clear()
@@ -116,23 +140,37 @@ namespace GameServer.Game
                 RemoveEffect(effect, false);
 
             _effects.Clear();
-            SendChangeEffectPacket();
         }
 
-        // TODO : Rookiss 2024/08/03
-        private void SendChangeEffectPacket()
+        private void SendApply(Effect effect)
         {
-            S_ChangeEffects packet = new S_ChangeEffects();
+            S_ApplyEffect packet = new S_ApplyEffect();
             packet.ObjectId = Owner.ObjectId;
-
-            foreach(Effect effect in _effects.Values)
-                packet.EffectIds.Add(effect.EffectData.TemplateId);
+            packet.EffectTemplateId = effect.EffectData.TemplateId;
+            packet.EffectId = effect.EffectId;
+            packet.RemainingTicks = effect.GetRemainingLifetimeInTicks();
+            packet.StateFlag = Owner.CreatureInfo.StateFlag;
 
             Owner.Room?.Broadcast(Owner.CellPos, packet);
 
-            if(Owner.ObjectType == EGameObjectType.Hero)
+            if (Owner.ObjectType == EGameObjectType.Hero)
             {
-                (Owner as Hero).RefreshTotalStat(true);
+                (Owner as Hero).SendChangeStat();
+            }
+        }
+
+        private void SendRemove(Effect effect)
+        {
+            S_RemoveEffect packet = new S_RemoveEffect();
+            packet.ObjectId = Owner.ObjectId;
+            packet.EffectId = effect.EffectId;
+            packet.StateFlag = Owner.CreatureInfo.StateFlag;
+
+            Owner.Room?.Broadcast(Owner.CellPos, packet);
+
+            if (Owner.ObjectType == EGameObjectType.Hero)
+            {
+                (Owner as Hero).SendChangeStat();
             }
         }
     }

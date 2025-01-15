@@ -23,6 +23,60 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de670db980d29354d9db85b889ace5d2
+    m_Address: knight_skill_c
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cfca7cfcbe902e747945c688d14d204c
+    m_Address: temp_armor
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0abb067fe13b964418edccc7d7fceac9
+    m_Address: knight_skill_a
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4dc71caa07b68d4c94879a06b854c6a
+    m_Address: temp_potion_red
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 94cd0a28f21d2094baa9e3c3e636deb0
+    m_Address: temp_potion_blue
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9cdfa1f8d4378c41bec589369eb3ab2
+    m_Address: knight_skill_b
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf16d5adf3694774182e223dc16fb0e4
+    m_Address: HeroIcon_Knight_Female
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 96a597a59c7ce384b8ba3535793f0c59
+    m_Address: temp_weapon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9410cb28bb4fd304f8c79b2af996ad09
+    m_Address: HeroIcon_Knight_Male
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9094f0f0595c6e147aa68a6f81e2dcaf, type: 2}
   m_SchemaSet:

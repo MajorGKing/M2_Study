@@ -48,6 +48,14 @@ public class Monster : Creature
         UpdateLerpToCellPos(MoveSpeed, true);
     }
 
+    public void InitMonster(CreatureInfo creatureInfo)
+    {
+        ObjectId = creatureInfo.ObjectInfo.ObjectId;
+        PosInfo = creatureInfo.ObjectInfo.PosInfo;
+        TotalStat = creatureInfo.TotalStatInfo;
+        SyncWorldPosWithCellPos();
+    }
+
     public override void SetInfo(int templateId)
     {
         base.SetInfo(templateId);

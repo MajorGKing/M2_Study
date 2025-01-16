@@ -2,6 +2,7 @@ using System.Linq;
 using Data;
 using Google.Protobuf.Protocol;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using static Define;
 
 public class UI_GameScene : UI_Scene
@@ -43,6 +44,19 @@ public class UI_GameScene : UI_Scene
 
     #endregion
 
+    public UI_QuickSlot QuickSlot { get; set; }
+    protected void OnDisable()
+    {
+        Managers.Event.RemoveEvent(EEventType.CurrencyChanged, RefreshUI);
+        Managers.Event.RemoveEvent(EEventType.StatChanged, RefreshUI);
+    }
+
+    protected void OnEnable()
+    {
+        Managers.Event.AddEvent(EEventType.CurrencyChanged, RefreshUI);
+        Managers.Event.RemoveEvent(EEventType.StatChanged, RefreshUI);
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -52,6 +66,11 @@ public class UI_GameScene : UI_Scene
         BindTexts(typeof(Texts));
         BindImages(typeof(Images));
         BindSliders(typeof(Sliders));
+
+        QuickSlot = GetObject((int)GameObjects.UI_QuickSlot).GetComponent<UI_QuickSlot>();
+        GetButton((int)Buttons.InventoryButton).gameObject.BindEvent(OnClickInventory);
+        GetButton((int)Buttons.CharacterButton).gameObject.BindEvent(OnClickHeroInfo);
+        GetButton((int)Buttons.SkillButton).gameObject.BindEvent(OnClickSkillInfo);
     }
 
     private float elapsedTime;
@@ -86,5 +105,48 @@ public class UI_GameScene : UI_Scene
         MyHero myHero = Managers.Object.MyHero;
         MyHeroInfo info = Managers.Object.MyHero.MyHeroInfo;
 
+        //·¹º§
+        GetText((int)Texts.LevelText).text = info.HeroInfo.Level.ToString();
+        GetText((int)Texts.GoldText).text = myHero.Gold.ToString();
+
+        //Hp
+        GetSlider((int)Sliders.HpSlider).maxValue = myHero.TotalStat.MaxHp;
+        GetSlider((int)Sliders.HpSlider).minValue = 0;
+        GetSlider((int)Sliders.HpSlider).value = myHero.Hp;
+        GetText((int)Texts.HpText).text = $"{myHero.Hp}/{myHero.TotalStat.MaxHp}";
+        //MP
+        GetSlider((int)Sliders.MpSlider).maxValue = myHero.TotalStat.MaxMp;
+        GetSlider((int)Sliders.MpSlider).minValue = 0;
+        GetSlider((int)Sliders.MpSlider).value = myHero.Mp;
+        GetText((int)Texts.MpText).text = $"{myHero.Mp}/{myHero.TotalStat.MaxMp}";
+
+        //Exp
+        GetSlider((int)Sliders.ExpSlider).maxValue = myHero.GetExpToNextLevel();
+        GetSlider((int)Sliders.ExpSlider).minValue = 0;
+        GetSlider((int)Sliders.ExpSlider).value = myHero.Exp;
+        GetText((int)Texts.ExpText).text = $"{myHero.GetExpNormalized() * 100}%";
     }
+
+    public void OnHpChanged()
+    {
+        RefreshUI();
+    }
+
+    #region Onclick
+
+    private void OnClickInventory(PointerEventData eventData)
+    {
+        Managers.UI.ShowToast("TODO OnClickInventory");
+    }
+
+    private void OnClickHeroInfo(PointerEventData eventData)
+    {
+        Managers.UI.ShowToast("TODO OnClickHeroInfo");
+    }
+
+    private void OnClickSkillInfo(PointerEventData eventData)
+    {
+        Managers.UI.ShowToast("TODO OnClickSkillInfo");
+    }
+    #endregion
 }

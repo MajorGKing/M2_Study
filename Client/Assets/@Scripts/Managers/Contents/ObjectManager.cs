@@ -120,8 +120,7 @@ public class ObjectManager
         _objects.Add(objectInfo.ObjectId, go);
         Monster monster = Utils.GetOrAddComponent<Monster>(go);
         monster.SetInfo(templateId);
-        monster.ObjectId = objectInfo.ObjectId;
-        monster.PosInfo = objectInfo.PosInfo;
+        monster.InitMonster(info);
         _monsters.Add(objectInfo.ObjectId, monster);
 
         monster.SyncWorldPosWithCellPos();
@@ -244,6 +243,25 @@ public class ObjectManager
         }
 
         return null;
+    }
+
+    public Monster FindClosestMonster()
+    {
+        List<Monster> monsters = _monsters.Values.ToList();
+
+        int minDist = int.MaxValue;
+        Monster closestMonster = null;
+        foreach (Monster monster in monsters)
+        {
+            int dist = Managers.Object.MyHero.GetDistance(monster);
+            if(dist < minDist)
+            {
+                minDist = dist;
+                closestMonster = monster;
+            }
+        }
+
+        return closestMonster;
     }
 
     public List<T> FindAllComponents<T>(Func<T, bool> condition) where T : UnityEngine.Component

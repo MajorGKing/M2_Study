@@ -172,6 +172,8 @@ public class BaseObject : MonoBehaviour
             case EObjectState.Dead:
                 PlayAnimation(0, AnimName.DEAD, false);
                 break;
+            default:
+                break;
         }
     }
 

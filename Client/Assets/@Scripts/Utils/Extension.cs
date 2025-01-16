@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Google.Protobuf.Protocol;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -19,6 +20,20 @@ public static class Extension
     public static bool IsValid(this GameObject go)
     {
         return go != null && go.activeSelf;
+    }
+
+    public static bool IsValid(this BaseObject bc)
+    {
+        if (bc == null || bc.isActiveAndEnabled == false)
+            return false;
+
+        switch (bc.ObjectType)
+        {
+            case EGameObjectType.Monster:
+            case EGameObjectType.Hero:
+                return ((Creature)bc).ObjectState != EObjectState.Dead;
+        }
+        return true;
     }
    
     public static void MakeMask(this ref LayerMask mask, List<Define.ELayer> list)

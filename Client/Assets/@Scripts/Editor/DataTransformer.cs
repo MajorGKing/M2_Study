@@ -22,9 +22,16 @@ public class DataTransformer : EditorWindow
     public static void ParseExcelDataToJson()
     {
         ParseExcelDataToJson<TextDataLoader, TextData>("Text");
-        ParseExcelDataToJson<HeroDataLoader, HeroData>("Hero");
+        ParseExcelDataToJson<BaseStatDataLoader, BaseStatData>("BaseStat");
+        //ParseExcelDataToJson<HeroDataLoader, HeroData>("Hero");
+
+        ParseSODataToJson<HeroDataLoader, HeroData>("Hero");
+        ParseSODataToJson<MonsterDataLoader, MonsterData>("Monster");
         ParseSODataToJson<SkillDataLoader, SkillData>("Skill");
+        ParseSODataToJson<EffectDataLoader, EffectData>("Effect");
         ParseSODataToJson<QuestDataLoader, QuestData>("Quest");
+        ParseSODataToJson<ProjectileDataLoader, ProjectileData>("Projectile");
+
 
         Debug.Log("Complete DataTransformer");
     }

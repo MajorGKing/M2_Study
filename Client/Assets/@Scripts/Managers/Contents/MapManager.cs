@@ -58,6 +58,29 @@ public class MapManager
         }
     }
 
+    public Vector3Int? FindRandomCellPos(BaseObject self, int delta)
+    {
+        List<Vector3Int> randPos = new List<Vector3Int>();
+
+        for (int x = -delta; x <= delta; x++)
+        {
+            for (int y = -delta; y <= delta; y++)
+            {
+                randPos.Add(new Vector3Int(self.CellPos.x + x, self.CellPos.y + y, 0));
+            }
+        }
+
+        randPos.Shuffle();
+
+        foreach (Vector3Int pos in randPos)
+        {
+            if (CanGo(self, pos))
+                return pos;
+        }
+
+        return null;
+    }
+
     public bool CanGo(BaseObject self, Vector3 worldPos, bool ignoreObjects = false)
     {
         return CanGo(self, World2Cell(worldPos), ignoreObjects);

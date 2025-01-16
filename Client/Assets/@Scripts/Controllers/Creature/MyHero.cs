@@ -25,7 +25,7 @@ public class MyHero : Hero
     public MyHeroInfo MyHeroInfo { get; set; }
     public BaseObject SelectedObject { get; private set; }
 
-    private Creature Target { get; set; }
+    public Creature Target { get; set; }
     //private Creature Target { get => Target; set => Target = value; }
 
     // 이동 패킷 전송 관련 (일종의 dirty flag)
@@ -77,6 +77,31 @@ public class MyHero : Hero
     private bool _isAutoMode = false;
     [SerializeField] private EJoystickState _joystickState;
 
+    #region MyHeroInfo Values
+    public int Level
+    {
+        get { return MyHeroInfo.HeroInfo.Level; }
+        private set { MyHeroInfo.HeroInfo.Level = value; }
+    }
+
+    public int Gold
+    {
+        get { return MyHeroInfo.CurrencyInfo.Gold; }
+        private set { MyHeroInfo.CurrencyInfo.Gold = value; }
+    }
+
+    public int Dia
+    {
+        get { return MyHeroInfo.CurrencyInfo.Dia; }
+        private set { MyHeroInfo.CurrencyInfo.Dia = value; }
+    }
+
+    public int Exp
+    {
+        get { return MyHeroInfo.Exp; }
+        private set { MyHeroInfo.Exp = value; }
+    }
+    #endregion
 
     #region LifeCycle
 
@@ -152,39 +177,102 @@ public class MyHero : Hero
     #endregion
 
     #region AI (FSM)
-    protected override void UpdateIdle()
+    bool ChaseTargetOrUseAvailableSkill()
     {
-        base.UpdateIdle();
-
-        // 1. 이동 위치를 찍음.
-        if (_desiredDestPos.HasValue)
+        // 1-1. 타겟이 여전히 유효한지 확인.
+        if (Target.IsValid() == false)
         {
-            // 이동
-            EFindPathResult res = FindPathToCellPos(_desiredDestPos.Value, Define.HERO_DEFAULT_MOVE_DEPTH, out List<Vector3Int> path);
+            ObjectState = EObjectState.Idle;
+            return true;
+        }
+
+        _desiredDestPos = null;
+
+        int dist = GetDistance(Target);
+        int skillRange = GetNextUseSkillDistance(Target);
+
+        // 1-2. 너무 멀면 타겟에 가까이 다가감.
+        if (dist > skillRange)
+        {
+            EFindPathResult res = FindPathToCellPos(Target.CellPos, HERO_DEFAULT_MOVE_DEPTH, out List<Vector3Int> path);
             if (res == EFindPathResult.Success)
             {
                 DestPos = path[1];
-                return;
+                ObjectState = EObjectState.Move;
+                HeroMoveState = EHeroMoveState.TargetMonster;
+                return true;
             }
         }
 
-        if (LerpCellPosCompleted == false)
+        // 1-3. 사용할 수 있는 스킬이 있으면 사용.
+        Skill skill = GetNextUseSkill(Target);
+        if (skill != null)
         {
-            ObjectState = EObjectState.Move;
-            return;
+            ObjectState = EObjectState.Skill;
+            return true;
+        }
+
+        return false;
+    }
+    protected override void UpdateIdle()
+    {
+        // 1. 자동 사냥 모드 처리.
+        if (_isAutoMode)
+        {
+            // 1-1. 타겟 검색.
+            if (Target.IsValid() == false)
+                Target = Managers.Object.FindClosestMonster();
+
+            // 1-2. 타겟이 없으면. 주기적으로 정찰.
+            if (Target.IsValid() == false)
+            {
+                Vector3Int? cellPos = Managers.Map.FindRandomCellPos(this, 10);
+
+                if (cellPos != null)
+                    _desiredDestPos = Managers.Map.Cell2World(cellPos.Value);
+            }
+        }
+
+        // 2. 타겟이 있다면.
+        if (Target.IsValid())
+        {
+            // 2-1. 공용 코드 실행.
+            if (ChaseTargetOrUseAvailableSkill())
+                return;
+        }
+
+        // 3. 이동 목적지가 결정됨.
+        if (_desiredDestPos.HasValue)
+        {
+            EFindPathResult destRes = FindPathToCellPos(_desiredDestPos.Value, HERO_DEFAULT_MOVE_DEPTH, out List<Vector3Int> destPath);
+            if (destRes == EFindPathResult.Success)
+            {
+                DestPos = destPath[1];
+                ObjectState = EObjectState.Move;
+                HeroMoveState = EHeroMoveState.MoveToDesiredPos;
+                return;
+            }
         }
     }
 
     protected override void UpdateMove()
-    {   
-        // base.UpdateMove();
-        if (_heroMoveState == EHeroMoveState.ForceMove)
+    {
+        if (LerpCellPosCompleted == false)
+            return;
+
+        // 1. 타겟이 있음.
+        if (HeroMoveState == EHeroMoveState.TargetMonster)
         {
-            // 이동
+            // 1-1. 공용 코드 실행.
+            if (ChaseTargetOrUseAvailableSkill())
+                return;
+        }
+        else
+        {
+            // 2. 목적지 향해 이동.
             if (_desiredDestPos.HasValue)
             {
-                List<Vector3Int> path = new List<Vector3Int>();
-                EFindPathResult res = FindPathToCellPos(_desiredDestPos.Value, HERO_DEFAULT_MOVE_DEPTH, out path);
+                EFindPathResult res = FindPathToCellPos(_desiredDestPos.Value, HERO_DEFAULT_MOVE_DEPTH, out List<Vector3Int> path);
                 if (res == EFindPathResult.Success)
                 {
                     DestPos = path[1];
@@ -193,19 +281,30 @@ public class MyHero : Hero
             }
         }
 
-        // 이동 끝났으면.
-        if (LerpCellPosCompleted)
-        {
-            ObjectState = EObjectState.Idle;
-            _desiredDestPos = null;
-            DespawnMoveCursor();
-            return;
-        }
+        // 3. 이동 불가.
+        ObjectState = EObjectState.Idle;
+        _desiredDestPos = null;
+        DespawnMoveCursor();
     }
 
     protected override void UpdateSkill()
     {
-        base.UpdateSkill();
+        // 1. 스킬 사용중이면 리턴
+        if (_coWait != null)
+            return;
+
+        // 2. 사용할 수 있는 스킬이 있으면 사용.
+        Skill skill = GetNextUseSkill(Target);
+        if (skill != null)
+        {
+            LookAtTarget(Target);
+            ReqUseSkill(skill.TemplateId);
+            return;
+        }
+
+        // 3. 공용 코드 실행.
+        if (ChaseTargetOrUseAvailableSkill())
+            return;
 
     }
 
@@ -221,19 +320,9 @@ public class MyHero : Hero
     protected override void UpdateAnimation()
     {
         base.UpdateAnimation();
-        switch (ObjectState)
-        {
-            case EObjectState.Idle:
-                HeroMoveState = EHeroMoveState.None;
-                break;
-            case EObjectState.Skill:
-                HeroMoveState = EHeroMoveState.None;
-                break;
-            case EObjectState.Move:
-                break;
-            case EObjectState.Dead:
-                break;
-        }
+
+        if (ObjectState != EObjectState.Move)
+            HeroMoveState = EHeroMoveState.None;
     }
     void UpdateInput()
     {
@@ -243,8 +332,6 @@ public class MyHero : Hero
                 return;
 
             // UI 클릭을 무시
-            //if (EventSystem.current.IsPointerOverGameObject())
-            //    return;
             if (IsPointerOverUIObject(Input.mousePosition))
                 return;
 
@@ -311,15 +398,17 @@ public class MyHero : Hero
     {
         if (_sendMovePacket)
         {
+            _sendMovePacket = false;
+
             C_Move movePacket = new C_Move() { PosInfo = new PositionInfo() };
             movePacket.PosInfo.MergeFrom(PosInfo);
             movePacket.PosInfo.State = EObjectState.Move;
             movePacket.PosInfo.PosX = DestPos.x;
             movePacket.PosInfo.PosY = DestPos.y;
+            
             Managers.Network.GameServer.Send(movePacket);
-            _sendMovePacket = false;
 
-            Debug.Log($@"@>> C_Move , {DestPos.x},{DestPos.y}");
+            //Debug.Log($@"@>> C_Move , {DestPos.x},{DestPos.y}");
         }
     }
 
@@ -338,20 +427,15 @@ public class MyHero : Hero
     private void ForceMove(EMoveDir dir)
     {
         if (dir == EMoveDir.None)
-        {
             return;
-        }
 
         if (LerpCellPosCompleted == false)
-        {
             return;
-        }
 
-        HeroMoveState = EHeroMoveState.ForceMove;
         MoveDir = dir;
         Vector3Int dest = CellPos + Managers.Map.GetFrontCellPos(dir);
-        _desiredDestPos = Managers.Map.Cell2World(dest);
-        _isAutoMode = false;
+        Vector3 pos = Managers.Map.Cell2World(dest);
+        ForceMove(pos);
     }
 
     private void ForceMove(Vector3 pos)
@@ -380,6 +464,12 @@ public class MyHero : Hero
             Managers.UI.ShowToast("TODO 대상이 없습니다.");
             return;
         }
+
+        Creature target = SelectedObject as Creature;
+        if (target.IsValid())
+        {
+            Target = target;
+        }
     }
 
     private void OnClickPickup()
@@ -388,6 +478,38 @@ public class MyHero : Hero
     #endregion
 
     #region Skill
+
+    int GetNextUseSkillDistance(Creature target)
+    {
+        // 1. 다음에 사용할 스킬 거리 반환.
+        Skill skill = GetNextUseSkill(target);
+        if (skill != null)
+            return skill.SkillData.SkillRange;
+
+        // 2. 스킬이 다 쿨 돌고 있으면 기본 스킬 사거리로.
+        Skill mainSkill = Managers.Skill.GetMainSkill();
+        if (mainSkill != null)
+            return mainSkill.SkillData.SkillRange;
+
+        return 0;
+    }
+
+    Skill GetNextUseSkill(Creature target)
+    {
+        List<Skill> skills = Managers.Skill.GetAllSkills(excludeMainSkill: true);
+        foreach (Skill skill in skills)
+        {
+            if (skill.CanUseSkill(target) == ECanUseSkillFailReason.None)
+                return skill;
+        }
+
+        Skill mainSKill = Managers.Skill.GetMainSkill();
+        if (mainSKill.CanUseSkill(target) == ECanUseSkillFailReason.None)
+            return mainSKill;
+
+        return null;
+    }
+
     public void ReqUseSkill(int templateId)
     {
         if (ObjectState == EObjectState.Dead)
@@ -399,8 +521,68 @@ public class MyHero : Hero
 
         _skillPacket.TemplateId = templateId;
 
+        if (skillData.UseSkillTargetType == EUseSkillTargetType.Self)
+            _skillPacket.TargetId = ObjectId;
+        else
+            _skillPacket.TargetId = Target.ObjectId;
 
+        Managers.Network.GameServer.Send(_skillPacket);
+
+        StartWait(0.1f);
     }
+    #endregion
+
+    #region Level System
+    public void AddExp(int amount)
+    {
+        if (IsMaxLevel())
+            return;
+
+        Exp += amount;
+        while (!IsMaxLevel() && Exp >= GetExpToNextLevel())
+        {
+            Exp -= GetExpToNextLevel();
+            Level++;
+        }
+    }
+
+    public bool CanLevelUp()
+    {
+        return (GetExpToNextLevel() - Exp <= 0);
+    }
+
+    public float GetExpNormalized()
+    {
+        if (IsMaxLevel())
+        {
+            return 1f;
+        }
+
+        return (float)Exp / GetExpToNextLevel();
+    }
+
+    public int GetExpToNextLevel()
+    {
+        if (Managers.Data.BaseStatDic.TryGetValue(Level, out BaseStatData data))
+        {
+            return data.Exp;
+        }
+        else
+        {
+            return 100;
+        }
+    }
+
+    public bool IsMaxLevel()
+    {
+        return IsMaxLevel(Level);
+    }
+
+    public bool IsMaxLevel(int level)
+    {
+        return level == Managers.Data.BaseStatDic.Count;
+    }
+
     #endregion
 
     #region PacketHandler

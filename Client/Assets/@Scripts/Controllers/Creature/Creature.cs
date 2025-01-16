@@ -28,6 +28,10 @@ public class Creature : BaseObject
         get { return TotalStat.Hp; }
         set
         {
+            if(ObjectType == EGameObjectType.Monster)
+            {
+                Debug.Log($"{name} : { TotalStat.Hp }");
+            }
             TotalStat.Hp = Math.Clamp(value, 0, TotalStat.MaxHp);
             UpdateHpBar();
         }

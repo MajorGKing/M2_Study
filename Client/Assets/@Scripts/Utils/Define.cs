@@ -54,7 +54,7 @@ public class Define
     {
         None,
         TargetMonster,
-        ForceMove,
+        MoveToDesiredPos,
     }
 
     public enum EJoystickState

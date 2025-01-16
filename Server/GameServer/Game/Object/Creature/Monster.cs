@@ -42,7 +42,9 @@ namespace GameServer
             MonsterData = monsterData;
             BaseStat.MergeFrom(monsterData.Stat.StatInfo);
             BaseStat.Hp = BaseStat.MaxHp;
+            CreatureInfo.TotalStatInfo = BaseStat;
             TotalStat.MergeFrom(BaseStat);
+            CreatureInfo.TotalStatInfo.MergeFrom(TotalStat);
 
             State = EObjectState.Idle;
             Boss = monsterData.IsBoss;

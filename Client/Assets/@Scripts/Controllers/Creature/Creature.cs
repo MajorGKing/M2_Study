@@ -11,6 +11,7 @@ public class Creature : BaseObject
     public Dictionary< /*effectId*/int, GameObject> EffectParticles = new Dictionary< /*effectId*/int, GameObject>();
     public Dictionary< /*effectId*/int, EffectData> CurrentEffects = new Dictionary< /*effectId*/int, EffectData>();
 
+    public DamageFontController DamageFontController { get; set; }
     protected UI_HPBar _hpBar;
 
     protected CreatureInfo _creatureInfo { get; set; } = new CreatureInfo();
@@ -28,10 +29,6 @@ public class Creature : BaseObject
         get { return TotalStat.Hp; }
         set
         {
-            if(ObjectType == EGameObjectType.Monster)
-            {
-                Debug.Log($"{name} : { TotalStat.Hp }");
-            }
             TotalStat.Hp = Math.Clamp(value, 0, TotalStat.MaxHp);
             UpdateHpBar();
         }
@@ -100,6 +97,7 @@ public class Creature : BaseObject
     {
         TemplateId = templateId;
         SetSpineAnimation(SortingLayers.HERO, "SkeletonAnimation");
+        DamageFontController = gameObject.GetOrAddComponent<DamageFontController>();
     }
 
     protected void AddHpBar()
@@ -264,6 +262,12 @@ public class Creature : BaseObject
             // 1-2. 이펙트 파티클 소멸 예약.
             if (effectData.DurationPolicy == EDurationPolicy.Duration)
                 StartCoroutine(CoRemoveEffect(packet.EffectId, packet.RemainingTicks));
+        }
+
+        // 2. 필요한 경우 데미지폰트 추가
+        if (effectData.EffectType == EEffectType.BuffStun)
+        {
+            DamageFontController.AddDamageFont(0, transform, EDamageType.Stun);
         }
     }
 

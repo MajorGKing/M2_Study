@@ -53,9 +53,33 @@ namespace GameServer
             SkillComp.RegisterSkill(monsterData.MainSkill.TemplateId);
         }
 
+        public override bool IsEnemy(BaseObject target)
+        {
+            if (base.IsEnemy(target) == false)
+                return false;
+
+            if (target.ObjectType == EGameObjectType.Hero)
+                return true;
+
+            return false;
+        }
+
         public override void Update()
         {
             _ai.Update();
+        }
+
+        public override float OnDamaged(BaseObject attacker, float damage)
+        {
+            float ret = base.OnDamaged(attacker, damage);
+
+            // 비선공몹은 데미지를 입으면 반격함
+            if (MonsterData.IsAggressive == false)
+            {
+                _ai.OnDamaged(attacker, damage);
+            }
+
+            return ret;
         }
 
     }

@@ -39,7 +39,7 @@ namespace GameServer.Game
 
             //owner.Hp -= effectData.DamageValue;
 
-            Console.WriteLine($"HP : {owner.Hp} \tDamaged : {effectData.DamageValue}");
+            Console.WriteLine($"Try HP : {owner.Hp} \tDamaged : {effectData.DamageValue}");
 
             if(effectData.DamageValue > 0)
                 owner.OnDamaged(caster, effectData.DamageValue);

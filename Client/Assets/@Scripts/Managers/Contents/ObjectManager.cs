@@ -203,15 +203,6 @@ public class ObjectManager
         Managers.Resource.Destroy(go);
     }
 
-    public void ShowDamageFont(Vector2 pos, float damage, Transform parent, EDamageType result)
-    {
-        string prefabName = "DamageFont";
-
-        GameObject go = Managers.Resource.Instantiate(prefabName, pooling: true);
-        DamageFont damageText = go.GetComponent<DamageFont>();
-        damageText.SetInfo(pos, damage, parent, result);
-    }
-
     public GameObject FindById(int id)
     {
         GameObject go = null;

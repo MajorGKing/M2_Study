@@ -191,9 +191,13 @@ class PacketHandler
         {
             int damage = (int)changePacket.Damage;
             cc.Hp = changePacket.Hp;
-            Managers.Object.ShowDamageFont(cc.CenterPos, damage, cc.transform, changePacket.DamageType);
+            cc.Mp = changePacket.Mp;
+            //Managers.Object.ShowDamageFont(cc.CenterPos, damage, cc.transform, changePacket.DamageType);
+            cc.DamageFontController.AddDamageFont(damage, cc.transform, changePacket.DamageType);
         }
 
+        var gameScene = Managers.UI.GetSceneUI<UI_GameScene>();
+        gameScene.OnHpChanged();
     }
 
     // TODO

@@ -1,11 +1,8 @@
 ﻿using GameServer.Game;
 using Google.Protobuf.Protocol;
 using Server.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ServerCore;
+using System.Collections.ObjectModel;
 
 namespace GameServer
 {
@@ -16,6 +13,7 @@ namespace GameServer
         public EffectComponent EffectComp { get; protected set; }
         public CreatureInfo CreatureInfo { get; private set; } = new CreatureInfo();
         public StatInfo BaseStat { get; protected set; } = new StatInfo();
+        public StatInfo BonusStat { get; protected set; } = new StatInfo();
         public StatInfo TotalStat { get; protected set; } = new StatInfo();
 
         public static readonly Dictionary<EStatType, Func<StatInfo, float>> StatGetters = new Dictionary<EStatType, Func<StatInfo, float>>()
@@ -63,8 +61,10 @@ namespace GameServer
         };
 
         public float GetBaseStat(EStatType statType) { return StatGetters[statType](BaseStat); }
+        public float GetBonusStat(EStatType statType) { return StatGetters[statType](BonusStat); }
         public float GetTotalStat(EStatType statType) { return StatGetters[statType](TotalStat); }
         public void SetBaseStat(EStatType statType, float value) { StatSetters[statType](BaseStat, value); }
+        public void SetBonusStat(EStatType statType, float value) { StatSetters[statType](BonusStat, value); }
         public void SetTotalStat(EStatType statType, float value)
         {
             StatSetters[statType](TotalStat, value);
@@ -74,13 +74,13 @@ namespace GameServer
         public float Hp
         {
             get { return TotalStat.Hp; }
-            set { TotalStat.Hp = Math.Clamp(value, 0, TotalStat.MaxHp); }
+            set { SetTotalStat(EStatType.Hp, Math.Clamp(value, 0, TotalStat.MaxHp)); }
         }
         
         public float Mp
         {
             get { return TotalStat.Mp; }
-            set { TotalStat.Mp = Math.Clamp(value, 0, TotalStat.MaxMp); }
+            set { SetTotalStat(EStatType.Mp, Math.Clamp(value, 0, TotalStat.MaxMp)); }
         }
 
         public float MoveSpeed
@@ -138,12 +138,18 @@ namespace GameServer
                 return 0;
 
             // 데미지 감소
-            damage = damage - (TotalStat.Defence * damage);
+            damage = Math.Max(damage - TotalStat.Defence, 0);
+
+            Console.WriteLine($"{ObjectId} HP : {TotalStat.Hp} \tDamaged : {damage}");
+
             TotalStat.Hp = Math.Max(TotalStat.Hp - damage, 0);
+
+            Console.WriteLine($"{ObjectId} Changed HP : {TotalStat.Hp}");
 
             S_ChangeHp changePacket = new S_ChangeHp();
             changePacket.ObjectId = ObjectId;
             changePacket.Hp = TotalStat.Hp;
+            changePacket.Mp = TotalStat.Mp;
             changePacket.Damage = damage;
             changePacket.DamageType = EDamageType.Hit;
             Room.Broadcast(CellPos, changePacket);
@@ -174,6 +180,32 @@ namespace GameServer
         public virtual bool IsFriend(BaseObject target)
         {
             return IsEnemy(target) == false;
+        }
+
+        public void Heal(EStatType statType, int add)
+        {
+            if (add == 0)
+                return;
+
+            if (State == EObjectState.Dead)
+                return;
+
+            if (statType == EStatType.Hp)
+                Hp = Math.Min(Hp + add, GetTotalStat(EStatType.MaxHp));
+            else if (statType == EStatType.Mp)
+                Mp = Math.Min(Mp + add, GetTotalStat(EStatType.MaxMp));
+
+            S_ChangeHp changePacket = new S_ChangeHp();
+            changePacket.ObjectId = ObjectId;
+            changePacket.Hp = Hp;
+            changePacket.Mp = Mp;
+            changePacket.Damage = add;
+            if (statType == EStatType.Hp)
+                changePacket.DamageType = EDamageType.HealHp;
+            else
+                changePacket.DamageType = EDamageType.HealMp;
+
+            Room?.Broadcast(CellPos, changePacket);
         }
 
         public virtual void Reset()

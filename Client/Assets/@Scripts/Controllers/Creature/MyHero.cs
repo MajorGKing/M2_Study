@@ -530,6 +530,13 @@ public class MyHero : Hero
 
         StartWait(0.1f);
     }
+
+    public override void HandleSkillPacket(S_Skill packet)
+    {
+        base.HandleSkillPacket(packet);
+
+        Managers.Skill.UpdateCooltime(packet.TemplateId);
+    }
     #endregion
 
     #region Level System

@@ -36,6 +36,9 @@ namespace GameServer
                     Name = reqPacket.Name,
                     Gender = reqPacket.Gender,
                     ClassType = reqPacket.ClassType,
+                    Level = 1,
+                    Hp = -1,
+                    Mp = -1,
                 };
 
                 db.Heroes.Add(heroDb);

@@ -1,6 +1,7 @@
 ﻿using Google.Protobuf.Protocol;
 using Server.Data;
 using Server.Game;
+using System.Xml;
 
 namespace GameServer.Game
 {
@@ -21,6 +22,9 @@ namespace GameServer.Game
         #region 스킬 사용
         public Skill GetSkill(int templatedId)
         {
+            //if(Owner.ObjectType == EGameObjectType.Hero)
+            //    Console.WriteLine($"Skill : {templatedId}" );
+
             if(_skills.TryGetValue(templatedId, out Skill skill))
                 return skill;
 

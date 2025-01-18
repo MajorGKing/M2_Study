@@ -2,13 +2,268 @@
   "datas": [
     {
       "SoundLabel": "",
+      "EffectType": 3,
+      "DurationPolicy": 2,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "HealValue": 0.0,
+      "StatValues": [
+        {
+          "StatType": 6,
+          "AddValue": 5.0
+        },
+        {
+          "StatType": 16,
+          "AddValue": 1.0
+        },
+        {
+          "StatType": 13,
+          "AddValue": 1.0
+        }
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "TemplateId": 1000,
+      "Name": "공격력을 30퍼센트 증가",
+      "NameTextId": "",
+      "DescriptionTextID": "",
+      "IconImage": "",
+      "PrefabName": "",
+      "name": "SO_EFFECT_EQUIP_1000",
+      "hideFlags": 0
+    },
+    {
+      "SoundLabel": "",
+      "EffectType": 3,
+      "DurationPolicy": 2,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "HealValue": 0.0,
+      "StatValues": [
+        {
+          "StatType": 6,
+          "AddValue": 6.0
+        },
+        {
+          "StatType": 16,
+          "AddValue": 2.0
+        },
+        {
+          "StatType": 13,
+          "AddValue": 2.0
+        }
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "TemplateId": 1001,
+      "Name": "공격력을 30퍼센트 증가",
+      "NameTextId": "",
+      "DescriptionTextID": "",
+      "IconImage": "",
+      "PrefabName": "",
+      "name": "SO_EFFECT_EQUIP_1001",
+      "hideFlags": 0
+    },
+    {
+      "SoundLabel": "",
+      "EffectType": 3,
+      "DurationPolicy": 2,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "HealValue": 0.0,
+      "StatValues": [
+        {
+          "StatType": 6,
+          "AddValue": 7.0
+        },
+        {
+          "StatType": 16,
+          "AddValue": 3.0
+        },
+        {
+          "StatType": 13,
+          "AddValue": 3.0
+        }
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "TemplateId": 1002,
+      "Name": "공격력을 30퍼센트 증가",
+      "NameTextId": "",
+      "DescriptionTextID": "",
+      "IconImage": "",
+      "PrefabName": "",
+      "name": "SO_EFFECT_EQUIP_1002",
+      "hideFlags": 0
+    },
+    {
+      "SoundLabel": "",
+      "EffectType": 3,
+      "DurationPolicy": 2,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "HealValue": 0.0,
+      "StatValues": [
+        {
+          "StatType": 6,
+          "AddValue": 8.0
+        },
+        {
+          "StatType": 16,
+          "AddValue": 4.0
+        },
+        {
+          "StatType": 13,
+          "AddValue": 4.0
+        }
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "TemplateId": 1003,
+      "Name": "공격력을 30퍼센트 증가",
+      "NameTextId": "",
+      "DescriptionTextID": "",
+      "IconImage": "",
+      "PrefabName": "",
+      "name": "SO_EFFECT_EQUIP_1003",
+      "hideFlags": 0
+    },
+    {
+      "SoundLabel": "",
+      "EffectType": 3,
+      "DurationPolicy": 2,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "HealValue": 0.0,
+      "StatValues": [
+        {
+          "StatType": 0,
+          "AddValue": 50.0
+        },
+        {
+          "StatType": 16,
+          "AddValue": 1.0
+        },
+        {
+          "StatType": 13,
+          "AddValue": 1.0
+        }
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "TemplateId": 1100,
+      "Name": "공격력을 30퍼센트 증가",
+      "NameTextId": "",
+      "DescriptionTextID": "",
+      "IconImage": "",
+      "PrefabName": "",
+      "name": "SO_EFFECT_EQUIP_1100",
+      "hideFlags": 0
+    },
+    {
+      "SoundLabel": "",
+      "EffectType": 3,
+      "DurationPolicy": 2,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "HealValue": 0.0,
+      "StatValues": [
+        {
+          "StatType": 0,
+          "AddValue": 100.0
+        },
+        {
+          "StatType": 16,
+          "AddValue": 2.0
+        },
+        {
+          "StatType": 13,
+          "AddValue": 2.0
+        }
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "TemplateId": 1101,
+      "Name": "공격력을 30퍼센트 증가",
+      "NameTextId": "",
+      "DescriptionTextID": "",
+      "IconImage": "",
+      "PrefabName": "",
+      "name": "SO_EFFECT_EQUIP_1101",
+      "hideFlags": 0
+    },
+    {
+      "SoundLabel": "",
+      "EffectType": 3,
+      "DurationPolicy": 2,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "HealValue": 0.0,
+      "StatValues": [
+        {
+          "StatType": 0,
+          "AddValue": 150.0
+        },
+        {
+          "StatType": 16,
+          "AddValue": 3.0
+        },
+        {
+          "StatType": 13,
+          "AddValue": 3.0
+        }
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "TemplateId": 1102,
+      "Name": "공격력을 30퍼센트 증가",
+      "NameTextId": "",
+      "DescriptionTextID": "",
+      "IconImage": "",
+      "PrefabName": "",
+      "name": "SO_EFFECT_EQUIP_1102",
+      "hideFlags": 0
+    },
+    {
+      "SoundLabel": "",
+      "EffectType": 3,
+      "DurationPolicy": 2,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "HealValue": 0.0,
+      "StatValues": [
+        {
+          "StatType": 0,
+          "AddValue": 200.0
+        },
+        {
+          "StatType": 16,
+          "AddValue": 4.0
+        },
+        {
+          "StatType": 13,
+          "AddValue": 4.0
+        }
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "TemplateId": 1103,
+      "Name": "공격력을 30퍼센트 증가",
+      "NameTextId": "",
+      "DescriptionTextID": "",
+      "IconImage": "",
+      "PrefabName": "",
+      "name": "SO_EFFECT_EQUIP_1103",
+      "hideFlags": 0
+    },
+    {
+      "SoundLabel": "",
       "EffectType": 4,
       "DurationPolicy": 1,
       "Duration": 5.0,
       "DamageValue": 0.0,
       "HealValue": 0.0,
-      "StatType": 6,
-      "StatAddValue": 0.0,
+      "StatValues": null,
       "LifeStealValue": 0.0,
       "StunValue": 0.0,
       "TemplateId": 4,
@@ -22,33 +277,12 @@
     },
     {
       "SoundLabel": "",
-      "EffectType": 3,
-      "DurationPolicy": 1,
-      "Duration": 5.0,
-      "DamageValue": 0.0,
-      "HealValue": 0.0,
-      "StatType": 6,
-      "StatAddValue": 0.0,
-      "LifeStealValue": 0.0,
-      "StunValue": 0.0,
-      "TemplateId": 5,
-      "Name": "공격력을 30퍼센트 증가",
-      "NameTextId": null,
-      "DescriptionTextID": "",
-      "IconImage": null,
-      "PrefabName": "",
-      "name": "SO_Effect_AtkUp",
-      "hideFlags": 0
-    },
-    {
-      "SoundLabel": "",
       "EffectType": 1,
       "DurationPolicy": 0,
       "Duration": 0.0,
-      "DamageValue": 5.0,
+      "DamageValue": 1.0,
       "HealValue": 0.0,
-      "StatType": 6,
-      "StatAddValue": 0.0,
+      "StatValues": [],
       "LifeStealValue": 0.0,
       "StunValue": 0.0,
       "TemplateId": 1,
@@ -65,10 +299,9 @@
       "EffectType": 1,
       "DurationPolicy": 0,
       "Duration": 0.0,
-      "DamageValue": 0.0,
+      "DamageValue": 1.5,
       "HealValue": 0.0,
-      "StatType": 6,
-      "StatAddValue": 0.0,
+      "StatValues": [],
       "LifeStealValue": 0.0,
       "StunValue": 0.0,
       "TemplateId": 2,
@@ -85,10 +318,9 @@
       "EffectType": 1,
       "DurationPolicy": 0,
       "Duration": 0.0,
-      "DamageValue": 0.0,
+      "DamageValue": 2.0,
       "HealValue": 0.0,
-      "StatType": 6,
-      "StatAddValue": 0.0,
+      "StatValues": [],
       "LifeStealValue": 0.0,
       "StunValue": 0.0,
       "TemplateId": 3,
@@ -107,8 +339,7 @@
       "Duration": 3.0,
       "DamageValue": 0.0,
       "HealValue": 0.0,
-      "StatType": 0,
-      "StatAddValue": 0.0,
+      "StatValues": null,
       "LifeStealValue": 0.0,
       "StunValue": 1.0,
       "TemplateId": 6,

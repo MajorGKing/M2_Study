@@ -140,11 +140,11 @@ namespace GameServer
             // 데미지 감소
             damage = Math.Max(damage - TotalStat.Defence, 0);
 
-            Console.WriteLine($"{ObjectId} HP : {TotalStat.Hp} \tDamaged : {damage}");
+            //Console.WriteLine($"{ObjectId}'s Defence is {TotalStat.Defence}. HP : {TotalStat.Hp} \tDamaged : {damage}");
 
             TotalStat.Hp = Math.Max(TotalStat.Hp - damage, 0);
 
-            Console.WriteLine($"{ObjectId} Changed HP : {TotalStat.Hp}");
+            //Console.WriteLine($"{ObjectId} Changed HP : {TotalStat.Hp}");
 
             S_ChangeHp changePacket = new S_ChangeHp();
             changePacket.ObjectId = ObjectId;
@@ -210,7 +210,6 @@ namespace GameServer
 
         public virtual void Reset()
         {
-            Console.WriteLine($"GetTotalStat(EStatType.MaxHp) {GetTotalStat(EStatType.MaxHp)}");
             Hp = Math.Max(0, GetTotalStat(EStatType.MaxHp));
             PosInfo.State = EObjectState.Idle;
 

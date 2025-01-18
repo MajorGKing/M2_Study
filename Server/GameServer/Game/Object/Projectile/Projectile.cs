@@ -82,7 +82,8 @@ namespace Server.Game
             // 이펙트(효과 및 데미지) 적용
             foreach (Creature t in targets)
             {
-                Console.WriteLine($"{Owner} attack {t.ObjectId} by projectile");
+                if(Owner.ObjectType == EGameObjectType.Hero)
+                    Console.WriteLine($"{Owner} attack {t.ObjectId} by projectile {SkillData.EffectData.Name}!");
                 t.EffectComp.ApplyEffect(SkillData.EffectData.TemplateId, Owner);
             }
 

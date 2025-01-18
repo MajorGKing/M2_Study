@@ -35,14 +35,12 @@ namespace GameServer.Game
             if (owner == null)
                 return;
 
-            Console.WriteLine($"effectData.DamageValue; : {effectData.DamageValue}");
+            float damage = caster.GetTotalStat(EStatType.Attack) * effectData.DamageValue;
 
-            //owner.Hp -= effectData.DamageValue;
-
-            Console.WriteLine($"Try HP : {owner.Hp} \tDamaged : {effectData.DamageValue}");
+            //Console.WriteLine($"{owner.ObjectId} Try {caster.ObjectId} HP : {owner.Hp} \tDamaged : {damage}");
 
             if(effectData.DamageValue > 0)
-                owner.OnDamaged(caster, effectData.DamageValue);
+                owner.OnDamaged(caster, damage);
         }
 
         public void Revert(Creature owner, EffectData effectData)

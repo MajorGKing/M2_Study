@@ -74,14 +74,14 @@ namespace Server.Game
                 // 2-2. 거리가 멀면 이동.
                 if (dist > _mainSkillRange)
                 {
-                    Console.WriteLine("Find Path and move");
+                    //Console.WriteLine("Find Path and move");
                     FindPathAndMove(_target.CellPos);
                     return;
                 }
 
                 // 2-3. 스킬로 넘어감.
                 {
-                    Console.WriteLine("Change Skill");
+                    //Console.WriteLine("Change Skill");
                     SetState(EObjectState.Skill);
                     return;
                 }
@@ -115,7 +115,7 @@ namespace Server.Game
                 return false;
             }
 
-            Console.WriteLine($"{Owner.ObjectId} : Do Find Path {path.Count}");
+            //Console.WriteLine($"{Owner.ObjectId} : Do Find Path {path.Count}");
 
             // 3. 이동 실행.
             Owner.Room.Map.ApplyMove(Owner, path[1]);

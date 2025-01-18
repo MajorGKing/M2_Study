@@ -22,6 +22,8 @@ namespace GameServer.Game
                 return false;
             if (CheckTargetAndRange(targetId) == false)
                 return false;
+            if (Owner.Mp < _skillData.Cost)
+                return false;
 
             return true;
         }
@@ -33,6 +35,8 @@ namespace GameServer.Game
             GameRoom room = Owner.Room;
             if (room == null)
                 return;
+            if (_skillData.Cost > 0)
+                Owner.Heal(EStatType.Mp, -_skillData.Cost);
 
             Creature target = GetUseSkillTarget(Owner, _skillData, targetId);
 
@@ -40,7 +44,10 @@ namespace GameServer.Game
             List<Creature> targets = GatherSkillEffectTargets(Owner, _skillData, target);
             foreach(Creature t in targets)
             {
-                Console.WriteLine($"{Owner} attack {t.ObjectId} by normal {_skillData.EffectData.Name}!");
+                //if(Owner.ObjectType == EGameObjectType.Hero)
+                //{
+                //    Console.WriteLine($"{Owner} attack {t.ObjectId} by normal {_skillData.EffectData.Name}!");
+                //}
                 room.PushAfter((int)(_skillData.DelayTime * 1000), AddEffect, t, Owner, _skillData.EffectData);
             }
 

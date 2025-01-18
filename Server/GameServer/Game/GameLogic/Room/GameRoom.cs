@@ -100,6 +100,11 @@ namespace GameServer
                     enterPacket.MyHeroInfo = hero.MyHeroInfo;
                     enterPacket.Respawn = respawn;
 
+                    // skill
+                    List<SkillCoolTime> cooltimes = hero.SkillComp.GetRemainingTicks();
+                    foreach (SkillCoolTime cooltime in cooltimes)
+                        enterPacket.Cooltimes.Add(cooltime);
+
                     hero.Session?.Send(enterPacket);
                 }
 
@@ -426,7 +431,8 @@ namespace GameServer
         public List<Creature> FindAdjacentCreatures(Vector2Int pos, Func<Creature, bool> condition = null, int cells = GameRoom.VisionCells)
         {
             List<Creature> objs = new List<Creature>();
-
+            objs.AddRange(FindAdjacentHeroes(pos, condition, cells));
+            objs.AddRange(FindAdjacentMonsters(pos, condition, cells));
             return objs;
         }
 

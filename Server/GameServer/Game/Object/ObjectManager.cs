@@ -41,7 +41,7 @@ namespace GameServer
         {
             lock (_lock)
             {
-                Console.WriteLine($"EGameObjectType is {type} and templateId {templateId}");
+                //Console.WriteLine($"EGameObjectType is {type} and templateId {templateId}");
                 return ((int)type << 28) | (templateId << 20) | (_counter++);
             }
         }

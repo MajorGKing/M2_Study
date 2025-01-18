@@ -37,12 +37,12 @@ namespace GameServer.Game
             {
                 for (int i = 0; i < respawnInfo.Count; i++)
                 {
-                    Console.WriteLine($"Monster TemplateId is : {respawnInfo.TemplateId}"); ;
+                    //Console.WriteLine($"Monster TemplateId is : {respawnInfo.TemplateId}"); ;
 
                     Monster monster = ObjectManager.Instance.Spawn<Monster>(respawnInfo.TemplateId);
                     _gameobjects.Add(monster.ObjectId, monster);
                     
-                    Console.WriteLine($"Monster ObjectId is : {monster.ObjectId}");
+                    //Console.WriteLine($"Monster ObjectId is : {monster.ObjectId}");
 
                     // 몬스터 생성.
                     Owner.Push(() => Owner.EnterGame(monster, true));

@@ -1,8 +1,6 @@
 {
   "quests": [
     {
-      "TemplateId": 12,
-      "Name": "",
       "QuestPeriodType": 1,
       "RewardType": 1,
       "RewardDataId": 14,
@@ -37,6 +35,12 @@
           "DialogueId": ""
         }
       ],
+      "TemplateId": 12,
+      "Name": "",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null,
       "name": "Quest001",
       "hideFlags": 0
     }

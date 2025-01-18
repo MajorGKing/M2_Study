@@ -61,7 +61,8 @@ namespace GameServer.Game
 
         void ApplyInstantEffect(EffectData effectData, Creature caster)
         {
-            Console.WriteLine($"Policy Apply {effectData.EffectType} : {effectData.DamageValue}");
+            if(Owner.ObjectType == EGameObjectType.Hero)
+                Console.WriteLine($"ApplyInstantEffect Apply {effectData.EffectType} : {effectData.DamageValue}");
             if (effectData == null)
                 return;
 
@@ -74,6 +75,8 @@ namespace GameServer.Game
 
         void ApplyDurationEffect(EffectData effectData, Creature caster, bool send)
         {
+            if (Owner.ObjectType == EGameObjectType.Hero)
+                Console.WriteLine($"ApplyDurationEffect Apply {effectData.EffectType} : {effectData.DamageValue}");
             if (effectData == null)
                 return;
             if (effectData.Duration == 0)

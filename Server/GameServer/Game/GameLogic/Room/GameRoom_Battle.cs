@@ -17,7 +17,7 @@ namespace GameServer
             PositionInfo movePosInfo = movePacket.PosInfo;
             ObjectInfo info = hero.ObjectInfo;
 
-            Console.WriteLine(movePosInfo.State);
+            //Console.WriteLine(movePosInfo.State);
 
             // TODO : 거리 검증 등
 
@@ -28,7 +28,7 @@ namespace GameServer
             info.PosInfo.MoveDir = movePosInfo.MoveDir;
             Map.ApplyMove(hero, new Vector2Int(movePosInfo.PosX, movePosInfo.PosY));
 
-            Console.WriteLine($"POSX : {movePosInfo.PosX} POSY : {movePosInfo.PosY}");
+            //Console.WriteLine($"POSX : {movePosInfo.PosX} POSY : {movePosInfo.PosY}");
 
             hero.BroadcastMove();
         }

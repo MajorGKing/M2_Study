@@ -478,6 +478,10 @@ public class MyHero : Hero
     #endregion
 
     #region Skill
+    public Creature GetSelectedTarget()
+    {
+        return SelectedObject as Creature;
+    }
 
     int GetNextUseSkillDistance(Creature target)
     {

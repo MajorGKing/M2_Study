@@ -11,6 +11,7 @@ public class Define
     public const int HERO_DEFAULT_MOVE_DEPTH = 8;
 
     public const int MAX_LOBBY_HERO_COUNT = 10;
+    public const int MAX_QUICKSLOT_COUNT = 5;
 
     public enum EEventType
     {

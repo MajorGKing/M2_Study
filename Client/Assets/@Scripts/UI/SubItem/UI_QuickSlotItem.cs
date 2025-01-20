@@ -87,21 +87,89 @@ public class UI_QuickSlotItem : UI_Base
 
     public void RefreshCooltimeUI()
     {
-
+        switch (_slotType)
+        {
+            case EQuickSlotType.Skill:
+                {
+                    float targetFillAmount = Managers.Skill.GetRemainingCoolTimeRatio(_skill.TemplateId);
+                    _cooltimeSprite.fillAmount = targetFillAmount;
+                }
+                break;
+        }
     }
 
     public void RefreshUI()
     {
+        switch (_slotType)
+        {
+            case EQuickSlotType.Skill:
+                GetText((int)Texts.CountText).gameObject.SetActive(false);
+                break;
+            default:
+                GetText((int)Texts.CountText).gameObject.SetActive(false);
+                break;
+        }
 
+        RefreshCooltimeUI();
     }
 
     void OnClickImage(PointerEventData evt)
     {
-
+        switch (_slotType)
+        {
+            case EQuickSlotType.Skill:
+                TryUseSkill();
+                break;
+        }
     }
 
     void OnClickAutoIcon(PointerEventData evt)
     {
         Debug.Log("OnClickAuto");
     }
+
+    #region Skill
+    void TryUseSkill()
+    {
+        if (_skill == null)
+            return;
+
+        MyHero hero = Managers.Object.MyHero;
+        if (hero == null)
+            return;
+
+        Creature target = hero.GetSelectedTarget();
+        if (target == null)
+        {
+            Managers.UI.ShowToast("TODO 타겟이 없습니다.");
+            return;
+        }
+
+        ECanUseSkillFailReason reason = _skill.CanUseSkill(target);
+        if (reason == ECanUseSkillFailReason.None)
+        {
+            hero.Target = target;
+            hero.ReqUseSkill(_skill.TemplateId);
+        }
+        else
+        {
+            switch (reason)
+            {
+                case ECanUseSkillFailReason.InvalidTarget:
+                    Managers.UI.ShowToast("TODO 타겟이 없습니다.");
+                    return;
+                case ECanUseSkillFailReason.Cooltime:
+                    Managers.UI.ShowToast("TODO 아직 사용 할 수 없습니다.");
+                    return;
+                case ECanUseSkillFailReason.SkillCost:
+                    Managers.UI.ShowToast("TODO 마나가 부족합니다.");
+                    return;
+                case ECanUseSkillFailReason.SkillRange:
+                    Managers.UI.ShowToast("TODO 너무 멀리 있습니다.");
+                    return;
+            }
+        }
+    }
+
+    #endregion
 }

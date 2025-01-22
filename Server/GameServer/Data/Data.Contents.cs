@@ -6,6 +6,13 @@ using System.Text;
 
 namespace Server.Data
 {
+    //엑셀 파싱에 제외할 어트리뷰트 정의
+    [AttributeUsage(AttributeTargets.Field)]
+    public class ExcludeFieldAttribute : Attribute
+    {
+    }
+
+    #region BaseData
     public class BaseData
     {
         public int TemplateId;
@@ -17,23 +24,15 @@ namespace Server.Data
     }
     public class CreatureData : BaseData
     {
-        public StatInfoWrapper Stat;
-    }
-
-    [Serializable]
-    public class StatInfoWrapper
-    {
-        public float MaxHp;
-        public float Hp;
-        public float HpRegen;
-        public float MaxMp;
-        public float Mp;
-        public float MpRegen;
-        public float Attack;
-        public float Defence;
-        public float MissChance;
-        public float AttackSpeed;
-        public float MoveSpeed;
+        public int MaxHp;
+        public int HpRegen;
+        public int MaxMp;
+        public int MpRegen;
+        public int Attack;
+        public int Def;
+        public int Dodge;
+        public int AtkSpeed;
+        public int MoveSpeed;
         public float CriRate;
         public float CriDamage;
         public int Str;
@@ -42,46 +41,80 @@ namespace Server.Data
         public int Con;
         public int Wis;
 
-        public StatInfo StatInfo
+        [ExcludeField]
+        public StatInfo Stat;
+        public virtual bool Validate()
         {
-            get
-            {
-                return new StatInfo
-                {
-                    MaxHp = this.MaxHp,
-                    Hp = this.Hp,
-                    HpRegen = this.HpRegen,
-                    MaxMp = this.MaxMp,
-                    Mp = this.Mp,
-                    MpRegen = this.MpRegen,
-                    Attack = this.Attack,
-                    Defence = this.Defence,
-                    Dodge = this.MissChance,
-                    AttackSpeed = this.AttackSpeed,
-                    MoveSpeed = this.MoveSpeed,
-                    CriRate = this.CriRate,
-                    CriDamage = this.CriDamage,
-                    Str = this.Str,
-                    Dex = this.Dex,
-                    Int = this.Int,
-                    Con = this.Con,
-                    Wis = this.Wis,
-                };
-            }
+            return true;
         }
     }
+
+    public class ItemData : BaseData
+    {
+        public EItemType Type;
+        public EItemSubType SubType;
+        public EItemGrade Grade;
+        public int MaxStack;
+
+        [ExcludeField]
+        public bool Stackable;
+    }
+    #endregion
+
+    #region BaseStat
+    public class BaseStatData
+    {
+        public int Level;
+        public int Attack;
+        public int MaxHp;
+        public int MaxMp;
+        public int HpRegen;
+        public int MpRegen;
+        public int Def;
+        public int Dodge;
+        public int AtkSpeed;
+        public int MoveSpeed;
+        public float CriRate;
+        public float CriDamage;
+        public int Str;
+        public int Dex;
+        public int Int;
+        public int Con;
+        public int Wis;
+        public int Exp;
+    }
+
+    [Serializable]
+    public class BaseStatDataLoader : ILoader<int, BaseStatData>
+    {
+        public List<BaseStatData> baseStatDatas = new List<BaseStatData>();
+
+        public Dictionary<int, BaseStatData> MakeDict()
+        {
+            Dictionary<int, BaseStatData> dict = new Dictionary<int, BaseStatData>();
+            foreach (BaseStatData stat in baseStatDatas)
+                dict.Add(stat.Level, stat);
+
+            return dict;
+        }
+
+        public bool Validate()
+        {
+            return true;
+        }
+    }
+    #endregion
 
     #region Hero
     public class HeroData : CreatureData
     {
-        public string IconImageName;
+        public EHeroClass HeroClass;
+        public List<int> SkillDataIds;
 
-        public SkillData MainSkill;
-        public SkillData SkillA;
-        public SkillData SkillB;
-        public SkillData SkillC;
-        public SkillData SkillD;
-        public SkillData SkillE;
+        [ExcludeField]
+        public List<SkillData> SkillDatas = new List<SkillData>();
+        [ExcludeField]
+        public Dictionary<ESkillSlot, SkillData> SkillMap = new Dictionary<ESkillSlot, SkillData>();
     }
 
     [Serializable]
@@ -101,6 +134,45 @@ namespace Server.Data
         public bool Validate()
         {
             bool validate = true;
+
+            foreach (var hero in heroes)
+            {
+                hero.Stat = new StatInfo()
+                {
+                    MaxHp = hero.MaxHp,
+                    HpRegen = hero.HpRegen,
+                    MaxMp = hero.MaxMp,
+                    MpRegen = hero.MpRegen,
+                    Attack = hero.Attack,
+                    Defence = hero.Def,
+                    Dodge = hero.Dodge,
+                    AttackSpeed = hero.AtkSpeed,
+                    MoveSpeed = hero.MoveSpeed,
+                    CriRate = hero.CriRate,
+                    CriDamage = hero.CriDamage,
+                    Str = hero.Str,
+                    Dex = hero.Dex,
+                    Int = hero.Int,
+                    Con = hero.Con,
+                    Wis = hero.Wis
+                };
+
+                //Skill
+                for (int i = 0; i < hero.SkillDataIds.Count; i++)
+                {
+                    if (DataManager.SkillDict.TryGetValue(hero.SkillDataIds[i], out SkillData skillData))
+                    {
+                        hero.SkillDatas.Add(skillData);
+
+                        // 자동으로 SkillMap에 추가
+                        if (i + 1 < Enum.GetValues(typeof(ESkillSlot)).Length)
+                        {
+                            hero.SkillMap[(ESkillSlot)i + 1] = skillData;
+                        }
+                    }
+                }
+            }
+
             return validate;
         }
     }
@@ -112,23 +184,23 @@ namespace Server.Data
         public bool IsBoss = false;
         public bool IsAggressive;
         public int ExtraCells;
-
-        public string IconImageName;
-
-        public SkillData MainSkill;
-        public SkillData SkillA;
-        public SkillData SkillB;
-
-        // AI
+        public List<int> SkillDataIds;
+        
+        //AI
         public int SearchCellDist;
         public int ChaseCellDist;
         public int PatrolCellDist;
 
-        // 스폰 정보
+        //Drop
+        public int DropTableId;
 
-        // 드롭아이템
-
-        // ItemHolder items(경험치는 홀더안에?)
+        [ExcludeField]
+        public List<SkillData> SkillDatas = new List<SkillData>();
+        [ExcludeField]
+        public Dictionary<ESkillSlot, SkillData> SkillMap = new Dictionary<ESkillSlot, SkillData>();
+        [ExcludeField]
+        public DropTableData DropTable;
+        //스폰 정보
     }
 
     [Serializable]
@@ -147,9 +219,293 @@ namespace Server.Data
         public bool Validate()
         {
             bool validate = true;
+            foreach (var monster in monsters)
+            {
+                monster.Stat = new StatInfo()
+                {
+                    MaxHp = monster.MaxHp,
+                    HpRegen = monster.HpRegen,
+                    MaxMp = monster.MaxMp,
+                    MpRegen = monster.MpRegen,
+                    Attack = monster.Attack,
+                    Defence = monster.Def,
+                    Dodge = monster.Dodge,
+                    AttackSpeed = monster.AtkSpeed,
+                    MoveSpeed = monster.MoveSpeed,
+                    CriRate = monster.CriRate,
+                    CriDamage = monster.CriDamage,
+                    Str = monster.Str,
+                    Dex = monster.Dex,
+                    Int = monster.Int,
+                    Con = monster.Con,
+                    Wis = monster.Wis
+                };
+
+                //Skill
+                for (int i = 0; i < monster.SkillDataIds.Count; i++)
+                {
+                    if (DataManager.SkillDict.TryGetValue(monster.SkillDataIds[i], out SkillData skillData))
+                    {
+                        monster.SkillDatas.Add(skillData);
+
+                        // 자동으로 SkillMap에 추가
+                        if (i + 1 < Enum.GetValues(typeof(ESkillSlot)).Length)
+                        {
+                            monster.SkillMap[(ESkillSlot)i + 1] = skillData;
+                        }
+                    }
+                }
+
+                DataManager.DropTableDict.TryGetValue(monster.DropTableId, out monster.DropTable);
+            }
             return validate;
         }
     }
+    #endregion
+
+    #region Equipment
+
+    public class EquipmentData : ItemData
+    {
+        public EItemSlotType SlotType;
+        public bool canTrade;
+        public bool canDelete;
+        public bool canStorable;
+        public int EffectDataId;
+        public int SafeEnhancementLevel;
+        public int NextLevelItemDataId;
+
+        [ExcludeField]
+        public EffectData EffectData;
+        [ExcludeField]
+        public ItemData NextLevelItem;
+    }
+
+    [Serializable]
+    public class EquipmentDataLoader : ILoader<int, EquipmentData>
+    {
+        public List<EquipmentData> items = new List<EquipmentData>();
+
+        public Dictionary<int, EquipmentData> MakeDict()
+        {
+            Dictionary<int, EquipmentData> dict = new Dictionary<int, EquipmentData>();
+            foreach (EquipmentData item in items)
+                dict.Add(item.TemplateId, item);
+
+            return dict;
+        }
+
+        public bool Validate()
+        {
+            bool validate = true;
+
+            foreach (var equipmentData in items)
+            {
+                DataManager.EffectDict.TryGetValue(equipmentData.EffectDataId, out equipmentData.EffectData);
+                DataManager.ItemDict.TryGetValue(equipmentData.NextLevelItemDataId, out equipmentData.NextLevelItem);
+
+            }
+            return validate;
+        }
+    }
+    #endregion
+
+    #region Consumable
+    public class ConsumableData : ItemData
+    {
+        public int EffectId;
+        public int CoolTime;
+        public EConsumableGroupType ConsumableGroupType;
+
+        [ExcludeField]
+        public EffectData EffectData;
+    }
+
+    [Serializable]
+    public class ConsumableDataLoader : ILoader<int, ConsumableData>
+    {
+        public List<ConsumableData> items = new List<ConsumableData>();
+
+        public Dictionary<int, ConsumableData> MakeDict()
+        {
+            Dictionary<int, ConsumableData> dict = new Dictionary<int, ConsumableData>();
+            foreach (ConsumableData item in items)
+                dict.Add(item.TemplateId, item);
+
+            return dict;
+        }
+
+        public bool Validate()
+        {
+            bool validate = true;
+
+            foreach (ConsumableData item in items)
+            {
+                item.Stackable = true;
+                DataManager.EffectDict.TryGetValue(item.EffectId, out item.EffectData);
+            }
+
+            return validate;
+        }
+    }
+    #endregion
+
+    #region DropTableData
+
+    [Serializable]
+    public class DropTableData
+    {
+        public int TemplateId;
+        public string Name;
+        public int RewardGold;
+        public int RewardExp;
+        public List<int> RewardDataIds;
+
+        [ExcludeField]
+        public List<RewardData> Rewards;
+    }
+
+    [Serializable]
+    public class DropTableDataLoader : ILoader<int, DropTableData>
+    {
+        public List<DropTableData> dropTables = new List<DropTableData>();
+
+        public Dictionary<int, DropTableData> MakeDict()
+        {
+            Dictionary<int, DropTableData> dict = new Dictionary<int, DropTableData>();
+            foreach (DropTableData dropTableData in dropTables)
+            {
+                dict.Add(dropTableData.TemplateId, dropTableData);
+            }
+
+            return dict;
+        }
+
+        public bool Validate()
+        {
+            foreach (var dropTable in dropTables)
+            {
+                dropTable.Rewards = new List<RewardData>();
+                foreach (var id in dropTable.RewardDataIds)
+                {
+                    RewardData reward;
+                    if (DataManager.RewardDict.TryGetValue(id, out reward))
+                    {
+                        dropTable.Rewards.Add(reward);
+                    }
+                }
+            }
+            return true;
+        }
+    }
+
+    #endregion
+
+    #region Reward
+
+    public class RewardData
+    {
+        public int TemplateId;
+        public string Name;
+        public int ItemTemplateId;
+        public int Probability; // 100분율
+        public int Count;
+
+        [ExcludeField]
+        public ItemData Item;
+    }
+
+    [Serializable]
+    public class RewardDataLoader : ILoader<int, RewardData>
+    {
+        public List<RewardData> rewards = new List<RewardData>();
+
+        public Dictionary<int, RewardData> MakeDict()
+        {
+            Dictionary<int, RewardData> dict = new Dictionary<int, RewardData>();
+            foreach (RewardData rewardData in rewards)
+            {
+                dict.Add(rewardData.TemplateId, rewardData);
+            }
+
+            return dict;
+        }
+
+        public bool Validate()
+        {
+            foreach (var reward in rewards)
+            {
+                DataManager.ItemDict.TryGetValue(reward.ItemTemplateId, out reward.Item);
+            }
+
+            return true;
+        }
+    }
+
+    #endregion
+
+    #region EffectData
+    public struct StatValuePair
+    {
+        public EStatType StatType;
+        public float AddValue;
+    }
+    public class EffectData : BaseData
+    {
+        public string SoundLabel;
+
+        public EEffectType EffectType;
+        // 즉발 vs 주기적 vs 영구적.
+        public EDurationPolicy DurationPolicy;
+        public float Duration;
+        // EFFECT_TYPE_DAMAGE
+        public float DamageValue;
+        // EFFECT_TYPE_BUFF_STAT
+        public List<EStatType> StatType;
+        public List<float> AddValue;
+        // EFFECT_TYPE_BUFF_LIFE_STEAL
+        public float LifeStealValue;
+        // EFFECT_TYPE_BUFF_LIFE_STUN
+        public float StunValue;
+
+        [ExcludeField]
+        public List<StatValuePair> StatValues = new List<StatValuePair>();
+    }
+
+    [Serializable]
+    public class EffectDataLoader : ILoader<int, EffectData>
+    {
+        public List<EffectData> datas = new List<EffectData>();
+
+        public Dictionary<int, EffectData> MakeDict()
+        {
+            Dictionary<int, EffectData> dict = new Dictionary<int, EffectData>();
+            foreach (EffectData data in datas)
+                dict.Add(data.TemplateId, data);
+
+            return dict;
+        }
+
+        public bool Validate()
+        {
+            bool validate = true;
+
+            foreach (var data in datas)
+            {
+                data.StatValues = new List<StatValuePair>();
+                for (int i = 0; i < data.StatType.Count; i++)
+                {
+                    data.StatValues.Add(new StatValuePair()
+                    {
+                        StatType = data.StatType[i],
+                        AddValue = data.AddValue[i],
+                    });
+                }
+            }
+            return validate;
+        }
+    }
+
     #endregion
 
     #region Projectile
@@ -199,7 +555,7 @@ namespace Server.Data
         public float DelayTime; // EventTime
 
         // 투사체를 날릴 경우.
-        public ProjectileData Projectile;
+        public int ProjectileId;
 
         // 누구한테 시전?
         public EUseSkillTargetType UseSkillTargetType;
@@ -212,10 +568,18 @@ namespace Server.Data
         public ETargetFriendType TargetFriendType;
 
         // 어떤 효과를?
-        public EffectData EffectData;
+        //public EffectData EffectData;
+        public int EffectDataId;
 
         // 다음 레벨 스킬.
+        public int NextLevelSkillId;
+
+        [ExcludeField]
         public SkillData NextLevelSkill;
+        [ExcludeField]
+        public ProjectileData ProjectileData;
+        [ExcludeField]
+        public EffectData EffectData;
     }
 
     [Serializable]
@@ -235,97 +599,52 @@ namespace Server.Data
         public bool Validate()
         {
             bool validate = true;
+
+            foreach (var skill in skills)
+            {
+                DataManager.SkillDict.TryGetValue(skill.NextLevelSkillId, out skill.NextLevelSkill);
+                DataManager.ProjectileDict.TryGetValue(skill.ProjectileId, out skill.ProjectileData);
+                DataManager.EffectDict.TryGetValue(skill.EffectDataId, out skill.EffectData);
+            }
             return validate;
         }
     }
 
     #endregion
 
-    #region Effect
-    public class EffectData :BaseData
-    {
-        public string SoundLabel;
+    //#region AOE
+    //public class AOEData
+    //{
+    //    public int TemplateId;
+    //    public string Name;
+    //    public string PrefabName;
+    //    public string SoundLabel;
+    //    public List<EffectData> AllyEffects;
+    //    public List<EffectData> EnemyEffects;
+    //    public int Range;
+    //}
 
-        // 효과 분류.
-        public EEffectType EffectType;
+    //[Serializable]
+    //public class AOEDataLoader : ILoader<int, AOEData>
+    //{
+    //    public List<AOEData> datas = new List<AOEData>();
 
-        // 즉발 vs 주기적 vs 영구적.
-        public EDurationPolicy DurationPolicy;
-        public float Duration;
+    //    public Dictionary<int, AOEData> MakeDict()
+    //    {
+    //        Dictionary<int, AOEData> dict = new Dictionary<int, AOEData>();
+    //        foreach (AOEData data in datas)
+    //            dict.Add(data.TemplateId, data);
 
-        // EFFECT_TYPE_DAMAGE
-        public float DamageValue;
+    //        return dict;
+    //    }
 
-        // EFFECT_TYPE_HEAL
-        public float HealValue;
-
-        // EFFECT_TYPE_BUFF_STAT
-        public EStatType StatType;
-        public float StatAddValue;
-
-        // EFFECT_TYPE_BUFF_LIFE_STEAL
-        public float LifeStealValue;
-
-        // EFFECT_TYPE_BUFF_LIFE_STUN
-        public float StunValue;
-    }
-
-    [Serializable]
-    public class EffectDataLoader : ILoader<int, EffectData>
-    {
-        public List<EffectData> datas = new List<EffectData>();
-
-        public Dictionary<int, EffectData> MakeDict()
-        {
-            Dictionary<int, EffectData> dict = new Dictionary<int, EffectData>();
-            foreach (EffectData data in datas)
-                dict.Add(data.TemplateId, data);
-
-            return dict;
-        }
-
-        public bool Validate()
-        {
-            bool validate = true;
-            return validate;
-        }
-    }
-
-    #endregion
-
-    #region AOE
-    public class AOEData
-    {
-        public int TemplateId;
-        public string Name;
-        public string PrefabName;
-        public string SoundLabel;
-        public List<EffectData> AllyEffects;
-        public List<EffectData> EnemyEffects;
-        public int Range;
-    }
-
-    [Serializable]
-    public class AOEDataLoader : ILoader<int, AOEData>
-    {
-        public List<AOEData> datas = new List<AOEData>();
-
-        public Dictionary<int, AOEData> MakeDict()
-        {
-            Dictionary<int, AOEData> dict = new Dictionary<int, AOEData>();
-            foreach (AOEData data in datas)
-                dict.Add(data.TemplateId, data);
-
-            return dict;
-        }
-
-        public bool Validate()
-        {
-            bool validate = true;
-            return validate;
-        }
-    }
-    #endregion
+    //    public bool Validate()
+    //    {
+    //        bool validate = true;
+    //        return validate;
+    //    }
+    //}
+    //#endregion
 
     #region SpawningPool
     [Serializable]
@@ -361,45 +680,6 @@ namespace Server.Data
             }
             return dict;
         }
-    }
-    #endregion
-
-    #region BaseStat
-    public class BaseStatData
-    {
-        public int Level;
-        public int Attack;
-        public int MaxHp;
-        public int MaxMp;
-        public int HpRegen;
-        public int MpRegen;
-        public int Def;
-        public int Dodge;
-        public int AtkSpeed;
-        public int MoveSpeed;
-        public float CriRate;
-        public float CriDamage;
-        public int Str;
-        public int Dex;
-        public int Int;
-        public int Con;
-        public int Wis;
-        public int Exp;
-    }
-
-    [Serializable]
-    public class BaseStatDataLoader : ILoader<int, BaseStatData>
-    {
-        public List<BaseStatData> baseStatDatas = new List<BaseStatData>();
-
-        public Dictionary<int, BaseStatData> MakeDict()
-        {
-            Dictionary<int, BaseStatData> dict = new Dictionary<int, BaseStatData>();
-            foreach (BaseStatData stat in baseStatDatas)
-                dict.Add(stat.Level, stat);
-
-            return dict;
-        }
 
         public bool Validate()
         {
@@ -408,4 +688,5 @@ namespace Server.Data
     }
     #endregion
 
+    
 }

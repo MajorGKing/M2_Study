@@ -51,20 +51,20 @@ namespace GameServer.Game
         #endregion
 
         #region 스킬 등록 & 쿨타임 관리
-        public bool RegisterSkill(int templatedId)
+        public bool RegisterSkill(int templateId)
         {
-            if (_skills.ContainsKey(templatedId))
+            if (_skills.ContainsKey(templateId))
                 return false;
-            if(DataManager.SkillDict.TryGetValue(templatedId, out SkillData skillData) == false)
+            if(DataManager.SkillDict.TryGetValue(templateId, out SkillData skillData) == false)
                 return false;
 
             Skill skill = null;
-            if (skillData.Projectile != null)
-                skill = new ProjectileSkill(templatedId, Owner);
+            if (skillData.ProjectileData != null)
+                skill = new ProjectileSkill(templateId, Owner);
             else
-                skill = new NormalSkill(templatedId, Owner);
+                skill = new NormalSkill(templateId, Owner);
 
-            _skills.Add(templatedId, skill);
+            _skills.Add(templateId, skill);
             return true;
         }
 

@@ -1,5 +1,5 @@
 using Google.Protobuf.Protocol;
-using Scripts.Data;
+using Data;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,7 +20,7 @@ public abstract class Skill
         TemplateId = templateId;
         Owner = owner;
 
-        Managers.Data.SkillDic.TryGetValue(TemplateId, out SkillData skillData);
+        Managers.Data.SkillDict.TryGetValue(TemplateId, out SkillData skillData);
         SkillData = skillData;
     }
 

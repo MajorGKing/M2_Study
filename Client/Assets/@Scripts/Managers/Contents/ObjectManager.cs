@@ -1,9 +1,8 @@
 using Google.Protobuf.Protocol;
-using Scripts.Data;
-using Scripts.Data.SO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Data;
 using UnityEngine;
 using static Define;
 
@@ -109,7 +108,7 @@ public class ObjectManager
         if(objectType != EGameObjectType.Monster)
             return null;
         int templateId = Utils.GetTemplateIdFromId(objectInfo.ObjectId);
-        if(Managers.Data.MonsterDic.TryGetValue(templateId, out MonsterData monsterData) == false)
+        if(Managers.Data.MonsterDict.TryGetValue(templateId, out MonsterData monsterData) == false)
             return null;
 
         Debug.Log($"objectInfo.ObjectId : {objectInfo.ObjectId}");
@@ -138,7 +137,7 @@ public class ObjectManager
         EGameObjectType objectType = Utils.GetObjectTypeFromId(objectInfo.ObjectId);
         int templateId = Utils.GetTemplateIdFromId(objectInfo.ObjectId);
 
-        if (Managers.Data.ProjectileDic.TryGetValue(templateId, out ProjectileData projectileData) == false)
+        if (Managers.Data.ProjectileDict.TryGetValue(templateId, out ProjectileData projectileData) == false)
             return null;
 
         GameObject go = Managers.Resource.Instantiate(projectileData.PrefabName, pooling: true);

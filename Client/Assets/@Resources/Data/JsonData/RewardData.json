@@ -1,0 +1,76 @@
+{
+  "rewards": [
+    {
+      "TemplateId": 1,
+      "Name": "Hp포션(소)",
+      "ItemTemplateId": 1,
+      "Probability": 35,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 2,
+      "Name": "Mp포션(소)",
+      "ItemTemplateId": 4,
+      "Probability": 30,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 3,
+      "Name": "노말장비",
+      "ItemTemplateId": 1000,
+      "Probability": 5,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 4,
+      "Name": "노말장비",
+      "ItemTemplateId": 1005,
+      "Probability": 5,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 5,
+      "Name": "노말장비",
+      "ItemTemplateId": 1006,
+      "Probability": 5,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 6,
+      "Name": "노말장비",
+      "ItemTemplateId": 1007,
+      "Probability": 5,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 7,
+      "Name": "노말장비",
+      "ItemTemplateId": 1008,
+      "Probability": 5,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 8,
+      "Name": "노말장비",
+      "ItemTemplateId": 1009,
+      "Probability": 5,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 9,
+      "Name": "노말장비",
+      "ItemTemplateId": 1010,
+      "Probability": 5,
+      "Count": 1,
+      "Item": null
+    }
+  ]
+}

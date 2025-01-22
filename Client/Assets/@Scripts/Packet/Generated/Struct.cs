@@ -49,8 +49,12 @@ namespace Google.Protobuf.Protocol {
             "ZXJvSW5mbxgBIAEoCzISLlByb3RvY29sLkhlcm9JbmZvEgsKA2V4cBgCIAEo",
             "BRINCgVtYXBJZBgDIAEoBRIsCgxjdXJyZW5jeUluZm8YBSABKAsyFi5Qcm90",
             "b2NvbC5DdXJyZW5jeUluZm8iOAoNU2tpbGxDb29sVGltZRIPCgdza2lsbElk",
-            "GAEgASgFEhYKDnJlbWFpbmluZ1RpY2tzGAIgASgFQhuqAhhHb29nbGUuUHJv",
-            "dG9idWYuUHJvdG9jb2xiBnByb3RvMw=="));
+            "GAEgASgFEhYKDnJlbWFpbmluZ1RpY2tzGAIgASgFIpwBCghJdGVtSW5mbxIQ",
+            "CghpdGVtRGJJZBgBIAEoAxISCgp0ZW1wbGF0ZUlkGAIgASgFEi0KDGl0ZW1T",
+            "bG90VHlwZRgDIAEoDjIXLlByb3RvY29sLkVJdGVtU2xvdFR5cGUSDQoFY291",
+            "bnQYBCABKAUSFAoMZW5jaGFudENvdW50GAUgASgFEhYKDnJlbWFpbmluZ1Rp",
+            "Y2tzGAYgASgFQhuqAhhHb29nbGUuUHJvdG9idWYuUHJvdG9jb2xiBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Protocol.EnumReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -63,7 +67,8 @@ namespace Google.Protobuf.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.HeroInfo), global::Google.Protobuf.Protocol.HeroInfo.Parser, new[]{ "CreatureInfo", "Level", "Name", "Gender", "ClassType" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.CurrencyInfo), global::Google.Protobuf.Protocol.CurrencyInfo.Parser, new[]{ "Gold", "Dia" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.MyHeroInfo), global::Google.Protobuf.Protocol.MyHeroInfo.Parser, new[]{ "HeroInfo", "Exp", "MapId", "CurrencyInfo" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.SkillCoolTime), global::Google.Protobuf.Protocol.SkillCoolTime.Parser, new[]{ "SkillId", "RemainingTicks" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.SkillCoolTime), global::Google.Protobuf.Protocol.SkillCoolTime.Parser, new[]{ "SkillId", "RemainingTicks" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ItemInfo), global::Google.Protobuf.Protocol.ItemInfo.Parser, new[]{ "ItemDbId", "TemplateId", "ItemSlotType", "Count", "EnchantCount", "RemainingTicks" }, null, null, null, null)
           }));
     }
     #endregion
@@ -2345,6 +2350,275 @@ namespace Google.Protobuf.Protocol {
             break;
           }
           case 16: {
+            RemainingTicks = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class ItemInfo : pb::IMessage<ItemInfo> {
+    private static readonly pb::MessageParser<ItemInfo> _parser = new pb::MessageParser<ItemInfo>(() => new ItemInfo());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ItemInfo> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Google.Protobuf.Protocol.StructReflection.Descriptor.MessageTypes[10]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ItemInfo() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ItemInfo(ItemInfo other) : this() {
+      itemDbId_ = other.itemDbId_;
+      templateId_ = other.templateId_;
+      itemSlotType_ = other.itemSlotType_;
+      count_ = other.count_;
+      enchantCount_ = other.enchantCount_;
+      remainingTicks_ = other.remainingTicks_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ItemInfo Clone() {
+      return new ItemInfo(this);
+    }
+
+    /// <summary>Field number for the "itemDbId" field.</summary>
+    public const int ItemDbIdFieldNumber = 1;
+    private long itemDbId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long ItemDbId {
+      get { return itemDbId_; }
+      set {
+        itemDbId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "templateId" field.</summary>
+    public const int TemplateIdFieldNumber = 2;
+    private int templateId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int TemplateId {
+      get { return templateId_; }
+      set {
+        templateId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "itemSlotType" field.</summary>
+    public const int ItemSlotTypeFieldNumber = 3;
+    private global::Google.Protobuf.Protocol.EItemSlotType itemSlotType_ = global::Google.Protobuf.Protocol.EItemSlotType.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Google.Protobuf.Protocol.EItemSlotType ItemSlotType {
+      get { return itemSlotType_; }
+      set {
+        itemSlotType_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "count" field.</summary>
+    public const int CountFieldNumber = 4;
+    private int count_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Count {
+      get { return count_; }
+      set {
+        count_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "enchantCount" field.</summary>
+    public const int EnchantCountFieldNumber = 5;
+    private int enchantCount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int EnchantCount {
+      get { return enchantCount_; }
+      set {
+        enchantCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "remainingTicks" field.</summary>
+    public const int RemainingTicksFieldNumber = 6;
+    private int remainingTicks_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int RemainingTicks {
+      get { return remainingTicks_; }
+      set {
+        remainingTicks_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ItemInfo);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ItemInfo other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (ItemDbId != other.ItemDbId) return false;
+      if (TemplateId != other.TemplateId) return false;
+      if (ItemSlotType != other.ItemSlotType) return false;
+      if (Count != other.Count) return false;
+      if (EnchantCount != other.EnchantCount) return false;
+      if (RemainingTicks != other.RemainingTicks) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (ItemDbId != 0L) hash ^= ItemDbId.GetHashCode();
+      if (TemplateId != 0) hash ^= TemplateId.GetHashCode();
+      if (ItemSlotType != global::Google.Protobuf.Protocol.EItemSlotType.None) hash ^= ItemSlotType.GetHashCode();
+      if (Count != 0) hash ^= Count.GetHashCode();
+      if (EnchantCount != 0) hash ^= EnchantCount.GetHashCode();
+      if (RemainingTicks != 0) hash ^= RemainingTicks.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (ItemDbId != 0L) {
+        output.WriteRawTag(8);
+        output.WriteInt64(ItemDbId);
+      }
+      if (TemplateId != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(TemplateId);
+      }
+      if (ItemSlotType != global::Google.Protobuf.Protocol.EItemSlotType.None) {
+        output.WriteRawTag(24);
+        output.WriteEnum((int) ItemSlotType);
+      }
+      if (Count != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Count);
+      }
+      if (EnchantCount != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(EnchantCount);
+      }
+      if (RemainingTicks != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(RemainingTicks);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (ItemDbId != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(ItemDbId);
+      }
+      if (TemplateId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TemplateId);
+      }
+      if (ItemSlotType != global::Google.Protobuf.Protocol.EItemSlotType.None) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ItemSlotType);
+      }
+      if (Count != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Count);
+      }
+      if (EnchantCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(EnchantCount);
+      }
+      if (RemainingTicks != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RemainingTicks);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ItemInfo other) {
+      if (other == null) {
+        return;
+      }
+      if (other.ItemDbId != 0L) {
+        ItemDbId = other.ItemDbId;
+      }
+      if (other.TemplateId != 0) {
+        TemplateId = other.TemplateId;
+      }
+      if (other.ItemSlotType != global::Google.Protobuf.Protocol.EItemSlotType.None) {
+        ItemSlotType = other.ItemSlotType;
+      }
+      if (other.Count != 0) {
+        Count = other.Count;
+      }
+      if (other.EnchantCount != 0) {
+        EnchantCount = other.EnchantCount;
+      }
+      if (other.RemainingTicks != 0) {
+        RemainingTicks = other.RemainingTicks;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            ItemDbId = input.ReadInt64();
+            break;
+          }
+          case 16: {
+            TemplateId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            ItemSlotType = (global::Google.Protobuf.Protocol.EItemSlotType) input.ReadEnum();
+            break;
+          }
+          case 32: {
+            Count = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            EnchantCount = input.ReadInt32();
+            break;
+          }
+          case 48: {
             RemainingTicks = input.ReadInt32();
             break;
           }

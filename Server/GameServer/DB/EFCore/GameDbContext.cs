@@ -29,8 +29,8 @@ namespace GameServer
 				.UseSqlServer(ConfigManager.Config.connectionString);
 		}
 
-		protected override void OnModelCreating(ModelBuilder builder)
-		{
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
             // AccountDbId에 인덱스 걸어준다
             builder.Entity<HeroDb>()
                 .HasIndex(t => t.AccountDbId);
@@ -41,6 +41,12 @@ namespace GameServer
 
             builder.Entity<HeroDb>()
                 .HasIndex(t => t.Name);
+
+            builder.Entity<ItemDb>()
+                .HasOne(e => e.OwnerDb)
+                .WithMany(e => e.Items)
+                .HasForeignKey(e => e.OwnerDbId)
+                .IsRequired();
         }
-	}
+    }
 }

@@ -1,355 +1,522 @@
 {
   "datas": [
     {
-      "SoundLabel": "",
-      "EffectType": 3,
-      "DurationPolicy": 2,
-      "Duration": 0.0,
-      "DamageValue": 0.0,
-      "HealValue": 0.0,
-      "StatValues": [
-        {
-          "StatType": 6,
-          "AddValue": 5.0
-        },
-        {
-          "StatType": 16,
-          "AddValue": 1.0
-        },
-        {
-          "StatType": 13,
-          "AddValue": 1.0
-        }
-      ],
-      "LifeStealValue": 0.0,
-      "StunValue": 0.0,
-      "TemplateId": 1000,
-      "Name": "공격력을 30퍼센트 증가",
-      "NameTextId": "",
-      "DescriptionTextID": "",
-      "IconImage": "",
-      "PrefabName": "",
-      "name": "SO_EFFECT_EQUIP_1000",
-      "hideFlags": 0
-    },
-    {
-      "SoundLabel": "",
-      "EffectType": 3,
-      "DurationPolicy": 2,
-      "Duration": 0.0,
-      "DamageValue": 0.0,
-      "HealValue": 0.0,
-      "StatValues": [
-        {
-          "StatType": 6,
-          "AddValue": 6.0
-        },
-        {
-          "StatType": 16,
-          "AddValue": 2.0
-        },
-        {
-          "StatType": 13,
-          "AddValue": 2.0
-        }
-      ],
-      "LifeStealValue": 0.0,
-      "StunValue": 0.0,
-      "TemplateId": 1001,
-      "Name": "공격력을 30퍼센트 증가",
-      "NameTextId": "",
-      "DescriptionTextID": "",
-      "IconImage": "",
-      "PrefabName": "",
-      "name": "SO_EFFECT_EQUIP_1001",
-      "hideFlags": 0
-    },
-    {
-      "SoundLabel": "",
-      "EffectType": 3,
-      "DurationPolicy": 2,
-      "Duration": 0.0,
-      "DamageValue": 0.0,
-      "HealValue": 0.0,
-      "StatValues": [
-        {
-          "StatType": 6,
-          "AddValue": 7.0
-        },
-        {
-          "StatType": 16,
-          "AddValue": 3.0
-        },
-        {
-          "StatType": 13,
-          "AddValue": 3.0
-        }
-      ],
-      "LifeStealValue": 0.0,
-      "StunValue": 0.0,
-      "TemplateId": 1002,
-      "Name": "공격력을 30퍼센트 증가",
-      "NameTextId": "",
-      "DescriptionTextID": "",
-      "IconImage": "",
-      "PrefabName": "",
-      "name": "SO_EFFECT_EQUIP_1002",
-      "hideFlags": 0
-    },
-    {
-      "SoundLabel": "",
-      "EffectType": 3,
-      "DurationPolicy": 2,
-      "Duration": 0.0,
-      "DamageValue": 0.0,
-      "HealValue": 0.0,
-      "StatValues": [
-        {
-          "StatType": 6,
-          "AddValue": 8.0
-        },
-        {
-          "StatType": 16,
-          "AddValue": 4.0
-        },
-        {
-          "StatType": 13,
-          "AddValue": 4.0
-        }
-      ],
-      "LifeStealValue": 0.0,
-      "StunValue": 0.0,
-      "TemplateId": 1003,
-      "Name": "공격력을 30퍼센트 증가",
-      "NameTextId": "",
-      "DescriptionTextID": "",
-      "IconImage": "",
-      "PrefabName": "",
-      "name": "SO_EFFECT_EQUIP_1003",
-      "hideFlags": 0
-    },
-    {
-      "SoundLabel": "",
-      "EffectType": 3,
-      "DurationPolicy": 2,
-      "Duration": 0.0,
-      "DamageValue": 0.0,
-      "HealValue": 0.0,
-      "StatValues": [
-        {
-          "StatType": 0,
-          "AddValue": 50.0
-        },
-        {
-          "StatType": 16,
-          "AddValue": 1.0
-        },
-        {
-          "StatType": 13,
-          "AddValue": 1.0
-        }
-      ],
-      "LifeStealValue": 0.0,
-      "StunValue": 0.0,
-      "TemplateId": 1100,
-      "Name": "공격력을 30퍼센트 증가",
-      "NameTextId": "",
-      "DescriptionTextID": "",
-      "IconImage": "",
-      "PrefabName": "",
-      "name": "SO_EFFECT_EQUIP_1100",
-      "hideFlags": 0
-    },
-    {
-      "SoundLabel": "",
-      "EffectType": 3,
-      "DurationPolicy": 2,
-      "Duration": 0.0,
-      "DamageValue": 0.0,
-      "HealValue": 0.0,
-      "StatValues": [
-        {
-          "StatType": 0,
-          "AddValue": 100.0
-        },
-        {
-          "StatType": 16,
-          "AddValue": 2.0
-        },
-        {
-          "StatType": 13,
-          "AddValue": 2.0
-        }
-      ],
-      "LifeStealValue": 0.0,
-      "StunValue": 0.0,
-      "TemplateId": 1101,
-      "Name": "공격력을 30퍼센트 증가",
-      "NameTextId": "",
-      "DescriptionTextID": "",
-      "IconImage": "",
-      "PrefabName": "",
-      "name": "SO_EFFECT_EQUIP_1101",
-      "hideFlags": 0
-    },
-    {
-      "SoundLabel": "",
-      "EffectType": 3,
-      "DurationPolicy": 2,
-      "Duration": 0.0,
-      "DamageValue": 0.0,
-      "HealValue": 0.0,
-      "StatValues": [
-        {
-          "StatType": 0,
-          "AddValue": 150.0
-        },
-        {
-          "StatType": 16,
-          "AddValue": 3.0
-        },
-        {
-          "StatType": 13,
-          "AddValue": 3.0
-        }
-      ],
-      "LifeStealValue": 0.0,
-      "StunValue": 0.0,
-      "TemplateId": 1102,
-      "Name": "공격력을 30퍼센트 증가",
-      "NameTextId": "",
-      "DescriptionTextID": "",
-      "IconImage": "",
-      "PrefabName": "",
-      "name": "SO_EFFECT_EQUIP_1102",
-      "hideFlags": 0
-    },
-    {
-      "SoundLabel": "",
-      "EffectType": 3,
-      "DurationPolicy": 2,
-      "Duration": 0.0,
-      "DamageValue": 0.0,
-      "HealValue": 0.0,
-      "StatValues": [
-        {
-          "StatType": 0,
-          "AddValue": 200.0
-        },
-        {
-          "StatType": 16,
-          "AddValue": 4.0
-        },
-        {
-          "StatType": 13,
-          "AddValue": 4.0
-        }
-      ],
-      "LifeStealValue": 0.0,
-      "StunValue": 0.0,
-      "TemplateId": 1103,
-      "Name": "공격력을 30퍼센트 증가",
-      "NameTextId": "",
-      "DescriptionTextID": "",
-      "IconImage": "",
-      "PrefabName": "",
-      "name": "SO_EFFECT_EQUIP_1103",
-      "hideFlags": 0
-    },
-    {
-      "SoundLabel": "",
-      "EffectType": 4,
-      "DurationPolicy": 1,
-      "Duration": 5.0,
-      "DamageValue": 0.0,
-      "HealValue": 0.0,
-      "StatValues": null,
-      "LifeStealValue": 0.0,
-      "StunValue": 0.0,
-      "TemplateId": 4,
-      "Name": "",
-      "NameTextId": null,
-      "DescriptionTextID": "시전자의 공격력에 비례해 초당 독데미지",
-      "IconImage": null,
-      "PrefabName": "",
-      "name": "SO_Effect_PoisonEffect",
-      "hideFlags": 0
-    },
-    {
-      "SoundLabel": "",
+      "SoundLabel": null,
       "EffectType": 1,
       "DurationPolicy": 0,
       "Duration": 0.0,
       "DamageValue": 1.0,
-      "HealValue": 0.0,
-      "StatValues": [],
+      "StatType": [],
+      "AddValue": [],
       "LifeStealValue": 0.0,
       "StunValue": 0.0,
+      "StatValues": [],
       "TemplateId": 1,
-      "Name": "기본공격",
-      "NameTextId": "",
-      "DescriptionTextID": "기본공격",
-      "IconImage": "",
-      "PrefabName": "",
-      "name": "SO_Effect_Instant_level1",
-      "hideFlags": 0
+      "Name": "계수1 데미지",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
     },
     {
-      "SoundLabel": "",
+      "SoundLabel": null,
+      "EffectType": 1,
+      "DurationPolicy": 0,
+      "Duration": 0.0,
+      "DamageValue": 1.1,
+      "StatType": [],
+      "AddValue": [],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 2,
+      "Name": "계수 1.1 데미지",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
+      "EffectType": 1,
+      "DurationPolicy": 0,
+      "Duration": 0.0,
+      "DamageValue": 1.2,
+      "StatType": [],
+      "AddValue": [],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 3,
+      "Name": "계수1.2 데미지",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
+      "EffectType": 1,
+      "DurationPolicy": 0,
+      "Duration": 0.0,
+      "DamageValue": 1.3,
+      "StatType": [],
+      "AddValue": [],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 4,
+      "Name": "계수1.3 데미지",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
+      "EffectType": 1,
+      "DurationPolicy": 0,
+      "Duration": 0.0,
+      "DamageValue": 1.4,
+      "StatType": [],
+      "AddValue": [],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 5,
+      "Name": "계수1.4 데미지",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
       "EffectType": 1,
       "DurationPolicy": 0,
       "Duration": 0.0,
       "DamageValue": 1.5,
-      "HealValue": 0.0,
-      "StatValues": [],
+      "StatType": [],
+      "AddValue": [],
       "LifeStealValue": 0.0,
       "StunValue": 0.0,
-      "TemplateId": 2,
-      "Name": "기본공격",
-      "NameTextId": "",
-      "DescriptionTextID": "기본공격",
-      "IconImage": "",
-      "PrefabName": "",
-      "name": "SO_Effect_Instant_level2",
-      "hideFlags": 0
+      "StatValues": [],
+      "TemplateId": 6,
+      "Name": "계수1.5 데미지",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
     },
     {
-      "SoundLabel": "",
+      "SoundLabel": null,
+      "EffectType": 1,
+      "DurationPolicy": 0,
+      "Duration": 0.0,
+      "DamageValue": 1.6,
+      "StatType": [],
+      "AddValue": [],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 7,
+      "Name": "계수1.6 데미지",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
+      "EffectType": 1,
+      "DurationPolicy": 0,
+      "Duration": 0.0,
+      "DamageValue": 1.7,
+      "StatType": [],
+      "AddValue": [],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 8,
+      "Name": "계수1.7 데미지",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
+      "EffectType": 1,
+      "DurationPolicy": 0,
+      "Duration": 0.0,
+      "DamageValue": 1.8,
+      "StatType": [],
+      "AddValue": [],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 9,
+      "Name": "계수1.8 데미지",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
+      "EffectType": 1,
+      "DurationPolicy": 0,
+      "Duration": 0.0,
+      "DamageValue": 1.9,
+      "StatType": [],
+      "AddValue": [],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 10,
+      "Name": "계수1.9 데미지",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
       "EffectType": 1,
       "DurationPolicy": 0,
       "Duration": 0.0,
       "DamageValue": 2.0,
-      "HealValue": 0.0,
-      "StatValues": [],
+      "StatType": [],
+      "AddValue": [],
       "LifeStealValue": 0.0,
       "StunValue": 0.0,
-      "TemplateId": 3,
-      "Name": "기본공격",
-      "NameTextId": "",
-      "DescriptionTextID": "기본공격",
-      "IconImage": "",
-      "PrefabName": "",
-      "name": "SO_Effect_Instant_level3",
-      "hideFlags": 0
+      "StatValues": [],
+      "TemplateId": 11,
+      "Name": "계수2.0 데미지",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
     },
     {
-      "SoundLabel": "",
+      "SoundLabel": null,
       "EffectType": 5,
       "DurationPolicy": 1,
       "Duration": 3.0,
       "DamageValue": 0.0,
-      "HealValue": 0.0,
-      "StatValues": null,
+      "StatType": [],
+      "AddValue": [],
       "LifeStealValue": 0.0,
       "StunValue": 1.0,
-      "TemplateId": 6,
-      "Name": "",
-      "NameTextId": "",
-      "DescriptionTextID": "",
-      "IconImage": "",
-      "PrefabName": "",
-      "name": "SO_Effect_Stun",
-      "hideFlags": 0
+      "StatValues": [],
+      "TemplateId": 100,
+      "Name": "스턴",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
+      "EffectType": 3,
+      "DurationPolicy": 2,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "StatType": [
+        6,
+        16,
+        13
+      ],
+      "AddValue": [
+        5.0,
+        1.0,
+        1.0
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 1000,
+      "Name": "일반무기 능력치",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
+      "EffectType": 3,
+      "DurationPolicy": 2,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "StatType": [
+        0,
+        2,
+        8
+      ],
+      "AddValue": [
+        30.0,
+        20.0,
+        0.06
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 1001,
+      "Name": "일반갑옷 능력치",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
+      "EffectType": 3,
+      "DurationPolicy": 2,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "StatType": [
+        0,
+        7
+      ],
+      "AddValue": [
+        10.0,
+        2.0
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 1002,
+      "Name": "일반어깨 능력치",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
+      "EffectType": 3,
+      "DurationPolicy": 2,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "StatType": [
+        0
+      ],
+      "AddValue": [
+        30.0
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 1003,
+      "Name": "일반투구 능력치",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
+      "EffectType": 3,
+      "DurationPolicy": 2,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "StatType": [
+        0,
+        13
+      ],
+      "AddValue": [
+        30.0,
+        3.0
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 1004,
+      "Name": "일반다리방어구 능력치",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
+      "EffectType": 3,
+      "DurationPolicy": 2,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "StatType": [
+        0,
+        14
+      ],
+      "AddValue": [
+        30.0,
+        2.0
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 1005,
+      "Name": "일반장갑 능력치",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
+      "EffectType": 3,
+      "DurationPolicy": 2,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "StatType": [
+        0,
+        10
+      ],
+      "AddValue": [
+        30.0,
+        0.1
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 1006,
+      "Name": "일반신발 능력치",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
+      "EffectType": 2,
+      "DurationPolicy": 0,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "StatType": [
+        1
+      ],
+      "AddValue": [
+        50.0
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 10000,
+      "Name": "Hp회복(소)",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
+      "EffectType": 2,
+      "DurationPolicy": 0,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "StatType": [
+        1
+      ],
+      "AddValue": [
+        100.0
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 10001,
+      "Name": "Hp회복(중)",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
+      "EffectType": 2,
+      "DurationPolicy": 0,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "StatType": [
+        1
+      ],
+      "AddValue": [
+        150.0
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 10002,
+      "Name": "Hp회복(대)",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
+      "EffectType": 2,
+      "DurationPolicy": 0,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "StatType": [
+        4
+      ],
+      "AddValue": [
+        20.0
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 10003,
+      "Name": "Mp회복(소)",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
+      "EffectType": 2,
+      "DurationPolicy": 0,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "StatType": [
+        4
+      ],
+      "AddValue": [
+        30.0
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 10004,
+      "Name": "Mp회복(중)",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
+      "EffectType": 2,
+      "DurationPolicy": 0,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "StatType": [
+        4
+      ],
+      "AddValue": [
+        50.0
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 10005,
+      "Name": "Mp회복(대)",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
     }
   ]
 }

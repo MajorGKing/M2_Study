@@ -9,9 +9,8 @@ using Unity.Plastic.Newtonsoft.Json;
 using Data;
 using System.ComponentModel;
 using System.Reflection;
-using NUnit.Framework.Interfaces;
-using Scripts.Data;
-using Scripts.Data.SO;
+using Data.SO;
+using Google.Protobuf.Protocol;
 
 
 public class DataTransformer : EditorWindow
@@ -23,16 +22,17 @@ public class DataTransformer : EditorWindow
     {
         ParseExcelDataToJson<TextDataLoader, TextData>("Text");
         ParseExcelDataToJson<BaseStatDataLoader, BaseStatData>("BaseStat");
-        //ParseExcelDataToJson<HeroDataLoader, HeroData>("Hero");
-
-        ParseSODataToJson<HeroDataLoader, HeroData>("Hero");
-        ParseSODataToJson<MonsterDataLoader, MonsterData>("Monster");
-        ParseSODataToJson<SkillDataLoader, SkillData>("Skill");
-        ParseSODataToJson<EffectDataLoader, EffectData>("Effect");
-        ParseSODataToJson<QuestDataLoader, QuestData>("Quest");
-        ParseSODataToJson<ProjectileDataLoader, ProjectileData>("Projectile");
-
-
+        ParseExcelDataToJson<HeroDataLoader, HeroData>("Hero");
+        ParseExcelDataToJson<MonsterDataLoader, MonsterData>("Monster");
+        ParseExcelDataToJson<SkillDataLoader, SkillData>("Skill");
+        ParseExcelDataToJson<EffectDataLoader, EffectData>("Effect");
+        ParseExcelDataToJson<ProjectileDataLoader, ProjectileData>("Projectile");
+        ParseExcelDataToJson<EquipmentDataLoader, EquipmentData>("Equipment");
+        ParseExcelDataToJson<ConsumableDataLoader, ConsumableData>("Consumable");
+        ParseExcelDataToJson<RewardDataLoader, RewardData>("Reward");
+        ParseExcelDataToJson<DropTableDataLoader, DropTableData>("DropTable");
+        //
+        ParseSODataToJson<SpawningPoolDataLoader, SpawningPoolData>("SpawningPool");
         Debug.Log("Complete DataTransformer");
     }
 

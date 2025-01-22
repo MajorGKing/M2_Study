@@ -16,6 +16,8 @@ namespace GameServer
         public ClientSession Session { get; set; }
         public VisionCubeComponent Vision { get; protected set; }
 
+        public InventoryComponent Inven { get; private set; }
+
         //public StatInfo TotalStat { get; private set; } = new StatInfo();
 
         // DB의 고유 번호
@@ -170,14 +172,9 @@ namespace GameServer
             if(DataManager.HeroDict.TryGetValue(TemplateId, out HeroData heroData))
             {
                 HeroData = heroData;
-                BaseStat.MergeFrom(heroData.Stat.StatInfo);
+                BaseStat.MergeFrom(heroData.Stat);
 
                 InitStat(heroDb.Level, false);
-                //BaseStat.Hp = BaseStat.MaxHp;
-                //TotalStat.MergeFrom(BaseStat);
-
-                //MyHeroInfo.TotalStatInfo = TotalStat;
-                //HeroInfo.CreatureInfo.StatInfo = TotalStat; // 플레이어는 최종 스탯으로 보내주도록
             }
 
             ////DB 저장된 HP/MP가 없다면 풀피
@@ -185,16 +182,15 @@ namespace GameServer
             Mp = heroDb.Mp == -1 ? BaseStat.MaxMp : heroDb.Mp;
         }
 
-        // TODO
         private void InitializeSkills()
         {
             if (HeroData == null)
                 return;
 
-            SkillComp.RegisterSkill(HeroData.MainSkill.TemplateId);
-            SkillComp.RegisterSkill(HeroData.SkillA.TemplateId);
-            SkillComp.RegisterSkill(HeroData.SkillB.TemplateId);
-            SkillComp.RegisterSkill(HeroData.SkillC.TemplateId);
+            foreach (var skillData in HeroData.SkillMap.Values)
+            {
+                SkillComp.RegisterSkill(skillData.TemplateId);
+            }
         }
 
         public override void Reset()

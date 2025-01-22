@@ -1,0 +1,58 @@
+{
+  "dropTables": [
+    {
+      "TemplateId": 1,
+      "Name": "허수아비 드랍 테이블",
+      "RewardGold": 3,
+      "RewardExp": 21,
+      "RewardDataIds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 2,
+      "Name": "우드맨 드랍 테이블",
+      "RewardGold": 4,
+      "RewardExp": 22,
+      "RewardDataIds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 3,
+      "Name": "고블린 드랍 테이블",
+      "RewardGold": 5,
+      "RewardExp": 23,
+      "RewardDataIds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "Rewards": null
+    }
+  ]
+}

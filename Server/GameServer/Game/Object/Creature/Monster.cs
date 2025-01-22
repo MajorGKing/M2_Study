@@ -40,7 +40,7 @@ namespace GameServer
             _ai = new MonsterAIController(this);
 
             MonsterData = monsterData;
-            BaseStat.MergeFrom(monsterData.Stat.StatInfo);
+            BaseStat.MergeFrom(monsterData.Stat);
             BaseStat.Hp = BaseStat.MaxHp;
             CreatureInfo.TotalStatInfo = BaseStat;
             TotalStat.MergeFrom(BaseStat);
@@ -50,7 +50,11 @@ namespace GameServer
             Boss = monsterData.IsBoss;
             ExtraCells = monsterData.ExtraCells;
 
-            SkillComp.RegisterSkill(monsterData.MainSkill.TemplateId);
+            foreach (var skillData in monsterData.SkillMap.Values)
+            {
+                Console.WriteLine($"{Data.Name} add Skill : {skillData.Name} , {skillData.EffectData}");
+                SkillComp.RegisterSkill(skillData.TemplateId);
+            }
         }
 
         public override bool IsEnemy(BaseObject target)

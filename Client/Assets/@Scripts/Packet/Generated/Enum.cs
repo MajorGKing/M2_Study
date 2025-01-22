@@ -53,55 +53,99 @@ namespace Google.Protobuf.Protocol {
             "VElPThAEEh0KGUVGSU5EX1BBVEhfUkVTVUxUX1NVQ0NFU1MQBSpoCgxFUmVz",
             "cGF3blR5cGUSFQoRUkVTUEFXTl9UWVBFX05PTkUQABIgChxSRVNQQVdOX1RZ",
             "UEVfUkFORE9NX0lOVEVSVkFMEAESHwobUkVTUEFXTl9UWVBFX01BSU5UQUlO",
-            "X0NPVU5UEAIqLgoKRU93bmVyU3RhdBIPCgtTa2lsbENhc3RlchAAEg8KC0Vm",
-            "ZmVjdE93bmVyEAEqpgMKCUVTdGF0VHlwZRIVChFFU1RBVF9UWVBFX01BWF9I",
-            "UBAAEhEKDUVTVEFUX1RZUEVfSFAQARIXChNFU1RBVF9UWVBFX0hQX1JFR0VO",
-            "EAISFQoRRVNUQVRfVFlQRV9NQVhfTVAQAxIRCg1FU1RBVF9UWVBFX01QEAQS",
-            "FwoTRVNUQVRfVFlQRV9NUF9SRUdFThAFEhUKEUVTVEFUX1RZUEVfQVRUQUNL",
-            "EAYSFgoSRVNUQVRfVFlQRV9ERUZFTkNFEAcSFAoQRVNUQVRfVFlQRV9ET0RH",
-            "RRAIEhsKF0VTVEFUX1RZUEVfQVRUQUNLX1NQRUVEEAkSGQoVRVNUQVRfVFlQ",
-            "RV9NT1ZFX1NQRUVEEAoSFwoTRVNUQVRfVFlQRV9DUklfUkFURRALEhkKFUVT",
-            "VEFUX1RZUEVfQ1JJX0RBTUFHRRAMEhIKDkVTVEFUX1RZUEVfU1RSEA0SEgoO",
-            "RVNUQVRfVFlQRV9ERVgQDhISCg5FU1RBVF9UWVBFX0lOVBAPEhIKDkVTVEFU",
-            "X1RZUEVfQ09OEBASEgoORVNUQVRfVFlQRV9XSVMQESrXAQoSRUNyZWF0dXJl",
-            "U3RhdGVGbGFnEh0KGUVDUkVBVFVSRV9TVEFURV9GTEFHX05PTkUQABIdChlF",
-            "Q1JFQVRVUkVfU1RBVEVfRkxBR19TTE9XEAESHQoZRUNSRUFUVVJFX1NUQVRF",
-            "X0ZMQUdfU1RVThACEh8KG0VDUkVBVFVSRV9TVEFURV9GTEFHX0ZBU1RFUhAD",
-            "Eh8KG0VDUkVBVFVSRV9TVEFURV9GTEFHX1BPSVNPThAEEiIKHkVDUkVBVFVS",
-            "RV9TVEFURV9GTEFHX01BWF9DT1VOVBAFKiIKCkVTa2lsbFR5cGUSFAoQRVNL",
-            "SUxMX1RZUEVfTk9ORRAAKpkBChNFVXNlU2tpbGxUYXJnZXRUeXBlEh8KG0VV",
-            "U0VfU0tJTExfVEFSR0VUX1RZUEVfTk9ORRAAEh8KG0VVU0VfU0tJTExfVEFS",
-            "R0VUX1RZUEVfU0VMRhABEiAKHEVVU0VfU0tJTExfVEFSR0VUX1RZUEVfT1RI",
-            "RVIQAhIeChpFVVNFX1NLSUxMX1RBUkdFVF9UWVBFX0FOWRADKo0BChFFVGFy",
-            "Z2V0RnJpZW5kVHlwZRIcChhFVEFSR0VUX0ZSSUVORF9UWVBFX05PTkUQABIe",
-            "ChpFVEFSR0VUX0ZSSUVORF9UWVBFX0ZSSUVORBABEh0KGUVUQVJHRVRfRlJJ",
-            "RU5EX1RZUEVfRU5FTVkQAhIbChdFVEFSR0VUX0ZSSUVORF9UWVBFX0FOWRAD",
-            "Kq4BCgtFRWZmZWN0VHlwZRIVChFFRUZGRUNUX1RZUEVfTk9ORRAAEhcKE0VF",
-            "RkZFQ1RfVFlQRV9EQU1BR0UQARIVChFFRUZGRUNUX1RZUEVfSEVBTBACEhoK",
-            "FkVFRkZFQ1RfVFlQRV9CVUZGX1NUQVQQAxIgChxFRUZGRUNUX1RZUEVfQlVG",
-            "Rl9MSUZFX1NURUFMEAQSGgoWRUVGRkVDVF9UWVBFX0JVRkZfU1RVThAFKm0K",
-            "D0VEdXJhdGlvblBvbGljeRIcChhFRFVSQVRJT05fUE9MSUNZX0lOU1RBTlQQ",
-            "ABIdChlFRFVSQVRJT05fUE9MSUNZX0RVUkFUSU9OEAESHQoZRURVUkFUSU9O",
-            "X1BPTElDWV9JTkZJTklURRACKuQBCgtFRGFtYWdlVHlwZRIVChFFREFNQUdF",
-            "X1RZUEVfTk9ORRAAEhQKEEVEQU1BR0VfVFlQRV9ISVQQARIZChVFREFNQUdF",
-            "X1RZUEVfQ1JJVElDQUwQAhIVChFFREFNQUdFX1RZUEVfTUlTUxADEhgKFEVE",
-            "QU1BR0VfVFlQRV9IRUFMX0hQEAQSGAoURURBTUFHRV9UWVBFX0hFQUxfTVAQ",
-            "BRIVChFFREFNQUdFX1RZUEVfU1RVThAGEhUKEUVEQU1BR0VfVFlQRV9HT0xE",
-            "EAcSFAoQRURBTUFHRV9UWVBFX0VYUBAIKoEBCgpFSXRlbUdyYWRlEhQKEEVJ",
-            "VEVNX0dSQURFX05PTkUQABIWChJFSVRFTV9HUkFERV9OT1JNQUwQARIUChBF",
-            "SVRFTV9HUkFERV9SQVJFEAISFAoQRUlURU1fR1JBREVfRVBJQxADEhkKFUVJ",
-            "VEVNX0dSQURFX0xFR0VOREFSWRAEKs0CChZFQ2FuVXNlU2tpbGxGYWlsUmVh",
-            "c29uEiMKH0VDQU5fVVNFX1NLSUxMX0ZBSUxfUkVBU09OX05PTkUQABInCiNF",
-            "Q0FOX1VTRV9TS0lMTF9GQUlMX1JFQVNPTl9DT09MVElNRRABEjIKLkVDQU5f",
-            "VVNFX1NLSUxMX0ZBSUxfUkVBU09OX0lOVkFMSURfT1dORVJfU1RBVEUQAhIt",
-            "CilFQ0FOX1VTRV9TS0lMTF9GQUlMX1JFQVNPTl9JTlZBTElEX1RBUkdFVBAD",
-            "EisKJ0VDQU5fVVNFX1NLSUxMX0ZBSUxfUkVBU09OX0lOVkFMSURfREFUQRAE",
-            "EikKJUVDQU5fVVNFX1NLSUxMX0ZBSUxfUkVBU09OX1NLSUxMX0NPU1QQBRIq",
-            "CiZFQ0FOX1VTRV9TS0lMTF9GQUlMX1JFQVNPTl9TS0lMTF9SQU5HRRAGQhuq",
-            "AhhHb29nbGUuUHJvdG9idWYuUHJvdG9jb2xiBnByb3RvMw=="));
+            "X0NPVU5UEAIqSAoKRU93bmVyU3RhdBIcChhFT1dORVJfU1RBVF9TS0lMTF9D",
+            "QVNURVIQABIcChhFT1dORVJfU1RBVF9FRkZFQ1RfT1dORVIQASqmAwoJRVN0",
+            "YXRUeXBlEhUKEUVTVEFUX1RZUEVfTUFYX0hQEAASEQoNRVNUQVRfVFlQRV9I",
+            "UBABEhcKE0VTVEFUX1RZUEVfSFBfUkVHRU4QAhIVChFFU1RBVF9UWVBFX01B",
+            "WF9NUBADEhEKDUVTVEFUX1RZUEVfTVAQBBIXChNFU1RBVF9UWVBFX01QX1JF",
+            "R0VOEAUSFQoRRVNUQVRfVFlQRV9BVFRBQ0sQBhIWChJFU1RBVF9UWVBFX0RF",
+            "RkVOQ0UQBxIUChBFU1RBVF9UWVBFX0RPREdFEAgSGwoXRVNUQVRfVFlQRV9B",
+            "VFRBQ0tfU1BFRUQQCRIZChVFU1RBVF9UWVBFX01PVkVfU1BFRUQQChIXChNF",
+            "U1RBVF9UWVBFX0NSSV9SQVRFEAsSGQoVRVNUQVRfVFlQRV9DUklfREFNQUdF",
+            "EAwSEgoORVNUQVRfVFlQRV9TVFIQDRISCg5FU1RBVF9UWVBFX0RFWBAOEhIK",
+            "DkVTVEFUX1RZUEVfSU5UEA8SEgoORVNUQVRfVFlQRV9DT04QEBISCg5FU1RB",
+            "VF9UWVBFX1dJUxARKtcBChJFQ3JlYXR1cmVTdGF0ZUZsYWcSHQoZRUNSRUFU",
+            "VVJFX1NUQVRFX0ZMQUdfTk9ORRAAEh0KGUVDUkVBVFVSRV9TVEFURV9GTEFH",
+            "X1NMT1cQARIdChlFQ1JFQVRVUkVfU1RBVEVfRkxBR19TVFVOEAISHwobRUNS",
+            "RUFUVVJFX1NUQVRFX0ZMQUdfRkFTVEVSEAMSHwobRUNSRUFUVVJFX1NUQVRF",
+            "X0ZMQUdfUE9JU09OEAQSIgoeRUNSRUFUVVJFX1NUQVRFX0ZMQUdfTUFYX0NP",
+            "VU5UEAUqUwoKRVNraWxsVHlwZRIUChBFU0tJTExfVFlQRV9OT05FEAASFgoS",
+            "RVNLSUxMX1RZUEVfQUNUSVZFEAESFwoTRVNLSUxMX1RZUEVfUEFTU0lWRRAC",
+            "KpkBChNFVXNlU2tpbGxUYXJnZXRUeXBlEh8KG0VVU0VfU0tJTExfVEFSR0VU",
+            "X1RZUEVfTk9ORRAAEh8KG0VVU0VfU0tJTExfVEFSR0VUX1RZUEVfU0VMRhAB",
+            "EiAKHEVVU0VfU0tJTExfVEFSR0VUX1RZUEVfT1RIRVIQAhIeChpFVVNFX1NL",
+            "SUxMX1RBUkdFVF9UWVBFX0FOWRADKo0BChFFVGFyZ2V0RnJpZW5kVHlwZRIc",
+            "ChhFVEFSR0VUX0ZSSUVORF9UWVBFX05PTkUQABIeChpFVEFSR0VUX0ZSSUVO",
+            "RF9UWVBFX0ZSSUVORBABEh0KGUVUQVJHRVRfRlJJRU5EX1RZUEVfRU5FTVkQ",
+            "AhIbChdFVEFSR0VUX0ZSSUVORF9UWVBFX0FOWRADKq4BCgtFRWZmZWN0VHlw",
+            "ZRIVChFFRUZGRUNUX1RZUEVfTk9ORRAAEhcKE0VFRkZFQ1RfVFlQRV9EQU1B",
+            "R0UQARIVChFFRUZGRUNUX1RZUEVfSEVBTBACEhoKFkVFRkZFQ1RfVFlQRV9C",
+            "VUZGX1NUQVQQAxIgChxFRUZGRUNUX1RZUEVfQlVGRl9MSUZFX1NURUFMEAQS",
+            "GgoWRUVGRkVDVF9UWVBFX0JVRkZfU1RVThAFKm0KD0VEdXJhdGlvblBvbGlj",
+            "eRIcChhFRFVSQVRJT05fUE9MSUNZX0lOU1RBTlQQABIdChlFRFVSQVRJT05f",
+            "UE9MSUNZX0RVUkFUSU9OEAESHQoZRURVUkFUSU9OX1BPTElDWV9JTkZJTklU",
+            "RRACKuQBCgtFRGFtYWdlVHlwZRIVChFFREFNQUdFX1RZUEVfTk9ORRAAEhQK",
+            "EEVEQU1BR0VfVFlQRV9ISVQQARIZChVFREFNQUdFX1RZUEVfQ1JJVElDQUwQ",
+            "AhIVChFFREFNQUdFX1RZUEVfTUlTUxADEhgKFEVEQU1BR0VfVFlQRV9IRUFM",
+            "X0hQEAQSGAoURURBTUFHRV9UWVBFX0hFQUxfTVAQBRIVChFFREFNQUdFX1RZ",
+            "UEVfU1RVThAGEhUKEUVEQU1BR0VfVFlQRV9HT0xEEAcSFAoQRURBTUFHRV9U",
+            "WVBFX0VYUBAIKlUKCUVJdGVtVHlwZRITCg9FSVRFTV9UWVBFX05PTkUQABIY",
+            "ChRFSVRFTV9UWVBFX0VRVUlQTUVOVBABEhkKFUVJVEVNX1RZUEVfQ09OU1VN",
+            "QUJMRRACKtYCCgxFSXRlbVN1YlR5cGUSFwoTRUlURU1fU1VCX1RZUEVfTk9O",
+            "RRAAEh0KGUVJVEVNX1NVQl9UWVBFX01BSU5XRUFQT04QARIcChhFSVRFTV9T",
+            "VUJfVFlQRV9TVUJXRUFQT04QAhIZChVFSVRFTV9TVUJfVFlQRV9IRUxNRVQQ",
+            "AxIYChRFSVRFTV9TVUJfVFlQRV9DSEVTVBAEEhYKEkVJVEVNX1NVQl9UWVBF",
+            "X0xFRxAFEhgKFEVJVEVNX1NVQl9UWVBFX1NIT0VTEAYSGQoVRUlURU1fU1VC",
+            "X1RZUEVfR0xPVkVTEAcSGwoXRUlURU1fU1VCX1RZUEVfU0hPVUxERVIQCBIX",
+            "ChNFSVRFTV9TVUJfVFlQRV9SSU5HEAkSGQoVRUlURU1fU1VCX1RZUEVfQU1V",
+            "TEVUEAoSHQoZRUlURU1fU1VCX1RZUEVfQ09OU1VNQUJMRRAMKpsBCgpFSXRl",
+            "bUdyYWRlEhQKEEVJVEVNX0dSQURFX05PTkUQABIWChJFSVRFTV9HUkFERV9D",
+            "T01NT04QARIYChRFSVRFTV9HUkFERV9VTkNPTU1PThACEhQKEEVJVEVNX0dS",
+            "QURFX1JBUkUQAxIUChBFSVRFTV9HUkFERV9FUElDEAQSGQoVRUlURU1fR1JB",
+            "REVfTEVHRU5EQVJZEAUqYAoLRVBvdGlvblR5cGUSFQoRRVBPVElPTl9UWVBF",
+            "X05PTkUQABIcChhFUE9USU9OX1RZUEVfUkVDT1ZFUllfSFAQARIcChhFUE9U",
+            "SU9OX1RZUEVfUkVDT1ZFUllfTVAQAiqkAwoNRUl0ZW1TbG90VHlwZRIYChRF",
+            "SVRFTV9TTE9UX1RZUEVfTk9ORRAAEh4KGkVJVEVNX1NMT1RfVFlQRV9NQUlO",
+            "V0VBUE9OEAESHQoZRUlURU1fU0xPVF9UWVBFX1NVQldFQVBPThACEhoKFkVJ",
+            "VEVNX1NMT1RfVFlQRV9IRUxNRVQQAxIZChVFSVRFTV9TTE9UX1RZUEVfQ0hF",
+            "U1QQBBIXChNFSVRFTV9TTE9UX1RZUEVfTEVHEAUSGQoVRUlURU1fU0xPVF9U",
+            "WVBFX1NIT0VTEAYSGgoWRUlURU1fU0xPVF9UWVBFX0dMT1ZFUxAHEhwKGEVJ",
+            "VEVNX1NMT1RfVFlQRV9TSE9VTERFUhAIEhgKFEVJVEVNX1NMT1RfVFlQRV9S",
+            "SU5HEAkSGgoWRUlURU1fU0xPVF9UWVBFX0FNVUxFVBAKEiEKHUVJVEVNX1NM",
+            "T1RfVFlQRV9FUVVJUE1FTlRfTUFYEAsSHQoZRUlURU1fU0xPVF9UWVBFX0lO",
+            "VkVOVE9SWRBkEh0KGUVJVEVNX1NMT1RfVFlQRV9XQVJFSE9VU0UQZSp3CgtF",
+            "SXRlbVN0YXR1cxIVChFFSVRFTV9TVEFUVVNfTk9ORRAAEhkKFUVJVEVNX1NU",
+            "QVRVU19FUVVJUFBFRBABEhoKFkVJVEVNX1NUQVRVU19JTlZFTlRPUlkQAhIa",
+            "ChZFSVRFTV9TVEFUVVNfV0FSRUhPVVNFEAMqUwoRRVVwZGF0ZUl0ZW1SZWFz",
+            "b24SHAoYRVVQREFURV9JVEVNX1JFQVNPTl9OT05FEAASIAocRVVQREFURV9J",
+            "VEVNX1JFQVNPTl9VU0VfSVRFTRABKm0KEkVJdGVtQ29vbHRpbWVHcm91cBId",
+            "ChlFSVRFTV9DT09MVElNRV9HUk9VUF9OT05FEAASGwoXRUlURU1fQ09PTFRJ",
+            "TUVfR1JPVVBfSFAQARIbChdFSVRFTV9DT09MVElNRV9HUk9VUF9NUBACKpcB",
+            "Cg1FRXJyb3JNZXNzYWdlEhcKE0VFUlJPUl9NRVNTQUdFX05PTkUQABIYChRF",
+            "RVJST1JfTUVTU0FHRV9MRVZFTBABEhgKFEVFUlJPUl9NRVNTQUdFX0NMQVNT",
+            "EAISIQodRUVSUk9SX01FU1NBR0VfSU5WRU5UT1JZX0ZVTEwQBBIWChJFRVJS",
+            "T1JfTUVTU0FHRV9FVEMQAyrNAgoWRUNhblVzZVNraWxsRmFpbFJlYXNvbhIj",
+            "Ch9FQ0FOX1VTRV9TS0lMTF9GQUlMX1JFQVNPTl9OT05FEAASJwojRUNBTl9V",
+            "U0VfU0tJTExfRkFJTF9SRUFTT05fQ09PTFRJTUUQARIyCi5FQ0FOX1VTRV9T",
+            "S0lMTF9GQUlMX1JFQVNPTl9JTlZBTElEX09XTkVSX1NUQVRFEAISLQopRUNB",
+            "Tl9VU0VfU0tJTExfRkFJTF9SRUFTT05fSU5WQUxJRF9UQVJHRVQQAxIrCidF",
+            "Q0FOX1VTRV9TS0lMTF9GQUlMX1JFQVNPTl9JTlZBTElEX0RBVEEQBBIpCiVF",
+            "Q0FOX1VTRV9TS0lMTF9GQUlMX1JFQVNPTl9TS0lMTF9DT1NUEAUSKgomRUNB",
+            "Tl9VU0VfU0tJTExfRkFJTF9SRUFTT05fU0tJTExfUkFOR0UQBiqyAgoKRVNr",
+            "aWxsU2xvdBIUChBFU0tJTExfU0xPVF9OT05FEAASFAoQRVNLSUxMX1NMT1Rf",
+            "TUFJThABEhYKEkVTS0lMTF9TTE9UX1NLSUxMQRACEhYKEkVTS0lMTF9TTE9U",
+            "X1NLSUxMQhADEhYKEkVTS0lMTF9TTE9UX1NLSUxMQxAEEhYKEkVTS0lMTF9T",
+            "TE9UX1NLSUxMRBAFEhYKEkVTS0lMTF9TTE9UX1NLSUxMRRAGEhgKFEVTS0lM",
+            "TF9TTE9UX1BBU1NJVkVBEAcSGAoURVNLSUxMX1NMT1RfUEFTU0lWRUIQCBIY",
+            "ChRFU0tJTExfU0xPVF9QQVNTSVZFQxAJEhgKFEVTS0lMTF9TTE9UX1BBU1NJ",
+            "VkVEEAoSGAoURVNLSUxMX1NMT1RfUEFTU0lWRUUQCyqYAQoURUNvbnN1bWFi",
+            "bGVHcm91cFR5cGUSHwobRUNPTlNVTUFCTEVfR1JPVVBfVFlQRV9OT05FEAAS",
+            "HQoZRUNPTlNVTUFCTEVfR1JPVVBfVFlQRV9IUBABEh0KGUVDT05TVU1BQkxF",
+            "X0dST1VQX1RZUEVfTVAQAhIhCh1FQ09OU1VNQUJMRV9HUk9VUF9UWVBFX0FU",
+            "VEFDSxADQhuqAhhHb29nbGUuUHJvdG9idWYuUHJvdG9jb2xiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.EHeroGender), typeof(global::Google.Protobuf.Protocol.EHeroClass), typeof(global::Google.Protobuf.Protocol.ECreateHeroResult), typeof(global::Google.Protobuf.Protocol.EObjectState), typeof(global::Google.Protobuf.Protocol.EMoveDir), typeof(global::Google.Protobuf.Protocol.EGameObjectType), typeof(global::Google.Protobuf.Protocol.ECellCollisionType), typeof(global::Google.Protobuf.Protocol.EFindPathResult), typeof(global::Google.Protobuf.Protocol.ERespawnType), typeof(global::Google.Protobuf.Protocol.EOwnerStat), typeof(global::Google.Protobuf.Protocol.EStatType), typeof(global::Google.Protobuf.Protocol.ECreatureStateFlag), typeof(global::Google.Protobuf.Protocol.ESkillType), typeof(global::Google.Protobuf.Protocol.EUseSkillTargetType), typeof(global::Google.Protobuf.Protocol.ETargetFriendType), typeof(global::Google.Protobuf.Protocol.EEffectType), typeof(global::Google.Protobuf.Protocol.EDurationPolicy), typeof(global::Google.Protobuf.Protocol.EDamageType), typeof(global::Google.Protobuf.Protocol.EItemGrade), typeof(global::Google.Protobuf.Protocol.ECanUseSkillFailReason), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.EHeroGender), typeof(global::Google.Protobuf.Protocol.EHeroClass), typeof(global::Google.Protobuf.Protocol.ECreateHeroResult), typeof(global::Google.Protobuf.Protocol.EObjectState), typeof(global::Google.Protobuf.Protocol.EMoveDir), typeof(global::Google.Protobuf.Protocol.EGameObjectType), typeof(global::Google.Protobuf.Protocol.ECellCollisionType), typeof(global::Google.Protobuf.Protocol.EFindPathResult), typeof(global::Google.Protobuf.Protocol.ERespawnType), typeof(global::Google.Protobuf.Protocol.EOwnerStat), typeof(global::Google.Protobuf.Protocol.EStatType), typeof(global::Google.Protobuf.Protocol.ECreatureStateFlag), typeof(global::Google.Protobuf.Protocol.ESkillType), typeof(global::Google.Protobuf.Protocol.EUseSkillTargetType), typeof(global::Google.Protobuf.Protocol.ETargetFriendType), typeof(global::Google.Protobuf.Protocol.EEffectType), typeof(global::Google.Protobuf.Protocol.EDurationPolicy), typeof(global::Google.Protobuf.Protocol.EDamageType), typeof(global::Google.Protobuf.Protocol.EItemType), typeof(global::Google.Protobuf.Protocol.EItemSubType), typeof(global::Google.Protobuf.Protocol.EItemGrade), typeof(global::Google.Protobuf.Protocol.EPotionType), typeof(global::Google.Protobuf.Protocol.EItemSlotType), typeof(global::Google.Protobuf.Protocol.EItemStatus), typeof(global::Google.Protobuf.Protocol.EUpdateItemReason), typeof(global::Google.Protobuf.Protocol.EItemCooltimeGroup), typeof(global::Google.Protobuf.Protocol.EErrorMessage), typeof(global::Google.Protobuf.Protocol.ECanUseSkillFailReason), typeof(global::Google.Protobuf.Protocol.ESkillSlot), typeof(global::Google.Protobuf.Protocol.EConsumableGroupType), }, null, null));
     }
     #endregion
 
@@ -176,8 +220,8 @@ namespace Google.Protobuf.Protocol {
   }
 
   public enum EOwnerStat {
-    [pbr::OriginalName("SkillCaster")] SkillCaster = 0,
-    [pbr::OriginalName("EffectOwner")] EffectOwner = 1,
+    [pbr::OriginalName("EOWNER_STAT_SKILL_CASTER")] SkillCaster = 0,
+    [pbr::OriginalName("EOWNER_STAT_EFFECT_OWNER")] EffectOwner = 1,
   }
 
   public enum EStatType {
@@ -211,10 +255,9 @@ namespace Google.Protobuf.Protocol {
   }
 
   public enum ESkillType {
-    /// <summary>
-    /// 패시브? 액티브? 움직이면서 쓰기 가능? 등 분류가 좋아보임.
-    /// </summary>
     [pbr::OriginalName("ESKILL_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("ESKILL_TYPE_ACTIVE")] Active = 1,
+    [pbr::OriginalName("ESKILL_TYPE_PASSIVE")] Passive = 2,
   }
 
   public enum EUseSkillTargetType {
@@ -258,12 +301,83 @@ namespace Google.Protobuf.Protocol {
     [pbr::OriginalName("EDAMAGE_TYPE_EXP")] Exp = 8,
   }
 
+  public enum EItemType {
+    [pbr::OriginalName("EITEM_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("EITEM_TYPE_EQUIPMENT")] Equipment = 1,
+    [pbr::OriginalName("EITEM_TYPE_CONSUMABLE")] Consumable = 2,
+  }
+
+  public enum EItemSubType {
+    [pbr::OriginalName("EITEM_SUB_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("EITEM_SUB_TYPE_MAINWEAPON")] Mainweapon = 1,
+    [pbr::OriginalName("EITEM_SUB_TYPE_SUBWEAPON")] Subweapon = 2,
+    [pbr::OriginalName("EITEM_SUB_TYPE_HELMET")] Helmet = 3,
+    [pbr::OriginalName("EITEM_SUB_TYPE_CHEST")] Chest = 4,
+    [pbr::OriginalName("EITEM_SUB_TYPE_LEG")] Leg = 5,
+    [pbr::OriginalName("EITEM_SUB_TYPE_SHOES")] Shoes = 6,
+    [pbr::OriginalName("EITEM_SUB_TYPE_GLOVES")] Gloves = 7,
+    [pbr::OriginalName("EITEM_SUB_TYPE_SHOULDER")] Shoulder = 8,
+    [pbr::OriginalName("EITEM_SUB_TYPE_RING")] Ring = 9,
+    [pbr::OriginalName("EITEM_SUB_TYPE_AMULET")] Amulet = 10,
+    [pbr::OriginalName("EITEM_SUB_TYPE_CONSUMABLE")] Consumable = 12,
+  }
+
   public enum EItemGrade {
     [pbr::OriginalName("EITEM_GRADE_NONE")] None = 0,
-    [pbr::OriginalName("EITEM_GRADE_NORMAL")] Normal = 1,
-    [pbr::OriginalName("EITEM_GRADE_RARE")] Rare = 2,
-    [pbr::OriginalName("EITEM_GRADE_EPIC")] Epic = 3,
-    [pbr::OriginalName("EITEM_GRADE_LEGENDARY")] Legendary = 4,
+    [pbr::OriginalName("EITEM_GRADE_COMMON")] Common = 1,
+    [pbr::OriginalName("EITEM_GRADE_UNCOMMON")] Uncommon = 2,
+    [pbr::OriginalName("EITEM_GRADE_RARE")] Rare = 3,
+    [pbr::OriginalName("EITEM_GRADE_EPIC")] Epic = 4,
+    [pbr::OriginalName("EITEM_GRADE_LEGENDARY")] Legendary = 5,
+  }
+
+  public enum EPotionType {
+    [pbr::OriginalName("EPOTION_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("EPOTION_TYPE_RECOVERY_HP")] RecoveryHp = 1,
+    [pbr::OriginalName("EPOTION_TYPE_RECOVERY_MP")] RecoveryMp = 2,
+  }
+
+  public enum EItemSlotType {
+    [pbr::OriginalName("EITEM_SLOT_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("EITEM_SLOT_TYPE_MAINWEAPON")] Mainweapon = 1,
+    [pbr::OriginalName("EITEM_SLOT_TYPE_SUBWEAPON")] Subweapon = 2,
+    [pbr::OriginalName("EITEM_SLOT_TYPE_HELMET")] Helmet = 3,
+    [pbr::OriginalName("EITEM_SLOT_TYPE_CHEST")] Chest = 4,
+    [pbr::OriginalName("EITEM_SLOT_TYPE_LEG")] Leg = 5,
+    [pbr::OriginalName("EITEM_SLOT_TYPE_SHOES")] Shoes = 6,
+    [pbr::OriginalName("EITEM_SLOT_TYPE_GLOVES")] Gloves = 7,
+    [pbr::OriginalName("EITEM_SLOT_TYPE_SHOULDER")] Shoulder = 8,
+    [pbr::OriginalName("EITEM_SLOT_TYPE_RING")] Ring = 9,
+    [pbr::OriginalName("EITEM_SLOT_TYPE_AMULET")] Amulet = 10,
+    [pbr::OriginalName("EITEM_SLOT_TYPE_EQUIPMENT_MAX")] EquipmentMax = 11,
+    [pbr::OriginalName("EITEM_SLOT_TYPE_INVENTORY")] Inventory = 100,
+    [pbr::OriginalName("EITEM_SLOT_TYPE_WAREHOUSE")] Warehouse = 101,
+  }
+
+  public enum EItemStatus {
+    [pbr::OriginalName("EITEM_STATUS_NONE")] None = 0,
+    [pbr::OriginalName("EITEM_STATUS_EQUIPPED")] Equipped = 1,
+    [pbr::OriginalName("EITEM_STATUS_INVENTORY")] Inventory = 2,
+    [pbr::OriginalName("EITEM_STATUS_WAREHOUSE")] Warehouse = 3,
+  }
+
+  public enum EUpdateItemReason {
+    [pbr::OriginalName("EUPDATE_ITEM_REASON_NONE")] None = 0,
+    [pbr::OriginalName("EUPDATE_ITEM_REASON_USE_ITEM")] UseItem = 1,
+  }
+
+  public enum EItemCooltimeGroup {
+    [pbr::OriginalName("EITEM_COOLTIME_GROUP_NONE")] None = 0,
+    [pbr::OriginalName("EITEM_COOLTIME_GROUP_HP")] Hp = 1,
+    [pbr::OriginalName("EITEM_COOLTIME_GROUP_MP")] Mp = 2,
+  }
+
+  public enum EErrorMessage {
+    [pbr::OriginalName("EERROR_MESSAGE_NONE")] None = 0,
+    [pbr::OriginalName("EERROR_MESSAGE_LEVEL")] Level = 1,
+    [pbr::OriginalName("EERROR_MESSAGE_CLASS")] Class = 2,
+    [pbr::OriginalName("EERROR_MESSAGE_INVENTORY_FULL")] InventoryFull = 4,
+    [pbr::OriginalName("EERROR_MESSAGE_ETC")] Etc = 3,
   }
 
   public enum ECanUseSkillFailReason {
@@ -274,6 +388,28 @@ namespace Google.Protobuf.Protocol {
     [pbr::OriginalName("ECAN_USE_SKILL_FAIL_REASON_INVALID_DATA")] InvalidData = 4,
     [pbr::OriginalName("ECAN_USE_SKILL_FAIL_REASON_SKILL_COST")] SkillCost = 5,
     [pbr::OriginalName("ECAN_USE_SKILL_FAIL_REASON_SKILL_RANGE")] SkillRange = 6,
+  }
+
+  public enum ESkillSlot {
+    [pbr::OriginalName("ESKILL_SLOT_NONE")] None = 0,
+    [pbr::OriginalName("ESKILL_SLOT_MAIN")] Main = 1,
+    [pbr::OriginalName("ESKILL_SLOT_SKILLA")] Skilla = 2,
+    [pbr::OriginalName("ESKILL_SLOT_SKILLB")] Skillb = 3,
+    [pbr::OriginalName("ESKILL_SLOT_SKILLC")] Skillc = 4,
+    [pbr::OriginalName("ESKILL_SLOT_SKILLD")] Skilld = 5,
+    [pbr::OriginalName("ESKILL_SLOT_SKILLE")] Skille = 6,
+    [pbr::OriginalName("ESKILL_SLOT_PASSIVEA")] Passivea = 7,
+    [pbr::OriginalName("ESKILL_SLOT_PASSIVEB")] Passiveb = 8,
+    [pbr::OriginalName("ESKILL_SLOT_PASSIVEC")] Passivec = 9,
+    [pbr::OriginalName("ESKILL_SLOT_PASSIVED")] Passived = 10,
+    [pbr::OriginalName("ESKILL_SLOT_PASSIVEE")] Passivee = 11,
+  }
+
+  public enum EConsumableGroupType {
+    [pbr::OriginalName("ECONSUMABLE_GROUP_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("ECONSUMABLE_GROUP_TYPE_HP")] Hp = 1,
+    [pbr::OriginalName("ECONSUMABLE_GROUP_TYPE_MP")] Mp = 2,
+    [pbr::OriginalName("ECONSUMABLE_GROUP_TYPE_ATTACK")] Attack = 3,
   }
 
   #endregion

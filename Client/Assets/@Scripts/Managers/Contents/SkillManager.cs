@@ -3,8 +3,6 @@ using Data;
 using System.Collections;
 using System.Collections.Generic;
 using Google.Protobuf.Protocol;
-using Scripts.Data;
-using Scripts.Data.SO;
 using UnityEngine;
 
 public class SkillManager
@@ -86,26 +84,26 @@ public class SkillManager
     {
         Clear();
 
-        Managers.Data.HeroDic.TryGetValue(heroTemplateId, out HeroData heroData);
+        Managers.Data.HeroDict.TryGetValue(heroTemplateId, out HeroData heroData);
 
-        MainSkillTemplateId = heroData.MainSkill.TemplateId;
-
-        RegisterSkill(heroData.MainSkill.TemplateId);
-        RegisterSkill(heroData.SkillA.TemplateId);
-        RegisterSkill(heroData.SkillB.TemplateId);
-        RegisterSkill(heroData.SkillC.TemplateId);
+        MainSkillTemplateId = heroData.SkillMap[ESkillSlot.Main].TemplateId;
+        
+        foreach (var skillData in heroData.SkillMap.Values)
+        {
+            RegisterSkill(skillData.TemplateId);
+        }
     }
 
     public bool RegisterSkill(int templateId)
     {
         if (_skills.ContainsKey(templateId))
             return false;
-        if (Managers.Data.SkillDic.TryGetValue(templateId, out SkillData skillData) == false)
+        if (Managers.Data.SkillDict.TryGetValue(templateId, out SkillData skillData) == false)
             return false;
 
         Skill skill = null;
 
-        if (skillData.Projectile != null)
+        if (skillData.ProjectileData != null)
             skill = new ProjectileSkill(templateId, Managers.Object.MyHero);
         else
             skill = new NormalSkill(templateId, Managers.Object.MyHero);

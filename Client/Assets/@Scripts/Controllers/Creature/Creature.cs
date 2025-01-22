@@ -1,5 +1,5 @@
 using Google.Protobuf.Protocol;
-using Scripts.Data;
+using Data;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -204,7 +204,7 @@ public class Creature : BaseObject
     public virtual void HandleSkillPacket(S_Skill packet)
     {
         // 스킬 데이터 찾아내기
-        if (Managers.Data.SkillDic.TryGetValue(packet.TemplateId, out SkillData skillData) == false)
+        if (Managers.Data.SkillDict.TryGetValue(packet.TemplateId, out SkillData skillData) == false)
             return;
 
         // 1. 스킬 상태로 변경.
@@ -245,7 +245,7 @@ public class Creature : BaseObject
     #region Effect
     public void ApplyEffect(S_ApplyEffect packet)
     {
-        if (Managers.Data.EffectDic.TryGetValue(packet.EffectTemplateId, out EffectData effectData) == false)
+        if (Managers.Data.EffectDict.TryGetValue(packet.EffectTemplateId, out EffectData effectData) == false)
             return;
 
         CurrentEffects.Add(packet.EffectId, effectData);

@@ -1,5 +1,5 @@
 using Google.Protobuf.Protocol;
-using Scripts.Data.SO;
+using Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -59,7 +59,7 @@ public class Monster : Creature
     public override void SetInfo(int templateId)
     {
         base.SetInfo(templateId);
-        if(Managers.Data.MonsterDic.TryGetValue(templateId, out MonsterData data))
+        if(Managers.Data.MonsterDict.TryGetValue(templateId, out MonsterData data))
         {
             MonsterData = data;
         }

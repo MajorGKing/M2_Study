@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Data;
 using Google.Protobuf;
-using Scripts.Data;
-using Scripts.Data.SO;
 using UnityEngine;
 using static Define;
 using static UnityEditor.Progress;

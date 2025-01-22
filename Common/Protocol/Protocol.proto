@@ -145,3 +145,57 @@ message S_Die {
 message S_ChangeStat {
 	StatInfo totalStatInfo = 1;
 }
+
+message C_EquipItem 
+{
+	int64 itemDbId = 1;
+}
+
+message C_UnEquipItem 
+{
+	int64 itemDbId = 1;
+}
+
+message S_AddItem
+{
+	ItemInfo item = 1;
+}
+
+message S_UpdateItem
+{
+	ItemInfo item = 1;
+	EUpdateItemReason reason = 2;
+}
+
+message S_DeleteItem
+{
+	int64 itemDbId = 1;
+}
+
+message S_ChangeItemSlot
+{
+	int64 itemDbId = 1;
+	EItemSlotType itemSlotType = 2;
+}
+
+message C_DeleteItem 
+{
+	int64 itemDbId = 1;
+}
+
+message C_UseItem 
+{
+	int64 itemDbId = 1;
+}
+
+message S_UseItem
+{
+	int64 itemDbId = 1;
+	int32 remainingTicks = 2;
+}
+
+message S_RewardValue 
+{
+	int32 gold = 1;
+	int32 exp = 2;
+}

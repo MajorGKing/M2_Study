@@ -2,8 +2,6 @@ using Google.Protobuf.Protocol;
 using System;
 using System.Collections;
 using JetBrains.Annotations;
-using Scripts.Data;
-using Scripts.Data.SO;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;

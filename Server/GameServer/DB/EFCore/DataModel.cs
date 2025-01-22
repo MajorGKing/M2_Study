@@ -33,10 +33,12 @@ namespace GameServer
         // Convention : [클래스]Id 으로 명명하면 PK
         public long ItemDbId { get; set; }
         public int TemplateId { get; set; }
-        public int EquipSlot { get; set; }
-        public long AccountDbId { get; set; }
+        public EItemSlotType EquipSlot { get; set; }
         public int Count { get; set; }
-        public int OwnerDbId { get; set; }
         public int EnchantCount { get; set; }
+
+        // FK
+        public int OwnerDbId { get; set; }
+        public HeroDb OwnerDb { get; set; }
     }
 }

@@ -3,7 +3,6 @@ using System.Collections;
 using Data;
 using Google.Protobuf.Protocol;
 using System.Collections.Generic;
-using Scripts.Data;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -518,7 +517,7 @@ public class MyHero : Hero
     {
         if (ObjectState == EObjectState.Dead)
             return;
-        if (Managers.Data.SkillDic.TryGetValue(templateId, out SkillData skillData) == false)
+        if (Managers.Data.SkillDict.TryGetValue(templateId, out SkillData skillData) == false)
             return;
         if (skillData.UseSkillTargetType != EUseSkillTargetType.Self && Target == null)
             return;
@@ -574,7 +573,7 @@ public class MyHero : Hero
 
     public int GetExpToNextLevel()
     {
-        if (Managers.Data.BaseStatDic.TryGetValue(Level, out BaseStatData data))
+        if (Managers.Data.BaseStatDict.TryGetValue(Level, out BaseStatData data))
         {
             return data.Exp;
         }
@@ -591,7 +590,7 @@ public class MyHero : Hero
 
     public bool IsMaxLevel(int level)
     {
-        return level == Managers.Data.BaseStatDic.Count;
+        return level == Managers.Data.BaseStatDict.Count;
     }
 
     #endregion

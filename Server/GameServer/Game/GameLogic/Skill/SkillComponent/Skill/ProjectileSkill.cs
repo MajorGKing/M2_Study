@@ -21,7 +21,7 @@ namespace GameServer.Game
                 return false;
             if (CheckTargetAndRange(targetId) == false)
                 return false;
-            if (_skillData.Projectile == null)
+            if (_skillData.ProjectileId == null)
                 return false;
 
             return true;
@@ -38,7 +38,7 @@ namespace GameServer.Game
             Creature target = GetUseSkillTarget(Owner, _skillData, targetId);
             if (target == null)
                 return;
-            Projectile projectile = ObjectManager.Instance.Spawn<Projectile>(_skillData.Projectile.TemplateId);
+            Projectile projectile = ObjectManager.Instance.Spawn<Projectile>(_skillData.ProjectileId);
             if (projectile == null)
                 return;
 

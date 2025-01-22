@@ -93,4 +93,24 @@ class PacketHandler
 
         room.Push(room.UseSkill, hero, skillPacket.TemplateId, skillPacket.TargetId);
     }
+
+    public static void C_EquipItemHandler(PacketSession session, IMessage packet)
+    {
+
+    }
+
+    public static void C_UnEquipItemHandler(PacketSession session, IMessage packet)
+    {
+
+    }
+
+    public static void C_DeleteItemHandler(PacketSession session, IMessage packet)
+    {
+
+    }
+
+    public static void C_UseItemHandler(PacketSession session, IMessage packet)
+    {
+
+    }
 }

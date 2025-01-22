@@ -44,6 +44,10 @@ namespace GameServer.Game
             List<Creature> targets = GatherSkillEffectTargets(Owner, _skillData, target);
             foreach(Creature t in targets)
             {
+                if(_skillData.EffectData == null)
+                {
+                    Console.WriteLine("Null!");
+                }
                 //if(Owner.ObjectType == EGameObjectType.Hero)
                 //{
                 //    Console.WriteLine($"{Owner} attack {t.ObjectId} by normal {_skillData.EffectData.Name}!");

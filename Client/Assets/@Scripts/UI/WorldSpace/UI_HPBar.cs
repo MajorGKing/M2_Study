@@ -1,6 +1,6 @@
 using System.Collections;
 using Google.Protobuf.Protocol;
-using Scripts.Data.SO;
+using Data;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -53,7 +53,7 @@ public class UI_HPBar : UI_Base
             Monster monster = owner as Monster;
             if (monster == null)
                 return;
-            if (Managers.Data.MonsterDic.TryGetValue(monster.TemplateId, out MonsterData monsterData) == false)
+            if (Managers.Data.MonsterDict.TryGetValue(monster.TemplateId, out MonsterData monsterData) == false)
                 return;
 
             if (monsterData.IsBoss)

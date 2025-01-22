@@ -88,3 +88,13 @@ message SkillCoolTime
 	int32 skillId = 1;
 	int32 remainingTicks = 2;
 }
+
+message ItemInfo 
+{
+	int64 itemDbId = 1;
+	int32 templateId = 2;
+	EItemSlotType itemSlotType = 3;
+	int32 count = 4;	
+	int32 enchantCount = 5;
+	int32 remainingTicks = 6;
+}

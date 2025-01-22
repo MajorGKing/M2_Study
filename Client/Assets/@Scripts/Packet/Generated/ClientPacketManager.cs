@@ -32,6 +32,16 @@ public enum MsgId
 	S_RemoveEffect = 24,
 	S_Die = 25,
 	S_ChangeStat = 26,
+	C_EquipItem = 27,
+	C_UnEquipItem = 28,
+	S_AddItem = 29,
+	S_UpdateItem = 30,
+	S_DeleteItem = 31,
+	S_ChangeItemSlot = 32,
+	C_DeleteItem = 33,
+	C_UseItem = 34,
+	S_UseItem = 35,
+	S_RewardValue = 36,
 }
 
 class PacketManager
@@ -86,7 +96,19 @@ class PacketManager
 		_onRecv.Add((ushort)MsgId.S_Die, MakePacket<S_Die>);
 		_handler.Add((ushort)MsgId.S_Die, PacketHandler.S_DieHandler);		
 		_onRecv.Add((ushort)MsgId.S_ChangeStat, MakePacket<S_ChangeStat>);
-		_handler.Add((ushort)MsgId.S_ChangeStat, PacketHandler.S_ChangeStatHandler);
+		_handler.Add((ushort)MsgId.S_ChangeStat, PacketHandler.S_ChangeStatHandler);		
+		_onRecv.Add((ushort)MsgId.S_AddItem, MakePacket<S_AddItem>);
+		_handler.Add((ushort)MsgId.S_AddItem, PacketHandler.S_AddItemHandler);		
+		_onRecv.Add((ushort)MsgId.S_UpdateItem, MakePacket<S_UpdateItem>);
+		_handler.Add((ushort)MsgId.S_UpdateItem, PacketHandler.S_UpdateItemHandler);		
+		_onRecv.Add((ushort)MsgId.S_DeleteItem, MakePacket<S_DeleteItem>);
+		_handler.Add((ushort)MsgId.S_DeleteItem, PacketHandler.S_DeleteItemHandler);		
+		_onRecv.Add((ushort)MsgId.S_ChangeItemSlot, MakePacket<S_ChangeItemSlot>);
+		_handler.Add((ushort)MsgId.S_ChangeItemSlot, PacketHandler.S_ChangeItemSlotHandler);		
+		_onRecv.Add((ushort)MsgId.S_UseItem, MakePacket<S_UseItem>);
+		_handler.Add((ushort)MsgId.S_UseItem, PacketHandler.S_UseItemHandler);		
+		_onRecv.Add((ushort)MsgId.S_RewardValue, MakePacket<S_RewardValue>);
+		_handler.Add((ushort)MsgId.S_RewardValue, PacketHandler.S_RewardValueHandler);
 	}
 
 	public void OnRecvPacket(PacketSession session, ArraySegment<byte> buffer)

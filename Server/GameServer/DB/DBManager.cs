@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
 using Google.Protobuf.Protocol;
 
 namespace GameServer

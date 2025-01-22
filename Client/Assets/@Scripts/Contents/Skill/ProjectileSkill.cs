@@ -1,5 +1,5 @@
 using Google.Protobuf.Protocol;
-using Scripts.Data;
+using Data;
 
 public class ProjectileSkill : Skill
 {
@@ -14,7 +14,7 @@ public class ProjectileSkill : Skill
         if (result != ECanUseSkillFailReason.None)
             return result;
 
-        if (SkillData.Projectile == null)
+        if (SkillData.ProjectileData == null)
             return ECanUseSkillFailReason.InvalidData;
 
         return ECanUseSkillFailReason.None;

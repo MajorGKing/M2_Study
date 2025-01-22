@@ -121,6 +121,14 @@ namespace GameServer.Game
                 SendApply(effect);
         }
 
+        // 아이템마다 고유한 이펙트를 가지고 있기때문에 templateId로 검색.
+        public void RemoveItemEffect(int templateId, bool send = true)
+        {
+            Effect effect = _effects.Values.FirstOrDefault(e => e.EffectData.TemplateId == templateId);
+            if (effect != null)
+                RemoveEffect(effect, send);
+        }
+
         public void RemoveEffect(int effectId, bool send = true)
         {
             if (_effects.TryGetValue(effectId, out Effect effect))

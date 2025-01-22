@@ -24,26 +24,10 @@ namespace GameServer
         public ObjectInfo ObjectInfo { get; set; } = new ObjectInfo();
         public PositionInfo PosInfo { get; private set; } = new PositionInfo();
 
-        public EMoveDir Dir
-        {
-            get { return PosInfo.MoveDir; }
-            set { PosInfo.MoveDir = value; }
-        }
-
         public EObjectState State
         {
             get { return PosInfo.State; }
             set { PosInfo.State = value; }
-        }
-
-        public BaseObject()
-        {
-            ObjectInfo.PosInfo = PosInfo;
-        }
-
-        public virtual void Update()
-        {
-
         }
 
         public Vector2Int CellPos
@@ -58,6 +42,28 @@ namespace GameServer
                 PosInfo.PosX = value.x;
                 PosInfo.PosY = value.y;
             }
+        }
+
+        public EMoveDir MoveDir
+        {
+            get
+            {
+                return PosInfo.MoveDir;
+            }
+            set
+            {
+                PosInfo.MoveDir = value;
+            }
+        }
+
+        public BaseObject()
+        {
+            ObjectInfo.PosInfo = PosInfo;
+        }
+
+        public virtual void Update()
+        {
+
         }
 
         public void BroadcastMove()
@@ -85,6 +91,23 @@ namespace GameServer
 
             Room.Broadcast(CellPos, diePacket);
             Room.OnDead(this, attacker);
+        }
+
+        public float GetActualDistance()
+        {
+            switch (MoveDir)
+            {
+                case EMoveDir.None:
+                    return 1f;
+                case EMoveDir.Up:
+                case EMoveDir.Down:
+                    return Define.TILE_HEIGHT;
+                case EMoveDir.Left:
+                case EMoveDir.Right:
+                    return Define.TILE_WIDTH;
+                default:
+                    return Define.DIAGONAL_DISTANCE;
+            }
         }
 
         // 체스판 거리

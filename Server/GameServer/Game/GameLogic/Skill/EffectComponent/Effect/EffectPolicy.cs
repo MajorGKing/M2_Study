@@ -55,12 +55,14 @@ namespace GameServer.Game
             if (owner == null)
                 return;
 
-            EStatType statType = effectData.StatType;
-            float value = effectData.StatAddValue;
-
-            float prevValue = owner.GetTotalStat(statType);
-            float finalValue = prevValue + value;
-            owner.SetTotalStat(statType, finalValue);
+            // ILAHK TODO
+            foreach (StatValuePair pair in effectData.StatValues)
+            {
+                float value = pair.AddValue;
+                float prevValue = owner.GetTotalStat(pair.StatType);
+                float finalValue = prevValue + value;
+                owner.SetTotalStat(pair.StatType, finalValue);
+            }
         }
 
         public void Revert(Creature owner, EffectData effectData)
@@ -68,12 +70,13 @@ namespace GameServer.Game
             if (owner == null)
                 return;
 
-            EStatType statType = effectData.StatType;
-            float value = effectData.StatAddValue;
-
-            float prevValue = owner.GetTotalStat(statType);
-            float finalValue = prevValue - value;
-            owner.SetTotalStat(statType, finalValue);
+            foreach (StatValuePair pair in effectData.StatValues)
+            {
+                float value = pair.AddValue;
+                float prevValue = owner.GetTotalStat(pair.StatType);
+                float finalValue = prevValue - value;
+                owner.SetTotalStat(pair.StatType, finalValue);
+            }
         }
     }
 

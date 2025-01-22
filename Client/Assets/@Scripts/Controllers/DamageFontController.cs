@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Google.Protobuf.Protocol;
-using Scripts.Data.SO;
+using Data;
 using UnityEngine;
 
 public class DamageFontInfo

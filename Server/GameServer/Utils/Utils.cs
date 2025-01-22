@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net.Sockets;
 using System.Net;
+using Google.Protobuf.Protocol;
 
 namespace GameServer
 {
@@ -25,6 +26,28 @@ namespace GameServer
             }
 
             return IPAddress.Loopback;
+        }
+
+        public static Dictionary<EItemSubType, EItemSlotType> SubTypeToEquipTypeMap = new Dictionary<EItemSubType, EItemSlotType>()
+        {
+            { EItemSubType.Mainweapon,  EItemSlotType.Mainweapon },
+            { EItemSubType.Subweapon,   EItemSlotType.Subweapon} ,
+            { EItemSubType.Helmet,      EItemSlotType.Helmet },
+            { EItemSubType.Chest,       EItemSlotType.Chest },
+            { EItemSubType.Leg,         EItemSlotType.Leg },
+            { EItemSubType.Shoes,       EItemSlotType.Shoes },
+            { EItemSubType.Gloves,      EItemSlotType.Gloves },
+            { EItemSubType.Shoulder,    EItemSlotType.Shoulder },
+            { EItemSubType.Ring,        EItemSlotType.Ring },
+            { EItemSubType.Amulet,      EItemSlotType.Amulet },
+        };
+
+        public static EItemSlotType GetEquipSlotType(EItemSubType subType)
+        {
+            if (SubTypeToEquipTypeMap.TryGetValue(subType, out EItemSlotType value))
+                return value;
+
+            return EItemSlotType.None;
         }
     }
 }

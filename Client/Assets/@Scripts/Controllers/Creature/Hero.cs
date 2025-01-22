@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Data;
 using Google.Protobuf.Protocol;
-using Scripts.Data;
-using Scripts.Data.SO;
+using Data;
 using Spine;
 using UnityEngine;
 
@@ -38,12 +37,12 @@ public class Hero : Creature
     public override void SetInfo(int templateId)
     {
         base.SetInfo(templateId);
-        if(Managers.Data.HeroDic.TryGetValue(templateId, out HeroData heroData))
+        if(Managers.Data.HeroDict.TryGetValue(templateId, out HeroData heroData))
         {
             HeroData = heroData;
         }
 
-        _mainSkill = HeroData.MainSkill;
+        HeroData.SkillMap.TryGetValue(ESkillSlot.Main, out _mainSkill);
     }
 
     protected override void Update()

@@ -2,7 +2,7 @@ using System;
 using Google.Protobuf.Protocol;
 using System.Collections;
 using System.Collections.Generic;
-using Scripts.Data;
+using Data;
 using UnityEngine;
 
 public class Projectile : BaseObject
@@ -32,7 +32,7 @@ public class Projectile : BaseObject
 
     public void SetInfo(int templateId, int targetId)
     {
-        Managers.Data.ProjectileDic.TryGetValue(templateId, out _data);
+        Managers.Data.ProjectileDict.TryGetValue(templateId, out _data);
         MoveSpeed = _data.ProjSpeed;
 
         GameObject go = Managers.Object.FindById(targetId);

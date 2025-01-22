@@ -19,7 +19,8 @@ namespace Server.Game
             _patrolCellDist = monsterData.PatrolCellDist;
 
             // 
-            SkillData skillData = monsterData.MainSkill;
+            //SkillData skillData = monsterData.MainSkill;
+            SkillData skillData = monsterData.SkillMap[ESkillSlot.Main];
             _mainSkillRange = skillData.SkillRange;
             _skillTemplateId = skillData.TemplateId;
         }
@@ -35,10 +36,10 @@ namespace Server.Game
                     UpdateTick = 1000;
                     break;
                 case EObjectState.Move:
-                    // TODO :
-                    // float speed = Owner.MoveSpeed;
-                    // time = distance / speed;
-                    UpdateTick = 1000;
+                    float speed = Owner.MoveSpeed;
+                    float distance = Owner.GetActualDistance();
+                    float time = distance / speed;
+                    UpdateTick = (int)(time * 1000);
                     break;
                 case EObjectState.Skill:
                     UpdateTick = 1000;

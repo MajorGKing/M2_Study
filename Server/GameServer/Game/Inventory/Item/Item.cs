@@ -8,7 +8,7 @@ namespace Server.Game
     public class Item
     {
         public ItemInfo Info { get; } = new ItemInfo();
-        
+
         public long ItemDbId
         {
             get { return Info.ItemDbId; }
@@ -76,7 +76,7 @@ namespace Server.Game
             {
                 item.ItemDbId = itemDb.ItemDbId;
                 item.OwnerDbId = itemDb.OwnerDbId;
-                //item.ItemSlotType = itemDb.EquipSlot;
+                item.ItemSlotType = itemDb.EquipSlot;
                 item.Count = itemDb.Count;
                 item.EnchantCount = itemDb.EnchantCount;
             }

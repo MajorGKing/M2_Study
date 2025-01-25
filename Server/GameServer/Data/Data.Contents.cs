@@ -330,7 +330,10 @@ namespace Server.Data
         {
             Dictionary<int, ConsumableData> dict = new Dictionary<int, ConsumableData>();
             foreach (ConsumableData item in items)
+            {
                 dict.Add(item.TemplateId, item);
+                //Console.WriteLine($"Itme {item.Name} is {item.Type}"); 
+            }
 
             return dict;
         }

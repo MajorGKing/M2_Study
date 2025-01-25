@@ -94,6 +94,11 @@ class PacketHandler
         room.Push(room.UseSkill, hero, skillPacket.TemplateId, skillPacket.TargetId);
     }
 
+    public static void C_DeleteItemHandler(PacketSession session, IMessage packet)
+    {
+
+    }
+
     public static void C_EquipItemHandler(PacketSession session, IMessage packet)
     {
 
@@ -104,13 +109,20 @@ class PacketHandler
 
     }
 
-    public static void C_DeleteItemHandler(PacketSession session, IMessage packet)
-    {
-
-    }
-
     public static void C_UseItemHandler(PacketSession session, IMessage packet)
     {
+        Console.WriteLine("C_UseItemHandler");
+        C_UseItem recvPkt = packet as C_UseItem;
+        ClientSession clientSession = session as ClientSession;
 
+        Hero hero = clientSession.MyHero;
+        if (hero == null)
+            return;
+
+        GameRoom room = hero.Room;
+        if (room == null)
+            return;
+
+        room.Push(room.HandleUseItem, hero, recvPkt.ItemDbId);
     }
 }

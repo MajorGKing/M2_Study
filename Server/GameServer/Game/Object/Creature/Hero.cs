@@ -68,6 +68,7 @@ namespace GameServer
             ObjectType = EGameObjectType.Hero;
 
             Vision = new VisionCubeComponent(this);
+            Inven = new InventoryComponent(this);
         }
 
         public void Init(HeroDb heroDb)
@@ -252,5 +253,18 @@ namespace GameServer
             return level == DataManager.BaseStatDic.Count;
         }
         #endregion
+
+        public void RewardExpAndGold(DropTableData dropTable)
+        {
+            AddExp(dropTable.RewardExp);
+            Gold += dropTable.RewardGold;
+
+            S_RewardValue packet = new S_RewardValue()
+            {
+                Exp = dropTable.RewardExp,
+                Gold = dropTable.RewardGold,
+            };
+            Session?.Send(packet);
+        }
     }
 }

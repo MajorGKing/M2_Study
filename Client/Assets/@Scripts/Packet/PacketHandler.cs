@@ -262,4 +262,59 @@ class PacketHandler
 
         cc.RemoveEffect(pkt);
     }
+
+    public static void S_AddItemHandler(PacketSession session, IMessage packet)
+    {
+        S_AddItem pkt = (S_AddItem)packet;
+
+        MyHero myHero = Managers.Object.MyHero;
+        if (myHero == null)
+            return;
+
+        Managers.Inventory.Add(pkt.Item);
+    }
+    public static void S_UpdateItemHandler(PacketSession session, IMessage packet)
+    {
+        S_UpdateItem pkt = (S_UpdateItem)packet;
+
+        MyHero myHero = Managers.Object.MyHero;
+        if (myHero == null)
+            return;
+
+        Managers.Inventory.Update(pkt.Item);
+    }
+    public static void S_DeleteItemHandler(PacketSession session, IMessage packet)
+    {
+        S_DeleteItem pkt = (S_DeleteItem)packet;
+
+        MyHero myHero = Managers.Object.MyHero;
+        if (myHero == null)
+            return;
+
+        Managers.Inventory.Remove(pkt.ItemDbId);
+    }
+    public static void S_ChangeItemSlotHandler(PacketSession session, IMessage packet)
+    {
+        S_ChangeItemSlot pkt = packet as S_ChangeItemSlot;
+
+        Managers.Inventory.ChangeItemSlot(pkt.ItemDbId, pkt.ItemSlotType);
+    }
+    public static void S_UseItemHandler(PacketSession session, IMessage packet)
+    {
+        S_UseItem pkt = packet as S_UseItem;
+
+        Managers.Inventory.HandleUseItem(pkt);
+    }
+    public static void S_RewardValueHandler(PacketSession session, IMessage packet)
+    {
+        var pkt = packet as S_RewardValue;
+        if (pkt == null)
+            return;
+
+        MyHero myHero = Managers.Object.MyHero;
+        if (myHero == null)
+            return;
+
+        myHero.HandleRewardValue(pkt);
+    }
 }

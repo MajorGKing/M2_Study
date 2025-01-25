@@ -18,12 +18,14 @@ public class Managers : MonoBehaviour
     private ObjectManager _object = new ObjectManager();
     private MapManager _map = new MapManager();
     private SkillManager _skill = new SkillManager();
+    private InventoryManager _inven = new InventoryManager();
 
     public static GameManager Game { get { return Instance?._game; } }
     public static EventManager Event { get { return Instance?._event; } }
     public static ObjectManager Object { get { return Instance?._object; } }
     public static MapManager Map { get { return Instance?._map; } }
     public static SkillManager Skill { get { return Instance?._skill; } }
+    public static InventoryManager Inventory { get { return Instance?._inven; } }
 
     #endregion
 

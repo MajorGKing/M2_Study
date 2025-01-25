@@ -179,8 +179,7 @@ namespace Server.Game
         }
         #endregion
 
-        #region Helper
-
+        #region Handler
         public void HandleUseItem(long itemDbId)
         {
             Item item = Owner.Inven.GetItemByDbId(itemDbId);
@@ -201,11 +200,23 @@ namespace Server.Game
 
             DBManager.DeleteItem(Owner, item);
         }
+        #endregion
+
+        #region Helper
+        public bool IsInventoryFull()
+        {
+            return InventoryItems.Count >= DEFAULT_SLOT_COUNT;
+        }
 
         public Item GetItemByDbId(long itemDbId)
         {
             AllItems.TryGetValue(itemDbId, out Item item);
             return item;
+        }
+
+        public Item GetEquippedItemByDbId(long itemDbId)
+        {
+            return EquippedItems.Values.Where(i => i.ItemDbId == itemDbId).FirstOrDefault();
         }
 
         public Item GetInventoryItemByDbId(long itemDbId)
@@ -214,9 +225,9 @@ namespace Server.Game
             return item;
         }
 
-        public Item GetEquippedItemByDbId(long itemDbId)
+        public Item GetAnyInventoryItemByCondition(Func<Item, bool> condition)
         {
-            return EquippedItems.Values.Where(i => i.ItemDbId == itemDbId).FirstOrDefault();
+            return InventoryItems.Values.Where(condition).FirstOrDefault();
         }
 
         #endregion

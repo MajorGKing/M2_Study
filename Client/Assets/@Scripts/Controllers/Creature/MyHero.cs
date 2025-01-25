@@ -601,6 +601,15 @@ public class MyHero : Hero
         _creatureInfo.TotalStatInfo.MergeFrom((packet.TotalStatInfo));
         Managers.Event.TriggerEvent(EEventType.StatChanged);
     }
+
+    public void HandleRewardValue(S_RewardValue rewardValue)
+    {
+        Gold += rewardValue.Gold;
+        AddExp(rewardValue.Exp);
+        Managers.Event.TriggerEvent(EEventType.CurrencyChanged);
+        //DamageFontController.AddDamageFont(rewardValue.Gold, transform, EDamageType.Gold);
+        //DamageFontController.AddDamageFont(rewardValue.Exp, transform, EDamageType.Exp);
+    }
     #endregion
 
     #region µð¹ö±ë

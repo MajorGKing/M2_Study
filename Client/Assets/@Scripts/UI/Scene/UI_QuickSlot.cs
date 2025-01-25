@@ -58,6 +58,16 @@ public class UI_QuickSlot : UI_Base
         RefreshUI();
     }
 
+    private void OnEnable()
+    {
+        Managers.Event.AddEvent(EEventType.InventoryChanged, RefreshUI);
+    }
+
+    private void OnDisable()
+    {
+        Managers.Event.RemoveEvent(EEventType.InventoryChanged, RefreshUI);
+    }
+
     void PopulateSlots()
     {
         _centerContainer.DestroyChildren();
@@ -68,6 +78,12 @@ public class UI_QuickSlot : UI_Base
         {
             UI_QuickSlotItem item = Managers.UI.MakeSubItem<UI_QuickSlotItem>(_centerContainer);
             _skillSlots.Add(item);
+        }
+
+        for (int i = 0; i < MAX_QUICKSLOT_COUNT; i++)
+        {
+            UI_QuickSlotItem item = Managers.UI.MakeSubItem<UI_QuickSlotItem>(_rightContainer);
+            _itemSlots.Add(item);
         }
     }
 
@@ -93,6 +109,22 @@ public class UI_QuickSlot : UI_Base
             else
             {
                 _skillSlots[i].SetInfo(null, null);
+            }
+        }
+
+        // æ∆¿Ã≈€
+        for (int i = 0; i < MAX_QUICKSLOT_COUNT; i++)
+        {
+            if (i < Managers.Inventory.QuickSlotItems.Count)
+            {
+                Item item = Managers.Inventory.QuickSlotItems[i];
+
+                _itemSlots[i].gameObject.SetActive(true);
+                _itemSlots[i].SetInfo(null, item);
+            }
+            else
+            {
+                _itemSlots[i].gameObject.SetActive(false);
             }
         }
     }

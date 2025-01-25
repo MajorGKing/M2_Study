@@ -1,8 +1,10 @@
+using System;
 using System.Linq;
 using Data;
 using Google.Protobuf.Protocol;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 using static Define;
 
 public class UI_GameScene : UI_Scene
@@ -137,16 +139,22 @@ public class UI_GameScene : UI_Scene
     private void OnClickInventory(PointerEventData eventData)
     {
         Managers.UI.ShowToast("TODO OnClickInventory");
+        //UI_InventoryPopup inven = Managers.UI.ShowPopupUI<UI_InventoryPopup>();
+        //inven.SetInfo();
     }
 
     private void OnClickHeroInfo(PointerEventData eventData)
     {
         Managers.UI.ShowToast("TODO OnClickHeroInfo");
+        //UI_CharacterPopup characterPopup = Managers.UI.ShowPopupUI<UI_CharacterPopup>();
+        //characterPopup.SetInfo();
     }
 
     private void OnClickSkillInfo(PointerEventData eventData)
     {
         Managers.UI.ShowToast("TODO OnClickSkillInfo");
+        //UI_SkillPopup skillPopup = Managers.UI.ShowPopupUI<UI_SkillPopup>();
+        //skillPopup.SetInfo();
     }
     #endregion
 }

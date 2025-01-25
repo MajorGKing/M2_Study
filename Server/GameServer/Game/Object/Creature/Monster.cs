@@ -31,10 +31,7 @@ namespace GameServer
         public void Init(int templateId)
         {
             if (DataManager.MonsterDict.TryGetValue(templateId, out MonsterData monsterData) == false)
-            {
-                Console.WriteLine($"No Data in db {templateId}");
                 return;
-            }
 
             TemplateId = templateId;
             _ai = new MonsterAIController(this);
@@ -84,6 +81,43 @@ namespace GameServer
             }
 
             return ret;
+        }
+
+        public override void OnDead(BaseObject attacker)
+        {
+            if(attacker.IsValid() == false) 
+                return;
+
+            BaseObject owner = attacker.GetOwner();
+            if (owner.ObjectType == EGameObjectType.Hero)
+            {
+                Hero hero = owner as Hero;
+                if (hero.Inven.IsInventoryFull() == false)
+                {
+                    RewardData rewardData = GetRandomReward();
+                    if(rewardData != null)
+                        DBManager.RewardHero(hero, rewardData);
+                }
+
+                // 나머지
+                if(MonsterData.DropTable != null)
+                    hero.RewardExpAndGold(MonsterData.DropTable);
+            }
+
+            _ai.OnDead(attacker);
+            base.OnDead(attacker);
+        }
+
+        private RewardData GetRandomReward()
+        {
+            if (MonsterData.DropTable == null)
+                return null;
+            if (MonsterData.DropTable.Rewards == null)
+                return null;
+            if (MonsterData.DropTable.Rewards.Count <= 0)
+                return null;
+
+            return MonsterData.DropTable.Rewards.RandomElementByWeight(e => e.Probability);
         }
 
     }

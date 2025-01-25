@@ -1,5 +1,6 @@
 ﻿using Google.Protobuf.Protocol;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
 using static Define;
@@ -138,6 +139,28 @@ public static class Utils
     {
         int templateId = (id >> 20) & 0xFF;
         return templateId;
+    }
+
+    public static Dictionary<EItemSubType, EItemSlotType> SubTypeToEquipTypeMap = new Dictionary<EItemSubType, EItemSlotType>()
+    {
+        { EItemSubType.Mainweapon,  EItemSlotType.Mainweapon },
+        { EItemSubType.Subweapon,   EItemSlotType.Subweapon} ,
+        { EItemSubType.Helmet,      EItemSlotType.Helmet },
+        { EItemSubType.Chest,       EItemSlotType.Chest },
+        { EItemSubType.Leg,         EItemSlotType.Leg },
+        { EItemSubType.Shoes,       EItemSlotType.Shoes },
+        { EItemSubType.Gloves,      EItemSlotType.Gloves },
+        { EItemSubType.Shoulder,    EItemSlotType.Shoulder },
+        { EItemSubType.Ring,        EItemSlotType.Ring },
+        { EItemSubType.Amulet,      EItemSlotType.Amulet },
+    };
+
+    public static EItemSlotType GetEquipSlotType(EItemSubType subType)
+    {
+        if (SubTypeToEquipTypeMap.TryGetValue(subType, out EItemSlotType value))
+            return value;
+
+        return EItemSlotType.None;
     }
 
     static int _counter = 1;

@@ -65,11 +65,10 @@ namespace Server.Game
             switch (itemData.Type)
             {
                 case EItemType.Equipment:
-                    // TODO IlHak
-                    //item = new Equipment(templateId);
+                    item = new Equipment(templateId);
                     break;
                 case EItemType.Consumable:
-                    //item = new Consumable(templateId);
+                    item = new Consumable(templateId);
                     break;
             }
 

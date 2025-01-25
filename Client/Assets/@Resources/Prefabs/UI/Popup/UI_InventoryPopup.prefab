@@ -3217,10 +3217,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5780524558199946104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5c894413221464b85e54e0604d4ecd3, type: 3}
+  m_Script: {fileID: 11500000, guid: bedd21b9ae9ada54daa5247a7803b9c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UICanvas: {fileID: 0}
 --- !u!1 &7418811237544052654
 GameObject:
   m_ObjectHideFlags: 0

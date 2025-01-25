@@ -92,9 +92,6 @@ namespace GameServer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ItemDbId"));
 
-                    b.Property<long>("AccountDbId")
-                        .HasColumnType("bigint");
-
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
@@ -102,9 +99,6 @@ namespace GameServer.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("EquipSlot")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("HeroDbId")
                         .HasColumnType("int");
 
                     b.Property<int>("OwnerDbId")
@@ -115,16 +109,20 @@ namespace GameServer.Migrations
 
                     b.HasKey("ItemDbId");
 
-                    b.HasIndex("HeroDbId");
+                    b.HasIndex("OwnerDbId");
 
                     b.ToTable("Item");
                 });
 
             modelBuilder.Entity("GameServer.ItemDb", b =>
                 {
-                    b.HasOne("GameServer.HeroDb", null)
+                    b.HasOne("GameServer.HeroDb", "OwnerDb")
                         .WithMany("Items")
-                        .HasForeignKey("HeroDbId");
+                        .HasForeignKey("OwnerDbId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("OwnerDb");
                 });
 
             modelBuilder.Entity("GameServer.HeroDb", b =>

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GameServer.Migrations
 {
     [DbContext(typeof(GameDbContext))]
-    [Migration("20250115150244_init")]
+    [Migration("20250124105140_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -95,9 +95,6 @@ namespace GameServer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ItemDbId"));
 
-                    b.Property<long>("AccountDbId")
-                        .HasColumnType("bigint");
-
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
@@ -105,9 +102,6 @@ namespace GameServer.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("EquipSlot")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("HeroDbId")
                         .HasColumnType("int");
 
                     b.Property<int>("OwnerDbId")
@@ -118,16 +112,20 @@ namespace GameServer.Migrations
 
                     b.HasKey("ItemDbId");
 
-                    b.HasIndex("HeroDbId");
+                    b.HasIndex("OwnerDbId");
 
                     b.ToTable("Item");
                 });
 
             modelBuilder.Entity("GameServer.ItemDb", b =>
                 {
-                    b.HasOne("GameServer.HeroDb", null)
+                    b.HasOne("GameServer.HeroDb", "OwnerDb")
                         .WithMany("Items")
-                        .HasForeignKey("HeroDbId");
+                        .HasForeignKey("OwnerDbId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("OwnerDb");
                 });
 
             modelBuilder.Entity("GameServer.HeroDb", b =>

@@ -45,20 +45,19 @@ namespace GameServer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TemplateId = table.Column<int>(type: "int", nullable: false),
                     EquipSlot = table.Column<int>(type: "int", nullable: false),
-                    AccountDbId = table.Column<long>(type: "bigint", nullable: false),
                     Count = table.Column<int>(type: "int", nullable: false),
-                    OwnerDbId = table.Column<int>(type: "int", nullable: false),
                     EnchantCount = table.Column<int>(type: "int", nullable: false),
-                    HeroDbId = table.Column<int>(type: "int", nullable: true)
+                    OwnerDbId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Item", x => x.ItemDbId);
                     table.ForeignKey(
-                        name: "FK_Item_Hero_HeroDbId",
-                        column: x => x.HeroDbId,
+                        name: "FK_Item_Hero_OwnerDbId",
+                        column: x => x.OwnerDbId,
                         principalTable: "Hero",
-                        principalColumn: "HeroDbId");
+                        principalColumn: "HeroDbId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -72,9 +71,9 @@ namespace GameServer.Migrations
                 column: "Name");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Item_HeroDbId",
+                name: "IX_Item_OwnerDbId",
                 table: "Item",
-                column: "HeroDbId");
+                column: "OwnerDbId");
         }
 
         /// <inheritdoc />

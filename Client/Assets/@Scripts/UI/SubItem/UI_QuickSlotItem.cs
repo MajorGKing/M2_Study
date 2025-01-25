@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static Define;
-using static UnityEditor.Progress;
 
 public class UI_QuickSlotItem : UI_Base
 {
@@ -62,12 +61,12 @@ public class UI_QuickSlotItem : UI_Base
             _slotType = EQuickSlotType.Skill;
             GetImage((int)Images.IconImage).sprite = Managers.Resource.Load<Sprite>(_skill.SkillData.IconImage);
         }
-        //else if (_item != null)
-        //{
-        //    _slotType = EQuickSlotType.Item;
-        //    GetImage((int)Images.IconImage).sprite = Managers.Resource.Load<Sprite>(_item.TemplateData.IconImage);
-        //    GetText((int)Texts.CountText).gameObject.SetActive(true);
-        //}
+        else if (_item != null)
+        {
+            _slotType = EQuickSlotType.Item;
+            GetImage((int)Images.IconImage).sprite = Managers.Resource.Load<Sprite>(_item.TemplateData.IconImage);
+            GetText((int)Texts.CountText).gameObject.SetActive(true);
+        }
         else
         {
             _slotType = EQuickSlotType.None;
@@ -93,6 +92,12 @@ public class UI_QuickSlotItem : UI_Base
                     _cooltimeSprite.fillAmount = targetFillAmount;
                 }
                 break;
+            case EQuickSlotType.Item:
+                {
+                    float targetFillAmount = Managers.Inventory.GetRemainingCoolTimeRatio(_item.Info.ItemDbId);
+                    _cooltimeSprite.fillAmount = targetFillAmount;
+                }
+                break;
         }
     }
 
@@ -102,6 +107,10 @@ public class UI_QuickSlotItem : UI_Base
         {
             case EQuickSlotType.Skill:
                 GetText((int)Texts.CountText).gameObject.SetActive(false);
+                break;
+            case EQuickSlotType.Item:
+                GetText((int)Texts.CountText).gameObject.SetActive(true);
+                GetText((int)Texts.CountText).text = _item.Count.ToString();
                 break;
             default:
                 GetText((int)Texts.CountText).gameObject.SetActive(false);
@@ -117,6 +126,9 @@ public class UI_QuickSlotItem : UI_Base
         {
             case EQuickSlotType.Skill:
                 TryUseSkill();
+                break;
+            case EQuickSlotType.Item:
+                TryUseItem();
                 break;
         }
     }
@@ -169,5 +181,26 @@ public class UI_QuickSlotItem : UI_Base
         }
     }
 
+    #endregion
+
+    #region Item
+    void TryUseItem()
+    {
+        if (_item == null)
+            return;
+
+        MyHero hero = Managers.Object.MyHero;
+        if (hero == null)
+            return;
+
+        if (Managers.Inventory.CanUseItem(_item.ItemDbId))
+        {
+            Managers.Inventory.ReqUseItem(_item);
+        }
+        else
+        {
+            Managers.UI.ShowToast("TODO 아직 사용 할 수 없습니다.");
+        }
+    }
     #endregion
 }

@@ -100,6 +100,11 @@ namespace GameServer
                     enterPacket.MyHeroInfo = hero.MyHeroInfo;
                     enterPacket.Respawn = respawn;
 
+                    foreach (var info in hero.Inven.GetAllItemInfos())
+                    {
+                        enterPacket.Items.Add(info);
+                    }
+
                     // skill
                     List<SkillCoolTime> cooltimes = hero.SkillComp.GetRemainingTicks();
                     foreach (SkillCoolTime cooltime in cooltimes)

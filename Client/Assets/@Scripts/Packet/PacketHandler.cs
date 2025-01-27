@@ -158,7 +158,6 @@ class PacketHandler
 
     }
 
-    // TODO
     public static void S_SkillHandler(PacketSession session, IMessage packet)
     {
         //Debug.Log("S_SkillHandler");
@@ -175,7 +174,6 @@ class PacketHandler
             
     }
 
-    // TODO
     public static void S_ChangeHpHandler(PacketSession session, IMessage packet)
     {
         //Debug.Log("S_ChangeHpHandler");
@@ -200,7 +198,6 @@ class PacketHandler
         gameScene.OnHpChanged();
     }
 
-    // TODO
     public static void S_DieHandler(PacketSession session, IMessage packet)
     {
         Debug.Log("S_DieHandler");
@@ -219,7 +216,6 @@ class PacketHandler
         }
     }
 
-    // TODO
     public static void S_ChangeStatHandler(PacketSession session, IMessage packet)
     {
         Debug.Log("S_ChangeStatHandler");

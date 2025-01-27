@@ -119,7 +119,7 @@ class PacketHandler
     public static void C_EquipItemHandler(PacketSession session, IMessage packet)
     {
         Console.WriteLine("ILHAK C_EquipItemHandler");
-        var pkt = packet as C_DeleteItem;
+        var pkt = packet as C_EquipItem;
         if (pkt == null)
             return;
 
@@ -141,7 +141,7 @@ class PacketHandler
     public static void C_UnEquipItemHandler(PacketSession session, IMessage packet)
     {
         Console.WriteLine("ILHAK C_UnEquipItemHandler");
-        var pkt = packet as C_DeleteItem;
+        var pkt = packet as C_UnEquipItem;
         if (pkt == null)
             return;
 

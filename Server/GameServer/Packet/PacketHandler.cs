@@ -96,22 +96,73 @@ class PacketHandler
 
     public static void C_DeleteItemHandler(PacketSession session, IMessage packet)
     {
+        Console.WriteLine("ILHAK C_DeleteItemHandler");
+        var pkt = packet as C_DeleteItem;
+        if (pkt == null)
+            return;
 
+        var clientSession = session as ClientSession;
+        if (clientSession == null)
+            return;
+
+        Hero myHero = clientSession.MyHero;
+        if (myHero == null)
+            return;
+
+        GameRoom room = myHero.Room;
+        if (room == null)
+            return;
+
+        room.Push(room.HandleDeleteItem, myHero, pkt.ItemDbId);
     }
 
     public static void C_EquipItemHandler(PacketSession session, IMessage packet)
     {
+        Console.WriteLine("ILHAK C_EquipItemHandler");
+        var pkt = packet as C_DeleteItem;
+        if (pkt == null)
+            return;
 
+        var clientSession = session as ClientSession;
+        if (clientSession == null)
+            return;
+
+        Hero myHero = clientSession.MyHero;
+        if (myHero == null)
+            return;
+
+        GameRoom room = myHero.Room;
+        if (room == null)
+            return;
+
+        room.Push(room.HandleEquipItem, myHero, pkt.ItemDbId);
     }
 
     public static void C_UnEquipItemHandler(PacketSession session, IMessage packet)
     {
+        Console.WriteLine("ILHAK C_UnEquipItemHandler");
+        var pkt = packet as C_DeleteItem;
+        if (pkt == null)
+            return;
 
+        var clientSession = session as ClientSession;
+        if (clientSession == null)
+            return;
+
+        Hero myHero = clientSession.MyHero;
+        if (myHero == null)
+            return;
+
+        GameRoom room = myHero.Room;
+        if (room == null)
+            return;
+
+        room.Push(room.HandleUnEquipItem, myHero, pkt.ItemDbId);
     }
 
     public static void C_UseItemHandler(PacketSession session, IMessage packet)
     {
-        Console.WriteLine("C_UseItemHandler");
+        //Console.WriteLine("C_UseItemHandler");
         C_UseItem recvPkt = packet as C_UseItem;
         ClientSession clientSession = session as ClientSession;
 

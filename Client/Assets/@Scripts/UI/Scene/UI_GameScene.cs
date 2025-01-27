@@ -146,8 +146,8 @@ public class UI_GameScene : UI_Scene
     private void OnClickHeroInfo(PointerEventData eventData)
     {
         //Managers.UI.ShowToast("TODO OnClickHeroInfo");
-        //UI_CharacterPopup characterPopup = Managers.UI.ShowPopupUI<UI_CharacterPopup>();
-        //characterPopup.SetInfo();
+        UI_CharacterPopup characterPopup = Managers.UI.ShowPopupUI<UI_CharacterPopup>();
+        characterPopup.SetInfo();
     }
 
     private void OnClickSkillInfo(PointerEventData eventData)

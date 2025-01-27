@@ -98,6 +98,7 @@ namespace GameServer
             //MyHeroInfo.
             InitializeHeroData(heroDb);
             InitializeSkills();
+            InitializeItems(heroDb);
         }
 
         public void SendChangeStat()
@@ -192,6 +193,14 @@ namespace GameServer
             {
                 SkillComp.RegisterSkill(skillData.TemplateId);
             }
+        }
+
+        private void InitializeItems(HeroDb heroDb)
+        {
+            Inven.Init(heroDb.Items.ToList());
+
+            //장착한 아이템 이펙트 적용
+            Inven.ApplyEquipmentEffects();
         }
 
         public override void Reset()

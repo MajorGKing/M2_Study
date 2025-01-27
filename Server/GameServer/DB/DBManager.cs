@@ -16,7 +16,7 @@ namespace GameServer
         {
             using(GameDbContext db = new GameDbContext())
             {
-                List<HeroDb> heroDbs = db.Heroes.Where(h => h.AccountDbId == accountDbId).ToList();
+                List<HeroDb> heroDbs = db.Heroes.Where(h => h.AccountDbId == accountDbId).Include(h => h.Items).ToList();
                 return heroDbs;
             }
         }

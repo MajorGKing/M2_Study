@@ -76,7 +76,7 @@ class PacketHandler
         myHero.TotalStat = enterGamePacket.MyHeroInfo.HeroInfo.CreatureInfo.TotalStatInfo;
 
         //Init
-        //Managers.Inventory.Refresh(enterGamePacket.Items.ToList());
+        Managers.Inventory.HandleEnterGame(enterGamePacket);
         Managers.Skill.HandleEnterGame(enterGamePacket);
 
         //Scene
@@ -85,8 +85,8 @@ class PacketHandler
 
         //UI
         var sceneUI = Managers.UI.GetSceneUI<UI_GameScene>();
-        //sceneUI.QuickSlot.SetInfo();
-        //sceneUI.OnHpChanged();
+        sceneUI.QuickSlot.SetInfo();
+        sceneUI.OnHpChanged();
     }
 
     public static void S_LeaveGameHandler(PacketSession session, IMessage packet)

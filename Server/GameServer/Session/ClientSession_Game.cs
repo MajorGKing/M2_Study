@@ -25,8 +25,11 @@ namespace Server
 
         public void HandleHeroListReq()
         {
-            if(Heroes.Count == 0)
+            // 캐싱된게 있으면 재사용.
+            if (Heroes.Count == 0)
             {
+                // 1) DB에서 정보 긁고
+                // 2) 그것을 메모리에 Hero로 만들어서 들고 있는다 (캐싱)
                 List<HeroDb> heroDbs = DBManager.LoadHeroDb(AccountDbId);
                 foreach(HeroDb heroDb in heroDbs)
                 {

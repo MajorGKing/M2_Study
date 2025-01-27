@@ -230,6 +230,11 @@ namespace Server.Game
             return InventoryItems.Values.Where(condition).FirstOrDefault();
         }
 
+        public List<ItemInfo> GetAllItemInfos()
+        {
+            return AllItems.Values.Select(i => i.Info).ToList();
+        }
+
         #endregion
 
     }

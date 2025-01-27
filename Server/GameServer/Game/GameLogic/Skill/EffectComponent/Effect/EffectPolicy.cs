@@ -97,5 +97,20 @@ namespace GameServer.Game
 
             owner.IsStunned = false;
         }
+
+        public class HealEffectPolicy : IEffectPolicy
+        {
+            public void Apply(Creature owner, Creature caster, EffectData effectData)
+            {
+                foreach(StatValuePair pair in effectData.StatValues)
+                {
+                    owner.Heal(pair.StatType, (int)pair.AddValue);
+                }
+            }
+
+            public void Revert(Creature owner, EffectData effectData)
+            {
+            }
+        }
     }
 }

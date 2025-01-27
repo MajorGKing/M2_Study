@@ -138,14 +138,14 @@ public class UI_GameScene : UI_Scene
 
     private void OnClickInventory(PointerEventData eventData)
     {
-        Managers.UI.ShowToast("TODO OnClickInventory");
-        //UI_InventoryPopup inven = Managers.UI.ShowPopupUI<UI_InventoryPopup>();
-        //inven.SetInfo();
+        //Managers.UI.ShowToast("TODO OnClickInventory");
+        UI_InventoryPopup inven = Managers.UI.ShowPopupUI<UI_InventoryPopup>();
+        inven.SetInfo();
     }
 
     private void OnClickHeroInfo(PointerEventData eventData)
     {
-        Managers.UI.ShowToast("TODO OnClickHeroInfo");
+        //Managers.UI.ShowToast("TODO OnClickHeroInfo");
         //UI_CharacterPopup characterPopup = Managers.UI.ShowPopupUI<UI_CharacterPopup>();
         //characterPopup.SetInfo();
     }

@@ -1,5 +1,6 @@
 ﻿using Google.Protobuf.Protocol;
 using Server.Data;
+using static GameServer.Game.BuffStunPolicy;
 
 namespace GameServer.Game
 {
@@ -15,7 +16,7 @@ namespace GameServer.Game
         public static readonly Dictionary<EEffectType, IEffectPolicy> _policies = new Dictionary<EEffectType, IEffectPolicy>()
         {
             { EEffectType.Damage, new DamageEffectPolicy() },
-            { EEffectType.Heal, new DummyPolicy() },
+            { EEffectType.Heal, new  HealEffectPolicy() },
             { EEffectType.BuffStat, new BuffStatEffectPolicy() },
             { EEffectType.BuffLifeSteal, new DummyPolicy() },
             { EEffectType.BuffStun, new BuffStunPolicy() },
@@ -61,8 +62,10 @@ namespace GameServer.Game
 
         void ApplyInstantEffect(EffectData effectData, Creature caster)
         {
+            // ILHAK
             if(Owner.ObjectType == EGameObjectType.Hero)
-                Console.WriteLine($"ApplyInstantEffect Apply {effectData.EffectType} : {effectData.DamageValue}");
+                Console.WriteLine($"ILHAK ApplyInstantEffect Apply {effectData.EffectType} : {effectData.DamageValue}");
+            
             if (effectData == null)
                 return;
 

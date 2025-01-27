@@ -90,7 +90,7 @@ public class Define
         PointerUp,
         PointerDown,
         Click,
-        Pressed,
+        LongPressed,
         BeginDrag,
         Drag,
         EndDrag,

@@ -119,6 +119,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c76cee489350aa4459eb9556d970f8c4
+    m_Address: UI_SkillSlot
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2117637a1c3964b4ab89e0db08b8331a
+    m_Address: UI_SkillPopup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9094f0f0595c6e147aa68a6f81e2dcaf, type: 2}
   m_SchemaSet:

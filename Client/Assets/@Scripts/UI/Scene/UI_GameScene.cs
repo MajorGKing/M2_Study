@@ -152,9 +152,9 @@ public class UI_GameScene : UI_Scene
 
     private void OnClickSkillInfo(PointerEventData eventData)
     {
-        Managers.UI.ShowToast("TODO OnClickSkillInfo");
-        //UI_SkillPopup skillPopup = Managers.UI.ShowPopupUI<UI_SkillPopup>();
-        //skillPopup.SetInfo();
+        //Managers.UI.ShowToast("TODO OnClickSkillInfo");
+        UI_SkillPopup skillPopup = Managers.UI.ShowPopupUI<UI_SkillPopup>();
+        skillPopup.SetInfo();
     }
     #endregion
 }

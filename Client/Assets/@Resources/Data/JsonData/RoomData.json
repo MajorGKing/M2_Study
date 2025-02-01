@@ -1,0 +1,132 @@
+{
+  "spawningPools": [
+    {
+      "TemplateId": 1,
+      "MapName": "Room1_City",
+      "StartPosX": 0,
+      "StartPosY": 0,
+      "SpawningPoolData": {
+        "RoomId": 1,
+        "RespawnDatas": [
+          {
+            "TemplateId": 5,
+            "Count": 5,
+            "MonsterDataId": 1,
+            "RespawnType": 0,
+            "RespawnTime": 5,
+            "PivotPosX": -16,
+            "PivotPosY": -6,
+            "SpawnRange": 5,
+            "name": "SO_Respawn_5",
+            "hideFlags": 0
+          },
+          {
+            "TemplateId": 1,
+            "Count": 5,
+            "MonsterDataId": 2,
+            "RespawnType": 0,
+            "RespawnTime": 5,
+            "PivotPosX": -15,
+            "PivotPosY": 21,
+            "SpawnRange": 8,
+            "name": "SO_Respawn_1",
+            "hideFlags": 0
+          },
+          {
+            "TemplateId": 2,
+            "Count": 5,
+            "MonsterDataId": 3,
+            "RespawnType": 0,
+            "RespawnTime": 5,
+            "PivotPosX": -27,
+            "PivotPosY": 6,
+            "SpawnRange": 8,
+            "name": "SO_Respawn_2",
+            "hideFlags": 0
+          },
+          {
+            "TemplateId": 4,
+            "Count": 5,
+            "MonsterDataId": 1,
+            "RespawnType": 0,
+            "RespawnTime": 5,
+            "PivotPosX": -7,
+            "PivotPosY": 7,
+            "SpawnRange": 5,
+            "name": "SO_Respawn_4",
+            "hideFlags": 0
+          }
+        ],
+        "name": "SO_Spawn_Room1",
+        "hideFlags": 0
+      },
+      "Npcs": [
+        {
+          "DestPotalId": 11,
+          "TemplateId": 1,
+          "Name": "마을포탈1",
+          "NameTextId": "마을포탈1",
+          "DescriptionTextID": "마을포탈1",
+          "IconImage": "portal_image",
+          "PrefabName": "PortalPrefab",
+          "NpcType": 1,
+          "ExtraSize": 0,
+          "Range": 5,
+          "OwnerRoomId": 1,
+          "SpawnPosX": 2,
+          "SpawnPosY": 11,
+          "name": "SO_Portal_1",
+          "hideFlags": 0
+        }
+      ],
+      "name": "SO_Room_1",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 2,
+      "MapName": "Room2_Forest_A_1",
+      "StartPosX": 0,
+      "StartPosY": 0,
+      "SpawningPoolData": {
+        "RoomId": 2,
+        "RespawnDatas": [
+          {
+            "TemplateId": 3,
+            "Count": 5,
+            "MonsterDataId": 1,
+            "RespawnType": 0,
+            "RespawnTime": 5,
+            "PivotPosX": 0,
+            "PivotPosY": 0,
+            "SpawnRange": 5,
+            "name": "SO_Respawn_3",
+            "hideFlags": 0
+          }
+        ],
+        "name": "SO_Spawn_Room2",
+        "hideFlags": 0
+      },
+      "Npcs": [
+        {
+          "DestPotalId": 1,
+          "TemplateId": 11,
+          "Name": "마을포탈2",
+          "NameTextId": "마을포탈2",
+          "DescriptionTextID": "마을포탈2",
+          "IconImage": "portal_image",
+          "PrefabName": "PortalPrefab",
+          "NpcType": 1,
+          "ExtraSize": 0,
+          "Range": 5,
+          "OwnerRoomId": 2,
+          "SpawnPosX": 2,
+          "SpawnPosY": 4,
+          "name": "SO_Portal_11",
+          "hideFlags": 0
+        }
+      ],
+      "name": "SO_Room_2",
+      "hideFlags": 0
+    }
+  ]
+}

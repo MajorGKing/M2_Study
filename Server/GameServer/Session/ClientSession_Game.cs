@@ -108,7 +108,8 @@ namespace Server
 
             GameLogic.Instance.Push(() =>
             {
-                GameRoom room = GameLogic.Instance.Find(1);
+                // ILHAK TO DO
+                GameRoom room = GameLogic.Find(1);
 
                 room?.Push(() =>
                 {

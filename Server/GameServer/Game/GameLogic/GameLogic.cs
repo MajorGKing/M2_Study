@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Server.Data;
+using System.Collections.Concurrent;
 
 namespace GameServer
 {
@@ -10,50 +12,133 @@ namespace GameServer
     // -- Zone
     public class GameLogic : JobSerializer
     {
+        // 메인 쓰레드 일감 등록.
         public static GameLogic Instance { get; } = new GameLogic();
 
-        Dictionary<int, GameRoom> _rooms = new Dictionary<int, GameRoom>();
-        int _roomId = 1;
+        // 게임 관리.
+        static Dictionary<int, GameRoom> _rooms;
+        static int _roomIdGenerator = 1;
+        static int _threadCount;
 
-        public void Update()
+        static ConcurrentQueue<GameRoom> _updateQueue;
+
+        public GameLogic()
         {
-            Flush();
+            _rooms = new Dictionary<int, GameRoom>();
+            _roomIdGenerator = 1;
+            _updateQueue = new ConcurrentQueue<GameRoom>();
 
-            foreach (GameRoom room in _rooms.Values)
+            foreach (RoomData roomData in DataManager.RoomDict.Values)
             {
-                room.Update();
+                GameRoom room = Add(roomData);
+                _updateQueue.Enqueue(room);
             }
         }
 
-        public GameRoom Add(int mapTemplateId)
+        #region Add & Find
+        static private GameRoom Add(RoomData roomData)
         {
             GameRoom gameRoom = new GameRoom();
-            gameRoom.Push(gameRoom.Init, mapTemplateId, 10);
+            gameRoom.Init(roomData, 10);
 
-            gameRoom.GameRoomId = _roomId;
-            _rooms.Add(_roomId, gameRoom);
-            _roomId++;
+            gameRoom.GameRoomId = _roomIdGenerator;
+            _rooms.Add(_roomIdGenerator, gameRoom);
+            _roomIdGenerator++;
 
             return gameRoom;
         }
 
-        public bool Remove(int roomId)
+        static public GameRoom Find(int roomId)
         {
-            return _rooms.Remove(roomId);
-        }
-
-        public GameRoom Find(int roomId)
-        {
-            GameRoom room = null;
-            if (_rooms.TryGetValue(roomId, out room))
+            if (_rooms.TryGetValue(roomId, out GameRoom room))
                 return room;
 
             return null;
         }
+        #endregion
 
-        public List<GameRoom> GetRooms()
+        static public void FlushMainThreadJobs()
         {
-            return _rooms.Values.ToList();
+            // 메인 쓰레드.
+            Thread.CurrentThread.Name = "MainThread";
+
+            while (true)
+            {
+                Instance.Flush();
+                Thread.Sleep(0);
+            }
         }
+
+        #region 일감 배분 : Multi-Thread Version
+        static public void LaunchGameThreads(int threadCount)
+        {
+            _threadCount = threadCount;
+
+            // Thread 생성.
+            for (int i = 0; i < threadCount; i++)
+            {
+                Thread t = new Thread(new ParameterizedThreadStart(GameThreadJob_1));
+                t.Name = $"GameLogic_{i}";
+                t.Start(i);
+            }
+        }
+
+        static public void GameThreadJob_1(object arg)
+        {
+            int threadId = (int)arg;
+            int idx = threadId % _threadCount;
+
+            // 쓰레드가 담당하는 방 찾기.
+            List<GameRoom> rooms = _rooms
+                .Where(r => r.Key % _threadCount == idx)
+                .Select(r => r.Value)
+                .ToList();
+
+            while (true)
+            {
+                foreach (GameRoom room in rooms)
+                    room.Update();
+
+                Thread.Sleep(0);
+            }
+        }
+
+        static public void GameThreadJob_2(object arg)
+        {
+            int threadId = (int)arg;
+
+            // 담당할 방을 경쟁을 통해 뽑기.
+            while (true)
+            {
+                if (_updateQueue.TryDequeue(out GameRoom room) == false)
+                    continue;
+
+                room.Flush();
+
+                _updateQueue.Enqueue(room);
+
+                Thread.Sleep(0);
+            }
+        }
+        #endregion
+
+        #region 일감 배분 : Task Version
+        static public void LaunchRoomUpdateTasks()
+        {
+            foreach (GameRoom room in _rooms.Values)
+            {
+                StartRoomUpdateTask(room);
+            }
+        }
+
+        static public void StartRoomUpdateTask(GameRoom room)
+        {
+            Task.Run(() =>
+            {
+                room.Update();
+                StartRoomUpdateTask(room);
+            });
+        }
+        #endregion
     }
 }

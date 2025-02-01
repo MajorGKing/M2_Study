@@ -23,34 +23,16 @@ namespace Server
         static Listener _listener = new Listener();
         static Connector _connector = new Connector();
 
-        static void GameLogicTask()
-        {
-            while (true)
-            {
-                GameLogic.Instance.Update();
-                Thread.Sleep(0);
-            }
-        }
-
-        static void GameDbTask()
-        {
-            while (true)
-            {
-                DBManager.Instance.Flush();
-                Thread.Sleep(100);
-            }
-        }
-
         static void Main(string[] args)
         {
             ConfigManager.LoadConfig();
             DataManager.LoadData();
 
-            // TEMP 방 하나 파두기
-            GameLogic.Instance.Push(() =>
-            {
-                GameLogic.Instance.Add(1);
-            });
+            //// TEMP 방 하나 파두기
+            //GameLogic.Instance.Push(() =>
+            //{
+            //    GameLogic.Instance.Add(1);
+            //});
 
             IPAddress ipAddr = IPAddress.Parse(ConfigManager.Config.ip);
             IPEndPoint endPoint = new IPEndPoint(ipAddr, ConfigManager.Config.port);
@@ -58,16 +40,17 @@ namespace Server
 
             Console.WriteLine("Listening...");
 
-            // GameDbTask
-            {
-                Thread t = new Thread(GameDbTask);
-                t.Name = "GameDB";
-                t.Start();
-            }
-
             // GameLogic
-            Thread.CurrentThread.Name = "GameLogic";
-            GameLogicTask();
+            const int GameThreadCount = 2;
+            GameLogic.LaunchGameThreads(GameThreadCount);
+            //GameLogic.LaunchRoomUpdateTasks();
+
+            // DB
+            const int DbThreadCount = 2;
+            DBManager.LaunchDBThreads(DbThreadCount);
+
+            // MainThread
+            GameLogic.FlushMainThreadJobs();
         }
     }
 }

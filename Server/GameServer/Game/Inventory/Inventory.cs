@@ -189,7 +189,7 @@ namespace Server.Game
             if (item.CanUseItem(this) == false)
                 return;
 
-            DBManager.UseItem(Owner, item);
+            DBManager.UseItemNoti(Owner, item);
         }
 
         public void HandleDeleteItem(long itemDbId)
@@ -198,7 +198,7 @@ namespace Server.Game
             if (item == null)
                 return;
 
-            DBManager.DeleteItem(Owner, item);
+            DBManager.DeleteItemNoti(Owner, item);
         }
         #endregion
 

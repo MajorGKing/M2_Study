@@ -2,6 +2,7 @@
 using Google.Protobuf;
 using Google.Protobuf.Protocol;
 using Server;
+using Server.Data;
 using Server.Game;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace GameServer
         public const int VisionCells = 10;
         public int GameRoomId { get; set; }
         public int TemplateId { get; set; }
+        public RoomData RoomData { get; set; }
 
         Dictionary<int, Hero> _heroes = new Dictionary<int, Hero>();
         Dictionary<int, Monster> _monsters = new Dictionary<int, Monster>();
@@ -31,11 +33,12 @@ namespace GameServer
 
         Random _rand = new Random();
 
-        public void Init(int mapTemplateId, int zoneCells)
+        public void Init(RoomData roomData, int zoneCells)
         {
-            TemplateId = mapTemplateId;
+            RoomData = roomData;
+            TemplateId = roomData.TemplateId;
 
-            Map.LoadMap();
+            Map.LoadMap(roomData.MapName);
 
             // Zone
             ZoneCells = zoneCells; // 10

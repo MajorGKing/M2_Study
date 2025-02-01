@@ -3,6 +3,8 @@ using Google.Protobuf.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Linq;
+using static Google.Protobuf.Reflection.FeatureSet.Types;
 
 namespace Server.Data
 {
@@ -58,6 +60,23 @@ namespace Server.Data
 
         [ExcludeField]
         public bool Stackable;
+    }
+
+    public class NpcData
+    {
+        public int TemplateId;
+        public string Name; //개발용
+        public string NameTextId;
+        public string DescriptionTextID;
+        public string IconImage;
+        public string PrefabName;
+        public ENpcType NpcType;
+        public int ExtraCells;
+        public int Range;
+
+        public int OwnerRoomId;
+        public int SpawnPosX;
+        public int SpawnPosY;
     }
     #endregion
 
@@ -691,5 +710,36 @@ namespace Server.Data
     }
     #endregion
 
-    
+    #region Room
+    public class RoomData
+    {
+        public int TemplateId;
+        public string MapName;
+        public SpawningPoolData SpawningPoolData;
+        public List<NpcData> Npcs;
+    }
+
+    [Serializable]
+    public class RoomDataLoader : ILoader<int, RoomData>
+    {
+        public List<RoomData> spawningPools = new List<RoomData>();
+
+        public Dictionary<int, RoomData> MakeDict()
+        {
+            Dictionary<int, RoomData> dict = new Dictionary<int, RoomData>();
+            foreach (RoomData spawningPool in spawningPools)
+            {
+                dict.Add(spawningPool.TemplateId, spawningPool);
+            }
+            return dict;
+        }
+
+        public bool Validate()
+        {
+            return true;
+        }
+    }
+    #endregion
+
+
 }

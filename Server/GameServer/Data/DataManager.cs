@@ -31,10 +31,14 @@ namespace GameServer
         public static Dictionary<int, ProjectileData> ProjectileDict { get; private set; } = new Dictionary<int, ProjectileData>();
         public static Dictionary<int, RewardData> RewardDict { get; private set; } = new Dictionary<int, RewardData>();
         public static Dictionary<int, DropTableData> DropTableDict { get; private set; } = new Dictionary<int, DropTableData>();
+        public static Dictionary<int, RoomData> RoomDict { get; private set; } = new Dictionary<int, RoomData>();
+
+        public static Dictionary<int, NpcData> NpcDict { get; private set; } = new Dictionary<int, NpcData>();
 
         public static Dictionary<int, ItemData> ItemDict { get; private set; } = new Dictionary<int, ItemData>();
         public static Dictionary<int, EquipmentData> EquipmentDict { get; private set; } = new Dictionary<int, EquipmentData>();
         public static Dictionary<int, ConsumableData> ConsumableDict { get; private set; } = new Dictionary<int, ConsumableData>();
+
 
         public static void LoadData()
         {
@@ -47,6 +51,7 @@ namespace GameServer
             ProjectileDict = LoadJson<ProjectileDataLoader, int, ProjectileData>("ProjectileData").MakeDict();
             RewardDict = LoadJson<RewardDataLoader, int, RewardData>("RewardData").MakeDict();
             DropTableDict = LoadJson<DropTableDataLoader, int, DropTableData>("DropTableData").MakeDict();
+            RoomDict = LoadJson<RoomDataLoader, int, RoomData>("RoomData").MakeDict();
 
             #region ItemData
             EquipmentDict = LoadJson<EquipmentDataLoader, int, EquipmentData>("EquipmentData").MakeDict();
@@ -61,13 +66,17 @@ namespace GameServer
                 ItemDict.Add(item.Key, item.Value);
             #endregion
 
+            #region NpcData
+            NpcDict.Clear();            
+            #endregion
+
             Validate();
         }
 
         static Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
         {
-            string text = File.ReadAllText($"{ConfigManager.Config.dataPath}/JsonData/{path}.json");
             Console.WriteLine(path);
+            string text = File.ReadAllText($"{ConfigManager.Config.dataPath}/JsonData/{path}.json");
             Loader loader = Newtonsoft.Json.JsonConvert.DeserializeObject<Loader>(text);
             _loaders.Add(loader);
 

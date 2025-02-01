@@ -10,6 +10,7 @@ using Google.Protobuf;
 using GameServer;
 using Server.Data;
 using System.Numerics;
+using Google.Protobuf.Protocol;
 
 namespace Server
 {
@@ -20,6 +21,32 @@ namespace Server
         public List<Hero> Heroes { get; set; } = new List<Hero>();
         public Hero MyHero { get; set; }
         object _lock = new object();
+
+        long _pingpongTick = 0;
+
+        public void Ping()
+        {
+            if (_pingpongTick > 0)
+            {
+                long delta = (System.Environment.TickCount64 - _pingpongTick);
+                if (delta > 60 * 1000)
+                {
+                    Console.WriteLine("Disconnected by PingCheck");
+                    Disconnect();
+                    return;
+                }
+            }
+
+            S_Ping pingPacket = new S_Ping();
+            Send(pingPacket);
+
+            GameLogic.Instance.PushAfter(5000, Ping);
+        }
+
+        public void HandlePong()
+        {
+            _pingpongTick = System.Environment.TickCount64;
+        }
 
         #region Network
         // 예약만 하고 보내지는 않는다
@@ -42,6 +69,8 @@ namespace Server
         public override void OnConnected(EndPoint endPoint)
         {
             Console.WriteLine($"OnConnected : {endPoint}");
+
+            GameLogic.Instance.PushAfter(5000, Ping);
         }
 
         public override void OnRecvPacket(ArraySegment<byte> buffer)
@@ -56,11 +85,21 @@ namespace Server
                 if (MyHero == null)
                     return;
 
-                GameRoom room = GameLogic.Instance.Find(1);
+                // ILHAK TO DO
+                GameRoom room = GameLogic.Find(1);
+                if (room == null)
+                    return;
+
                 room.Push(room.LeaveGame, MyHero.ObjectId, false);
             });
 
+            foreach (Hero hero in Heroes)
+                ObjectManager.Instance.Remove(hero.ObjectId);
+
             SessionManager.Instance.Remove(this);
+
+            foreach (Hero hero in Heroes)
+                DBManager.Clear(hero.HeroDbId);
 
             Console.WriteLine($"OnDisconnected : {endPoint}");
         }

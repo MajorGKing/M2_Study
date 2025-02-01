@@ -294,3 +294,10 @@ enum EConsumableGroupType
     ECONSUMABLE_GROUP_TYPE_MP = 2;
     ECONSUMABLE_GROUP_TYPE_ATTACK = 3;
 }
+
+enum ENpcType
+{
+    ENPC_TYPE_NONE = 0;
+    ENPC_TYPE_PORTAL = 1;
+    ENPC_TYPE_SHOP = 2;
+}

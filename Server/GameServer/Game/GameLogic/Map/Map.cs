@@ -218,12 +218,12 @@ namespace GameServer
             }
         }
 
-        public void LoadMap()
+        public void LoadMap(string mapName)
         {
-            string mapName = "MMO_edu_mapCollision"; // TEMP
+            string collisionName = $"{mapName}Collision"; // TEMP
 
             // Collision 관련 파일
-            string text = File.ReadAllText($"{ConfigManager.Config.dataPath}/MapData/{mapName}.txt");
+            string text = File.ReadAllText($"{ConfigManager.Config.dataPath}/MapData/{collisionName}.txt");
             StringReader reader = new StringReader(text);
 
             MinX = int.Parse(reader.ReadLine());

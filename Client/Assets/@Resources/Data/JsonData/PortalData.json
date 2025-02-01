@@ -1,0 +1,38 @@
+{
+  "portals": [
+    {
+      "DestPotalId": 11,
+      "TemplateId": 1,
+      "Name": "마을포탈1",
+      "NameTextId": "마을포탈1",
+      "DescriptionTextID": "마을포탈1",
+      "IconImage": "portal_image",
+      "PrefabName": "PortalPrefab",
+      "NpcType": 1,
+      "ExtraSize": 0,
+      "Range": 5,
+      "OwnerRoomId": 1,
+      "SpawnPosX": 2,
+      "SpawnPosY": 11,
+      "name": "SO_Portal_1",
+      "hideFlags": 0
+    },
+    {
+      "DestPotalId": 1,
+      "TemplateId": 11,
+      "Name": "마을포탈2",
+      "NameTextId": "마을포탈2",
+      "DescriptionTextID": "마을포탈2",
+      "IconImage": "portal_image",
+      "PrefabName": "PortalPrefab",
+      "NpcType": 1,
+      "ExtraSize": 0,
+      "Range": 5,
+      "OwnerRoomId": 2,
+      "SpawnPosX": 2,
+      "SpawnPosY": 4,
+      "name": "SO_Portal_11",
+      "hideFlags": 0
+    }
+  ]
+}

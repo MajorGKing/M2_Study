@@ -17,8 +17,14 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: d24783d009c6c774484b6fc3070ecb61
   m_SerializeEntries:
-  - m_GUID: 7f40b1a67be81ca4fba71600bfa38790
-    m_Address: MMO_edu_mapCollision
+  - m_GUID: 5a5981ccbf32e344f9ac58769c8989f0
+    m_Address: Room2_Forest_A_1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e87f85ce92109024682b7e33d241bb12
+    m_Address: Room1_City
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

@@ -35,9 +35,11 @@
       "PrefabName": null
     },
     {
-      "HeroClass": 1,
+      "HeroClass": 2,
       "SkillDataIds": [
-        1
+        6,
+        7,
+        8
       ],
       "SkillDatas": [],
       "SkillMap": {},
@@ -62,6 +64,70 @@
       "Name": "엘프",
       "NameTextId": "엘프",
       "DescriptionTextID": "엘프입니다.",
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "HeroClass": 3,
+      "SkillDataIds": [
+        6
+      ],
+      "SkillDatas": [],
+      "SkillMap": {},
+      "MaxHp": 200,
+      "HpRegen": 1,
+      "MaxMp": 100,
+      "MpRegen": 1,
+      "Attack": 5,
+      "Def": 0,
+      "Dodge": 0,
+      "AtkSpeed": 1,
+      "MoveSpeed": 5,
+      "CriRate": 0.15,
+      "CriDamage": 1.5,
+      "Str": 10,
+      "Dex": 7,
+      "Int": 3,
+      "Con": 8,
+      "Wis": 5,
+      "Stat": null,
+      "TemplateId": 3,
+      "Name": "마법사",
+      "NameTextId": "마법사",
+      "DescriptionTextID": "마법사",
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "HeroClass": 4,
+      "SkillDataIds": [
+        9,
+        10,
+        11
+      ],
+      "SkillDatas": [],
+      "SkillMap": {},
+      "MaxHp": 200,
+      "HpRegen": 1,
+      "MaxMp": 100,
+      "MpRegen": 1,
+      "Attack": 5,
+      "Def": 0,
+      "Dodge": 0,
+      "AtkSpeed": 1,
+      "MoveSpeed": 5,
+      "CriRate": 0.15,
+      "CriDamage": 1.5,
+      "Str": 10,
+      "Dex": 7,
+      "Int": 3,
+      "Con": 8,
+      "Wis": 5,
+      "Stat": null,
+      "TemplateId": 4,
+      "Name": "로그",
+      "NameTextId": "로그",
+      "DescriptionTextID": "로그",
       "IconImage": null,
       "PrefabName": null
     }

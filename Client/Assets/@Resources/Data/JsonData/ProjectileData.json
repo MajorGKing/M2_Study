@@ -2,29 +2,63 @@
   "datas": [
     {
       "Duration": 0.0,
-      "ProjRange": 10.0,
-      "ProjSpeed": 30.0,
+      "Range": 10.0,
+      "Speed": 30.0,
+      "Count": 1.0,
       "TemplateId": 1,
-      "Name": "고블린화살",
+      "Name": "Goblin Proj",
       "NameTextId": null,
       "DescriptionTextID": null,
       "IconImage": null,
-      "PrefabName": "GoblinProjectile",
-      "name": "SO_GoblinProjectile",
-      "hideFlags": 0
+      "PrefabName": "GoblinProjectile"
     },
     {
       "Duration": 0.0,
-      "ProjRange": 10.0,
-      "ProjSpeed": 20.0,
+      "Range": 10.0,
+      "Speed": 20.0,
+      "Count": 1.0,
       "TemplateId": 2,
-      "Name": "기사 발사체",
+      "Name": "Knight Skill C",
       "NameTextId": null,
       "DescriptionTextID": null,
       "IconImage": null,
-      "PrefabName": "Knight_Skill_C_Trail",
-      "name": "SO_KnightProjectile",
-      "hideFlags": 0
+      "PrefabName": "Knight_Skill_C_Trail"
+    },
+    {
+      "Duration": 0.0,
+      "Range": 10.0,
+      "Speed": 30.0,
+      "Count": 1.0,
+      "TemplateId": 3,
+      "Name": "아처 평타 화살",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": "Archer_Attack_Arrow"
+    },
+    {
+      "Duration": 0.0,
+      "Range": 10.0,
+      "Speed": 30.0,
+      "Count": 1.0,
+      "TemplateId": 4,
+      "Name": "아처 스킬A",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": "Archer_Attack_Arrow"
+    },
+    {
+      "Duration": 0.0,
+      "Range": 10.0,
+      "Speed": 30.0,
+      "Count": 3.0,
+      "TemplateId": 5,
+      "Name": "아처 스킬B",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": "Archer_Attack_Arrow"
     }
   ]
 }

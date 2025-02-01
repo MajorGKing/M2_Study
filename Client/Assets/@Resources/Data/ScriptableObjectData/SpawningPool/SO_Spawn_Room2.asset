@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3912836b5a444c68b29a94b2f34d925b, type: 3}
+  m_Name: SO_Spawn_Room2
+  m_EditorClassIdentifier: 
+  RoomId: 2
+  RespawnDatas:
+  - {fileID: 11400000, guid: 538180e836ad4f545a8ff7013b161929, type: 2}

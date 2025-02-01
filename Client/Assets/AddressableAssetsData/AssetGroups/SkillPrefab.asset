@@ -17,32 +17,32 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 39fe51a44c9389c4ebb609a9659766ba
   m_SerializeEntries:
-  - m_GUID: d77f7de6963a1d34283c70f33a00e46a
-    m_Address: Knight_Skill_A_Attacker
+  - m_GUID: cc064f7e6612ce14daf39a096986204c
+    m_Address: Wizard_attack_a_Trail
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 619af8f1b79f4004d816515e29c856af
-    m_Address: Knight_Skill_A_Target
+  - m_GUID: 0cc6960d871949e46a5ad5801852ed1f
+    m_Address: Wizard_attack_b_Trail
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 941502d6952b1ef48b359689e128b777
-    m_Address: Knight_Skill_C_Attacker
+  - m_GUID: 2088c6b492e1d9d4d9190b1323f4d30d
+    m_Address: Wizard_attack_Ball
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 81846134cec70bd43a1b19a32288b138
-    m_Address: Knight_Skill_C_Trail
+  - m_GUID: b98e5a6fe95768a4c9e9b75bafeb69cb
+    m_Address: Wizard_attack_c_Trail
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 32416991262e1f941a657b139089bc74
-    m_Address: Knight_Skill_B_Attacker
+  - m_GUID: 61a3925ab28cfad418409a03e50b14b4
+    m_Address: Wizard_Attack_Hit
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
@@ -61,6 +61,174 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1ee7f5937bf1ecf48a851e9420fda90d
     m_Address: AOE_Explosion
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e2e23d3f5b025254f9e848c090544b5c
+    m_Address: Rogue_Skill_B_Target
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed5d1c8551e7f264da0025ab32f1223c
+    m_Address: Rogue_Skill_B_Attacker
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf00b97892d231445ab7e651b23c2690
+    m_Address: Rogue_Skill_A_Target
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4e3987991599227419e19c9a97b0b7e3
+    m_Address: Rogue_Skill_A_Attacker
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 760ad8066e491d44d89a1dc85ef8381f
+    m_Address: Rogue_Attack_Hit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dbf903858aa639b448047a6adcff1109
+    m_Address: Rogue_Attack_c_Trail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9ecb4263c6bd4df45bdbef8986d958dc
+    m_Address: Rogue_Attack_b_Trail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b285c0f027227c14da391560e44d42a8
+    m_Address: Rogue_Attack_a_Trail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 81846134cec70bd43a1b19a32288b138
+    m_Address: Knight_Skill_C_Trail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 941502d6952b1ef48b359689e128b777
+    m_Address: Knight_Skill_C_Attacker
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 32416991262e1f941a657b139089bc74
+    m_Address: Knight_Skill_B_Attacker
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 619af8f1b79f4004d816515e29c856af
+    m_Address: Knight_Skill_A_Target
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d77f7de6963a1d34283c70f33a00e46a
+    m_Address: Knight_Skill_A_Attacker
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6933f2a705aaa344e80e3d099a87a039
+    m_Address: Knight_Attack_Hit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 746e5c86c1f813640836c5b6dc99b4fe
+    m_Address: Knight_Attack_c_Trail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e8c45450b7ef61e4bba08a1915752cc7
+    m_Address: Knight_Attack_b_Trail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a8bdace79a299741b01ee30bb604415
+    m_Address: Knight_Attack_a_Trail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4e67cef8043b11488a5e95320cbb16b
+    m_Address: Archer_Skill_B_Trail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3518c821a556a2b478d929c31e4cd6ea
+    m_Address: Archer_Skill_B_Target
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 56b413267c6e03546bf21d976650c01d
+    m_Address: Archer_Skill_B_Attacker
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0c34b7148f40af04db3189255fa13a36
+    m_Address: Archer_Skill_A_Trail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 359557a321c128f438dffd5bc77189ca
+    m_Address: Archer_Skill_A_Target
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7c9e10a6a6f0c2a42abe276eef318f4e
+    m_Address: Archer_Skill_A_Attacker
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 67cd902270220984aa99a24701e05ce5
+    m_Address: Archer_Attack_Hit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 04f35347d74ce124fa43cd5c8ded9b73
+    m_Address: Archer_Attack_c_Trail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af49a5584b160e14ab2f62163e446603
+    m_Address: Archer_Attack_b_Trail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 19d57f1157ae8c24dbd6432b3916c890
+    m_Address: Archer_Attack_Arrow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5403c56285412a441866772601464ee6
+    m_Address: Archer_Attack_a_Trail
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

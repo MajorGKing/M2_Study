@@ -1,0 +1,64 @@
+{
+  "respawnDatas": [
+    {
+      "TemplateId": 1,
+      "Count": 5,
+      "MonsterDataId": 2,
+      "RespawnType": 0,
+      "RespawnTime": 5,
+      "PivotPosX": -15,
+      "PivotPosY": 21,
+      "SpawnRange": 8,
+      "name": "SO_Respawn_1",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 2,
+      "Count": 5,
+      "MonsterDataId": 3,
+      "RespawnType": 0,
+      "RespawnTime": 5,
+      "PivotPosX": -27,
+      "PivotPosY": 6,
+      "SpawnRange": 8,
+      "name": "SO_Respawn_2",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 3,
+      "Count": 5,
+      "MonsterDataId": 1,
+      "RespawnType": 0,
+      "RespawnTime": 5,
+      "PivotPosX": 0,
+      "PivotPosY": 0,
+      "SpawnRange": 5,
+      "name": "SO_Respawn_3",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 4,
+      "Count": 5,
+      "MonsterDataId": 1,
+      "RespawnType": 0,
+      "RespawnTime": 5,
+      "PivotPosX": -7,
+      "PivotPosY": 7,
+      "SpawnRange": 5,
+      "name": "SO_Respawn_4",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 5,
+      "Count": 5,
+      "MonsterDataId": 1,
+      "RespawnType": 0,
+      "RespawnTime": 5,
+      "PivotPosX": -16,
+      "PivotPosY": -6,
+      "SpawnRange": 5,
+      "name": "SO_Respawn_5",
+      "hideFlags": 0
+    }
+  ]
+}

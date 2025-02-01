@@ -1,0 +1,7 @@
+﻿TemplateId,Name,NameTextId,DescriptionTextID,IconImage,PrefabName,Type,SubType,등급,maxStack,EffectId,CoolTime,GroupType
+1,체력회복(소),체력회복(소),체력회복(소),temp_potion_red,,Consumable,Consumable,Common,999,10000,3,Hp
+2,체력회복(중),체력회복(중),체력회복(중),temp_potion_red,,Consumable,Consumable,Common,999,10001,3,Hp
+3,체력회복(대),체력회복(대),체력회복(대),temp_potion_red,,Consumable,Consumable,Common,999,10002,3,Hp
+4,마나회복(소),마나회복(소),마나회복(소),temp_potion_blue,,Consumable,Consumable,Common,999,10003,3,Mp
+5,마나회복(중),마나회복(중),마나회복(중),temp_potion_blue,,Consumable,Consumable,Common,999,10004,3,Mp
+6,마나회복(대),마나회복(대),마나회복(대),temp_potion_blue,,Consumable,Consumable,Common,999,10005,3,Mp

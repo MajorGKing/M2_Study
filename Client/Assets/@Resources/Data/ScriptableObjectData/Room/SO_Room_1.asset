@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35a33084586d4f88b16aeaa01624b556, type: 3}
+  m_Name: SO_Room_1
+  m_EditorClassIdentifier: 
+  TemplateId: 1
+  MapName: Room1_City
+  StartPosX: 0
+  StartPosY: 0
+  SpawningPoolData: {fileID: 11400000, guid: 34da926e9b906e5429b1952ba6f5666a, type: 2}
+  Npcs:
+  - {fileID: 11400000, guid: f3d28b4522e90cf4e92f537f01c7c9ba, type: 2}

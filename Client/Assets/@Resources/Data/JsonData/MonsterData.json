@@ -5,10 +5,10 @@
       "IsAggressive": false,
       "ExtraCells": 0,
       "SkillDataIds": [
-        1
+        13
       ],
       "SearchCellDist": 10,
-      "ChaseCellDist": 5,
+      "ChaseCellDist": 10,
       "PatrolCellDist": 0,
       "DropTableId": 1,
       "SkillDatas": [],
@@ -35,7 +35,7 @@
       "Name": "허수아비",
       "NameTextId": "허수아비",
       "DescriptionTextID": "허수아비에요",
-      "IconImage": null,
+      "IconImage": "scarecrow",
       "PrefabName": "ScareCrow"
     },
     {
@@ -43,10 +43,10 @@
       "IsAggressive": true,
       "ExtraCells": 0,
       "SkillDataIds": [
-        1
+        13
       ],
       "SearchCellDist": 10,
-      "ChaseCellDist": 5,
+      "ChaseCellDist": 10,
       "PatrolCellDist": 1,
       "DropTableId": 1,
       "SkillDatas": [],
@@ -73,7 +73,7 @@
       "Name": "우드맨",
       "NameTextId": "우드맨",
       "DescriptionTextID": "우드맨",
-      "IconImage": null,
+      "IconImage": "wood_common",
       "PrefabName": "WoodMan"
     },
     {
@@ -84,7 +84,7 @@
         2
       ],
       "SearchCellDist": 10,
-      "ChaseCellDist": 5,
+      "ChaseCellDist": 10,
       "PatrolCellDist": 1,
       "DropTableId": 1,
       "SkillDatas": [],
@@ -111,7 +111,7 @@
       "Name": "고블린",
       "NameTextId": "고블린",
       "DescriptionTextID": "고블린",
-      "IconImage": null,
+      "IconImage": "goblin",
       "PrefabName": "Goblin"
     }
   ]

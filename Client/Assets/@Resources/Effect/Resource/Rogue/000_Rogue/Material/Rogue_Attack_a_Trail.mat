@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rogue_Attack_a_Trail
+  m_Shader: {fileID: -6465566751694194690, guid: 95e9759426a39db499b65163bfe589ba, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _SampleTexture2D_eac27718627c45b79abf9286c3ae9d06_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 3d95bd77e66d3a04da4678cdb50f6e05, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_f80471e12e8045809330fc546236d5fc_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: acbf4d2f3d78087438c1831a376b7ba1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_fb16fa4793294e089ee0a24114b8044b_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: acbf4d2f3d78087438c1831a376b7ba1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2D:
+        m_Texture: {fileID: 2800000, guid: a771d2732dfc6ac40b71361fc6921e5e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Final_Intence: 3
+    - _Mask_Intence: 0.99
+    - _Move_X: 0
+    - _Move_Y: 0
+    - _Noise_Scale: 100
+    - _Power_Exp: 1.17
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _Scale_U: 1.51
+    - _Scale_V: 0.68
+    m_Colors:
+    - _Color: {r: 1.0596935, g: 0, b: 6.8831816, a: 1}
+  m_BuildTextureStacks: []
+--- !u!114 &511142535636018124
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7

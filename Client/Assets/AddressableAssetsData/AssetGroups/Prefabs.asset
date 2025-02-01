@@ -29,8 +29,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8ef7b993fa90a46439fe244349a7e3e0
-    m_Address: HeroPrefab_Knight_Male
+  - m_GUID: 2b49ebfede482cf4dabfff2355f553cd
+    m_Address: HeroPrefab_Knight_Female
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
@@ -41,8 +41,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2b49ebfede482cf4dabfff2355f553cd
-    m_Address: HeroPrefab_Knight_Female
+  - m_GUID: 8ef7b993fa90a46439fe244349a7e3e0
+    m_Address: HeroPrefab_Knight_Male
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
@@ -55,6 +55,48 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1c2ad1ad8ae65194aa075f32d95f3eae
     m_Address: ScareCrow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 13f51028d0a8a3c4795eefa0d451039f
+    m_Address: HeroPrefab_Archer_Female
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fdb01ce7eaecbfb4a9757ab08869d6d2
+    m_Address: HeroPrefab_Archer_Male
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 73f447be324b9284487ad28d0fcdf012
+    m_Address: HeroPrefab_Rogue_Female
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 81b84a83b7099344a8c16cdcb00d1768
+    m_Address: HeroPrefab_Rogue_Male
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2521e636ef0ef7042b28807438a9b849
+    m_Address: HeroPrefab_Wizard_Female
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1ff127e43fb694a4486fca0ede5f4f21
+    m_Address: HeroPrefab_Wizard_Male
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fe83a542c8abf4d46aa1381588131a9e
+    m_Address: PortalPrefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

@@ -23,8 +23,14 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: de670db980d29354d9db85b889ace5d2
-    m_Address: knight_skill_c
+  - m_GUID: a215124600041dd4b91e3adf3b0d7654
+    m_Address: rogue_skill_a
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 786146513828c4e4fa012aa7702af077
+    m_Address: rogue_skill_b
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
@@ -35,8 +41,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0abb067fe13b964418edccc7d7fceac9
-    m_Address: knight_skill_a
+  - m_GUID: 94cd0a28f21d2094baa9e3c3e636deb0
+    m_Address: temp_potion_blue
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
@@ -47,32 +53,26 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 94cd0a28f21d2094baa9e3c3e636deb0
-    m_Address: temp_potion_blue
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f9cdfa1f8d4378c41bec589369eb3ab2
-    m_Address: knight_skill_b
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cf16d5adf3694774182e223dc16fb0e4
-    m_Address: HeroIcon_Knight_Female
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 96a597a59c7ce384b8ba3535793f0c59
     m_Address: temp_weapon
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9410cb28bb4fd304f8c79b2af996ad09
-    m_Address: HeroIcon_Knight_Male
+  - m_GUID: 16d9beb70557bc242b96a43fccd0f8c9
+    m_Address: wizard_skill_a
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de670db980d29354d9db85b889ace5d2
+    m_Address: knight_skill_c
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 25fe7ef2c0ef0704e9f9f8f6b1b1b809
+    m_Address: wizard_skill_b
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
@@ -121,6 +121,126 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c28f67182b1928946bc3d1614abea8dd
     m_Address: ItemSlot_Uncommon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9cdfa1f8d4378c41bec589369eb3ab2
+    m_Address: knight_skill_b
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0abb067fe13b964418edccc7d7fceac9
+    m_Address: knight_skill_a
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f7e58b433c879df45a8090071082e5ec
+    m_Address: HeroIcon_Rogue_Male
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1e55208f90a924643b45d6e4e23f10a1
+    m_Address: HeroIcon_Rogue_Female
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9410cb28bb4fd304f8c79b2af996ad09
+    m_Address: HeroIcon_Knight_Male
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf16d5adf3694774182e223dc16fb0e4
+    m_Address: HeroIcon_Knight_Female
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9dedf1cd538d1040ab4df1537d303a7
+    m_Address: HeroIcon_Archer_Male
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0193b9c14aa1aa84691247cb95f1add8
+    m_Address: HeroIcon_Archer_Female
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 665b38976c343504ab11120d4cdbaef2
+    m_Address: archer_skill_b
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 739f2d56f7b9a0f48a8190affe9f4d09
+    m_Address: archer_skill_a
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bf152704134565e4c9271edea793e39d
+    m_Address: portal_image
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 91dabae6541b2f74b98724e012231468
+    m_Address: wood_common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4fc6a057ef9964e4c9a9fbe2332a7743
+    m_Address: scarecrow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8404bbb933229214cba0ae4448b912b6
+    m_Address: goblin
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f1e16696ef6e28340b50abbed8bb4b66
+    m_Address: h_shoulder_0000
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a36ccd0d60b095438b0f53ce24a4d29
+    m_Address: h_pants_0000
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b735b283bc36b6841b5f66f4f2e26767
+    m_Address: h_helmet_0000
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5176ef6154101594d89c46e75f59e903
+    m_Address: h_chest_0000
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 807518335fc5ecb41b0ad203f11941fa
+    m_Address: h_brace_0000
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d120097b88ee850418943b7accc1d5dd
+    m_Address: h_boots_0000
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

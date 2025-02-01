@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35a33084586d4f88b16aeaa01624b556, type: 3}
+  m_Name: SO_Room_2
+  m_EditorClassIdentifier: 
+  TemplateId: 2
+  MapName: Room2_Forest_A_1
+  StartPosX: 0
+  StartPosY: 0
+  SpawningPoolData: {fileID: 11400000, guid: d4ace5758e2d0904cba07e9aafe8fb55, type: 2}
+  Npcs:
+  - {fileID: 11400000, guid: 22a322224db855c4aa20412c160ada6e, type: 2}

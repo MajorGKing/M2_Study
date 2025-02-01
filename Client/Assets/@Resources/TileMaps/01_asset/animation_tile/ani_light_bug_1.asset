@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: ani_light_bug_1
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: d3819987f15c26d4596888b069222859, type: 3}
+  - {fileID: 21300000, guid: cfa510c678619fd4a89f9b13f59612ff, type: 3}
+  - {fileID: 21300000, guid: 312b3ed716a78934cb9700eabf32fae4, type: 3}
+  - {fileID: 21300000, guid: 604b4d154464146499d4d0736b428024, type: 3}
+  - {fileID: 21300000, guid: 7b48deec596544a4abca0385c6d52109, type: 3}
+  m_MinSpeed: 1
+  m_MaxSpeed: 5
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0

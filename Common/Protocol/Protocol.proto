@@ -71,7 +71,7 @@ message C_LeaveGame
 
 message S_LeaveGame
 {
-
+	ELeaveType leaveType = 1;
 }
 
 message S_Spawn {

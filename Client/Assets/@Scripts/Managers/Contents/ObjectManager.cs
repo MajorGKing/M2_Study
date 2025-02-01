@@ -1,10 +1,10 @@
 using Google.Protobuf.Protocol;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Data;
 using UnityEngine;
-using static Define;
 
 public class ObjectManager
 {
@@ -266,6 +266,28 @@ public class ObjectManager
         }
 
         return ret;
+    }
+
+    #region PacketHandler
+    public void HandleLeaveGameHandler(S_LeaveGame packet)
+    {
+        if (packet.LeaveType == ELeaveType.Dead)
+        {
+            //TODO UI Å¬¸¯ ÈÄ Clear
+            // Despawn(MyHero.ObjectId);
+            Managers.Instance.StartCoroutine(ReserveClear(2.5f));
+        }
+        else
+        {
+            Clear();
+        }
+    }
+    #endregion
+
+    IEnumerator ReserveClear(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Clear();
     }
 
     public void Clear()

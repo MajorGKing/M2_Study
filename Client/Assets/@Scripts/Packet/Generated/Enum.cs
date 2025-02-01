@@ -143,11 +143,14 @@ namespace Google.Protobuf.Protocol {
             "HQoZRUNPTlNVTUFCTEVfR1JPVVBfVFlQRV9IUBABEh0KGUVDT05TVU1BQkxF",
             "X0dST1VQX1RZUEVfTVAQAhIhCh1FQ09OU1VNQUJMRV9HUk9VUF9UWVBFX0FU",
             "VEFDSxADKkgKCEVOcGNUeXBlEhIKDkVOUENfVFlQRV9OT05FEAASFAoQRU5Q",
-            "Q19UWVBFX1BPUlRBTBABEhIKDkVOUENfVFlQRV9TSE9QEAJCG6oCGEdvb2ds",
-            "ZS5Qcm90b2J1Zi5Qcm90b2NvbGIGcHJvdG8z"));
+            "Q19UWVBFX1BPUlRBTBABEhIKDkVOUENfVFlQRV9TSE9QEAIqkAEKCkVMZWF2",
+            "ZVR5cGUSFAoQRUxFQVZFX1RZUEVfTk9ORRAAEhQKEEVMRUFWRV9UWVBFX0RF",
+            "QUQQARIbChdFTEVBVkVfVFlQRV9VU0VSX0xPR09VVBACEhwKGEVMRUFWRV9U",
+            "WVBFX0RJU0NPTk5FQ1RFRBADEhsKF0VMRUFWRV9UWVBFX0NIQU5HRV9ST09N",
+            "EARCG6oCGEdvb2dsZS5Qcm90b2J1Zi5Qcm90b2NvbGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.EHeroGender), typeof(global::Google.Protobuf.Protocol.EHeroClass), typeof(global::Google.Protobuf.Protocol.ECreateHeroResult), typeof(global::Google.Protobuf.Protocol.EObjectState), typeof(global::Google.Protobuf.Protocol.EMoveDir), typeof(global::Google.Protobuf.Protocol.EGameObjectType), typeof(global::Google.Protobuf.Protocol.ECellCollisionType), typeof(global::Google.Protobuf.Protocol.EFindPathResult), typeof(global::Google.Protobuf.Protocol.ERespawnType), typeof(global::Google.Protobuf.Protocol.EOwnerStat), typeof(global::Google.Protobuf.Protocol.EStatType), typeof(global::Google.Protobuf.Protocol.ECreatureStateFlag), typeof(global::Google.Protobuf.Protocol.ESkillType), typeof(global::Google.Protobuf.Protocol.EUseSkillTargetType), typeof(global::Google.Protobuf.Protocol.ETargetFriendType), typeof(global::Google.Protobuf.Protocol.EEffectType), typeof(global::Google.Protobuf.Protocol.EDurationPolicy), typeof(global::Google.Protobuf.Protocol.EDamageType), typeof(global::Google.Protobuf.Protocol.EItemType), typeof(global::Google.Protobuf.Protocol.EItemSubType), typeof(global::Google.Protobuf.Protocol.EItemGrade), typeof(global::Google.Protobuf.Protocol.EPotionType), typeof(global::Google.Protobuf.Protocol.EItemSlotType), typeof(global::Google.Protobuf.Protocol.EItemStatus), typeof(global::Google.Protobuf.Protocol.EUpdateItemReason), typeof(global::Google.Protobuf.Protocol.EItemCooltimeGroup), typeof(global::Google.Protobuf.Protocol.EErrorMessage), typeof(global::Google.Protobuf.Protocol.ECanUseSkillFailReason), typeof(global::Google.Protobuf.Protocol.ESkillSlot), typeof(global::Google.Protobuf.Protocol.EConsumableGroupType), typeof(global::Google.Protobuf.Protocol.ENpcType), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.EHeroGender), typeof(global::Google.Protobuf.Protocol.EHeroClass), typeof(global::Google.Protobuf.Protocol.ECreateHeroResult), typeof(global::Google.Protobuf.Protocol.EObjectState), typeof(global::Google.Protobuf.Protocol.EMoveDir), typeof(global::Google.Protobuf.Protocol.EGameObjectType), typeof(global::Google.Protobuf.Protocol.ECellCollisionType), typeof(global::Google.Protobuf.Protocol.EFindPathResult), typeof(global::Google.Protobuf.Protocol.ERespawnType), typeof(global::Google.Protobuf.Protocol.EOwnerStat), typeof(global::Google.Protobuf.Protocol.EStatType), typeof(global::Google.Protobuf.Protocol.ECreatureStateFlag), typeof(global::Google.Protobuf.Protocol.ESkillType), typeof(global::Google.Protobuf.Protocol.EUseSkillTargetType), typeof(global::Google.Protobuf.Protocol.ETargetFriendType), typeof(global::Google.Protobuf.Protocol.EEffectType), typeof(global::Google.Protobuf.Protocol.EDurationPolicy), typeof(global::Google.Protobuf.Protocol.EDamageType), typeof(global::Google.Protobuf.Protocol.EItemType), typeof(global::Google.Protobuf.Protocol.EItemSubType), typeof(global::Google.Protobuf.Protocol.EItemGrade), typeof(global::Google.Protobuf.Protocol.EPotionType), typeof(global::Google.Protobuf.Protocol.EItemSlotType), typeof(global::Google.Protobuf.Protocol.EItemStatus), typeof(global::Google.Protobuf.Protocol.EUpdateItemReason), typeof(global::Google.Protobuf.Protocol.EItemCooltimeGroup), typeof(global::Google.Protobuf.Protocol.EErrorMessage), typeof(global::Google.Protobuf.Protocol.ECanUseSkillFailReason), typeof(global::Google.Protobuf.Protocol.ESkillSlot), typeof(global::Google.Protobuf.Protocol.EConsumableGroupType), typeof(global::Google.Protobuf.Protocol.ENpcType), typeof(global::Google.Protobuf.Protocol.ELeaveType), }, null, null));
     }
     #endregion
 
@@ -418,6 +421,14 @@ namespace Google.Protobuf.Protocol {
     [pbr::OriginalName("ENPC_TYPE_NONE")] None = 0,
     [pbr::OriginalName("ENPC_TYPE_PORTAL")] Portal = 1,
     [pbr::OriginalName("ENPC_TYPE_SHOP")] Shop = 2,
+  }
+
+  public enum ELeaveType {
+    [pbr::OriginalName("ELEAVE_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("ELEAVE_TYPE_DEAD")] Dead = 1,
+    [pbr::OriginalName("ELEAVE_TYPE_USER_LOGOUT")] UserLogout = 2,
+    [pbr::OriginalName("ELEAVE_TYPE_DISCONNECTED")] Disconnected = 3,
+    [pbr::OriginalName("ELEAVE_TYPE_CHANGE_ROOM")] ChangeRoom = 4,
   }
 
   #endregion

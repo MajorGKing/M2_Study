@@ -175,15 +175,18 @@ namespace GameServer
             }
         }
 
-        public void LeaveGame(int objectId, bool kick = false)
+        public void LeaveGame(int objectId, ELeaveType leaveType = ELeaveType.None)
         {
-            EGameObjectType type = ObjectManager.GetObjectTypeFromId(objectId);
-
-            Vector2Int cellPos;
+            EGameObjectType type = ObjectManager.GetObjectTypeFromId(objectId);            
 
             if (type == EGameObjectType.Hero)
             {
-                if (_heroes.Remove(objectId, out Hero hero) == false)
+                //if (_heroes.Remove(objectId, out Hero hero) == false)
+                //    return;
+                if (_heroes.TryGetValue(objectId, out Hero hero) == false)
+                    return;
+
+                if (hero.Room != null && hero.Room != this)
                     return;
 
                 // 1. 맵에 실제 적용하고 충돌 그리드 갱신한다.
@@ -196,6 +199,7 @@ namespace GameServer
                 // 3. 퇴장한 사람한테 패킷 보내기.
                 {
                     S_LeaveGame leavePacket = new S_LeaveGame();
+                    leavePacket.LeaveType = leaveType;
                     hero.Session?.Send(leavePacket);
                 }
 
@@ -244,10 +248,10 @@ namespace GameServer
                 _projectiles.Remove(objectId);
                 projectile.Room = null;
 
-                // 2. 다른 사람들한테 퇴장 알려주기.
-                S_Despawn despawnPacket = new S_Despawn();
-                despawnPacket.ObjectIds.Add(objectId);
-                Broadcast(projectile.CellPos, despawnPacket);
+                //// 2. 다른 사람들한테 퇴장 알려주기.
+                //S_Despawn despawnPacket = new S_Despawn();
+                //despawnPacket.ObjectIds.Add(objectId);
+                //Broadcast(projectile.CellPos, despawnPacket);
             }
             else
             {

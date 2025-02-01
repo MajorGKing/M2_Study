@@ -44,7 +44,7 @@ namespace Server.Game
         {
             // 무슨 일이 일어나더라도, 소멸은 한다.
             GameRoom room = Room;
-            room?.PushAfter(10 * 1000, room.LeaveGame, ObjectId, false);
+            room?.PushAfter(10 * 1000, room.LeaveGame, ObjectId, ELeaveType.None);
 
             if (_target == null)
                 return false;
@@ -89,7 +89,7 @@ namespace Server.Game
 
             // 소멸.
             GameRoom room = Room;
-            room?.Push(room.LeaveGame, ObjectId, false);
+            room?.Push(room.LeaveGame, ObjectId, ELeaveType.None);
         }
     }
 }

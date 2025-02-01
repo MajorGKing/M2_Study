@@ -90,7 +90,7 @@ namespace Server
                 if (room == null)
                     return;
 
-                room.Push(room.LeaveGame, MyHero.ObjectId, false);
+                room.Push(room.LeaveGame, MyHero.ObjectId, ELeaveType.Disconnected);
             });
 
             foreach (Hero hero in Heroes)

@@ -91,9 +91,11 @@ class PacketHandler
 
     public static void S_LeaveGameHandler(PacketSession session, IMessage packet)
     {
-        //Debug.Log("S_LeaveGameHandler");
+        Debug.Log("S_LeaveGameHandler");
+        S_LeaveGame pkt = packet as S_LeaveGame;
+        Managers.Object.HandleLeaveGameHandler(pkt);
 
-        Managers.Object.Clear();
+        //Managers.Object.Clear();
     }
 
     public static void S_DespawnHandler(PacketSession session, IMessage packet)

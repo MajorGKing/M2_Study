@@ -741,5 +741,38 @@ namespace Server.Data
     }
     #endregion
 
+    #region Portal
+    public class PortalData : NpcData
+    {
+        public int DestPotalId;
+        [ExcludeField]
+        public PortalData DestPortal;
+    }
 
+    [Serializable]
+    public class PortalDataLoader : ILoader<int, PortalData>
+    {
+        public List<PortalData> portals = new List<PortalData>();
+
+        public Dictionary<int, PortalData> MakeDict()
+        {
+            Dictionary<int, PortalData> dict = new Dictionary<int, PortalData>();
+            foreach (PortalData portal in portals)
+            {
+                dict.Add(portal.TemplateId, portal);
+            }
+            return dict;
+        }
+
+        public bool Validate()
+        {
+            foreach (PortalData portal in portals)
+            {
+                if (DataManager.PortalDict.TryGetValue(portal.DestPotalId, out PortalData portalData))
+                    portal.DestPortal = portalData;
+            }
+            return true;
+        }
+    }
+    #endregion
 }

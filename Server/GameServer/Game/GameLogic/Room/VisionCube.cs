@@ -51,6 +51,18 @@ namespace GameServer
 
                     objects.Add(monster);
                 }
+
+                foreach (BaseObject obj in zone.Objects)
+                {
+                    int dx = obj.CellPos.x - cellPos.x;
+                    int dy = obj.CellPos.y - cellPos.y;
+                    if (Math.Abs(dx) > GameRoom.VisionCells)
+                        continue;
+                    if (Math.Abs(dy) > GameRoom.VisionCells)
+                        continue;
+
+                    objects.Add(obj);
+                }
             }
 
             return objects;

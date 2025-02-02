@@ -1,4 +1,5 @@
-﻿using Google.Protobuf.Protocol;
+﻿using GameServer.Game;
+using Google.Protobuf.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace GameServer
 
         public HashSet<Hero> Heroes { get; set; } = new HashSet<Hero>();
         public HashSet<Monster> Monsters { get; set; } = new HashSet<Monster>();
+        public HashSet<BaseObject> Objects { get; set; } = new HashSet<BaseObject>();
 
         public Zone(int x, int y)
         {
@@ -30,6 +32,12 @@ namespace GameServer
             {
                 case EGameObjectType.Hero:
                     Heroes.Remove((Hero)obj);
+                    break;
+                case EGameObjectType.Monster:
+                    Monsters.Remove((Monster)obj);
+                    break;
+                case EGameObjectType.Npc:
+                    Objects.Remove((Npc)obj);
                     break;
             }
         }

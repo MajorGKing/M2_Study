@@ -34,6 +34,7 @@ namespace GameServer
         public static Dictionary<int, RoomData> RoomDict { get; private set; } = new Dictionary<int, RoomData>();
 
         public static Dictionary<int, NpcData> NpcDict { get; private set; } = new Dictionary<int, NpcData>();
+        public static Dictionary<int, PortalData> PortalDict { get; private set; } = new Dictionary<int, PortalData>();
 
         public static Dictionary<int, ItemData> ItemDict { get; private set; } = new Dictionary<int, ItemData>();
         public static Dictionary<int, EquipmentData> EquipmentDict { get; private set; } = new Dictionary<int, EquipmentData>();
@@ -67,7 +68,13 @@ namespace GameServer
             #endregion
 
             #region NpcData
-            NpcDict.Clear();            
+            PortalDict = LoadJson<PortalDataLoader, int, PortalData>("PortalData").MakeDict();
+
+            NpcDict.Clear();
+            foreach (var portal in PortalDict)
+            {
+                NpcDict.Add(portal.Key, portal.Value);
+            }
             #endregion
 
             Validate();

@@ -22,6 +22,7 @@ namespace GameServer
 
         Dictionary<int, Hero> _heroes = new Dictionary<int, Hero>();
         Dictionary<int, Monster> _monsters = new Dictionary<int, Monster>();
+        Dictionary<int, Npc> _npcs = new Dictionary<int, Npc>();
         Dictionary<int, Projectile> _projectiles = new Dictionary<int, Projectile>();
 
         public MapComponent Map { get; private set; } = new MapComponent();
@@ -69,7 +70,7 @@ namespace GameServer
             Flush();
         }
 
-        public void EnterGame(BaseObject obj, bool respawn = false, Vector2Int? cellPos = null)
+        public void EnterGame(BaseObject obj, Vector2Int cellPos, bool respawn = false)
         {
             if (obj == null)
                 return;
@@ -161,8 +162,7 @@ namespace GameServer
                 projectile.Room = this;
 
                 // 2. 좌표 설정.
-                if (cellPos.HasValue)
-                    projectile.CellPos = cellPos.Value;
+                projectile.CellPos = cellPos;
 
                 // 3. 틱 시작.
                 projectile.State = EObjectState.Move;
@@ -172,6 +172,26 @@ namespace GameServer
                 S_Spawn spawnPacket = new S_Spawn();
                 spawnPacket.Projectiles.Add(projectile.ProjectileInfo);
                 Broadcast(projectile.CellPos, spawnPacket);
+            }
+            else if(type == EGameObjectType.Npc)
+            {
+                Npc npc = (Npc)obj;
+
+                // 1. 오브젝트 추가 및 방 설정.
+                _npcs.Add(obj.ObjectId, npc);
+                npc.Room = this;
+
+                // 2. 좌표 설정.
+                FindAndSetCellPos(obj, cellPos);
+
+                // 3. 맵에 실제 적용하고 충돌 그리드 갱신한다.
+                Map.ApplyMove(npc, npc.CellPos);
+
+                // 4. 존(캐싱)에도 해당 정보 추가.
+                GetZone(npc.CellPos).Objects.Add(npc);
+
+                // 5. State 설정
+                npc.State = EObjectState.Idle;
             }
         }
 
@@ -252,6 +272,20 @@ namespace GameServer
                 //S_Despawn despawnPacket = new S_Despawn();
                 //despawnPacket.ObjectIds.Add(objectId);
                 //Broadcast(projectile.CellPos, despawnPacket);
+            }
+            else if (type == EGameObjectType.Npc)
+            {
+                if (_npcs.TryGetValue(objectId, out Npc npc) == false)
+                    return;
+
+                // 1. 오브젝트 제거 및 방 제거.
+                _npcs.Remove(objectId);
+                npc.Room = null;
+
+                // 2. 다른 사람들한테 퇴장 알려주기.
+                S_Despawn despawnPacket = new S_Despawn();
+                despawnPacket.ObjectIds.Add(objectId);
+                Broadcast(npc.CellPos, despawnPacket);
             }
             else
             {

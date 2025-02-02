@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Data;
+using Data.SO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
@@ -33,6 +34,9 @@ public class DataManager
     public Dictionary<int, RewardData> RewardDict { get; private set; } = new Dictionary<int, RewardData>();
     public Dictionary<int, DropTableData> DropTableDict { get; private set; } = new Dictionary<int, DropTableData>();
 
+    public Dictionary<int, NpcData> NpcDict { get; private set; } = new Dictionary<int, NpcData>();
+    public Dictionary<int, PortalData> PortalDict { get; private set; } = new Dictionary<int, PortalData>();
+
     public Dictionary<int, ItemData> ItemDict { get; private set; } = new Dictionary<int, ItemData>();
     public Dictionary<int, EquipmentData> EquipmentDict { get; private set; } = new Dictionary<int, EquipmentData>();
     public Dictionary<int, ConsumableData> ConsumableDict { get; private set; } = new Dictionary<int, ConsumableData>();
@@ -63,7 +67,15 @@ public class DataManager
             ItemDict.Add(item.Key, item.Value);
         #endregion
 
+        #region NpcData
+        PortalDict = LoadJson<PortalDataLoader, int, PortalData>("PortalData").MakeDict();
 
+        NpcDict.Clear();
+        foreach (var portal in PortalDict)
+        {
+            NpcDict.Add(portal.Key, portal.Value);
+        }
+        #endregion
 
         Validate();
     }

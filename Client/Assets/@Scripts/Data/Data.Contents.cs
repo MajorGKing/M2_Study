@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Google.Protobuf.Protocol;
 using UnityEngine;
-using static Define;
 
 namespace Data
 {
@@ -60,6 +59,23 @@ namespace Data
 
         [ExcludeField]
         public bool Stackable;
+    }
+
+    public class NpcData : ScriptableObject
+    {
+        public int TemplateId;
+        public string Name; //°³¹ß¿ë
+        public string NameTextId;
+        public string DescriptionTextID;
+        public string IconImage;
+        public string PrefabName;
+        public ENpcType NpcType;
+        public int ExtraSize;
+        public int Range;
+
+        public int OwnerRoomId;
+        public int SpawnPosX;
+        public int SpawnPosY;
     }
 
     #endregion

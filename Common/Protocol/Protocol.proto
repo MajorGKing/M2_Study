@@ -74,7 +74,8 @@ message S_LeaveGame
 	ELeaveType leaveType = 1;
 }
 
-message S_Spawn {
+message S_Spawn 
+{
 	repeated HeroInfo heroes = 1;
 	repeated CreatureInfo creatures = 2;  
 	repeated ProjectileInfo projectiles = 3;
@@ -97,24 +98,29 @@ message S_Move
 	PositionInfo posInfo = 2;
 }
 
-message S_Ping {
+message S_Ping 
+{
 }
 
-message C_Pong {
+message C_Pong 
+{
 }
 
-message C_Skill {
+message C_Skill 
+{
 	int32 templateId = 1;
 	int32 targetId = 2;
 }
 
-message S_Skill {
+message S_Skill 
+{
 	int32 objectId = 1;
 	int32 templateId = 2;
 	int32 targetId = 3;
 }
 
-message S_ChangeHp {
+message S_ChangeHp 
+{
 	int32 objectId = 1;
 	float hp = 2;
 	float mp = 3;
@@ -199,4 +205,9 @@ message S_RewardValue
 {
 	int32 gold = 1;
 	int32 exp = 2;
+}
+
+message C_InteractionNpc
+{
+	int32 objectId = 1;
 }

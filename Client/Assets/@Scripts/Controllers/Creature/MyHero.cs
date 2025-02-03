@@ -325,42 +325,47 @@ public class MyHero : Hero
     }
     void UpdateInput()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) == false)
+            return;
+
+        if (_joystickState == EJoystickState.Drag)
+            return;
+
+        // UI 클릭을 무시
+        if (IsPointerOverUIObject(Input.mousePosition))
+            return;
+
+        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(mouseWorldPos, Vector2.zero, Mathf.Infinity);
+
+        BaseObject obj = null;
+        if (hit.collider != null)
+            obj = hit.collider.gameObject.GetComponent<BaseObject>();
+
+        // 1. 오브젝트 클릭.
+        if (obj != null)
         {
-            if (_joystickState == EJoystickState.Drag)
-                return;
-
-            // UI 클릭을 무시
-            if (IsPointerOverUIObject(Input.mousePosition))
-                return;
-
-            // 기존에 선택된 오브젝트 아웃라인 제거.
-            if (SelectedObject != null)
+            switch (obj.ObjectType)
             {
-                SelectedObject.OutLine.Clear();
-                SelectedObject = null;
-            }
-            //
-            //TODO 타일(몬스터, NPC)클릭
-            Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(mouseWorldPos, Vector2.zero, Mathf.Infinity);
-            if (hit.collider != null)
-            {
-                BaseObject obj = hit.collider.gameObject.GetComponent<BaseObject>();
-                if (obj != null)
-                {
-                    // 아웃라인 추가.
-                    SelectedObject = obj;
-                    SelectedObject.OutLine.SetActive(true, Color.yellow);
-                    return;
-                }
+                case EGameObjectType.Hero:
+                case EGameObjectType.Monster:
+                    DrawOutline(obj);
+                    break;
+                case EGameObjectType.Npc:
+                    Npc npc = obj.GetComponent<Npc>();
+                    if (npc.Interaction.CanInteract())
+                        npc.OnClickEvent();
+                    break;
             }
 
-            // 여기까지 왔으면 지형 클릭.
-            ForceMove(mouseWorldPos);
-
-            SpawnOrMoveCursor(mouseWorldPos);
+            DespawnMoveCursor();
+            return;
         }
+
+        // 2. 지형 클릭.
+        ForceMove(mouseWorldPos);
+        SpawnOrMoveCursor(mouseWorldPos);
+
     }
 
     public bool IsPointerOverUIObject(Vector2 touchPos)
@@ -609,6 +614,36 @@ public class MyHero : Hero
         Managers.Event.TriggerEvent(EEventType.CurrencyChanged);
         //DamageFontController.AddDamageFont(rewardValue.Gold, transform, EDamageType.Gold);
         //DamageFontController.AddDamageFont(rewardValue.Exp, transform, EDamageType.Exp);
+    }
+    #endregion
+
+    #region OutLine
+    private void DrawOutline(BaseObject obj)
+    {
+        // 기존에 선택된 오브젝트 아웃라인 제거.
+        if (SelectedObject != null)
+        {
+            SelectedObject.OutLine.Clear();
+            SelectedObject = null;
+        }
+
+        // 아웃라인 추가.
+        SelectedObject = obj;
+        SelectedObject.OutLine.SetActive(true, Color.yellow);
+
+        ////TODO 타일(몬스터, NPC)클릭
+
+        //if (hit.collider != null)
+        //{
+        //    BaseObject obj = hit.collider.gameObject.GetComponent<BaseObject>();
+        //    if (obj != null)
+        //    {
+        //        // 아웃라인 추가.
+        //        SelectedObject = obj;
+        //        SelectedObject.OutLine.SetActive(true, Color.yellow);
+        //        return;
+        //    }
+        //}
     }
     #endregion
 

@@ -84,6 +84,7 @@ namespace GameServer
                 // 1. 오브젝트 추가 및 방 설정
                 _heroes.Add(obj.ObjectId, hero);
                 hero.Room = this;
+                hero.MyHeroInfo.MapId = GameRoomId;
 
                 // 2. 아직 점유되지 않는 알맞는 좌표를 찾아주기.
                 FindAndSetCellPos(obj, cellPos);

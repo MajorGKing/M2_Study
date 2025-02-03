@@ -6,16 +6,6 @@ public class PortalInteraction : INpcInteraction
     private Npc _owner;
     private PortalData _portalData;
 
-    public bool CanInteract()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void HandleOnClickEvent()
-    {
-        throw new System.NotImplementedException();
-    }
-
     public void SetInfo(Npc owner)
     {
         _owner = owner;
@@ -23,5 +13,23 @@ public class PortalInteraction : INpcInteraction
             return;
     }
 
+    public void HandleOnClickEvent()
+    {
+        C_InteractionNpc pkt = new C_InteractionNpc();
+        pkt.ObjectId = _owner.ObjectId;
+        Managers.Network.GameServer.Send(pkt);
+    }
 
+    public bool CanInteract()
+    {
+        if (_owner.GetDistance(Managers.Object.MyHero) < 5)
+        {
+            return true;
+        }
+        else
+        {
+            Managers.UI.ShowToast("@@ 너무 멀리 있습니다.");
+            return false;
+        }
+    }
 }

@@ -158,6 +158,25 @@ public class ObjectManager
 
         EGameObjectType objectType = Utils.GetObjectTypeFromId(info.ObjectId);
         int templateId = Utils.GetTemplateIdFromId(info.ObjectId);
+
+        switch (objectType)
+        {
+            case EGameObjectType.Npc:
+                SpawnNpc(templateId, info);
+                break;
+        }
+    }
+
+    private void SpawnNpc(int templateId, ObjectInfo info)
+    {
+        if (Managers.Data.NpcDict.TryGetValue(templateId, out NpcData npcData) == false)
+            return;
+
+        GameObject go = Managers.Resource.Instantiate(npcData.PrefabName);
+        _objects.Add(info.ObjectId, go);
+
+        Npc npc = Utils.GetOrAddComponent<Npc>(go);
+        npc.SetInfo(info);
     }
 
     public ParticleController SpawnParticle(string name, bool lookLeft = false, Transform parent = null)

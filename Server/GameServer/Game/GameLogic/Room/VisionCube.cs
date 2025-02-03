@@ -99,6 +99,12 @@ namespace GameServer
 
                         //Console.WriteLine("AOI Monster Spawn");
                     }
+                    else
+                    {
+                        ObjectInfo info = new ObjectInfo();
+                        info.MergeFrom(obj.ObjectInfo);
+                        spawnPacket.Objects.Add(info);
+                    }
                 }
 
                 Owner.Session?.Send(spawnPacket);

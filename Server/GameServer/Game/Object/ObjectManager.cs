@@ -1,4 +1,5 @@
-﻿using Google.Protobuf.Protocol;
+﻿using GameServer.Game;
+using Google.Protobuf.Protocol;
 using Server;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,10 @@ namespace GameServer
 
             if (obj.ObjectType == EGameObjectType.Monster)
                 (obj as Monster).Init(templateId);
+            else if (obj.ObjectType == EGameObjectType.Npc)
+            {
+                (obj as Npc).Init(templateId);
+            }
 
             return obj;
         }

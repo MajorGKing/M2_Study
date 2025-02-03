@@ -176,4 +176,20 @@ class PacketHandler
 
         room.Push(room.HandleUseItem, hero, recvPkt.ItemDbId);
     }
+
+    public static void C_InteractionNpcHandler(PacketSession session, IMessage packet)
+    {
+        C_InteractionNpc recvPkt = packet as C_InteractionNpc;
+        ClientSession clientSession = session as ClientSession;
+
+        Hero hero = clientSession.MyHero;
+        if (hero == null)
+            return;
+
+        GameRoom room = hero.Room;
+        if (room == null)
+            return;
+
+        room.Push(room.HandleInteractionNpc, hero, recvPkt.ObjectId);
+    }
 }

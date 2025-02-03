@@ -51,7 +51,7 @@ namespace GameServer.Game
             Vector2Int spawnPos = new Vector2Int(Owner.PosInfo.PosX, Owner.PosInfo.PosY);
             room.PushAfter((int)(_skillData.DelayTime * 1000), () =>
             {
-                room.EnterGame(projectile, false, spawnPos);
+                room.EnterGame(projectile, spawnPos, false);
             });
 
             BroadcastSkill(target);

@@ -42,6 +42,7 @@ public enum MsgId
 	C_UseItem = 34,
 	S_UseItem = 35,
 	S_RewardValue = 36,
+	C_InteractionNpc = 37,
 }
 
 class PacketManager

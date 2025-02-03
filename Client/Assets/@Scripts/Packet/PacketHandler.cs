@@ -1,13 +1,8 @@
 using Google.Protobuf;
 using Google.Protobuf.Protocol;
 using ServerCore;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.Net;
-using System;
-using System.Linq;
-using static Define;
+using Data.SO;
 
 class PacketHandler
 {
@@ -70,6 +65,12 @@ class PacketHandler
         Debug.Log("S_EnterGameHandler");
 
         S_EnterGame enterGamePacket = packet as S_EnterGame;
+
+        //Map
+        if (Managers.Data.RoomDict.TryGetValue(enterGamePacket.MyHeroInfo.MapId, out RoomData roomData) == false)
+            return;
+        Managers.Map.LoadMap(roomData.MapName);
+
         // Hero
         MyHero myHero = Managers.Object.Spawn(enterGamePacket.MyHeroInfo);
         myHero.ObjectState = EObjectState.Idle;

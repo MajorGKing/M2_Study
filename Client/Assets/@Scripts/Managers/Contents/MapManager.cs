@@ -35,7 +35,7 @@ public class MapManager
     public void LoadMap(string mapName)
     {
         DestroyMap();
-
+        Debug.Log($"{mapName}");
         GameObject map = Managers.Resource.Instantiate(mapName);
         map.transform.position = Vector3.zero;
         map.name = $"@Map_{mapName}";

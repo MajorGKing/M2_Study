@@ -668,24 +668,58 @@ namespace Server.Data
     //}
     //#endregion
 
-    #region SpawningPool
+    #region Respawn
     [Serializable]
-    public class RespawnInfo
+    public class RespawnData
     {
-        public int TemplateId; // MonsterData의 TemplateId
-        public MonsterData MonsterData;
+        public int TemplateId;
         public int Count;
+        public int MonsterDataId;
         public ERespawnType RespawnType;
-        public float Interval;
-        public int respawnTime;
+        public int RespawnTime;
+        public int PivotPosX;
+        public int PivotPosY;
+        public int SpawnRange;
     }
+
+    public class RespawnDataLoader : ILoader<int, RespawnData>
+    {
+        public List<RespawnData> respawnDatas = new List<RespawnData>();
+
+        public Dictionary<int, RespawnData> MakeDict()
+        {
+            Dictionary<int, RespawnData> dict = new Dictionary<int, RespawnData>();
+            foreach (RespawnData respawnData in respawnDatas)
+            {
+                dict.Add(respawnData.TemplateId, respawnData);
+            }
+            return dict;
+        }
+
+        public bool Validate()
+        {
+            return true;
+        }
+    }
+    #endregion
+
+    #region SpawningPool
+    //[Serializable]
+    //public class RespawnInfo
+    //{
+    //    public int TemplateId; // MonsterData의 TemplateId
+    //    public MonsterData MonsterData;
+    //    public int Count;
+    //    public ERespawnType RespawnType;
+    //    public float Interval;
+    //    public int respawnTime;
+    //}
 
     [Serializable]
     public class SpawningPoolData
     {
-        public int id;
-        public int size;
-        public List<RespawnInfo> monsters;
+        public int RoomId;
+        public List<RespawnData> RespawnDatas;
     }
 
     [Serializable]
@@ -698,7 +732,7 @@ namespace Server.Data
             Dictionary<int, SpawningPoolData> dict = new Dictionary<int, SpawningPoolData>();
             foreach (SpawningPoolData spawningPool in spawningPools)
             {
-                dict.Add(spawningPool.id, spawningPool);
+                dict.Add(spawningPool.RoomId, spawningPool);
             }
             return dict;
         }

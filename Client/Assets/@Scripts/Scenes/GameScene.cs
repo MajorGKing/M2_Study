@@ -24,7 +24,7 @@ public class GameScene : BaseScene
         Managers.UI.CacheAllPopups();
 
         _loadingPopup = Managers.UI.ShowPopupUI<UI_LoadingPopup>();
-        Managers.Map.LoadMap("MMO_edu_map");
+        //Managers.Map.LoadMap("MMO_edu_map");
 
         C_EnterGame enterGame = new C_EnterGame();
         enterGame.HeroIndex = Managers.Game.SelectedHeroIndex;

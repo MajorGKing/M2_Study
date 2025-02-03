@@ -10,20 +10,7 @@ namespace Data.SO
     public class SpawningPoolData : ScriptableObject
     {
         public int RoomId;
-        public int Size;
-        public List<RespawnInfo> Monsters;
-    }
-
-    [Serializable]
-    public class RespawnInfo
-    {
-        public int TemplateId;//MonsterData¿« TemplateId
-        public int Count;
-        public ERespawnType RespawnType;
-        public float Interval;
-        public int RespawnTime;
-
-        public MonsterData MonsterData;//for test
+        public List<RespawnData> RespawnDatas;
     }
 
     [Serializable]

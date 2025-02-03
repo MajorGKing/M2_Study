@@ -61,7 +61,7 @@ namespace GameServer
 
                 PushAfter(3000, () =>
                 {
-                    EnterGame(hero);
+                    EnterGame(hero, cellPos: hero.CellPos);
                 });
 
                 return;

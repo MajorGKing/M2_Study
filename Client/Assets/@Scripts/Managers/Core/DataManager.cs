@@ -33,6 +33,10 @@ public class DataManager
     public Dictionary<int, ProjectileData> ProjectileDict { get; private set; } = new Dictionary<int, ProjectileData>();
     public Dictionary<int, RewardData> RewardDict { get; private set; } = new Dictionary<int, RewardData>();
     public Dictionary<int, DropTableData> DropTableDict { get; private set; } = new Dictionary<int, DropTableData>();
+    public Dictionary<int, RespawnData> RespawnDict { get; private set; } = new Dictionary<int, RespawnData>();
+    public Dictionary<int, SpawningPoolData> SpawningPoolDict { get; private set; } = new Dictionary<int, SpawningPoolData>();
+    public Dictionary<int, RoomData> RoomDict { get; private set; } = new Dictionary<int, RoomData>();
+
 
     public Dictionary<int, NpcData> NpcDict { get; private set; } = new Dictionary<int, NpcData>();
     public Dictionary<int, PortalData> PortalDict { get; private set; } = new Dictionary<int, PortalData>();
@@ -53,6 +57,9 @@ public class DataManager
         ProjectileDict = LoadJson<ProjectileDataLoader, int, ProjectileData>("ProjectileData").MakeDict();
         RewardDict = LoadJson<RewardDataLoader, int, RewardData>("RewardData").MakeDict();
         DropTableDict = LoadJson<DropTableDataLoader, int, DropTableData>("DropTableData").MakeDict();
+        RespawnDict = LoadJson<RespawnDataLoader, int, RespawnData>("RespawnData").MakeDict();
+        SpawningPoolDict = LoadJson<SpawningPoolDataLoader, int, SpawningPoolData>("SpawningPoolData").MakeDict();
+        RoomDict = LoadJson<RoomDataLoader, int, RoomData>("RoomData").MakeDict();
 
         #region ItemData
         EquipmentDict = LoadJson<EquipmentDataLoader, int, EquipmentData>("EquipmentData").MakeDict();

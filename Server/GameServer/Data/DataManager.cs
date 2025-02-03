@@ -31,6 +31,7 @@ namespace GameServer
         public static Dictionary<int, ProjectileData> ProjectileDict { get; private set; } = new Dictionary<int, ProjectileData>();
         public static Dictionary<int, RewardData> RewardDict { get; private set; } = new Dictionary<int, RewardData>();
         public static Dictionary<int, DropTableData> DropTableDict { get; private set; } = new Dictionary<int, DropTableData>();
+        public static Dictionary<int, RespawnData> RespawnDict { get; private set; } = new Dictionary<int, RespawnData>();
         public static Dictionary<int, RoomData> RoomDict { get; private set; } = new Dictionary<int, RoomData>();
 
         public static Dictionary<int, NpcData> NpcDict { get; private set; } = new Dictionary<int, NpcData>();
@@ -52,6 +53,7 @@ namespace GameServer
             ProjectileDict = LoadJson<ProjectileDataLoader, int, ProjectileData>("ProjectileData").MakeDict();
             RewardDict = LoadJson<RewardDataLoader, int, RewardData>("RewardData").MakeDict();
             DropTableDict = LoadJson<DropTableDataLoader, int, DropTableData>("DropTableData").MakeDict();
+            RespawnDict = LoadJson<RespawnDataLoader, int, RespawnData>("RespawnData").MakeDict();
             RoomDict = LoadJson<RoomDataLoader, int, RoomData>("RoomData").MakeDict();
 
             #region ItemData

@@ -32,21 +32,59 @@ namespace GameServer.Game
             Owner = owner;
             _spawningPoolData = spawningPoolData;
 
-            // Monster
-            foreach (RespawnInfo respawnInfo in spawningPoolData.monsters)
-            {
-                for (int i = 0; i < respawnInfo.Count; i++)
-                {
-                    //Console.WriteLine($"Monster TemplateId is : {respawnInfo.TemplateId}"); ;
+            //// Monster
+            //foreach (RespawnInfo respawnInfo in spawningPoolData.monsters)
+            //{
+            //    for (int i = 0; i < respawnInfo.Count; i++)
+            //    {
+            //        //Console.WriteLine($"Monster TemplateId is : {respawnInfo.TemplateId}"); ;
 
-                    Monster monster = ObjectManager.Instance.Spawn<Monster>(respawnInfo.TemplateId);
+            //        Monster monster = ObjectManager.Instance.Spawn<Monster>(respawnInfo.TemplateId);
+            //        _gameobjects.Add(monster.ObjectId, monster);
+
+            //        //Console.WriteLine($"Monster ObjectId is : {monster.ObjectId}");
+
+            //        // 몬스터 생성.
+            //        Owner.Push(() => Owner.EnterGame(monster, true));
+            //    }
+            //}
+            // Monster
+            foreach (RespawnData respawnData in spawningPoolData.RespawnDatas)
+            {
+                for (int i = 0; i < respawnData.Count; i++)
+                {
+                    Monster monster = ObjectManager.Instance.Spawn<Monster>(respawnData.MonsterDataId);
                     _gameobjects.Add(monster.ObjectId, monster);
-                    
-                    //Console.WriteLine($"Monster ObjectId is : {monster.ObjectId}");
 
                     // 몬스터 생성.
-                    Owner.Push(() => Owner.EnterGame(monster, true));
+                    Vector2Int pivotPos = new Vector2Int(respawnData.PivotPosX, respawnData.PivotPosY);
+                    Vector2Int pos = GetRandomSpawnPos(monster, respawnData.SpawnRange, pivotPos);
+                    Owner.Push(() => Owner.EnterGame(monster, pos, false));
                 }
+            }
+
+            // NPC
+            foreach (NpcData npcData in Owner.RoomData.Npcs)
+            {
+                Npc npc = null;
+
+                switch (npcData.NpcType)
+                {
+                    case ENpcType.Portal:
+                        npc = ObjectManager.Instance.Spawn<Npc>(npcData.TemplateId);
+                        break;
+                    case ENpcType.Shop:
+                        break;
+                }
+
+                if (npc == null)
+                    continue;
+
+                _gameobjects.Add(npc.ObjectId, npc);
+
+                // Npc 생성
+                Vector2Int spawnPos = new Vector2Int(npcData.SpawnPosX, npcData.SpawnPosY);
+                Owner.Push(() => Owner.EnterGame(npc, spawnPos, false));
             }
         }
 
@@ -74,27 +112,57 @@ namespace GameServer.Game
             {
                 Monster monster = go as Monster;
 
-                RespawnInfo respawnInfo = _spawningPoolData.monsters.Find(x => x.TemplateId == monster.TemplateId);
-                if (respawnInfo == null)
+                RespawnData respawnData = _spawningPoolData.RespawnDatas.Find(x => x.MonsterDataId == monster.TemplateId);
+                if (respawnData == null)
                 {
                     Console.WriteLine($"invalid respawn. monster templateId not found. TemplateId [{monster.TemplateId}]");
                     return;
                 }
 
-                // 1. 몬스터 리셋.
-                monster.Reset();
+                // 1. 방에서 제거.
+                Owner.LeaveGame(go.ObjectId, ELeaveType.None);
 
-                // 2. 방에서 제거.
-                Owner.LeaveGame(go.ObjectId);
-
-                // 3. 리스폰 예약.
-                Owner.PushAfter(respawnInfo.respawnTime * 1000, () =>
+                // 2. 리스폰 예약.
+                Owner.PushAfter(respawnData.RespawnTime * 1000, () =>
                 {
-                    Owner.EnterGame(monster, true);
+                    // 몬스터 리셋.
+                    monster.Reset();
+                    // 입장
+                    Vector2Int pivotPos = new Vector2Int(respawnData.PivotPosX, respawnData.PivotPosY);
+                    Owner.EnterGame(monster, pivotPos, true);
                 });
 
                 return;
+
+                //// 1. 몬스터 리셋.
+                //monster.Reset();
+
+                //// 2. 방에서 제거.
+                //Owner.LeaveGame(go.ObjectId);
+
+                //// 3. 리스폰 예약.
+                //Owner.PushAfter(respawnInfo.respawnTime * 1000, () =>
+                //{
+                //    Owner.EnterGame(monster, true);
+                //});
+
+                //return;
             }
+        }
+
+        // TODO : 임시 버전
+        public Vector2Int GetRandomSpawnPos(BaseObject obj, int delta, Vector2Int pivot, bool checkObjects = true)
+        {
+            Vector2Int randomPos;
+
+            Vector2Int cellPos;
+
+            cellPos = pivot;
+
+            randomPos.x = _rand.Next(-delta, delta) + cellPos.x;
+            randomPos.y = _rand.Next(-delta, delta) + cellPos.y;
+
+            return randomPos;
         }
     }
 }

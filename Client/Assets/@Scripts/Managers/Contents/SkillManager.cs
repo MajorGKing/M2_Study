@@ -51,14 +51,15 @@ public class SkillManager
         return null;
     }
 
-    public void UseSkill(int templateId, Creature target)
-    {
-        Skill skill = GetSkill(templateId);
-        if(skill == null) 
-            return;
 
-        skill.UseSkill(target);
-    }
+    //public void UseSkill(int templateId, Creature target)
+    //{
+    //    Skill skill = GetSkill(templateId);
+    //    if(skill == null) 
+    //        return;
+
+    //    skill.UseSkill(target);
+    //}
 
     public float GetRemainingCoolTimeRatio(int templateId)
     {
@@ -76,6 +77,11 @@ public class SkillManager
             return;
 
         skill.SetRemainingCooltime(remainTicks);
+    }
+
+    public bool IsMainSkill(int templateId)
+    {
+        return MainSkillTemplateId == templateId;
     }
     #endregion
 

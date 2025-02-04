@@ -148,7 +148,7 @@ public class UI_QuickSlotItem : UI_Base
         if (hero == null)
             return;
 
-        Creature target = hero.GetSelectedTarget();
+        Creature target = hero.GetSkillTarget(_skill);
         if (target == null)
         {
             Managers.UI.ShowToast("TODO 타겟이 없습니다.");
@@ -158,7 +158,8 @@ public class UI_QuickSlotItem : UI_Base
         ECanUseSkillFailReason reason = _skill.CanUseSkill(target);
         if (reason == ECanUseSkillFailReason.None)
         {
-            hero.Target = target;
+            if (_skill.SkillData.UseSkillTargetType != EUseSkillTargetType.Self)
+                hero.Target = target;
             hero.ReqUseSkill(_skill.TemplateId);
         }
         else
@@ -166,16 +167,16 @@ public class UI_QuickSlotItem : UI_Base
             switch (reason)
             {
                 case ECanUseSkillFailReason.InvalidTarget:
-                    Managers.UI.ShowToast("TODO 타겟이 없습니다.");
+                    Managers.UI.ShowToast("TODO 실패 타겟이 없습니다.");
                     return;
                 case ECanUseSkillFailReason.Cooltime:
-                    Managers.UI.ShowToast("TODO 아직 사용 할 수 없습니다.");
+                    Managers.UI.ShowToast("TODO 실패 아직 사용 할 수 없습니다.");
                     return;
                 case ECanUseSkillFailReason.SkillCost:
-                    Managers.UI.ShowToast("TODO 마나가 부족합니다.");
+                    Managers.UI.ShowToast("TODO 실패 마나가 부족합니다.");
                     return;
                 case ECanUseSkillFailReason.SkillRange:
-                    Managers.UI.ShowToast("TODO 너무 멀리 있습니다.");
+                    Managers.UI.ShowToast("TODO 실패 너무 멀리 있습니다.");
                     return;
             }
         }

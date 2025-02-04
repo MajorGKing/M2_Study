@@ -12,6 +12,17 @@ public class Hero : Creature
     protected SkillData _mainSkill;
     public virtual HeroInfo HeroInfo { get; set; }
 
+    private int _baseAttackIndex = 0;
+
+    private string[] _baseAttackAnimName = new[]
+    {
+        "attack_a", "attack_b", "attack_c"
+    };
+    private string[] _baseAttackParticleName = new[]
+    {
+        "_Attack_a_Trail","_Attack_b_Trail","_Attack_c_Trail",
+    };
+
     #region LifeCycle
     protected override void OnDisable()
     {
@@ -85,5 +96,50 @@ public class Hero : Creature
     }
     #endregion
 
+    #region 사운드 , 애니메이션 등
+    protected override void ExecuteSkillAction(int skillTemplateId)
+    {
+        if (Managers.Data.SkillDict.TryGetValue(skillTemplateId, out SkillData skillData) == false)
+            return;
+
+        if (Managers.Skill.IsMainSkill(skillTemplateId))
+        {
+            ExecuteMainSkillAction(skillData);
+        }
+        else
+        {
+            ExecuteSecondarySkillAction(skillData);
+        }
+    }
+
+    private void ExecuteMainSkillAction(SkillData skillData)
+    {
+        PlayAnimation(0, _baseAttackAnimName[_baseAttackIndex], false);
+        AddAnimation(0, AnimName.IDLE, true, 0);
+
+        string particleName = $"{HeroInfo.ClassType}{_baseAttackParticleName[_baseAttackIndex]}";
+        Managers.Object.SpawnParticle(particleName, LookLeft, transform, false);
+
+        UpdateBaseAttackIndex();
+    }
+
+    private void ExecuteSecondarySkillAction(SkillData skillData)
+    {
+        PlayAnimation(0, skillData.AnimName, false);
+        AddAnimation(0, AnimName.IDLE, true, 0);
+
+        if (!string.IsNullOrEmpty(skillData.PrefabName))
+        {
+            Managers.Object.SpawnParticle(skillData.PrefabName, LookLeft, transform, false);
+        }
+    }
+
+    private void UpdateBaseAttackIndex()
+    {
+        _baseAttackIndex++;
+        if (_baseAttackIndex > 2)
+            _baseAttackIndex = 0;
+    }
+    #endregion
 
 }

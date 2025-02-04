@@ -110,6 +110,10 @@ public abstract class Skill
     {
         if (skillData.UseSkillTargetType == EUseSkillTargetType.Self)
         {
+            //SelfCenter 범위기는 target검사 X
+            if (skillData.IsSingleTarget == false)
+                return true;
+
             if (target != owner)
                 return false;
         }

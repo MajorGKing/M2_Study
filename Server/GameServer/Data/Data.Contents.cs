@@ -602,6 +602,8 @@ namespace Server.Data
         public ProjectileData ProjectileData;
         [ExcludeField]
         public EffectData EffectData;
+        [ExcludeField]
+        public bool IsSingleTarget;
     }
 
     [Serializable]
@@ -627,6 +629,7 @@ namespace Server.Data
                 DataManager.SkillDict.TryGetValue(skill.NextLevelSkillId, out skill.NextLevelSkill);
                 DataManager.ProjectileDict.TryGetValue(skill.ProjectileId, out skill.ProjectileData);
                 DataManager.EffectDict.TryGetValue(skill.EffectDataId, out skill.EffectData);
+                skill.IsSingleTarget = skill.GatherTargetRange == 0;
             }
             return validate;
         }

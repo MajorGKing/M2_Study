@@ -51,6 +51,7 @@ message ProjectileInfo
 {
 	ObjectInfo objectInfo = 1;
 	int32 targetId = 2;
+	int32 ownerId =3;
 }
 
 message CreatureInfo 

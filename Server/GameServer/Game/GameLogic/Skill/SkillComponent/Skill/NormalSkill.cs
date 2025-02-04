@@ -44,14 +44,15 @@ namespace GameServer.Game
             List<Creature> targets = GatherSkillEffectTargets(Owner, _skillData, target);
             foreach(Creature t in targets)
             {
-                if(_skillData.EffectData == null)
-                {
-                    Console.WriteLine("Null!");
-                }
-                //if(Owner.ObjectType == EGameObjectType.Hero)
+                //if(_skillData.EffectData == null)
                 //{
-                //    Console.WriteLine($"{Owner} attack {t.ObjectId} by normal {_skillData.EffectData.Name}!");
+                //    Console.WriteLine("Null!");
                 //}
+                if (Owner.ObjectType == EGameObjectType.Hero)
+                {
+                    //Console.WriteLine($"{Owner} attack {t.ObjectId} by normal {_skillData.EffectData.Name}!");
+                    Console.WriteLine($"{Owner} attack {t.ObjectId} by normal {_skillData.Name}!");
+                }
                 room.PushAfter((int)(_skillData.DelayTime * 1000), AddEffect, t, Owner, _skillData.EffectData);
             }
 

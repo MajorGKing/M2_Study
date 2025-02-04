@@ -20,6 +20,10 @@ public class MyHero : Hero
     private LineRenderer _lineRenderer;
     private GameObject _moveCursor;
 
+    // 스킬 범위
+    private LineRenderer _skillLineRenderer;
+    private int _currentSkillId = 0;
+
     public override HeroInfo HeroInfo => MyHeroInfo.HeroInfo;
     public MyHeroInfo MyHeroInfo { get; set; }
     public BaseObject SelectedObject { get; private set; }
@@ -482,6 +486,14 @@ public class MyHero : Hero
     #endregion
 
     #region Skill
+    public Creature GetSkillTarget(Skill skill)
+    {
+        if (skill.SkillData.UseSkillTargetType == EUseSkillTargetType.Self)
+            return this;
+
+        return GetSelectedTarget();
+    }
+
     public Creature GetSelectedTarget()
     {
         return SelectedObject as Creature;
@@ -528,6 +540,7 @@ public class MyHero : Hero
             return;
 
         _skillPacket.TemplateId = templateId;
+        _currentSkillId = templateId;
 
         if (skillData.UseSkillTargetType == EUseSkillTargetType.Self)
             _skillPacket.TargetId = ObjectId;

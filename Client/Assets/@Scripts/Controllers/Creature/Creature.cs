@@ -78,9 +78,21 @@ public class Creature : BaseObject
     }
     #endregion
 
+    #region LifeCycle
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+    }
+
     protected override void Awake()
     {
         base.Awake();
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
     }
 
     protected override void Start()
@@ -90,7 +102,6 @@ public class Creature : BaseObject
 
     protected override void Update()
     {
-
     }
 
     public virtual void SetInfo(int templateId)
@@ -111,6 +122,10 @@ public class Creature : BaseObject
         _hpBar.SetInfo(this);
     }
 
+    #endregion
+
+    #region AI
+
     protected override void UpdateMove()
     {
         base.UpdateMove();
@@ -122,6 +137,8 @@ public class Creature : BaseObject
             return;
         }
     }
+
+    #endregion
 
     #region Map
 
@@ -216,8 +233,9 @@ public class Creature : BaseObject
             LookAtTarget(target);
 
         // 3. 사운드, 애니메이션 등 실행.
-        PlayAnimation(0, skillData.AnimName, false);
-        AddAnimation(0, AnimName.IDLE, true, 0);
+        //PlayAnimation(0, skillData.AnimName, false);
+        //AddAnimation(0, AnimName.IDLE, true, 0);
+        ExecuteSkillAction(packet.TemplateId);
 
         // 4. 스킬 이펙트
         if (string.IsNullOrEmpty(skillData.PrefabName) == false)
@@ -230,6 +248,34 @@ public class Creature : BaseObject
         Spine.Animation animation = SkeletonAnim.skeleton.Data.FindAnimation(skillData.AnimName);
         float delay = animation.Duration;
         StartWait(delay);
+    }
+    protected IEnumerator ReserveHitParticles(SkillData skillData, BaseObject target)
+    {
+        if (string.IsNullOrEmpty(skillData.GatherTargetPrefabName) == true)
+            yield break;
+
+        float delay = 0.0f;
+
+        // 1. 발사체 도착시간 계산
+        bool isProjectileSkill = skillData.ProjectileId != 0;
+        if(isProjectileSkill)
+        {
+            if (Managers.Data.ProjectileDict.TryGetValue(skillData.ProjectileId, out ProjectileData projectileData))
+            {
+                float distance = Vector3.Distance(transform.position, target.transform.position);
+                delay += distance / projectileData.Speed;
+            }
+        }
+
+        //2. + 스킬 애니메이션 이벤트 시간
+        delay += skillData.DelayTime;
+
+        yield return new WaitForSeconds(delay);
+
+        if (target == null)
+            yield break;
+
+        Managers.Object.SpawnParticle(skillData.GatherTargetPrefabName, target.LookLeft, target.transform, true);
     }
 
     public virtual void OnDamaged()
@@ -317,14 +363,30 @@ public class Creature : BaseObject
         _coWait = null;
     }
 
-    IEnumerator CoSpawnAoE(float seconds, SkillData skillData, Vector3 pos)
-    {
-        yield return new WaitForSeconds( seconds );
-        if (string.IsNullOrEmpty(skillData.GatherTargetPrefabName))
-            yield break;
+    //IEnumerator CoSpawnAoE(float seconds, SkillData skillData, Vector3 pos)
+    //{
+    //    yield return new WaitForSeconds( seconds );
+    //    if (string.IsNullOrEmpty(skillData.GatherTargetPrefabName))
+    //        yield break;
 
-        var pc = Managers.Object.SpawnParticle(skillData.GatherTargetPrefabName);
-        pc.gameObject.transform.position = pos;
+    //    var pc = Managers.Object.SpawnParticle(skillData.GatherTargetPrefabName);
+    //    pc.gameObject.transform.position = pos;
+    //}
+    #endregion
+
+    #region 사운드 , 애니메이션 등
+    protected virtual void ExecuteSkillAction(int skillTemplateId)
+    {
+        if (Managers.Data.SkillDict.TryGetValue(skillTemplateId, out SkillData skillData) == false)
+            return;
+
+        PlayAnimation(0, skillData.AnimName, false);
+        AddAnimation(0, AnimName.IDLE, true, 0);
+
+        if (!string.IsNullOrEmpty(skillData.PrefabName))
+        {
+            Managers.Object.SpawnParticle(skillData.PrefabName, LookLeft, transform, false);
+        }
     }
     #endregion
 }

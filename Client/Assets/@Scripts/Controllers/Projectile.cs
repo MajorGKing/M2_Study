@@ -1,7 +1,4 @@
-using System;
 using Google.Protobuf.Protocol;
-using System.Collections;
-using System.Collections.Generic;
 using Data;
 using UnityEngine;
 
@@ -9,6 +6,7 @@ public class Projectile : BaseObject
 {
     private ProjectileData _data;
     private Creature _target;
+    private Creature _owner;
 
     public override PositionInfo PosInfo
     {
@@ -30,13 +28,20 @@ public class Projectile : BaseObject
         ObjectState = EObjectState.Move;
     }
 
-    public void SetInfo(int templateId, int targetId)
+    public void SetInfo(ProjectileInfo projInfo, int targetId)
     {
+        int templateId = Utils.GetTemplateIdFromId(projInfo.ObjectInfo.ObjectId);
         Managers.Data.ProjectileDict.TryGetValue(templateId, out _data);
-        MoveSpeed = _data.ProjSpeed;
 
-        GameObject go = Managers.Object.FindById(targetId);
-        _target = go.GetComponent<Creature>();
+        ObjectId = projInfo.ObjectInfo.ObjectId;
+        PosInfo = projInfo.ObjectInfo.PosInfo;
+        MoveSpeed = _data.Speed;
+        _target = Managers.Object.FindCreatureById(targetId);
+        _owner = Managers.Object.FindCreatureById(projInfo.OwnerId);
+        if (_owner != null)
+            transform.position = _owner.CenterPos;
+        //GameObject go = Managers.Object.FindById(targetId);
+        //_target = go.GetComponent<Creature>();
     }
 
     protected override void UpdateAnimation()

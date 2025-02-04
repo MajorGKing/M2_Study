@@ -111,6 +111,13 @@ namespace GameServer.Game
             if (owner.Room == null)
                 return null;
 
+            if (skillData.UseSkillTargetType == EUseSkillTargetType.Self)
+            {
+                //SelfCenter 범위기는 target검사 X
+                if (skillData.IsSingleTarget == false)
+                    return owner;
+            }
+
             //Creature target = owner.Room.GetCreatureById(skillContext.TargetId);
             Creature target = owner.Room.GetCreatureById(targetId);
 

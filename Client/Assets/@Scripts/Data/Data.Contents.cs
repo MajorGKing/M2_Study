@@ -584,8 +584,9 @@ namespace Data
     public class ProjectileData : BaseData
     {
         public float Duration;
-        public float ProjRange;
-        public float ProjSpeed;
+        public float Range;
+        public float Speed;
+        public float Count;
     }
 
     [Serializable]
@@ -648,6 +649,8 @@ namespace Data
         public ProjectileData ProjectileData;
         [ExcludeField]
         public EffectData EffectData;
+        [ExcludeField]
+        public bool IsSingleTarget;
     }
 
     [Serializable]
@@ -673,6 +676,7 @@ namespace Data
                 Managers.Data.SkillDict.TryGetValue(skill.NextLevelSkillId, out skill.NextLevelSkill);
                 Managers.Data.ProjectileDict.TryGetValue(skill.ProjectileId, out skill.ProjectileData);
                 Managers.Data.EffectDict.TryGetValue(skill.EffectDataId, out skill.EffectData);
+                skill.IsSingleTarget = skill.GatherTargetRange == 0;
             }
             return validate;
         }

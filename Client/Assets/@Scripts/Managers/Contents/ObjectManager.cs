@@ -35,6 +35,7 @@ public class ObjectManager
     {
     }
 
+    #region Spawn
     public MyHero Spawn(MyHeroInfo myHeroInfo)
     {
         HeroInfo info = myHeroInfo.HeroInfo;
@@ -130,25 +131,31 @@ public class ObjectManager
     {
         if (info == null || info.ObjectInfo == null)
             return null;
+
         ObjectInfo objectInfo = info.ObjectInfo;
         if (_objects.ContainsKey(info.ObjectInfo.ObjectId))
             return null;
 
-        EGameObjectType objectType = Utils.GetObjectTypeFromId(objectInfo.ObjectId);
+        //EGameObjectType objectType = Utils.GetObjectTypeFromId(objectInfo.ObjectId);
         int templateId = Utils.GetTemplateIdFromId(objectInfo.ObjectId);
-
         if (Managers.Data.ProjectileDict.TryGetValue(templateId, out ProjectileData projectileData) == false)
             return null;
 
+        // 첫번재 화살
         GameObject go = Managers.Resource.Instantiate(projectileData.PrefabName, pooling: true);
+        Projectile proj = Utils.GetOrAddComponent<Projectile>(go);
         _objects.Add(objectInfo.ObjectId, go);
+        proj.SetInfo(info, info.TargetId);
 
-        Projectile projectile = Utils.GetOrAddComponent<Projectile>(go);
-        projectile.ObjectId = objectInfo.ObjectId;
-        projectile.PosInfo = objectInfo.PosInfo;
-        projectile.SetInfo(templateId, info.TargetId);
+        //발사체 갯수가 여러개일때 나머지 화살 spawn
+        if (projectileData.Count > 1)
+            Managers.Instance.StartCoroutine(GenerateProjectile(projectileData, info, info.TargetId));
 
-        return projectile;
+        //proj.ObjectId = objectInfo.ObjectId;
+        //proj.PosInfo = objectInfo.PosInfo;
+        
+
+        return proj;
     }
 
     public void Spawn(ObjectInfo info)
@@ -179,15 +186,24 @@ public class ObjectManager
         npc.SetInfo(info);
     }
 
-    public ParticleController SpawnParticle(string name, bool lookLeft = false, Transform parent = null)
+    public ParticleController SpawnParticle(string name, bool lookLeft = false, Transform parent = null, bool isCenterPos = false)
     {
+        if (parent == null)
+            return null;
+
         GameObject go = Managers.Resource.Instantiate(name, pooling: true);
+        go.transform.parent = parent;
 
-        if (parent != null)
-            go.transform.parent = parent;
-
-        go.transform.localPosition = Vector3.zero;
-        go.transform.rotation = Quaternion.identity;
+        if (isCenterPos)
+        {
+            BaseObject baseObject = parent.GetComponent<BaseObject>();
+            go.transform.position = baseObject.CenterPos;
+        }
+        else
+        {
+            go.transform.localPosition = Vector3.zero;
+            go.transform.rotation = Quaternion.identity;
+        }
 
         if (lookLeft)
             go.transform.Rotate(0, 180, 0);
@@ -221,11 +237,36 @@ public class ObjectManager
         Managers.Resource.Destroy(go);
     }
 
+    private IEnumerator GenerateProjectile(ProjectileData projectileData, ProjectileInfo projInfo, int targetId)
+    {
+        Projectile projectile = null;
+        for (int i = 0; i < projectileData.Count - 1; i++)
+        {
+            yield return new WaitForSeconds(0.333f);
+            GameObject go = Managers.Resource.Instantiate(projectileData.PrefabName, pooling: true);
+            Projectile proj = Utils.GetOrAddComponent<Projectile>(go);
+            proj.SetInfo(projInfo, targetId);
+
+        }
+    }
+    #endregion
+
+    #region Find
+
     public GameObject FindById(int id)
     {
         GameObject go = null;
         _objects.TryGetValue(id, out go);
         return go;
+    }
+
+    public Creature FindCreatureById(int id)
+    {
+        GameObject go = FindById(id);
+        if (go == null)
+            return null;
+
+        return go.GetComponent<Creature>();
     }
 
     public GameObject FindCreature(Vector3Int cellPos)
@@ -286,6 +327,7 @@ public class ObjectManager
 
         return ret;
     }
+    #endregion
 
     #region PacketHandler
     public void HandleLeaveGameHandler(S_LeaveGame packet)

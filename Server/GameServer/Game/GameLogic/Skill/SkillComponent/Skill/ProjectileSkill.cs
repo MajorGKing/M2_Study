@@ -23,7 +23,8 @@ namespace GameServer.Game
                 return false;
             if (_skillData.ProjectileId == null)
                 return false;
-
+            if (Owner.Mp < _skillData.Cost)
+                return false;
             return true;
         }
 
@@ -42,8 +43,14 @@ namespace GameServer.Game
             if (projectile == null)
                 return;
 
+            if (_skillData.Cost > 0)
+                Owner.Heal(EStatType.Mp, -_skillData.Cost);
+
             projectile.Init(_skillData, target);
+            
             projectile.Owner = Owner;
+            projectile.ProjectileInfo.OwnerId = Owner.ObjectId;
+
             projectile.PosInfo.State = EObjectState.Move;
             projectile.PosInfo.MergeFrom(Owner.PosInfo);
 

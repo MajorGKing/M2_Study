@@ -535,8 +535,9 @@ namespace Server.Data
     public class ProjectileData : BaseData
     {
         public float Duration;
-        public float ProjRange;
-        public float ProjSpeed; 
+        public float Range;
+        public float Speed;
+        public float Count;
     }
 
     [Serializable]

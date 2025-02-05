@@ -137,26 +137,40 @@ namespace GameServer.Game
             if (owner.Room == null)
                 return targets;
 
-            bool isSingleTarget = (skillData.GatherTargetRange == 0);
-
-            if (isSingleTarget)
+            if (skillData.IsSingleTarget)
             {
                 if (IsValidTargetFriendType(owner, target, skillData.TargetFriendType))
                     targets.Add(target);
             }
             else
             {
-                targets = owner.Room.FindAdjacentCreatures(owner.CellPos, (c) =>
+                bool isSelfTarget = skillData.UseSkillTargetType == EUseSkillTargetType.Self;
+                Vector2Int pivot = isSelfTarget ? owner.CellPos : target.CellPos;
+
+                targets = owner.Room.FindAdjacentCreatures(pivot, (c) =>
                 {
                     if (IsValidTargetFriendType(owner, c, skillData.TargetFriendType) == false)
                         return false;
 
-                    int dist = owner.GetDistance(c);
+                    int dist = isSelfTarget ? owner.GetDistance(c) : target.GetDistance(c);
+
                     if (dist > skillData.GatherTargetRange)
                         return false;
 
                     return true;
                 });
+
+                //targets = owner.Room.FindAdjacentCreatures(owner.CellPos, (c) =>
+                //{
+                //    if (IsValidTargetFriendType(owner, c, skillData.TargetFriendType) == false)
+                //        return false;
+
+                //    int dist = owner.GetDistance(c);
+                //    if (dist > skillData.GatherTargetRange)
+                //        return false;
+
+                //    return true;
+                //});
             }
 
             return targets;

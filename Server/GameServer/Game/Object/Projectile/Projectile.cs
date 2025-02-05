@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
+using static Google.Protobuf.Compiler.CodeGeneratorResponse.Types;
 
 namespace Server.Game
 {
@@ -14,7 +15,7 @@ namespace Server.Game
         public Creature Owner { get; set; }
         public Data.SkillData SkillData { get; private set; }
         public ProjectileData ProjectileData { get { return SkillData.ProjectileData; } }
-        public float Speed { get { return ProjectileData.ProjSpeed; } }
+        public float Speed { get { return ProjectileData.Speed; } }
 
         private Creature _target { get; set; }
         public ProjectileInfo ProjectileInfo { get; private set; } = new ProjectileInfo();
@@ -80,11 +81,16 @@ namespace Server.Game
                 return;
 
             // 이펙트(효과 및 데미지) 적용
-            foreach (Creature t in targets)
+            foreach (Creature creature in targets)
             {
                 if(Owner.ObjectType == EGameObjectType.Hero)
-                    Console.WriteLine($"{Owner} attack {t.ObjectId} by projectile {SkillData.EffectData.Name}!");
-                t.EffectComp.ApplyEffect(SkillData.EffectData.TemplateId, Owner);
+                    Console.WriteLine($"{Owner} attack {creature.ObjectId} by projectile {SkillData.EffectData.Name}!");
+
+                //서버에서는 발사체의 갯수만큼 ApplyEffect만 하고, 클라에서 딜레이/발사체 따로스폰
+                for (int i = 0; i < ProjectileData.Count; i++)
+                    creature.EffectComp.ApplyEffect(SkillData.EffectData.TemplateId, Owner);
+                
+                //creature.EffectComp.ApplyEffect(SkillData.EffectData.TemplateId, Owner);
             }
 
             // 소멸.

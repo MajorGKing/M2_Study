@@ -625,8 +625,8 @@ public class MyHero : Hero
         Gold += rewardValue.Gold;
         AddExp(rewardValue.Exp);
         Managers.Event.TriggerEvent(EEventType.CurrencyChanged);
-        //DamageFontController.AddDamageFont(rewardValue.Gold, transform, EDamageType.Gold);
-        //DamageFontController.AddDamageFont(rewardValue.Exp, transform, EDamageType.Exp);
+        DamageFontController.AddDamageFont(rewardValue.Gold, transform, EDamageType.Gold);
+        DamageFontController.AddDamageFont(rewardValue.Exp, transform, EDamageType.Exp);
     }
     #endregion
 

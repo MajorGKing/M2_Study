@@ -145,13 +145,7 @@ public class MyHero : Hero
     {
         base.Start();
 
-        _lineRenderer = gameObject.GetOrAddComponent<LineRenderer>();
-        _lineRenderer.startWidth = _lineWidth;
-        _lineRenderer.endWidth = _lineWidth;
-        _lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
-        _lineRenderer.startColor = _lineColor;
-        _lineRenderer.endColor = _lineColor;
-        _lineRenderer.sortingOrder = 800;
+        InitLineRenderer();
 
         CameraController cc = Camera.main.GetOrAddComponent<CameraController>();
         if (cc != null)
@@ -557,6 +551,9 @@ public class MyHero : Hero
         base.HandleSkillPacket(packet);
 
         Managers.Skill.UpdateCooltime(packet.TemplateId);
+
+        //스킬 범위 그리기
+        StartCoroutine(DrawSkillRange(packet.TemplateId, packet.TargetId));
     }
     #endregion
 
@@ -661,8 +658,52 @@ public class MyHero : Hero
     #endregion
 
     #region 디버깅
+    void InitLineRenderer()
+    {
+        GameObject vision = new GameObject("VisionLineRenderer");
+        vision.transform.parent = gameObject.transform;
+        _lineRenderer = gameObject.AddComponent<LineRenderer>();
+        _lineRenderer.startWidth = _lineWidth;
+        _lineRenderer.endWidth = _lineWidth;
+        _lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+        _lineRenderer.startColor = _lineColor;
+        _lineRenderer.endColor = _lineColor;
+        _lineRenderer.sortingOrder = 800;
+
+        GameObject skillLineObject = new GameObject("SkillLineRenderer");
+        skillLineObject.transform.parent = gameObject.transform;
+        _skillLineRenderer = skillLineObject.AddComponent<LineRenderer>();
+        _skillLineRenderer.startWidth = _lineWidth;
+        _skillLineRenderer.endWidth = _lineWidth;
+        _skillLineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+        _skillLineRenderer.startColor = Color.blue;
+        _skillLineRenderer.endColor = _lineColor;
+        _skillLineRenderer.sortingOrder = 800;
+    }
+    #if UNITY_EDITOR
+    void OnDrawGizmos()
+    {
+        if (Managers.Scene.CurrentScene.TestMode == false)
+            return;
+
+        Gizmos.color = Color.red;
+        Vector3 textPosition = transform.position + Vector3.up * 3.5f + Vector3.left * 0.5f;
+
+        GUIStyle style = new GUIStyle();
+        style.normal.textColor = Color.red;
+        style.fontSize = 25;
+        UnityEditor.Handles.Label(textPosition, ObjectState.ToString(), style);
+    }
+    #endif
+
     void DrawVisionCells()
     {
+        if (Managers.Scene.CurrentScene.TestMode == false)
+        {
+            _lineRenderer.positionCount = 0;
+            return;
+        }
+
         Vector3Int bottomLeft = CellPos + new Vector3Int(-_visionCells, -_visionCells, 0);
         Vector3Int bottomRight = CellPos + new Vector3Int(_visionCells, -_visionCells, 0);
         Vector3Int topLeft = CellPos + new Vector3Int(-_visionCells, _visionCells, 0);
@@ -683,6 +724,60 @@ public class MyHero : Hero
         _lineRenderer.positionCount = positions.Length;
         _lineRenderer.SetPositions(positions);
     }
+
+    IEnumerator DrawSkillRange(int templateId, int targetObjectId)
+    {
+        if (Managers.Data.SkillDict.TryGetValue(templateId, out SkillData skillData) == false)
+            yield break;
+        if (Managers.Scene.CurrentScene.TestMode == false)
+            yield break;
+        int range = skillData.GatherTargetRange;
+
+        Vector3Int pos = GetSkillRangePivotPos(skillData, targetObjectId).Value;
+
+        Vector3Int bottomLeft = pos + new Vector3Int(-range, -range, 0);
+        Vector3Int bottomRight = pos + new Vector3Int(range, -range, 0);
+        Vector3Int topLeft = pos + new Vector3Int(-range, range, 0);
+        Vector3Int topRight = pos + new Vector3Int(range, range, 0);
+
+        Vector3 worldBottomLeft = Managers.Map.Cell2World(bottomLeft);
+        Vector3 worldBottomRight = Managers.Map.Cell2World(bottomRight);
+        Vector3 worldTopLeft = Managers.Map.Cell2World(topLeft);
+        Vector3 worldTopRight = Managers.Map.Cell2World(topRight);
+
+        Vector3[] positions = new Vector3[5];
+        positions[0] = worldBottomLeft;
+        positions[1] = worldBottomRight;
+        positions[2] = worldTopRight;
+        positions[3] = worldTopLeft;
+        positions[4] = worldBottomLeft;
+
+        _skillLineRenderer.positionCount = positions.Length;
+        _skillLineRenderer.SetPositions(positions);
+
+        yield return new WaitForSeconds(0.5f);
+
+        // 라인 클리어
+        _skillLineRenderer.positionCount = 0;
+    }
+
+    private Vector3Int? GetSkillRangePivotPos(SkillData skillData, int targetObjectId)
+    {
+        Vector3Int pos = Vector3Int.zero;
+        switch (skillData.UseSkillTargetType)
+        {
+            case EUseSkillTargetType.Self:
+                return CellPos;
+                break;
+            case EUseSkillTargetType.Other:
+                return Managers.Object.FindCreatureById(targetObjectId).CellPos;
+            case EUseSkillTargetType.Any:
+                return null;
+        }
+
+        return null;
+    }
+
 
     void DrawCollision()
     {

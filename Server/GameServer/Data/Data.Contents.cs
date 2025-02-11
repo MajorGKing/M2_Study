@@ -1,10 +1,10 @@
 ﻿using GameServer;
+using GameServer.Game;
 using Google.Protobuf.Protocol;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
-using System.Xml.Linq;
-using static Google.Protobuf.Reflection.FeatureSet.Types;
 
 namespace Server.Data
 {
@@ -15,15 +15,17 @@ namespace Server.Data
     }
 
     #region BaseData
+
     public class BaseData
     {
         public int TemplateId;
-        public string Name;//개발용
+        public string Name; //개발용
         public string NameTextId;
         public string DescriptionTextID;
         public string IconImage;
         public string PrefabName;
     }
+
     public class CreatureData : BaseData
     {
         public int MaxHp;
@@ -81,6 +83,7 @@ namespace Server.Data
     #endregion
 
     #region BaseStat
+
     public class BaseStatData
     {
         public int Level;
@@ -122,9 +125,11 @@ namespace Server.Data
             return true;
         }
     }
+
     #endregion
 
     #region Hero
+
     public class HeroData : CreatureData
     {
         public EHeroClass HeroClass;
@@ -195,16 +200,18 @@ namespace Server.Data
             return validate;
         }
     }
+
     #endregion
 
     #region Monster
+
     public class MonsterData : CreatureData
     {
         public bool IsBoss = false;
         public bool IsAggressive;
         public int ExtraCells;
         public List<int> SkillDataIds;
-        
+
         //AI
         public int SearchCellDist;
         public int ChaseCellDist;
@@ -226,11 +233,15 @@ namespace Server.Data
     public class MonsterDataLoader : ILoader<int, MonsterData>
     {
         public List<MonsterData> monsters = new List<MonsterData>();
+
         public Dictionary<int, MonsterData> MakeDict()
         {
             Dictionary<int, MonsterData> dict = new Dictionary<int, MonsterData>();
             foreach (MonsterData monster in monsters)
+            {
                 dict.Add(monster.TemplateId, monster);
+            }
+
 
             return dict;
         }
@@ -280,6 +291,7 @@ namespace Server.Data
             return validate;
         }
     }
+
     #endregion
 
     #region Equipment
@@ -290,10 +302,15 @@ namespace Server.Data
         public bool canTrade;
         public bool canDelete;
         public bool canStorable;
+        public int MaxHpBonus;
+        public int AttackBonus;
+        public int DefenceBonus;
         public int EffectDataId;
         public int SafeEnhancementLevel;
         public int NextLevelItemDataId;
 
+        [ExcludeField]
+        public int BaseItemDataId;
         [ExcludeField]
         public EffectData EffectData;
         [ExcludeField]
@@ -323,13 +340,49 @@ namespace Server.Data
                 DataManager.EffectDict.TryGetValue(equipmentData.EffectDataId, out equipmentData.EffectData);
                 DataManager.ItemDict.TryGetValue(equipmentData.NextLevelItemDataId, out equipmentData.NextLevelItem);
 
+                equipmentData.BaseItemDataId = FindBaseId(equipmentData);
             }
+
+
             return validate;
         }
+
+        private Dictionary<int, int> baseItemMemo = new Dictionary<int, int>();
+        private int FindBaseId(EquipmentData data)
+        {
+            if (baseItemMemo.ContainsKey(data.TemplateId))
+            {
+                return baseItemMemo[data.TemplateId];
+            }
+
+            if (DataManager.ItemDict.TryGetValue(data.TemplateId - 1, out ItemData prev))
+            {
+                EquipmentData prevItem = prev as EquipmentData;
+
+                // 이전아이템의 NextLevelItemDataId가 0이면 다른아이템의 풀강화라고 판단
+                if (prevItem == null || prevItem.NextLevelItemDataId == 0)
+                {
+                    baseItemMemo[data.TemplateId] = data.TemplateId;
+                }
+                else
+                {
+                    baseItemMemo[data.TemplateId] = FindBaseId(prevItem);
+                }
+            }
+            else
+            {
+                // 이전아이템이 없으면 지금아이템이 base임
+                baseItemMemo[data.TemplateId] = data.TemplateId;
+            }
+
+            return baseItemMemo[data.TemplateId];
+        }
     }
+
     #endregion
 
     #region Consumable
+
     public class ConsumableData : ItemData
     {
         public int EffectId;
@@ -349,10 +402,7 @@ namespace Server.Data
         {
             Dictionary<int, ConsumableData> dict = new Dictionary<int, ConsumableData>();
             foreach (ConsumableData item in items)
-            {
                 dict.Add(item.TemplateId, item);
-                //Console.WriteLine($"Itme {item.Name} is {item.Type}"); 
-            }
 
             return dict;
         }
@@ -370,6 +420,7 @@ namespace Server.Data
             return validate;
         }
     }
+
     #endregion
 
     #region DropTableData
@@ -430,7 +481,7 @@ namespace Server.Data
         public int TemplateId;
         public string Name;
         public int ItemTemplateId;
-        public int Probability; // 100분율
+        public int Probability; // 10000분율
         public int Count;
 
         [ExcludeField]
@@ -467,11 +518,13 @@ namespace Server.Data
     #endregion
 
     #region EffectData
+
     public struct StatValuePair
     {
         public EStatType StatType;
         public float AddValue;
     }
+
     public class EffectData : BaseData
     {
         public string SoundLabel;
@@ -531,7 +584,6 @@ namespace Server.Data
     #endregion
 
     #region Projectile
-
     public class ProjectileData : BaseData
     {
         public float Duration;
@@ -567,13 +619,11 @@ namespace Server.Data
     public class SkillData : BaseData
     {
         public ESkillType SkillType;
-        public string DescriptionTextId;
-        public string IconLabel;
-        public float Cooldown;
+        public EItemGrade SkillGrade;
+        public float Cooltime;
         public int SkillRange;
         public string AnimName;
         public int Cost;
-
         // 애니메이션 모션 기다리기 위한 딜레이.
         public float DelayTime; // EventTime
 
@@ -585,13 +635,12 @@ namespace Server.Data
 
         // 효과 대상 범위는? (0이면 단일 스킬)
         public int GatherTargetRange;
-        public string GatherPrefabName; // AoE
+        public string GatherTargetPrefabName; // AoE
 
         // 피아식별
         public ETargetFriendType TargetFriendType;
 
         // 어떤 효과를?
-        //public EffectData EffectData;
         public int EffectDataId;
 
         // 다음 레벨 스킬.
@@ -638,40 +687,6 @@ namespace Server.Data
 
     #endregion
 
-    //#region AOE
-    //public class AOEData
-    //{
-    //    public int TemplateId;
-    //    public string Name;
-    //    public string PrefabName;
-    //    public string SoundLabel;
-    //    public List<EffectData> AllyEffects;
-    //    public List<EffectData> EnemyEffects;
-    //    public int Range;
-    //}
-
-    //[Serializable]
-    //public class AOEDataLoader : ILoader<int, AOEData>
-    //{
-    //    public List<AOEData> datas = new List<AOEData>();
-
-    //    public Dictionary<int, AOEData> MakeDict()
-    //    {
-    //        Dictionary<int, AOEData> dict = new Dictionary<int, AOEData>();
-    //        foreach (AOEData data in datas)
-    //            dict.Add(data.TemplateId, data);
-
-    //        return dict;
-    //    }
-
-    //    public bool Validate()
-    //    {
-    //        bool validate = true;
-    //        return validate;
-    //    }
-    //}
-    //#endregion
-
     #region Respawn
     [Serializable]
     public class RespawnData
@@ -708,16 +723,6 @@ namespace Server.Data
     #endregion
 
     #region SpawningPool
-    //[Serializable]
-    //public class RespawnInfo
-    //{
-    //    public int TemplateId; // MonsterData의 TemplateId
-    //    public MonsterData MonsterData;
-    //    public int Count;
-    //    public ERespawnType RespawnType;
-    //    public float Interval;
-    //    public int respawnTime;
-    //}
 
     [Serializable]
     public class SpawningPoolData
@@ -729,7 +734,7 @@ namespace Server.Data
     [Serializable]
     public class SpawningPoolDataLoader : ILoader<int, SpawningPoolData>
     {
-        public List<SpawningPoolData> spawningPools = new List<SpawningPoolData> { };
+        public List<SpawningPoolData> spawningPools = new List<SpawningPoolData>();
 
         public Dictionary<int, SpawningPoolData> MakeDict()
         {
@@ -746,6 +751,7 @@ namespace Server.Data
             return true;
         }
     }
+
     #endregion
 
     #region Room
@@ -755,6 +761,7 @@ namespace Server.Data
         public string MapName;
         public SpawningPoolData SpawningPoolData;
         public List<NpcData> Npcs;
+
     }
 
     [Serializable]
@@ -777,6 +784,7 @@ namespace Server.Data
             return true;
         }
     }
+
     #endregion
 
     #region Portal

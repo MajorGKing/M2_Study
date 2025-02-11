@@ -54,14 +54,15 @@ namespace GameServer
         public static ConcurrentDictionary<int/*heroDbId*/, DBJobQueue> _jobQueueDic = new ConcurrentDictionary<int, DBJobQueue>();
         public static ConcurrentQueue<int/*heroDbId*/> _executeQueue = new ConcurrentQueue<int>();
 
-        #region JobQuleue
-        public static void Push(int heroDbId, Action action)
-        {
-            if (_jobQueueDic.ContainsKey(heroDbId) == false)
-            {
-                _jobQueueDic.TryAdd(heroDbId, new DBJobQueue());
-                _executeQueue.Enqueue(heroDbId);
-            }
+		#region JobQueue
+
+		public static void Push(int heroDbId, Action action)
+		{
+			if (_jobQueueDic.ContainsKey(heroDbId) == false)
+			{
+				_jobQueueDic.TryAdd(heroDbId, new DBJobQueue());
+				_executeQueue.Enqueue(heroDbId);
+			}	
 
             _jobQueueDic[heroDbId].Enqueue(() => { action.Invoke(); FinishProcessing(heroDbId); });
         }
@@ -125,64 +126,8 @@ namespace GameServer
 
                 _executeQueue.Enqueue(heroDbId);
 
-                Thread.Sleep(0);
-            }
-        }
-
-    //    public static DBManager Instance { get; } = new DBManager();
-
-    //    public static List<HeroDb> LoadHeroDb(long accountDbId)
-    //    {
-    //        using(GameDbContext db = new GameDbContext())
-    //        {
-    //            List<HeroDb> heroDbs = db.Heroes.Where(h => h.AccountDbId == accountDbId).Include(h => h.Items).ToList();
-    //            return heroDbs;
-    //        }
-    //    }
-
-    //    public static HeroDb CreateHeroDb(long accountDbId, C_CreateHeroReq reqPacket)
-    //    {
-    //        using(GameDbContext db = new GameDbContext())
-    //        {
-    //            HeroDb heroDb = db.Heroes.Where(h => h.Name == reqPacket.Name).FirstOrDefault();
-    //            if (heroDb != null)
-    //                return null;
-
-    //            heroDb = new HeroDb()
-    //            {
-    //                AccountDbId = accountDbId,
-    //                Name = reqPacket.Name,
-    //                Gender = reqPacket.Gender,
-    //                ClassType = reqPacket.ClassType,
-    //                Level = 1,
-    //                Hp = -1,
-    //                Mp = -1,
-    //            };
-
-    //            db.Heroes.Add(heroDb);
-
-    //            if (db.SaveChangesEx())
-    //                return heroDb;
-
-    //            return null;
-    //        }
-    //    }
-
-    //    public static bool DeleteHeroDb(int heroDbId)
-    //    {
-    //        using (GameDbContext db = new GameDbContext())
-    //        {
-    //            HeroDb heroDb = db.Heroes.Where(h => h.HeroDbId == heroDbId).FirstOrDefault();
-    //            if (heroDb == null)
-    //                return false;
-
-    //            db.Heroes.Remove(heroDb);
-
-    //            if (db.SaveChangesEx())
-    //                return true;
-    //        }
-
-    //        return true;
-    //    }
-    }
+				Thread.Sleep(0);
+			}
+		}
+	}
 }

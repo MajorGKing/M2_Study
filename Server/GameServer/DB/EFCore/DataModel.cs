@@ -1,4 +1,5 @@
 ﻿using Google.Protobuf.Protocol;
+using Server.Game;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -35,8 +36,7 @@ namespace GameServer
         public int TemplateId { get; set; }
         public EItemSlotType EquipSlot { get; set; }
         public int Count { get; set; }
-        public int EnchantCount { get; set; }
-
+		
         // FK
         public int OwnerDbId { get; set; }
         public HeroDb OwnerDb { get; set; }

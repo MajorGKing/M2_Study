@@ -31,9 +31,10 @@ namespace GameServer
                     heroDb.Hp = (int)hero.Hp;
                     heroDb.Mp = (int)hero.Mp;
                     heroDb.PosX = hero.PosInfo.PosX;
-                    heroDb.PosY = hero.PosInfo.PosY;
-                    heroDb.Gold = hero.MyHeroInfo.CurrencyInfo.Gold;
-                    heroDb.Dia = hero.MyHeroInfo.CurrencyInfo.Dia;
+					heroDb.PosY = hero.PosInfo.PosY;
+					heroDb.Gold = hero.MyHeroInfo.CurrencyInfo.Gold;
+					heroDb.Dia = hero.MyHeroInfo.CurrencyInfo.Dia;
+					heroDb.MapId = hero.MyHeroInfo.MapId;
 
                     bool success = db.SaveChangesEx();
 					if(success == false)
@@ -63,13 +64,13 @@ namespace GameServer
 					db.Entry(itemDb).State = EntityState.Unchanged;
 					db.Entry(itemDb).Property(nameof(ItemDb.EquipSlot)).IsModified = true;
 
-					bool success = db.SaveChangesEx();
-					if(!success)
-					{
-                        // 실패했으면 Kick
-                    }
-                }
-			});
+                    bool success = db.SaveChangesEx();
+                    if (success == false)
+                    {
+						// 실패했으면 Kick
+					}
+				}
+            });
         }
 
         public static void DeleteItemNoti(Hero hero, Item item)

@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Server;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameServer
 {
@@ -24,17 +19,7 @@ namespace GameServer
 		{
 			ConfigManager.LoadConfig();
 
-            // Check if the connection string is properly loaded
-            if (string.IsNullOrEmpty(ConfigManager.Config.connectionString))
-            {
-                throw new InvalidOperationException("Connection string is not configured properly.");
-            }
-            else
-            {
-                Console.WriteLine(ConfigManager.Config.connectionString);
-            }
-
-            options
+			options
 				.UseLoggerFactory(_logger)
 				.UseSqlServer(ConfigManager.Config.connectionString);
 		}

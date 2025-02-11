@@ -140,8 +140,9 @@ public class UI_TitleScene : UI_Scene
     private void ConnectToGameServer()
     {
         State = ETitleSceneState.ConnectingToGameServer;
-        IPAddress ipAddr = IPAddress.Parse("127.0.0.1");
-        // IPAddress ipAddr = IPAddress.Parse("172.30.1.51");
+        IPAddress ipAddr = IPAddress.Parse("43.203.244.11");
+        //IPAddress ipAddr = IPAddress.Parse("172.30.1.51");
+        //IPAddress ipAddr = IPAddress.Parse("127.0.0.1");
         IPEndPoint endPoint = new IPEndPoint(ipAddr, 7777);
         Managers.Network.GameServer.Connect(endPoint, OnGameServerConnectionSuccess, OnGameServerConnectionFailed);
     }

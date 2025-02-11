@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Server.Data;
 using GameServer;
 using ServerCore;
+using Microsoft.Data.SqlClient;
 
 namespace Server
 {
@@ -41,16 +42,62 @@ namespace Server
             Console.WriteLine("Listening...");
 
             // GameLogic
-            const int GameThreadCount = 2;
+            const int GameThreadCount = 2;//2;
             GameLogic.LaunchGameThreads(GameThreadCount);
             //GameLogic.LaunchRoomUpdateTasks();
 
             // DB
-            const int DbThreadCount = 2;
+            const int DbThreadCount = 2; //2;
             DBManager.LaunchDBThreads(DbThreadCount);
+
+            //TestDatabaseConnection();
 
             // MainThread
             GameLogic.FlushMainThreadJobs();
         }
+
+        public static bool TestDatabaseConnection()
+        {
+            try
+            {
+                Console.WriteLine($"Current Directory: {Environment.CurrentDirectory}");
+                Console.WriteLine($"Connection String: {ConfigManager.Config.connectionString}");
+                Console.WriteLine($"Current User: {Environment.UserName}");
+
+                using (var connection = new SqlConnection(ConfigManager.Config.connectionString))
+                {
+                    Console.WriteLine("Created connection object");
+
+                    connection.Open();
+                    Console.WriteLine("Opened connection");
+
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandText = "SELECT DB_NAME()";
+                        var result = command.ExecuteScalar();
+                        Console.WriteLine($"Connected to database: {result}");
+                    }
+
+                    return true;
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"SQL Error Number: {ex.Number}");
+                Console.WriteLine($"SQL Error State: {ex.State}");
+                Console.WriteLine($"SQL Error Message: {ex.Message}");
+                Console.WriteLine($"SQL Error Source: {ex.Source}");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error Type: {ex.GetType().Name}");
+                Console.WriteLine($"Error Message: {ex.Message}");
+                Console.WriteLine($"Stack Trace: {ex.StackTrace}");
+                return false;
+            }
+        }
     }
+
+
 }

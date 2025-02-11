@@ -130,6 +130,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1250966877}
     m_Modifications:
+    - target: {fileID: 5216841680000034737, guid: 3c488da6f62ac3748a9855452212b82b, type: 3}
+      propertyPath: m_text
+      value: "\uC81C\uC791 \uC0C1\uD0DC\uCC3D"
+      objectReference: {fileID: 0}
     - target: {fileID: 8446361010000484005, guid: 3c488da6f62ac3748a9855452212b82b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -272,6 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c560a275be6f9dd408789db80eeffadb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TestMode: 1
 --- !u!1 &1236372151
 GameObject:
   m_ObjectHideFlags: 0

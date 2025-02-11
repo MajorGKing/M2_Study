@@ -24,7 +24,17 @@ namespace GameServer
 		{
 			ConfigManager.LoadConfig();
 
-			options
+            // Check if the connection string is properly loaded
+            if (string.IsNullOrEmpty(ConfigManager.Config.connectionString))
+            {
+                throw new InvalidOperationException("Connection string is not configured properly.");
+            }
+            else
+            {
+                Console.WriteLine(ConfigManager.Config.connectionString);
+            }
+
+            options
 				.UseLoggerFactory(_logger)
 				.UseSqlServer(ConfigManager.Config.connectionString);
 		}

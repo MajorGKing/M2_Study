@@ -53,6 +53,466 @@
         9
       ],
       "Rewards": null
+    },
+    {
+      "TemplateId": 4,
+      "Name": "슬라임",
+      "RewardGold": 10,
+      "RewardExp": 10,
+      "RewardDataIds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 5,
+      "Name": "레드슬라임",
+      "RewardGold": 12,
+      "RewardExp": 12,
+      "RewardDataIds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 6,
+      "Name": "새끼거미",
+      "RewardGold": 16,
+      "RewardExp": 16,
+      "RewardDataIds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 7,
+      "Name": "거미",
+      "RewardGold": 21,
+      "RewardExp": 21,
+      "RewardDataIds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 8,
+      "Name": "트리링",
+      "RewardGold": 33,
+      "RewardExp": 33,
+      "RewardDataIds": [
+        1,
+        2,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 9,
+      "Name": "트리마스",
+      "RewardGold": 47,
+      "RewardExp": 47,
+      "RewardDataIds": [
+        1,
+        2,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 10,
+      "Name": "터니웜",
+      "RewardGold": 67,
+      "RewardExp": 67,
+      "RewardDataIds": [
+        1,
+        2,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 11,
+      "Name": "멧돼지",
+      "RewardGold": 100,
+      "RewardExp": 100,
+      "RewardDataIds": [
+        1,
+        2,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 12,
+      "Name": "알콩이",
+      "RewardGold": 296,
+      "RewardExp": 296,
+      "RewardDataIds": [
+        1,
+        2,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 13,
+      "Name": "달콩이",
+      "RewardGold": 509,
+      "RewardExp": 509,
+      "RewardDataIds": [
+        1,
+        2,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 14,
+      "Name": "앰버 트리링",
+      "RewardGold": 925,
+      "RewardExp": 925,
+      "RewardDataIds": [
+        1,
+        2,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 15,
+      "Name": "앰버 트리마스",
+      "RewardGold": 1739,
+      "RewardExp": 1739,
+      "RewardDataIds": [
+        1,
+        2,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 16,
+      "Name": "벌",
+      "RewardGold": 3235,
+      "RewardExp": 3235,
+      "RewardDataIds": [
+        1,
+        2,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 17,
+      "Name": "말벌",
+      "RewardGold": 4797,
+      "RewardExp": 4797,
+      "RewardDataIds": [
+        1,
+        2,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 18,
+      "Name": "벌 집",
+      "RewardGold": 7245,
+      "RewardExp": 7245,
+      "RewardDataIds": [
+        1,
+        2,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 19,
+      "Name": "곰",
+      "RewardGold": 11212,
+      "RewardExp": 11212,
+      "RewardDataIds": [
+        1,
+        2,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 20,
+      "Name": "개구리",
+      "RewardGold": 32358,
+      "RewardExp": 32358,
+      "RewardDataIds": [
+        1,
+        2,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 21,
+      "Name": "늪 돼지",
+      "RewardGold": 53665,
+      "RewardExp": 53665,
+      "RewardDataIds": [
+        1,
+        2,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 22,
+      "Name": "달팽이",
+      "RewardGold": 91167,
+      "RewardExp": 91167,
+      "RewardDataIds": [
+        1,
+        2,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 23,
+      "Name": "늪 달팽이",
+      "RewardGold": 158840,
+      "RewardExp": 158840,
+      "RewardDataIds": [
+        1,
+        2,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 24,
+      "Name": "플로리아",
+      "RewardGold": 1000,
+      "RewardExp": 1000,
+      "RewardDataIds": [
+        45
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 25,
+      "Name": "우두머리 멧돼지",
+      "RewardGold": 2000,
+      "RewardExp": 2000,
+      "RewardDataIds": [
+        46
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 26,
+      "Name": "허니 베어",
+      "RewardGold": 100000,
+      "RewardExp": 100000,
+      "RewardDataIds": [
+        47
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 27,
+      "Name": "거대 개구리",
+      "RewardGold": 820000,
+      "RewardExp": 820000,
+      "RewardDataIds": [
+        48
+      ],
+      "Rewards": null
     }
   ]
 }

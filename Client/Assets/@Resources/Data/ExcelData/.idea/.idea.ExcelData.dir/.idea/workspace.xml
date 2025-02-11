@@ -5,45 +5,222 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b8aae10e-2ce7-4c65-b5cb-2a6b02fa1307" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ExcelData.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ExcelData.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroData.csv" beforeDir="false" afterPath="$PROJECT_DIR$/HeroData.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeroData.csv.meta" beforeDir="false" afterPath="$PROJECT_DIR$/HeroData.csv.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JsonData/DropTableData.json" beforeDir="false" afterPath="$PROJECT_DIR$/../JsonData/DropTableData.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JsonData/DropTableData.json.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../JsonData/DropTableData.json.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JsonData/EffectData.json" beforeDir="false" afterPath="$PROJECT_DIR$/../JsonData/EffectData.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JsonData/EffectData.json.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../JsonData/EffectData.json.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JsonData/EquipmentData.json" beforeDir="false" afterPath="$PROJECT_DIR$/../JsonData/EquipmentData.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JsonData/EquipmentData.json.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../JsonData/EquipmentData.json.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JsonData/HeroData.json" beforeDir="false" afterPath="$PROJECT_DIR$/../JsonData/HeroData.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JsonData/HeroData.json.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../JsonData/HeroData.json.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../JsonData/MonsterData.json" beforeDir="false" afterPath="$PROJECT_DIR$/../JsonData/MonsterData.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/02.farm/worm_common/worm_common_Atlas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/02.farm/worm_common/worm_common_Atlas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/02.farm/worm_common/worm_common_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/02.farm/worm_common/worm_common_Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/snow_rabbit/snow_rabbit_Atlas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/snow_rabbit/snow_rabbit_Atlas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/snow_rabbit/snow_rabbit_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/snow_rabbit/snow_rabbit_Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/snowman/snowman_Atlas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/snowman/snowman_Atlas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/snowman/snowman_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/snowman/snowman_Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/snowmonkey_common/snowmonkey_common_Atlas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/snowmonkey_common/snowmonkey_common_Atlas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/snowmonkey_common/snowmonkey_common_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/snowmonkey_common/snowmonkey_common_Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/snowmonkey_rare/snowmonkey_rare_Atlas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/snowmonkey_rare/snowmonkey_rare_Atlas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/snowmonkey_rare/snowmonkey_rare_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/snowmonkey_rare/snowmonkey_rare_Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/yeti_common/yeti_common_Atlas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/yeti_common/yeti_common_Atlas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/yeti_common/yeti_common_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/yeti_common/yeti_common_Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/yeti_rare/yeti_rare_Atlas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/yeti_rare/yeti_rare_Atlas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/yeti_rare/yeti_rare_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/04.snow_mountain/yeti_rare/yeti_rare_Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/05.volcano/volcano_golem/volcano_golem_Atlas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/05.volcano/volcano_golem/volcano_golem_Atlas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/05.volcano/volcano_golem/volcano_golem_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/05.volcano/volcano_golem/volcano_golem_Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/05.volcano/volcano_golem_shooter/volcano_golem_shooter_Atlas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/05.volcano/volcano_golem_shooter/volcano_golem_shooter_Atlas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/05.volcano/volcano_golem_shooter/volcano_golem_shooter_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/05.volcano/volcano_golem_shooter/volcano_golem_shooter_Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/05.volcano/volcano_mountain/volcano_mountain_Atlas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/05.volcano/volcano_mountain/volcano_mountain_Atlas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/05.volcano/volcano_mountain/volcano_mountain_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/05.volcano/volcano_mountain/volcano_mountain_Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/camel/camel_Atlas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/camel/camel_Atlas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/camel/camel_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/camel/camel_Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/desert_frog/desert_frog_Atlas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/desert_frog/desert_frog_Atlas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/desert_frog/desert_frog_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/desert_frog/desert_frog_Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/desert_goblin/desert_goblin_Atlas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/desert_goblin/desert_goblin_Atlas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/desert_goblin/desert_goblin_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/desert_goblin/desert_goblin_Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/desert_golem/desert_golem_Atlas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/desert_golem/desert_golem_Atlas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/desert_golem/desert_golem_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/desert_golem/desert_golem_Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/desert_worm/desert_worm_Atlas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/desert_worm/desert_worm_Atlas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/desert_worm/desert_worm_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/desert_worm/desert_worm_Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/red_pig/red_pig_Atlas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/red_pig/red_pig_Atlas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/red_pig/red_pig_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/red_pig/red_pig_Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/sand_lizard/sand_lizard_Atlas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/sand_lizard/sand_lizard_Atlas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/sand_lizard/sand_lizard_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/sand_lizard/sand_lizard_Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/sand_plant/sand_plant_Atlas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/sand_plant/sand_plant_Atlas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/sand_plant/sand_plant_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/sand_plant/sand_plant_Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/sand_trap_bug/sand_trap_bug_Atlas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/sand_trap_bug/sand_trap_bug_Atlas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/sand_trap_bug/sand_trap_bug_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../M1Spine/Monster/06.desert/sand_trap_bug/sand_trap_bug_Material.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JsonData/MonsterData.json.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../JsonData/MonsterData.json.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JsonData/PotionData.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JsonData/PotionData.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JsonData/ProjectileData.json" beforeDir="false" afterPath="$PROJECT_DIR$/../JsonData/ProjectileData.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JsonData/ProjectileData.json.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../JsonData/ProjectileData.json.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JsonData/QuestData.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JsonData/QuestData.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JsonData/RewardData.json" beforeDir="false" afterPath="$PROJECT_DIR$/../JsonData/RewardData.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JsonData/RewardData.json.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../JsonData/RewardData.json.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JsonData/SkillData.json" beforeDir="false" afterPath="$PROJECT_DIR$/../JsonData/SkillData.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JsonData/SkillData.json.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../JsonData/SkillData.json.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JsonData/SpawningPoolData.json" beforeDir="false" afterPath="$PROJECT_DIR$/../JsonData/SpawningPoolData.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JsonData/SpawningPoolData.json.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../JsonData/SpawningPoolData.json.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JsonData/TextData.json.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../JsonData/TextData.json.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/AoE.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/AoE/SO_AOE_KNIGHT_SKILLA.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/AoE/SO_AOE_KNIGHT_SKILLA.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/AoE/SO_AOE_KNIGHT_SKILLlB.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/AoE/SO_AOE_KNIGHT_SKILLlB.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/DropTable.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/DropTable/SO_DROP_1.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/DropTable/SO_DROP_1.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/Buff.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/Buff/SO_EFFECT_EQUIP_1000.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/Buff/SO_EFFECT_EQUIP_1000.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/Buff/SO_EFFECT_EQUIP_1001.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/Buff/SO_EFFECT_EQUIP_1001.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/Buff/SO_EFFECT_EQUIP_1002.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/Buff/SO_EFFECT_EQUIP_1002.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/Buff/SO_EFFECT_EQUIP_1003.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/Buff/SO_EFFECT_EQUIP_1003.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/Buff/SO_EFFECT_EQUIP_1100.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/Buff/SO_EFFECT_EQUIP_1100.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/Buff/SO_EFFECT_EQUIP_1101.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/Buff/SO_EFFECT_EQUIP_1101.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/Buff/SO_EFFECT_EQUIP_1102.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/Buff/SO_EFFECT_EQUIP_1102.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/Buff/SO_EFFECT_EQUIP_1103.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/Buff/SO_EFFECT_EQUIP_1103.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/Dot.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/Dot/SO_Effect_PoisonEffect.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/Dot/SO_Effect_PoisonEffect.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/SO_Effect_Instant_level1.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/SO_Effect_Instant_level1.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/SO_Effect_Instant_level2.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/SO_Effect_Instant_level2.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/SO_Effect_Instant_level3.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/SO_Effect_Instant_level3.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/SO_Effect_Stun.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/SO_Effect_Stun.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Effect/Stun.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Hero.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Hero/SO_Hero_Knight.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Hero/SO_Hero_Knight.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Consumable.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Consumable/Potion.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Consumable/Potion/SO_ITEM_CONSUME_POTION_HP_100.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Consumable/Potion/SO_ITEM_CONSUME_POTION_HP_100.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Consumable/Potion/SO_ITEM_CONSUME_POTION_MP_200.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Consumable/Potion/SO_ITEM_CONSUME_POTION_MP_200.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Consumable/Scroll.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Consumable/Skillbook.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Equipment.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Equipment/SO_ITEM_EQUIP_ARMOR_1100.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Equipment/SO_ITEM_EQUIP_ARMOR_1100.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Equipment/SO_ITEM_EQUIP_ARMOR_1101.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Equipment/SO_ITEM_EQUIP_ARMOR_1101.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Equipment/SO_ITEM_EQUIP_ARMOR_1102.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Equipment/SO_ITEM_EQUIP_ARMOR_1102.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Equipment/SO_ITEM_EQUIP_ARMOR_1103.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Equipment/SO_ITEM_EQUIP_ARMOR_1103.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Equipment/SO_ITEM_EQUIP_SWORD_1000.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Equipment/SO_ITEM_EQUIP_SWORD_1000.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Equipment/SO_ITEM_EQUIP_SWORD_1001.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Equipment/SO_ITEM_EQUIP_SWORD_1001.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Equipment/SO_ITEM_EQUIP_SWORD_1002.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Equipment/SO_ITEM_EQUIP_SWORD_1002.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Equipment/SO_ITEM_EQUIP_SWORD_1003.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Item/Equipment/SO_ITEM_EQUIP_SWORD_1003.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Monster.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Monster/SO_Monster_Goblin.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Monster/SO_Monster_Goblin.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Monster/SO_Monster_ScareCrow.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Monster/SO_Monster_ScareCrow.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Monster/SO_Monster_WoodMan.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Monster/SO_Monster_WoodMan.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Projectile.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Projectile/SO_GoblinProjectile.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Projectile/SO_GoblinProjectile.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Projectile/SO_KnightProjectile.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Projectile/SO_KnightProjectile.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Quest.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Quest/Quest001.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Quest/Quest001.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Reward.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Reward/SO_Reward_10000_HealthPotion.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Reward/SO_Reward_10000_HealthPotion.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Reward/SO_Reward_10001_ManaPotion.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Reward/SO_Reward_10001_ManaPotion.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Reward/SO_Reward_1_Equipment_RARE.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Reward/SO_Reward_1_Equipment_RARE.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Reward/SO_Reward_2_Equipment_Normal.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Reward/SO_Reward_2_Equipment_Normal.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Reward/SO_Reward_3_Equipment_LEGENDARY.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Reward/SO_Reward_3_Equipment_LEGENDARY.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Reward/SO_Reward_4_Equipment_EPIC.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Reward/SO_Reward_4_Equipment_EPIC.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Skill.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Skill/Knight.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Skill/Knight/SO_Knight_Skill_A.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Skill/Knight/SO_Knight_Skill_A.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Skill/Knight/SO_Knight_Skill_B.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Skill/Knight/SO_Knight_Skill_B.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Skill/Knight/SO_Knight_Skill_C.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Skill/Knight/SO_Knight_Skill_C.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Skill/Knight/SO_Knight_Skill_Normal.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Skill/Knight/SO_Knight_Skill_Normal.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Skill/Monster.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Skill/Monster/SO_Goblin_Skill_Normal.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Skill/Monster/SO_Goblin_Skill_Normal.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Skill/Monster/SO_ScareCrow_Skill_Normal.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Skill/Monster/SO_ScareCrow_Skill_Normal.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Skill/Monster/SO_WoodMan_Skill_Normal.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/Skill/Monster/SO_WoodMan_Skill_Normal.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/SpawningPool/SO_map_01.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScriptableObjectData/SpawningPool/SO_map_01.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Font/Maplestory Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../Font/Maplestory Bold SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Spines/Monster/01.forest/wood_common/wood_common.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Spines/Monster/01.forest/wood_common/wood_common.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Spines/Monster/02.farm/scarecrow/scarecrow.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Spines/Monster/02.farm/scarecrow/scarecrow.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Spines/Monster/goblin_spine/goblin.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Spines/Monster/goblin_spine/goblin.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Contents/Item/Item.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/Contents/Item/Item.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Contents/Skill/NormalSkill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/Contents/Skill/NormalSkill.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Contents/Skill/ProjectileSkill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/Contents/Skill/ProjectileSkill.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Contents/Skill/Skill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/Contents/Skill/Skill.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Controllers/Creature/Creature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/Controllers/Creature/Creature.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Controllers/Creature/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/Controllers/Creature/Hero.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Controllers/Creature/Monster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/Controllers/Creature/Monster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Controllers/Creature/MyHero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/Controllers/Creature/MyHero.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Controllers/DamageFontController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/Controllers/DamageFontController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Controllers/Projectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/Controllers/Projectile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/Data.Contents.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/Data/Data.Contents.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/Data/SO.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/AoEData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/AoEData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/ConsumableData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/ConsumableData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/Data.SO.Contents.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/Data.SO.Contents.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/DropTableData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/DropTableData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/EffectData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/EffectData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/EquipmentData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/EquipmentData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/HeroData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/HeroData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/MonsterData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/MonsterData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/PotionData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/PotionData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/ProjectileData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/ProjectileData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/QuestData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/QuestData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/RewardData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/RewardData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/SkillData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/SkillData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/SpawningPool.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Data/SO/SpawningPool.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Editor/DataTransformer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/Editor/DataTransformer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Managers/Contents/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/Managers/Contents/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Managers/Contents/InventoryManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/Managers/Contents/InventoryManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Managers/Contents/ObjectManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/Managers/Contents/ObjectManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Managers/Contents/SkillManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/Managers/Contents/SkillManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Managers/Core/DataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/Managers/Core/DataManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Packet/Generated/Enum.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/Packet/Generated/Enum.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Packet/Generated/Protocol.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/Packet/Generated/Protocol.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/Packet/Generated/Struct.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/Packet/Generated/Struct.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/UI/Popup/UI_ItemInfoPopup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/UI/Popup/UI_ItemInfoPopup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/UI/Popup/UI_SkillPopup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/UI/Popup/UI_SkillPopup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/UI/Scene/UI_QuickSlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/UI/Scene/UI_QuickSlot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/UI/SubItem/UI_ItemSlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/UI/SubItem/UI_ItemSlot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/UI/SubItem/UI_QuickSlotItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/UI/SubItem/UI_QuickSlotItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/UI/SubItem/UI_SkillSlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/UI/SubItem/UI_SkillSlot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../@Scripts/UI/WorldSpace/UI_HpBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../@Scripts/UI/WorldSpace/UI_HpBar.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../AddressableAssetsData/AssetGroups/Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../../AddressableAssetsData/AssetGroups/Data.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../Common/Protocol/Enum.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Common/Protocol/Enum.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../Server/GameServer/DB/DBManager_GameRoom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Server/GameServer/DB/DBManager_GameRoom.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../Server/GameServer/Data/Data.Contents.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Server/GameServer/Data/Data.Contents.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../Server/GameServer/Data/DataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Server/GameServer/Data/DataManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../Server/GameServer/Game/AI/MonsterAIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Server/GameServer/Game/AI/MonsterAIController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../Server/GameServer/Game/GameLogic/Room/SpawningPool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Server/GameServer/Game/GameLogic/Room/SpawningPool.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../Server/GameServer/Game/GameLogic/Skill/EffectComponent/Effect/EffectPolicy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Server/GameServer/Game/GameLogic/Skill/EffectComponent/Effect/EffectPolicy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../Server/GameServer/Game/GameLogic/Skill/EffectComponent/EffectComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Server/GameServer/Game/GameLogic/Skill/EffectComponent/EffectComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../Server/GameServer/Game/GameLogic/Skill/SkillComponent/Skill/ProjectileSkill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Server/GameServer/Game/GameLogic/Skill/SkillComponent/Skill/ProjectileSkill.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../Server/GameServer/Game/GameLogic/Skill/SkillComponent/SkillComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Server/GameServer/Game/GameLogic/Skill/SkillComponent/SkillComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../Server/GameServer/Game/Item/Inventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Server/GameServer/Game/Item/Inventory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../Server/GameServer/Game/Item/Item.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Server/GameServer/Game/Item/Item.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../Server/GameServer/Game/Object/Creature/Hero.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Server/GameServer/Game/Object/Creature/Hero.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../Server/GameServer/Game/Object/Creature/Monster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Server/GameServer/Game/Object/Creature/Monster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../Server/GameServer/Game/Object/Projectile/Projectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../Server/GameServer/Game/Object/Projectile/Projectile.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,6 +334,11 @@
       <workItem from="1716439612390" duration="856000" />
       <workItem from="1716454532129" duration="1627000" />
       <workItem from="1716541078556" duration="2229000" />
+      <workItem from="1723115891605" duration="1655000" />
+      <workItem from="1723171310714" duration="613000" />
+      <workItem from="1723185835520" duration="2830000" />
+      <workItem from="1723429635195" duration="677000" />
+      <workItem from="1723524117180" duration="14595000" />
     </task>
     <servers />
   </component>

@@ -4,7 +4,7 @@
       "TemplateId": 1,
       "Name": "Hp포션(소)",
       "ItemTemplateId": 1,
-      "Probability": 35,
+      "Probability": 1000,
       "Count": 1,
       "Item": null
     },
@@ -12,63 +12,375 @@
       "TemplateId": 2,
       "Name": "Mp포션(소)",
       "ItemTemplateId": 4,
-      "Probability": 30,
+      "Probability": 500,
       "Count": 1,
       "Item": null
     },
     {
       "TemplateId": 3,
-      "Name": "노말장비",
+      "Name": "일반 검",
       "ItemTemplateId": 1000,
-      "Probability": 5,
+      "Probability": 200,
       "Count": 1,
       "Item": null
     },
     {
       "TemplateId": 4,
-      "Name": "노말장비",
+      "Name": "일반헬멧",
       "ItemTemplateId": 1500,
-      "Probability": 5,
+      "Probability": 200,
       "Count": 1,
       "Item": null
     },
     {
       "TemplateId": 5,
-      "Name": "노말장비",
+      "Name": "일반갑옷",
       "ItemTemplateId": 1600,
-      "Probability": 5,
+      "Probability": 200,
       "Count": 1,
       "Item": null
     },
     {
       "TemplateId": 6,
-      "Name": "노말장비",
+      "Name": "일반다리보호구",
       "ItemTemplateId": 1700,
-      "Probability": 5,
+      "Probability": 200,
       "Count": 1,
       "Item": null
     },
     {
       "TemplateId": 7,
-      "Name": "노말장비",
+      "Name": "일반신발",
       "ItemTemplateId": 1800,
-      "Probability": 5,
+      "Probability": 200,
       "Count": 1,
       "Item": null
     },
     {
       "TemplateId": 8,
-      "Name": "노말장비",
+      "Name": "일반장갑",
       "ItemTemplateId": 1900,
-      "Probability": 5,
+      "Probability": 200,
       "Count": 1,
       "Item": null
     },
     {
       "TemplateId": 9,
-      "Name": "노말장비",
+      "Name": "일반어깨보호구",
       "ItemTemplateId": 2000,
-      "Probability": 5,
+      "Probability": 200,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 10,
+      "Name": "일반 검",
+      "ItemTemplateId": 1000,
+      "Probability": 100,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 11,
+      "Name": "일반헬멧",
+      "ItemTemplateId": 1500,
+      "Probability": 100,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 12,
+      "Name": "일반갑옷",
+      "ItemTemplateId": 1600,
+      "Probability": 100,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 13,
+      "Name": "일반다리보호구",
+      "ItemTemplateId": 1700,
+      "Probability": 100,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 14,
+      "Name": "일반신발",
+      "ItemTemplateId": 1800,
+      "Probability": 100,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 15,
+      "Name": "일반장갑",
+      "ItemTemplateId": 1900,
+      "Probability": 100,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 16,
+      "Name": "일반어깨보호구",
+      "ItemTemplateId": 2000,
+      "Probability": 100,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 17,
+      "Name": "고급 검",
+      "ItemTemplateId": 1100,
+      "Probability": 50,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 18,
+      "Name": "고급헬멧",
+      "ItemTemplateId": 2100,
+      "Probability": 50,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 19,
+      "Name": "고급갑옷",
+      "ItemTemplateId": 2200,
+      "Probability": 50,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 20,
+      "Name": "고급다리보호구",
+      "ItemTemplateId": 2300,
+      "Probability": 50,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 21,
+      "Name": "고급신발",
+      "ItemTemplateId": 2400,
+      "Probability": 50,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 22,
+      "Name": "고급장갑",
+      "ItemTemplateId": 2500,
+      "Probability": 50,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 23,
+      "Name": "고급어깨보호구",
+      "ItemTemplateId": 2600,
+      "Probability": 50,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 24,
+      "Name": "고급 검",
+      "ItemTemplateId": 1100,
+      "Probability": 70,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 25,
+      "Name": "고급헬멧",
+      "ItemTemplateId": 2100,
+      "Probability": 70,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 26,
+      "Name": "고급갑옷",
+      "ItemTemplateId": 2200,
+      "Probability": 70,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 27,
+      "Name": "고급다리보호구",
+      "ItemTemplateId": 2300,
+      "Probability": 70,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 28,
+      "Name": "고급신발",
+      "ItemTemplateId": 2400,
+      "Probability": 70,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 29,
+      "Name": "고급장갑",
+      "ItemTemplateId": 2500,
+      "Probability": 70,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 30,
+      "Name": "고급어깨보호구",
+      "ItemTemplateId": 2600,
+      "Probability": 70,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 31,
+      "Name": "희귀 검",
+      "ItemTemplateId": 1200,
+      "Probability": 30,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 32,
+      "Name": "희귀헬멧",
+      "ItemTemplateId": 2700,
+      "Probability": 30,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 33,
+      "Name": "희귀갑옷",
+      "ItemTemplateId": 2800,
+      "Probability": 30,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 34,
+      "Name": "희귀다리보호구",
+      "ItemTemplateId": 2900,
+      "Probability": 30,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 35,
+      "Name": "희귀신발",
+      "ItemTemplateId": 3000,
+      "Probability": 30,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 36,
+      "Name": "희귀장갑",
+      "ItemTemplateId": 3100,
+      "Probability": 30,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 37,
+      "Name": "희귀어깨보호구",
+      "ItemTemplateId": 3200,
+      "Probability": 30,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 38,
+      "Name": "희귀 검",
+      "ItemTemplateId": 1200,
+      "Probability": 50,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 39,
+      "Name": "희귀헬멧",
+      "ItemTemplateId": 2700,
+      "Probability": 50,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 40,
+      "Name": "희귀갑옷",
+      "ItemTemplateId": 2800,
+      "Probability": 50,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 41,
+      "Name": "희귀다리보호구",
+      "ItemTemplateId": 2900,
+      "Probability": 50,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 42,
+      "Name": "희귀신발",
+      "ItemTemplateId": 3000,
+      "Probability": 50,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 43,
+      "Name": "희귀장갑",
+      "ItemTemplateId": 3100,
+      "Probability": 50,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 44,
+      "Name": "희귀어깨보호구",
+      "ItemTemplateId": 3200,
+      "Probability": 50,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 45,
+      "Name": "고급 검",
+      "ItemTemplateId": 1100,
+      "Probability": 20,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 46,
+      "Name": "고급 검",
+      "ItemTemplateId": 1100,
+      "Probability": 50,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 47,
+      "Name": "희귀 검",
+      "ItemTemplateId": 1200,
+      "Probability": 20,
+      "Count": 1,
+      "Item": null
+    },
+    {
+      "TemplateId": 48,
+      "Name": "에픽 검",
+      "ItemTemplateId": 1300,
+      "Probability": 20,
       "Count": 1,
       "Item": null
     }

@@ -9,19 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3515aef2475ee03448af294be36e2122, type: 3}
+  m_Script: {fileID: 11500000, guid: fec6df2257af4f3995a8512f68da5bcc, type: 3}
   m_Name: SO_Portal_1
   m_EditorClassIdentifier: 
-  TemplateId: 0
-  Name: 
-  NameTextId: 
-  DescriptionTextID: 
-  IconImage: 
-  PrefabName: 
-  NpcType: 0
+  TemplateId: 1
+  Name: "\uB9C8\uC744\uD3EC\uD0C81"
+  NameTextId: "\uB9C8\uC744\uD3EC\uD0C81"
+  DescriptionTextID: "\uB9C8\uC744\uD3EC\uD0C81"
+  IconImage: portal_image
+  PrefabName: PortalPrefab
+  NpcType: 1
   ExtraSize: 0
-  Range: 0
-  OwnerRoomId: 0
-  SpawnPosX: 0
-  SpawnPosY: 0
-  DestPotalId: 0
+  Range: 5
+  OwnerRoomId: 1
+  SpawnPosX: 2
+  SpawnPosY: 11
+  DestPotalId: 11

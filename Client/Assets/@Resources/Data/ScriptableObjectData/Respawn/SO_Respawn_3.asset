@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: SO_Respawn_3
   m_EditorClassIdentifier: 
   TemplateId: 3
-  Count: 5
-  MonsterDataId: 1
+  Count: 15
+  MonsterDataId: 4
   RespawnType: 0
   RespawnTime: 5
-  PivotPosX: 0
-  PivotPosY: 0
-  SpawnRange: 5
+  PivotPosX: -32
+  PivotPosY: 57
+  SpawnRange: 20

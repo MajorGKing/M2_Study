@@ -1,2 +1,12 @@
-﻿TemplateId,NameTextId,IconImage,SkeletonDataId,,DescriptionTextId
-1,,,001_SkeletonData,,
+﻿TemplateId,Name,NameTextId,DescriptionTextID,IconImage,PrefabName,maxHp,hpRegen,maxMp,mpRegen,atk,defence,Dodge,atkSpeed,moveSpeed,criRate,criDamage,str,dex,int,con,wis,heroClass,SkillDataIds
+1,기사,기사,기사입니다,,,200,1,100,1,5,0,0,1,5,0.15,1.5,10,7,3,8,5,Knight,1
+,,,,,,,,,,,,,,,,,,,,,,,3
+,,,,,,,,,,,,,,,,,,,,,,,4
+,,,,,,,,,,,,,,,,,,,,,,,5
+2,엘프,엘프,엘프입니다.,,,200,1,100,1,5,0,0,1,5,0.15,1.5,10,7,3,8,5,Archer,6
+,,,,,,,,,,,,,,,,,,,,,,,7
+,,,,,,,,,,,,,,,,,,,,,,,8
+3,마법사,마법사,마법사,,,200,1,100,1,5,0,0,1,5,0.15,1.5,10,7,3,8,5,Wizard,6
+4,로그,로그,로그,,,200,1,100,1,5,0,0,1,5,0.15,1.5,10,7,3,8,5,Rogue,9
+,,,,,,,,,,,,,,,,,,,,,,,10
+,,,,,,,,,,,,,,,,,,,,,,,11

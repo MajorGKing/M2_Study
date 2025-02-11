@@ -1,4 +1,28 @@
-﻿TemplateId,Name,NameTextId,DescriptionTextID,IconImage,PrefabName,maxHp,hpRegen,maxMp,mpRegen,atk,defence,Dodge,atkSpeed,moveSpeed,criRate,criDamage,str,dex,int,con,wis,ISBoss,IsAggressive,ExtraCells,SkillDis,SearchCellDist,ChaseCellDist,PatrolCellDist,DropTableId
-1,허수아비,허수아비,허수아비에요,scarecrow,ScareCrow,250,1,100,1,23,0,0,1,2,0,0,0,0,0,0,0,false,false,0,13,10,10,0,1
-2,우드맨,우드맨,우드맨,wood_common,WoodMan,250,1,100,1,24,0,0,1,2,0,0,0,0,0,0,0,false,true,0,13,10,10,1,1
-3,고블린,고블린,고블린,goblin,Goblin,200,1,100,1,25,0,0,1,1,0,0,0,0,0,0,0,false,true,0,2,10,10,1,1
+﻿TemplateId,Name,NameTextId,DescriptionTextID,IconImage,PrefabName,maxHp,hpRegen,maxMp,mpRegen,atk,defence,Dodge,atkSpeed,moveSpeed,criRate,criDamage,str,dex,int,con,wis,ISBoss,IsAggressive,ExtraCells,SkillIds,SearchCellDist,ChaseCellDist,PatrolCellDist,DropTableId
+1,허수아비,허수아비,허수아비에요,scarecrow,ScareCrow,250,1,100,1,23,0,0,1,2,0,0,0,0,0,0,0,FALSE,FALSE,0,13,10,10,0,1
+2,우드맨,우드맨,우드맨,wood_common,WoodMan,250,1,100,1,24,0,0,1,2,0,0,0,0,0,0,0,FALSE,TRUE,0,13,10,10,1,1
+3,고블린,고블린,고블린,goblin,Goblin,200,1,100,1,25,0,0,1,1,0,0,0,0,0,0,0,FALSE,TRUE,0,2,10,10,1,1
+4,슬라임,슬라임,슬라임,slime_common,001.slime_common,100,0,0,0,26,0,0,1,2,0,0,0,0,0,0,0,FALSE,FALSE,0,13,10,10,1,1
+5,레드슬라임,레드슬라임,레드슬라임,slime_rare,002.slime_rare,110,0,0,0,31,0,0,1,2,0,0,0,0,0,0,0,FALSE,FALSE,0,13,10,10,1,1
+6,새끼거미,새끼거미,새끼거미,spider_common,003.spider_common,121,0,0,0,38,0,0,1,2,0,0,0,0,0,0,0,FALSE,FALSE,0,13,10,10,1,1
+7,거미,거미,거미,spider_rare,004.spider_rare,133,0,0,0,45,0,0,1,2,0,0,0,0,0,0,0,FALSE,FALSE,0,13,10,10,1,1
+8,트리링,트리링,트리링,wood_common,005.wood_common,233,0,0,0,80,0,0,1,2,0,0,0,0,0,0,0,FALSE,FALSE,0,13,10,10,1,1
+9,트리마스,트리마스,트리마스,wood_rare,006.wood_rare,280,0,0,0,88,0,0,1,2,0,0,0,0,0,0,0,FALSE,FALSE,0,13,10,10,1,1
+10,터니웜,터니웜,터니웜,worm_common,007.worm_common,335,0,0,0,96,0,0,1,2,0,0,0,0,0,0,0,FALSE,FALSE,0,13,10,10,1,1
+11,멧돼지,멧돼지,멧돼지,wild_boar,008.wild_boar,400,0,0,0,105,0,0,1,2,0,0,0,0,0,0,0,FALSE,FALSE,0,13,10,10,1,1
+12,알콩이,알콩이,알콩이,forest_plant_common,009.forest_plant_common,611,0,0,0,120,0,0,1,2,0,0,0,0,0,0,0,FALSE,FALSE,0,13,10,10,1,1
+13,달콩이,달콩이,달콩이,forest_plant_rare,010.forest_plant_rare,733,0,0,0,126,0,0,1,2,0,0,0,0,0,0,0,FALSE,FALSE,0,13,10,10,1,1
+14,앰버 트리링,앰버 트리링,앰버 트리링,fall_wood_common,011.fall_wood_common,880,0,0,0,145,0,0,1,2,0,0,0,0,0,0,0,FALSE,FALSE,0,13,10,10,1,1
+15,앰버 트리마스,앰버 트리마스,앰버 트리마스,fall_woodman_rare,012.fall_wood_rare,1050,0,0,0,160,0,0,1,2,0,0,0,0,0,0,0,FALSE,FALSE,0,13,10,10,1,1
+16,벌,벌,벌,bee_common,013.bee_common,1500,0,0,0,180,0,0,1,2,0,0,0,0,0,0,0,FALSE,FALSE,0,13,10,10,1,1
+17,말벌,말벌,말벌,bee_rare,014.bee_rare,1232,0,0,0,190,0,0,1,2,0,0,0,0,0,0,0,FALSE,FALSE,0,13,10,10,1,1
+18,벌 집,벌 집,벌 집,bee_house,015.bee_house_SkeletonData,1355,0,0,0,200,0,0,1,2,0,0,0,0,0,0,0,FALSE,FALSE,0,13,10,10,1,1
+19,베어,베어,베어,bear,016.bear,1490,0,0,0,210,0,0,1,2,0,0,0,0,0,0,0,FALSE,FALSE,0,13,10,10,1,1
+20,개구리,개구리,개구리,frog_common,017.frog_common,2034,0,0,0,240,0,0,1,2,0,0,0,0,0,0,0,FALSE,FALSE,0,13,10,10,1,1
+21,늪 돼지,늪 돼지,늪 돼지,pig,018.pig,2237,0,0,0,252,0,0,1,2,0,0,0,0,0,0,0,FALSE,FALSE,0,13,10,10,1,1
+22,달팽이,달팽이,달팽이,snail_common,019.snail_common,2460,0,0,0,265,0,0,1,2,0,0,0,0,0,0,0,FALSE,FALSE,0,13,10,10,1,1
+23,늪 달팽이,늪 달팽이,늪 달팽이,snail_rare,020.snail_rare,2705,0,0,0,278,0,0,1,2,0,0,0,0,0,0,0,FALSE,FALSE,0,13,10,10,1,1
+24,플로리아,플로라리아,플로라리아,spr_elite_flower,elite_flower,600,0,0,0,115,0,0,1,2,0,0,0,0,0,0,0,TRUE,TRUE,0,13,10,10,1,1
+25,우두머리 멧돼지,우두머리 멧돼지,우두머리 멧돼지,spr_boss_wild_boar,boss_wild_boar,1000,0,0,0,125,0,0,1,2,0,0,0,0,0,0,0,TRUE,TRUE,1,13,10,10,1,1
+26,허니 베어,허니 베어,허니 베어,spr_boss_honey_bear,boss_honey_bear,2500,0,0,0,250,0,0,1,2,0,0,0,0,0,0,0,TRUE,TRUE,0,13,10,10,1,1
+27,거대 개구리,거대 개구리,거대 개구리,spr_elite_frog,elite_frog,3500,0,0,0,300,0,0,1,2,0,0,0,0,0,0,0,TRUE,TRUE,0,13,10,10,1,1

@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoomId: 1
   RespawnDatas:
-  - {fileID: 11400000, guid: 678227ee2b0b4f343bb0f8c9dbb72fe0, type: 2}
   - {fileID: 11400000, guid: 061171c3fe365824dad240e599d2f78a, type: 2}
   - {fileID: 11400000, guid: cfdd03d32b54d154c92033b103633ea0, type: 2}
   - {fileID: 11400000, guid: 5f667f97d212e1d4e9326b19bad8812f, type: 2}
+  - {fileID: 11400000, guid: 2c806745ea9a0be498b4954b87672ac6, type: 2}
+  - {fileID: 11400000, guid: 678227ee2b0b4f343bb0f8c9dbb72fe0, type: 2}

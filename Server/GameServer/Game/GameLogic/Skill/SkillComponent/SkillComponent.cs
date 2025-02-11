@@ -20,15 +20,23 @@ namespace GameServer.Game
         }
 
         #region 스킬 사용
+
+        public Skill GetMainSkill()
+        {
+            return _skills.Values.First();
+        }
+
         public Skill GetSkill(int templatedId)
         {
-            //if(Owner.ObjectType == EGameObjectType.Hero)
-            //    Console.WriteLine($"Skill : {templatedId}" );
-
             if(_skills.TryGetValue(templatedId, out Skill skill))
                 return skill;
 
             return null;
+        }
+
+        public List<Skill> GetAllSkills()
+        {
+            return _skills.Values.ToList();
         }
 
         public bool CanUseSkill(int templatedId)
@@ -47,6 +55,39 @@ namespace GameServer.Game
                 return;
 
             skill.UseSkill(targetId);
+        }
+        #endregion
+
+        #region 스킬 사용 확인
+        public int GetNextUseSkillDistance(int targetId)
+        {
+            // 1. 다음에 사용할 스킬 거리 반환.
+            Skill skill = GetNextUseSkill(targetId);
+            if (skill != null)
+                return skill.GetSkillRange(targetId);
+
+            // 2. 스킬이 다 쿨 돌고 있으면 기본 스킬 사거리로.
+            Skill mainSkill = Owner.SkillComp.GetMainSkill();
+            if (mainSkill != null)
+                return mainSkill.GetSkillRange(targetId);
+
+            return 0;
+        }
+
+        public Skill GetNextUseSkill(int targetId)
+        {
+            List<Skill> skills = Owner.SkillComp.GetAllSkills();
+            foreach (Skill skill in skills)
+            {
+                if (skill.CanUseSkill(targetId))
+                    return skill;
+            }
+
+            Skill mainSkill = Owner.SkillComp.GetMainSkill();
+            if (mainSkill.CanUseSkill(targetId))
+                return mainSkill;
+
+            return null;
         }
         #endregion
 

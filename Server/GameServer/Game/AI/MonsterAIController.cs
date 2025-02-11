@@ -1,10 +1,6 @@
 ﻿using GameServer;
 using Google.Protobuf.Protocol;
 using Server.Data;
-using System;
-using System.Collections.Generic;
-using System.Numerics;
-using System.Text;
 
 namespace Server.Game
 {
@@ -17,12 +13,8 @@ namespace Server.Game
             _searchCellDist = monsterData.SearchCellDist;
             _chaseCellDist = monsterData.ChaseCellDist;
             _patrolCellDist = monsterData.PatrolCellDist;
-
             // 
-            //SkillData skillData = monsterData.MainSkill;
             SkillData skillData = monsterData.SkillMap[ESkillSlot.Main];
-            _mainSkillRange = skillData.SkillRange;
-            _skillTemplateId = skillData.TemplateId;
         }
 
         public override void SetState(EObjectState state)
@@ -42,7 +34,8 @@ namespace Server.Game
                     UpdateTick = (int)(time * 1000);
                     break;
                 case EObjectState.Skill:
-                    UpdateTick = 1000;
+                    //TODO 현재스킬의 쿨타임
+                    UpdateTick = (int)(Owner.MonsterData.SkillMap[ESkillSlot.Main].Cooltime * 1000);
                     break;
                 case EObjectState.Dead:
                     UpdateTick = 1000;
@@ -57,14 +50,18 @@ namespace Server.Game
 
             // 비선공몹은 검색X
             if (Owner.MonsterData.IsAggressive == false)
-                return _target;
+                return _attacker;
+
+            // 범위 밖에서 누가 때린 경우
+            if (_attacker != null)
+                return _attacker;
 
             return FindTargetForMonster();
         }
 
         Creature FindTargetForMonster()
         {
-            List<Hero> heroes = Owner.Room.FindAdjacents<Hero>(Owner.CellPos, hero =>
+            List<Hero> heroes = Owner.Room.FindAdjacentHeroes(Owner.CellPos, hero =>
             {
                 if (hero.IsValid() == false)
                     return false;
@@ -83,7 +80,9 @@ namespace Server.Game
             {
                 // 기본 스킬 사용 가능하면 그냥 그 타겟으로 설정
                 int dist = hero.GetDistance(Owner);
-                if (dist <= _mainSkillRange)
+                int skillRange = Owner.SkillComp.GetNextUseSkillDistance(hero.ObjectId);
+
+                if (dist <= skillRange)
                     return hero;
 
                 List<Vector2Int> path = Owner.Room?.Map.FindPath(Owner, Owner.CellPos, hero.CellPos);
@@ -94,6 +93,24 @@ namespace Server.Game
             }
 
             return null;
+        }
+
+        protected override Vector2Int GetSpawnPos()
+        {
+            return Owner.SpawnPosition;
+        }
+
+        protected override int GetSpawnRange()
+        {
+            return Owner.SpawnRange;
+        }
+
+        public override void Reset()
+        {
+            base.Reset();
+            _target = null;
+            _attacker = null;
+            _patrolDest = null;
         }
     }
 }

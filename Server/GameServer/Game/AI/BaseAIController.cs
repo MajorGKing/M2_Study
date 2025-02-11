@@ -9,7 +9,7 @@ namespace Server.Game
     public class BaseAIController<OwnerType> where OwnerType : BaseObject
     {
         public OwnerType Owner { get; protected set; }
-        public int UpdateTick { get; set; } = 100;
+        public int UpdateTick { get; set; } = 1000;
 
         public BaseAIController(OwnerType owner)
         {
@@ -19,7 +19,11 @@ namespace Server.Game
         protected IJob _job;
         public virtual void Update()
         {
-            switch (Owner.State)
+            //TODO 함수 실행중 중간에 값이 바껴서 꼬임 
+            EObjectState currentState = Owner.State; 
+            int updateTick = UpdateTick;
+
+            switch (currentState)
             {
                 case EObjectState.Idle:
                     UpdateIdle();
@@ -36,7 +40,7 @@ namespace Server.Game
             }
 
             if (Owner.Room != null)
-                _job = Owner.Room.PushAfter(UpdateTick, Update);
+                _job = Owner.Room.PushAfter(updateTick, Update);
         }
 
         public virtual void SetState(EObjectState State)
@@ -65,6 +69,10 @@ namespace Server.Game
 
         public virtual void OnDamaged(BaseObject attacker, float damage)
         {
+        }
+
+        public virtual void Reset()
+        { 
         }
 
         public virtual void OnDead(BaseObject attacker)

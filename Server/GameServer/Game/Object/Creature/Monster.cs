@@ -18,9 +18,13 @@ namespace GameServer
             get { return MonsterData; }
         }
 
+        public bool Boss { get; private set; }
+        public Vector2Int SpawnPosition { get; set; }
+        public int SpawnRange { get; set; }
+
         MonsterAIController _ai;
 
-        public bool Boss { get; private set; }
+        
 
         public Monster()
         {

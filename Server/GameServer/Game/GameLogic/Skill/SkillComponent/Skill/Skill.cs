@@ -13,7 +13,7 @@ namespace GameServer.Game
         public Creature Owner { get; protected set; }
         public int TemplateId { get; protected set; }
 
-        protected SkillData _skillData;
+        public SkillData SkillData { get; protected set; }
 
         // 쿨타임 관리
         public long NextUseTick { get; protected set; } = 0;
@@ -24,11 +24,21 @@ namespace GameServer.Game
             Owner = owner;
 
             DataManager.SkillDict.TryGetValue(TemplateId, out SkillData skillData);
-            _skillData = skillData;
+            SkillData = skillData;
         }
 
         public abstract bool CanUseSkill(int targetId);
         public abstract void UseSkill(int targetId);
+
+        public int GetSkillRange(int targetId)
+        {
+            Creature target = Owner.Room.GetCreatureById(targetId);
+            if (target == null)
+                return 0;
+
+            return SkillData.SkillRange + target.ExtraCells + Owner.ExtraCells;
+
+        }
 
         #region 쿨타임 관리
         public long GetRemainingCooltimeInTicks()
@@ -43,7 +53,7 @@ namespace GameServer.Game
 
         public void UpdateCooltime()
         {
-            NextUseTick = Utils.TickCount + (long)(1000 * _skillData.Cooldown);
+            NextUseTick = Utils.TickCount + (long)(1000 * SkillData.Cooldown);
         }
         #endregion
 
@@ -70,11 +80,11 @@ namespace GameServer.Game
         public bool CheckTargetAndRange(int targetId)
         {
             //Creature target = GetUseSkillTarget(Owner, _skillData, skillContext);
-            Creature target = GetUseSkillTarget(Owner, _skillData, targetId);
+            Creature target = GetUseSkillTarget(Owner, SkillData, targetId);
             if (target == null)
                 return false;
             int dist = Owner.GetDistance(target);
-            if (dist > _skillData.SkillRange)
+            if (dist > SkillData.SkillRange)
                 return false;
 
             return true;
@@ -195,7 +205,7 @@ namespace GameServer.Game
                 //ObjectId = Owner.ObjectInfo.ObjectId,
                 //SkillId = _skillData.TemplateId
                 ObjectId = Owner.ObjectInfo.ObjectId,
-                TemplateId = _skillData.TemplateId,
+                TemplateId = SkillData.TemplateId,
                 TargetId = target.ObjectId,
             };
 

@@ -21,9 +21,9 @@ namespace GameServer.Game
                 return false;
             if (CheckTargetAndRange(targetId) == false)
                 return false;
-            if (_skillData.ProjectileId == null)
+            if (SkillData.ProjectileId == null)
                 return false;
-            if (Owner.Mp < _skillData.Cost)
+            if (Owner.Mp < SkillData.Cost)
                 return false;
             return true;
         }
@@ -36,17 +36,17 @@ namespace GameServer.Game
             GameRoom room = Owner.Room;
             if (room == null)
                 return;
-            Creature target = GetUseSkillTarget(Owner, _skillData, targetId);
+            Creature target = GetUseSkillTarget(Owner, SkillData, targetId);
             if (target == null)
                 return;
-            Projectile projectile = ObjectManager.Instance.Spawn<Projectile>(_skillData.ProjectileId);
+            Projectile projectile = ObjectManager.Instance.Spawn<Projectile>(SkillData.ProjectileId);
             if (projectile == null)
                 return;
 
-            if (_skillData.Cost > 0)
-                Owner.Heal(EStatType.Mp, -_skillData.Cost);
+            if (SkillData.Cost > 0)
+                Owner.Heal(EStatType.Mp, -SkillData.Cost);
 
-            projectile.Init(_skillData, target);
+            projectile.Init(SkillData, target);
             
             projectile.Owner = Owner;
             projectile.ProjectileInfo.OwnerId = Owner.ObjectId;
@@ -56,7 +56,7 @@ namespace GameServer.Game
 
             // 애니메이션 이벤트타임에 맞게 프로젝타일 생성
             Vector2Int spawnPos = new Vector2Int(Owner.PosInfo.PosX, Owner.PosInfo.PosY);
-            room.PushAfter((int)(_skillData.DelayTime * 1000), () =>
+            room.PushAfter((int)(SkillData.DelayTime * 1000), () =>
             {
                 room.EnterGame(projectile, spawnPos, false);
             });

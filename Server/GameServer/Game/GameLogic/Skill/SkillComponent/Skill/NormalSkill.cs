@@ -22,7 +22,7 @@ namespace GameServer.Game
                 return false;
             if (CheckTargetAndRange(targetId) == false)
                 return false;
-            if (Owner.Mp < _skillData.Cost)
+            if (Owner.Mp < SkillData.Cost)
                 return false;
 
             return true;
@@ -35,13 +35,13 @@ namespace GameServer.Game
             GameRoom room = Owner.Room;
             if (room == null)
                 return;
-            if (_skillData.Cost > 0)
-                Owner.Heal(EStatType.Mp, -_skillData.Cost);
+            if (SkillData.Cost > 0)
+                Owner.Heal(EStatType.Mp, -SkillData.Cost);
 
-            Creature target = GetUseSkillTarget(Owner, _skillData, targetId);
+            Creature target = GetUseSkillTarget(Owner, SkillData, targetId);
 
             // 이펙트(효과 및 데미지) 적용
-            List<Creature> targets = GatherSkillEffectTargets(Owner, _skillData, target);
+            List<Creature> targets = GatherSkillEffectTargets(Owner, SkillData, target);
             foreach(Creature t in targets)
             {
                 //if(_skillData.EffectData == null)
@@ -51,9 +51,9 @@ namespace GameServer.Game
                 if (Owner.ObjectType == EGameObjectType.Hero)
                 {
                     //Console.WriteLine($"{Owner} attack {t.ObjectId} by normal {_skillData.EffectData.Name}!");
-                    Console.WriteLine($"{Owner} attack {t.ObjectId} by normal {_skillData.Name}!");
+                    Console.WriteLine($"{Owner} attack {t.ObjectId} by normal {SkillData.Name}!");
                 }
-                room.PushAfter((int)(_skillData.DelayTime * 1000), AddEffect, t, Owner, _skillData.EffectData);
+                room.PushAfter((int)(SkillData.DelayTime * 1000), AddEffect, t, Owner, SkillData.EffectData);
             }
 
             BroadcastSkill(target);

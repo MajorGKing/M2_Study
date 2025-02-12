@@ -1,4 +1,5 @@
 ﻿using Google.Protobuf.Protocol;
+using Server.Game;
 using ServerCore;
 using System;
 using System.Collections.Generic;
@@ -93,7 +94,10 @@ namespace GameServer
             if (cellPos.y < MinY || cellPos.y > MaxY)
                 return null;
 
-            return _objCollision[cellPos.x, cellPos.y];
+            int x = cellPos.x - MinX;
+            int y = MaxY - cellPos.y;
+
+            return _objCollision[x, y];
         }
 
         public bool ApplyLeave(BaseObject obj)
@@ -316,17 +320,18 @@ namespace GameServer
 
         List<Vector2Int> _delta = new List<Vector2Int>()
         {
-            new Vector2Int(0, 1), // U
-			new Vector2Int(1, 1), // UR
-			new Vector2Int(1, 0), // R
-			new Vector2Int(1, -1), // DR
-			new Vector2Int(0, -1), // D
-			new Vector2Int(-1, -1), // LD
-			new Vector2Int(-1, 0), // L
-			new Vector2Int(-1, 1), // LU
+            //EMoveDir 이랑 순서 맞춤
+            new Vector2Int(1, 1), // U
+		    new Vector2Int(-1, -1), // D
+		    new Vector2Int(-1, 1), // L
+		    new Vector2Int(1, -1), // R
+		    new Vector2Int(0, 1), // UL
+		    new Vector2Int(1, 0), // UR
+		    new Vector2Int(-1, 0), // DL
+		    new Vector2Int(0, -1), // DR
 		};
 
-        public List<Vector2Int> FindPath(BaseObject self, Vector2Int startCellPos, Vector2Int destCellPos, int maxDepth = 10)
+        public List<Vector2Int> FindPath(BaseObject self, Vector2Int startCellPos, Vector2Int destCellPos, bool checkObjects = true, int maxDepth = 10)
         {
             // 지금까지 제일 좋은 후보 기록.
             Dictionary<Vector2Int, int> best = new Dictionary<Vector2Int, int>();
@@ -371,7 +376,7 @@ namespace GameServer
                     Vector2Int next = pos + delta;
 
                     // 갈 수 없는 장소면 스킵.
-                    if (CanGo(self, next) == false)
+                    if (CanGo(self, next, checkObjects) == false)
                         continue;
 
                     // 예약 진행

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-using System.Net.Sockets;
+﻿using System.Net.Sockets;
 using System.Net;
 using Google.Protobuf.Protocol;
 
@@ -53,7 +48,7 @@ namespace GameServer
         public static T RandomElementByWeight<T>(this IEnumerable<T> sequence, Func<T, float> weightSelector)
         {
             float totalWeight = sequence.Sum(weightSelector);
-            double itemWeightIndex = new Random().NextDouble() * totalWeight;
+            double itemWeightIndex = new Random().NextDouble() * Define.RANDOM_WEIGHT_SCALE;
             float currentWeightIndex = 0;
 
             foreach (var item in from weightedItem in sequence select new { Value = weightedItem, Weight = weightSelector(weightedItem) })

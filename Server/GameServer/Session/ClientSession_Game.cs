@@ -79,18 +79,20 @@ namespace Server
             if (hero == null)
                 return;
 
-            bool sucess = DBManager.DeleteHeroDb(hero.HeroDbId);
+			// 1) 이름이 안 겹치는지 확인
+			// 2) 생성 진행
+			bool success = DBManager.DeleteHeroDb(hero.HeroDbId);
 
-            if(sucess)
-            {
-                Heroes.Remove(hero);
-            }
+			if (success)
+			{
+				Heroes.Remove(hero);
+			}
 
-            S_DeleteHeroRes resPacket = new S_DeleteHeroRes();
-            resPacket.Success = sucess;
-            reqPacket.HeroIndex = index;
-            Send(resPacket);
-        }
+			S_DeleteHeroRes resPacket = new S_DeleteHeroRes();
+			resPacket.Success = success;
+			resPacket.HeroIndex = index;
+			Send(resPacket);
+		}
 
         public void HandleEnterGame(C_EnterGame enterGamePacket)
         {
@@ -106,18 +108,12 @@ namespace Server
             if(hero == null) 
                 return;
 
-            GameLogic.Instance.Push(() =>
-            {
-                // ILHAK TO DO
-                GameRoom room = GameLogic.Find(1);
+			GameRoom room = GameLogic.Find(hero.MyHeroInfo.MapId);
+			if (room == null)
+				return;
 
-                room?.Push(() =>
-                {
-                    room.EnterGame(hero, respawn: false, cellPos: hero.CellPos);
-                });
-            });
-
-        }
+			room.Push(room.EnterGame, hero, hero.CellPos, false);
+		}
 
         public void HandleLeaveGame()
         {

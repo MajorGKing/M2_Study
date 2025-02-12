@@ -85,10 +85,9 @@ namespace Server
                 if (MyHero == null)
                     return;
 
-                // ILHAK TO DO
-                GameRoom room = GameLogic.Find(1);
-                if (room == null)
-                    return;
+                GameRoom room = GameLogic.Find(MyHero.MapId);
+				if (room == null)
+					return;
 
                 room.Push(room.LeaveGame, MyHero.ObjectId, ELeaveType.Disconnected);
             });

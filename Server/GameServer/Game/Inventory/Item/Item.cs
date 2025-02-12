@@ -78,7 +78,6 @@ namespace Server.Game
                 item.OwnerDbId = itemDb.OwnerDbId;
                 item.ItemSlotType = itemDb.EquipSlot;
                 item.Count = itemDb.Count;
-                item.EnchantCount = itemDb.EnchantCount;
             }
 
             return item;

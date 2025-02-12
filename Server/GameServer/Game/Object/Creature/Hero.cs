@@ -101,9 +101,9 @@ namespace GameServer
             InitializeItems(heroDb);
         }
 
-        public void SendChangeStat()
+        public void SendRefreshStat()
         {
-            S_ChangeStat changeStat = new S_ChangeStat();
+            S_RefreshStat changeStat = new S_RefreshStat();
             changeStat.TotalStatInfo = TotalStat;
             Session?.Send(changeStat);
         }
@@ -116,9 +116,9 @@ namespace GameServer
             InitStat(Level);
 
             //장비아이템 refresh
-            
+            Inven.ApplyEquipmentEffects();
 
-            SendChangeStat();
+            SendRefreshStat();
         }
 
 

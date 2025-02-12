@@ -1,16 +1,15 @@
 ﻿using Google.Protobuf.Protocol;
 using Server.Data;
-using static GameServer.Game.BuffStunPolicy;
 
 namespace GameServer.Game
 {
     public class EffectComponent
     {
-        public static int _effetIdGenerator = 1;
+        public static int _effectIdGenerator = 1;
 
         public static int GenerateEffectId()
         {
-            return Interlocked.Increment(ref _effetIdGenerator);
+            return Interlocked.Increment(ref _effectIdGenerator);
         }
 
         public static readonly Dictionary<EEffectType, IEffectPolicy> _policies = new Dictionary<EEffectType, IEffectPolicy>()
@@ -30,6 +29,12 @@ namespace GameServer.Game
             Owner = owner;
         }
 
+        public static Effect SpawnEffect(int effectId, int templateId, Creature owner, Creature caster, IEffectPolicy policy)
+        {
+            Effect effect = new Effect(effectId, templateId, owner, caster, policy);
+            return effect;
+        }
+
         public void ApplyEffect(int templateId, Creature caster)
         {
             if(DataManager.EffectDict.TryGetValue(templateId, out EffectData effectData) == false)
@@ -38,14 +43,11 @@ namespace GameServer.Game
             ApplyEffect(effectData, caster);
         }
 
-        public static Effect SpawnEffect(int effectId, int templateId, Creature owner, Creature caster, IEffectPolicy policy)
-        {
-            Effect effect = new Effect(effectId, templateId, owner, caster, policy);
-            return effect;
-        }
-
         public void ApplyEffect(EffectData effectData, Creature caster, bool send = true)
         {
+            if (effectData == null)
+                return;
+
             switch (effectData.DurationPolicy)
             {
                 case EDurationPolicy.Instant:
@@ -169,7 +171,7 @@ namespace GameServer.Game
 
             if (Owner.ObjectType == EGameObjectType.Hero)
             {
-                (Owner as Hero).SendChangeStat();
+                (Owner as Hero).SendRefreshStat();
             }
         }
 
@@ -184,7 +186,7 @@ namespace GameServer.Game
 
             if (Owner.ObjectType == EGameObjectType.Hero)
             {
-                (Owner as Hero).SendChangeStat();
+                (Owner as Hero).SendRefreshStat();
             }
         }
     }

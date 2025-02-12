@@ -149,7 +149,8 @@ message S_Die {
 	int32 attackerId = 2;
 }
 
-message S_ChangeStat {
+message S_RefreshStat 
+{
 	StatInfo totalStatInfo = 1;
 }
 

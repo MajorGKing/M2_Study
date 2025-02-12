@@ -36,7 +36,7 @@ namespace GameServer.Game
             if (room == null)
                 return;
             if (SkillData.Cost > 0)
-                Owner.Heal(EStatType.Mp, -SkillData.Cost);
+                Owner.AddStat(EStatType.Mp, -SkillData.Cost);
 
             Creature target = GetUseSkillTarget(Owner, SkillData, targetId);
 

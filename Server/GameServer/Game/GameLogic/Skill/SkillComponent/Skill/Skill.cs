@@ -53,7 +53,7 @@ namespace GameServer.Game
 
         public void UpdateCooltime()
         {
-            NextUseTick = Utils.TickCount + (long)(1000 * SkillData.Cooldown);
+            NextUseTick = Utils.TickCount + (long)(1000 * SkillData.Cooltime);
         }
         #endregion
 

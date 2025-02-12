@@ -1,8 +1,7 @@
 using Google.Protobuf.Protocol;
-using Data;
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using Data;
 using UnityEngine;
 
 public abstract class Skill
@@ -36,7 +35,7 @@ public abstract class Skill
             return ECanUseSkillFailReason.InvalidTarget;
 
         int dist = Owner.GetDistance(target);
-        if (dist > SkillData.SkillRange)
+        if (dist > GetSkillRange(target))
             return ECanUseSkillFailReason.SkillRange;
 
         if (Owner.Mp < SkillData.Cost)
@@ -46,6 +45,11 @@ public abstract class Skill
     }
 
     public abstract void UseSkill(Creature target);
+
+    public int GetSkillRange(Creature target)
+    {
+        return SkillData.SkillRange + target.ExtraCells + Owner.ExtraCells;
+    }
 
     #region 쿨타임 관리
     public long GetRemainingCooltimeInTicks()
@@ -75,6 +79,36 @@ public abstract class Skill
     #endregion
 
     #region 스킬 사용
+    public List<Creature> GatherSkillEffectTargets(Creature owner, SkillData skillData, Creature target)
+    {
+        List<Creature> targets = new List<Creature>();
+
+        if (skillData.IsSingleTarget)
+        {
+            if (IsValidTargetFriendType(owner, target, skillData.TargetFriendType))
+                targets.Add(target);
+        }
+        else
+        {
+            bool isSelfTarget = skillData.UseSkillTargetType == EUseSkillTargetType.Self;
+            Vector3Int pivot = isSelfTarget ? owner.CellPos : target.CellPos;
+
+            targets = Managers.Object.FindCreatures(pivot, (c) =>
+            {
+                if (IsValidTargetFriendType(owner, c, skillData.TargetFriendType) == false)
+                    return false;
+
+                int dist = isSelfTarget ? owner.GetDistance(c) : target.GetDistance(c);
+
+                if (dist > skillData.GatherTargetRange)
+                    return false;
+
+                return true;
+            });
+        }
+
+        return targets;
+    }
     public bool CheckCooltime()
     {
         return GetRemainingCooltimeInTicks() == 0;

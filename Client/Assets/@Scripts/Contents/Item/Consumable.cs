@@ -2,7 +2,6 @@ using Data;
 using Google.Protobuf.Protocol;
 using System;
 using static Define;
-using EquipmentData = Data.EquipmentData;
 
 public class Consumable : Item
 {
@@ -32,15 +31,15 @@ public class Consumable : Item
         }
     }
 
-    #region ¼Ò¸ðÇ°/ÄðÅ¸ÀÓ
+	#region ì†Œëª¨í’ˆ/ì¿¨íƒ€ìž„
 
     public override bool CanUseItem()
     {
-        // 1. ¼ö·® È®ÀÎ.
+        // 1. Â¼Ã¶Â·Â® ÃˆÂ®Ã€ÃŽ.
         if (Count <= 0)
             return false;
 
-        // 2. ÄðÅ¸ÀÓ È®ÀÎ.
+        // 2. Ã„Ã°Ã…Â¸Ã€Ã“ ÃˆÂ®Ã€ÃŽ.
         if (GetRemainingCooltimeInTicks() > 0)
             return false;
 
@@ -51,19 +50,19 @@ public class Consumable : Item
     {
         long nextUseTick = Utils.TickCount + remainingTicks;
 
-        // ±×·ì ÄðÅ¸ÀÓ Àû¿ë.
+        // Â±Ã—Â·Ã¬ Ã„Ã°Ã…Â¸Ã€Ã“ Ã€Ã»Â¿Ã«.
         if (ConsumableGroupType != EConsumableGroupType.None)
             Managers.Inventory.ItemGroupCooltimeDic[ConsumableGroupType] = nextUseTick;
         else
             _nextUseTick = nextUseTick;
 
-        // 2. ÀÌº¥Æ® ÀüÆÄ.
+        // 2. Ã€ÃŒÂºÂ¥Ã†Â® Ã€Ã¼Ã†Ã„.
         Managers.Event.TriggerEvent(EEventType.InventoryChanged);
     }
 
     public int GetRemainingCooltimeInTicks()
     {
-        // ±×·ì ÄðÅ¸ÀÓ Àû¿ë.
+        // Â±Ã—Â·Ã¬ Ã„Ã°Ã…Â¸Ã€Ã“ Ã€Ã»Â¿Ã«.
         if (ConsumableGroupType != EConsumableGroupType.None)
             return Managers.Inventory.GetRemainingItemGroupCooltimeInTicks(ConsumableGroupType);
 

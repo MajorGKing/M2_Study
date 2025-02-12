@@ -1,7 +1,6 @@
 using Data;
 using Google.Protobuf.Protocol;
 using System;
-using EquipmentData = Data.EquipmentData;
 
 public class Item
 {
@@ -28,12 +27,6 @@ public class Item
     {
         get { return Info.ItemSlotType; }
         set { Info.ItemSlotType = value; }
-    }
-
-    public int EnchanCount
-    {
-        get { return Info.EnchantCount; }
-        set { Info.EnchantCount = value; }
     }
 
     public int OwnerId { get; set; }

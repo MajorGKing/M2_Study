@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -14,11 +12,11 @@ public class MapTool : MonoBehaviour
         TileBase terrainO = AssetDatabase.LoadAssetAtPath<TileBase>("Assets/@Resources/TileMaps/01_asset/dev/Collider/terrain_O.asset");
         GameObject parent = tilemap_collision.transform.parent.gameObject;
 
-        Tilemap pivot = Utils.FindChild<Tilemap>(parent, "Terrain_01");
-        pivot.CompressBounds();
+        // Tilemap pivot =Utils.FindChild<Tilemap>(parent,"Terrain_01", true);
+        // pivot.CompressBounds();
 
-        tilemap_collision.origin = pivot.origin * 2;
-        tilemap_collision.size = pivot.size * 2;
+        // tilemap_collision.origin = pivot.origin * 2;
+        // tilemap_collision.size = pivot.size * 2;
 
         for (int y = tilemap_collision.cellBounds.yMax; y >= tilemap_collision.cellBounds.yMin; y--)
         {

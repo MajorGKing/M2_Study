@@ -27,11 +27,11 @@ public enum MsgId
 	C_Pong = 19,
 	C_Skill = 20,
 	S_Skill = 21,
-	S_ChangeHp = 22,
+	S_ChangeOneStat = 22,
 	S_ApplyEffect = 23,
 	S_RemoveEffect = 24,
 	S_Die = 25,
-	S_ChangeStat = 26,
+	S_RefreshStat = 26,
 	C_EquipItem = 27,
 	C_UnEquipItem = 28,
 	S_AddItem = 29,
@@ -88,16 +88,16 @@ class PacketManager
 		_handler.Add((ushort)MsgId.S_Ping, PacketHandler.S_PingHandler);		
 		_onRecv.Add((ushort)MsgId.S_Skill, MakePacket<S_Skill>);
 		_handler.Add((ushort)MsgId.S_Skill, PacketHandler.S_SkillHandler);		
-		_onRecv.Add((ushort)MsgId.S_ChangeHp, MakePacket<S_ChangeHp>);
-		_handler.Add((ushort)MsgId.S_ChangeHp, PacketHandler.S_ChangeHpHandler);		
+		_onRecv.Add((ushort)MsgId.S_ChangeOneStat, MakePacket<S_ChangeOneStat>);
+		_handler.Add((ushort)MsgId.S_ChangeOneStat, PacketHandler.S_ChangeOneStatHandler);		
 		_onRecv.Add((ushort)MsgId.S_ApplyEffect, MakePacket<S_ApplyEffect>);
 		_handler.Add((ushort)MsgId.S_ApplyEffect, PacketHandler.S_ApplyEffectHandler);		
 		_onRecv.Add((ushort)MsgId.S_RemoveEffect, MakePacket<S_RemoveEffect>);
 		_handler.Add((ushort)MsgId.S_RemoveEffect, PacketHandler.S_RemoveEffectHandler);		
 		_onRecv.Add((ushort)MsgId.S_Die, MakePacket<S_Die>);
 		_handler.Add((ushort)MsgId.S_Die, PacketHandler.S_DieHandler);		
-		_onRecv.Add((ushort)MsgId.S_ChangeStat, MakePacket<S_ChangeStat>);
-		_handler.Add((ushort)MsgId.S_ChangeStat, PacketHandler.S_ChangeStatHandler);		
+		_onRecv.Add((ushort)MsgId.S_RefreshStat, MakePacket<S_RefreshStat>);
+		_handler.Add((ushort)MsgId.S_RefreshStat, PacketHandler.S_RefreshStatHandler);		
 		_onRecv.Add((ushort)MsgId.S_AddItem, MakePacket<S_AddItem>);
 		_handler.Add((ushort)MsgId.S_AddItem, PacketHandler.S_AddItemHandler);		
 		_onRecv.Add((ushort)MsgId.S_UpdateItem, MakePacket<S_UpdateItem>);

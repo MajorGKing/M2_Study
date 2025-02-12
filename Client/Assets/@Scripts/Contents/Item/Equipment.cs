@@ -1,6 +1,5 @@
 using Data;
 using Google.Protobuf.Protocol;
-using System;
 using EquipmentData = Data.EquipmentData;
 
 public class Equipment : Item

@@ -1,5 +1,4 @@
 using Google.Protobuf.Protocol;
-using Data;
 
 public class ProjectileSkill : Skill
 {

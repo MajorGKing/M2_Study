@@ -11,6 +11,7 @@ public class ObjectManager
     public MyHero MyHero { get; set; }
     Dictionary<int, GameObject> _objects = new Dictionary<int, GameObject>();
     Dictionary<int, Monster> _monsters = new Dictionary<int, Monster>();
+    Dictionary<int, Hero> _heroes = new Dictionary<int, Hero>();
 
     #region Roots
     public Transform GetRootTransform(string name)
@@ -326,6 +327,42 @@ public class ObjectManager
         }
 
         return ret;
+    }
+
+    public List<Hero> FindHeroes(Vector3Int pos, Func<Hero, bool> condition = null)
+    {
+        List<Hero> objs = new List<Hero>();
+
+        foreach (Hero hero in _heroes.Values.ToList())
+        {
+            if (condition == null || condition.Invoke(hero) == false)
+                continue;
+            objs.Add(hero);
+        }
+
+        return objs;
+    }
+
+    public List<Monster> FindMonsters(Vector3Int pos, Func<Monster, bool> condition = null)
+    {
+        List<Monster> objs = new List<Monster>();
+
+        foreach (Monster monster in _monsters.Values.ToList())
+        {
+            if (condition == null || condition.Invoke(monster) == false)
+                continue;
+
+            objs.Add(monster);
+        }
+        return objs;
+    }
+
+    public List<Creature> FindCreatures(Vector3Int pos, Func<Creature, bool> condition = null)
+    {
+        List<Creature> objs = new List<Creature>();
+        objs.AddRange(FindHeroes(pos, condition));
+        objs.AddRange(FindMonsters(pos, condition));
+        return objs;
     }
     #endregion
 

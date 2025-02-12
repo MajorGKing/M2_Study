@@ -210,6 +210,24 @@ namespace GameServer
         }
         #endregion
 
+        #region Battle
+        private IJob _onDeadJob;
+        public void ReserveRebirth()
+        {
+            GameRoom room = Room;
+            _onDeadJob = Room?.PushAfter(3000, () =>
+            {
+                room.EnterGame(this, cellPos: CellPos);
+            });
+        }
+
+        public void CancelJobs()
+        {
+            if (_onDeadJob != null)
+                _onDeadJob.Cancel = true;
+        }
+        #endregion
+
         #region Level System
         public void AddExp(int amount)
         {

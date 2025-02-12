@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace GameServer.Game
@@ -32,28 +33,13 @@ namespace GameServer.Game
             Owner = owner;
             _spawningPoolData = spawningPoolData;
 
-            //// Monster
-            //foreach (RespawnInfo respawnInfo in spawningPoolData.monsters)
-            //{
-            //    for (int i = 0; i < respawnInfo.Count; i++)
-            //    {
-            //        //Console.WriteLine($"Monster TemplateId is : {respawnInfo.TemplateId}"); ;
-
-            //        Monster monster = ObjectManager.Instance.Spawn<Monster>(respawnInfo.TemplateId);
-            //        _gameobjects.Add(monster.ObjectId, monster);
-
-            //        //Console.WriteLine($"Monster ObjectId is : {monster.ObjectId}");
-
-            //        // 몬스터 생성.
-            //        Owner.Push(() => Owner.EnterGame(monster, true));
-            //    }
-            //}
             // Monster
             foreach (RespawnData respawnData in spawningPoolData.RespawnDatas)
             {
                 for (int i = 0; i < respawnData.Count; i++)
                 {
                     Monster monster = ObjectManager.Instance.Spawn<Monster>(respawnData.MonsterDataId);
+                    monster.SpawnRange = respawnData.SpawnRange;
                     _gameobjects.Add(monster.ObjectId, monster);
 
                     // 몬스터 생성.
@@ -129,24 +115,11 @@ namespace GameServer.Game
                     monster.Reset();
                     // 입장
                     Vector2Int pivotPos = new Vector2Int(respawnData.PivotPosX, respawnData.PivotPosY);
-                    Owner.EnterGame(monster, pivotPos, true);
+                    Vector2Int pos = GetRandomSpawnPos(monster, respawnData.SpawnRange, pivotPos);
+                    Owner.EnterGame(monster, pos, true);
                 });
 
                 return;
-
-                //// 1. 몬스터 리셋.
-                //monster.Reset();
-
-                //// 2. 방에서 제거.
-                //Owner.LeaveGame(go.ObjectId);
-
-                //// 3. 리스폰 예약.
-                //Owner.PushAfter(respawnInfo.respawnTime * 1000, () =>
-                //{
-                //    Owner.EnterGame(monster, true);
-                //});
-
-                //return;
             }
         }
 

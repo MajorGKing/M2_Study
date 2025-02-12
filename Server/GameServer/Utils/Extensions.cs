@@ -37,5 +37,18 @@ namespace GameServer
             }
             return true;
         }
+
+        public static void Shuffle<T>(this IList<T> list)
+        {
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                Random _rand = new Random();
+                int k = _rand.Next(0, n + 1);
+                (list[k], list[n]) = (list[n], list[k]);//swap
+            }
+        }
     }
+
 }

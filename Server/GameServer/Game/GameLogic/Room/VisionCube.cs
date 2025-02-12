@@ -81,24 +81,22 @@ namespace GameServer
             {
                 S_Spawn spawnPacket = new S_Spawn();
 
-                foreach (BaseObject obj in added)
-                {
-                    if (obj.ObjectType == EGameObjectType.Hero)
-                    {
-                        Hero player = (Hero)obj;
-                        HeroInfo info = new HeroInfo(); // TODO CHECK
-                        info.MergeFrom(player.HeroInfo);
-                        spawnPacket.Heroes.Add(info);
-                    }
-                    else if (obj.ObjectType == EGameObjectType.Monster)
-                    {
-                        Monster monster = (Monster)obj;
-                        CreatureInfo info = new CreatureInfo();
-                        info.MergeFrom(monster.CreatureInfo);
-                        spawnPacket.Creatures.Add(info);
-
-                        //Console.WriteLine("AOI Monster Spawn");
-                    }
+				foreach (BaseObject obj in added)
+				{
+					if (obj.ObjectType == EGameObjectType.Hero)
+					{
+						Hero hero = (Hero)obj;
+						HeroInfo info = new HeroInfo(); // TODO CHECK
+						info.MergeFrom(hero.HeroInfo);
+						spawnPacket.Heroes.Add(info);
+					}
+					else if (obj.ObjectType == EGameObjectType.Monster)
+					{ 
+						Monster monster = (Monster)obj;
+						CreatureInfo info = new CreatureInfo();
+						info.MergeFrom(monster.CreatureInfo);
+						spawnPacket.Creatures.Add(info);
+					}
                     else
                     {
                         ObjectInfo info = new ObjectInfo();

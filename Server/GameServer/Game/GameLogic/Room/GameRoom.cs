@@ -4,18 +4,13 @@ using Google.Protobuf.Protocol;
 using Server;
 using Server.Data;
 using Server.Game;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace GameServer
 {
     public partial class GameRoom : JobSerializer
     {
-        public const int VisionCells = 10;
+        public const int VisionCells = 15;
         public int GameRoomId { get; set; }
         public int TemplateId { get; set; }
         public RoomData RoomData { get; set; }
@@ -74,6 +69,8 @@ namespace GameServer
         {
             if (obj == null)
                 return;
+            if (obj.Room != null && obj.Room != this)
+				return;
 
             EGameObjectType type = ObjectManager.GetObjectTypeFromId(obj.ObjectId);
 
@@ -81,7 +78,11 @@ namespace GameServer
             {
                 Hero hero = (Hero)obj;
 
-                // 1. 오브젝트 추가 및 방 설정
+                // TODO : 왜인지 중복 키가 들어있는 경우가 있음
+                if (_heroes.ContainsKey(obj.ObjectId))
+                    return;
+
+                // 1. 오브젝트 추가 및 방 설정.
                 _heroes.Add(obj.ObjectId, hero);
                 hero.Room = this;
                 hero.MyHeroInfo.MapId = GameRoomId;
@@ -147,6 +148,7 @@ namespace GameServer
 
                 // 5. 틱 시작.
                 monster.State = EObjectState.Idle;
+                monster.SpawnPosition = cellPos;
                 monster.Update();
 
                 // 6. 다른 사람들한테 입장 알려주기.
@@ -235,12 +237,12 @@ namespace GameServer
                 // 6. DB에 좌표 등 정보 저장.
                 DBManager.SaveHeroDbNoti(hero);
 
-                //if (kick)
-                //{
-                //    // 로비로 강퇴
-                //    //S_Kick kickPacket = new S_Kick();
-                //    //player.Session?.Send(kickPacket);
-                //}
+                //7. Disconnected이면 예약한 job 취소
+                if (leaveType == ELeaveType.Disconnected)
+                {
+                    hero.CancelJobs();
+                }
+
             }
             else if(type == EGameObjectType.Monster)
             {
@@ -320,16 +322,16 @@ namespace GameServer
 
             byte[] packetBuffer = ClientSession.MakeSendBuffer(packet);
 
-            foreach (Hero p in zones.SelectMany(z => z.Heroes))
+            foreach (Hero hero in zones.SelectMany(z => z.Heroes))
             {
-                int dx = p.CellPos.x - pos.x;
-                int dy = p.CellPos.y - pos.y;
+                int dx = hero.CellPos.x - pos.x;
+                int dy = hero.CellPos.y - pos.y;
                 if (Math.Abs(dx) > GameRoom.VisionCells)
                     continue;
                 if (Math.Abs(dy) > GameRoom.VisionCells)
                     continue;
 
-                p.Session?.Send(packetBuffer);
+                hero.Session?.Send(packetBuffer);
             }
         }
 
@@ -367,32 +369,57 @@ namespace GameServer
             return zones.ToList();
         }
 
-        // TODO : 임시 버전
-        public Vector2Int GetRandomSpawnPos(BaseObject obj, bool checkObjects = true)
+        public Vector2Int GetNearbyPosition(BaseObject obj, Vector2Int pivot)
         {
-            Vector2Int randomPos;
+            Queue<Vector2Int> queue = new Queue<Vector2Int>();
+            HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
 
-            int delta = 10;
-            const int tryCount = 100;
+            queue.Enqueue(pivot);
+            visited.Add(pivot);
 
-            while (true)
+            while (queue.Count > 0)
             {
-                for (int i = 0; i < tryCount; i++)
+                Vector2Int current = queue.Dequeue();
+
+                if (Map.CanGo(obj, current))
+                    return current;
+
+                List<Vector2Int> neighbors = new List<Vector2Int>
                 {
-                    randomPos.x = _rand.Next(-delta, delta) + obj.CellPos.x;
-                    randomPos.y = _rand.Next(-delta, delta) + obj.CellPos.x;
+                    new Vector2Int(current.x - 1, current.y),
+                    new Vector2Int(current.x + 1, current.y),
+                    new Vector2Int(current.x, current.y - 1),
+                    new Vector2Int(current.x, current.y + 1)
+                };
 
-                    if (Map.CanGo(obj, randomPos, checkObjects: true))
-                        return randomPos;
+                neighbors.Shuffle();
+
+                foreach (Vector2Int neighbor in neighbors)
+                {
+                    if (!visited.Contains(neighbor))
+                    {
+                        visited.Add(neighbor);
+                        queue.Enqueue(neighbor);
+                    }
                 }
-
-                delta *= 2;
             }
+
+            return Vector2Int.zero;
         }
 
-        public List<T> FindAdjacents<T>(Vector2Int pos, Func<T, bool> condition = null, int cells = GameRoom.VisionCells) where T : BaseObject
+        public Hero FindAnyHero(Func<BaseObject, bool> condition)
         {
-            List<T> objs = new List<T>();
+            foreach (Hero hero in _heroes.Values)
+            {
+                if (condition.Invoke(hero))
+                    return hero;
+            }
+
+            return null;
+        }
+
+        public T FindAdjacent<T>(Vector2Int pos, Func<T, bool> condition = null, int cells = GameRoom.VisionCells) where T : BaseObject
+        {
             List<Zone> zones = GetAdjacentZones(pos, cells);
 
             if (typeof(T) == typeof(Hero))
@@ -408,12 +435,12 @@ namespace GameServer
                     if (condition == null || condition.Invoke(p as T) == false)
                         continue;
 
-                    objs.Add(p as T);
+                    return p as T;
                 }
             }
             else if (typeof(T) == typeof(Monster))
             {
-                foreach(Monster m in zones.SelectMany(z => z.Monsters))
+                foreach (Monster m in zones.SelectMany(z => z.Monsters))
                 {
                     int dx = m.CellPos.x - pos.x;
                     int dy = m.CellPos.y - pos.y;
@@ -424,11 +451,11 @@ namespace GameServer
                     if (condition == null || condition.Invoke(m as T) == false)
                         continue;
 
-                    objs.Add(m as T);
+                    return m as T;
                 }
             }
 
-            return objs;
+            return null;
         }
 
         public List<Hero> FindAdjacentHeroes(Vector2Int pos, Func<Hero, bool> condition = null, int cells = GameRoom.VisionCells)
@@ -510,12 +537,12 @@ namespace GameServer
             return null;
         }
 
-        private void FindAndSetCellPos(BaseObject obj, Vector2Int? pos = null)
+        private void FindAndSetCellPos(BaseObject obj, Vector2Int pos)
         {
-            if(pos.HasValue && Map.CanGo(obj, pos.Value, checkObjects:true))
-                obj.CellPos = pos.Value;
+            if (Map.CanGo(obj, pos, checkObjects: true))
+                obj.CellPos = pos;
             else
-                obj.CellPos = GetRandomSpawnPos(obj, checkObjects:true);
+                obj.CellPos = GetNearbyPosition(obj, pos);
         }
     }
 }

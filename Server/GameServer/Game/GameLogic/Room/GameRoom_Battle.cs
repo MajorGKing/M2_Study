@@ -7,11 +7,15 @@ namespace GameServer
 {
     public partial class GameRoom : JobSerializer
     {
+        protected IJob _onDeadJob;
+
         public void HandleMove(Hero hero, C_Move movePacket)
         {
             if (hero == null)
                 return;
             if (hero.State == EObjectState.Dead)
+                return;
+            if (hero.IsStunned)
                 return;
 
             PositionInfo movePosInfo = movePacket.PosInfo;
@@ -52,17 +56,11 @@ namespace GameServer
 
             if(gameObject.ObjectType == EGameObjectType.Hero)
             {
-                Console.WriteLine("Hero Dead!");
-                LeaveGame(gameObject.ObjectId);
-
                 // TODO : 마을에서 리스폰
                 Hero hero = gameObject as Hero;
                 hero.Reset();
-
-                PushAfter(3000, () =>
-                {
-                    EnterGame(hero, cellPos: hero.CellPos);
-                });
+                hero.ReserveRebirth();
+                LeaveGame(gameObject.ObjectId, ELeaveType.Dead);
 
                 return;
             }

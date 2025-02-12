@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace GameServer.Game
 {
-    internal class ProjectileSkill : Skill
-    {
-        public ProjectileSkill(int templatedId, Creature owner) : base(templatedId, owner)
+	public class ProjectileSkill : Skill
+	{
+        public ProjectileSkill(int templateId, Creature owner) : base(templateId, owner)
         {
         }
 
@@ -39,7 +39,7 @@ namespace GameServer.Game
             Creature target = GetUseSkillTarget(Owner, SkillData, targetId);
             if (target == null)
                 return;
-            Projectile projectile = ObjectManager.Instance.Spawn<Projectile>(SkillData.ProjectileId);
+            Projectile projectile = ObjectManager.Instance.Spawn<Projectile>(SkillData.ProjectileData.TemplateId);
             if (projectile == null)
                 return;
 

@@ -84,7 +84,8 @@ namespace GameServer.Game
             if (target == null)
                 return false;
             int dist = Owner.GetDistance(target);
-            if (dist > SkillData.SkillRange)
+            //if (dist > SkillData.SkillRange)
+            if (dist > GetSkillRange(targetId))
                 return false;
 
             return true;
@@ -128,7 +129,6 @@ namespace GameServer.Game
                     return owner;
             }
 
-            //Creature target = owner.Room.GetCreatureById(skillContext.TargetId);
             Creature target = owner.Room.GetCreatureById(targetId);
 
             if (IsValidUseSkillTargetType(owner, target, skillData.UseSkillTargetType) == false)
@@ -167,21 +167,9 @@ namespace GameServer.Game
                     if (dist > skillData.GatherTargetRange)
                         return false;
 
-                    return true;
-                });
-
-                //targets = owner.Room.FindAdjacentCreatures(owner.CellPos, (c) =>
-                //{
-                //    if (IsValidTargetFriendType(owner, c, skillData.TargetFriendType) == false)
-                //        return false;
-
-                //    int dist = owner.GetDistance(c);
-                //    if (dist > skillData.GatherTargetRange)
-                //        return false;
-
-                //    return true;
-                //});
-            }
+					return true;
+				});
+			}
 
             return targets;
         }
@@ -199,22 +187,15 @@ namespace GameServer.Game
             // TEMP : 스킬 사용 Broadcast (꼭 상태 변화가 필요할까?)
             Owner.ObjectInfo.PosInfo.State = EObjectState.Skill;
 
-            S_Skill skillPacket = new S_Skill()
-            {
-                //OptionalContext = new SkillContext(),
-                //ObjectId = Owner.ObjectInfo.ObjectId,
-                //SkillId = _skillData.TemplateId
-                ObjectId = Owner.ObjectInfo.ObjectId,
-                TemplateId = SkillData.TemplateId,
-                TargetId = target.ObjectId,
-            };
+			S_Skill skillPacket = new S_Skill()
+			{
+				ObjectId = Owner.ObjectInfo.ObjectId,
+				TemplateId = SkillData.TemplateId,
+				TargetId = target.ObjectId,
+			};
 
-            //skillPacket.OptionalContext.PosX = target.CellPos.x;
-            //skillPacket.OptionalContext.PosY = target.CellPos.y;
-            //skillPacket.OptionalContext.TargetId = target.ObjectId;
-
-            Owner.Room.Broadcast(Owner.CellPos, skillPacket);
-        }
-        #endregion
-    }
+			Owner.Room.Broadcast(Owner.CellPos, skillPacket);
+		}
+		#endregion
+	}
 }

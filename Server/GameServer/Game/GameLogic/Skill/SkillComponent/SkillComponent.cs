@@ -1,7 +1,7 @@
 ﻿using Google.Protobuf.Protocol;
 using Server.Data;
 using Server.Game;
-using System.Xml;
+
 
 namespace GameServer.Game
 {
@@ -26,10 +26,10 @@ namespace GameServer.Game
             return _skills.Values.First();
         }
 
-        public Skill GetSkill(int templatedId)
-        {
-            if(_skills.TryGetValue(templatedId, out Skill skill))
-                return skill;
+		public Skill GetSkill(int templateId)
+		{
+			if (_skills.TryGetValue(templateId, out Skill skill))
+				return skill;
 
             return null;
         }
@@ -39,11 +39,11 @@ namespace GameServer.Game
             return _skills.Values.ToList();
         }
 
-        public bool CanUseSkill(int templatedId)
-        {
-            Skill skill = GetSkill(templatedId);
-            if (skill == null)
-                return false;
+        public bool CanUseSkill(int templateId)
+		{
+			Skill skill = GetSkill(templateId);
+			if (skill == null)
+				return false;
 
             return skill.CheckCooltimeAndState();
         }

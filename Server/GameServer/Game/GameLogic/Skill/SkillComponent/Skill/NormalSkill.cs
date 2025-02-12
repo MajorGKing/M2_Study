@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace GameServer.Game
 {
-    public class NormalSkill : Skill
-    {
-        public NormalSkill(int templatedId, Creature owner) : base(templatedId, owner)
+	public class NormalSkill : Skill
+	{
+        public NormalSkill(int templateId, Creature owner) : base(templateId, owner)
         {
         }
 
@@ -48,12 +48,12 @@ namespace GameServer.Game
                 //{
                 //    Console.WriteLine("Null!");
                 //}
-                if (Owner.ObjectType == EGameObjectType.Hero)
-                {
-                    //Console.WriteLine($"{Owner} attack {t.ObjectId} by normal {_skillData.EffectData.Name}!");
-                    Console.WriteLine($"{Owner} attack {t.ObjectId} by normal {SkillData.Name}!");
-                }
-                room.PushAfter((int)(SkillData.DelayTime * 1000), AddEffect, t, Owner, SkillData.EffectData);
+                //if (Owner.ObjectType == EGameObjectType.Hero)
+                //{
+                //    //Console.WriteLine($"{Owner} attack {t.ObjectId} by normal {_skillData.EffectData.Name}!");
+                //    Console.WriteLine($"ILHAK {Owner} attack {t.ObjectId} by normal {SkillData.Name}!");
+                //}
+                room?.PushAfter((int)(SkillData.DelayTime * 1000), AddEffect, t, Owner, SkillData.EffectData);
             }
 
             BroadcastSkill(target);

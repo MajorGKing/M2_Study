@@ -23,11 +23,11 @@ namespace GameServer
 
         public int Count { get { lock (_lock) { return _pq.Count; } } }
 
-        public void Push(IJob job, int tickAfter = 0)
-        {
-            JobTimerElem jobElement;
-            jobElement.execTick = Utils.TickCount + tickAfter;
-            jobElement.job = job;
+		public void Push(IJob job, float tickAfter = 0)
+		{
+			JobTimerElem jobElement;
+			jobElement.execTick = (long)(Utils.TickCount + tickAfter);
+			jobElement.job = job;
 
             lock (_lock)
             {

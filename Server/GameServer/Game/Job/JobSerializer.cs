@@ -51,7 +51,7 @@ namespace GameServer
 
 			while (true)
 			{
-				IJob job = Pop();
+				IJob job = TryPop();
 				if (job == null)
 					return;
 
@@ -59,7 +59,7 @@ namespace GameServer
 			}
 		}
 
-		IJob Pop()
+		IJob TryPop()
 		{
 			lock (_lock)
 			{

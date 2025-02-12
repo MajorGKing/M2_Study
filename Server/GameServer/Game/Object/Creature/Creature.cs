@@ -65,6 +65,12 @@ namespace GameServer
         public float GetTotalStat(EStatType statType) { return StatGetters[statType](TotalStat); }
         public void SetBaseStat(EStatType statType, float value) { StatSetters[statType](BaseStat, value); }
         public void SetBonusStat(EStatType statType, float value) { StatSetters[statType](BonusStat, value); }
+        protected void AddTotalStat(EStatType statType, float value)
+        {
+            float finalValue = GetTotalStat(statType) + value;
+            SetTotalStat(statType, finalValue);
+        }
+
         public void SetTotalStat(EStatType statType, float value)
         {
             StatSetters[statType](TotalStat, value);
@@ -81,6 +87,12 @@ namespace GameServer
         {
             get { return TotalStat.Mp; }
             set { SetTotalStat(EStatType.Mp, Math.Clamp(value, 0, TotalStat.MaxMp)); }
+        }
+
+        public float Defence
+        {
+            get { return TotalStat.Defence; }
+            set { SetTotalStat(EStatType.Defence, value); }
         }
 
         public float MoveSpeed
@@ -138,23 +150,10 @@ namespace GameServer
                 return 0;
 
             // 데미지 감소
-            damage = Math.Max(damage - TotalStat.Defence, 0);
+            float finalDamage = Math.Max(damage - Defence, 0);
+            AddStat(EStatType.Hp, -finalDamage, EFontType.Hit);
 
-            //Console.WriteLine($"{ObjectId}'s Defence is {TotalStat.Defence}. HP : {TotalStat.Hp} \tDamaged : {damage}");
-
-            TotalStat.Hp = Math.Max(TotalStat.Hp - damage, 0);
-
-            //Console.WriteLine($"{ObjectId} Changed HP : {TotalStat.Hp}");
-
-            S_ChangeHp changePacket = new S_ChangeHp();
-            changePacket.ObjectId = ObjectId;
-            changePacket.Hp = TotalStat.Hp;
-            changePacket.Mp = TotalStat.Mp;
-            changePacket.Damage = damage;
-            changePacket.DamageType = EDamageType.Hit;
-            Room.Broadcast(CellPos, changePacket);
-
-            if(TotalStat.Hp <= 0)
+            if (TotalStat.Hp <= 0)
             {
                 OnDead(attacker);
             }
@@ -182,30 +181,38 @@ namespace GameServer
             return IsEnemy(target) == false;
         }
 
-        public void Heal(EStatType statType, int add)
+        public void AddStat(EStatType statType, float diff, EFontType fontType, bool sendPacket = true)
         {
-            if (add == 0)
+            if (diff == 0)
                 return;
 
             if (State == EObjectState.Dead)
                 return;
 
-            if (statType == EStatType.Hp)
-                Hp = Math.Min(Hp + add, GetTotalStat(EStatType.MaxHp));
-            else if (statType == EStatType.Mp)
-                Mp = Math.Min(Mp + add, GetTotalStat(EStatType.MaxMp));
+            AddTotalStat(statType, diff);
 
-            S_ChangeHp changePacket = new S_ChangeHp();
+            if (sendPacket == false)
+                return;
+
+            S_ChangeOneStat changePacket = new S_ChangeOneStat();
             changePacket.ObjectId = ObjectId;
-            changePacket.Hp = Hp;
-            changePacket.Mp = Mp;
-            changePacket.Damage = add;
-            if (statType == EStatType.Hp)
-                changePacket.DamageType = EDamageType.HealHp;
-            else
-                changePacket.DamageType = EDamageType.HealMp;
+            changePacket.StatType = statType;
+            changePacket.Value = GetTotalStat(statType);
+            changePacket.Diff = diff;
+            changePacket.FontType = fontType;
 
+            // 다 보내고 클라에서 조건부로 처리
             Room?.Broadcast(CellPos, changePacket);
+
+            //if (ObjectType == EGameObjectType.Hero)
+            //{
+            //	Hero hero = (Hero)this;
+            //	hero.Session?.Send(changePacket);
+            //}
+            //else
+            //{
+            //	Room?.Broadcast(CellPos, changePacket);
+            //}
         }
 
         public virtual void Reset()

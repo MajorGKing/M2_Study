@@ -44,7 +44,7 @@ namespace GameServer.Game
                 return;
 
             if (SkillData.Cost > 0)
-                Owner.AddStat(EStatType.Mp, -SkillData.Cost);
+                Owner.AddStat(EStatType.Mp, -SkillData.Cost, EFontType.Cost);
 
             projectile.Init(SkillData, target);
             

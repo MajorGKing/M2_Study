@@ -119,13 +119,13 @@ message S_Skill
 	int32 targetId = 3;
 }
 
-message S_ChangeHp 
+message S_ChangeOneStat
 {
 	int32 objectId = 1;
-	float hp = 2;
-	float mp = 3;
-	float damage = 4;
-	EDamageType damageType = 5;
+	EStatType statType = 2;
+	float value = 3;
+	float diff = 4;
+	EFontType fontType = 5;
 }
 
 message S_ApplyEffect

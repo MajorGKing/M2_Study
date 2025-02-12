@@ -53,7 +53,7 @@ namespace GameServer
 
             foreach (var skillData in monsterData.SkillMap.Values)
             {
-                Console.WriteLine($"{Data.Name} add Skill : {skillData.Name} , {skillData.EffectData}");
+                //Console.WriteLine($"{Data.Name} add Skill : {skillData.Name} , {skillData.EffectData}");
                 SkillComp.RegisterSkill(skillData.TemplateId);
             }
         }
@@ -78,11 +78,7 @@ namespace GameServer
         {
             float ret = base.OnDamaged(attacker, damage);
 
-            // 비선공몹은 데미지를 입으면 반격함
-            if (MonsterData.IsAggressive == false)
-            {
-                _ai.OnDamaged(attacker, damage);
-            }
+            _ai.OnDamaged(attacker, damage);
 
             return ret;
         }
@@ -108,8 +104,14 @@ namespace GameServer
                     hero.RewardExpAndGold(MonsterData.DropTable);
             }
 
-            _ai.OnDead(attacker);
             base.OnDead(attacker);
+            _ai.OnDead(attacker);
+        }
+
+        public override void Reset()
+        {
+            base.Reset();
+            _ai.Reset();
         }
 
         private RewardData GetRandomReward()

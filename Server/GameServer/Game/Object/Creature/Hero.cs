@@ -24,9 +24,9 @@ namespace GameServer
         public int HeroDbId { get; set; }
 
         // 남한테 보낼 때 사용하는 정보
-        public HeroInfo HeroInfo { get; private set; } = new HeroInfo();
+        public HeroInfo HeroInfo { get; set; } = new HeroInfo();
         // 스스로한테 보낼 때 사용하는 정보
-        public MyHeroInfo MyHeroInfo { get; private set; } = new MyHeroInfo();
+        public MyHeroInfo MyHeroInfo { get; set; } = new MyHeroInfo();
 
         #region HeroInfo Values
 
@@ -60,6 +60,12 @@ namespace GameServer
             get { return HeroInfo.Name; }
             set { HeroInfo.Name = value; }
         }
+
+        public int MapId
+        {
+            get { return MyHeroInfo.MapId; }
+            set { MyHeroInfo.MapId = value; }
+        }
         #endregion
 
         // 여기 들어올 때 ID 발급은 아직 안된 상태
@@ -85,6 +91,7 @@ namespace GameServer
             HeroInfo.Gender = heroDb.Gender;
             HeroInfo.ClassType = heroDb.ClassType;
 
+            MyHeroInfo.MapId = heroDb.MapId;
             MyHeroInfo.HeroInfo = HeroInfo;
             MyHeroInfo.Exp = heroDb.Exp;
             HeroInfo.CreatureInfo = CreatureInfo;
@@ -121,16 +128,6 @@ namespace GameServer
             SendRefreshStat();
         }
 
-
-        //public void RefreshTotalStat(bool notifyToClient = false)
-        //{
-        //    if (notifyToClient)
-        //    {
-        //        S_ChangeStat changeStat = new S_ChangeStat();
-        //        changeStat.TotalStatInfo = TotalStat;
-        //        Session?.Send(changeStat);
-        //    }
-        //}
 
         #region Init
         private void InitStat(int level, bool MaxHp = true)
@@ -207,6 +204,7 @@ namespace GameServer
         {
             base.Reset();
             //장착한 아이템 이펙트 적용
+            Inven.ApplyEquipmentEffects();
         }
         #endregion
 

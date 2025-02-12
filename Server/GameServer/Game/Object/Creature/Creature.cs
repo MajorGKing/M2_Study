@@ -2,7 +2,7 @@
 using Google.Protobuf.Protocol;
 using Server.Data;
 using ServerCore;
-using System.Collections.ObjectModel;
+
 
 namespace GameServer
 {
@@ -13,7 +13,6 @@ namespace GameServer
         public EffectComponent EffectComp { get; protected set; }
         public CreatureInfo CreatureInfo { get; private set; } = new CreatureInfo();
         public StatInfo BaseStat { get; protected set; } = new StatInfo();
-        public StatInfo BonusStat { get; protected set; } = new StatInfo();
         public StatInfo TotalStat { get; protected set; } = new StatInfo();
 
         public static readonly Dictionary<EStatType, Func<StatInfo, float>> StatGetters = new Dictionary<EStatType, Func<StatInfo, float>>()
@@ -61,10 +60,8 @@ namespace GameServer
         };
 
         public float GetBaseStat(EStatType statType) { return StatGetters[statType](BaseStat); }
-        public float GetBonusStat(EStatType statType) { return StatGetters[statType](BonusStat); }
         public float GetTotalStat(EStatType statType) { return StatGetters[statType](TotalStat); }
         public void SetBaseStat(EStatType statType, float value) { StatSetters[statType](BaseStat, value); }
-        public void SetBonusStat(EStatType statType, float value) { StatSetters[statType](BonusStat, value); }
         protected void AddTotalStat(EStatType statType, float value)
         {
             float finalValue = GetTotalStat(statType) + value;
@@ -73,7 +70,17 @@ namespace GameServer
 
         public void SetTotalStat(EStatType statType, float value)
         {
-            StatSetters[statType](TotalStat, value);
+			switch (statType)
+			{
+				case EStatType.Hp:
+					value = Math.Min(value, GetTotalStat(EStatType.MaxHp));
+					break;
+				case EStatType.Mp:
+					value = Math.Min(value, GetTotalStat(EStatType.MaxMp));
+					break;
+			}
+
+			StatSetters[statType](TotalStat, value);
             StatSetters[statType](CreatureInfo.TotalStatInfo, value);
         }
 
@@ -159,7 +166,7 @@ namespace GameServer
             float finalDamage = Math.Max(damage - Defence, 0);
             AddStat(EStatType.Hp, -finalDamage, EFontType.Hit);
 
-            if (TotalStat.Hp <= 0)
+            if (Hp <= 0)
             {
                 OnDead(attacker);
             }
@@ -178,8 +185,15 @@ namespace GameServer
                 return false;
             if (target == this)
                 return false;
+            //return Room == target.Room;
+            if (Room != target.Room)
+                return false;
 
-            return Room == target.Room;
+            //TODO PK 처리
+            if (ObjectType == target.ObjectType)
+                return false;
+            else
+                return true;
         }
 
         public virtual bool IsFriend(BaseObject target)

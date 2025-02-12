@@ -13,7 +13,6 @@ namespace GameServer
     {
         object _lock = new object();
         Dictionary<int, Hero> _heroes = new Dictionary<int, Hero>();
-        Dictionary<int, BaseObject> _gameobjects = new Dictionary<int, BaseObject>();
 
         // [OBJ_TYPE(4)][TEMPLATE_ID(8)][ID(20)]
         int _counter = 0;
@@ -76,7 +75,7 @@ namespace GameServer
             return false;
         }
 
-        public Hero Find(int objectId)
+        public Hero FindHero(int objectId)
         {
             EGameObjectType objectType = GetObjectTypeFromId(objectId);
 
@@ -89,18 +88,7 @@ namespace GameServer
                 }
             }
 
-            return null;
-        }
-
-        public T Find<T>(int objectId) where T : BaseObject, new()
-        {
-            if (_gameobjects.TryGetValue(objectId, out BaseObject bo))
-            {
-                return bo as T;
-            }
-
-            return null;
-        }
-
-    }
+			return null;
+		}
+	}
 }

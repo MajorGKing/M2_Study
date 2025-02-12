@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -93,6 +94,92 @@ namespace GameServer
             Room.OnDead(this, attacker);
         }
 
+        public Vector2Int GetFrontCellPos()
+        {
+            return GetFrontCellPos(PosInfo.MoveDir);
+        }
+
+        public Vector2Int GetFrontCellPos(EMoveDir dir, int cells = 1)
+        {
+            Vector2Int cellPos = CellPos;
+
+            switch (dir)
+            {
+                case EMoveDir.Up:
+                    cellPos += new Vector2Int(1, 1) * cells;
+                    break;
+                case EMoveDir.Down:
+                    cellPos += new Vector2Int(-1, -1) * cells; 
+                    break;
+                case EMoveDir.Left:
+                    cellPos += new Vector2Int(-1, 1) * cells; 
+                    break;
+                case EMoveDir.Right:
+                    cellPos += new Vector2Int(1, -1) * cells;
+                    break;
+                case EMoveDir.UpLeft:
+                    cellPos += new Vector2Int(0, 1) * cells;
+                    break;
+                case EMoveDir.UpRight:
+                    cellPos += new Vector2Int(1, 0) * cells;
+                    break;
+                case EMoveDir.DownLeft:
+                    cellPos += new Vector2Int(-1, 0) * cells;
+                    break;
+                case EMoveDir.DownRight:
+                    cellPos += new Vector2Int(0, -1) * cells;
+                    break;
+            }
+
+            return cellPos;
+        }
+
+        public List<Vector2Int> GetFrontCellPosList(EMoveDir dir, int range)
+        {
+            List<Vector2Int> ret = new List<Vector2Int>();
+
+            Vector2Int cellPos = CellPos;
+            int extraCells = ExtraCells;
+
+            switch (dir)
+            {
+                case EMoveDir.Up:
+                    {
+                        cellPos += Vector2Int.up * (1 + extraCells);
+                        for (int dx = -extraCells; dx <= extraCells; dx++)
+                        {
+                            ret.Add(new Vector2Int(cellPos.x + dx, cellPos.y));
+                        }
+                    }
+                    break;
+                case EMoveDir.Down:
+                    {
+                        cellPos += Vector2Int.down * (1 + extraCells);
+                        for (int dx = -extraCells; dx <= extraCells; dx++)
+                        {
+                            ret.Add(new Vector2Int(cellPos.x + dx, cellPos.y));
+                        }
+                    }
+                    break;
+                case EMoveDir.Left:
+                    {
+                        cellPos += Vector2Int.left * (1 + extraCells);
+                        for (int dy = -extraCells; dy <= extraCells; dy++)
+                            ret.Add(new Vector2Int(cellPos.x, cellPos.y + dy));
+                    }
+                    break;
+                case EMoveDir.Right:
+                    {
+                        cellPos += Vector2Int.right * (1 + extraCells);
+                        for (int dy = -extraCells; dy <= extraCells; dy++)
+                            ret.Add(new Vector2Int(cellPos.x, cellPos.y + dy));
+                    }
+                    break;
+            }
+
+            return ret;
+        }
+
         public float GetActualDistance()
         {
             switch (MoveDir)
@@ -110,17 +197,14 @@ namespace GameServer
             }
         }
 
-        // 체스판 거리
         public int GetDistance(BaseObject target)
         {
-            Vector2Int pos = GetClosestBodyCellPointToTarget(target);
-            return GetDistance(pos);
+            return GetDistance(target.CellPos);
         }
 
         public int GetDistance(Vector2Int pos)
         {
-            int dist = Math.Max(Math.Abs(pos.x - CellPos.x), Math.Abs(pos.y - CellPos.y));
-            return dist;
+            return Utils.GetDistance(pos, CellPos);
         }
 
         public Vector2Int GetClosestBodyCellPointToTarget(BaseObject target)

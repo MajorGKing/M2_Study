@@ -83,8 +83,10 @@ namespace Server.Game
             // 이펙트(효과 및 데미지) 적용
             foreach (Creature creature in targets)
             {
-                if(Owner.ObjectType == EGameObjectType.Hero)
-                    Console.WriteLine($"{Owner} attack {creature.ObjectId} by projectile {SkillData.EffectData.Name}!");
+                //if (Owner.ObjectType == EGameObjectType.Hero)
+                //{
+                //    Console.WriteLine($"ILHAK {Owner} attack {creature.ObjectId} by projectile {SkillData.EffectData.Name}!");
+                //}
 
                 //서버에서는 발사체의 갯수만큼 ApplyEffect만 하고, 클라에서 딜레이/발사체 따로스폰
                 for (int i = 0; i < ProjectileData.Count; i++)

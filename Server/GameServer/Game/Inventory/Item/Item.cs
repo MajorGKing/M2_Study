@@ -33,13 +33,7 @@ namespace Server.Game
             set { Info.Count = value; }
         }
 
-        public int EnchantCount
-        {
-            get { return Info.EnchantCount; }
-            set { Info.EnchantCount = value; }
-        }
-
-        public int OwnerDbId { get; set; }
+		public int OwnerDbId { get; set; }
 
         public EItemType ItemType { get { return TemplateData.Type; } }
         public EItemSubType SubType { get { return TemplateData.SubType; } }
@@ -50,8 +44,7 @@ namespace Server.Game
         protected Item(int templateId)
         {
             TemplateId = templateId;
-            EnchantCount = 0;
-            //ItemSlotType = Utils.GetEquipSlotType(TemplateData.SubType);
+            ItemSlotType = Utils.GetEquipSlotType(TemplateData.SubType);
         }
 
         public static Item MakeItem(ItemDb itemDb)
@@ -109,6 +102,9 @@ namespace Server.Game
         {
             if (owner == null)
                 return;
+
+            if (addCount == 0)
+				return;
 
             Count = Math.Clamp(Count + addCount, 0, MaxStack);
 

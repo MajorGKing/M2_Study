@@ -214,6 +214,12 @@ namespace Server.Game
             return item;
         }
 
+        public Item GetEquipmentBySlot(EItemSlotType slotType)
+        {
+            EquippedItems.TryGetValue(slotType, out Equipment equipment);
+            return equipment;
+        }
+
         public Item GetEquippedItemByDbId(long itemDbId)
         {
             return EquippedItems.Values.Where(i => i.ItemDbId == itemDbId).FirstOrDefault();
@@ -233,6 +239,21 @@ namespace Server.Game
         public List<ItemInfo> GetAllItemInfos()
         {
             return AllItems.Values.Select(i => i.Info).ToList();
+        }
+
+        public List<Equipment> GetAllEquippedItems()
+        {
+            return EquippedItems.Values.ToList();
+        }
+
+        public List<Item> GetAllItemsInInventory()
+        {
+            return InventoryItems.Values.ToList();
+        }
+
+        public List<Item> GetAllItemsInWarehouse()
+        {
+            return WarehouseItems.Values.ToList();
         }
 
         #endregion

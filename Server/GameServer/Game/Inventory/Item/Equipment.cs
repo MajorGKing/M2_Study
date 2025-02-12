@@ -9,6 +9,7 @@ namespace Server.Game
     {
         public EItemSubType EquipType { get; private set; }
         public EffectData EffectData { get; private set; }
+		public EquipmentData EquipmentData { get; private set; }
         public int Damage { get; private set; }
         public int Defence { get; private set; }
         public int Speed { get; private set; }
@@ -26,10 +27,10 @@ namespace Server.Game
             if (TemplateData.Type != EItemType.Equipment)
                 return;
 
-            EquipmentData data = (EquipmentData)TemplateData;
+            EquipmentData = (EquipmentData)TemplateData;
             {
-                EquipType = data.SubType;
-                EffectData = data.EffectData;
+                EquipType = EquipmentData.SubType;
+                EffectData = EquipmentData.EffectData;
             }
         }
 
@@ -71,12 +72,16 @@ namespace Server.Game
             // 4. DB에 Noti.
             DBManager.EquipItemNoti(owner, this);
 
-            // 5. 장착한 아이템 이펙트 적용.
-            if (EffectData != null)
-                owner.EffectComp.ApplyEffect(EffectData, owner);
+			// 5. 아이템 보너스 적용
+			owner.AddItemBonusStat(EquipmentData);
 
-            // 6. 패킷전송.
-            SendChangeItemSlotPacket(owner);
+			// 6. 장착한 아이템 이펙트 적용.
+			if (EffectData != null)
+				owner.EffectComp.ApplyEffect(EffectData, owner);
+
+			// 7. 패킷전송.
+			SendChangeItemSlotPacket(owner);
+            owner.SendRefreshStat();
         }
 
         public void UnEquip(InventoryComponent inventory)
@@ -104,12 +109,16 @@ namespace Server.Game
             // 4. DB에 Noti.
             DBManager.EquipItemNoti(owner, this);
 
-            // 5. 기존 아이템 이펙트 제거.
+            // 5. 아이템 보너스 삭제
+            owner.RemoveItemBonusStat(EquipmentData);
+
+            // 6. 기존 아이템 이펙트 제거.
             if (EffectData != null)
                 owner.EffectComp.RemoveItemEffect(EffectData.TemplateId);
 
-            // 6. 패킷전송.
-            SendChangeItemSlotPacket(owner);
-        }
+			// 7. 패킷전송.
+			SendChangeItemSlotPacket(owner);
+			owner.SendRefreshStat();
+		}
     }
 }

@@ -228,6 +228,30 @@ namespace GameServer
         }
         #endregion
 
+        #region BonusStat
+        public void AddItemBonusStat(EquipmentData data)
+        {
+            // MaxHp
+            float prev = GetTotalStat(EStatType.MaxHp);
+            SetTotalStat(EStatType.MaxHp, prev + data.MaxHpBonus);
+            // Attack
+            Attack += data.AttackBonus;
+            // Defence
+            Defence += data.DefenceBonus;
+        }
+
+        public void RemoveItemBonusStat(EquipmentData data)
+        {
+            // MaxHp
+            float prev = GetTotalStat(EStatType.MaxHp);
+            SetTotalStat(EStatType.MaxHp, prev - data.MaxHpBonus);
+            // Attack
+            Attack -= data.AttackBonus;
+            // Defence
+            Defence -= data.DefenceBonus;
+        }
+        #endregion
+
         #region Level System
         public void AddExp(int amount)
         {

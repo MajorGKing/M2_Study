@@ -89,6 +89,12 @@ namespace GameServer
             set { SetTotalStat(EStatType.Mp, Math.Clamp(value, 0, TotalStat.MaxMp)); }
         }
 
+        public float Attack
+        {
+            get { return TotalStat.Attack; }
+            set { SetTotalStat(EStatType.Attack, value); }
+        }
+
         public float Defence
         {
             get { return TotalStat.Defence; }

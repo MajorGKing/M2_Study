@@ -331,6 +331,9 @@ namespace Data
         public bool canTrade;
         public bool canDelete;
         public bool canStorable;
+        public int MaxHpBonus;
+        public int AttackBonus;
+        public int DefenceBonus;
         public int EffectDataId;
         public int SafeEnhancementLevel;
         public int NextLevelItemDataId;

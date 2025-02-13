@@ -6,121 +6,126 @@ using UnityEngine;
 
 public class MultiplayersBuildAndRun
 {
-    #region Run
-    [MenuItem("Tools/Run Multiplayer (No Build)/1 Players")]
-    static void PerformRun1()
-    {
-        RunExe(1);
-    }
+	#region Run
+	[MenuItem("Build/Run Multiplayer (No Build)/1 Players")]
+	static void PerformRun1()
+	{
+		RunExe(1);
+	}
+	
+	[MenuItem("Build/Run Multiplayer (No Build)/2 Players")]
+	static void PerformRun2()
+	{
+		RunExe(2);
+	}
 
-    [MenuItem("Tools/Run Multiplayer (No Build)/2 Players")]
-    static void PerformRun2()
-    {
-        RunExe(2);
-    }
+	[MenuItem("Build/Run Multiplayer (No Build)/3 Players")]
+	static void PerformRun3()
+	{
+		RunExe(3);
+	}
 
-    [MenuItem("Tools/Run Multiplayer (No Build)/3 Players")]
-    static void PerformRun3()
-    {
-        RunExe(3);
-    }
+	[MenuItem("Build/Run Multiplayer (No Build)/4 Players")]
+	static void PerformRun4()
+	{
+		RunExe(4);
+	}
 
-    [MenuItem("Tools/Run Multiplayer (No Build)/4 Players")]
-    static void PerformRun4()
-    {
-        RunExe(4);
-    }
+	#endregion
+	
+	#region Build & Run
+	[MenuItem("Build/Run Multiplayer (With Build)/1 Players")]
+	static void PerformWin64Build1()
+	{
+		PerformWin64Build(1);
+	}
+	
+	[MenuItem("Build/Run Multiplayer (With Build)/2 Players")]
+	static void PerformWin64Build2()
+	{
+		PerformWin64Build(2);
+	}
 
-    #endregion
+	[MenuItem("Build/Run Multiplayer (With Build)/3 Players")]
+	static void PerformWin64Build3()
+	{
+		PerformWin64Build(3);
+	}
 
-    #region Build & Run
+	[MenuItem("Build/Run Multiplayer (With Build)/4 Players")]
+	static void PerformWin64Build4()
+	{
+		PerformWin64Build(4);
+	}
 
-    [MenuItem("Tools/Run Multiplayer (With Build)/2 Players")]
-    static void PerformWin64Build2()
-    {
-        PerformWin64Build(2);
-    }
+	#endregion
 
-    [MenuItem("Tools/Run Multiplayer (With Build)/3 Players")]
-    static void PerformWin64Build3()
-    {
-        PerformWin64Build(3);
-    }
+	static void PerformWin64Build(int playerCount)
+	{
+		EditorUserBuildSettings.SwitchActiveBuildTarget(
+			BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows);
 
-    [MenuItem("Tools/Run Multiplayer (With Build)/4 Players")]
-    static void PerformWin64Build4()
-    {
-        PerformWin64Build(4);
-    }
+		// Ìï¥ÏÉÅÎèÑ ÏÑ§Ï†ï
+		PlayerSettings.defaultScreenWidth = 1280;
+		PlayerSettings.defaultScreenHeight = 720;
+		PlayerSettings.fullScreenMode = FullScreenMode.Windowed;
+		
+		for (int i = 1; i <= playerCount; i++)
+		{
+			BuildPipeline.BuildPlayer(GetScenePaths(),
+				"Builds/Win64/" + GetProjectName() + i.ToString() + "/" + GetProjectName() + i.ToString() + ".exe",
+				BuildTarget.StandaloneWindows64, BuildOptions.AutoRunPlayer);
+		}
+	}
 
-    #endregion
+	static void RunExe(int playerCount)
+	{
+		List<Process> _processes = new List<Process>();
+		for (int i = 1; i <= playerCount; i++)
+		{
+			string exePath = "Builds/Win64/" + GetProjectName() + i.ToString() + "/" + GetProjectName() + i.ToString() + ".exe";
+			_processes.Add(RunProcess(exePath));
+		}
+	}
+	
+	static Process RunProcess(string exePath)
+	{
+		Process process = new Process();
+		process.StartInfo.FileName = exePath;
+		process.StartInfo.Arguments = ""; // ÌïÑÏöîÌïú Í≤ΩÏö∞ Î™ÖÎ†πÏ§Ñ Ïù∏Ïàò Ï∂îÍ∞Ä
+		process.StartInfo.UseShellExecute = false;
+		process.StartInfo.RedirectStandardOutput = true;
+		process.StartInfo.RedirectStandardError = true;
+		process.EnableRaisingEvents = true;
 
-    static void PerformWin64Build(int playerCount)
-    {
-        EditorUserBuildSettings.SwitchActiveBuildTarget(
-            BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows);
+		process.Exited += (sender, e) =>
+		{
+			Process proc = (Process)sender;
+			// ÌîÑÎ°úÏÑ∏Ïä§Í∞Ä Ï¢ÖÎ£åÎêú ÌõÑ Ï∂îÍ∞Ä ÏûëÏóÖ ÏàòÌñâ (ÏÑ†ÌÉù ÏÇ¨Ìï≠)
+			// string output = proc.StandardOutput.ReadToEnd();
+			// string error = proc.StandardError.ReadToEnd();
+		};
 
-        // «ÿªÛµµ º≥¡§
-        PlayerSettings.defaultScreenWidth = 400;
-        PlayerSettings.defaultScreenHeight = 400;
-        PlayerSettings.fullScreenMode = FullScreenMode.Windowed;
+		process.Start();
 
-        for (int i = 1; i <= playerCount; i++)
-        {
-            BuildPipeline.BuildPlayer(GetScenePaths(),
-                "Builds/Win64/" + GetProjectName() + i.ToString() + "/" + GetProjectName() + i.ToString() + ".exe",
-                BuildTarget.StandaloneWindows64, BuildOptions.AutoRunPlayer);
-        }
-    }
+		return process;
+	}
+	
+	static string GetProjectName()
+	{
+		string[] s = Application.dataPath.Split('/');
+		return s[s.Length - 2];
+	}
 
-    static void RunExe(int playerCount)
-    {
-        List<Process> _processes = new List<Process>();
-        for (int i = 1; i <= playerCount; i++)
-        {
-            string exePath = "Builds/Win64/" + GetProjectName() + i.ToString() + "/" + GetProjectName() + i.ToString() + ".exe";
-            _processes.Add(RunProcess(exePath));
-        }
-    }
+	static string[] GetScenePaths()
+	{
+		string[] scenes = new string[EditorBuildSettings.scenes.Length];
 
-    static Process RunProcess(string exePath)
-    {
-        Process process = new Process();
-        process.StartInfo.FileName = exePath;
-        process.StartInfo.Arguments = ""; // « ø‰«— ∞ÊøÏ ∏Ì∑…¡Ÿ ¿Œºˆ √ﬂ∞°
-        process.StartInfo.UseShellExecute = false;
-        process.StartInfo.RedirectStandardOutput = true;
-        process.StartInfo.RedirectStandardError = true;
-        process.EnableRaisingEvents = true;
+		for (int i = 0; i < scenes.Length; i++)
+		{
+			scenes[i] = EditorBuildSettings.scenes[i].path;
+		}
 
-        process.Exited += (sender, e) =>
-        {
-            Process proc = (Process)sender;
-            // «¡∑ŒººΩ∫∞° ¡æ∑·µ» »ƒ √ﬂ∞° ¿€æ˜ ºˆ«‡ (º±≈√ ªÁ«◊)
-            // string output = proc.StandardOutput.ReadToEnd();
-            // string error = proc.StandardError.ReadToEnd();
-        };
-
-        process.Start();
-
-        return process;
-    }
-
-    static string GetProjectName()
-    {
-        string[] s = Application.dataPath.Split('/');
-        return s[s.Length - 2];
-    }
-
-    static string[] GetScenePaths()
-    {
-        string[] scenes = new string[EditorBuildSettings.scenes.Length];
-
-        for (int i = 0; i < scenes.Length; i++)
-        {
-            scenes[i] = EditorBuildSettings.scenes[i].path;
-        }
-
-        return scenes;
-    }
+		return scenes;
+	}
 }

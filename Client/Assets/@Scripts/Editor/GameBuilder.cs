@@ -35,6 +35,7 @@ public class GameBuilder : MonoBehaviour
         PlayerSettings.Android.keystorePass = "rookiss";
         PlayerSettings.Android.keyaliasName = "rookiss";
         PlayerSettings.Android.keyaliasPass = "rookiss";
+        PlayerSettings.Android.renderOutsideSafeArea = false;
 
         BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
         BuildSummary summary = report.summary;

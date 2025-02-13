@@ -11,7 +11,7 @@ public class MapGenerator
     [MenuItem("Tools/GenerateMap %#m")]
     private static void GenerateMap()
     {
-        string prefabPath = "Assets/@Resources/TileMaps/00_prefabs/TestMap";
+        string prefabPath = "Assets/@Resources/Prefabs/Map";
         string[] guids = AssetDatabase.FindAssets("t:GameObject", new[] { prefabPath });
 
         foreach (string guid in guids)

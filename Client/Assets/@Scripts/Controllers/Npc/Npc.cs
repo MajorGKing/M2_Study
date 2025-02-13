@@ -48,6 +48,7 @@ public class Npc : BaseObject
 
         if (Managers.Data.NpcDict.TryGetValue(TemplateId, out NpcData npcData) == false)
             return;
+        ExtraCells = npcData.ExtraSize;
 
         NpcData = npcData;
         SetSpineAnimation(SortingLayers.NPC, "SkeletonAnimation");

@@ -1,9 +1,7 @@
-using System;
 using System.Collections;
 using Google.Protobuf.Protocol;
 using Spine;
 using Spine.Unity;
-using Spine.Unity.Examples;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Event = Spine.Event;
@@ -52,8 +50,8 @@ public class BaseObject : MonoBehaviour
             if (_positionInfo.Equals(value))
                 return;
 
-            var cellPos = new Vector3Int(value.PosX, value.PosY, 0);
-            MoveDir = value.MoveDir;
+			Vector3Int cellPos = new Vector3Int(value.PosX, value.PosY, 0);
+			MoveDir = value.MoveDir;
 
             Managers.Map.MoveTo(this, cellPos);
 
@@ -66,15 +64,15 @@ public class BaseObject : MonoBehaviour
         }
     }
 
-    [SerializeField]
-    protected EObjectState _objectState = EObjectState.None;
-    public virtual EObjectState ObjectState
-    {
-        get { return PosInfo.State; }
-        set
-        {
-            if (_objectState == value)
-                return;
+	[SerializeField]
+	protected EObjectState _objectState = EObjectState.None;
+	public virtual EObjectState ObjectState
+	{
+		get { return PosInfo.State; }
+		set
+		{
+			// if (_objectState == value)
+			// 	return;
 
             _objectState = value;
             PosInfo.State = value;
@@ -97,6 +95,18 @@ public class BaseObject : MonoBehaviour
         }
     }
 
+    #region LifeCycle
+    protected virtual void OnDisable()
+    {
+        if (SkeletonAnim == null)
+            return;
+        if (SkeletonAnim.AnimationState == null)
+            return;
+
+        SkeletonAnim.AnimationState.Event -= OnAnimEventHandler;
+        SkeletonAnim.AnimationState.Complete -= OnAnimCompleteHandler;
+    }
+
     protected virtual void Awake()
     {
         CenterObject = Utils.FindChild(gameObject, "CenterPosition");
@@ -115,8 +125,10 @@ public class BaseObject : MonoBehaviour
 
     protected virtual void Update()
     {
-
+        UpdateLerpToCellPos(MoveSpeed, false);
     }
+
+    #endregion
 
     #region AI (FSM)
     protected virtual IEnumerator CoUpdateAI()
@@ -134,7 +146,7 @@ public class BaseObject : MonoBehaviour
                     UpdateMove();
                     break;
                 case EObjectState.Skill:
-                    UpdateAITick = 0.1f;
+                    UpdateAITick = 0.0f;
                     UpdateSkill();
                     break;
                 case EObjectState.Dead:
@@ -188,12 +200,9 @@ public class BaseObject : MonoBehaviour
 
         SortingGroup sg = Utils.GetOrAddComponent<SortingGroup>(SkeletonAnim.gameObject);
         sg.sortingOrder = sortingOrder;
+	}
 
-        //아웃라인
-        OutLine = Utils.FindChild<OutlineController>(gameObject, recursive: true);
-        if (OutLine)
-            OutLine.SetActive(false, Color.green);
-    }
+    #region Spine Function
 
     protected void ClearSpineAnimation()
     {
@@ -244,14 +253,13 @@ public class BaseObject : MonoBehaviour
         return SkeletonAnim.AnimationState.AddAnimation(trackIndex, AnimName, loop, delay);
     }
 
-    public float GetSpineHeight()
-    {
-        float x, y, width, height;
-        float[] vertexBuffer = null;
-        SkeletonAnim.skeleton.GetBounds(out x, out y, out width, out height, ref vertexBuffer);
-        Debug.Log($"GetSpineHeight {height}");
-        return height;
-    }
+	public float GetSpineHeight()
+	{
+		float x, y, width, height;
+		float[] vertexBuffer = null;
+		SkeletonAnim.skeleton.GetBounds(out x, out y, out width, out height, ref vertexBuffer);
+		return height;
+	}
 
     public void Flip(bool flag)
     {
@@ -263,17 +271,7 @@ public class BaseObject : MonoBehaviour
 
     protected virtual void OnAnimEventHandler(TrackEntry trackEntry, Event e) { }
     protected virtual void OnAnimCompleteHandler(TrackEntry arg1) { }
-
-    protected virtual void OnDisable()
-    {
-        if (SkeletonAnim == null)
-            return;
-        if (SkeletonAnim.AnimationState == null)
-            return;
-
-        SkeletonAnim.AnimationState.Event -= OnAnimEventHandler;
-        SkeletonAnim.AnimationState.Complete -= OnAnimCompleteHandler;
-    }
+    #endregion
 
     #endregion
 
@@ -287,7 +285,6 @@ public class BaseObject : MonoBehaviour
         protected set
         {
             _cellPos = value;
-            LerpCellPosCompleted = false;
         }
     }
 
@@ -303,20 +300,15 @@ public class BaseObject : MonoBehaviour
         }
     }
 
-    public void UpdateLerpToCellPos(float moveSpeed, bool canFlip = true)
-    {
-        if (LerpCellPosCompleted)
-            return;
+	public virtual void UpdateLerpToCellPos(float moveSpeed, bool canFlip = true)
+	{
+		if (LerpCellPosCompleted)
+			return;
 
         Vector3 destPos = Managers.Map.Cell2World(CellPos);
         Vector3 dir = destPos - transform.position;
         if (canFlip)
-        {
-            if (dir.x < 0)
-                LookLeft = true;
-            else if (dir.x > 0)
-                LookLeft = false;
-        }
+            LookAtTarget(dir);
 
         float moveDist = moveSpeed * Time.deltaTime;
         if (dir.magnitude < moveDist)
@@ -337,13 +329,19 @@ public class BaseObject : MonoBehaviour
     }
     #endregion
 
-    #region Helper
-    // 체스판 거리
-    public int GetDistance(BaseObject target)
-    {
-        Vector3Int pos = GetClosestBodyCellPointToTarget(target);
-        return GetDistance(pos);
-    }
+	#region Helper
+
+	public virtual string GetObjectName()
+	{
+		return null;
+	}
+
+	// 체스판 거리
+	public int GetDistance(BaseObject target)
+	{
+		Vector3Int pos = GetClosestBodyCellPointToTarget(target);
+		return GetDistance(pos);
+	}
 
     public int GetDistance(Vector3Int pos)
     {
@@ -387,13 +385,20 @@ public class BaseObject : MonoBehaviour
         LookAtTarget(dir);
     }
     
-    public void LookAtTarget(Vector3 dir)
-    {
-        if (dir.x < 0)
-            LookLeft = true;
-        else if (dir.x > 0)
-            LookLeft = false;
-    }
-    #endregion
+	public void LookAtTarget(Vector3 dir)
+	{
+		if (dir.x < 0)
+			LookLeft = true;
+		else if (dir.x > 0)
+			LookLeft = false;
+	}
+
+	public void LookAtDest(Vector3 dest)
+	{
+		Vector2 dir = dest - transform.position;
+		LookAtTarget(dir);
+	}
+
+	#endregion
 }
 

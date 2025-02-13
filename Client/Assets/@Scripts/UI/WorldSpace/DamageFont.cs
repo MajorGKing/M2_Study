@@ -13,60 +13,58 @@ public class DamageFont : BaseObject
         GetComponent<MeshRenderer>().sortingOrder = SortingLayers.DAMAGE_FONT;
     }
 
-    public void SetInfo(float damage = 0, Transform parent = null, EDamageType dmgType = EDamageType.Hit)
+    public void SetInfo(float damage = 0, Transform parent = null, EFontType fontType = EFontType.Hit)
     {
         _damageText = GetComponent<TextMeshPro>();
         _damageText.sortingOrder = SortingLayers.PROJECTILE;
         transform.position = parent.transform.position;
         transform.localScale = Vector3.zero;
 
-        switch (dmgType)
+        switch (fontType)
         {
-            case EDamageType.Hit:
+            case EFontType.Hit:
                 _damageText.fontSize = 6;
                 _damageText.color = Color.white; //Util.HexToColor("EFAD00");
                 _damageText.text = $"{Mathf.Abs((int)damage)}";
                 DoAnimation();
                 break;
-            case EDamageType.Critical:
+            case EFontType.Critical:
                 _damageText.fontSize = 6;
                 _damageText.text = $"{Mathf.Abs((int)damage)}";
                 _damageText.color = Utils.HexToColor("E94141");
                 DoAnimation();
                 break;
-            case EDamageType.Miss:
+            case EFontType.Miss:
                 _damageText.fontSize = 7;
                 _damageText.text = "Miss";
                 _damageText.color = Color.red;
                 DoAnimation();
                 break;
-            case EDamageType.HealHp:
+            case EFontType.Heal:
                 _damageText.fontSize = 6;
                 _damageText.text = $"{Mathf.Abs((int)damage)}";
                 _damageText.color = Utils.HexToColor("3DA55A");
                 DoAnimation();
                 break;
-            case EDamageType.HealMp:
-                if (damage < 0)
-                    Managers.Resource.Destroy(gameObject);
+            case EFontType.Cost:
                 _damageText.fontSize = 6;
-                _damageText.text = $"{Mathf.Abs((int)damage)}";
+                _damageText.text = $"{((int)damage)}";
                 _damageText.color = Color.blue;
                 DoAnimation();
                 break;
-            case EDamageType.Stun:
+            case EFontType.Stun:
                 _damageText.fontSize = 7;
                 _damageText.text = "TODO ±âÀý";
                 _damageText.color = Color.cyan;
                 DoAnimation();
                 break;
-            case EDamageType.Gold:
+            case EFontType.Gold:
                 _damageText.fontSize = 6;
                 _damageText.text = $"Gold +{(int)damage}";
                 _damageText.color = Color.yellow;
                 DoAnimation();
                 break;
-            case EDamageType.Exp:
+            case EFontType.Exp:
                 _damageText.fontSize = 6;
                 _damageText.text = $"Exp +{(int)damage}";
                 _damageText.color = Color.green;

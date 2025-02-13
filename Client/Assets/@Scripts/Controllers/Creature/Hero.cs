@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using Data;
 using Google.Protobuf.Protocol;
-using Data;
-using Spine;
 using UnityEngine;
 
 public class Hero : Creature
 {
-    protected HeroData HeroData { get; private set; }
-    protected SkillData _mainSkill;
-    public virtual HeroInfo HeroInfo { get; set; }
-
-    private int _baseAttackIndex = 0;
+	public HeroData HeroData { get; private set; }
+	protected SkillData _mainSkill;
+	public virtual HeroInfo HeroInfo { get; set; }
+	
+	private int _baseAttackIndex = 0;
 
     private string[] _baseAttackAnimName = new[]
     {
@@ -32,6 +28,7 @@ public class Hero : Creature
     protected override void Awake()
     {
         base.Awake();
+        transform.localScale = Vector3.one * 1.3f;
     }
 
     protected override void OnEnable()
@@ -54,14 +51,24 @@ public class Hero : Creature
         }
 
         HeroData.SkillMap.TryGetValue(ESkillSlot.Main, out _mainSkill);
+        _baseAttackIndex = 0;
     }
 
-    protected override void Update()
-    {
-        // 기본적으로 모든 물체는 칸 단위로 움직이지만, 클라에서 '스르륵' 움직이는 보정 처리를 해준다.
-        UpdateLerpToCellPos(MoveSpeed, true);
-    }
-    #endregion
+	public void InitHero(HeroInfo heroInfo)
+	{
+		_creatureInfo = heroInfo.CreatureInfo;
+		HeroInfo = heroInfo;
+		ObjectId = _creatureInfo.ObjectInfo.ObjectId;
+		PosInfo = _creatureInfo.ObjectInfo.PosInfo;
+		SyncWorldPosWithCellPos();
+	}
+
+	protected override void Update()
+	{
+		// 기본적으로 모든 물체는 칸 단위로 움직이지만, 클라에서 '스르륵' 움직이는 보정 처리를 해준다.
+		UpdateLerpToCellPos(MoveSpeed, true);
+	}
+	#endregion
 
     #region AI
     protected override void UpdateMove()
@@ -142,4 +149,12 @@ public class Hero : Creature
     }
     #endregion
 
+    #region MyRegion
+
+    public override string GetObjectName()
+    {
+	    return HeroInfo.Name;
+    }
+
+    #endregion
 }

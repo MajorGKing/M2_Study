@@ -12,6 +12,7 @@ public class ObjectManager
     Dictionary<int, GameObject> _objects = new Dictionary<int, GameObject>();
     Dictionary<int, Monster> _monsters = new Dictionary<int, Monster>();
     Dictionary<int, Hero> _heroes = new Dictionary<int, Hero>();
+    HashSet<GameObject> _gameObjects = new HashSet<GameObject>(); // 서버랑 상관없는 오브젝트들
 
     #region Roots
     public Transform GetRootTransform(string name)
@@ -90,12 +91,9 @@ public class ObjectManager
         _objects.Add(objectInfo.ObjectId, go);
 
         Hero hero = Utils.GetOrAddComponent<Hero>(go);
-        MyHero.HeroInfo = info;
+        hero.InitHero(info);
         hero.SetInfo(templateId);
-        hero.ObjectId = objectInfo.ObjectId;
-        hero.PosInfo = objectInfo.PosInfo;
-        hero.SyncWorldPosWithCellPos();
-
+        _heroes.Add(objectInfo.ObjectId, hero);
         return hero;
     }
 
@@ -185,6 +183,19 @@ public class ObjectManager
 
         Npc npc = Utils.GetOrAddComponent<Npc>(go);
         npc.SetInfo(info);
+    }
+
+    public GameObject Spawn(string name, Transform parents = null, bool isPooling = false)
+    {
+        GameObject go = Managers.Resource.Instantiate(name, parents, isPooling);
+        _gameObjects.Add(go);
+        return go;
+    }
+
+    public void DespawnGameObject(GameObject obj)
+    {
+        Managers.Resource.Destroy(obj);
+        _gameObjects.Remove(obj);
     }
 
     public ParticleController SpawnParticle(string name, bool lookLeft = false, Transform parent = null, bool isCenterPos = false)
@@ -395,6 +406,12 @@ public class ObjectManager
 
         _objects.Clear();
         _monsters.Clear();
-        MyHero = null;
+        _heroes.Clear();
+        _gameObjects.Clear();
+        if (MyHero)
+        {
+            MyHero.ClearMyHero();
+            MyHero = null;
+        }
     }
 }

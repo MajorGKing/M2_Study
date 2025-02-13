@@ -176,30 +176,49 @@ class PacketHandler
             cc.HandleSkillPacket(skillPacket);
             
     }
-
-    public static void S_ChangeHpHandler(PacketSession session, IMessage packet)
+    public static void S_ChangeOneStatHandler(PacketSession session, IMessage packet)
     {
-        //Debug.Log("S_ChangeHpHandler");
+        Debug.Log("S_ChangeOneStatHandler");
 
-        S_ChangeHp changePacket = packet as S_ChangeHp;
+        S_ChangeOneStat changePacket = packet as S_ChangeOneStat;
 
         GameObject go = Managers.Object.FindById(changePacket.ObjectId);
         if (go == null)
             return;
 
-        Creature cc = go.GetComponent<Creature>();
-        if (cc != null)
-        {
-            int damage = (int)changePacket.Damage;
-            cc.Hp = changePacket.Hp;
-            cc.Mp = changePacket.Mp;
-            //Managers.Object.ShowDamageFont(cc.CenterPos, damage, cc.transform, changePacket.DamageType);
-            cc.DamageFontController.AddDamageFont(damage, cc.transform, changePacket.DamageType);
-        }
+        Creature creature = go.GetComponent<Creature>();
+        creature?.HandleChangeOneStat(changePacket.StatType, changePacket.Value, changePacket.Diff, changePacket.FontType);
 
-        var gameScene = Managers.UI.GetSceneUI<UI_GameScene>();
-        gameScene.OnHpChanged();
+        // MyHero에 대한 패킷이면
+        if (changePacket.ObjectId == Managers.Object.MyHero.ObjectId)
+        {
+            Managers.UI.GetSceneUI<UI_GameScene>()?.OnHpChanged();
+        }
     }
+
+    //public static void S_ChangeHpHandler(PacketSession session, IMessage packet)
+    //{
+    //    //Debug.Log("S_ChangeHpHandler");
+
+    //    S_ChangeHp changePacket = packet as S_ChangeHp;
+
+    //    GameObject go = Managers.Object.FindById(changePacket.ObjectId);
+    //    if (go == null)
+    //        return;
+
+    //    Creature cc = go.GetComponent<Creature>();
+    //    if (cc != null)
+    //    {
+    //        int damage = (int)changePacket.Damage;
+    //        cc.Hp = changePacket.Hp;
+    //        cc.Mp = changePacket.Mp;
+    //        //Managers.Object.ShowDamageFont(cc.CenterPos, damage, cc.transform, changePacket.DamageType);
+    //        cc.DamageFontController.AddDamageFont(damage, cc.transform, changePacket.DamageType);
+    //    }
+
+    //    var gameScene = Managers.UI.GetSceneUI<UI_GameScene>();
+    //    gameScene.OnHpChanged();
+    //}
 
     public static void S_DieHandler(PacketSession session, IMessage packet)
     {

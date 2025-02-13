@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Data;
 using Google.Protobuf.Protocol;
@@ -15,10 +14,11 @@ public class MyHero : Hero
 
     // VisionCells 범위그리기
     private Color _lineColor = Color.red;
-    private float _lineWidth = 0.1f;
-    private int _visionCells = 10;
-    private LineRenderer _lineRenderer;
-    private GameObject _moveCursor;
+	private float _lineWidth = 0.1f;
+	private int _visionCells = 15;
+	private LineRenderer _lineRenderer;
+	private GameObject _moveCursor;
+	public override bool IsMonitored => true;
 
     // 스킬 범위
     private LineRenderer _skillLineRenderer;
@@ -78,6 +78,8 @@ public class MyHero : Hero
     }
 
     private bool _isAutoMode = false;
+    public bool IsAutoMode { get => _isAutoMode; set => _isAutoMode = value; }
+
     [SerializeField] private EJoystickState _joystickState;
 
     #region MyHeroInfo Values
@@ -108,10 +110,17 @@ public class MyHero : Hero
 
     #region LifeCycle
 
-    public override void SetInfo(int templatedId)
-    {
-        base.SetInfo(templatedId);
-    }
+	public void InitMyHero(MyHeroInfo myHeroInfo)
+	{
+		MyHeroInfo = myHeroInfo;
+		ObjectId = myHeroInfo.HeroInfo.CreatureInfo.ObjectInfo.ObjectId;
+		PosInfo = myHeroInfo.HeroInfo.CreatureInfo.ObjectInfo.PosInfo;
+	}
+
+	public override void SetInfo(int templateId)
+	{
+		base.SetInfo(templateId);
+	}
 
     protected override void OnEnable()
     {
@@ -121,7 +130,7 @@ public class MyHero : Hero
 
         Managers.Event.AddEvent(EEventType.OnClickAttackButton, OnClickAttack);
         Managers.Event.AddEvent(EEventType.OnClickAutoButton, OnClickAutoMode);
-        Managers.Event.AddEvent(EEventType.OnClickPickupButton, OnClickPickup);
+        //Managers.Event.AddEvent(EEventType.OnClickPickupButton, OnClickPickup);
     }
 
     protected override void OnDisable()
@@ -131,7 +140,7 @@ public class MyHero : Hero
 
         Managers.Event.RemoveEvent(EEventType.OnClickAttackButton, OnClickAttack);
         Managers.Event.RemoveEvent(EEventType.OnClickAutoButton, OnClickAutoMode);
-        Managers.Event.RemoveEvent(EEventType.OnClickPickupButton, OnClickPickup);
+        //Managers.Event.RemoveEvent(EEventType.OnClickPickupButton, OnClickPickup);
     }
 
     protected override void Awake()
@@ -150,11 +159,7 @@ public class MyHero : Hero
         CameraController cc = Camera.main.GetOrAddComponent<CameraController>();
         if (cc != null)
             cc.Target = this;
-
-        AddHpBar();
-        //DrawCollision();
-
-    }
+	}
 
     // TEMP : 강의용 직관적인 코드. 겹치는 부분 상속 구조로 올려버릴 예정.
     protected override void Update()
@@ -171,17 +176,32 @@ public class MyHero : Hero
         // 디버그 용도
         DrawVisionCells();
     }
+
+    public void ClearMyHero()
+    {
+        DespawnMoveCursor();
+    }
     #endregion
 
-    #region AI (FSM)
-    bool ChaseTargetOrUseAvailableSkill()
-    {
-        // 1-1. 타겟이 여전히 유효한지 확인.
-        if (Target.IsValid() == false)
-        {
-            ObjectState = EObjectState.Idle;
-            return true;
-        }
+	#region Battle
+
+	public override void OnDead()
+	{
+		base.OnDead();
+		ClearMyHero();
+	}
+
+	#endregion
+	
+	#region AI (FSM)
+	bool ChaseTargetOrUseAvailableSkill()
+	{
+		// 1-1. 타겟이 여전히 유효한지 확인.
+		if (Target.IsValid() == false)
+		{
+			ObjectState = EObjectState.Idle;
+			return true;
+		}
 
         _desiredDestPos = null;
 
@@ -238,19 +258,20 @@ public class MyHero : Hero
                 return;
         }
 
-        // 3. 이동 목적지가 결정됨.
-        if (_desiredDestPos.HasValue)
-        {
-            EFindPathResult destRes = FindPathToCellPos(_desiredDestPos.Value, HERO_DEFAULT_MOVE_DEPTH, out List<Vector3Int> destPath);
-            if (destRes == EFindPathResult.Success)
-            {
-                DestPos = destPath[1];
-                ObjectState = EObjectState.Move;
-                HeroMoveState = EHeroMoveState.MoveToDesiredPos;
-                return;
-            }
-        }
-    }
+		// 3. 이동 목적지가 결정됨.
+		if (_desiredDestPos.HasValue)
+		{
+			LookAtDest(_desiredDestPos.Value);
+			EFindPathResult destRes = FindPathToCellPos(_desiredDestPos.Value, HERO_DEFAULT_MOVE_DEPTH, out List<Vector3Int> destPath);
+			if (destRes == EFindPathResult.Success)
+			{
+				DestPos = destPath[1];
+				ObjectState = EObjectState.Move;
+				HeroMoveState = EHeroMoveState.MoveToDesiredPos;
+				return;
+			}
+		}
+	}
 
     protected override void UpdateMove()
     {
@@ -290,7 +311,14 @@ public class MyHero : Hero
         if (_coWait != null)
             return;
 
-        // 2. 사용할 수 있는 스킬이 있으면 사용.
+        // 2. Target이 없으면 리턴
+        if (Target == null)
+        {
+            ObjectState = EObjectState.Idle;
+            return;
+        }
+
+        // 3. 사용할 수 있는 스킬이 있으면 사용.
         Skill skill = GetNextUseSkill(Target);
         if (skill != null)
         {
@@ -299,7 +327,7 @@ public class MyHero : Hero
             return;
         }
 
-        // 3. 공용 코드 실행.
+        // 4. 공용 코드 실행.
         if (ChaseTargetOrUseAvailableSkill())
             return;
 
@@ -318,52 +346,39 @@ public class MyHero : Hero
     {
         base.UpdateAnimation();
 
-        if (ObjectState != EObjectState.Move)
-            HeroMoveState = EHeroMoveState.None;
+		if (ObjectState != EObjectState.Move)
+			HeroMoveState = EHeroMoveState.None;
+	}
+	
+	private bool _isMouseHeld = false;
+	private float _timeSinceLastUpdate = 0f;
+	private const float _updateInterval = 1f;
+	void UpdateInput()
+	{
+		if (_joystickState == EJoystickState.Drag)
+			return;
+
+        //마우스 클릭 처리
+        HandleMouseInput();
+
+        //마우스 드래그시 1초마다 업데이트
+        if (_isMouseHeld)
+            UpdateMovementPeriodically();
     }
-    void UpdateInput()
+
+    private void HandleMouseInput()
     {
-        if (Input.GetMouseButton(0) == false)
-            return;
-
-        if (_joystickState == EJoystickState.Drag)
-            return;
-
-        // UI 클릭을 무시
-        if (IsPointerOverUIObject(Input.mousePosition))
-            return;
-
-        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(mouseWorldPos, Vector2.zero, Mathf.Infinity);
-
-        BaseObject obj = null;
-        if (hit.collider != null)
-            obj = hit.collider.gameObject.GetComponent<BaseObject>();
-
-        // 1. 오브젝트 클릭.
-        if (obj != null)
+        if (Input.GetMouseButtonDown(0))
         {
-            switch (obj.ObjectType)
-            {
-                case EGameObjectType.Hero:
-                case EGameObjectType.Monster:
-                    DrawOutline(obj);
-                    break;
-                case EGameObjectType.Npc:
-                    Npc npc = obj.GetComponent<Npc>();
-                    if (npc.Interaction.CanInteract())
-                        npc.OnClickEvent();
-                    break;
-            }
-
-            DespawnMoveCursor();
-            return;
+            _isMouseHeld = true;
+            _timeSinceLastUpdate = _updateInterval;
+            UpdateMovement();
         }
-
-        // 2. 지형 클릭.
-        ForceMove(mouseWorldPos);
-        SpawnOrMoveCursor(mouseWorldPos);
-
+        else if (Input.GetMouseButtonUp(0))
+        {
+            _isMouseHeld = false;
+            _timeSinceLastUpdate = 0f;
+        }
     }
 
     public bool IsPointerOverUIObject(Vector2 touchPos)
@@ -377,26 +392,77 @@ public class MyHero : Hero
         return results.Count > 0;
     }
 
-    void SpawnOrMoveCursor(Vector2 position)
+    private void UpdateMovementPeriodically()
     {
-        if (_moveCursor != null)
+        _timeSinceLastUpdate += Time.deltaTime;
+
+        if (_timeSinceLastUpdate >= _updateInterval)
         {
-            _moveCursor.transform.position = position;
+            UpdateMovement();
+            _timeSinceLastUpdate = 0f; // 타이머 초기화
         }
+    }
+
+    private void UpdateMovement()
+    {
+        if (IsPointerOverUIObject(Input.mousePosition))
+            return;
+
+        //ray
+        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(mouseWorldPos, Vector2.zero, Mathf.Infinity);
+        BaseObject obj = hit.collider?.gameObject.GetComponent<BaseObject>();
+
+        if (obj != null)
+            ProcessObjectClick(obj);
         else
-        {
-            _moveCursor = Managers.Resource.Instantiate("Cursor", pooling: true);
-            _moveCursor.transform.position = position;
-        }
+            ProcessTerrainClick(mouseWorldPos);
     }
 
-    void DespawnMoveCursor()
+    private void ProcessObjectClick(BaseObject obj)
     {
-        Managers.Resource.Destroy(_moveCursor);
-        _moveCursor = null;
+        switch (obj.ObjectType)
+        {
+            case EGameObjectType.Hero:
+            case EGameObjectType.Monster:
+                DrawOutline(obj);
+                break;
+            case EGameObjectType.Npc:
+                Npc npc = obj.GetComponent<Npc>();
+                if (npc.Interaction.CanInteract())
+                    npc.OnClickEvent();
+                break;
+        }
+        DespawnMoveCursor();
     }
 
-    void UpdateSendMovePacket()
+    private void ProcessTerrainClick(Vector2 mouseWorldPos)
+    {
+        ForceMove(mouseWorldPos);
+        SpawnOrMoveCursor(mouseWorldPos);
+    }
+
+    private void SpawnOrMoveCursor(Vector2 position)
+    {
+        if (_objectState == EObjectState.Dead)
+            return;
+
+        if (_moveCursor == null)
+        {
+            _moveCursor = Managers.Object.Spawn("Cursor", isPooling: true);
+        }
+        _moveCursor.SetActive(true);
+        _moveCursor.transform.position = position;
+    }
+
+    private void DespawnMoveCursor()
+    {
+        if (_moveCursor == null)
+            return;
+        _moveCursor.SetActive(false);
+    }
+
+    private void UpdateSendMovePacket()
     {
         if (_sendMovePacket)
         {
@@ -414,7 +480,7 @@ public class MyHero : Hero
         }
     }
 
-    void HandleJoystickChanged(EJoystickState joystickState, EMoveDir dir)
+    private void HandleJoystickChanged(EJoystickState joystickState, EMoveDir dir)
     {
         _joystickState = joystickState;
 
@@ -440,14 +506,13 @@ public class MyHero : Hero
         ForceMove(pos);
     }
 
-    private void ForceMove(Vector3 pos)
-    {
-        if (LerpCellPosCompleted == false)
-            return;
-
-        _desiredDestPos = pos;
-        _isAutoMode = false;
-        Target = null;
+	private void ForceMove(Vector3 pos)
+	{
+		// if (LerpCellPosCompleted == false)
+		// 	return;
+		_desiredDestPos = pos;	
+		_isAutoMode = false;
+		Target = null;
 
         CancelWait();
     }
@@ -471,6 +536,7 @@ public class MyHero : Hero
         if (target.IsValid())
         {
             Target = target;
+            Target.IsMonitored = true;
         }
     }
 
@@ -493,17 +559,17 @@ public class MyHero : Hero
         return SelectedObject as Creature;
     }
 
-    int GetNextUseSkillDistance(Creature target)
-    {
-        // 1. 다음에 사용할 스킬 거리 반환.
-        Skill skill = GetNextUseSkill(target);
-        if (skill != null)
-            return skill.SkillData.SkillRange;
+	int GetNextUseSkillDistance(Creature target)
+	{
+		// 1. 다음에 사용할 스킬 거리 반환.
+		Skill skill = GetNextUseSkill(target);
+		if (skill != null)
+			return skill.GetSkillRange(target);
 
-        // 2. 스킬이 다 쿨 돌고 있으면 기본 스킬 사거리로.
-        Skill mainSkill = Managers.Skill.GetMainSkill();
-        if (mainSkill != null)
-            return mainSkill.SkillData.SkillRange;
+		// 2. 스킬이 다 쿨 돌고 있으면 기본 스킬 사거리로.
+		Skill mainSkill = Managers.Skill.GetMainSkill();
+		if (mainSkill != null)
+			return mainSkill.GetSkillRange(target);
 
         return 0;
     }
@@ -517,9 +583,9 @@ public class MyHero : Hero
                 return skill;
         }
 
-        Skill mainSKill = Managers.Skill.GetMainSkill();
-        if (mainSKill.CanUseSkill(target) == ECanUseSkillFailReason.None)
-            return mainSKill;
+		Skill mainSkill = Managers.Skill.GetMainSkill();
+		if (mainSkill.CanUseSkill(target) == ECanUseSkillFailReason.None)
+			return mainSkill;
 
         return null;
     }
@@ -554,6 +620,29 @@ public class MyHero : Hero
 
         //스킬 범위 그리기
         StartCoroutine(DrawSkillRange(packet.TemplateId, packet.TargetId));
+
+        //4. 스킬 범위에 있는 애들 모니터링 시작
+        StartMonitoringSkillTargets(packet.TemplateId, packet.TargetId);
+    }
+
+    private void StartMonitoringSkillTargets(int templateId, int targetId)
+    {
+        if (Managers.Data.SkillDict.TryGetValue(templateId, out SkillData skillData) == false)
+            return;
+
+        Creature target = Managers.Object.FindCreatureById(targetId);
+        if (target == null)
+            return;
+
+        Skill skill = Managers.Skill.GetSkill(templateId);
+        if (skill == null)
+            return;
+
+        List<Creature> targets = skill.GatherSkillEffectTargets(this, skillData, target);
+        foreach (var t in targets)
+        {
+            t.IsMonitored = true;
+        }
     }
     #endregion
 
@@ -611,21 +700,21 @@ public class MyHero : Hero
     #endregion
 
     #region PacketHandler
-    public void HandleChangeStat(S_ChangeStat packet)
+    public void HandleRefreshStat(S_RefreshStat packet)
     {
         _creatureInfo.TotalStatInfo.MergeFrom((packet.TotalStatInfo));
         Managers.Event.TriggerEvent(EEventType.StatChanged);
     }
 
-    public void HandleRewardValue(S_RewardValue rewardValue)
-    {
-        Gold += rewardValue.Gold;
-        AddExp(rewardValue.Exp);
-        Managers.Event.TriggerEvent(EEventType.CurrencyChanged);
-        DamageFontController.AddDamageFont(rewardValue.Gold, transform, EDamageType.Gold);
-        DamageFontController.AddDamageFont(rewardValue.Exp, transform, EDamageType.Exp);
-    }
-    #endregion
+	public void HandleRewardValue(S_RewardValue rewardValue)
+	{
+		Gold += rewardValue.Gold;
+		AddExp(rewardValue.Exp);
+		Managers.Event.TriggerEvent(EEventType.CurrencyChanged);
+		DamageFontController.AddDamageFont(rewardValue.Gold, transform, EFontType.Gold);
+		DamageFontController.AddDamageFont(rewardValue.Exp, transform, EFontType.Exp);
+	}
+	#endregion
 
     #region OutLine
     private void DrawOutline(BaseObject obj)
@@ -633,13 +722,13 @@ public class MyHero : Hero
         // 기존에 선택된 오브젝트 아웃라인 제거.
         if (SelectedObject != null)
         {
-            SelectedObject.OutLine.Clear();
+            SelectedObject.OutLine.SetActive(false);
             SelectedObject = null;
         }
 
         // 아웃라인 추가.
         SelectedObject = obj;
-        SelectedObject.OutLine.SetActive(true, Color.yellow);
+        SelectedObject.OutLine.SetActive(true);
 
         ////TODO 타일(몬스터, NPC)클릭
 

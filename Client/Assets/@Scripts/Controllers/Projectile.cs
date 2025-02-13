@@ -49,15 +49,20 @@ public class Projectile : BaseObject
 
     }
 
+    public override void UpdateLerpToCellPos(float moveSpeed, bool canFlip = true)
+    {
+        //projectile¿∫ ºø¿ÃµøX
+    }
+
     protected override void Update()
     {
         if (_target == null || MoveSpeed == 0)
         {
-            Managers.Object.Despawn(ObjectId);
+            DespawnProjectile();
             return;
         }
 
-        Vector3 destPos = _target.transform.position;
+        Vector3 destPos = _target.CenterPos;
         Vector3 dir = destPos - transform.position;
 
         if (dir.x < 0)
@@ -71,11 +76,20 @@ public class Projectile : BaseObject
         if (dir.magnitude < moveDist)
         {
             transform.position = destPos;
-            Managers.Object.Despawn(ObjectId);
+            DespawnProjectile();
             return;
         }
 
         transform.position += dir.normalized * moveDist;
+    }
+
+    private void DespawnProjectile()
+    {
+        if (Managers.Object.FindById(ObjectId) != null)
+            Managers.Object.Despawn(ObjectId);
+        else
+            Managers.Resource.Destroy(gameObject);
+
     }
 
     protected Quaternion LookAt2D(Vector2 forward)

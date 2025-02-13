@@ -1,15 +1,13 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Google.Protobuf.Protocol;
-using Data;
 using UnityEngine;
 
 public class DamageFontInfo
 {
     public float Damage;
     public Transform Parent;
-    public EDamageType DamageType;
+    public EFontType FontType;
 }
 
 public class DamageFontController : MonoBehaviour
@@ -36,13 +34,13 @@ public class DamageFontController : MonoBehaviour
         }
     }
 
-    public void AddDamageFont(float damage, Transform parent, EDamageType damageType)
+    public void AddDamageFont(float damage, Transform parent, EFontType fontType)
     {
         DamageFontInfo info = new DamageFontInfo()
         {
             Damage = damage,
             Parent = parent,
-            DamageType = damageType
+            FontType = fontType
         };
         _infos.Enqueue(info);
     }
@@ -52,6 +50,6 @@ public class DamageFontController : MonoBehaviour
         string prefabName = "DamageFont";
         GameObject go = Managers.Resource.Instantiate(prefabName, pooling: true);
         DamageFont damageText = go.GetComponent<DamageFont>();
-        damageText.SetInfo(info.Damage, info.Parent, info.DamageType);
+        damageText.SetInfo(info.Damage, info.Parent, info.FontType);
     }
 }

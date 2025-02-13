@@ -82,7 +82,7 @@ class PacketHandler
 
         //Scene
         GameScene scene = Managers.Scene.CurrentScene as GameScene;
-        scene.HandleEnterGame();
+        scene.HandleEnterGame(enterGamePacket);
 
         //UI
         var sceneUI = Managers.UI.GetSceneUI<UI_GameScene>();
@@ -151,14 +151,20 @@ class PacketHandler
         if (bo == null)
             return;
 
-        Debug.Log($"{go.name} , CellPos : {movePacket.PosInfo.PosX}, {movePacket.PosInfo.PosY}");
+        //Debug.Log($"Ilhak {go.name} , CellPos : {movePacket.PosInfo.PosX}, {movePacket.PosInfo.PosY}");
         bo.PosInfo = movePacket.PosInfo;
+        if (bo.ObjectId == Managers.Object.MyHero.ObjectId)
+        {
+            Managers.UI.GetSceneUI<UI_GameScene>().OnUpdatePosition();
+        }
     }
 
     // TODO
     public static void S_PingHandler(PacketSession session, IMessage packet)
     {
-
+        //Debug.Log("S_Ping");
+        //C_Pong pongPacket = new C_Pong();
+        //Managers.Network.Send(pongPacket);
     }
 
     public static void S_SkillHandler(PacketSession session, IMessage packet)
@@ -189,7 +195,7 @@ class PacketHandler
         Creature creature = go.GetComponent<Creature>();
         creature?.HandleChangeOneStat(changePacket.StatType, changePacket.Value, changePacket.Diff, changePacket.FontType);
 
-        // MyHero�� ���� ��Ŷ�̸�
+        // MyHero에 대한 패킷이면
         if (changePacket.ObjectId == Managers.Object.MyHero.ObjectId)
         {
             Managers.UI.GetSceneUI<UI_GameScene>()?.OnHpChanged();
@@ -233,52 +239,27 @@ class PacketHandler
         Creature cc = go.GetComponent<Creature>();
         if (cc != null)
         {
+            if (Managers.Object.MyHero.ObjectId == cc.ObjectId)
+            {
+                Managers.UI.ShowToast("TODO 죽었습니다. 잠시 후 부활 합니다.");
+            }
+
             cc.Hp = 0;
             cc.OnDead();
         }
     }
 
-    public static void S_ChangeStatHandler(PacketSession session, IMessage packet)
+    public static void S_RefreshStatHandler(PacketSession session, IMessage packet)
     {
-        Debug.Log("S_ChangeStatHandler");
+        Debug.Log("S_RefreshStatHandler");
 
-        S_ChangeStat pkt = (S_ChangeStat)packet;
+        S_RefreshStat pkt = (S_RefreshStat)packet;
 
         MyHero myHero = Managers.Object.MyHero;
         if (myHero == null)
             return;
 
-        myHero.HandleChangeStat(pkt);
-    }
-
-    public static void S_ApplyEffectHandler(PacketSession session, IMessage packet)
-    {
-        S_ApplyEffect pkt = (S_ApplyEffect)packet;
-
-        GameObject go = Managers.Object.FindById(pkt.ObjectId);
-        if (go == null)
-            return;
-
-        Creature cc = go.GetComponent<Creature>();
-        if (cc == null)
-            return;
-
-        cc.ApplyEffect(pkt);
-    }
-
-    public static void S_RemoveEffectHandler(PacketSession session, IMessage packet)
-    {
-        S_RemoveEffect pkt = (S_RemoveEffect)packet;
-
-        GameObject go = Managers.Object.FindById(pkt.ObjectId);
-        if (go == null)
-            return;
-
-        Creature cc = go.GetComponent<Creature>();
-        if (cc == null)
-            return;
-
-        cc.RemoveEffect(pkt);
+        myHero.HandleRefreshStat(pkt);
     }
 
     public static void S_AddItemHandler(PacketSession session, IMessage packet)
@@ -311,18 +292,51 @@ class PacketHandler
 
         Managers.Inventory.Remove(pkt.ItemDbId);
     }
+
+    public static void S_ApplyEffectHandler(PacketSession session, IMessage packet)
+    {
+        S_ApplyEffect pkt = (S_ApplyEffect)packet;
+
+        GameObject go = Managers.Object.FindById(pkt.ObjectId);
+        if (go == null)
+            return;
+
+        Creature cc = go.GetComponent<Creature>();
+        if (cc == null)
+            return;
+
+        cc.ApplyEffect(pkt);
+    }
+
+    public static void S_RemoveEffectHandler(PacketSession session, IMessage packet)
+    {
+        S_RemoveEffect pkt = (S_RemoveEffect)packet;
+
+        GameObject go = Managers.Object.FindById(pkt.ObjectId);
+        if (go == null)
+            return;
+
+        Creature cc = go.GetComponent<Creature>();
+        if (cc == null)
+            return;
+
+        cc.RemoveEffect(pkt);
+    }
+
     public static void S_ChangeItemSlotHandler(PacketSession session, IMessage packet)
     {
         S_ChangeItemSlot pkt = packet as S_ChangeItemSlot;
 
         Managers.Inventory.ChangeItemSlot(pkt.ItemDbId, pkt.ItemSlotType);
     }
+
     public static void S_UseItemHandler(PacketSession session, IMessage packet)
     {
         S_UseItem pkt = packet as S_UseItem;
 
         Managers.Inventory.HandleUseItem(pkt);
     }
+
     public static void S_RewardValueHandler(PacketSession session, IMessage packet)
     {
         var pkt = packet as S_RewardValue;
@@ -335,4 +349,9 @@ class PacketHandler
 
         myHero.HandleRewardValue(pkt);
     }
+
+    
+   
+
+
 }

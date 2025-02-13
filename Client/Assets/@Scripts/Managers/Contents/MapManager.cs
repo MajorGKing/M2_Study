@@ -187,6 +187,12 @@ public class MapManager
 
         return true;
     }
+    
+    public void Clear()
+    {
+        _cells.Clear();
+        Map = null;
+    }
 
     #region Helpers
 

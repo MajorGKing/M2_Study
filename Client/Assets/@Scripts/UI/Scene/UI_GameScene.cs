@@ -34,7 +34,9 @@ public class UI_GameScene : UI_Scene
         HpText,
         MpText,
         ExpText,
-        GoldText
+        GoldText,
+        AutoText,
+        PosValueText,
     }
 
     enum Sliders
@@ -132,6 +134,12 @@ public class UI_GameScene : UI_Scene
     public void OnHpChanged()
     {
         RefreshUI();
+    }
+
+    public void OnUpdatePosition()
+    {
+        MyHero hero = Managers.Object.MyHero;
+        GetText((int)Texts.PosValueText).text = $"({hero.CellPos.x} . {hero.CellPos.y})";
     }
 
     #region Onclick

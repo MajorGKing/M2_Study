@@ -41,7 +41,7 @@ public class GameScene : BaseScene
         base.Start();
     }
 
-    public void HandleEnterGame()
+    public void HandleEnterGame(S_EnterGame packet)
     {
         #region Scene UI
 

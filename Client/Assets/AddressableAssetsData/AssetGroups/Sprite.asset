@@ -245,50 +245,50 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6ccd32a670a3ce948bc370c14ab3dad1
-    m_Address: f_archer_SkeletonData
+  - m_GUID: e33135a9cc7cfce4387ba5e5f480c832
+    m_Address: illust_m_wizard_SkeletonData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 793a484caca53474195cbd92c51deeee
-    m_Address: m_archer_SkeletonData
+  - m_GUID: 829eadfd2b834f249ada399d5dae9eed
+    m_Address: illust_m_rogue_SkeletonData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4f62b51451fe32a428826ee175a1d215
-    m_Address: f_knight_SkeletonData
+  - m_GUID: baabed1174cd65041b62d5aaf9105ecf
+    m_Address: illust_m_knight_SkeletonData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d921908449ed9e54098d680fd6d82754
-    m_Address: m_knight_SkeletonData
+  - m_GUID: 149970e31ef01f3499d44c1f4437a253
+    m_Address: illust_m_archer_SkeletonData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9627e8729ea878c41addd89ad436dd48
-    m_Address: f_rogue_SkeletonData
+  - m_GUID: d0b7ac4edb2125b4581c4dd5578cad4a
+    m_Address: illust_f_wizard_SkeletonData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 71a6145fd00aeed43b5b026b81e462b4
-    m_Address: m_rogue_SkeletonData
+  - m_GUID: d904639609ab20a42b85ca6bc98cd139
+    m_Address: illust_f_rogue_SkeletonData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c437d7b747c7d734e9f2a23f5ed29641
-    m_Address: f_wizard_SkeletonData
+  - m_GUID: 44c04e44274e3384ca2f2d4bb08374d1
+    m_Address: illust_f_knight_SkeletonData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3a0f7f7204e218b4ca998f3911b17cfc
-    m_Address: m_wizard_SkeletonData
+  - m_GUID: 9ce791643b181854d99756c0e461200c
+    m_Address: illust_f_archer_SkeletonData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

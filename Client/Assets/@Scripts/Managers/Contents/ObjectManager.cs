@@ -12,7 +12,7 @@ public class ObjectManager
     Dictionary<int, GameObject> _objects = new Dictionary<int, GameObject>();
     Dictionary<int, Monster> _monsters = new Dictionary<int, Monster>();
     Dictionary<int, Hero> _heroes = new Dictionary<int, Hero>();
-    HashSet<GameObject> _gameObjects = new HashSet<GameObject>(); // ¼­¹ö¶û »ó°ü¾ø´Â ¿ÀºêÁ§Æ®µé
+    HashSet<GameObject> _gameObjects = new HashSet<GameObject>(); // ì„œë²„ë‘ ìƒê´€ì—†ëŠ” ì˜¤ë¸Œì íŠ¸ë“¤
 
     #region Roots
     public Transform GetRootTransform(string name)
@@ -60,12 +60,9 @@ public class ObjectManager
         _objects.Add(objectInfo.ObjectId, go);
 
         MyHero = Utils.GetOrAddComponent<MyHero>(go);
+        MyHero.InitMyHero(myHeroInfo);
         MyHero.SetInfo(templateId);
-        MyHero.MyHeroInfo = myHeroInfo;
-        MyHero.ObjectId = objectInfo.ObjectId;
-        MyHero.PosInfo = objectInfo.PosInfo;
         MyHero.SyncWorldPosWithCellPos();
-
         Managers.Skill.Init(templateId);
 
         return MyHero;
@@ -140,13 +137,13 @@ public class ObjectManager
         if (Managers.Data.ProjectileDict.TryGetValue(templateId, out ProjectileData projectileData) == false)
             return null;
 
-        // Ã¹¹øÀç È­»ì
+        // ì²«ë²ˆì¬ í™”ì‚´
         GameObject go = Managers.Resource.Instantiate(projectileData.PrefabName, pooling: true);
         Projectile proj = Utils.GetOrAddComponent<Projectile>(go);
         _objects.Add(objectInfo.ObjectId, go);
         proj.SetInfo(info, info.TargetId);
 
-        //¹ß»çÃ¼ °¹¼ö°¡ ¿©·¯°³ÀÏ¶§ ³ª¸ÓÁö È­»ì spawn
+        //ë°œì‚¬ì²´ ê°¯ìˆ˜ê°€ ì—¬ëŸ¬ê°œì¼ë•Œ ë‚˜ë¨¸ì§€ í™”ì‚´ spawn
         if (projectileData.Count > 1)
             Managers.Instance.StartCoroutine(GenerateProjectile(projectileData, info, info.TargetId));
 
@@ -382,7 +379,7 @@ public class ObjectManager
     {
         if (packet.LeaveType == ELeaveType.Dead)
         {
-            //TODO UI Å¬¸¯ ÈÄ Clear
+            //TODO UI í´ë¦­ í›„ Clear
             // Despawn(MyHero.ObjectId);
             Managers.Instance.StartCoroutine(ReserveClear(2.5f));
         }

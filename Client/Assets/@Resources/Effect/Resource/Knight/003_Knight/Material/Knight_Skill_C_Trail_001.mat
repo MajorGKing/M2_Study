@@ -54,14 +54,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Dissolve_Scale: 50
-    - _Intence: 10
-    - _Power_Exp: 1.18
+    - _Dissolve_Scale: 60
+    - _Intence: 2.04
+    - _Power_Exp: 2
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color_001: {r: 1, g: 0.31804734, b: 0, a: 1}
-    - _Color_002: {r: 1, g: 0.019788152, b: 0, a: 1}
-    - _Dissolve_Speed: {r: 0, g: -10, b: 0, a: 0}
+    - _Color_001: {r: 1, g: 0, b: 0.047468662, a: 1}
+    - _Color_002: {r: 1, g: 0.084452555, b: 0, a: 1}
+    - _Dissolve_Speed: {r: 0, g: -2, b: 0, a: 0}
     - _Panner_Speed: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

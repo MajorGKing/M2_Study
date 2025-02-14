@@ -71,20 +71,14 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 175a482241a01a042a88b8039041d5b7
-    m_Address: UI_HPBar
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c310b787f758e3a4db55284145e55bc8
     m_Address: ToastUI
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4fd136de95543404f995951c5ae9e48c
-    m_Address: UI_QuickSlot
+  - m_GUID: 175a482241a01a042a88b8039041d5b7
+    m_Address: UI_ObjectHUD
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

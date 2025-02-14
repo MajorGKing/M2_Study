@@ -113,6 +113,41 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7450679ff2829e4b849e546b7ed26c0
+    m_Address: Room1_CityCollision
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 775a39327204adc4684b1298172cf126
+    m_Address: Room2_Forest_1Collision
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd14f1db7efe0fb4fbc43413b57796d4
+    m_Address: Room2_Forest_A_1Collision
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d1fe91352a689cf4cbc114a119c13577
+    m_Address: Room3_Forest_2Collision
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ff651e1ceb74bee4db0c6cc05196852c
+    m_Address: Room4_Fall_1Collision
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ec28743b4fe7dc4fa74f78c59446307
+    m_Address: Room5_Fall_2Collision
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f35c77993696bb40af6b7f17add66fe
+    m_Address: Room6_Wet_1Collision
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9094f0f0595c6e147aa68a6f81e2dcaf, type: 2}
   m_SchemaSet:

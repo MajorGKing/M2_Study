@@ -17,14 +17,38 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: d24783d009c6c774484b6fc3070ecb61
   m_SerializeEntries:
-  - m_GUID: 5a5981ccbf32e344f9ac58769c8989f0
-    m_Address: Room2_Forest_A_1
+  - m_GUID: c90b6db53a8e6e34abffdc656ef9ff76
+    m_Address: Room2_Forest_1
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e87f85ce92109024682b7e33d241bb12
     m_Address: Room1_City
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e89f3a1ddefdd54eac9b7fe62cc74ce
+    m_Address: Room3_Forest_2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3646e8c4105584948881102abadb38b6
+    m_Address: Room4_Fall_1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8db8d5541e7fd734ca6b33d9c23c1a2b
+    m_Address: Room5_Fall_2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f3add084f0729a14fa57da18a6f1cdbb
+    m_Address: Room6_Wet_1
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

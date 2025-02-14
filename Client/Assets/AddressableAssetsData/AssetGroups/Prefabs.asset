@@ -17,12 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 6855a303d91ea534cad059887528a9c1
   m_SerializeEntries:
-  - m_GUID: 9fc1eaa307ebaac41a48635265560414
-    m_Address: WoodMan
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e93d8c78dfed5944eacbece1306e0fa6
     m_Address: Cursor
     m_ReadOnly: 0
@@ -35,12 +29,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e09ba98ab20c5314baed4b8a48e767b7
-    m_Address: Goblin
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8ef7b993fa90a46439fe244349a7e3e0
     m_Address: HeroPrefab_Knight_Male
     m_ReadOnly: 0
@@ -49,12 +37,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8f6b7448dac525746abc97c0265ab6c8
     m_Address: GoblinProjectile
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1c2ad1ad8ae65194aa075f32d95f3eae
-    m_Address: ScareCrow
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6f3fbb560bd6041a202ea918fa4f23, type: 3}
   m_Name: wet_terrain_1
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 21300000, guid: a7ff84965ab13d047bddec720a165f54, type: 3}
+  m_DefaultSprite: {fileID: 21300000, guid: 9da71efcd01fd094d8fe3087963e6420, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 1
     m_Sprites:
-    - {fileID: 21300000, guid: a7ff84965ab13d047bddec720a165f54, type: 3}
-    - {fileID: 21300000, guid: 41fb986f72fbded4593f90f45d912a56, type: 3}
+    - {fileID: 21300000, guid: 9da71efcd01fd094d8fe3087963e6420, type: 3}
+    - {fileID: 21300000, guid: c4df89d0c5e103946a83c30d67d062e2, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1

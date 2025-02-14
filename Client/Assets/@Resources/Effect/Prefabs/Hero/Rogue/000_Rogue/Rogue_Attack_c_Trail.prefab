@@ -288,7 +288,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.87
+      scalar: 0.99
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -341,7 +341,7 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.72
+      scalar: 0.99
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4864,8 +4864,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -695603101
-  m_SortingLayer: 1
-  m_SortingOrder: 301
+  m_SortingLayer: 0
+  m_SortingOrder: 300
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -5185,7 +5185,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.41
+      scalar: 0.47
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5238,7 +5238,7 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.25
+      scalar: 1.7
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5344,7 +5344,7 @@ ParticleSystem:
     startRotationX:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -1.1938052
+      scalar: -1.1772245
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5397,7 +5397,7 @@ ParticleSystem:
     startRotationY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -0.10821041
+      scalar: -0.10471975
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5450,7 +5450,7 @@ ParticleSystem:
     startRotation:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -2.3509583
+      scalar: -2.4754004
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -9761,8 +9761,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -695603101
-  m_SortingLayer: 1
-  m_SortingOrder: 301
+  m_SortingLayer: 0
+  m_SortingOrder: 300
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0

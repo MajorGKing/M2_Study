@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7122526443082596530
 Transform:
   m_ObjectHideFlags: 0
@@ -4864,7 +4864,7 @@ ParticleSystemRenderer:
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
   m_LengthScale: 2
-  m_SortingFudge: 0
+  m_SortingFudge: -10
   m_NormalDirection: 1
   m_ShadowBias: 0
   m_RenderAlignment: 2
@@ -9752,7 +9752,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -695603101
   m_SortingLayer: 0
-  m_SortingOrder: 301
+  m_SortingOrder: 290
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -10072,7 +10072,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 4
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -14640,7 +14640,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -695603101
   m_SortingLayer: 0
-  m_SortingOrder: 301
+  m_SortingOrder: 290
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -19537,7 +19537,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -695603101
   m_SortingLayer: 0
-  m_SortingOrder: 301
+  m_SortingOrder: 290
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -24434,7 +24434,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -695603101
   m_SortingLayer: 0
-  m_SortingOrder: 301
+  m_SortingOrder: 290
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -29331,7 +29331,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -695603101
   m_SortingLayer: 0
-  m_SortingOrder: 301
+  m_SortingOrder: 290
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -29413,7 +29413,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8385271517129028084}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -29488,7 +29488,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -29659,7 +29659,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4
+      scalar: 5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -29712,7 +29712,7 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2.6
+      scalar: 3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -34245,7 +34245,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -695603101
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 290
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -34254,7 +34254,7 @@ ParticleSystemRenderer:
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
   m_LengthScale: 2
-  m_SortingFudge: 301
+  m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0
   m_RenderAlignment: 2
@@ -34500,8 +34500,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 0
-      minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0.36078432}
+      minColor: {r: 1, g: 1, b: 1, a: 0.46666667}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -34565,8 +34565,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 4
-      minScalar: 3
+      scalar: 4.5
+      minScalar: 4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -35258,7 +35258,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 30
+        scalar: 35
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -35324,17 +35324,17 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 1
-          inSlope: -0.19999999
-          outSlope: -0.19999999
+          inSlope: -0.3
+          outSlope: -0.3
           tangentMode: 34
           weightedMode: 0
           inWeight: 0
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 0.8
-          inSlope: -0.19999999
-          outSlope: -0.19999999
+          value: 0.7
+          inSlope: -0.3
+          outSlope: -0.3
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
@@ -35644,7 +35644,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0.5882353}
+        key0: {r: 1, g: 1, b: 1, a: 1}
         key1: {r: 1, g: 1, b: 1, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -36970,7 +36970,7 @@ ParticleSystem:
     drag:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.05
+      scalar: 0.03
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -37025,7 +37025,7 @@ ParticleSystem:
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -39133,7 +39133,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -695603101
   m_SortingLayer: 0
-  m_SortingOrder: 301
+  m_SortingOrder: 290
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -39142,7 +39142,7 @@ ParticleSystemRenderer:
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
   m_LengthScale: 2
-  m_SortingFudge: 0
+  m_SortingFudge: -10
   m_NormalDirection: 1
   m_ShadowBias: 0
   m_RenderAlignment: 2
@@ -44021,7 +44021,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -695603101
   m_SortingLayer: 0
-  m_SortingOrder: 301
+  m_SortingOrder: 290
   m_RenderMode: 1
   m_MeshDistribution: 0
   m_SortMode: 0

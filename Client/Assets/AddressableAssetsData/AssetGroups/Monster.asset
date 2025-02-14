@@ -1,0 +1,187 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Monster
+  m_EditorClassIdentifier: 
+  m_GroupName: Monster
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 04cc673bf546dc6419214cf325948f1f
+  m_SerializeEntries:
+  - m_GUID: e09ba98ab20c5314baed4b8a48e767b7
+    m_Address: Goblin
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c2ad1ad8ae65194aa075f32d95f3eae
+    m_Address: ScareCrow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9fc1eaa307ebaac41a48635265560414
+    m_Address: WoodMan
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e5e5e458fc4b4094d8f105302d02b7bd
+    m_Address: 001.slime_common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 838e1f64c0b0b0047b9ac5525d3ae29f
+    m_Address: 002.slime_rare
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 26ecf332960b6d448aa8df19821e03e4
+    m_Address: 003.spider_common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 448026cd56cf268428f7c0d1d6c8c1a9
+    m_Address: 004.spider_rare
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 46c8d4f1f1b43874db36f1912514eb1b
+    m_Address: 005.wood_common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5b85594e20c83094d93b9215545b900e
+    m_Address: 006.wood_rare
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b4b0d1773a9188c4480d3d1ac9134cfa
+    m_Address: 007.worm_common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dd847be676d61ea48aa5eaddb35ab904
+    m_Address: 008.wild_boar
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9169d378129d53745938bdcd4a3326f5
+    m_Address: boss_wild_boar
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b8c0dd8a61054254fad86bb167eeeba5
+    m_Address: elite_flower
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 803aaaba2804b3447875761ec07385da
+    m_Address: 009.forest_plant_common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 23c88c3962261344b9d6eafc2a7c905e
+    m_Address: 010.forest_plant_rare
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a1a032a8cd3e914a9ad4cdfd2520e39
+    m_Address: 011.fall_wood_common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0809da5c1c914e247851dfb55daa1de1
+    m_Address: 012.fall_wood_rare
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5ef38c2095559ee4ab9bb3fd1a4fe854
+    m_Address: 013.bee_common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7426741de9153a846bf1f7ab824f67db
+    m_Address: 014.bee_rare
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 09b3e21a53edc50448e182ece5440a47
+    m_Address: 015.bee_house_SkeletonData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 84557497fbd24434d946838c0ef203a7
+    m_Address: 016.bear
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 22bd588c4bfb3774081654908dce9650
+    m_Address: boss_honey_bear
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cc8bf3d6d25419c41a02e0a0e537b7a7
+    m_Address: 017.frog_common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 69b117672d8edd341b0ad37835faa834
+    m_Address: 018.pig
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 883ffc191789b324c8b9dd35795db9d4
+    m_Address: 019.snail_common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c0c13ecc8ed0d674f8b458310ed0fe40
+    m_Address: 020.snail_rare
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0a5aa21f338ae9d46810c14651ae0961
+    m_Address: elite_frog
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9094f0f0595c6e147aa68a6f81e2dcaf, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: d5b928a5cb5d7044893d0b200eb40e18, type: 2}
+    - {fileID: 11400000, guid: ff216b75433353543b6827b298a79e1d, type: 2}

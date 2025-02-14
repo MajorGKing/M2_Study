@@ -77,8 +77,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cf00b97892d231445ab7e651b23c2690
-    m_Address: Rogue_Skill_A_Target
+  - m_GUID: 4c9c384af5f389b4b92c7e949f620d07
+    m_Address: Knight_Skill_C_Target
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
@@ -229,6 +229,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5403c56285412a441866772601464ee6
     m_Address: Archer_Attack_a_Trail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d51b4e70a3e1bf84d8f227d729f9d9ed
+    m_Address: Rogue_Skill_A_Target
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

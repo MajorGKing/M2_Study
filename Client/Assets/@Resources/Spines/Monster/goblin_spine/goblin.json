@@ -380,7 +380,7 @@
 	"event_attack_a": {}
   },
   "animations": {
-	"attack_a": {
+	"attack": {
 	  "slots": {
 		"allow": {
 		  "rgba": [
@@ -1344,7 +1344,7 @@
 		}
 	  ]
 	},
-	"attack_a": {
+	"attack": {
 	  "slots": {
 		"allow": {
 		  "rgba": [

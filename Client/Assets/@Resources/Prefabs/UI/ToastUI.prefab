@@ -250,18 +250,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1262329948662846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b5e68f7075da014d938aef911472236, type: 3}
+  m_Script: {fileID: 11500000, guid: ea1545b7af784985923c1820fd1caf5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   colors:
   - {r: 0, g: 0, b: 0, a: 0.6313726}
-  - {r: 0.9607843, g: 0.050980393, b: 0.15686275, a: 1}
-  - {r: 0.6117647, g: 0.14901961, b: 0.5882353, a: 1}
-  - {r: 0.85490197, g: 0, b: 1, a: 1}
-  - {r: 0, g: 0.09803922, b: 1, a: 1}
-  - {r: 1, g: 0.96862745, b: 0, a: 1}
-  - {r: 0.16862746, g: 0.85882354, b: 0, a: 1}
-  - {r: 0.8666667, g: 0.45882353, b: 0, a: 1}
+  - {r: 0.9622642, g: 0.049928807, b: 0.15669128, a: 1}
+  - {r: 0.6132076, g: 0.1475169, b: 0.58784807, a: 1}
+  - {r: 0.85471106, g: 0, b: 1, a: 1}
+  - {r: 0, g: 0.0967958, b: 1, a: 1}
+  - {r: 1, g: 0.9685757, b: 0, a: 1}
+  - {r: 0.16690548, g: 0.8584906, b: 0, a: 1}
+  - {r: 0.8679245, g: 0.45889503, b: 0, a: 1}
   fadeDuration: 0.367
 --- !u!1 &1379282666370740
 GameObject:
@@ -397,7 +397,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 569.44415, y: -494.92343}
+  m_AnchoredPosition: {x: 561.9015, y: -502.16495}
   m_SizeDelta: {x: 415.1, y: 49.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222180899360473682

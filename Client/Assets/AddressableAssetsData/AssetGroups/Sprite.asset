@@ -245,6 +245,190 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ccd32a670a3ce948bc370c14ab3dad1
+    m_Address: f_archer_SkeletonData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 793a484caca53474195cbd92c51deeee
+    m_Address: m_archer_SkeletonData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4f62b51451fe32a428826ee175a1d215
+    m_Address: f_knight_SkeletonData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d921908449ed9e54098d680fd6d82754
+    m_Address: m_knight_SkeletonData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9627e8729ea878c41addd89ad436dd48
+    m_Address: f_rogue_SkeletonData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 71a6145fd00aeed43b5b026b81e462b4
+    m_Address: m_rogue_SkeletonData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c437d7b747c7d734e9f2a23f5ed29641
+    m_Address: f_wizard_SkeletonData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a0f7f7204e218b4ca998f3911b17cfc
+    m_Address: m_wizard_SkeletonData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8b70e95642cf2b546a4c242fe40994ec
+    m_Address: slime_common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e78446c62171acc468584d44118f696f
+    m_Address: slime_rare
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6e77c1827cc54049b214827cf34bc5d
+    m_Address: spider_common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb317861ca2daed469fc4c911034323a
+    m_Address: spider_rare
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cdd1846b4168fcc4c9b28dfa538d5882
+    m_Address: spr_boss_wild_boar
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3e33872047ce7be49ae9daf405b60750
+    m_Address: spr_elite_flower
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ad0ebe2aeb18c04c8d84690f7bbd7d9
+    m_Address: wild_boar
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de01499a3234c1c4bb78590551dcecf8
+    m_Address: wood_common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 878ed963ab1ab8b4f8b20b351dae1cf0
+    m_Address: wood_rare
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c82ebe61fd98ed488a4d4eb1dc1f1af
+    m_Address: worm_common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4164af0b8a9ddf64ebdb90d13268f63c
+    m_Address: fall_wood_common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8cf747e4f29b68439b4c7759012cdcf
+    m_Address: fall_woodman_rare
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e4e5ec63931350048924dcec3747fe21
+    m_Address: forest_plant_common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8cf991febf852ce41842db195b50e5ee
+    m_Address: forest_plant_rare
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 25dba4bc982f9004287ae3c7181793fd
+    m_Address: bear
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 249ac8f0bdb511644964a3ef9f7a1c19
+    m_Address: bee_common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 610ebef35312a4242a5f06f12e11c1bb
+    m_Address: bee_house
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fdad54d66936dd749b34ceeeddaf5c17
+    m_Address: bee_rare
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d7451f82a1556b64ea2536bbeba654fd
+    m_Address: spr_boss_honey_bear
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9099432671f99af4db980a5bfc03fbcc
+    m_Address: frog_common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44b59296465f4d344bf194314d9d075c
+    m_Address: pig
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 47da3143ca3770e4aaac834c4a9f41d2
+    m_Address: snail_common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a2abf064498ee1645ac252f7ef9cd131
+    m_Address: snail_rare
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 16644a110d806314daa46227fe9b8caa
+    m_Address: spr_elite_frog
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9094f0f0595c6e147aa68a6f81e2dcaf, type: 2}
   m_SchemaSet:

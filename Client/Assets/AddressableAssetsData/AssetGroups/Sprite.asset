@@ -248,42 +248,50 @@ MonoBehaviour:
   - m_GUID: 6ccd32a670a3ce948bc370c14ab3dad1
     m_Address: f_archer_SkeletonData
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 793a484caca53474195cbd92c51deeee
     m_Address: m_archer_SkeletonData
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4f62b51451fe32a428826ee175a1d215
     m_Address: f_knight_SkeletonData
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d921908449ed9e54098d680fd6d82754
     m_Address: m_knight_SkeletonData
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9627e8729ea878c41addd89ad436dd48
     m_Address: f_rogue_SkeletonData
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 71a6145fd00aeed43b5b026b81e462b4
     m_Address: m_rogue_SkeletonData
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c437d7b747c7d734e9f2a23f5ed29641
     m_Address: f_wizard_SkeletonData
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3a0f7f7204e218b4ca998f3911b17cfc
     m_Address: m_wizard_SkeletonData
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8b70e95642cf2b546a4c242fe40994ec
     m_Address: slime_common

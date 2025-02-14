@@ -23,6 +23,7 @@ public class DataManager
 {
     private HashSet<IValidate> _loaders = new HashSet<IValidate>();
 
+    public Dictionary<int, ConfigData> ConfigDict { get; private set; } = new Dictionary<int, ConfigData>();
     public Dictionary<string, TextData> TextDict { get; private set; } = new Dictionary<string, TextData>();
     public Dictionary<int, BaseStatData> BaseStatDict { get; private set; } = new Dictionary<int, BaseStatData>();
     public Dictionary<int, HeroData> HeroDict { get; private set; } = new Dictionary<int, HeroData>();
@@ -47,6 +48,7 @@ public class DataManager
 
     public void Init()
     {
+        ConfigDict = LoadJson<ConfigDataLoader, int, ConfigData>("ConfigData").MakeDict();
         TextDict = LoadJson<TextDataLoader, string, TextData>("TextData").MakeDict();
         BaseStatDict = LoadJson<BaseStatDataLoader, int, BaseStatData>("BaseStatData").MakeDict();
         HeroDict = LoadJson<HeroDataLoader, int, HeroData>("HeroData").MakeDict();

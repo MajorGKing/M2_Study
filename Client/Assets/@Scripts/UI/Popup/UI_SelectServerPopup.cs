@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.UI;
+using Data;
 
 public class UI_SelectServerPopup : UI_Popup
 {
@@ -13,7 +9,7 @@ public class UI_SelectServerPopup : UI_Popup
         Server_2_Button,
     }
 
-    public Action<int> OnClosed;
+    public Action OnClosed;
 
     protected override void Awake()
     {
@@ -23,18 +19,20 @@ public class UI_SelectServerPopup : UI_Popup
 
         GetObject((int)GameObjects.Server_1_Button).BindEvent((evt) =>
         {
-            OnClosed?.Invoke(0);
+            GameSettingEx.ServerIndex = 1;
+            OnClosed?.Invoke();
             ClosePopupUI();
         });
 
         GetObject((int)GameObjects.Server_2_Button).BindEvent((evt) =>
         {
-            OnClosed?.Invoke(1);
+            GameSettingEx.ServerIndex = 2;
+            OnClosed?.Invoke();
             ClosePopupUI();
         });
     }
 
-    public void SetInfo(Action<int> action)
+    public void SetInfo(Action action)
     {
         OnClosed = action;
     }

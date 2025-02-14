@@ -1,11 +1,7 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using Data;
-using Google.Protobuf;
 using UnityEngine;
 using static Define;
-using static UnityEditor.Progress;
+
 
 public class UI_QuickSlot : UI_Base
 {
@@ -108,7 +104,8 @@ public class UI_QuickSlot : UI_Base
             }
             else
             {
-                _skillSlots[i].SetInfo(null, null);
+                _skillSlots[i].gameObject.SetActive(false);
+                // _skillSlots[i].SetInfo(null, null);
             }
         }
 

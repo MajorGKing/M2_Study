@@ -19,11 +19,11 @@ public class UI_SelectCharacterPopup : UI_Popup
         CharacterList,
     }
 
-    // Ä³¸¯ÅÍ ½½·Ô
+    // Ã„Â³Â¸Â¯Ã…Ã Â½Â½Â·Ã”
     Transform _parent;
     List<UI_CharacterSlotItem> _slots = new List<UI_CharacterSlotItem>();
 
-    // µ¥ÀÌÅÍ
+    // ÂµÂ¥Ã€ÃŒÃ…Ã
     List<MyHeroInfo> _heroes = new List<MyHeroInfo>();
 
     protected override void Awake()
@@ -91,34 +91,38 @@ public class UI_SelectCharacterPopup : UI_Popup
 
     void OnClickStartButton(PointerEventData evt)
     {
-        // 1) °ÔÀÓ¾À ÀüÈ¯
-        // 2) C_EnterGame ÆĞÅ¶ Àü¼Û
+        // 1) Â°Ã”Ã€Ã“Â¾Ã€ Ã€Ã¼ÃˆÂ¯
+        // 2) C_EnterGame Ã†ÃÃ…Â¶ Ã€Ã¼Â¼Ã›
         Managers.Game.SelectedHeroIndex = _selectedHeroIndex;
         Managers.Scene.LoadScene(EScene.GameScene);
     }
 
     void OnClickCreateCharacterButton(PointerEventData evt)
     {
-        // 1) Ä³¸¯ÅÍ ÃÖ´ë °³¼ö È®ÀÎ ÈÄ, ¹Ù·Î ÆË¾÷.
-        // 2) UI_CreateCharacterPopup¿¡¼­ ³ª¸ÓÁö ÁøÇà.
-        // 3) Ä³¸¯ÅÍ »ı¼º ÆË¾÷ ´İÈú ¶§, Ä³¸¯ÅÍ ¸ñ·Ï ´Ù½Ã ¿äÃ».
+        // 1) Ã„Â³Â¸Â¯Ã…Ã ÃƒÃ–Â´Ã« Â°Â³Â¼Ã¶ ÃˆÂ®Ã€Ã ÃˆÃ„, Â¹Ã™Â·Ã Ã†Ã‹Â¾Ã·.
+        // 2) UI_CreateCharacterPopupÂ¿Â¡Â¼Â­ Â³ÂªÂ¸Ã“ÃÃ¶ ÃÃ¸Ã‡Ã .
+        // 3) Ã„Â³Â¸Â¯Ã…Ã Â»Ã½Â¼Âº Ã†Ã‹Â¾Ã· Â´ÃÃˆÃº Â¶Â§, Ã„Â³Â¸Â¯Ã…Ã Â¸Ã±Â·Ã Â´Ã™Â½Ãƒ Â¿Ã¤ÃƒÂ».
         var popup = Managers.UI.ShowPopupUI<UI_CreateCharacterPopup>();
         popup.SetInfo(onHeroChanged: SendHeroListReqPacket);
     }
 
     void OnClickDeleteCharacterButton(PointerEventData evt)
     {
-        // 1) ÆĞÅ¶ Àü¼Û
-        // 2) ´äÀå ¿À¸é Ä³¸¯ÅÍ »èÁ¦ ÈÄ Refresh
+        // 1) Ã†ÃÃ…Â¶ Ã€Ã¼Â¼Ã›
+        // 2) Â´Ã¤Ã€Ã¥ Â¿Ã€Â¸Ã© Ã„Â³Â¸Â¯Ã…Ã Â»Ã¨ÃÂ¦ ÃˆÃ„ Refresh
         C_DeleteHeroReq reqPacket = new C_DeleteHeroReq();
         reqPacket.HeroIndex = _selectedHeroIndex;
         Managers.Network.Send(reqPacket);
     }
 
-    void OnClickCloseButton(PointerEventData evt)
-    {
-
-    }
+	void OnClickCloseButton(PointerEventData evt)
+	{
+		// 1) íŒ¨í‚· ì „ì†¡ (í‡´ì¥)
+		// 2) ë‹¤ì‹œ ì„œë²„ ê³ ë¥´ëŠ” ì°½ìœ¼ë¡œ
+		C_LeaveGame leaveGamePacket = new C_LeaveGame();
+		Managers.Network.Send(leaveGamePacket);
+		ClosePopupUI();
+	}
 
     public void SendHeroListReqPacket()
     {

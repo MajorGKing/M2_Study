@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-using static Utils;
-
 public class Define
 {
     public const char MAP_TOOL_WALL = '0';
@@ -17,9 +12,8 @@ public class Define
     {
         None,
 
-        OnClickAttackButton,
-        OnClickAutoButton,
-        OnClickPickupButton,
+		OnClickAttackButton,
+		OnClickAutoButton,
 
         InventoryChanged,
         CurrencyChanged,

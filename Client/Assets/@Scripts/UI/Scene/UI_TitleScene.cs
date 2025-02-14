@@ -3,22 +3,25 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using Data;
+using Data.SO;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using static Define;
 using Object = UnityEngine.Object;
 
 public class UI_TitleScene : UI_Scene
 {
     private enum GameObjects
     {
-        ServerArea
+        ServerArea,
+        Background
     }
 
     private enum Texts
     {
         StartText,
         StatusText,
+        SelectedServerNameText,
     }
 
     private enum ETitleSceneState
@@ -119,10 +122,16 @@ public class UI_TitleScene : UI_Scene
         });
     }
 
-    private void OnAssetLoaded()
-    {
-        State = ETitleSceneState.AssetLoaded;
-        Managers.Data.Init();
+	private void RefreshUI()
+	{
+		Managers.Data.ConfigDict.TryGetValue(GameSettingEx.ServerIndex, out ConfigData configData);
+		GetText((int)Texts.SelectedServerNameText).text = configData.ServerName;
+	}
+
+	private void OnAssetLoaded()
+	{
+		State = ETitleSceneState.AssetLoaded;
+		Managers.Data.Init();
 
         // 로딩 완료되면 로그인
         UI_LoginPopup popup = Managers.UI.ShowPopupUI<UI_LoginPopup>();
@@ -135,21 +144,34 @@ public class UI_TitleScene : UI_Scene
             State = ETitleSceneState.LoginSuccess;
         else
             State = ETitleSceneState.LoginFail;
+
+        RefreshUI();
     }
 
     private void ConnectToGameServer()
     {
         State = ETitleSceneState.ConnectingToGameServer;
-        IPAddress ipAddr = IPAddress.Parse("43.203.244.11");
+        Managers.Data.ConfigDict.TryGetValue(GameSettingEx.ServerIndex, out ConfigData configData);
+        //IPAddress ipAddr = IPAddress.Parse("43.203.244.11");
         //IPAddress ipAddr = IPAddress.Parse("172.30.1.51");
         //IPAddress ipAddr = IPAddress.Parse("127.0.0.1");
-        IPEndPoint endPoint = new IPEndPoint(ipAddr, 7777);
+
+        // 1. 고정 아이피 방식
+        //IPAddress ipAddr = IPAddress.Parse("3.37.34.101");
+
+        // 2. DNS 방식
+        //IPAddress ipAddr = Dns.GetHostAddresses("m2.rookiss.io")[0];
+
+        // 3. Dev
+        IPAddress ipAddr = IPAddress.Parse(configData.ServerIp);
+
+        IPEndPoint endPoint = new IPEndPoint(ipAddr, configData.ServerPort);
         Managers.Network.GameServer.Connect(endPoint, OnGameServerConnectionSuccess, OnGameServerConnectionFailed);
     }
 
     private void OnGameServerConnectionSuccess()
     {
-        State = ETitleSceneState.ConnectingToGameServer;
+        State = ETitleSceneState.ConnectedToGameServer;
 
         // TODO : 인증 서버로 받은 JWT 토큰을 활용해, 게임 서버 인증 통과.
         C_AuthReq authReqPacket = new C_AuthReq();
@@ -164,7 +186,13 @@ public class UI_TitleScene : UI_Scene
 
     private void OnClickNextButton(PointerEventData evt)
     {
-        if (State == ETitleSceneState.LoginSuccess)
+        if (State == ETitleSceneState.ConnectingToGameServer
+            || State == ETitleSceneState.ConnectedToGameServer
+            || State == ETitleSceneState.LoginFail)
+                return;
+
+
+        //if (State == ETitleSceneState.LoginSuccess)
         {
             ConnectToGameServer();
         }
@@ -172,7 +200,7 @@ public class UI_TitleScene : UI_Scene
 
     public void OnAuthResHandler(S_AuthRes resPacket)
     {
-        if (State != ETitleSceneState.ConnectingToGameServer)
+        if (State != ETitleSceneState.ConnectedToGameServer)
             return;
 
         if (resPacket.Success == false)
@@ -196,13 +224,13 @@ public class UI_TitleScene : UI_Scene
 
     private void OnClickChooseServerButton(PointerEventData evt)
     {
-        if (State != ETitleSceneState.LoginSuccess)
-            return;
+        //if (State != ETitleSceneState.LoginSuccess)
+        //    return;
 
         UI_SelectServerPopup serverPopup = Managers.UI.ShowPopupUI<UI_SelectServerPopup>();
-        serverPopup.SetInfo((serverIndex) =>
+        serverPopup.SetInfo(() =>
         {
-            _serverIndex = serverIndex;
+            RefreshUI();
         });
     }
 }

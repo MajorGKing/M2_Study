@@ -10,7 +10,6 @@ public class UI_Joystick : UI_Scene
         JoystickBG,
         JoystickCursor,
         AttackButton,
-        PickupButton,
         AutoButton
     }
 
@@ -34,7 +33,6 @@ public class UI_Joystick : UI_Scene
         gameObject.BindEvent(OnDrag, type: ETouchEvent.Drag);
 
         GetObject((int)GameObjects.AttackButton).BindEvent(OnAttackClick);
-        GetObject((int)GameObjects.PickupButton).BindEvent(OnPickupClick);
         GetObject((int)GameObjects.AutoButton).BindEvent(OnAutoClick);
 
         GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
@@ -50,11 +48,6 @@ public class UI_Joystick : UI_Scene
     private void OnAutoClick(PointerEventData evt)
     {
         Managers.Event.TriggerEvent(EEventType.OnClickAutoButton);
-    }
-
-    private void OnPickupClick(PointerEventData evt)
-    {
-        Managers.Event.TriggerEvent(EEventType.OnClickPickupButton);
     }
 
     private void OnPointerDown(PointerEventData evt)

@@ -2,10 +2,16 @@ using System;
 using UnityEngine.EventSystems;
 using UnityEngine;
 using Google.Protobuf.Protocol;
+using Spine.Unity;
 
 
 public class UI_CreateCharacterPopup : UI_Popup
 {
+    enum GameObjects
+    {
+        SkeletonObject
+    }
+
     enum Toggles
     {
         MaleToggle,
@@ -13,7 +19,7 @@ public class UI_CreateCharacterPopup : UI_Popup
 
         WarriorToggle,
         RangerToggle,
-        WizardToggle,
+        //WizardToggle,
         RogueToggle,
     }
 
@@ -30,25 +36,29 @@ public class UI_CreateCharacterPopup : UI_Popup
     }
 
     Action OnHeroChanged;
+    SkeletonGraphic _skeletonGraphic;
 
     protected override void Awake()
     {
         base.Awake();
 
-        BindToggles(typeof(Toggles));
-        BindButtons(typeof(Buttons));
-        BindTexts(typeof(Texts));
+        BindObjects(typeof(GameObjects));
+		BindToggles(typeof(Toggles));
+        BindButtons(typeof(Buttons));		
+		BindTexts(typeof(Texts));
 
         GetToggle((int)Toggles.MaleToggle).gameObject.BindEvent(OnClickHeroGenderToggleButton);
         GetToggle((int)Toggles.FemaleToggle).gameObject.BindEvent(OnClickHeroGenderToggleButton);
 
         GetToggle((int)Toggles.WarriorToggle).gameObject.BindEvent(OnClickHeroClassToggleButton);
         GetToggle((int)Toggles.RangerToggle).gameObject.BindEvent(OnClickHeroClassToggleButton);
-        GetToggle((int)Toggles.WizardToggle).gameObject.BindEvent(OnClickHeroClassToggleButton);
+        //GetToggle((int)Toggles.WizardToggle).gameObject.BindEvent(OnClickHeroClassToggleButton);
         GetToggle((int)Toggles.RogueToggle).gameObject.BindEvent(OnClickHeroClassToggleButton);
 
         GetButton((int)Buttons.CreateCharacterButton).gameObject.BindEvent(OnClickCreateCharacterButton);
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnClickCloseButton);
+
+        _skeletonGraphic = GetObject((int)GameObjects.SkeletonObject).GetComponent<SkeletonGraphic>();
     }
 
     public void SetInfo(Action onHeroChanged)
@@ -61,14 +71,30 @@ public class UI_CreateCharacterPopup : UI_Popup
         GetText((int)Texts.NicknameText).text = "";
     }
 
+    private void Refresh()
+    {
+	    string gender = "f";
+	    if (GetGender() == EHeroGender.Male)
+		    gender = "m";
+
+	    string className = GetClassType().ToString().ToLower();
+	    string name = $"illust_{gender}_{className}_SkeletonData";
+	    _skeletonGraphic.skeletonDataAsset = Managers.Resource.Load<SkeletonDataAsset>(name);
+	    _skeletonGraphic.Initialize(true);
+	    _skeletonGraphic.AnimationState.SetAnimation(0, "idle", true);
+	    _skeletonGraphic.startingLoop = true;
+    }
+
     void OnClickHeroGenderToggleButton(PointerEventData evt)
     {
         Debug.Log("OnClickHeroGenderToggleButton");
+        Refresh();
     }
 
     void OnClickHeroClassToggleButton(PointerEventData evt)
     {
-        Debug.Log("OnClickHeroClassToggleButton");
+		Debug.Log("OnClickHeroClassToggleButton");
+		Refresh();
     }
 
     void OnClickCreateCharacterButton(PointerEventData evt)
@@ -100,8 +126,8 @@ public class UI_CreateCharacterPopup : UI_Popup
         if (GetToggle((int)Toggles.RangerToggle).isOn)
             return EHeroClass.Archer;
 
-        if (GetToggle((int)Toggles.WizardToggle).isOn)
-            return EHeroClass.Wizard;
+        //if (GetToggle((int)Toggles.WizardToggle).isOn)
+        //    return EHeroClass.Wizard;
 
         if (GetToggle((int)Toggles.RogueToggle).isOn)
             return EHeroClass.Rogue;

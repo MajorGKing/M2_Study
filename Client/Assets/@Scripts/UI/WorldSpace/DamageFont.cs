@@ -2,13 +2,12 @@ using DG.Tweening;
 using Google.Protobuf.Protocol;
 using TMPro;
 using UnityEngine;
-using static Define;
 
-public class DamageFont : BaseObject
+public class DamageFont : MonoBehaviour
 {
     private TextMeshPro _damageText;
 
-    protected override void Awake()
+    private void Awake()
     {
         GetComponent<MeshRenderer>().sortingOrder = SortingLayers.DAMAGE_FONT;
     }
@@ -54,7 +53,7 @@ public class DamageFont : BaseObject
                 break;
             case EFontType.Stun:
                 _damageText.fontSize = 7;
-                _damageText.text = "TODO ±âÀı";
+                _damageText.text = "TODO ê¸°ì ˆ";
                 _damageText.color = Color.cyan;
                 DoAnimation();
                 break;
@@ -80,28 +79,42 @@ public class DamageFont : BaseObject
     {
         Sequence seq = DOTween.Sequence();
 
-        //1. Å©±â°¡ 0~ 110ÆÛ ±îÁö Ä¿Á³´Ù°¡ 100ÆÛ±îÁö µ¹¾Æ°£´Ù
-        //2. ¼­¼­È÷ »ç¶óÁø´Ù
-        transform.localScale = Vector3.one;
+        transform.localScale = Vector3.zero;
+        transform.position += Vector3.up;
 
-        seq.Append(transform.DOScale(1.3f, 0.3f).SetEase(Ease.InOutBounce))
-             .Join(transform.DOMove(transform.position + Vector3.up * 2f, 0.5f).SetEase(Ease.OutCirc))
-             //.Append(transform.DOScale(1.0f, 0.3f).SetEase(Ease.OutBounce))
-             //.Join(transform.GetComponent<TMP_Text>().DOFade(0, 0.3f).SetEase(Ease.InQuint))
-             .Append(GetComponent<TextMeshPro>().DOFade(0, 0.3f).SetEase(Ease.Linear))
-             .OnComplete(() =>
-             {
-                 Managers.Resource.Destroy(gameObject);
-             });
-
+        seq.Append(transform.DOScale(1f, 0.3f).SetEase(Ease.Linear))
+            .Join(transform.DOMove(transform.position + Vector3.up * 1.5f, 1f).SetEase(Ease.Linear))
+            // .Append(transform.DOScale(1.0f, 1.5f).SetEase(Ease.Linear))
+            // .Join(transform.GetComponent<TMP_Text>().DOFade(0, 0.5f).SetEase(Ease.InQuint))
+            .OnComplete(() => { Managers.Resource.Destroy(gameObject); });
     }
+
+    //private void DoAnimation()
+    //{
+    //    Sequence seq = DOTween.Sequence();
+
+    //    //1. í¬ê¸°ê°€ 0~ 110í¼ ê¹Œì§€ ì»¤ì¡Œë‹¤ê°€ 100í¼ê¹Œì§€ ëŒì•„ê°„ë‹¤
+    //    //2. ì„œì„œíˆ ì‚¬ë¼ì§„ë‹¤
+    //    transform.localScale = Vector3.one;
+
+    //    seq.Append(transform.DOScale(1.3f, 0.3f).SetEase(Ease.InOutBounce))
+    //         .Join(transform.DOMove(transform.position + Vector3.up * 2f, 0.5f).SetEase(Ease.OutCirc))
+    //         //.Append(transform.DOScale(1.0f, 0.3f).SetEase(Ease.OutBounce))
+    //         //.Join(transform.GetComponent<TMP_Text>().DOFade(0, 0.3f).SetEase(Ease.InQuint))
+    //         .Append(GetComponent<TextMeshPro>().DOFade(0, 0.3f).SetEase(Ease.Linear))
+    //         .OnComplete(() =>
+    //         {
+    //             Managers.Resource.Destroy(gameObject);
+    //         });
+
+    //}
 
     //void NormalDamageFont()
     //{
     //    Sequence seq = DOTween.Sequence();
 
-    //    //1. Å©±â°¡ 0~ 110ÆÛ ±îÁö Ä¿Á³´Ù°¡ 100ÆÛ±îÁö µ¹¾Æ°£´Ù
-    //    //2. ¼­¼­È÷ »ç¶óÁø´Ù
+    //    //1. í¬ê¸°ê°€ 0~ 110í¼ ê¹Œì§€ ì»¤ì¡Œë‹¤ê°€ 100í¼ê¹Œì§€ ëŒì•„ê°„ë‹¤
+    //    //2. ì„œì„œíˆ ì‚¬ë¼ì§„ë‹¤
     //    transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
     //    transform.position += Vector3.up * Random.Range(1.5f, 2f);
     //    float randomX = Random.Range(-1.5f, 1.5f);

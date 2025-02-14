@@ -2,9 +2,8 @@ using Google.Protobuf.Protocol;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
-public class UI_CharacterSlotItem : UI_Base
+public class UI_CharacterSlotItem : UI_SubItem
 {
     private enum GameObjects
     {
@@ -39,6 +38,9 @@ public class UI_CharacterSlotItem : UI_Base
         BindImages(typeof(Images));
 
         GetImage((int)Images.SelectHeroImage).gameObject.BindEvent(OnClickSelectHeroImage);
+        GetImage((int)Images.SelectHeroImage).gameObject.BindEvent(OnBeginDrag, Define.ETouchEvent.BeginDrag);
+        GetImage((int)Images.SelectHeroImage).gameObject.BindEvent(OnDrag, Define.ETouchEvent.Drag);
+        GetImage((int)Images.SelectHeroImage).gameObject.BindEvent(OnEndDrag, Define.ETouchEvent.EndDrag);
     }
 
     public void SetInfo(int index, MyHeroInfo info, bool selected, Action<int> onHeroSelected)

@@ -1,10 +1,6 @@
-using System;
-using System.Linq;
-using Data;
 using Google.Protobuf.Protocol;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
 using static Define;
 
 public class UI_GameScene : UI_Scene
@@ -25,6 +21,7 @@ public class UI_GameScene : UI_Scene
         InventoryButton,
         CharacterButton,
         SkillButton,
+        LobbyButton,
     }
 
     enum Texts
@@ -53,12 +50,14 @@ public class UI_GameScene : UI_Scene
     {
         Managers.Event.RemoveEvent(EEventType.CurrencyChanged, RefreshUI);
         Managers.Event.RemoveEvent(EEventType.StatChanged, RefreshUI);
+        Managers.Event.RemoveEvent(EEventType.OnClickAutoButton, OnClickAutoMode);
     }
 
     protected void OnEnable()
     {
         Managers.Event.AddEvent(EEventType.CurrencyChanged, RefreshUI);
-        Managers.Event.RemoveEvent(EEventType.StatChanged, RefreshUI);
+        Managers.Event.AddEvent(EEventType.StatChanged, RefreshUI);
+        Managers.Event.AddEvent(EEventType.OnClickAutoButton, OnClickAutoMode);
     }
 
     protected override void Awake()
@@ -75,6 +74,7 @@ public class UI_GameScene : UI_Scene
         GetButton((int)Buttons.InventoryButton).gameObject.BindEvent(OnClickInventory);
         GetButton((int)Buttons.CharacterButton).gameObject.BindEvent(OnClickHeroInfo);
         GetButton((int)Buttons.SkillButton).gameObject.BindEvent(OnClickSkillInfo);
+        GetButton((int)Buttons.LobbyButton).gameObject.BindEvent(OnClickLobby);
     }
 
     private float elapsedTime;
@@ -100,7 +100,7 @@ public class UI_GameScene : UI_Scene
         MyHeroInfo info = Managers.Object.MyHero.MyHeroInfo;
         string iconName = $"HeroIcon_{info.HeroInfo.ClassType}_{info.HeroInfo.Gender}";
         GetImage((int)Images.CharacterImage).sprite = Managers.Resource.Load<Sprite>(iconName);
-
+        OnUpdatePosition();
         RefreshUI();
     }
     
@@ -108,8 +108,9 @@ public class UI_GameScene : UI_Scene
     {
         MyHero myHero = Managers.Object.MyHero;
         MyHeroInfo info = Managers.Object.MyHero.MyHeroInfo;
+        GetText((int)Texts.AutoText).gameObject.SetActive(myHero.IsAutoMode);
 
-        //·¹º§
+        //ë ˆë²¨
         GetText((int)Texts.LevelText).text = info.HeroInfo.Level.ToString();
         GetText((int)Texts.GoldText).text = myHero.Gold.ToString();
 
@@ -142,6 +143,11 @@ public class UI_GameScene : UI_Scene
         GetText((int)Texts.PosValueText).text = $"({hero.CellPos.x} . {hero.CellPos.y})";
     }
 
+    private void OnClickAutoMode()
+    {
+        GetText((int)Texts.AutoText).gameObject.SetActive(Managers.Object.MyHero.IsAutoMode);
+    }
+    
     #region Onclick
 
     private void OnClickInventory(PointerEventData eventData)
@@ -163,6 +169,13 @@ public class UI_GameScene : UI_Scene
         //Managers.UI.ShowToast("TODO OnClickSkillInfo");
         UI_SkillPopup skillPopup = Managers.UI.ShowPopupUI<UI_SkillPopup>();
         skillPopup.SetInfo();
+    }
+    
+    private void OnClickLobby(PointerEventData eventData)
+    {
+        C_LeaveGame leaveGamePacket = new C_LeaveGame();
+        Managers.Network.Send(leaveGamePacket);
+        Managers.Scene.LoadScene(EScene.TitleScene);
     }
     #endregion
 }

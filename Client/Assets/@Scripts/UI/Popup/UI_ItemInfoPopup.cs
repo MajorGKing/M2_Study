@@ -44,8 +44,6 @@ public class UI_ItemInfoPopup : UI_Popup
         OptionInfoText1,
         OptionInfoText2,
         OptionInfoText3,
-        OptionInfoText4,
-        OptionInfoText5,
     }
 
     #endregion
@@ -102,21 +100,39 @@ public class UI_ItemInfoPopup : UI_Popup
             case EItemType.Equipment:
                 EquipmentData equipmentData = _item.TemplateData as EquipmentData;
                 //TODO 하드코딩
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 3; i++)
                 {
                     GetText(((int)Texts.OptionInfoText1 + i)).gameObject.SetActive(false);
                 }
 
-                if (equipmentData.EffectData == null)
-                    break;
-
-                for (int i = 0; i < equipmentData.EffectData.StatValues.Count; i++)
+                if (equipmentData.DefenceBonus > 0)
                 {
-                    EStatType statType = equipmentData.EffectData.StatValues[i].StatType;
-                    float value = equipmentData.EffectData.StatValues[i].AddValue;
+                    GetText((int)Texts.OptionInfoText1).gameObject.SetActive(true);
+                    GetText((int)Texts.OptionInfoText1).text = $"@@방어력 + {equipmentData.DefenceBonus}";
+                }
 
-                    GetText((int)Texts.OptionInfoText1 + i).gameObject.SetActive(true);
-                    GetText((int)Texts.OptionInfoText1 + i).text = $"@@{statType} +{value}";
+                if (equipmentData.MaxHpBonus > 0)
+                {
+                    GetText((int)Texts.OptionInfoText1).gameObject.SetActive(true);
+                    GetText((int)Texts.OptionInfoText1).text = $"@@체력 + {equipmentData.MaxHpBonus}";
+                }
+
+                if (equipmentData.AttackBonus > 0)
+                {
+                    GetText((int)Texts.OptionInfoText1).gameObject.SetActive(true);
+                    GetText((int)Texts.OptionInfoText1).text = $"@@공격력 + {equipmentData.AttackBonus}";
+                }
+
+                if (equipmentData.EffectData != null)
+                {
+                    for (int i = 0; i < equipmentData.EffectData.StatValues.Count; i++)
+                    {
+                        EStatType statType = equipmentData.EffectData.StatValues[i].StatType;
+                        float value = equipmentData.EffectData.StatValues[i].AddValue;
+
+                        GetText((int)Texts.OptionInfoText1 + i).gameObject.SetActive(true);
+                        GetText((int)Texts.OptionInfoText1 + i).text = $"@@{statType} +{value}";
+                    }
                 }
                 break;
             case EItemType.Consumable:

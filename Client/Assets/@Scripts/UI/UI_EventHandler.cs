@@ -10,28 +10,51 @@ public class UI_EventHandler : MonoBehaviour, IPointerClickHandler, IPointerDown
     public Action<PointerEventData> OnDragHandler = null;
     public Action<PointerEventData> OnBeginDragHandler = null;
     public Action<PointerEventData> OnEndDragHandler = null;
+    public Action<PointerEventData> OnLongPressHandler = null; // 롱프레스 이벤트 핸들러
 
     private bool _isDragging = false;
+    private bool _isLongPressTriggered = false;
+    private bool _isClickAllowed = true;
     private PointerEventData _currentEventData;
+    private float _pressStartTime;
+    private float _longPressDuration = 1.0f; // 롱프레스 인식 시간 (초)
 
     private void Update()
     {
         if (_isDragging)
+        {
             OnDragHandler?.Invoke(_currentEventData);
+        }
+
+        // 롱프레스 체크
+        if (!_isLongPressTriggered && _currentEventData != null && (Time.time - _pressStartTime) >= _longPressDuration)
+        {
+            _isLongPressTriggered = true;
+            _isClickAllowed = false; // 롱프레스가 발생하면 클릭을 허용하지 않음
+            OnLongPressHandler?.Invoke(_currentEventData);
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-		OnClickHandler?.Invoke(eventData);
+        if (_isClickAllowed)
+        {
+            OnClickHandler?.Invoke(eventData);
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        _pressStartTime = Time.time;
+        _isLongPressTriggered = false;
+        _isClickAllowed = true; // 초기화하여 클릭을 허용하도록 설정
+        _currentEventData = eventData;
         OnPointerDownHandler?.Invoke(eventData);
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        _currentEventData = null;
         OnPointerUpHandler?.Invoke(eventData);
     }
 
@@ -51,6 +74,7 @@ public class UI_EventHandler : MonoBehaviour, IPointerClickHandler, IPointerDown
     public void OnEndDrag(PointerEventData eventData)
     {
         _isDragging = false;
+        _isLongPressTriggered = false;
         OnEndDragHandler?.Invoke(eventData);
     }
 }

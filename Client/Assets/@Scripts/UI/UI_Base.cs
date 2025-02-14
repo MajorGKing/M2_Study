@@ -94,6 +94,10 @@ public abstract class UI_Base : MonoBehaviour
                 evt.OnEndDragHandler -= action;
                 evt.OnEndDragHandler += action;
                 break;
+            case Define.ETouchEvent.LongPressed:
+                evt.OnLongPressHandler -= action;
+                evt.OnLongPressHandler += action;
+                break;
         }
     }
 }

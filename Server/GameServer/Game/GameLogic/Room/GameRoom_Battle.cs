@@ -7,8 +7,6 @@ namespace GameServer
 {
     public partial class GameRoom : JobSerializer
     {
-        protected IJob _onDeadJob;
-
         public void HandleMove(Hero hero, C_Move movePacket)
         {
             if (hero == null)

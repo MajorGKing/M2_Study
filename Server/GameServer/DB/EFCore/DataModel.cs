@@ -1,5 +1,5 @@
 ﻿using Google.Protobuf.Protocol;
-using Server.Game;
+using GameServer.Game;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;

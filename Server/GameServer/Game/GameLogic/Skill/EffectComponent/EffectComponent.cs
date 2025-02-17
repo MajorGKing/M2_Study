@@ -64,9 +64,9 @@ namespace GameServer.Game
 
         void ApplyInstantEffect(EffectData effectData, Creature caster)
         {
-            // ILHAK
-            if(Owner.ObjectType == EGameObjectType.Hero)
-                Console.WriteLine($"ILHAK ApplyInstantEffect Apply {effectData.EffectType} : {effectData.DamageValue}");
+            //// ILHAK
+            //if(Owner.ObjectType == EGameObjectType.Hero)
+            //    Console.WriteLine($"ILHAK ApplyInstantEffect Apply {effectData.EffectType} : {effectData.DamageValue}");
             
             if (effectData == null)
                 return;
@@ -80,8 +80,10 @@ namespace GameServer.Game
 
         void ApplyDurationEffect(EffectData effectData, Creature caster, bool send)
         {
-            if (Owner.ObjectType == EGameObjectType.Hero)
-                Console.WriteLine($"ApplyDurationEffect Apply {effectData.EffectType} : {effectData.DamageValue}");
+            //// IlHak
+            //if (Owner.ObjectType == EGameObjectType.Hero)
+            //    Console.WriteLine($"ApplyDurationEffect Apply {effectData.EffectType} : {effectData.DamageValue}");
+            
             if (effectData == null)
                 return;
             if (effectData.Duration == 0)

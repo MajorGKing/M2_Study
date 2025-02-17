@@ -192,4 +192,16 @@ class PacketHandler
 
         room.Push(room.HandleInteractionNpc, hero, recvPkt.ObjectId);
     }
+
+    public static void C_ReqTeleportHandler(PacketSession session, IMessage packet)
+    {
+        C_ReqTeleport pkt = packet as C_ReqTeleport;
+        ClientSession clientSession = session as ClientSession;
+
+        Hero hero = clientSession.MyHero;
+        if (hero == null)
+            return;
+
+        hero.Teleport(pkt.PosInfo);
+    }
 }

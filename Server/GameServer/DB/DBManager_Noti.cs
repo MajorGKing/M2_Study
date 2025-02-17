@@ -26,15 +26,15 @@ namespace GameServer
 					if (heroDb == null)
 						return;
 
-                    heroDb.Level = hero.HeroInfo.Level;
-                    heroDb.Exp = hero.MyHeroInfo.Exp;
-                    heroDb.Hp = (int)hero.Hp;
-                    heroDb.Mp = (int)hero.Mp;
+					heroDb.Level = hero.HeroInfoComp.HeroInfo.Level;
+					heroDb.Exp = hero.HeroInfoComp.MyHeroInfo.Exp;
+                    heroDb.Hp = (int)hero.StatComp.Hp;
+                    heroDb.Mp = (int)hero.StatComp.Mp;
                     heroDb.PosX = hero.PosInfo.PosX;
 					heroDb.PosY = hero.PosInfo.PosY;
-					heroDb.Gold = hero.MyHeroInfo.CurrencyInfo.Gold;
-					heroDb.Dia = hero.MyHeroInfo.CurrencyInfo.Dia;
-					heroDb.MapId = hero.MyHeroInfo.MapId;
+					heroDb.Gold = hero.HeroInfoComp.MyHeroInfo.CurrencyInfo.Gold;
+					heroDb.Dia = hero.HeroInfoComp.MyHeroInfo.CurrencyInfo.Dia;
+					heroDb.MapId = hero.HeroInfoComp.MyHeroInfo.MapId;
 
                     bool success = db.SaveChangesEx();
 					if(success == false)

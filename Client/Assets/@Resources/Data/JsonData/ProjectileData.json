@@ -59,6 +59,30 @@
       "DescriptionTextID": null,
       "IconImage": null,
       "PrefabName": "Archer_Attack_Arrow"
+    },
+    {
+      "Duration": 0.0,
+      "Range": 10.0,
+      "Speed": 20.0,
+      "Count": 1.0,
+      "TemplateId": 6,
+      "Name": "마법사 평타",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": "Wizard_Attack_Ball"
+    },
+    {
+      "Duration": 0.0,
+      "Range": 10.0,
+      "Speed": 20.0,
+      "Count": 1.0,
+      "TemplateId": 7,
+      "Name": "마법사 스킬A",
+      "NameTextId": null,
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": "Wizard_Skill_A_Trail"
     }
   ]
 }

@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
-using static Google.Protobuf.Compiler.CodeGeneratorResponse.Types;
 
 namespace Server.Game
 {

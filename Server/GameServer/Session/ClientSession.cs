@@ -85,7 +85,7 @@ namespace Server
                 if (MyHero == null)
                     return;
 
-                GameRoom room = GameLogic.Find(MyHero.MapId);
+                GameRoom room = GameLogic.Find(MyHero.HeroInfoComp.MapId);
 				if (room == null)
 					return;
 

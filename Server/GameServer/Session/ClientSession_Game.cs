@@ -38,9 +38,9 @@ namespace Server
                 }
             }
 
-            S_HeroListRes resPacket = new S_HeroListRes();
-            foreach (Hero hero in Heroes)
-                resPacket.Heroes.Add(hero.MyHeroInfo);
+			S_HeroListRes resPacket = new S_HeroListRes();
+			foreach (Hero hero in Heroes)
+				resPacket.Heroes.Add(hero.HeroInfoComp.MyHeroInfo);
 
             Send(resPacket);
         }
@@ -108,7 +108,7 @@ namespace Server
             if(hero == null) 
                 return;
 
-			GameRoom room = GameLogic.Find(hero.MyHeroInfo.MapId);
+			GameRoom room = GameLogic.Find(hero.HeroInfoComp.MyHeroInfo.MapId);
 			if (room == null)
 				return;
 

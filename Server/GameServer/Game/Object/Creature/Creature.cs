@@ -11,107 +11,8 @@ namespace GameServer
         public virtual CreatureData Data { get; set; }
         public SkillComponent SkillComp { get; protected set; }
         public EffectComponent EffectComp { get; protected set; }
+        public StatComponent StatComp { get; protected set; }
         public CreatureInfo CreatureInfo { get; private set; } = new CreatureInfo();
-        public StatInfo BaseStat { get; protected set; } = new StatInfo();
-        public StatInfo TotalStat { get; protected set; } = new StatInfo();
-
-        public static readonly Dictionary<EStatType, Func<StatInfo, float>> StatGetters = new Dictionary<EStatType, Func<StatInfo, float>>()
-        {
-            { EStatType.MaxHp, (s) => s.MaxHp },
-            { EStatType.Hp, (s) => s.Hp },
-            { EStatType.HpRegen, (s) => s.HpRegen },
-            { EStatType.MaxMp, (s) => s.MaxMp },
-            { EStatType.Mp, (s) => s.Mp },
-            { EStatType.MpRegen, (s) => s.MpRegen },
-            { EStatType.Attack, (s) => s.Attack },
-            { EStatType.Defence, (s) => s.Defence },
-            { EStatType.Dodge, (s) => s.Dodge },
-            { EStatType.AttackSpeed, (s) => s.AttackSpeed },
-            { EStatType.MoveSpeed, (s) => s.MoveSpeed },
-            { EStatType.CriRate, (s) => s.CriRate },
-            { EStatType.CriDamage, (s) => s.CriDamage },
-            { EStatType.Str, (s) => s.Str },
-            { EStatType.Dex, (s) => s.Dex },
-            { EStatType.Int, (s) => s.Int },
-            { EStatType.Con, (s) => s.Con },
-            { EStatType.Wis, (s) => s.Wis }
-        };
-
-        public static readonly Dictionary<EStatType, Action<StatInfo, float>> StatSetters = new Dictionary<EStatType, Action<StatInfo, float>>()
-        {
-            { EStatType.MaxHp, (s, v) => s.MaxHp = v },
-            { EStatType.Hp, (s, v) => s.Hp= v },
-            { EStatType.HpRegen, (s, v) => s.HpRegen= v },
-            { EStatType.MaxMp, (s, v) => s.MaxMp= v },
-            { EStatType.Mp, (s, v) => s.Mp = v },
-            { EStatType.MpRegen, (s, v) => s.MpRegen= v },
-            { EStatType.Attack, (s, v) => s.Attack= v },
-            { EStatType.Defence, (s, v) => s.Defence = v },
-            { EStatType.Dodge, (s, v) => s.Dodge = v },
-            { EStatType.AttackSpeed, (s, v) => s.AttackSpeed = v },
-            { EStatType.MoveSpeed, (s, v) => s.MoveSpeed = v },
-            { EStatType.CriRate, (s, v) => s.CriRate= v },
-            { EStatType.CriDamage, (s, v) => s.CriDamage= v },
-            { EStatType.Str, (s, v) => s.Str = (int)v },
-            { EStatType.Dex, (s, v) => s.Dex = (int)v },
-            { EStatType.Int, (s, v) => s.Int = (int)v },
-            { EStatType.Con, (s, v) => s.Con = (int)v },
-            { EStatType.Wis, (s, v) => s.Wis = (int)v }
-        };
-
-        public float GetBaseStat(EStatType statType) { return StatGetters[statType](BaseStat); }
-        public float GetTotalStat(EStatType statType) { return StatGetters[statType](TotalStat); }
-        public void SetBaseStat(EStatType statType, float value) { StatSetters[statType](BaseStat, value); }
-        protected void AddTotalStat(EStatType statType, float value)
-        {
-            float finalValue = GetTotalStat(statType) + value;
-            SetTotalStat(statType, finalValue);
-        }
-
-        public void SetTotalStat(EStatType statType, float value)
-        {
-			switch (statType)
-			{
-				case EStatType.Hp:
-					value = Math.Min(value, GetTotalStat(EStatType.MaxHp));
-					break;
-				case EStatType.Mp:
-					value = Math.Min(value, GetTotalStat(EStatType.MaxMp));
-					break;
-			}
-
-			StatSetters[statType](TotalStat, value);
-            StatSetters[statType](CreatureInfo.TotalStatInfo, value);
-        }
-
-        public float Hp
-        {
-            get { return TotalStat.Hp; }
-            set { SetTotalStat(EStatType.Hp, Math.Clamp(value, 0, TotalStat.MaxHp)); }
-        }
-        
-        public float Mp
-        {
-            get { return TotalStat.Mp; }
-            set { SetTotalStat(EStatType.Mp, Math.Clamp(value, 0, TotalStat.MaxMp)); }
-        }
-
-        public float Attack
-        {
-            get { return TotalStat.Attack; }
-            set { SetTotalStat(EStatType.Attack, value); }
-        }
-
-        public float Defence
-        {
-            get { return TotalStat.Defence; }
-            set { SetTotalStat(EStatType.Defence, value); }
-        }
-
-        public float MoveSpeed
-        {
-            get { return TotalStat.MoveSpeed; }
-        }
 
         bool GetStateFlag(ECreatureStateFlag type)
         {
@@ -150,28 +51,32 @@ namespace GameServer
 
             SkillComp = new SkillComponent(this);
             EffectComp = new EffectComponent(this);
+            StatComp = new StatComponent(this);
+		}
+
+        public override void Update()
+        {
+            base.Update();
         }
 
-        
-
-        public override float OnDamaged(BaseObject attacker, float damage)
+        public override bool OnDamaged(BaseObject attacker, float damage)
         {
             if (Room == null)
-                return 0;
+                return false;
 
             if(State == EObjectState.Dead)
-                return 0;
+                return false;
 
             // 데미지 감소
-            float finalDamage = Math.Max(damage - Defence, 0);
+            float finalDamage = Math.Max(damage - StatComp.Defence, 0);
             AddStat(EStatType.Hp, -finalDamage, EFontType.Hit);
 
-            if (Hp <= 0)
+            if (StatComp.Hp <= 0)
             {
                 OnDead(attacker);
             }
 
-            return damage;
+            return true;
         }
 
         public override void OnDead(BaseObject attacker)
@@ -209,18 +114,18 @@ namespace GameServer
             if (State == EObjectState.Dead)
                 return;
 
-            AddTotalStat(statType, diff);
+			StatComp.AddTotalStat(statType, diff);
 
             if (sendPacket == false)
                 return;
 
-            S_ChangeOneStat changePacket = new S_ChangeOneStat();
-            changePacket.ObjectId = ObjectId;
-            changePacket.StatType = statType;
-            changePacket.Value = GetTotalStat(statType);
-            changePacket.Diff = diff;
-            changePacket.FontType = fontType;
-
+			S_ChangeOneStat changePacket = new S_ChangeOneStat();
+			changePacket.ObjectId = ObjectId;
+			changePacket.StatType = statType;
+			changePacket.Value = StatComp.GetTotalStat(statType);
+			changePacket.Diff = diff;
+			changePacket.FontType = fontType;
+            
             // 다 보내고 클라에서 조건부로 처리
             Room?.Broadcast(CellPos, changePacket);
 
@@ -237,11 +142,17 @@ namespace GameServer
 
         public virtual void Reset()
         {
-            Hp = Math.Max(0, GetTotalStat(EStatType.MaxHp));
+			StatComp.Hp = Math.Max(0, StatComp.GetTotalStat(EStatType.MaxHp));
             PosInfo.State = EObjectState.Idle;
 
             ClearStateFlags();
             EffectComp.Clear();
+            CancelJobs();
+        }
+
+        public virtual void CancelJobs()
+        {
+            StatComp.CancelJobs();
         }
     }
 }

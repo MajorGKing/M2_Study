@@ -35,7 +35,7 @@ namespace GameServer.Game
             if (owner == null)
                 return;
 
-            float damage = caster.GetTotalStat(EStatType.Attack) * effectData.DamageValue;
+            float damage = caster.StatComp.GetTotalStat(EStatType.Attack) * effectData.DamageValue;
 
             //Console.WriteLine($"{owner.ObjectId} Try {caster.ObjectId} HP : {owner.Hp} \tDamaged : {damage}");
 
@@ -55,13 +55,12 @@ namespace GameServer.Game
             if (owner == null)
                 return;
 
-            // ILAHK TODO
-            foreach (StatValuePair pair in effectData.StatValues)
-            {
+			foreach (StatValuePair pair in effectData.StatValues)
+			{
                 float value = pair.AddValue;
-                float prevValue = owner.GetTotalStat(pair.StatType);
+                float prevValue = owner.StatComp.GetTotalStat(pair.StatType);
                 float finalValue = prevValue + value;
-                owner.SetTotalStat(pair.StatType, finalValue);
+                owner.StatComp.SetTotalStat(pair.StatType, finalValue);
             }
         }
 
@@ -73,9 +72,9 @@ namespace GameServer.Game
             foreach (StatValuePair pair in effectData.StatValues)
             {
                 float value = pair.AddValue;
-                float prevValue = owner.GetTotalStat(pair.StatType);
+                float prevValue = owner.StatComp.GetTotalStat(pair.StatType);
                 float finalValue = prevValue - value;
-                owner.SetTotalStat(pair.StatType, finalValue);
+                owner.StatComp.SetTotalStat(pair.StatType, finalValue);
             }
         }
     }

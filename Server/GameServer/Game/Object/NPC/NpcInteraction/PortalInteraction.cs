@@ -22,32 +22,10 @@ namespace GameServer.Game
         }
         public void HandleInteraction(Hero myHero)
         {
-            GameRoom room = myHero.Room;
-            if (room == null)
+            if (_portalData == null)
                 return;
 
-            GameRoom newRoom = GameLogic.Find(_portalData.DestPortal.OwnerRoomId);
-            if (newRoom == null)
-                return;
-
-            if (room == newRoom)
-            {
-                // 텔레포트
-            }
-            else
-            {
-                Action job = () =>
-                {
-                    room.LeaveGame(myHero.ObjectId, ELeaveType.ChangeRoom);
-
-                    // 새로운 방 입장.
-                    Vector2Int spawnPos = new Vector2Int(_portalData.DestPortal.SpawnPosX, _portalData.DestPortal.SpawnPosY);
-                    newRoom.Push(newRoom.EnterGame, myHero, spawnPos, false);
-                };
-
-                // 기존 방 퇴장.
-                room.Push(job);
-            }
+            myHero.Teleport(_portalData.DestPortal.SpawnPosInfo);
         }
 
         public bool CanInteract(Hero myHero)

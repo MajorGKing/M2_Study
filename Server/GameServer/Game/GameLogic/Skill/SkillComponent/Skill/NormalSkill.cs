@@ -16,14 +16,14 @@ namespace GameServer.Game
         {
         }
 
-        public override bool CanUseSkill(int targetId)
-        {
-            if (CheckCooltimeAndState() == false)
-                return false;
-            if (CheckTargetAndRange(targetId) == false)
-                return false;
-            if (Owner.Mp < SkillData.Cost)
-                return false;
+		public override bool CanUseSkill(int targetId)
+		{
+			if (CheckCooltimeAndState() == false)
+				return false;
+			if (CheckTargetAndRange(targetId) == false)
+				return false;
+			if(Owner.StatComp.Mp <SkillData.Cost)
+				return false;
 
             return true;
         }

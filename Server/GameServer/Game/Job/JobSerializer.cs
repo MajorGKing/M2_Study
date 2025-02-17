@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 
 namespace GameServer
@@ -22,7 +21,7 @@ namespace GameServer
 		public IJob PushAfter<T1, T2, T3, T4, T5, T6>(int tickAfter, Action<T1, T2, T3, T4, T5, T6> action, T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6) { return PushAfter(tickAfter, new Job<T1, T2, T3, T4, T5, T6>(action, t1, t2, t3, t4, t5, t6)); }
 		public IJob PushAfter<T1, T2, T3, T4, T5, T6, T7>(int tickAfter, Action<T1, T2, T3, T4, T5, T6, T7> action, T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7) { return PushAfter(tickAfter, new Job<T1, T2, T3, T4, T5, T6, T7>(action, t1, t2, t3, t4, t5, t6, t7)); }
 
-		public IJob PushAfter(int tickAfter, IJob job)
+		public virtual IJob PushAfter(int tickAfter, IJob job)
 		{
 			_timer.Push(job, tickAfter);
 			return job;
@@ -37,7 +36,7 @@ namespace GameServer
 		public void Push<T1, T2, T3, T4, T5, T6>(Action<T1, T2, T3, T4, T5, T6> action, T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6) { Push(new Job<T1, T2, T3, T4, T5, T6>(action, t1, t2, t3, t4, t5, t6)); }
 		public void Push<T1, T2, T3, T4, T5, T6, T7>(Action<T1, T2, T3, T4, T5, T6, T7> action, T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7) { Push(new Job<T1, T2, T3, T4, T5, T6, T7>(action, t1, t2, t3, t4, t5, t6, t7)); }
 
-		public void Push(IJob job)
+		public virtual void Push(IJob job)
 		{
 			lock (_lock)
 			{

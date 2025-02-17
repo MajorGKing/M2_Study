@@ -1,10 +1,4 @@
 ﻿using Google.Protobuf.Protocol;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameServer
 {
@@ -76,9 +70,17 @@ namespace GameServer
             Room?.Broadcast(CellPos, movePacket);
         }
 
-        public virtual float OnDamaged(BaseObject attacker, float damage)
+        public void BrodcastBlink()
         {
-            return 0;
+            S_Blink blinkPacket = new S_Blink();
+            blinkPacket.ObjectId = ObjectId;
+            blinkPacket.PosInfo = PosInfo;
+            Room?.Broadcast(CellPos, blinkPacket);
+        }
+
+        public virtual bool OnDamaged(BaseObject attacker, float damage)
+        {
+            return true;
         }
 
         public virtual void OnDead(BaseObject attacker)
@@ -231,6 +233,46 @@ namespace GameServer
         public virtual BaseObject GetOwner()
         {
             return this;
+        }
+
+        public void Teleport(PositionInfo posInfo)
+        {
+            GameRoom room = Room;
+            if (room == null)
+                return;
+
+            GameRoom newRoom = GameLogic.Find(posInfo.RoomId);
+            if (newRoom == null)
+                return;
+
+            Vector2Int pos = new Vector2Int(posInfo.PosX, posInfo.PosY);
+
+            //Room 이동이 필요없으면 Blink
+            if(room.GameRoomId == newRoom.GameRoomId)
+            {
+                Vector2Int? nearbyPos = room.GetNearbyPosition(this, pos);
+                if (nearbyPos == null)
+                    return;
+                if (room.Map.CanGo(this, nearbyPos.Value) == false)
+                    return;
+
+                room.Map.ApplyMove(this, nearbyPos.Value);
+                BrodcastBlink();
+            }
+            else
+            {
+                Action job = () =>
+                {
+                    room.LeaveGame(ObjectId, ELeaveType.ChangeRoom);
+
+                    // 새로운 방 입장.
+                    Vector2Int spawnPos = pos;
+                    newRoom.Push(newRoom.EnterGame, this, spawnPos, false);
+                };
+
+                // 기존 방 퇴장.
+                room.Push(job);
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Google.Protobuf.Protocol;
+using Server.Game;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -87,7 +88,7 @@ namespace GameServer
 					{
 						Hero hero = (Hero)obj;
 						HeroInfo info = new HeroInfo(); // TODO CHECK
-						info.MergeFrom(hero.HeroInfo);
+						info.MergeFrom(hero.HeroInfoComp.HeroInfo);
 						spawnPacket.Heroes.Add(info);
 					}
 					else if (obj.ObjectType == EGameObjectType.Monster)

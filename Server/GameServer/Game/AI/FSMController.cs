@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Server.Game
+namespace GameServer.Game
 {
     public abstract class FSMController<OwnerType, TargetType> : BaseAIController<OwnerType> where OwnerType : Creature where TargetType : BaseObject
     {
@@ -15,13 +15,11 @@ namespace Server.Game
         protected int _patrolCellDist;
         protected int _spawnRange;
 		protected TargetType _target { get; set; }
-        protected TargetType _attacker { get; set; }
 
         protected Vector2Int? _patrolDest;
         protected Random _rand = new Random();
 
-        protected bool isGotoSpawnPos = false;
-
+        protected bool _returnToSpawnPos = false;
         protected int _chaseCount = 0;
         public FSMController(OwnerType owner) : base(owner)
         {
@@ -32,6 +30,7 @@ namespace Server.Game
 
         protected override void UpdateIdle()
         {
+            // 0. 타겟 찾기.
             _target = FindTarget();
 
             // 1. 주변에 타겟이 있으면 추적.
@@ -78,12 +77,15 @@ namespace Server.Game
                 return;
             }
 
-            // 1. 스폰장소로 되돌아가야 하는지 확인
-            if (ManageReturnToSpawn())
-                return;
+            // 0. 타겟 찾기.
+            _target = FindTarget();
 
-            // 2. 타겟 추적
-            if (ProcessTargetChase())
+			// 1. 타겟 추적
+			if (ProcessTargetChase())
+				return;
+
+            // 2. 스폰장소로 되돌아가야 하는지 확인
+            if (ProcessReturnToSpawnPos())
                 return;
 
             // 3. 정찰
@@ -112,13 +114,14 @@ namespace Server.Game
                 return false;
             }
 
-            //쫒는중이라면 상대가 너무 멀면 포기
+            // 3. 쫒는중인데 상대가 너무 멀면 포기
             if (_target != null && path.Count > _chaseCellDist)
             {
-                GiveUpChase();
+                GiveUpChaseTarget();
+                return false;
             }
 
-            // 3. 이동 실행.
+            // 4. 이동 실행.
             Owner.Room.Map.ApplyMove(Owner, path[1]);
             SetState(EObjectState.Move); // UpdateTick 설정을 위해 ApplyMove -> Move.
             Owner.BroadcastMove();
@@ -145,17 +148,15 @@ namespace Server.Game
             // 2. 거리가 충분히 가까운지.
             int dist = Owner.GetDistance(_target);
             Skill skill = Owner.SkillComp.GetNextUseSkill(_target.ObjectId);
-            if (skill != null)
+            if (skill == null)
             {
-                // 3. 스킬 사용.
-                Owner.Room?.UseSkill(Owner, skill.TemplateId, _target.ObjectId);
-            }
-            else
-            {
-                // 타겟은 날리지 말고 그냥 따라가게 만든다
-                SetState(EObjectState.Move);
-                return;
-            }
+				// 타겟은 날리지 말고 그냥 따라가게 만든다
+				SetState(EObjectState.Move);
+				return;
+			}
+                
+            // 3. 스킬 사용.                
+            Owner.Room?.UseSkill(Owner, skill.TemplateId, _target.ObjectId);
         }
 
         protected override void UpdateDead()
@@ -165,83 +166,58 @@ namespace Server.Game
         #endregion
 
         #region UpdateMoving
-        private bool ManageReturnToSpawn()
+        private bool ProcessReturnToSpawnPos()
         {
-            if (isGotoSpawnPos)
+            if (_returnToSpawnPos == false)
+                return false;
+
+            if (Owner.GetDistance(GetSpawnPos()) < 3)
             {
-                if (Owner.GetDistance(GetSpawnPos()) < 3)
-                {
-                    isGotoSpawnPos = false;
-                    _chaseCount = 0;
-                    SetState(EObjectState.Idle);
-                }
-                else
-                {
-                    FindPathAndMove(GetSpawnPos());
-                }
-                return true;
+                _returnToSpawnPos = false;
+                _chaseCount = 0;
+                SetState(EObjectState.Idle);
             }
-            return false;
+            else
+            {
+                FindPathAndMove(GetSpawnPos());
+            }
+
+            return true;
         }
 
         private bool ProcessTargetChase()
         {
-            if (_target != null)
+            if (_target == null)
+                return false;
+            
+            _patrolDest = null;
+
+            int dist = Owner.GetDistance(_target);
+
+            // 1. 따라갈 수 있는 거리인지 확인 + 너무 오랫동안 추적했으면 포기
+            if (dist == 0 || dist > _chaseCellDist || _chaseCount > _chaseCellDist * 3)
             {
-                _patrolDest = null;
-
-                int dist = Owner.GetDistance(_target);
-
-                // 2-1. 따라갈 수 있는 거리인지 확인 + 너무 오랫동안 추적했으면 포기
-                if (dist == 0 || dist > _chaseCellDist || _chaseCount > _chaseCellDist)
-                {
-                    GiveUpChase();
-                    return true;
-                }
-
-                // 2-2. 사거리에 있으면 스킬로 넘어감.
-                int skillRange = Owner.SkillComp.GetNextUseSkillDistance(_target.ObjectId);
-                if (dist <= skillRange)
-                {
-                    SetState(EObjectState.Skill);
-                }
-                else
-                {
-                    // 2-3. 사거리에 없으면 이동.
-                    if (FindPathAndMove(_target.CellPos))
-                        _chaseCount++;
-                }
+                GiveUpChaseTarget();
                 return true;
             }
-            return false;
+           
+            int skillRange = Owner.SkillComp.GetNextUseSkillDistance(_target.ObjectId);
+			// 2. 사거리에 없으면 이동.
+			if (skillRange < dist)
+            {
+				if (FindPathAndMove(_target.CellPos))
+					_chaseCount++;
+
+                return true;
+			}
+
+			// 3. 사거리에 있으면 스킬로 넘어감.
+            _chaseCount = 0;
+            SetState(EObjectState.Skill);
+
+            return true;
         }
         #endregion
-
-        public override void OnDamaged(BaseObject attacker, float damage)
-        {
-            if (Owner.State == EObjectState.Dead)
-                return;
-            //이미 타겟이 있고 전투중이면 return
-            if (_target != null && Owner.State == EObjectState.Skill)
-                return;
-
-            attacker = attacker.GetOwner();
-
-            base.OnDamaged(attacker, damage);
-
-            if(Owner.State == EObjectState.Idle)
-            {
-                if (attacker is TargetType)
-                    _attacker = (TargetType)attacker;
-
-                SetState(EObjectState.Move);
-            }
-            else if(Owner.State == EObjectState.Move)
-            {
-                if(attacker is TargetType)
-                    _attacker = (TargetType)attacker;
-            }
-        }
 
         public override void OnDead(BaseObject attacker)
         {
@@ -283,11 +259,11 @@ namespace Server.Game
             return Utils.GetDistance(position, GetSpawnPos()) > GetSpawnRange();
         }
 
-        private void GiveUpChase()
+        private void GiveUpChaseTarget()
         {
+            _chaseCount = 0;
             _target = null;
-            _attacker = null;
-            isGotoSpawnPos = true;
+            _returnToSpawnPos = true;
         }
     }
 }

@@ -2,11 +2,14 @@
 using Google.Protobuf.Protocol;
 using Server.Data;
 
-namespace Server.Game
+namespace GameServer.Game
 {
     public class MonsterAIController : FSMController<Monster, Creature>
     {
-        public MonsterAIController(Monster owner) : base(owner)
+		protected override Vector2Int GetSpawnPos() { return Owner.SpawnPosition; }
+		protected override int GetSpawnRange() { return Owner.SpawnRange; }
+
+		public MonsterAIController(Monster owner) : base(owner)
         {
             DataManager.MonsterDict.TryGetValue(owner.TemplateId, out MonsterData monsterData);
 
@@ -28,7 +31,7 @@ namespace Server.Game
                     UpdateTick = 1000;
                     break;
                 case EObjectState.Move:
-                    float speed = Owner.MoveSpeed;
+                    float speed = Owner.StatComp.MoveSpeed;
                     float distance = Owner.GetActualDistance();
                     float time = distance / speed;
                     UpdateTick = (int)(time * 1000);
@@ -43,73 +46,76 @@ namespace Server.Game
             }
         }
 
-        protected override Creature FindTarget()
+        public override void OnDamaged(BaseObject attacker, float damage)
+        {
+            if (Owner.State == EObjectState.Dead)
+                return;
+
+            base.OnDamaged(attacker, damage);
+		}
+
+		protected override Creature FindTarget()
         {
             if (Owner.Room == null)
                 return null;
 
-            // 비선공몹은 검색X
-            if (Owner.MonsterData.IsAggressive == false)
-                return _attacker;
+			// 1. 어그로 수치 높은 애들부터 확인.
+			List<int> attackerIds = Owner.Aggro.GetTopAttackers();
+			foreach (int attackerId in attackerIds)
+			{
+				Creature target = Owner.Room.GetCreatureById(attackerId);
+				if (IsValidTarget(target))
+					return target;
+			}
 
-            // 범위 밖에서 누가 때린 경우
-            if (_attacker != null)
-                return _attacker;
+			// 2. 비선공 몬스터는 주도적으로 대상을 찾지 않는다.
+			if (Owner.MonsterData.IsAggressive == false)
+				return null;
 
-            return FindTargetForMonster();
-        }
-
-        Creature FindTargetForMonster()
-        {
-            List<Hero> heroes = Owner.Room.FindAdjacentHeroes(Owner.CellPos, hero =>
-            {
-                if (hero.IsValid() == false)
-                    return false;
+			// 3. 후보 대상을 다 구한 다음, 근접한 순서대로 체크한다.
+			List<Hero> heroes = Owner.Room.FindAdjacentHeroes(Owner.CellPos, hero =>
+			{
+				if (hero.IsValid() == false)
+					return false;
 
                 return hero.GetDistance(Owner) <= _searchCellDist;
             });
 
-            heroes.Sort((a, b) =>
-            {
-                int aDist = a.GetDistance(Owner);
-                int bDist = b.GetDistance(Owner);
-                return aDist - bDist;
-            });
+			heroes.Sort((a, b) => { return a.GetDistance(Owner).CompareTo(b.GetDistance(Owner)); });
 
-            foreach (Hero hero in heroes)
-            {
-                // 기본 스킬 사용 가능하면 그냥 그 타겟으로 설정
-                int dist = hero.GetDistance(Owner);
-                int skillRange = Owner.SkillComp.GetNextUseSkillDistance(hero.ObjectId);
-
-                if (dist <= skillRange)
-                    return hero;
-
-                List<Vector2Int> path = Owner.Room?.Map.FindPath(Owner, Owner.CellPos, hero.CellPos);
-                if (path == null || path.Count < 2 || path.Count > _chaseCellDist)
-                    continue;
-
-                return hero;
-            }
+			foreach (Hero hero in heroes)
+			{
+				if (IsValidTarget(hero))
+					return hero;
+			}
 
             return null;
         }
 
-        protected override Vector2Int GetSpawnPos()
+        bool IsValidTarget(Creature creature)
         {
-            return Owner.SpawnPosition;
-        }
+            // 0. 적인지 확인.
+            if (Owner.IsEnemy(creature) == false)
+                return false;
 
-        protected override int GetSpawnRange()
-        {
-            return Owner.SpawnRange;
+            // 1. 사용할 스킬 거리에 있으면 선택.
+            int dist = creature.GetDistance(Owner);
+            int skillRange = Owner.SkillComp.GetNextUseSkillDistance(creature.ObjectId);
+            if (dist <= skillRange)
+                return true;
+
+            // 2. 가는 경로가 있으면 선택.
+            List<Vector2Int> path = Owner.Room?.Map.FindPath(Owner, Owner.CellPos, creature.CellPos);
+            if (path != null && path.Count >= 2 && path.Count <= _chaseCellDist)
+                return true;
+
+            return false;
         }
 
         public override void Reset()
         {
             base.Reset();
             _target = null;
-            _attacker = null;
             _patrolDest = null;
         }
     }

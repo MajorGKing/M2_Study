@@ -8,9 +8,40 @@ using System.Threading;
 
 namespace GameServer
 {
-    public partial class GameRoom : JobSerializer
+	public partial class EmptyRoom : GameRoom
+	{
+		public override IJob PushAfter(int tickAfter, IJob job)
+		{
+			// Do Nothing
+			return null;
+		}
+
+		public override void Push(IJob job)
+		{
+			// Do Nothing
+		}
+
+		public override void EnterGame(BaseObject obj, Vector2Int cellPos, bool respawn = false)
+        {
+            // Do Nothing
+		}
+
+		public override void LeaveGame(int objectId, ELeaveType leaveType = ELeaveType.None)
+        {
+			// Do Nothing
+		}
+
+		public override void Broadcast(Vector2Int pos, IMessage packet)
+		{
+			// Do Nothing
+		}
+	}
+
+	public partial class GameRoom : JobSerializer, IEquatable<GameRoom>
     {
-        public const int VisionCells = 15;
+		public static EmptyRoom S_EmptyRoom { get; } = new EmptyRoom();
+
+		public const int VisionCells = 15;
         public int GameRoomId { get; set; }
         public int TemplateId { get; set; }
         public RoomData RoomData { get; set; }
@@ -34,7 +65,7 @@ namespace GameServer
             RoomData = roomData;
             TemplateId = roomData.TemplateId;
 
-            Map.LoadMap(roomData.MapName);
+            Map.LoadMap(roomData.PrefabName);
 
             // Zone
             ZoneCells = zoneCells; // 10
@@ -65,7 +96,7 @@ namespace GameServer
             Flush();
         }
 
-        public void EnterGame(BaseObject obj, Vector2Int cellPos, bool respawn = false)
+        public virtual void EnterGame(BaseObject obj, Vector2Int cellPos, bool respawn = false)
         {
             if (obj == null)
                 return;
@@ -85,7 +116,7 @@ namespace GameServer
                 // 1. 오브젝트 추가 및 방 설정.
                 _heroes.Add(obj.ObjectId, hero);
                 hero.Room = this;
-                hero.MyHeroInfo.MapId = GameRoomId;
+                hero.HeroInfoComp.MyHeroInfo.MapId = GameRoomId;
 
                 // 2. 아직 점유되지 않는 알맞는 좌표를 찾아주기.
                 FindAndSetCellPos(obj, cellPos);
@@ -103,7 +134,7 @@ namespace GameServer
                 // 6. 입장한 사람한테 패킷 보내기.
                 {
                     S_EnterGame enterPacket = new S_EnterGame();
-                    enterPacket.MyHeroInfo = hero.MyHeroInfo;
+                    enterPacket.MyHeroInfo = hero.HeroInfoComp.MyHeroInfo;
                     enterPacket.Respawn = respawn;
 
                     foreach (var info in hero.Inven.GetAllItemInfos())
@@ -121,7 +152,7 @@ namespace GameServer
 
                 // 7. 다른 사람들한테 입장 알려주기.
                 S_Spawn spawnPacket = new S_Spawn();
-                spawnPacket.Heroes.Add(hero.HeroInfo);
+                spawnPacket.Heroes.Add(hero.HeroInfoComp.HeroInfo);
                 Broadcast(obj.CellPos, spawnPacket);
 
 
@@ -130,7 +161,7 @@ namespace GameServer
             }
             else if(type == EGameObjectType.Monster)
             {
-                Console.WriteLine("Monster spawned");
+                //Console.WriteLine("IlHak Monster spawned");
                 Monster monster = (Monster)obj;
 
                 // 1. 오브젝트 추가 및 방 설정.
@@ -198,7 +229,7 @@ namespace GameServer
             }
         }
 
-        public void LeaveGame(int objectId, ELeaveType leaveType = ELeaveType.None)
+        public virtual void LeaveGame(int objectId, ELeaveType leaveType = ELeaveType.None)
         {
             EGameObjectType type = ObjectManager.GetObjectTypeFromId(objectId);            
 
@@ -217,7 +248,7 @@ namespace GameServer
 
                 // 2. 오브젝트 제거 및 방 제거.
                 _heroes.Remove(objectId);
-                hero.Room = null;
+                hero.Room = GameRoom.S_EmptyRoom;
 
                 // 3. 퇴장한 사람한테 패킷 보내기.
                 {
@@ -246,7 +277,7 @@ namespace GameServer
             }
             else if(type == EGameObjectType.Monster)
             {
-                Console.WriteLine("Monster leaved");
+                //Console.WriteLine("IlHak Monster leaved");
                 if (_monsters.TryGetValue(objectId, out Monster monster) == false)
                     return;
 
@@ -255,7 +286,7 @@ namespace GameServer
 
                 // 2. 오브젝트 제거 및 방 제거.
                 _monsters.Remove(objectId);
-                monster.Room = null;
+                monster.Room = GameRoom.S_EmptyRoom;
 
                 // 3. 다른 사람들한테 퇴장 알려주기.
                 S_Despawn despawnPacket = new S_Despawn();
@@ -269,7 +300,7 @@ namespace GameServer
 
                 // 1. 오브젝트 제거 및 방 제거.
                 _projectiles.Remove(objectId);
-                projectile.Room = null;
+                projectile.Room = GameRoom.S_EmptyRoom;
 
                 //// 2. 다른 사람들한테 퇴장 알려주기.
                 //S_Despawn despawnPacket = new S_Despawn();
@@ -283,7 +314,7 @@ namespace GameServer
 
                 // 1. 오브젝트 제거 및 방 제거.
                 _npcs.Remove(objectId);
-                npc.Room = null;
+                npc.Room = GameRoom.S_EmptyRoom;
 
                 // 2. 다른 사람들한테 퇴장 알려주기.
                 S_Despawn despawnPacket = new S_Despawn();
@@ -314,7 +345,7 @@ namespace GameServer
             return Zones[indexX, indexY];
         }
 
-        public void Broadcast(Vector2Int pos, IMessage packet)
+        public virtual void Broadcast(Vector2Int pos, IMessage packet)
         {
             List<Zone> zones = GetAdjacentZones(pos);
             if (zones.Count == 0)
@@ -369,7 +400,7 @@ namespace GameServer
             return zones.ToList();
         }
 
-        public Vector2Int GetNearbyPosition(BaseObject obj, Vector2Int pivot)
+        public Vector2Int? GetNearbyPosition(BaseObject obj, Vector2Int pivot)
         {
             Queue<Vector2Int> queue = new Queue<Vector2Int>();
             HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
@@ -404,7 +435,7 @@ namespace GameServer
                 }
             }
 
-            return Vector2Int.zero;
+            return null;
         }
 
         public Hero FindAnyHero(Func<BaseObject, bool> condition)
@@ -512,15 +543,13 @@ namespace GameServer
 
         public Hero GetHeroById(int id)
         {
-            Hero hero = null;
-            _heroes.TryGetValue(id, out hero);
+            _heroes.TryGetValue(id, out Hero hero);
             return hero;
         }
 
         public Monster GetMonsterById(int id)
         {
-            Monster monster = null;
-            _monsters.TryGetValue(id, out monster);
+            _monsters.TryGetValue(id, out Monster monster);
             return monster;
         }
 
@@ -542,7 +571,57 @@ namespace GameServer
             if (Map.CanGo(obj, pos, checkObjects: true))
                 obj.CellPos = pos;
             else
-                obj.CellPos = GetNearbyPosition(obj, pos);
+            {
+                Vector2Int? nearby = GetNearbyPosition(obj, pos);
+                if (nearby.HasValue)
+                { 
+                    obj.CellPos = nearby.Value;
+                }
+            }
         }
+
+        #region IEquatable
+        public static bool operator ==(GameRoom a, GameRoom b)
+        {
+            if (ReferenceEquals(a, b))
+                return true;
+
+            if (ReferenceEquals(a, null) && ReferenceEquals(b, S_EmptyRoom))
+                return true;
+
+            if (ReferenceEquals(a, S_EmptyRoom) && ReferenceEquals(b, null))
+                return true;
+
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(GameRoom a, GameRoom b)
+        {
+            return !(a == b);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as GameRoom);
+        }
+
+        public bool Equals(GameRoom other)
+        {
+            if (ReferenceEquals(other, null))
+                return false;
+            if (ReferenceEquals(this, other))
+                return true;
+
+            return GameRoomId.Equals(other.GameRoomId) && TemplateId.Equals(other.TemplateId);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return GameRoomId.GetHashCode();
+            }
+        }
+        #endregion
     }
 }

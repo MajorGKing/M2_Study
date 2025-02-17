@@ -5,12 +5,6 @@ option csharp_namespace = "Google.Protobuf.Protocol";
 
 import "Enum.proto";
 
-message RoomInfo 
-{
-	int32 roomId = 1;
-	int32 mapId = 2;
-}
-
 message StatInfo 
 {
     float maxHp = 1;
@@ -37,8 +31,9 @@ message PositionInfo
 {
 	EObjectState state = 1;
 	EMoveDir moveDir = 2;
-	int32 posX = 3;
-	int32 posY = 4;
+	int32 roomId = 3;
+	int32 posX = 4;
+	int32 posY = 5;
 }
 
 message ObjectInfo 

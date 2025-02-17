@@ -212,3 +212,14 @@ message C_InteractionNpc
 {
 	int32 objectId = 1;
 }
+
+message C_ReqTeleport
+{
+	PositionInfo posInfo = 1;
+}
+
+message S_Blink
+{
+	int32 objectId = 1;
+	PositionInfo posInfo = 2;
+}

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Server.Game
+namespace GameServer.Game
 {
     public class BaseAIController<OwnerType> where OwnerType : BaseObject
     {
@@ -41,6 +41,15 @@ namespace Server.Game
 
             if (Owner.Room != null)
                 _job = Owner.Room.PushAfter(updateTick, Update);
+        }
+
+        public void CancelUpdateJob()
+        {
+            if (_job != null)
+            {
+                _job.Cancel = true;
+                _job = null;
+            }
         }
 
         public virtual void SetState(EObjectState State)

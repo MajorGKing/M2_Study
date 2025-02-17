@@ -21,9 +21,9 @@ namespace GameServer.Game
                 return false;
             if (CheckTargetAndRange(targetId) == false)
                 return false;
-            if (SkillData.ProjectileId == null)
+            if (SkillData.ProjectileData == null)
                 return false;
-            if (Owner.Mp < SkillData.Cost)
+            if (Owner.StatComp.Mp < SkillData.Cost)
                 return false;
             return true;
         }

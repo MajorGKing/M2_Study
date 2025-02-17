@@ -76,9 +76,12 @@ namespace Server.Data
         public int ExtraCells;
         public int Range;
 
-        public int OwnerRoomId;
-        public int SpawnPosX;
-        public int SpawnPosY;
+        public int OwnerRoomId { get; private set; }
+        public int SpawnPosX { get; private set; }
+        public int SpawnPosY { get; private set; }
+
+        [ExcludeField]
+        public PositionInfo SpawnPosInfo;
     }
     #endregion
 
@@ -218,14 +221,14 @@ namespace Server.Data
         public int PatrolCellDist;
 
         //Drop
-        public int DropTableId;
+        public int RewardTableId;
 
         [ExcludeField]
         public List<SkillData> SkillDatas = new List<SkillData>();
         [ExcludeField]
         public Dictionary<ESkillSlot, SkillData> SkillMap = new Dictionary<ESkillSlot, SkillData>();
         [ExcludeField]
-        public DropTableData DropTable;
+        public RewardTableData RewardTable;
         //스폰 정보
     }
 
@@ -286,7 +289,7 @@ namespace Server.Data
                     }
                 }
 
-                DataManager.DropTableDict.TryGetValue(monster.DropTableId, out monster.DropTable);
+                DataManager.RewardTableDict.TryGetValue(monster.RewardTableId, out monster.RewardTable);
             }
             return validate;
         }
@@ -423,10 +426,10 @@ namespace Server.Data
 
     #endregion
 
-    #region DropTableData
+    #region RewardTableData
 
     [Serializable]
-    public class DropTableData
+    public class RewardTableData
     {
         public int TemplateId;
         public string Name;
@@ -439,16 +442,16 @@ namespace Server.Data
     }
 
     [Serializable]
-    public class DropTableDataLoader : ILoader<int, DropTableData>
+    public class RewardTableDataLoader : ILoader<int, RewardTableData>
     {
-        public List<DropTableData> dropTables = new List<DropTableData>();
+        public List<RewardTableData> rewardTables = new List<RewardTableData>();
 
-        public Dictionary<int, DropTableData> MakeDict()
+        public Dictionary<int, RewardTableData> MakeDict()
         {
-            Dictionary<int, DropTableData> dict = new Dictionary<int, DropTableData>();
-            foreach (DropTableData dropTableData in dropTables)
+            Dictionary<int, RewardTableData> dict = new Dictionary<int, RewardTableData>();
+            foreach (RewardTableData rewardTableData in rewardTables)
             {
-                dict.Add(dropTableData.TemplateId, dropTableData);
+                dict.Add(rewardTableData.TemplateId, rewardTableData);
             }
 
             return dict;
@@ -456,15 +459,15 @@ namespace Server.Data
 
         public bool Validate()
         {
-            foreach (var dropTable in dropTables)
+            foreach (var rewardTable in rewardTables)
             {
-                dropTable.Rewards = new List<RewardData>();
-                foreach (var id in dropTable.RewardDataIds)
+                rewardTable.Rewards = new List<RewardData>();
+                foreach (var id in rewardTable.RewardDataIds)
                 {
                     RewardData reward;
                     if (DataManager.RewardDict.TryGetValue(id, out reward))
                     {
-                        dropTable.Rewards.Add(reward);
+                        rewardTable.Rewards.Add(reward);
                     }
                 }
             }
@@ -758,6 +761,8 @@ namespace Server.Data
     public class RoomData
     {
         public int TemplateId;
+        public string PrefabName;
+        public string MapNameTextId;
         public string MapName;
         public SpawningPoolData SpawningPoolData;
         public List<NpcData> Npcs;
@@ -816,6 +821,11 @@ namespace Server.Data
             {
                 if (DataManager.PortalDict.TryGetValue(portal.DestPotalId, out PortalData portalData))
                     portal.DestPortal = portalData;
+
+                portal.SpawnPosInfo = new PositionInfo();
+                portal.SpawnPosInfo.RoomId = portal.OwnerRoomId;
+                portal.SpawnPosInfo.PosX = portal.SpawnPosX;
+                portal.SpawnPosInfo.PosY = portal.SpawnPosY;
             }
             return true;
         }

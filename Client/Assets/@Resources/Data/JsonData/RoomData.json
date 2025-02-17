@@ -2,9 +2,11 @@
   "spawningPools": [
     {
       "TemplateId": 1,
-      "MapName": "Room1_City",
-      "StartPosX": 0,
-      "StartPosY": 0,
+      "PrefabName": "Room1",
+      "MapNameTextId": "사우스 시티",
+      "MapName": "사우스 시티",
+      "StartPosX": 87,
+      "StartPosY": 27,
       "SpawningPoolData": {
         "RoomId": 1,
         "RespawnDatas": [
@@ -14,22 +16,10 @@
             "MonsterDataId": 6,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -15,
-            "PivotPosY": 21,
+            "PivotPosX": 30,
+            "PivotPosY": 44,
             "SpawnRange": 8,
             "name": "SO_Respawn_1",
-            "hideFlags": 0
-          },
-          {
-            "TemplateId": 2,
-            "Count": 5,
-            "MonsterDataId": 3,
-            "RespawnType": 0,
-            "RespawnTime": 5,
-            "PivotPosX": -17,
-            "PivotPosY": 2,
-            "SpawnRange": 8,
-            "name": "SO_Respawn_2",
             "hideFlags": 0
           },
           {
@@ -38,8 +28,8 @@
             "MonsterDataId": 4,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -7,
-            "PivotPosY": 7,
+            "PivotPosX": 29,
+            "PivotPosY": 30,
             "SpawnRange": 5,
             "name": "SO_Respawn_4",
             "hideFlags": 0
@@ -50,8 +40,8 @@
             "MonsterDataId": 5,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -27,
-            "PivotPosY": 13,
+            "PivotPosX": 23,
+            "PivotPosY": 30,
             "SpawnRange": 5,
             "name": "SO_Respawn_35",
             "hideFlags": 0
@@ -62,8 +52,8 @@
             "MonsterDataId": 25,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -16,
-            "PivotPosY": -8,
+            "PivotPosX": 36,
+            "PivotPosY": 9,
             "SpawnRange": 5,
             "name": "SO_Respawn_5",
             "hideFlags": 0
@@ -85,8 +75,9 @@
           "ExtraSize": 0,
           "Range": 5,
           "OwnerRoomId": 1,
-          "SpawnPosX": 2,
-          "SpawnPosY": 11,
+          "SpawnPosX": 45,
+          "SpawnPosY": 32,
+          "SpawnPosInfo": null,
           "name": "SO_Portal_1",
           "hideFlags": 0
         },
@@ -102,8 +93,9 @@
           "ExtraSize": 0,
           "Range": 5,
           "OwnerRoomId": 1,
-          "SpawnPosX": 21,
-          "SpawnPosY": 15,
+          "SpawnPosX": 71,
+          "SpawnPosY": 40,
+          "SpawnPosInfo": null,
           "name": "SO_Portal_1_3",
           "hideFlags": 0
         },
@@ -119,8 +111,9 @@
           "ExtraSize": 0,
           "Range": 5,
           "OwnerRoomId": 1,
-          "SpawnPosX": 21,
-          "SpawnPosY": 11,
+          "SpawnPosX": 70,
+          "SpawnPosY": 35,
+          "SpawnPosInfo": null,
           "name": "SO_Portal_1_4",
           "hideFlags": 0
         },
@@ -136,8 +129,9 @@
           "ExtraSize": 0,
           "Range": 5,
           "OwnerRoomId": 1,
-          "SpawnPosX": 21,
-          "SpawnPosY": 7,
+          "SpawnPosX": 70,
+          "SpawnPosY": 31,
+          "SpawnPosInfo": null,
           "name": "SO_Portal_1_5",
           "hideFlags": 0
         },
@@ -153,8 +147,9 @@
           "ExtraSize": 0,
           "Range": 5,
           "OwnerRoomId": 1,
-          "SpawnPosX": 21,
-          "SpawnPosY": 3,
+          "SpawnPosX": 71,
+          "SpawnPosY": 27,
+          "SpawnPosInfo": null,
           "name": "SO_Portal_1_6",
           "hideFlags": 0
         }
@@ -164,9 +159,11 @@
     },
     {
       "TemplateId": 2,
-      "MapName": "Room2_Forest_1",
-      "StartPosX": 0,
-      "StartPosY": 0,
+      "PrefabName": "Room2",
+      "MapNameTextId": "평온숲",
+      "MapName": "평온숲",
+      "StartPosX": 39,
+      "StartPosY": 10,
       "SpawningPoolData": {
         "RoomId": 2,
         "RespawnDatas": [
@@ -176,8 +173,8 @@
             "MonsterDataId": 4,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -32,
-            "PivotPosY": 57,
+            "PivotPosX": 31,
+            "PivotPosY": 86,
             "SpawnRange": 20,
             "name": "SO_Respawn_3",
             "hideFlags": 0
@@ -188,8 +185,8 @@
             "MonsterDataId": 4,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -72,
-            "PivotPosY": 57,
+            "PivotPosX": -33,
+            "PivotPosY": 92,
             "SpawnRange": 20,
             "name": "SO_Respawn_6",
             "hideFlags": 0
@@ -200,8 +197,8 @@
             "MonsterDataId": 4,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -32,
-            "PivotPosY": 17,
+            "PivotPosX": -12,
+            "PivotPosY": 41,
             "SpawnRange": 20,
             "name": "SO_Respawn_7",
             "hideFlags": 0
@@ -224,8 +221,8 @@
             "MonsterDataId": 5,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -32,
-            "PivotPosY": -7,
+            "PivotPosX": 57,
+            "PivotPosY": 26,
             "SpawnRange": 20,
             "name": "SO_Respawn_9",
             "hideFlags": 0
@@ -236,22 +233,10 @@
             "MonsterDataId": 5,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -97,
-            "PivotPosY": 57,
+            "PivotPosX": -33,
+            "PivotPosY": 91,
             "SpawnRange": 20,
             "name": "SO_Respawn_10",
-            "hideFlags": 0
-          },
-          {
-            "TemplateId": 11,
-            "Count": 25,
-            "MonsterDataId": 6,
-            "RespawnType": 0,
-            "RespawnTime": 5,
-            "PivotPosX": -127,
-            "PivotPosY": 70,
-            "SpawnRange": 15,
-            "name": "SO_Respawn_11",
             "hideFlags": 0
           },
           {
@@ -260,22 +245,10 @@
             "MonsterDataId": 6,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -73,
-            "PivotPosY": -17,
+            "PivotPosX": -30,
+            "PivotPosY": -15,
             "SpawnRange": 30,
             "name": "SO_Respawn_12",
-            "hideFlags": 0
-          },
-          {
-            "TemplateId": 13,
-            "Count": 10,
-            "MonsterDataId": 6,
-            "RespawnType": 0,
-            "RespawnTime": 5,
-            "PivotPosX": -110,
-            "PivotPosY": 22,
-            "SpawnRange": 15,
-            "name": "SO_Respawn_13",
             "hideFlags": 0
           },
           {
@@ -284,8 +257,8 @@
             "MonsterDataId": 5,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -28,
-            "PivotPosY": -42,
+            "PivotPosX": 16,
+            "PivotPosY": -21,
             "SpawnRange": 15,
             "name": "SO_Respawn_14",
             "hideFlags": 0
@@ -296,8 +269,8 @@
             "MonsterDataId": 7,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -122,
-            "PivotPosY": -31,
+            "PivotPosX": 68,
+            "PivotPosY": 74,
             "SpawnRange": 20,
             "name": "SO_Respawn_15",
             "hideFlags": 0
@@ -321,6 +294,7 @@
           "OwnerRoomId": 2,
           "SpawnPosX": 7,
           "SpawnPosY": 63,
+          "SpawnPosInfo": null,
           "name": "SO_Portal_11",
           "hideFlags": 0
         },
@@ -336,8 +310,9 @@
           "ExtraSize": 0,
           "Range": 5,
           "OwnerRoomId": 2,
-          "SpawnPosX": -167,
-          "SpawnPosY": -45,
+          "SpawnPosX": -74,
+          "SpawnPosY": -24,
+          "SpawnPosInfo": null,
           "name": "SO_Portal_12",
           "hideFlags": 0
         }
@@ -347,9 +322,11 @@
     },
     {
       "TemplateId": 3,
-      "MapName": "Room3_Forest_2",
-      "StartPosX": 0,
-      "StartPosY": 0,
+      "PrefabName": "Room3",
+      "MapNameTextId": "평온숲 깊은곳",
+      "MapName": "평온숲 깊은곳",
+      "StartPosX": 184,
+      "StartPosY": 56,
       "SpawningPoolData": {
         "RoomId": 3,
         "RespawnDatas": [
@@ -359,34 +336,10 @@
             "MonsterDataId": 8,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": 117,
-            "PivotPosY": 15,
+            "PivotPosX": 178,
+            "PivotPosY": 41,
             "SpawnRange": 40,
             "name": "SO_Respawn_16",
-            "hideFlags": 0
-          },
-          {
-            "TemplateId": 17,
-            "Count": 30,
-            "MonsterDataId": 9,
-            "RespawnType": 0,
-            "RespawnTime": 5,
-            "PivotPosX": 37,
-            "PivotPosY": -28,
-            "SpawnRange": 40,
-            "name": "SO_Respawn_17",
-            "hideFlags": 0
-          },
-          {
-            "TemplateId": 18,
-            "Count": 1,
-            "MonsterDataId": 24,
-            "RespawnType": 0,
-            "RespawnTime": 5,
-            "PivotPosX": 21,
-            "PivotPosY": 27,
-            "SpawnRange": 10,
-            "name": "SO_Respawn_18",
             "hideFlags": 0
           },
           {
@@ -395,22 +348,10 @@
             "MonsterDataId": 8,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": 47,
-            "PivotPosY": 25,
+            "PivotPosX": 140,
+            "PivotPosY": 15,
             "SpawnRange": 30,
             "name": "SO_Respawn_19",
-            "hideFlags": 0
-          },
-          {
-            "TemplateId": 20,
-            "Count": 30,
-            "MonsterDataId": 10,
-            "RespawnType": 0,
-            "RespawnTime": 5,
-            "PivotPosX": 12,
-            "PivotPosY": -91,
-            "SpawnRange": 40,
-            "name": "SO_Respawn_20",
             "hideFlags": 0
           },
           {
@@ -419,8 +360,8 @@
             "MonsterDataId": 10,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": 72,
-            "PivotPosY": -60,
+            "PivotPosX": 165,
+            "PivotPosY": 36,
             "SpawnRange": 20,
             "name": "SO_Respawn_21",
             "hideFlags": 0
@@ -431,22 +372,10 @@
             "MonsterDataId": 11,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": 52,
-            "PivotPosY": -120,
+            "PivotPosX": 95,
+            "PivotPosY": -50,
             "SpawnRange": 40,
             "name": "SO_Respawn_22",
-            "hideFlags": 0
-          },
-          {
-            "TemplateId": 23,
-            "Count": 20,
-            "MonsterDataId": 11,
-            "RespawnType": 0,
-            "RespawnTime": 5,
-            "PivotPosX": -18,
-            "PivotPosY": -158,
-            "SpawnRange": 35,
-            "name": "SO_Respawn_23",
             "hideFlags": 0
           },
           {
@@ -490,8 +419,9 @@
           "ExtraSize": 0,
           "Range": 5,
           "OwnerRoomId": 3,
-          "SpawnPosX": 162,
-          "SpawnPosY": 37,
+          "SpawnPosX": 212,
+          "SpawnPosY": 57,
+          "SpawnPosInfo": null,
           "name": "SO_Portal_13",
           "hideFlags": 0
         },
@@ -507,8 +437,9 @@
           "ExtraSize": 0,
           "Range": 5,
           "OwnerRoomId": 3,
-          "SpawnPosX": -72,
-          "SpawnPosY": -170,
+          "SpawnPosX": -11,
+          "SpawnPosY": -150,
+          "SpawnPosInfo": null,
           "name": "SO_Portal_14",
           "hideFlags": 0
         },
@@ -524,8 +455,9 @@
           "ExtraSize": 0,
           "Range": 5,
           "OwnerRoomId": 3,
-          "SpawnPosX": 178,
-          "SpawnPosY": 37,
+          "SpawnPosX": 239,
+          "SpawnPosY": 59,
+          "SpawnPosInfo": null,
           "name": "SO_Portal_3_1",
           "hideFlags": 0
         }
@@ -535,9 +467,11 @@
     },
     {
       "TemplateId": 4,
-      "MapName": "Room4_Fall_1",
-      "StartPosX": 0,
-      "StartPosY": 0,
+      "PrefabName": "Room4",
+      "MapNameTextId": "가을숲",
+      "MapName": "가을숲",
+      "StartPosX": 18,
+      "StartPosY": 20,
       "SpawningPoolData": {
         "RoomId": 4,
         "RespawnDatas": [
@@ -547,8 +481,8 @@
             "MonsterDataId": 12,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -37,
-            "PivotPosY": 53,
+            "PivotPosX": 49,
+            "PivotPosY": 80,
             "SpawnRange": 30,
             "name": "SO_Respawn_26",
             "hideFlags": 0
@@ -559,8 +493,8 @@
             "MonsterDataId": 13,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -87,
-            "PivotPosY": 53,
+            "PivotPosX": 42,
+            "PivotPosY": 84,
             "SpawnRange": 20,
             "name": "SO_Respawn_27",
             "hideFlags": 0
@@ -571,8 +505,8 @@
             "MonsterDataId": 13,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -20,
-            "PivotPosY": 3,
+            "PivotPosX": 79,
+            "PivotPosY": 31,
             "SpawnRange": 20,
             "name": "SO_Respawn_28",
             "hideFlags": 0
@@ -583,8 +517,8 @@
             "MonsterDataId": 13,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -67,
-            "PivotPosY": 16,
+            "PivotPosX": 10,
+            "PivotPosY": 0,
             "SpawnRange": 40,
             "name": "SO_Respawn_29",
             "hideFlags": 0
@@ -595,8 +529,8 @@
             "MonsterDataId": 14,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -27,
-            "PivotPosY": -37,
+            "PivotPosX": -3,
+            "PivotPosY": -30,
             "SpawnRange": 20,
             "name": "SO_Respawn_30",
             "hideFlags": 0
@@ -607,8 +541,8 @@
             "MonsterDataId": 14,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -77,
-            "PivotPosY": -31,
+            "PivotPosX": -5,
+            "PivotPosY": 6,
             "SpawnRange": 30,
             "name": "SO_Respawn_31",
             "hideFlags": 0
@@ -619,8 +553,8 @@
             "MonsterDataId": 14,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -114,
-            "PivotPosY": 62,
+            "PivotPosX": -19,
+            "PivotPosY": 84,
             "SpawnRange": 20,
             "name": "SO_Respawn_32",
             "hideFlags": 0
@@ -631,8 +565,8 @@
             "MonsterDataId": 14,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -113,
-            "PivotPosY": 43,
+            "PivotPosX": -8,
+            "PivotPosY": 50,
             "SpawnRange": 30,
             "name": "SO_Respawn_33",
             "hideFlags": 0
@@ -643,8 +577,8 @@
             "MonsterDataId": 15,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -116,
-            "PivotPosY": -22,
+            "PivotPosX": -35,
+            "PivotPosY": -20,
             "SpawnRange": 40,
             "name": "SO_Respawn_34",
             "hideFlags": 0
@@ -668,6 +602,7 @@
           "OwnerRoomId": 4,
           "SpawnPosX": -2,
           "SpawnPosY": 75,
+          "SpawnPosInfo": null,
           "name": "SO_Portal_15",
           "hideFlags": 0
         },
@@ -685,6 +620,7 @@
           "OwnerRoomId": 4,
           "SpawnPosX": -153,
           "SpawnPosY": -3,
+          "SpawnPosInfo": null,
           "name": "SO_Portal_16",
           "hideFlags": 0
         },
@@ -702,6 +638,7 @@
           "OwnerRoomId": 4,
           "SpawnPosX": 13,
           "SpawnPosY": 76,
+          "SpawnPosInfo": null,
           "name": "SO_Portal_4_1",
           "hideFlags": 0
         }
@@ -711,9 +648,11 @@
     },
     {
       "TemplateId": 5,
-      "MapName": "Room5_Fall_2",
-      "StartPosX": 0,
-      "StartPosY": 0,
+      "PrefabName": "Room5",
+      "MapNameTextId": "가을숲 깊은곳",
+      "MapName": "가을숲 깊은곳",
+      "StartPosX": -9,
+      "StartPosY": 5,
       "SpawningPoolData": {
         "RoomId": 5,
         "RespawnDatas": [
@@ -735,8 +674,8 @@
             "MonsterDataId": 16,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -45,
-            "PivotPosY": 48,
+            "PivotPosX": 41,
+            "PivotPosY": 65,
             "SpawnRange": 30,
             "name": "SO_Respawn_37",
             "hideFlags": 0
@@ -759,8 +698,8 @@
             "MonsterDataId": 17,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -74,
-            "PivotPosY": 7,
+            "PivotPosX": 1,
+            "PivotPosY": 38,
             "SpawnRange": 30,
             "name": "SO_Respawn_39",
             "hideFlags": 0
@@ -771,8 +710,8 @@
             "MonsterDataId": 17,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -89,
-            "PivotPosY": 52,
+            "PivotPosX": 2,
+            "PivotPosY": 72,
             "SpawnRange": 15,
             "name": "SO_Respawn_40",
             "hideFlags": 0
@@ -783,8 +722,8 @@
             "MonsterDataId": 18,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -106,
-            "PivotPosY": -7,
+            "PivotPosX": -34,
+            "PivotPosY": -10,
             "SpawnRange": 30,
             "name": "SO_Respawn_41",
             "hideFlags": 0
@@ -795,8 +734,8 @@
             "MonsterDataId": 19,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -106,
-            "PivotPosY": -44,
+            "PivotPosX": 28,
+            "PivotPosY": -17,
             "SpawnRange": 30,
             "name": "SO_Respawn_42",
             "hideFlags": 0
@@ -830,8 +769,9 @@
           "ExtraSize": 0,
           "Range": 5,
           "OwnerRoomId": 5,
-          "SpawnPosX": -10,
-          "SpawnPosY": 69,
+          "SpawnPosX": 41,
+          "SpawnPosY": 86,
+          "SpawnPosInfo": null,
           "name": "SO_Portal_17",
           "hideFlags": 0
         },
@@ -847,8 +787,9 @@
           "ExtraSize": 0,
           "Range": 5,
           "OwnerRoomId": 5,
-          "SpawnPosX": -171,
-          "SpawnPosY": -68,
+          "SpawnPosX": -79,
+          "SpawnPosY": -46,
+          "SpawnPosInfo": null,
           "name": "SO_Portal_18",
           "hideFlags": 0
         },
@@ -864,8 +805,9 @@
           "ExtraSize": 0,
           "Range": 5,
           "OwnerRoomId": 5,
-          "SpawnPosX": 4,
-          "SpawnPosY": 71,
+          "SpawnPosX": 55,
+          "SpawnPosY": 85,
+          "SpawnPosInfo": null,
           "name": "SO_Portal_5_1",
           "hideFlags": 0
         }
@@ -875,9 +817,11 @@
     },
     {
       "TemplateId": 6,
-      "MapName": "Room6_Wet_1",
-      "StartPosX": 0,
-      "StartPosY": 0,
+      "PrefabName": "Room6",
+      "MapNameTextId": "촉촉한 땅",
+      "MapName": "촉촉한 땅",
+      "StartPosX": 19,
+      "StartPosY": 45,
       "SpawningPoolData": {
         "RoomId": 6,
         "RespawnDatas": [
@@ -887,8 +831,8 @@
             "MonsterDataId": 20,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -55,
-            "PivotPosY": 40,
+            "PivotPosX": 36,
+            "PivotPosY": 85,
             "SpawnRange": 40,
             "name": "SO_Respawn_44",
             "hideFlags": 0
@@ -899,8 +843,8 @@
             "MonsterDataId": 21,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -103,
-            "PivotPosY": 40,
+            "PivotPosX": -37,
+            "PivotPosY": 87,
             "SpawnRange": 40,
             "name": "SO_Respawn_45",
             "hideFlags": 0
@@ -911,8 +855,8 @@
             "MonsterDataId": 22,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -55,
-            "PivotPosY": -12,
+            "PivotPosX": 49,
+            "PivotPosY": -6,
             "SpawnRange": 40,
             "name": "SO_Respawn_46",
             "hideFlags": 0
@@ -923,8 +867,8 @@
             "MonsterDataId": 23,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -103,
-            "PivotPosY": -12,
+            "PivotPosX": -30,
+            "PivotPosY": -8,
             "SpawnRange": 40,
             "name": "SO_Respawn_47",
             "hideFlags": 0
@@ -935,8 +879,8 @@
             "MonsterDataId": 27,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -72,
-            "PivotPosY": 23,
+            "PivotPosX": 20,
+            "PivotPosY": 48,
             "SpawnRange": 15,
             "name": "SO_Respawn_48",
             "hideFlags": 0
@@ -960,6 +904,7 @@
           "OwnerRoomId": 6,
           "SpawnPosX": -10,
           "SpawnPosY": 70,
+          "SpawnPosInfo": null,
           "name": "SO_Portal_19",
           "hideFlags": 0
         },
@@ -977,11 +922,228 @@
           "OwnerRoomId": 6,
           "SpawnPosX": 12,
           "SpawnPosY": 71,
+          "SpawnPosInfo": null,
           "name": "SO_Portal_6_1",
           "hideFlags": 0
         }
       ],
       "name": "SO_Room_6",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 7,
+      "PrefabName": "Room7",
+      "MapNameTextId": "공동 묘지",
+      "MapName": "공동 묘지",
+      "StartPosX": 157,
+      "StartPosY": 55,
+      "SpawningPoolData": null,
+      "Npcs": [],
+      "name": "SO_Room_7",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 8,
+      "PrefabName": "Room8",
+      "MapNameTextId": "농경지",
+      "MapName": "농경지",
+      "StartPosX": 169,
+      "StartPosY": -14,
+      "SpawningPoolData": null,
+      "Npcs": [],
+      "name": "SO_Room_8",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 9,
+      "PrefabName": "Room9",
+      "MapNameTextId": "농경지 깊은 곳 ",
+      "MapName": "농경지 깊은 곳",
+      "StartPosX": 141,
+      "StartPosY": 30,
+      "SpawningPoolData": null,
+      "Npcs": [],
+      "name": "SO_Room_9",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 10,
+      "PrefabName": "Room10",
+      "MapNameTextId": "전초기지",
+      "MapName": "전초기지",
+      "StartPosX": 259,
+      "StartPosY": 162,
+      "SpawningPoolData": null,
+      "Npcs": [],
+      "name": "SO_Room_10",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 11,
+      "PrefabName": "Room11",
+      "MapNameTextId": "전쟁폐허",
+      "MapName": "전쟁폐허",
+      "StartPosX": 183,
+      "StartPosY": 103,
+      "SpawningPoolData": null,
+      "Npcs": [],
+      "name": "SO_Room_11",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 12,
+      "PrefabName": "Room12",
+      "MapNameTextId": "북부 탐사기지",
+      "MapName": "북부 탐사기지",
+      "StartPosX": 193,
+      "StartPosY": 37,
+      "SpawningPoolData": null,
+      "Npcs": [],
+      "name": "SO_Room_12",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 13,
+      "PrefabName": "Room13",
+      "MapNameTextId": "얼음 호수",
+      "MapName": "얼음 호수",
+      "StartPosX": 110,
+      "StartPosY": -12,
+      "SpawningPoolData": null,
+      "Npcs": [],
+      "name": "SO_Room_13",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 14,
+      "PrefabName": "Room14",
+      "MapNameTextId": "북부 갈림길",
+      "MapName": "북부 갈림길",
+      "StartPosX": 122,
+      "StartPosY": -25,
+      "SpawningPoolData": null,
+      "Npcs": [],
+      "name": "SO_Room_14",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 15,
+      "PrefabName": "Room15",
+      "MapNameTextId": "예티 동굴",
+      "MapName": "예티 동굴",
+      "StartPosX": 186,
+      "StartPosY": 57,
+      "SpawningPoolData": null,
+      "Npcs": [],
+      "name": "SO_Room_15",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 16,
+      "PrefabName": "Room16",
+      "MapNameTextId": "검은 산 입구",
+      "MapName": "검은 산 입구",
+      "StartPosX": 141,
+      "StartPosY": -20,
+      "SpawningPoolData": null,
+      "Npcs": [],
+      "name": "SO_Room_16",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 17,
+      "PrefabName": "Room17",
+      "MapNameTextId": "검은 산",
+      "MapName": "검은 산",
+      "StartPosX": 55,
+      "StartPosY": 108,
+      "SpawningPoolData": null,
+      "Npcs": [],
+      "name": "SO_Room_17",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 18,
+      "PrefabName": "Room18",
+      "MapNameTextId": "끓는 지대",
+      "MapName": "끓는 지대",
+      "StartPosX": 29,
+      "StartPosY": 81,
+      "SpawningPoolData": null,
+      "Npcs": [],
+      "name": "SO_Room_18",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 19,
+      "PrefabName": "Room19",
+      "MapNameTextId": "드래곤 둥지",
+      "MapName": "드래곤 둥지",
+      "StartPosX": 62,
+      "StartPosY": 104,
+      "SpawningPoolData": null,
+      "Npcs": [],
+      "name": "SO_Room_19",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 20,
+      "PrefabName": "Room20",
+      "MapNameTextId": "붉은 협곡",
+      "MapName": "붉은 협",
+      "StartPosX": -63,
+      "StartPosY": -10,
+      "SpawningPoolData": null,
+      "Npcs": [],
+      "name": "SO_Room_20",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 21,
+      "PrefabName": "Room21",
+      "MapNameTextId": "흰 요람",
+      "MapName": "흰 요람",
+      "StartPosX": -101,
+      "StartPosY": 41,
+      "SpawningPoolData": null,
+      "Npcs": [],
+      "name": "SO_Room_21",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 22,
+      "PrefabName": "Room22",
+      "MapNameTextId": "오아시스",
+      "MapName": "오아시",
+      "StartPosX": -165,
+      "StartPosY": -36,
+      "SpawningPoolData": null,
+      "Npcs": [],
+      "name": "SO_Room_22",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 23,
+      "PrefabName": "Room23",
+      "MapNameTextId": "징글 정글",
+      "MapName": "징검다리 밀림",
+      "StartPosX": -69,
+      "StartPosY": -12,
+      "SpawningPoolData": null,
+      "Npcs": [],
+      "name": "SO_Room_23",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 24,
+      "PrefabName": "Room24",
+      "MapNameTextId": "밤의 사원",
+      "MapName": "밤의 사원",
+      "StartPosX": -135,
+      "StartPosY": -73,
+      "SpawningPoolData": null,
+      "Npcs": [],
+      "name": "SO_Room_24",
       "hideFlags": 0
     }
   ]

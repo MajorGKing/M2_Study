@@ -1,5 +1,5 @@
 {
-  "dropTables": [
+  "rewardTables": [
     {
       "TemplateId": 1,
       "Name": "허수아비 드랍 테이블",
@@ -511,6 +511,16 @@
       "RewardExp": 820000,
       "RewardDataIds": [
         48
+      ],
+      "Rewards": null
+    },
+    {
+      "TemplateId": 1000,
+      "Name": "퀘스트1 보상",
+      "RewardGold": 100,
+      "RewardExp": 100,
+      "RewardDataIds": [
+        31
       ],
       "Rewards": null
     }

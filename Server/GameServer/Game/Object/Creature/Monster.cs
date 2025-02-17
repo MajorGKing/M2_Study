@@ -1,12 +1,6 @@
 ﻿using GameServer.Game;
 using Google.Protobuf.Protocol;
 using Server.Data;
-using Server.Game;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameServer
 {
@@ -22,9 +16,10 @@ namespace GameServer
         public Vector2Int SpawnPosition { get; set; }
         public int SpawnRange { get; set; }
 
-        MonsterAIController _ai;
+        public MonsterAIController AI { get; private set; }
+        public AggroComponent Aggro { get; private set; }
 
-        
+
 
         public Monster()
         {
@@ -38,14 +33,16 @@ namespace GameServer
                 return;
 
             TemplateId = templateId;
-            _ai = new MonsterAIController(this);
+            AI = new MonsterAIController(this);
+            Aggro = new AggroComponent();
 
             MonsterData = monsterData;
-            BaseStat.MergeFrom(monsterData.Stat);
-            BaseStat.Hp = BaseStat.MaxHp;
-            CreatureInfo.TotalStatInfo = BaseStat;
-            TotalStat.MergeFrom(BaseStat);
-            CreatureInfo.TotalStatInfo.MergeFrom(TotalStat);
+
+			StatComp.BaseStat.MergeFrom(monsterData.Stat);
+			StatComp.BaseStat.Hp = StatComp.BaseStat.MaxHp;
+
+			StatComp.TotalStat.MergeFrom(StatComp.BaseStat);
+			CreatureInfo.TotalStatInfo = StatComp.TotalStat;
 
             State = EObjectState.Idle;
             Boss = monsterData.IsBoss;
@@ -71,59 +68,85 @@ namespace GameServer
 
         public override void Update()
         {
-            _ai.Update();
+            base.Update();
+
+            AI.Update();
         }
 
-        public override float OnDamaged(BaseObject attacker, float damage)
+        public override bool OnDamaged(BaseObject attacker, float damage)
         {
-            float ret = base.OnDamaged(attacker, damage);
+            if (Room == null)
+                return false;
 
-            _ai.OnDamaged(attacker, damage);
+            if (State == EObjectState.Dead)
+                return false;
 
-            return ret;
+            // 1. 어그로 매니저에 전달.
+            if (attacker.ObjectType == EGameObjectType.Hero)
+                Aggro.OnDamaged(attacker.ObjectId, damage);
+
+            // 2. AI 매니저에 전달.
+            AI.OnDamaged(attacker, damage);
+
+            return base.OnDamaged(attacker, damage);
         }
 
         public override void OnDead(BaseObject attacker)
         {
-            if(attacker.IsValid() == false) 
-                return;
+            // 1. 어그로 수치가 가장 높고, 같은 방에 있는 영웅한테 준다.
+            GiveRewardToTopAttacker();
 
-            BaseObject owner = attacker.GetOwner();
-            if (owner.ObjectType == EGameObjectType.Hero)
-            {
-                Hero hero = owner as Hero;
-                if (hero.Inven.IsInventoryFull() == false)
-                {
-                    RewardData rewardData = GetRandomReward();
-                    if(rewardData != null)
-                        DBManager.RewardHero(hero, rewardData);
-                }
-
-                // 나머지
-                if(MonsterData.DropTable != null)
-                    hero.RewardExpAndGold(MonsterData.DropTable);
-            }
+            // 2. AI 매니저에 전달.
+            AI.OnDead(attacker);
 
             base.OnDead(attacker);
-            _ai.OnDead(attacker);
+        }
+
+        private void GiveRewardToTopAttacker()
+        {
+            // 어그로 수치가 가장 높고, 같은 방에 있는 영웅한테 준다.
+            List<int> attackerIds = Aggro.GetTopAttackers();
+            foreach (int attackerId in attackerIds)
+            {
+                Hero hero = Room.GetHeroById(attackerId);
+                if (hero != null)
+                {
+                    GiveReward(hero);
+                    return;
+                }
+            }
+        }
+
+        private void GiveReward(Hero hero)
+        {
+            if(hero.Inven.IsInventoryFull() == false)
+            {
+                RewardData rewardData = GetRandomReward();
+                if (rewardData != null)
+                    DBManager.RewardHero(hero, rewardData);
+            }
+
+            // 나머지
+            if (MonsterData.RewardTable != null)
+                hero.RewardExpAndGold(MonsterData.RewardTable);
         }
 
         public override void Reset()
         {
             base.Reset();
-            _ai.Reset();
+            AI.Reset();
         }
 
         private RewardData GetRandomReward()
         {
-            if (MonsterData.DropTable == null)
+            if (MonsterData.RewardTable == null)
                 return null;
-            if (MonsterData.DropTable.Rewards == null)
+            if (MonsterData.RewardTable.Rewards == null)
                 return null;
-            if (MonsterData.DropTable.Rewards.Count <= 0)
+            if (MonsterData.RewardTable.Rewards.Count <= 0)
                 return null;
 
-            return MonsterData.DropTable.Rewards.RandomElementByWeight(e => e.Probability);
+            return MonsterData.RewardTable.Rewards.RandomElementByWeight(e => e.Probability);
         }
 
     }

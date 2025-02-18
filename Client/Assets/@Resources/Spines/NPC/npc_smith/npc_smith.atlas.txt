@@ -1,0 +1,10 @@
+npc_smith.png
+size:512,512
+filter:Linear,Linear
+pma:true
+npc_smith
+bounds:2,50,459,425
+offsets:3,3,465,431
+shadow
+bounds:2,2,137,46
+offsets:19,23,175,91

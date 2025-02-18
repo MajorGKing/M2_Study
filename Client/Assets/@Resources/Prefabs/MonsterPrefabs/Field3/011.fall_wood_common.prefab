@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1989438424406686311}
   - component: {fileID: 2442421073533576193}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: 011.fall_wood_common
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9111798328124930341}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: CenterPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 2858460382199038833}
   - component: {fileID: 2504496308380667646}
   - component: {fileID: 3607429449109144263}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: SkeletonAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,6 +288,10 @@ PrefabInstance:
     - target: {fileID: 9131531786395709979, guid: afc01c0b368a2cb43a9360af36978e37, type: 3}
       propertyPath: m_Name
       value: Outline
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131531786395709979, guid: afc01c0b368a2cb43a9360af36978e37, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

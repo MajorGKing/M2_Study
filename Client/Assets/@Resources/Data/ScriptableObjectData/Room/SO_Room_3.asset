@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: SO_Room_3
   m_EditorClassIdentifier: 
   TemplateId: 3
-  MapName: Room3_Forest_2
-  StartPosX: 0
-  StartPosY: 0
+  PrefabName: Room3
+  MapNameTextId: "\uD3C9\uC628\uC232 \uAE4A\uC740\uACF3"
+  MapName: "\uD3C9\uC628\uC232 \uAE4A\uC740\uACF3"
+  StartPosX: 184
+  StartPosY: 56
   SpawningPoolData: {fileID: 11400000, guid: e8d6114ef1240e2468d6669ff0ed524d, type: 2}
   Npcs:
   - {fileID: 11400000, guid: d0f9c0bede3ba9246a5d46613e3f07a9, type: 2}

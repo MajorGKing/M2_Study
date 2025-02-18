@@ -1,0 +1,11 @@
+npc_dick.png
+size:512,256
+filter:Linear,Linear
+pma:true
+dick
+bounds:2,50,179,259
+offsets:3,3,185,265
+rotate:90
+shadow
+bounds:2,2,137,46
+offsets:19,23,175,91

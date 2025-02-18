@@ -4872,8 +4872,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -695603101
-  m_SortingLayer: 1
-  m_SortingOrder: 301
+  m_SortingLayer: 0
+  m_SortingOrder: 300
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -4918,7 +4918,7 @@ GameObject:
   - component: {fileID: 811487240996467456}
   - component: {fileID: 8433199098223695186}
   m_Layer: 0
-  m_Name: Wizard_attack_b_Trail
+  m_Name: Wizard_Attack_b_Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9779,8 +9779,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -695603101
-  m_SortingLayer: 1
-  m_SortingOrder: 301
+  m_SortingLayer: 0
+  m_SortingOrder: 300
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0

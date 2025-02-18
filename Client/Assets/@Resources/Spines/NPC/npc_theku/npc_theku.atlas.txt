@@ -1,0 +1,10 @@
+npc_theku.png
+size:256,256
+filter:Linear,Linear
+pma:true
+npc_theku
+bounds:2,50,170,190
+offsets:3,3,176,196
+shadow
+bounds:2,2,137,46
+offsets:19,23,175,91

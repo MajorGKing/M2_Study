@@ -10,5 +10,7 @@
 9,로그 평타,근접 평타,근접 평타,,,Active,Common,1.2,1,attack_a,0,0.3333,,Other,,Rogue_Attack_Hit,Enemy,10,
 10,로그스킬A,스카프블레이드,단일타겟,rogue_skill_a,Rogue_Skill_A_Attacker,Active,Common,5,1,skill_a,3,0.3333,,Other,0,Rogue_Skill_A_Target,Enemy,15,
 11,로그스킬B,블레이드댄스,광역기,rogue_skill_b,Rogue_Skill_B_Attacker,Active,Common,10,1,skill_b,4,0.3333,,Self,3,Rogue_Skill_B_Target,Enemy,12,
-12,마법사스킬A,도깨비불, 에너지탄(단일 타겟 원거리 화살 발사),wizard_skill_a,Wizard_Skill_A_Attacker,Active,Common,3,8,skill_a,0,0.3333,4,Other,,Wizard_Skill_A_Target,Enemy,10,
+12,마법사스킬A,도깨비불, 에너지탄(단일 타겟 원거리 화살 발사),wizard_skill_a,Wizard_Skill_A_Attacker,Active,Common,3,8,skill_a,0,0.3333,7,Other,,Wizard_Skill_A_Target,Enemy,12,
 13,몬스터 근접평타,근접 평타,근접 평타,,,Active,Common,1.2,1,attack,0,0.3333,,Other,,,Enemy,10,
+14,마법사 평타,마법사 평타,마법사 평타,,,Active,Common,1.2,8,attack_a,0,0.3333,6,Other,,Wizard_Attack_Hit,Enemy,10,
+15,마법사 스킬B,도깨비의 치유,자기자신 체력 회복,wizard_skill_b,Wizard_Skill_B_Attacker,Active,Common,3,8,skill_b,3,0.3333,4,Self,,,Friend,10000,

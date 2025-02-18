@@ -1,0 +1,10 @@
+npc_umbra.png
+size:512,512
+filter:Linear,Linear
+pma:true
+npc_umbra
+bounds:2,50,269,253
+offsets:3,3,275,259
+shadow
+bounds:2,2,137,46
+offsets:19,23,175,91

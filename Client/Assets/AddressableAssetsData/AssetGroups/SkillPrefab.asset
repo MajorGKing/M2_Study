@@ -47,24 +47,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 86388024fe2b02647963f2a28f069249
-    m_Address: Effect_Poison
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 72aac211bf2faee4596c448db126bf80
-    m_Address: Effect_AtkUp
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1ee7f5937bf1ecf48a851e9420fda90d
-    m_Address: AOE_Explosion
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e2e23d3f5b025254f9e848c090544b5c
     m_Address: Rogue_Skill_B_Target
     m_ReadOnly: 0
@@ -235,6 +217,30 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d51b4e70a3e1bf84d8f227d729f9d9ed
     m_Address: Rogue_Skill_A_Target
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0a3013190912f154596acce107e22a0f
+    m_Address: Wizard_Skill_A_Attacker
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 874a68817558d3c4e8b1c9df6efc42f7
+    m_Address: Wizard_Skill_A_Target
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 77ffa823f0577bd46a74612e10059864
+    m_Address: Wizard_Skill_A_Trail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 110f7801dd8acd24ea59965064e793af
+    m_Address: Wizard_Skill_B_Attacker
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

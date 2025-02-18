@@ -1,10 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Net;
-using Google.Protobuf.Protocol;
 using UnityEngine;
-using UnityEngine.Diagnostics;
 using UnityEngine.Rendering;
 
 public class TitleScene : BaseScene
@@ -21,7 +15,7 @@ public class TitleScene : BaseScene
         GraphicsSettings.transparencySortAxis = new Vector3(0.0f, 1.0f, 0.0f);
         Application.runInBackground = true;
 
-        // ¿¹¿ÜÀûÀ¸·Î Á÷Á¢ µî·ÏÇÑ´Ù (UI_TitleSceneÀº ¾Ö¼Â ·Îµùµµ ´ã´çÇÏ±â ¶§¹®)
+        // ì˜ˆì™¸ì ìœ¼ë¡œ ì§ì ‘ ë“±ë¡í•œë‹¤ (UI_TitleSceneì€ ì• ì…‹ ë¡œë”©ë„ ë‹´ë‹¹í•˜ê¸° ë•Œë¬¸)
         Managers.UI.SceneUI = GameObject.FindAnyObjectByType<UI_TitleScene>();
     }
 

@@ -30,7 +30,7 @@ public class DataTransformer : EditorWindow
 	    ParseExcelDataToJson<EquipmentDataLoader, EquipmentData>("Equipment");
 	    ParseExcelDataToJson<ConsumableDataLoader, ConsumableData>("Consumable");
 	    ParseExcelDataToJson<RewardDataLoader, RewardData>("Reward");
-	    ParseExcelDataToJson<DropTableDataLoader, DropTableData>("DropTable");
+	    ParseExcelDataToJson<RewardTableDataLoader, RewardTableData>("RewardTable");
 	    //
 	    ParseSODataToJson<ConfigDataLoader, ConfigData>("Config");
 	    ParseSODataToJson<RespawnDataLoader, RespawnData>("Respawn");

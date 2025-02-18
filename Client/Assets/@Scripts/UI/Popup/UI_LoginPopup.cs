@@ -1,10 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class UI_LoginPopup : UI_Popup
 {
@@ -23,7 +18,7 @@ public class UI_LoginPopup : UI_Popup
 
         BindObjects(typeof(GameObjects));
 
-        // TODO : ÀÎÁõ¼­¹ö¸¦ ÅëÇØ ·Î±×ÀÎ.
+        // TODO : ì¸ì¦ì„œë²„ë¥¼ í†µí•´ ë¡œê·¸ì¸.
         GetObject((int)GameObjects.GoogleLoginButton).BindEvent(OnClickLogginButton);
         GetObject((int)GameObjects.AppleLoginButton).BindEvent(OnClickLogginButton);
         GetObject((int)GameObjects.GuestLoginButton).BindEvent(OnClickLogginButton);
@@ -36,8 +31,8 @@ public class UI_LoginPopup : UI_Popup
 
     void OnClickLogginButton(PointerEventData evt)
     {
-        // 1) TODO : ÀÎÁõ¼­¹ö·Î ÀÎÁõ ¿äÃ»
-        // 2) TODO : ÀÎÁõ¼­¹ö¿¡¼­ ÀÎÁõ ¼º°øÇÏ¸é, AccountDbId ¹× JWT ¹Ş¾Æ¿Í¼­ ÀÌ¾î¼­ ÁøÇà.
+        // 1) TODO : ì¸ì¦ì„œë²„ë¡œ ì¸ì¦ ìš”ì²­
+        // 2) TODO : ì¸ì¦ì„œë²„ì—ì„œ ì¸ì¦ ì„±ê³µí•˜ë©´, AccountDbId ë° JWT ë°›ì•„ì™€ì„œ ì´ì–´ì„œ ì§„í–‰.
 
         // TEMP
         Managers.AccountDbId = 0;

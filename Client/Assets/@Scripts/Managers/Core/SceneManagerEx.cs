@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 using static Define;
 
@@ -11,7 +14,7 @@ public class SceneManagerEx
     {
         NextSceneType = type;
         Managers.Clear();
-        SceneManager.LoadScene(GetSceneName(EScene.LoadingScene));
+        AsyncOperationHandle<SceneInstance> handle = Addressables.LoadSceneAsync(GetSceneName(EScene.LoadingScene), LoadSceneMode.Single, true);
     }
 
     public string GetSceneName(EScene type)

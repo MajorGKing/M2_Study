@@ -1,9 +1,8 @@
-﻿using Google.Protobuf.Protocol;
+using Google.Protobuf.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
-using static Define;
 using Object = UnityEngine.Object;
 
 public static class Utils

@@ -1,5 +1,6 @@
 using Data;
 using Google.Protobuf.Protocol;
+using UnityEngine;
 
 public class Monster : Creature
 {
@@ -26,6 +27,8 @@ public class Monster : Creature
     protected override void Awake()
     {
         base.Awake();
+        GameObject icon = Managers.Object.Spawn("MinimapCreatureIcon", transform);
+        icon.GetComponent<SpriteRenderer>().color = Color.red;
     }
 
     protected override void OnEnable()
@@ -41,13 +44,13 @@ public class Monster : Creature
 
 	public override string GetObjectName()
 	{
-		//TODO @@´Ù±¹¾î
+		//TODO @@ë‹¤êµ­ì–´
 		return MonsterData.NameTextId;
 	}
 	
 	protected override void Update()
 	{
-		// ±âº»ÀûÀ¸·Î ¸ğµç ¹°Ã¼´Â Ä­ ´ÜÀ§·Î ¿òÁ÷ÀÌÁö¸¸, Å¬¶ó¿¡¼­ '½º¸£¸¤' ¿òÁ÷ÀÌ´Â º¸Á¤ Ã³¸®¸¦ ÇØÁØ´Ù.
+		// ê¸°ë³¸ì ìœ¼ë¡œ ëª¨ë“  ë¬¼ì²´ëŠ” ì¹¸ ë‹¨ìœ„ë¡œ ì›€ì§ì´ì§€ë§Œ, í´ë¼ì—ì„œ 'ìŠ¤ë¥´ë¥µ' ì›€ì§ì´ëŠ” ë³´ì • ì²˜ë¦¬ë¥¼ í•´ì¤€ë‹¤.
 		UpdateLerpToCellPos(MoveSpeed, true);
 	}
 
@@ -70,6 +73,7 @@ public class Monster : Creature
         ExtraCells = MonsterData.ExtraCells;
 
         base.SetInfo(templateId);
+        PlayAnimation(0, AnimName.IDLE, true);
     }
 
     #region Battle
@@ -81,4 +85,21 @@ public class Monster : Creature
         return target.ObjectType == EGameObjectType.Hero;
     }
     #endregion
+
+#if UNITY_EDITOR
+
+    void OnDrawGizmos()
+    {
+        if (Managers.Scene.CurrentScene.TestMode == false)
+            return;
+
+        Gizmos.color = Color.red;
+        Vector3 textPosition = transform.position + Vector3.up * 3.5f + Vector3.left * 0.5f;
+
+        GUIStyle style = new GUIStyle();
+        style.normal.textColor = Color.red;
+        style.fontSize = 25;
+        UnityEditor.Handles.Label(textPosition, ObjectState.ToString(), style);
+    }
+#endif
 }

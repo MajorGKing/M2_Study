@@ -140,22 +140,13 @@ public abstract class Skill
         return true;
     }
 
-    public static bool IsValidSkillTarget(MyHero owner, SkillData skillData, Creature target)
-    {
-        if (skillData.UseSkillTargetType == EUseSkillTargetType.Self)
-        {
-            //SelfCenter 범위기는 target검사 X
-            if (skillData.IsSingleTarget == false)
-                return true;
+	public static bool IsValidSkillTarget(MyHero owner, SkillData skillData, Creature target)
+	{
+		if (skillData.UseSkillTargetType == EUseSkillTargetType.Self)
+			return true;
 
-            if (target != owner)
-                return false;
-        }
-        else
-        {
-            if (target == null)
-                return false;
-        }
+		if (target == null)
+			return false;
 
         if (IsValidUseSkillTargetType(owner, target, skillData.UseSkillTargetType) == false)
             return false;

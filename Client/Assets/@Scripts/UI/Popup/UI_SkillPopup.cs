@@ -1,11 +1,8 @@
-using System;
 using System.Collections.Generic;
 using Data;
-using Google.Protobuf.Protocol;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static Define;
 
 public class UI_SkillPopup : UI_Popup
 {
@@ -78,16 +75,16 @@ public class UI_SkillPopup : UI_Popup
 
     void RefreshUI()
     {
-        // ¾ÆÀÌÅÛ ¸ñ·Ï °¡Á®¿À±â
+        // ì•„ì´í…œ ëª©ë¡ ê°€ì ¸ì˜¤ê¸°
         List<SkillData> skills = GetSkillBasedOnToggle();
 
-        // ½½·Ô ¾ÆÀÌÅÛ ¾÷µ¥ÀÌÆ®
+        // ìŠ¬ë¡¯ ì•„ì´í…œ ì—…ë°ì´íŠ¸
         UpdateSlotItems(skills, SkILL_SLOT_COUNT);
     }
 
     private List<SkillData> GetSkillBasedOnToggle()
     {
-        //TODO ÀÏ´Ü ¸ğµç½ºÅ³
+        //TODO ì¼ë‹¨ ëª¨ë“ ìŠ¤í‚¬
         return Managers.Skill.GetAllSkillDatas();
     }
 

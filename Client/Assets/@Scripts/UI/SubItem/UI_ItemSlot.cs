@@ -4,7 +4,6 @@ using Google.Protobuf.Protocol;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using static Define;
 
 public class UI_ItemSlot : UI_SubItem
@@ -85,20 +84,20 @@ public class UI_ItemSlot : UI_SubItem
                 Item equipped = Managers.Inventory.GetEquippedItem(_item.ItemDbId);
                 if (equipped != null && equipped.ItemDbId == _item.ItemDbId)
                 {
-                    _activeText.text = "@ÇØÁ¦";
+                    _activeText.text = "@í•´ì œ";
                 }
                 else
                 {
-                    _activeText.text = "@ÀåÂø";
+                    _activeText.text = "@ì¥ì°©";
                 }
                 break;
             case EItemType.Consumable:
                 _countText.gameObject.SetActive(true);
-                _activeText.text = "@»ç¿ë";
+                _activeText.text = "@ì‚¬ìš©";
                 _countText.text = _item.Count.ToString();
                 break;
             default:
-                _activeText.text = "@»ç¿ë";
+                _activeText.text = "@ì‚¬ìš©";
                 break;
         }
 
@@ -116,10 +115,10 @@ public class UI_ItemSlot : UI_SubItem
 
     private void RefreshSlotImage()
     {
-        //¾ÆÀÌÅÛ ÀÌ¹ÌÁö
+        //ì•„ì´í…œ ì´ë¯¸ì§€
         if (_item != null)
         {
-            //µî±Ş¿¡ µû¸¥ ½ºÇÁ¶óÀÌÆ® ¼³Á¤
+            //ë“±ê¸‰ì— ë”°ë¥¸ ìŠ¤í”„ë¼ì´íŠ¸ ì„¤ì •
             string slotImageName = String.Empty;
             switch (_itemData.Grade)
             {
@@ -171,7 +170,7 @@ public class UI_ItemSlot : UI_SubItem
                     Managers.Inventory.ReqEquipItem(_item.ItemDbId);
                 break;
             case EItemType.Consumable:
-                //TODO »ç¿ë
+                //TODO ì‚¬ìš©
                 // Managers.Inventory.UseItem((_item.InstanceId));
                 break;
             default:

@@ -1,5 +1,6 @@
 using Data;
 using Google.Protobuf.Protocol;
+using UnityEngine;
 
 public interface INpcInteraction
 {
@@ -23,6 +24,11 @@ public class Npc : BaseObject
     protected override void Awake()
     {
         base.Awake();
+        // 미니맵
+        GameObject icon = Managers.Object.Spawn("MinimapCreatureIcon", transform);
+        icon.GetComponent<SpriteRenderer>().color = Color.yellow;
+        // TODO 임시, 스케일은 스파인 작업 다 끝나고 일괄처리
+        icon.transform.localScale = Vector3.one * 2.04f;
     }
 
     protected override void OnEnable()

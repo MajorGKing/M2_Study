@@ -55,7 +55,7 @@ public class BaseObject : MonoBehaviour
 
             Managers.Map.MoveTo(this, cellPos);
 
-            // ³» ÇÃ·¹ÀÌ¾î´Â »óÅÂ µ¤¾î¾²Áö ¾Ê°í, ¾Ë¾Æ¼­ °ü¸®ÇÑ´Ù.
+            // ë‚´ í”Œë ˆì´ì–´ëŠ” ìƒíƒœ ë®ì–´ì“°ì§€ ì•Šê³ , ì•Œì•„ì„œ ê´€ë¦¬í•œë‹¤.
             bool isMyHero = this is MyHero;
             if (isMyHero == false)
             {
@@ -71,8 +71,8 @@ public class BaseObject : MonoBehaviour
 		get { return PosInfo.State; }
 		set
 		{
-			// if (_objectState == value)
-			// 	return;
+			if (_objectState == value)
+				return;
 
             _objectState = value;
             PosInfo.State = value;
@@ -275,30 +275,32 @@ public class BaseObject : MonoBehaviour
 
     #endregion
 
-    #region Map
-    public bool LerpCellPosCompleted { get; protected set; }
+	#region Map
+	
+	public bool LerpCellPosCompleted { get; protected set; }
+	public float LerpCompletionTime; 
+	
+	[SerializeField] Vector3Int _cellPos;
+	public Vector3Int CellPos
+	{
+		get { return _cellPos; }
+		protected set
+		{
+			_cellPos = value;
+		}
+	}
 
-    [SerializeField] Vector3Int _cellPos;
-    public Vector3Int CellPos
-    {
-        get { return _cellPos; }
-        protected set
-        {
-            _cellPos = value;
-        }
-    }
-
-    public void SetCellPos(Vector3Int cellPos, bool forceMove = false)
-    {
-        CellPos = cellPos;
-        LerpCellPosCompleted = false;
-
-        if (forceMove)
-        {
-            transform.position = Managers.Map.Cell2World(CellPos);
-            LerpCellPosCompleted = true;
-        }
-    }
+	public void SetCellPos(Vector3Int cellPos, bool forceMove = false)
+	{
+		CellPos = cellPos;
+		LerpCellPosCompleted = false;
+		LerpCompletionTime = Time.time;
+		if (forceMove)
+		{
+			transform.position = Managers.Map.Cell2World(CellPos);
+			LerpCellPosCompleted = true;
+		}
+	}
 
 	public virtual void UpdateLerpToCellPos(float moveSpeed, bool canFlip = true)
 	{
@@ -310,15 +312,16 @@ public class BaseObject : MonoBehaviour
         if (canFlip)
             LookAtTarget(dir);
 
-        float moveDist = moveSpeed * Time.deltaTime;
-        if (dir.magnitude < moveDist)
-        {
-            // ´Ù ÀÌµ¿ ÇßÀ¸¸é ¸Ê ±×¸®µå °»½Å
-            SyncWorldPosWithCellPos();
-            transform.position = destPos;
-            LerpCellPosCompleted = true;
-            return;
-        }
+		float moveDist = moveSpeed * Time.deltaTime;
+		if (dir.magnitude < moveDist)
+		{
+			// ë‹¤ ì´ë™ í–ˆìœ¼ë©´ ë§µ ê·¸ë¦¬ë“œ ê°±ì‹ 
+			SyncWorldPosWithCellPos();
+			transform.position = destPos;
+			LerpCellPosCompleted = true;
+			LerpCompletionTime = Time.time;
+			return;
+		}
 
         transform.position += dir.normalized * moveDist;
     }
@@ -327,16 +330,24 @@ public class BaseObject : MonoBehaviour
     {
         Managers.Map.MoveTo(this, CellPos, forceMove: true);
     }
+
+    public void Blink(S_Blink packet)
+    {
+        Vector3Int cellPos = new Vector3Int(packet.PosInfo.PosX, packet.PosInfo.PosY, 0);
+        Managers.Map.MoveTo(this, cellPos, true);
+        PosInfo = packet.PosInfo;
+
+    }
     #endregion
 
-	#region Helper
+    #region Helper
 
-	public virtual string GetObjectName()
+    public virtual string GetObjectName()
 	{
 		return null;
 	}
 
-	// Ã¼½ºÆÇ °Å¸®
+	// ì²´ìŠ¤íŒ ê±°ë¦¬
 	public int GetDistance(BaseObject target)
 	{
 		Vector3Int pos = GetClosestBodyCellPointToTarget(target);

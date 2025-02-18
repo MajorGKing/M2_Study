@@ -1,3 +1,4 @@
+using Data.SO;
 using Google.Protobuf.Protocol;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,7 +9,8 @@ public class UI_GameScene : UI_Scene
     #region Enum
     enum GameObjects
     {
-        UI_QuickSlot
+        UI_QuickSlot,
+        MiniMap
     }
 
     enum Images
@@ -34,6 +36,7 @@ public class UI_GameScene : UI_Scene
         GoldText,
         AutoText,
         PosValueText,
+        RoomNameText,
     }
 
     enum Sliders
@@ -75,6 +78,7 @@ public class UI_GameScene : UI_Scene
         GetButton((int)Buttons.CharacterButton).gameObject.BindEvent(OnClickHeroInfo);
         GetButton((int)Buttons.SkillButton).gameObject.BindEvent(OnClickSkillInfo);
         GetButton((int)Buttons.LobbyButton).gameObject.BindEvent(OnClickLobby);
+        GetObject((int)GameObjects.MiniMap).BindEvent(OnClickMiniMap);
     }
 
     private float elapsedTime;
@@ -103,8 +107,8 @@ public class UI_GameScene : UI_Scene
         OnUpdatePosition();
         RefreshUI();
     }
-    
-    private void RefreshUI()
+
+    public void RefreshUI()
     {
         MyHero myHero = Managers.Object.MyHero;
         MyHeroInfo info = Managers.Object.MyHero.MyHeroInfo;
@@ -130,6 +134,10 @@ public class UI_GameScene : UI_Scene
         GetSlider((int)Sliders.ExpSlider).minValue = 0;
         GetSlider((int)Sliders.ExpSlider).value = myHero.Exp;
         GetText((int)Texts.ExpText).text = $"{myHero.GetExpNormalized() * 100}%";
+
+        MyHero hero = Managers.Object.MyHero;
+        if (Managers.Data.RoomDict.TryGetValue(hero.MyHeroInfo.MapId, out RoomData roomData))
+            GetText((int)Texts.RoomNameText).text = roomData.MapName;
     }
 
     public void OnHpChanged()
@@ -176,6 +184,11 @@ public class UI_GameScene : UI_Scene
         C_LeaveGame leaveGamePacket = new C_LeaveGame();
         Managers.Network.Send(leaveGamePacket);
         Managers.Scene.LoadScene(EScene.TitleScene);
+    }
+    
+    private void OnClickMiniMap(PointerEventData eventData)
+    {
+        Managers.UI.ShowPopupUI<UI_WorldMapPopup>().SetInfo();
     }
     #endregion
 }

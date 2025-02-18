@@ -1,0 +1,25 @@
+{
+  "quests": [
+    {
+      "TemplateId": 9,
+      "NameTextId": "메인퀘스트1. 마을 청소",
+      "Type": 1,
+      "TaskIds": [
+        1,
+        2,
+        3
+      ],
+      "Level": 1,
+      "RewardTableId": 1000,
+      "QuestTasks": [],
+      "RewardTableData": {
+        "TemplateId": 0,
+        "Name": null,
+        "RewardGold": 0,
+        "RewardExp": 0,
+        "RewardDataIds": null,
+        "Rewards": null
+      }
+    }
+  ]
+}

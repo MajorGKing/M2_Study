@@ -4,10 +4,11 @@ public class CameraController : MonoBehaviour
 {
     public BaseObject Target { get; set; }
 
-    private void Start()
-    {
-        Camera.main.orthographicSize = 12;
-    }
+	private void Start()
+	{
+		Camera.main.orthographicSize = 12;
+		Camera.main.cullingMask = ~(1 << LayerMask.NameToLayer("Minimap"));
+	}
 
     private void LateUpdate()
     {

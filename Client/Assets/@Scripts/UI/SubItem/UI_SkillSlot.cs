@@ -61,7 +61,7 @@ public class UI_SkillSlot : UI_SubItem
         if (_skillData == null)
             return;
 
-        //TODO »ç¿ë/¹Ì»ç¿ë
+        //TODO ì‚¬ìš©/ë¯¸ì‚¬ìš©
         if (_isSelected)
         {
             GetImage((int)Images.SelectedImage).gameObject.SetActive(true);
@@ -74,10 +74,10 @@ public class UI_SkillSlot : UI_SubItem
 
     private void RefreshSlotImage()
     {
-        //¾ÆÀÌÅÛ ÀÌ¹ÌÁö
+        //ì•„ì´í…œ ì´ë¯¸ì§€
         if (_skillData != null)
         {
-            //µî±Ş¿¡ µû¸¥ ½ºÇÁ¶óÀÌÆ® ¼³Á¤
+            //ë“±ê¸‰ì— ë”°ë¥¸ ìŠ¤í”„ë¼ì´íŠ¸ ì„¤ì •
             string slotImageName = String.Empty;
             switch (_skillData.SkillGrade)
             {

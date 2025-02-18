@@ -5,8 +5,14 @@ public class Define
 
     public const int HERO_DEFAULT_MOVE_DEPTH = 8;
 
-    public const int MAX_LOBBY_HERO_COUNT = 10;
+    public const int MAX_LOBBY_HERO_COUNT = 100;
     public const int MAX_QUICKSLOT_COUNT = 5;
+
+    public enum MsgPopupType
+    {
+        Yes,
+        YesNo,
+    }
 
     public enum EEventType
     {
@@ -58,9 +64,6 @@ public class Define
         PointerDown,
         Drag,
         PointerUp,
-        Attack,
-        Auto,
-        Pickup,
     }
 
     public enum EScene

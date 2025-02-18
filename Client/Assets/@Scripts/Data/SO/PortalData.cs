@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Google.Protobuf.Protocol;
 using UnityEngine;
 
 namespace Data.SO
@@ -33,6 +34,11 @@ namespace Data.SO
             {
                 if (Managers.Data.PortalDict.TryGetValue(portal.DestPotalId, out PortalData portalData))
                     portal.DestPortal = portalData;
+
+                portal.SpawnPosInfo = new PositionInfo();
+                portal.SpawnPosInfo.RoomId = portal.OwnerRoomId;
+                portal.SpawnPosInfo.PosX = portal.SpawnPosX;
+                portal.SpawnPosInfo.PosY = portal.SpawnPosY;
             }
 
             return true;

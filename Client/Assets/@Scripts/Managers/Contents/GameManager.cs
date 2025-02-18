@@ -1,19 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Data;
 using Google.Protobuf.Protocol;
-using UnityEngine;
 using static Define;
-using Object = UnityEngine.Object;
-using Random = UnityEngine.Random;
 
 public class GameManager
 {
     public int SelectedHeroIndex { get; set; }
 
-    public event Action<EJoystickState, EMoveDir> OnJoystickChanged;
     private EJoystickState _joystickState;
     public EJoystickState JoystickState
     {
@@ -32,7 +24,8 @@ public class GameManager
         set
         {
             _moveDir = value;
-            OnJoystickChanged?.Invoke(_joystickState, MoveDir);
         }
     }
+
+    public event Action<EJoystickState, EMoveDir> OnJoystickChanged;
 }

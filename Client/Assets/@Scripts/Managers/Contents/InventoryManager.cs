@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Google.Protobuf.Protocol;
 using System.Linq;
-using Data;
 using static Define;
 
 public class InventoryManager
 {
     public const int DEFAULT_INVENTORY_SLOT_COUNT = 50;
 
-    // ¼ÒÀ¯ÇÑ ¸ğµç ¾ÆÀÌÅÛ.
+    // ì†Œìœ í•œ ëª¨ë“  ì•„ì´í…œ.
     public Dictionary<long/*itemDbId*/, Item> AllItems { get; private set; } = new Dictionary<long, Item>();
 
-    // Ä³½Ì.
+    // ìºì‹±.
     public Dictionary<EItemSlotType, Equipment> EquippedItems = new Dictionary<EItemSlotType, Equipment>();
     public Dictionary<long/*itemDbId*/, Item> WarehouseItems { get; } = new Dictionary<long, Item>();
     public Dictionary<long/*itemDbId*/, Item> InventoryItems { get; } = new Dictionary<long, Item>();
@@ -26,7 +25,7 @@ public class InventoryManager
 
     public int ItemCountInInventory { get { return InventoryItems.Count; } }
 
-    #region Ãß°¡ / °»½Å / »èÁ¦
+    #region ì¶”ê°€ / ê°±ì‹  / ì‚­ì œ
     public void Add(ItemInfo itemInfo, bool triggerEvent = true)
     {
         Item item = Item.MakeItem(itemInfo);
@@ -39,7 +38,7 @@ public class InventoryManager
         switch (status)
         {
             case EItemStatus.Equipped:
-                // DB ¿äÃ»ÀÌ ²¿¿©¼­ Áßº¹ ÀåÂø µÇ¾ú´Ù¸é ÀÎº¥Åä¸®·Î º¸³½´Ù.
+                // DB ìš”ì²­ì´ ê¼¬ì—¬ì„œ ì¤‘ë³µ ì¥ì°© ë˜ì—ˆë‹¤ë©´ ì¸ë²¤í† ë¦¬ë¡œ ë³´ë‚¸ë‹¤.
                 if (EquippedItems.TryAdd(item.ItemSlotType, (Equipment)item) == false)
                 {
                     item.ItemSlotType = EItemSlotType.Inventory;
@@ -54,7 +53,7 @@ public class InventoryManager
                 break;
         }
 
-        // ÀÓ½Ã·Î ÀÚµ¿ µî·Ï
+        // ì„ì‹œë¡œ ìë™ ë“±ë¡
         if (item.SubType == EItemSubType.Consumable)
             QuickSlotItems.Add((item));
 
@@ -82,19 +81,19 @@ public class InventoryManager
         if (item == null)
             return;
 
-        // TODO : °¡´ÉÇÑ Á¶ÇÕ
-        // 1. ÀÎº¥Åä¸® -> ÀåÂø
-        // 2. ÀåÂø -> ÀÎº¥Åä¸®
-        // 3. ÀÎº¥Åä¸® -> Ã¢°í
-        // 4. Ã¢°í -> ÀÎº¥Åä¸®
-        // 5. ÀÎº¥Åä¸® -> ÀÎº¥Åä¸® (X)
-        // 6. Ã¢°í -> Ã¢°í (X)
+        // TODO : ê°€ëŠ¥í•œ ì¡°í•©
+        // 1. ì¸ë²¤í† ë¦¬ -> ì¥ì°©
+        // 2. ì¥ì°© -> ì¸ë²¤í† ë¦¬
+        // 3. ì¸ë²¤í† ë¦¬ -> ì°½ê³ 
+        // 4. ì°½ê³  -> ì¸ë²¤í† ë¦¬
+        // 5. ì¸ë²¤í† ë¦¬ -> ì¸ë²¤í† ë¦¬ (X)
+        // 6. ì°½ê³  -> ì°½ê³  (X)
 
         EItemSlotType prevSlotType = item.ItemSlotType;
         EItemStatus prevStatus = Item.GetItemStatus(prevSlotType);
         EItemStatus newStatus = Item.GetItemStatus(newSlotType);
 
-        // 1. ÀÎº¥Åä¸® -> ÀåÂø.
+        // 1. ì¸ë²¤í† ë¦¬ -> ì¥ì°©.
         if (prevStatus == EItemStatus.Inventory && newStatus == EItemStatus.Equipped)
         {
             Equipment equipment = item as Equipment;
@@ -103,7 +102,7 @@ public class InventoryManager
 
             equipment.Equip(this);
         }
-        // 2. ÀåÂø -> ÀÎº¥Åä¸®.
+        // 2. ì¥ì°© -> ì¸ë²¤í† ë¦¬.
         else if (prevStatus == EItemStatus.Equipped && newStatus == EItemStatus.Inventory)
         {
             Equipment equipment = item as Equipment;
@@ -159,7 +158,7 @@ public class InventoryManager
         Equipment item = GetItemByDbId(itemDbId) as Equipment;
         if (item == null)
         {
-            Debug.Log("@¾ÆÀÌÅÛ Á¸Àç ¾ÈÇÔ");
+            Debug.Log("@ì•„ì´í…œ ì¡´ì¬ ì•ˆí•¨");
             return;
         }
 
@@ -173,13 +172,13 @@ public class InventoryManager
         var item = EquippedItems.Values.FirstOrDefault(x => x.ItemDbId == itemDbId);
         if (item == null)
         {
-            Debug.Log("¾ÆÀÌÅÛÁ¸Àç¾ÈÇÔ");
+            Debug.Log("ì•„ì´í…œì¡´ì¬ì•ˆí•¨");
             return;
         }
 
         if (IsInventoryFull())
         {
-            Debug.Log("ÀÎº¥²ËÂü");
+            Debug.Log("ì¸ë²¤ê½‰ì°¸");
             return;
         }
 
@@ -196,7 +195,7 @@ public class InventoryManager
 
     public void ReqDeleteItem(long itemDbId)
     {
-        // TODO UI³ª¿À¸é °ãÄ¡´Â¾ÆÀÌÅÛÀº Count¸¸ ³»¸± ¼ö ÀÖ°Ô Á¶Àı
+        // TODO UIë‚˜ì˜¤ë©´ ê²¹ì¹˜ëŠ”ì•„ì´í…œì€ Countë§Œ ë‚´ë¦´ ìˆ˜ ìˆê²Œ ì¡°ì ˆ
         Item item = GetItemByDbId(itemDbId);
         if (item == null)
             return;
@@ -229,7 +228,7 @@ public class InventoryManager
         Item item = GetItemByDbId(packet.ItemDbId);
         if (item == null)
         {
-            Debug.LogError($"HandleUseItemResult() >> ¾ÆÀÌÅÛ ¾øÀ½");
+            Debug.LogError($"HandleUseItemResult() >> ì•„ì´í…œ ì—†ìŒ");
             return;
         }
 
@@ -238,7 +237,7 @@ public class InventoryManager
 
     #endregion
 
-    #region ÄğÅ¸ÀÓ °ü¸®
+    #region ì¿¨íƒ€ì„ ê´€ë¦¬
 
     public bool CanUseItem(long itemDbId)
     {
@@ -379,7 +378,7 @@ public class InventoryManager
 
     public int GetInventorySlotCount()
     {
-        //TODO °è»ê
+        //TODO ê³„ì‚°
         //return DEFAULT_INVENTORY_SLOT_COUNT + Add;
         return DEFAULT_INVENTORY_SLOT_COUNT;
     }

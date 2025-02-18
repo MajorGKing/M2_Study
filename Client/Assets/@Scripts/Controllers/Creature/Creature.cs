@@ -27,6 +27,7 @@ public class Creature : BaseObject
         }
     }
 
+    public bool isWaitingSkill;
     protected CreatureInfo _creatureInfo { get; set; } = new CreatureInfo();
 
     public StatInfo TotalStat
@@ -107,11 +108,11 @@ public class Creature : BaseObject
     {
         TemplateId = templateId;
         SetSpineAnimation(SortingLayers.HERO, "SkeletonAnimation");
-        ObjectState = EObjectState.Idle;
         SetOutLine();
         DamageFontController = gameObject.GetOrAddComponent<DamageFontController>();
         AddHud();
         IsMonitored = false;
+        ObjectState = EObjectState.Idle;
 
     }
 
@@ -128,7 +129,7 @@ public class Creature : BaseObject
 
     protected void SetOutLine()
     {
-	    //¾Æ¿ô¶óÀÎ
+	    //ì•„ì›ƒë¼ì¸
 	    GameObject obj = Utils.FindChild(gameObject, "Outline", true);
 	    if (obj != null)
 	    {
@@ -149,11 +150,14 @@ public class Creature : BaseObject
     {
         base.UpdateMove();
 
-        // ÀÌµ¿ ³¡³µÀ¸¸é.
+        // ì´ë™ ëë‚¬ìœ¼ë©´.
         if (LerpCellPosCompleted)
         {
-            ObjectState = EObjectState.Idle;
-            return;
+	        if (Time.time - LerpCompletionTime >= 0.1f)
+	        {
+		        ObjectState = EObjectState.Idle;
+	        } 
+	        return;
         }
     }
 
@@ -209,13 +213,13 @@ public class Creature : BaseObject
 
     #endregion
 
-    #region Battle
-    public virtual bool IsEnemy(BaseObject target)
-    {
-        if (target == null)
-            return false;
-        if(target == this)
-            return false;
+	#region Battle
+	public virtual bool IsEnemy(BaseObject target)
+	{
+		if (target.IsValid() == false)
+			return false;
+		if (target == this)
+			return false;
 
         return true;
     }
@@ -252,10 +256,10 @@ public class Creature : BaseObject
 		if (Managers.Data.SkillDict.TryGetValue(packet.TemplateId, out SkillData skillData) == false)
 			return;
 
-        // 1. ½ºÅ³ »óÅÂ·Î º¯°æ.
+        // 1. ìŠ¤í‚¬ ìƒíƒœë¡œ ë³€ê²½.
         ObjectState = EObjectState.Skill;
 
-		// 2. Å¸°Ù ¹æÇâ ÁÖ½Ã, Å¸°Ù È÷Æ®ÆÄÆ¼Å¬ ½ºÆù ¿¹¾à
+		// 2. íƒ€ê²Ÿ ë°©í–¥ ì£¼ì‹œ, íƒ€ê²Ÿ íˆíŠ¸íŒŒí‹°í´ ìŠ¤í° ì˜ˆì•½
 		Creature target = Managers.Object.FindCreatureById(packet.TargetId);
 		if (target != null && target != this)
 		{
@@ -263,14 +267,14 @@ public class Creature : BaseObject
 			StartCoroutine(ReserveHitParticles(skillData, target));
 		}
 		
-		// 3. »ç¿îµå, ¾Ö´Ï¸ŞÀÌ¼Ç µî ½ÇÇà.
+		// 3. ì‚¬ìš´ë“œ, ì• ë‹ˆë©”ì´ì…˜ ë“± ì‹¤í–‰.
 		ExecuteSkillAction(packet.TemplateId);
 		
-		// 5. °¢ ½ºÅ³ÀÇ ¾Ö´Ï¸ŞÀÌ¼Ç ½Ã°£(°ø¼Ó Àû¿ë)¸¸Å­ ´ë±â ÇÑ´Ù.
-		// TODO °ø¼Ó Àû¿ë ÇÑ delay ±¸ÇÏ±â
+		// 4. ê° ìŠ¤í‚¬ì˜ ì• ë‹ˆë©”ì´ì…˜ ì‹œê°„(ê³µì† ì ìš©)ë§Œí¼ ëŒ€ê¸° í•œë‹¤.
+		// TODO ê³µì† ì ìš© í•œ delay êµ¬í•˜ê¸°
 		Spine.Animation animation = SkeletonAnim.skeleton.Data.FindAnimation(skillData.AnimName);
 		float delay = animation.Duration;
-		StartWait(delay);
+		StartWaitSkill(delay);
 	}
 
 	protected IEnumerator ReserveHitParticles(SkillData skillData, BaseObject target)
@@ -280,7 +284,7 @@ public class Creature : BaseObject
 		
 		float delay = 0.0f;
 		
-		// 1. ¹ß»çÃ¼ µµÂø½Ã°£ °è»ê
+		// 1. ë°œì‚¬ì²´ ë„ì°©ì‹œê°„ ê³„ì‚°
 		bool isProjectileSkill = skillData.ProjectileId != 0;
 		if (isProjectileSkill)
 		{
@@ -291,7 +295,7 @@ public class Creature : BaseObject
 			}
 		}
 		
-		//2. + ½ºÅ³ ¾Ö´Ï¸ŞÀÌ¼Ç ÀÌº¥Æ® ½Ã°£
+		//2. + ìŠ¤í‚¬ ì• ë‹ˆë©”ì´ì…˜ ì´ë²¤íŠ¸ ì‹œê°„
 		delay += skillData.DelayTime;
 		
 		yield return new WaitForSeconds(delay);
@@ -313,20 +317,20 @@ public class Creature : BaseObject
         CurrentEffects.Add(packet.EffectId, effectData);
         StateFlag = packet.StateFlag; // TEMP
 
-        // 1. ÀÌÆåÆ® ÆÄÆ¼Å¬½ºÆù.
+        // 1. ì´í™íŠ¸ íŒŒí‹°í´ìŠ¤í°.
         if (string.IsNullOrEmpty(effectData.PrefabName) == false)
         {
-            // 1-1. ÀÌÆåÆ® ÆÄÆ¼Å¬ ¸Ş¸ğ¸®¿¡ ÀúÀå. 
+            // 1-1. ì´í™íŠ¸ íŒŒí‹°í´ ë©”ëª¨ë¦¬ì— ì €ì¥. 
             ParticleController effect = Managers.Object.SpawnParticle(effectData.PrefabName, LookLeft, transform);
             if (effect != null)
                 EffectParticles.Add(packet.EffectId, effect.gameObject);
 
-            // 1-2. ÀÌÆåÆ® ÆÄÆ¼Å¬ ¼Ò¸ê ¿¹¾à.
+            // 1-2. ì´í™íŠ¸ íŒŒí‹°í´ ì†Œë©¸ ì˜ˆì•½.
             if (effectData.DurationPolicy == EDurationPolicy.Duration)
                 StartCoroutine(CoRemoveEffect(packet.EffectId, packet.RemainingTicks));
         }
 
-		// 2. ÇÊ¿äÇÑ °æ¿ì µ¥¹ÌÁöÆùÆ® Ãß°¡
+		// 2. í•„ìš”í•œ ê²½ìš° ë°ë¯¸ì§€í°íŠ¸ ì¶”ê°€
 		if (effectData.EffectType == EEffectType.BuffStun)
 		{
 			DamageFontController.AddDamageFont(0, transform, EFontType.Stun);
@@ -360,23 +364,31 @@ public class Creature : BaseObject
 
     #region Wait
     protected Coroutine _coWait;
+    protected Coroutine _coWaitSkill;
     protected void StartWait(float seconds)
     {
-        CancelWait();
-        _coWait = StartCoroutine(CoWait(seconds));
+        CancelCoroutine(ref _coWait);
+        _coWait = StartCoroutine(CoWait(seconds, null));
     }
 
-    IEnumerator CoWait(float seconds)
+    protected void StartWaitSkill(float seconds)
+    {
+        CancelCoroutine(ref _coWaitSkill);
+        _coWaitSkill = StartCoroutine(CoWait(seconds, () => isWaitingSkill = false));
+        isWaitingSkill = true;
+    }
+
+    private IEnumerator CoWait(float seconds, Action onComplete)
     {
         yield return new WaitForSeconds(seconds);
-        _coWait = null;
+        onComplete?.Invoke();
     }
 
-    protected void CancelWait()
+    protected void CancelCoroutine(ref Coroutine coroutine)
     {
-        if (_coWait != null)
-            StopCoroutine(_coWait);
-        _coWait = null;
+        if (coroutine != null)
+            StopCoroutine(coroutine);
+        coroutine = null;
     }
 
     //IEnumerator CoSpawnAoE(float seconds, SkillData skillData, Vector3 pos)
@@ -390,7 +402,7 @@ public class Creature : BaseObject
     //}
     #endregion
 
-    #region »ç¿îµå , ¾Ö´Ï¸ŞÀÌ¼Ç µî
+    #region ì‚¬ìš´ë“œ , ì• ë‹ˆë©”ì´ì…˜ ë“±
     protected virtual void ExecuteSkillAction(int skillTemplateId)
     {
         if (Managers.Data.SkillDict.TryGetValue(skillTemplateId, out SkillData skillData) == false)
@@ -416,7 +428,7 @@ public class Creature : BaseObject
         else if (statType == EStatType.Mp)
             Mp = value;
         
-		//TODO ³»°¡ °ü½ÉÀÖ¾î ÇÏ´Â ¸ó½ºÅÍ¿¡°Ô¸¸ Àû¿ë
+		//TODO ë‚´ê°€ ê´€ì‹¬ìˆì–´ í•˜ëŠ” ëª¬ìŠ¤í„°ì—ê²Œë§Œ ì ìš©
 		if(IsMonitored)
 			DamageFontController.AddDamageFont(diff, transform, fontType);
 	}

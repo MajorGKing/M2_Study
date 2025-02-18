@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Data;
 using Google.Protobuf.Protocol;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -94,14 +92,14 @@ public class UI_InventoryPopup : UI_Popup
 
     void RefreshUI()
     {
-        //TODO MAXCOUNT °è»ê
+        //TODO MAXCOUNT ê³„ì‚°
         int maxItemCount = InventoryManager.DEFAULT_INVENTORY_SLOT_COUNT;
         GetText((int)Texts.InventoryCapacityText).text = $"{Managers.Inventory.ItemCountInInventory} / {maxItemCount}";
 
-        // ¾ÆÀÌÅÛ ¸ñ·Ï °¡Á®¿À±â
+        // ì•„ì´í…œ ëª©ë¡ ê°€ì ¸ì˜¤ê¸°
         _items = GetItemsBasedOnToggle();
 
-        // ½½·Ô ¾ÆÀÌÅÛ ¾÷µ¥ÀÌÆ®
+        // ìŠ¬ë¡¯ ì•„ì´í…œ ì—…ë°ì´íŠ¸
         UpdateSlotItems(_items, maxItemCount);
     }
 
@@ -144,7 +142,7 @@ public class UI_InventoryPopup : UI_Popup
 
     private void OnClickDelete(PointerEventData eventData)
     {
-        //TODO È®ÀÎÃ¢
+        //TODO í™•ì¸ì°½
         Item item = _items[_selectedItemIndex];
         Managers.Inventory.ReqDeleteItem(item.ItemDbId);
     }

@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -67,6 +68,16 @@ public class ResourceManager
         Object.Destroy(go);
     }
 
+    public void Destroy(GameObject go, float delay)
+    {
+        Managers.Instance.StartCoroutine(ReserveDestroy(go, delay));
+    }
+
+    private IEnumerator ReserveDestroy(GameObject go, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(go);
+    }
     #endregion
 
     #region 어드레서블

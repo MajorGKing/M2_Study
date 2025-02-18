@@ -350,8 +350,23 @@ class PacketHandler
         myHero.HandleRewardValue(pkt);
     }
 
-    
-   
+    public static void S_BlinkHandler(PacketSession session, IMessage packet)
+    {
+        S_Blink blinkPacket = packet as S_Blink;
+        
+        GameObject go = Managers.Object.FindById(blinkPacket.ObjectId);
+        if (go == null)
+            return;
 
+        BaseObject bo = go.GetComponent<BaseObject>();
+        if (bo == null)
+            return;
 
+        bo.Blink(blinkPacket);
+
+        if (bo.ObjectId == Managers.Object.MyHero.ObjectId)
+        {
+            Managers.UI.GetSceneUI<UI_GameScene>().OnUpdatePosition();
+        }
+    }
 }

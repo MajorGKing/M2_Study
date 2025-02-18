@@ -1,13 +1,8 @@
-using System;
 using System.Collections.Generic;
-using System.Reflection;
 using Data;
 using Data.SO;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using UnityEditor;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 public interface IValidate
 {
@@ -33,7 +28,7 @@ public class DataManager
     public Dictionary<int, MonsterData> MonsterDict { get; private set; } = new Dictionary<int, MonsterData>();
     public Dictionary<int, ProjectileData> ProjectileDict { get; private set; } = new Dictionary<int, ProjectileData>();
     public Dictionary<int, RewardData> RewardDict { get; private set; } = new Dictionary<int, RewardData>();
-    public Dictionary<int, DropTableData> DropTableDict { get; private set; } = new Dictionary<int, DropTableData>();
+    public Dictionary<int, RewardTableData> RewardTableDict { get; private set; } = new Dictionary<int, RewardTableData>();
     public Dictionary<int, RespawnData> RespawnDict { get; private set; } = new Dictionary<int, RespawnData>();
     public Dictionary<int, SpawningPoolData> SpawningPoolDict { get; private set; } = new Dictionary<int, SpawningPoolData>();
     public Dictionary<int, RoomData> RoomDict { get; private set; } = new Dictionary<int, RoomData>();
@@ -58,7 +53,7 @@ public class DataManager
         SkillDict = LoadJson<SkillDataLoader, int, SkillData>("SkillData").MakeDict();
         ProjectileDict = LoadJson<ProjectileDataLoader, int, ProjectileData>("ProjectileData").MakeDict();
         RewardDict = LoadJson<RewardDataLoader, int, RewardData>("RewardData").MakeDict();
-        DropTableDict = LoadJson<DropTableDataLoader, int, DropTableData>("DropTableData").MakeDict();
+        RewardTableDict = LoadJson<RewardTableDataLoader, int, RewardTableData>("RewardTableData").MakeDict();
         RespawnDict = LoadJson<RespawnDataLoader, int, RespawnData>("RespawnData").MakeDict();
         SpawningPoolDict = LoadJson<SpawningPoolDataLoader, int, SpawningPoolData>("SpawningPoolData").MakeDict();
         RoomDict = LoadJson<RoomDataLoader, int, RoomData>("RoomData").MakeDict();
@@ -91,8 +86,7 @@ public class DataManager
 
     private Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
     {
-        TextAsset textAsset = Managers.Resource.Load<TextAsset>($"{path}");
-
+        TextAsset textAsset = Managers.Resource.Load<TextAsset>($"{path}");        
         Debug.Log("Path : " + path);
 
         Loader loader = JsonConvert.DeserializeObject<Loader>(textAsset.text);

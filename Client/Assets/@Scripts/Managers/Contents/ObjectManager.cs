@@ -24,13 +24,41 @@ public class ObjectManager
         return root.transform;
     }
 
-    public Transform HeroRoot { get { return GetRootTransform("@Heroes"); } }
-    public Transform MonsterRoot { get { return GetRootTransform("@Monsters"); } }
-    public Transform ProjectileRoot { get { return GetRootTransform("@Projectiles"); } }
-    public Transform EnvRoot { get { return GetRootTransform("@Envs"); } }
-    public Transform EffectRoot { get { return GetRootTransform("@Effects"); } }
-    public Transform NpcRoot { get { return GetRootTransform("@Npc"); } }
-    public Transform ItemHolderRoot { get { return GetRootTransform("@ItemHolders"); } }
+    public Transform HeroRoot
+    {
+        get { return GetRootTransform("@Heroes"); }
+    }
+
+    public Transform MonsterRoot
+    {
+        get { return GetRootTransform("@Monsters"); }
+    }
+
+    public Transform ProjectileRoot
+    {
+        get { return GetRootTransform("@Projectiles"); }
+    }
+
+    public Transform EnvRoot
+    {
+        get { return GetRootTransform("@Envs"); }
+    }
+
+    public Transform EffectRoot
+    {
+        get { return GetRootTransform("@Effects"); }
+    }
+
+    public Transform NpcRoot
+    {
+        get { return GetRootTransform("@Npc"); }
+    }
+
+    public Transform ItemHolderRoot
+    {
+        get { return GetRootTransform("@ItemHolders"); }
+    }
+
     #endregion
 
     public ObjectManager()
@@ -108,18 +136,17 @@ public class ObjectManager
         if(Managers.Data.MonsterDict.TryGetValue(templateId, out MonsterData monsterData) == false)
             return null;
 
-        Debug.Log($"objectInfo.ObjectId : {objectInfo.ObjectId}");
+        Debug.Log($"ILHAK objectInfo.ObjectId : {objectInfo.ObjectId}");
 
         GameObject go = Managers.Resource.Instantiate(monsterData.PrefabName); // TEMP
         go.name = $"Monster_{objectInfo.ObjectId}";
         go.transform.parent = MonsterRoot;
         _objects.Add(objectInfo.ObjectId, go);
         Monster monster = Utils.GetOrAddComponent<Monster>(go);
-        monster.SetInfo(templateId);
         monster.InitMonster(info);
+        monster.SetInfo(templateId);
         _monsters.Add(objectInfo.ObjectId, monster);
 
-        monster.SyncWorldPosWithCellPos();
         return monster;
     }
 
@@ -234,16 +261,29 @@ public class ObjectManager
             return;
 
         BaseObject bo = go.GetComponent<BaseObject>();
-        if (bo != null)
-        {
 
-        }
 
         Managers.Map.RemoveObject(bo);
         _objects.Remove(objectId);
         _monsters.Remove(objectId);
+        _heroes.Remove(objectId);
 
-        Managers.Resource.Destroy(go);
+        //죽은 애들은 애니메이션 만큼 딜레이
+        if (CheckDespawnDelay(bo) == true)
+            Managers.Resource.Destroy(go, 1.5f);
+        else
+            Managers.Resource.Destroy(go);
+    }
+
+    private bool CheckDespawnDelay(BaseObject bo)
+    {
+        if (bo == null)
+            return false;
+
+        if (bo.ObjectState == EObjectState.Dead)
+            return true;
+
+        return false;
     }
 
     private IEnumerator GenerateProjectile(ProjectileData projectileData, ProjectileInfo projInfo, int targetId)
@@ -408,6 +448,7 @@ public class ObjectManager
         if (MyHero)
         {
             MyHero.ClearMyHero();
+            Managers.Resource.Destroy(MyHero.gameObject);
             MyHero = null;
         }
     }

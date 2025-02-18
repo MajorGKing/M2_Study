@@ -29,6 +29,7 @@ public class Hero : Creature
     {
         base.Awake();
         transform.localScale = Vector3.one * 1.3f;
+        GameObject icon = Managers.Object.Spawn("MinimapCreatureIcon", transform);
     }
 
     protected override void OnEnable()
@@ -65,7 +66,7 @@ public class Hero : Creature
 
 	protected override void Update()
 	{
-		// ±âº»ÀûÀ¸·Î ¸ğµç ¹°Ã¼´Â Ä­ ´ÜÀ§·Î ¿òÁ÷ÀÌÁö¸¸, Å¬¶ó¿¡¼­ '½º¸£¸¤' ¿òÁ÷ÀÌ´Â º¸Á¤ Ã³¸®¸¦ ÇØÁØ´Ù.
+		// ê¸°ë³¸ì ìœ¼ë¡œ ëª¨ë“  ë¬¼ì²´ëŠ” ì¹¸ ë‹¨ìœ„ë¡œ ì›€ì§ì´ì§€ë§Œ, í´ë¼ì—ì„œ 'ìŠ¤ë¥´ë¥µ' ì›€ì§ì´ëŠ” ë³´ì • ì²˜ë¦¬ë¥¼ í•´ì¤€ë‹¤.
 		UpdateLerpToCellPos(MoveSpeed, true);
 	}
 	#endregion
@@ -80,7 +81,7 @@ public class Hero : Creature
     {
         base.UpdateSkill();
 
-        //½ºÅ³ »ç¿ëÁßÀÌ¸é ¸®ÅÏ
+        //ìŠ¤í‚¬ ì‚¬ìš©ì¤‘ì´ë©´ ë¦¬í„´
         if (_coWait != null)
         {
             return;
@@ -103,7 +104,7 @@ public class Hero : Creature
     }
     #endregion
 
-    #region »ç¿îµå , ¾Ö´Ï¸ŞÀÌ¼Ç µî
+    #region ì‚¬ìš´ë“œ , ì• ë‹ˆë©”ì´ì…˜ ë“±
     protected override void ExecuteSkillAction(int skillTemplateId)
     {
         if (Managers.Data.SkillDict.TryGetValue(skillTemplateId, out SkillData skillData) == false)

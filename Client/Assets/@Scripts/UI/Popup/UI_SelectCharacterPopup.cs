@@ -1,11 +1,7 @@
 using Google.Protobuf.Protocol;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using static Define;
 
 public class UI_SelectCharacterPopup : UI_Popup
@@ -19,12 +15,12 @@ public class UI_SelectCharacterPopup : UI_Popup
         CharacterList,
     }
 
-    // Ä³¸¯ÅÍ ½½·Ô
+    // 캐릭터 슬롯
     Transform _parent;
     List<UI_CharacterSlotItem> _slots = new List<UI_CharacterSlotItem>();
 
-    // µ¥ÀÌÅÍ
-    List<MyHeroInfo> _heroes = new List<MyHeroInfo>();
+	// 데이터
+	List<MyHeroInfo> _heroes = new List<MyHeroInfo>();
 
     protected override void Awake()
     {
@@ -91,29 +87,29 @@ public class UI_SelectCharacterPopup : UI_Popup
 
     void OnClickStartButton(PointerEventData evt)
     {
-        // 1) °ÔÀÓ¾À ÀüÈ¯
-        // 2) C_EnterGame ÆÐÅ¶ Àü¼Û
-        Managers.Game.SelectedHeroIndex = _selectedHeroIndex;
-        Managers.Scene.LoadScene(EScene.GameScene);
-    }
+		// 1) 게임씬 전환
+		// 2) C_EnterGame 패킷 전송
+		Managers.Game.SelectedHeroIndex = _selectedHeroIndex;
+		Managers.Scene.LoadScene(EScene.GameScene);
+	}
 
-    void OnClickCreateCharacterButton(PointerEventData evt)
-    {
-        // 1) Ä³¸¯ÅÍ ÃÖ´ë °³¼ö È®ÀÎ ÈÄ, ¹Ù·Î ÆË¾÷.
-        // 2) UI_CreateCharacterPopup¿¡¼­ ³ª¸ÓÁö ÁøÇà.
-        // 3) Ä³¸¯ÅÍ »ý¼º ÆË¾÷ ´ÝÈú ¶§, Ä³¸¯ÅÍ ¸ñ·Ï ´Ù½Ã ¿äÃ».
-        var popup = Managers.UI.ShowPopupUI<UI_CreateCharacterPopup>();
-        popup.SetInfo(onHeroChanged: SendHeroListReqPacket);
-    }
+	void OnClickCreateCharacterButton(PointerEventData evt)
+	{
+		// 1) 캐릭터 최대 개수 확인 후, 바로 팝업.
+		// 2) UI_CreateCharacterPopup에서 나머지 진행.
+		// 3) 캐릭터 생성 팝업 닫힐 때, 캐릭터 목록 다시 요청.
+		var popup = Managers.UI.ShowPopupUI<UI_CreateCharacterPopup>();
+		popup.SetInfo(onHeroChanged: SendHeroListReqPacket);
+	}
 
-    void OnClickDeleteCharacterButton(PointerEventData evt)
-    {
-        // 1) ÆÐÅ¶ Àü¼Û
-        // 2) ´äÀå ¿À¸é Ä³¸¯ÅÍ »èÁ¦ ÈÄ Refresh
-        C_DeleteHeroReq reqPacket = new C_DeleteHeroReq();
-        reqPacket.HeroIndex = _selectedHeroIndex;
-        Managers.Network.Send(reqPacket);
-    }
+	void OnClickDeleteCharacterButton(PointerEventData evt)
+	{
+		// 1) 패킷 전송
+		// 2) 답장 오면 캐릭터 삭제 후 Refresh
+		C_DeleteHeroReq reqPacket = new C_DeleteHeroReq();
+		reqPacket.HeroIndex = _selectedHeroIndex;
+		Managers.Network.Send(reqPacket);
+	}
 
 	void OnClickCloseButton(PointerEventData evt)
 	{

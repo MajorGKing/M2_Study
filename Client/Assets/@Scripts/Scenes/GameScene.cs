@@ -1,9 +1,5 @@
 using Google.Protobuf.Protocol;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using static Define;
 
 public class GameScene : BaseScene

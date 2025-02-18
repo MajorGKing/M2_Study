@@ -1,11 +1,7 @@
 using Google.Protobuf.Protocol;
-using System;
-using System.Collections;
-using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static Define;
 
 public class UI_QuickSlotItem : UI_Base
 {
@@ -151,7 +147,7 @@ public class UI_QuickSlotItem : UI_Base
         Creature target = hero.GetSkillTarget(_skill);
         if (target == null)
         {
-            Managers.UI.ShowToast("TODO Å¸°ÙÀÌ ¾ø½À´Ï´Ù.");
+            Managers.UI.ShowToast("TODO íƒ€ê²Ÿì´ ì—†ìŠµë‹ˆë‹¤.");
             return;
         }
 
@@ -167,16 +163,16 @@ public class UI_QuickSlotItem : UI_Base
             switch (reason)
             {
                 case ECanUseSkillFailReason.InvalidTarget:
-                    Managers.UI.ShowToast("TODO ½ÇÆĞ Å¸°ÙÀÌ ¾ø½À´Ï´Ù.");
+                    Managers.UI.ShowToast("TODO ì‹¤íŒ¨ íƒ€ê²Ÿì´ ì—†ìŠµë‹ˆë‹¤.");
                     return;
                 case ECanUseSkillFailReason.Cooltime:
-                    Managers.UI.ShowToast("TODO ½ÇÆĞ ¾ÆÁ÷ »ç¿ë ÇÒ ¼ö ¾ø½À´Ï´Ù.");
+                    Managers.UI.ShowToast("TODO ì‹¤íŒ¨ ì•„ì§ ì‚¬ìš© í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
                     return;
                 case ECanUseSkillFailReason.SkillCost:
-                    Managers.UI.ShowToast("TODO ½ÇÆĞ ¸¶³ª°¡ ºÎÁ·ÇÕ´Ï´Ù.");
+                    Managers.UI.ShowToast("TODO ì‹¤íŒ¨ ë§ˆë‚˜ê°€ ë¶€ì¡±í•©ë‹ˆë‹¤.");
                     return;
                 case ECanUseSkillFailReason.SkillRange:
-                    Managers.UI.ShowToast("TODO ½ÇÆĞ ³Ê¹« ¸Ö¸® ÀÖ½À´Ï´Ù.");
+                    Managers.UI.ShowToast("TODO ì‹¤íŒ¨ ë„ˆë¬´ ë©€ë¦¬ ìˆìŠµë‹ˆë‹¤.");
                     return;
             }
         }
@@ -200,7 +196,7 @@ public class UI_QuickSlotItem : UI_Base
         }
         else
         {
-            Managers.UI.ShowToast("TODO ¾ÆÁ÷ »ç¿ë ÇÒ ¼ö ¾ø½À´Ï´Ù.");
+            Managers.UI.ShowToast("TODO ì•„ì§ ì‚¬ìš© í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
         }
     }
     #endregion

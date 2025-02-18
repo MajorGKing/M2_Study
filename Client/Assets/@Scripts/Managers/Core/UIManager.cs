@@ -1,11 +1,8 @@
-﻿using DG.Tweening;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.WSA;
 using static Define;
 
 public class UIManager
@@ -13,7 +10,7 @@ public class UIManager
     private int _pupupOrder = 100;
     private int _toastOrder = 500;
 
-    private Stack<UI_Popup> _popupStack = new Stack<UI_Popup>();
+    private List<UI_Popup> _popupList = new List<UI_Popup>();
     private UI_Scene _sceneUI = null;
 
     //Toast
@@ -126,6 +123,12 @@ public class UIManager
         return sceneUI;
     }
 
+    public void ShowMessage(MsgPopupType type, string message, Action callback = null)
+    {
+        UI_MessagePopup popup = ShowPopupUI<UI_MessagePopup>();
+        popup.ShowMessage(type, message, callback);
+    }
+
     public void CachePopupUI(Type type)
     {
         string name = type.Name;
@@ -134,10 +137,16 @@ public class UIManager
         {
             GameObject go = Managers.Resource.Instantiate(name, Root.transform);
             popup = go.GetComponent<UI_Popup>();
+            if (popup == null)
+            {
+                Debug.LogError("Missing Script at Popup");
+                return;
+            }
+
             _popups[name] = popup;
         }
 
-        _popupStack.Push(popup);
+        _popupList.Add(popup);
     }
 
     public T ShowPopupUI<T>(string name = null) where T : UI_Popup
@@ -152,7 +161,7 @@ public class UIManager
             _popups[name] = popup;
         }
 
-        _popupStack.Push(popup);
+        _popupList.Add(popup);
 
         popup.transform.SetParent(Root.transform);
         popup.gameObject.SetActive(true);
@@ -164,45 +173,41 @@ public class UIManager
 
     public T GetLastPopupUI<T>() where T : UI_Popup
     {
-        _popupStack.TryPeek(out UI_Popup popup);
-        return popup as T;
+        return _popupList.Last() as T;
     }
 
 
     public void ClosePopupUI(UI_Popup popup)
     {
-        if (_popupStack.Count == 0)
+        if (_popupList.Count == 0)
             return;
-
-        if (_popupStack.Peek() != popup)
-        {
-            Debug.Log("Close Popup Failed!");
-            return;
-        }
 
         Managers.Sound.PlayPopupClose();
-        ClosePopupUI();
+        _popupList.Remove(popup);
+        popup.gameObject.SetActive(false);
+        _pupupOrder--;
     }
 
-    public void ClosePopupUI()
+    private void ClosePopupUI()
     {
-        if (_popupStack.Count == 0)
+        if (_popupList.Count == 0)
             return;
 
-        UI_Popup popup = _popupStack.Pop();
+        UI_Popup popup = _popupList.Last();
+        _popupList.Remove(popup);
         popup.gameObject.SetActive(false);
         _pupupOrder--;
     }
 
     public void CloseAllPopupUI()
     {
-        while (_popupStack.Count > 0)
+        while (_popupList.Count > 0)
             ClosePopupUI();
     }
 
     public int GetPopupCount()
     {
-        return _popupStack.Count;
+        return _popupList.Count;
     }
 
     public void Clear()

@@ -1,0 +1,126 @@
+{
+  "dialogues": [
+    {
+      "TemplateId": 1,
+      "OwnerNameId": "GM하리보",
+      "_nodes": [
+        {
+          "_isPlayerSpeaking": false,
+          "_text": "부탁이 있네.",
+          "_textTemplateId": "@@부탁이 있네.",
+          "_children": [
+            "2c7d145d-2b86-4b5d-bc10-93a97aa69139"
+          ],
+          "x": 30.0,
+          "y": 0.0,
+          "name": "02a10a29-8e1f-4841-a88b-1c455a68ac53",
+          "hideFlags": 0
+        },
+        {
+          "_isPlayerSpeaking": true,
+          "_text": "네.",
+          "_textTemplateId": "@@네.",
+          "_children": [
+            "cecbd8a9-5a68-4b9a-94c1-316e3a604b32"
+          ],
+          "x": 290.0,
+          "y": 0.0,
+          "name": "2c7d145d-2b86-4b5d-bc10-93a97aa69139",
+          "hideFlags": 0
+        },
+        {
+          "_isPlayerSpeaking": false,
+          "_text": "마을 밖에 슬라임 잡아주게.",
+          "_textTemplateId": "@@마을 밖에 슬라임 잡아주게.",
+          "_children": [
+            "4b61e184-5778-4bf1-9bc8-433245ee693f"
+          ],
+          "x": 553.0,
+          "y": 0.0,
+          "name": "cecbd8a9-5a68-4b9a-94c1-316e3a604b32",
+          "hideFlags": 0
+        },
+        {
+          "_isPlayerSpeaking": true,
+          "_text": "네",
+          "_textTemplateId": "@@네",
+          "_children": [
+            "c858476c-42af-4600-a18c-7e23d09c538e"
+          ],
+          "x": 814.0,
+          "y": 0.0,
+          "name": "4b61e184-5778-4bf1-9bc8-433245ee693f",
+          "hideFlags": 0
+        },
+        {
+          "_isPlayerSpeaking": false,
+          "_text": "고생하시게.",
+          "_textTemplateId": "@@고생하시게.",
+          "_children": [],
+          "x": 1080.0,
+          "y": 0.0,
+          "name": "c858476c-42af-4600-a18c-7e23d09c538e",
+          "hideFlags": 0
+        }
+      ],
+      "OwnerName": null,
+      "name": "SO_Dialogue_1",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 2,
+      "OwnerNameId": "GM하리보",
+      "_nodes": [
+        {
+          "_isPlayerSpeaking": false,
+          "_text": "오",
+          "_textTemplateId": "@@오",
+          "_children": [
+            "2c7d145d-2b86-4b5d-bc10-93a97aa69139"
+          ],
+          "x": 30.0,
+          "y": 0.0,
+          "name": "02a10a29-8e1f-4841-a88b-1c455a68ac53",
+          "hideFlags": 0
+        },
+        {
+          "_isPlayerSpeaking": true,
+          "_text": "ㅎㅎ",
+          "_textTemplateId": "@@ㅎㅎ",
+          "_children": [
+            "cecbd8a9-5a68-4b9a-94c1-316e3a604b32"
+          ],
+          "x": 291.0,
+          "y": 1.0,
+          "name": "2c7d145d-2b86-4b5d-bc10-93a97aa69139",
+          "hideFlags": 0
+        },
+        {
+          "_isPlayerSpeaking": false,
+          "_text": "집안대대로 내려온 검을 주겠네 잘쓰게나",
+          "_textTemplateId": "@@마집안대대로 내려온 검을 주겠네 잘쓰게나",
+          "_children": [
+            "4b61e184-5778-4bf1-9bc8-433245ee693f"
+          ],
+          "x": 559.0,
+          "y": 2.0,
+          "name": "cecbd8a9-5a68-4b9a-94c1-316e3a604b32",
+          "hideFlags": 0
+        },
+        {
+          "_isPlayerSpeaking": true,
+          "_text": "네",
+          "_textTemplateId": "@@네",
+          "_children": [],
+          "x": 814.0,
+          "y": 0.0,
+          "name": "4b61e184-5778-4bf1-9bc8-433245ee693f",
+          "hideFlags": 0
+        }
+      ],
+      "OwnerName": null,
+      "name": "SO_Dialogue_2",
+      "hideFlags": 0
+    }
+  ]
+}

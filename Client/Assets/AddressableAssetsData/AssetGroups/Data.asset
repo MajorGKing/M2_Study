@@ -89,12 +89,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a76e403ab5495f94e9e2f51fe88515ab
-    m_Address: DropTableData
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ab6d75ebdf304ba4b899af92007ffee2
     m_Address: BaseStatData
     m_ReadOnly: 0
@@ -151,6 +145,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1f35c77993696bb40af6b7f17add66fe
     m_Address: Room6_Wet_1Collision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 04b91920b53745244baef20115fc5c6f
+    m_Address: RewardTableData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

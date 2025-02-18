@@ -19,7 +19,7 @@ public class UI_CreateCharacterPopup : UI_Popup
 
         WarriorToggle,
         RangerToggle,
-        //WizardToggle,
+        WizardToggle,
         RogueToggle,
     }
 
@@ -52,7 +52,7 @@ public class UI_CreateCharacterPopup : UI_Popup
 
         GetToggle((int)Toggles.WarriorToggle).gameObject.BindEvent(OnClickHeroClassToggleButton);
         GetToggle((int)Toggles.RangerToggle).gameObject.BindEvent(OnClickHeroClassToggleButton);
-        //GetToggle((int)Toggles.WizardToggle).gameObject.BindEvent(OnClickHeroClassToggleButton);
+        GetToggle((int)Toggles.WizardToggle).gameObject.BindEvent(OnClickHeroClassToggleButton);
         GetToggle((int)Toggles.RogueToggle).gameObject.BindEvent(OnClickHeroClassToggleButton);
 
         GetButton((int)Buttons.CreateCharacterButton).gameObject.BindEvent(OnClickCreateCharacterButton);
@@ -69,6 +69,7 @@ public class UI_CreateCharacterPopup : UI_Popup
         GetToggle((int)Toggles.MaleToggle).isOn = true;
         GetToggle((int)Toggles.WarriorToggle).isOn = true;
         GetText((int)Texts.NicknameText).text = "";
+        Refresh();
     }
 
     private void Refresh()
@@ -126,8 +127,8 @@ public class UI_CreateCharacterPopup : UI_Popup
         if (GetToggle((int)Toggles.RangerToggle).isOn)
             return EHeroClass.Archer;
 
-        //if (GetToggle((int)Toggles.WizardToggle).isOn)
-        //    return EHeroClass.Wizard;
+		if (GetToggle((int)Toggles.WizardToggle).isOn)
+			return EHeroClass.Wizard;
 
         if (GetToggle((int)Toggles.RogueToggle).isOn)
             return EHeroClass.Rogue;

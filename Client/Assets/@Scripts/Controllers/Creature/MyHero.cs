@@ -2,6 +2,7 @@ using System.Collections;
 using Data;
 using Google.Protobuf.Protocol;
 using System.Collections.Generic;
+using Scripts.Contents.Map;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,10 +10,9 @@ using static Define;
 
 public class MyHero : Hero
 {
-    //Temp
-    public override float MoveSpeed => TotalStat.MoveSpeed;
+	public override float MoveSpeed { get { return TotalStat.MoveSpeed; } }
 
-    // VisionCells ¹üÀ§±×¸®±â
+    // VisionCells 
     private Color _lineColor = Color.red;
 	private float _lineWidth = 0.1f;
 	private int _visionCells = 15;
@@ -20,7 +20,7 @@ public class MyHero : Hero
 	private GameObject _moveCursor;
 	public override bool IsMonitored => true;
 
-    // ½ºÅ³ ¹üÀ§
+    // 
     private LineRenderer _skillLineRenderer;
     private int _currentSkillId = 0;
 
@@ -31,10 +31,10 @@ public class MyHero : Hero
     public Creature Target { get; set; }
     //private Creature Target { get => Target; set => Target = value; }
 
-    // ÀÌµ¿ ÆĞÅ¶ Àü¼Û °ü·Ã (ÀÏÁ¾ÀÇ dirty flag)
+    // ì´ë™ íŒ¨í‚· ì „ì†¡ ê´€ë ¨ (ì¼ì¢…ì˜ dirty flag)
     protected bool _sendMovePacket = false;
 
-    // ½ºÅ³ ÆĞÅ¶ Àü¼Û
+    // ìŠ¤í‚¬ íŒ¨í‚· ì „ì†¡
     C_Skill _skillPacket = new C_Skill();
 
     Vector3Int _destPos;
@@ -143,10 +143,13 @@ public class MyHero : Hero
         //Managers.Event.RemoveEvent(EEventType.OnClickPickupButton, OnClickPickup);
     }
 
-    protected override void Awake()
-    {
-        base.Awake();
-    }
+	protected override void Awake()
+	{
+		base.Awake();
+		// ë¯¸ë‹ˆë§µ
+		MinimapCamController mcc = Managers.Object.Spawn("RenderTextureCam", transform).GetComponent<MinimapCamController>();
+		mcc.SetInfo(this);
+	}
 
 
 
@@ -161,19 +164,19 @@ public class MyHero : Hero
             cc.Target = this;
 	}
 
-    // TEMP : °­ÀÇ¿ë Á÷°üÀûÀÎ ÄÚµå. °ãÄ¡´Â ºÎºĞ »ó¼Ó ±¸Á¶·Î ¿Ã·Á¹ö¸± ¿¹Á¤.
+    // TEMP : ê°•ì˜ìš© ì§ê´€ì ì¸ ì½”ë“œ. ê²¹ì¹˜ëŠ” ë¶€ë¶„ ìƒì† êµ¬ì¡°ë¡œ ì˜¬ë ¤ë²„ë¦´ ì˜ˆì •.
     protected override void Update()
     {
-        // ÀÔ·Â Ã³¸®
+        // ì…ë ¥ ì²˜ë¦¬
         UpdateInput();
 
-        // ±âº»ÀûÀ¸·Î ¸ğµç ¹°Ã¼´Â Ä­ ´ÜÀ§·Î ¿òÁ÷ÀÌÁö¸¸, Å¬¶ó¿¡¼­ '½º¸£¸¤' ¿òÁ÷ÀÌ´Â º¸Á¤ Ã³¸®¸¦ ÇØÁØ´Ù.
+        // ê¸°ë³¸ì ìœ¼ë¡œ ëª¨ë“  ë¬¼ì²´ëŠ” ì¹¸ ë‹¨ìœ„ë¡œ ì›€ì§ì´ì§€ë§Œ, í´ë¼ì—ì„œ 'ìŠ¤ë¥´ë¥µ' ì›€ì§ì´ëŠ” ë³´ì • ì²˜ë¦¬ë¥¼ í•´ì¤€ë‹¤.
         UpdateLerpToCellPos(MoveSpeed, true);
 
-        // Èñ¸Á ÁÂÇ¥°¡ ¹Ù²î¾ú´Ù¸é ¼­¹ö¿¡ Àü¼Û.
+        // í¬ë§ ì¢Œí‘œê°€ ë°”ë€Œì—ˆë‹¤ë©´ ì„œë²„ì— ì „ì†¡.
         UpdateSendMovePacket();
 
-        // µğ¹ö±× ¿ëµµ
+        // ë””ë²„ê·¸ ìš©ë„
         DrawVisionCells();
     }
 
@@ -196,7 +199,7 @@ public class MyHero : Hero
 	#region AI (FSM)
 	bool ChaseTargetOrUseAvailableSkill()
 	{
-		// 1-1. Å¸°ÙÀÌ ¿©ÀüÈ÷ À¯È¿ÇÑÁö È®ÀÎ.
+		// 1-1. íƒ€ê²Ÿì´ ì—¬ì „íˆ ìœ íš¨í•œì§€ í™•ì¸.
 		if (Target.IsValid() == false)
 		{
 			ObjectState = EObjectState.Idle;
@@ -208,7 +211,7 @@ public class MyHero : Hero
         int dist = GetDistance(Target);
         int skillRange = GetNextUseSkillDistance(Target);
 
-        // 1-2. ³Ê¹« ¸Ö¸é Å¸°Ù¿¡ °¡±îÀÌ ´Ù°¡°¨.
+        // 1-2. ë„ˆë¬´ ë©€ë©´ íƒ€ê²Ÿì— ê°€ê¹Œì´ ë‹¤ê°€ê°.
         if (dist > skillRange)
         {
             EFindPathResult res = FindPathToCellPos(Target.CellPos, HERO_DEFAULT_MOVE_DEPTH, out List<Vector3Int> path);
@@ -221,7 +224,7 @@ public class MyHero : Hero
             }
         }
 
-        // 1-3. »ç¿ëÇÒ ¼ö ÀÖ´Â ½ºÅ³ÀÌ ÀÖÀ¸¸é »ç¿ë.
+        // 1-3. ì‚¬ìš©í•  ìˆ˜ ìˆëŠ” ìŠ¤í‚¬ì´ ìˆìœ¼ë©´ ì‚¬ìš©.
         Skill skill = GetNextUseSkill(Target);
         if (skill != null)
         {
@@ -233,14 +236,32 @@ public class MyHero : Hero
     }
     protected override void UpdateIdle()
     {
-        // 1. ÀÚµ¿ »ç³É ¸ğµå Ã³¸®.
+        // 1. ì´ë™ ëª©ì ì§€ê°€ ê²°ì •ë¨.
+        if (_desiredDestPos.HasValue)
+        {
+            LookAtDest(_desiredDestPos.Value);
+            EFindPathResult destRes = FindPathToCellPos(_desiredDestPos.Value, HERO_DEFAULT_MOVE_DEPTH, out List<Vector3Int> destPath);
+            if (destRes == EFindPathResult.Success)
+            {
+                DestPos = destPath[1];
+                ObjectState = EObjectState.Move;
+                HeroMoveState = EHeroMoveState.MoveToDesiredPos;
+                return;
+            }
+        }
+
+        // 2. ìë™ ì‚¬ëƒ¥ ëª¨ë“œ ì²˜ë¦¬.
         if (_isAutoMode)
         {
-            // 1-1. Å¸°Ù °Ë»ö.
+            // 1-1. íƒ€ê²Ÿ ê²€ìƒ‰.
             if (Target.IsValid() == false)
-                Target = Managers.Object.FindClosestMonster();
+            {
+                // ìë™ì „íˆ¬ì‹œ ì„ íƒëœ ëª¬ìŠ¤í„°ê°€ ìˆìœ¼ë©´ íƒ€ê²Ÿìœ¼ë¡œ
+                Creature selected = GetSelectedTarget();
+                Target = IsEnemy(selected) == true ? selected : Managers.Object.FindClosestMonster();
+            }
 
-            // 1-2. Å¸°ÙÀÌ ¾øÀ¸¸é. ÁÖ±âÀûÀ¸·Î Á¤Âû.
+            // 1-2. íƒ€ê²Ÿì´ ì—†ìœ¼ë©´. ì£¼ê¸°ì ìœ¼ë¡œ ì •ì°°.
             if (Target.IsValid() == false)
             {
                 Vector3Int? cellPos = Managers.Map.FindRandomCellPos(this, 10);
@@ -250,44 +271,30 @@ public class MyHero : Hero
             }
         }
 
-        // 2. Å¸°ÙÀÌ ÀÖ´Ù¸é.
+        // 3 íƒ€ê²Ÿì´ ìˆë‹¤ë©´.
         if (Target.IsValid())
         {
-            // 2-1. °ø¿ë ÄÚµå ½ÇÇà.
+            // 3-1. ê³µìš© ì½”ë“œ ì‹¤í–‰.
             if (ChaseTargetOrUseAvailableSkill())
                 return;
         }
-
-		// 3. ÀÌµ¿ ¸ñÀûÁö°¡ °áÁ¤µÊ.
-		if (_desiredDestPos.HasValue)
-		{
-			LookAtDest(_desiredDestPos.Value);
-			EFindPathResult destRes = FindPathToCellPos(_desiredDestPos.Value, HERO_DEFAULT_MOVE_DEPTH, out List<Vector3Int> destPath);
-			if (destRes == EFindPathResult.Success)
-			{
-				DestPos = destPath[1];
-				ObjectState = EObjectState.Move;
-				HeroMoveState = EHeroMoveState.MoveToDesiredPos;
-				return;
-			}
-		}
-	}
+    }
 
     protected override void UpdateMove()
     {
         if (LerpCellPosCompleted == false)
             return;
 
-        // 1. Å¸°ÙÀÌ ÀÖÀ½.
+        // 1. íƒ€ê²Ÿì´ ìˆìŒ.
         if (HeroMoveState == EHeroMoveState.TargetMonster)
         {
-            // 1-1. °ø¿ë ÄÚµå ½ÇÇà.
+            // 1-1. ê³µìš© ì½”ë“œ ì‹¤í–‰.
             if (ChaseTargetOrUseAvailableSkill())
                 return;
         }
         else
         {
-            // 2. ¸ñÀûÁö ÇâÇØ ÀÌµ¿.
+            // 2. ëª©ì ì§€ í–¥í•´ ì´ë™.
             if (_desiredDestPos.HasValue)
             {
                 EFindPathResult res = FindPathToCellPos(_desiredDestPos.Value, HERO_DEFAULT_MOVE_DEPTH, out List<Vector3Int> path);
@@ -299,7 +306,7 @@ public class MyHero : Hero
             }
         }
 
-        // 3. ÀÌµ¿ ºÒ°¡.
+        // 3. ì´ë™ ë¶ˆê°€.
         ObjectState = EObjectState.Idle;
         _desiredDestPos = null;
         DespawnMoveCursor();
@@ -307,18 +314,25 @@ public class MyHero : Hero
 
     protected override void UpdateSkill()
     {
-        // 1. ½ºÅ³ »ç¿ëÁßÀÌ¸é ¸®ÅÏ
-        if (_coWait != null)
+        // 1. ìŠ¤í‚¬ ì‚¬ìš©ì¤‘ì´ë©´ ë¦¬í„´
+        if (isWaitingSkill)
             return;
 
-        // 2. TargetÀÌ ¾øÀ¸¸é ¸®ÅÏ
-        if (Target == null)
+        // 1-1. ëª©ì ì§€ê°€ ìˆìœ¼ë©´ ì´ë™	
+        if (_desiredDestPos.HasValue)
+        {
+            ObjectState = EObjectState.Move;
+            return;
+        }
+
+        // 2. Targetì´ ì—†ìœ¼ë©´ ë¦¬í„´
+        if (Target.IsValid() == false)
         {
             ObjectState = EObjectState.Idle;
             return;
         }
 
-        // 3. »ç¿ëÇÒ ¼ö ÀÖ´Â ½ºÅ³ÀÌ ÀÖÀ¸¸é »ç¿ë.
+        // 3. ì‚¬ìš©í•  ìˆ˜ ìˆëŠ” ìŠ¤í‚¬ì´ ìˆìœ¼ë©´ ì‚¬ìš©.
         Skill skill = GetNextUseSkill(Target);
         if (skill != null)
         {
@@ -327,7 +341,7 @@ public class MyHero : Hero
             return;
         }
 
-        // 4. °ø¿ë ÄÚµå ½ÇÇà.
+        // 4. ê³µìš© ì½”ë“œ ì‹¤í–‰.
         if (ChaseTargetOrUseAvailableSkill())
             return;
 
@@ -341,7 +355,7 @@ public class MyHero : Hero
 
     #endregion
 
-    #region ÀÌµ¿ µ¿±âÈ­
+    #region ì´ë™ ë™ê¸°í™”
     protected override void UpdateAnimation()
     {
         base.UpdateAnimation();
@@ -358,10 +372,10 @@ public class MyHero : Hero
 		if (_joystickState == EJoystickState.Drag)
 			return;
 
-        //¸¶¿ì½º Å¬¸¯ Ã³¸®
+        //ë§ˆìš°ìŠ¤ í´ë¦­ ì²˜ë¦¬
         HandleMouseInput();
 
-        //¸¶¿ì½º µå·¡±×½Ã 1ÃÊ¸¶´Ù ¾÷µ¥ÀÌÆ®
+        //ë§ˆìš°ìŠ¤ ë“œë˜ê·¸ì‹œ 1ì´ˆë§ˆë‹¤ ì—…ë°ì´íŠ¸
         if (_isMouseHeld)
             UpdateMovementPeriodically();
     }
@@ -372,7 +386,7 @@ public class MyHero : Hero
         {
             _isMouseHeld = true;
             _timeSinceLastUpdate = _updateInterval;
-            UpdateMovement();
+            UpdateMovementOrSelectObject();
         }
         else if (Input.GetMouseButtonUp(0))
         {
@@ -398,12 +412,12 @@ public class MyHero : Hero
 
         if (_timeSinceLastUpdate >= _updateInterval)
         {
-            UpdateMovement();
-            _timeSinceLastUpdate = 0f; // Å¸ÀÌ¸Ó ÃÊ±âÈ­
+            UpdateMovementOrSelectObject();
+            _timeSinceLastUpdate = 0f; // íƒ€ì´ë¨¸ ì´ˆê¸°í™”
         }
     }
 
-    private void UpdateMovement()
+    private void UpdateMovementOrSelectObject()
     {
         if (IsPointerOverUIObject(Input.mousePosition))
             return;
@@ -425,7 +439,7 @@ public class MyHero : Hero
         {
             case EGameObjectType.Hero:
             case EGameObjectType.Monster:
-                DrawOutline(obj);
+                SelectObject(obj);
                 break;
             case EGameObjectType.Npc:
                 Npc npc = obj.GetComponent<Npc>();
@@ -484,12 +498,15 @@ public class MyHero : Hero
     {
         _joystickState = joystickState;
 
+        // ìŠ¤í‚¬ ì‚¬ìš©ì¤‘ì´ë©´ ë¦¬í„´
+        if (isWaitingSkill)
+            return;
 
-        if (joystickState == EJoystickState.Drag)
-        {
-            DespawnMoveCursor();
-            ForceMove(dir);
-        }
+        if (joystickState != EJoystickState.Drag)
+            return;
+
+        DespawnMoveCursor();
+        ForceMove(dir);
     }
 
     private void ForceMove(EMoveDir dir)
@@ -501,20 +518,19 @@ public class MyHero : Hero
             return;
 
         MoveDir = dir;
-        Vector3Int dest = CellPos + Managers.Map.GetFrontCellPos(dir);
+        //temp ì¡°ì´ìŠ¤í‹± ì´ë™ì‹œ ë‘ì¹¸ì”© ì›€ì§ì„
+        Vector3Int dest = CellPos + Managers.Map.GetFrontCellPos(dir) * 2;
         Vector3 pos = Managers.Map.Cell2World(dest);
         ForceMove(pos);
     }
 
 	private void ForceMove(Vector3 pos)
 	{
-		// if (LerpCellPosCompleted == false)
-		// 	return;
 		_desiredDestPos = pos;	
-		_isAutoMode = false;
+		//_isAutoMode = false;
 		Target = null;
 
-        CancelWait();
+        CancelCoroutine(ref _coWait);
     }
     #endregion
 
@@ -526,9 +542,9 @@ public class MyHero : Hero
 
     private void OnClickAttack()
     {
-        if(SelectedObject == null)
+        if(SelectedObject == null || SelectedObject.ObjectId == Managers.Object.MyHero.ObjectId)
         {
-            Managers.UI.ShowToast("TODO ´ë»óÀÌ ¾ø½À´Ï´Ù.");
+            Managers.UI.ShowToast("TODO ëŒ€ìƒì´ ì—†ìŠµë‹ˆë‹¤.");
             return;
         }
 
@@ -561,12 +577,12 @@ public class MyHero : Hero
 
 	int GetNextUseSkillDistance(Creature target)
 	{
-		// 1. ´ÙÀ½¿¡ »ç¿ëÇÒ ½ºÅ³ °Å¸® ¹İÈ¯.
+		// 1. ë‹¤ìŒì— ì‚¬ìš©í•  ìŠ¤í‚¬ ê±°ë¦¬ ë°˜í™˜.
 		Skill skill = GetNextUseSkill(target);
 		if (skill != null)
 			return skill.GetSkillRange(target);
 
-		// 2. ½ºÅ³ÀÌ ´Ù Äğ µ¹°í ÀÖÀ¸¸é ±âº» ½ºÅ³ »ç°Å¸®·Î.
+		// 2. ìŠ¤í‚¬ì´ ë‹¤ ì¿¨ ëŒê³  ìˆìœ¼ë©´ ê¸°ë³¸ ìŠ¤í‚¬ ì‚¬ê±°ë¦¬ë¡œ.
 		Skill mainSkill = Managers.Skill.GetMainSkill();
 		if (mainSkill != null)
 			return mainSkill.GetSkillRange(target);
@@ -618,10 +634,10 @@ public class MyHero : Hero
 
         Managers.Skill.UpdateCooltime(packet.TemplateId);
 
-        //½ºÅ³ ¹üÀ§ ±×¸®±â
+        //ìŠ¤í‚¬ ë²”ìœ„ ê·¸ë¦¬ê¸°
         StartCoroutine(DrawSkillRange(packet.TemplateId, packet.TargetId));
 
-        //4. ½ºÅ³ ¹üÀ§¿¡ ÀÖ´Â ¾Öµé ¸ğ´ÏÅÍ¸µ ½ÃÀÛ
+        //4. ìŠ¤í‚¬ ë²”ìœ„ì— ìˆëŠ” ì• ë“¤ ëª¨ë‹ˆí„°ë§ ì‹œì‘
         StartMonitoringSkillTargets(packet.TemplateId, packet.TargetId);
     }
 
@@ -717,27 +733,27 @@ public class MyHero : Hero
 	#endregion
 
     #region OutLine
-    private void DrawOutline(BaseObject obj)
+    private void SelectObject(BaseObject obj)
     {
-        // ±âÁ¸¿¡ ¼±ÅÃµÈ ¿ÀºêÁ§Æ® ¾Æ¿ô¶óÀÎ Á¦°Å.
+        // ê¸°ì¡´ì— ì„ íƒëœ ì˜¤ë¸Œì íŠ¸ ì•„ì›ƒë¼ì¸ ì œê±°.
         if (SelectedObject != null)
         {
             SelectedObject.OutLine.SetActive(false);
             SelectedObject = null;
         }
 
-        // ¾Æ¿ô¶óÀÎ Ãß°¡.
+        // ì•„ì›ƒë¼ì¸ ì¶”ê°€.
         SelectedObject = obj;
         SelectedObject.OutLine.SetActive(true);
 
-        ////TODO Å¸ÀÏ(¸ó½ºÅÍ, NPC)Å¬¸¯
+        ////TODO íƒ€ì¼(ëª¬ìŠ¤í„°, NPC)í´ë¦­
 
         //if (hit.collider != null)
         //{
         //    BaseObject obj = hit.collider.gameObject.GetComponent<BaseObject>();
         //    if (obj != null)
         //    {
-        //        // ¾Æ¿ô¶óÀÎ Ãß°¡.
+        //        // ì•„ì›ƒë¼ì¸ ì¶”ê°€.
         //        SelectedObject = obj;
         //        SelectedObject.OutLine.SetActive(true, Color.yellow);
         //        return;
@@ -746,11 +762,27 @@ public class MyHero : Hero
     }
     #endregion
 
-    #region µğ¹ö±ë
+    #region MyHero INFO
+    public string GetIllustName()
+    {
+        string gender = "f";
+        if (MyHeroInfo.HeroInfo.Gender == EHeroGender.Male)
+            gender = "m";
+
+        string className = MyHeroInfo.HeroInfo.ClassType.ToString().ToLower();
+        string name = $"illust_{gender}_{className}_SkeletonData";
+
+        return name;
+    }
+    #endregion
+
+    #region ë””ë²„ê¹…
     void InitLineRenderer()
     {
         GameObject vision = new GameObject("VisionLineRenderer");
         vision.transform.parent = gameObject.transform;
+        vision.layer = LayerMask.NameToLayer("TestLineRenderer");
+
         _lineRenderer = gameObject.AddComponent<LineRenderer>();
         _lineRenderer.startWidth = _lineWidth;
         _lineRenderer.endWidth = _lineWidth;
@@ -761,6 +793,8 @@ public class MyHero : Hero
 
         GameObject skillLineObject = new GameObject("SkillLineRenderer");
         skillLineObject.transform.parent = gameObject.transform;
+        skillLineObject.layer = LayerMask.NameToLayer("TestLineRenderer");
+
         _skillLineRenderer = skillLineObject.AddComponent<LineRenderer>();
         _skillLineRenderer.startWidth = _lineWidth;
         _skillLineRenderer.endWidth = _lineWidth;
@@ -846,7 +880,7 @@ public class MyHero : Hero
 
         yield return new WaitForSeconds(0.5f);
 
-        // ¶óÀÎ Å¬¸®¾î
+        // ë¼ì¸ í´ë¦¬ì–´
         _skillLineRenderer.positionCount = 0;
     }
 
@@ -896,8 +930,8 @@ public class MyHero : Hero
 
             GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             obj.transform.position = worldPos;
-            obj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f); // Å©±â Á¶Á¤
-            obj.transform.SetParent(parentObject.transform); // ºÎ¸ğ ¼³Á¤
+            obj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f); // í¬ê¸° ì¡°ì •
+            obj.transform.SetParent(parentObject.transform); // ë¶€ëª¨ ì„¤ì •
 
         }
     }

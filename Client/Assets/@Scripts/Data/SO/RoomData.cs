@@ -9,6 +9,8 @@ namespace Data.SO
     public class RoomData : ScriptableObject
     {
         public int TemplateId;
+        public string PrefabName;
+        public string MapNameTextId;
         public string MapName;
         public int StartPosX;
         public int StartPosY;

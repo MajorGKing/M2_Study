@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 
 public class UI_LoadingPopup : UI_Popup
 {

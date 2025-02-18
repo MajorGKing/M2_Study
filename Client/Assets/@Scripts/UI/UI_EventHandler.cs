@@ -67,6 +67,7 @@ public class UI_EventHandler : MonoBehaviour, IPointerClickHandler, IPointerDown
     public void OnBeginDrag(PointerEventData eventData)
     {
         _currentEventData = eventData;
+        _isClickAllowed = false;
         OnBeginDragHandler?.Invoke(eventData);
         _isDragging = true;
     }

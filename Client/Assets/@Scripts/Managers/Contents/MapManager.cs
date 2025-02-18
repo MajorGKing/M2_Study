@@ -21,6 +21,7 @@ public class MapManager
     public int MaxY { get; private set; }
 
     private ECellCollisionType[,] _collision;
+    private GameObject _collisionObj;
 
     public Vector3Int World2Cell(Vector3 worldPos)
     {
@@ -132,11 +133,12 @@ public class MapManager
 
     void ParseCollisionData(GameObject map, string mapName, string tilemap = "Tilemap_Collision")
     {
-        GameObject collision = Utils.FindChild(map, tilemap, true);
-        if (collision != null)
-            collision.SetActive(false);
+        _collisionObj = Utils.FindChild(map, tilemap, true);
 
-        // Collision °ü·Ã ÆÄÀÏ
+        //Layer ì„¤ì •
+        _collisionObj.layer = LayerMask.NameToLayer("Minimap");
+
+        // Collision ê´€ë ¨ íŒŒì¼
         TextAsset txt = Managers.Resource.Load<TextAsset>($"{mapName}Collision");
         StringReader reader = new StringReader(txt.text);
 
@@ -170,19 +172,22 @@ public class MapManager
         }
     }
 
-    public bool MoveTo(BaseObject obj, Vector3Int cellPos, bool forceMove = false)
-    {
-        if (CanGo(obj, cellPos) == false)
-            return false;
+	public bool MoveTo(BaseObject obj, Vector3Int cellPos, bool forceMove = false)
+	{
+		if (CanGo(obj, cellPos) == false)
+		{
+			Debug.Log("CanGo Error");
+			return false;
+		}
 
-        // ±âÁ¸ ÁÂÇ¥¿¡ ÀÖ´ø ¿ÀºêÁ§Æ®¸¦ ¹Ğ¾îÁØ´Ù.
-        // (´Ü, Ã³À½ ½ÅÃ»ÇßÀ¸¸é ÇØ´ç CellPosÀÇ ¿ÀºêÁ§Æ®°¡ º»ÀÎÀÌ ¾Æ´Ò ¼öµµ ÀÖÀ½)
+        // ê¸°ì¡´ ì¢Œí‘œì— ìˆë˜ ì˜¤ë¸Œì íŠ¸ë¥¼ ë°€ì–´ì¤€ë‹¤.
+        // (ë‹¨, ì²˜ìŒ ì‹ ì²­í–ˆìœ¼ë©´ í•´ë‹¹ CellPosì˜ ì˜¤ë¸Œì íŠ¸ê°€ ë³¸ì¸ì´ ì•„ë‹ ìˆ˜ë„ ìˆìŒ)
         RemoveObject(obj);
 
-        // »õ ÁÂÇ¥¿¡ ¿ÀºêÁ§Æ®¸¦ µî·ÏÇÑ´Ù.
+        // ìƒˆ ì¢Œí‘œì— ì˜¤ë¸Œì íŠ¸ë¥¼ ë“±ë¡í•œë‹¤.
         AddObject(obj, cellPos);
 
-        // ¼¿ ÁÂÇ¥ ÀÌµ¿
+        // ì…€ ì¢Œí‘œ ì´ë™
         obj.SetCellPos(cellPos, forceMove);
 
         return true;
@@ -210,7 +215,7 @@ public class MapManager
 
     public void RemoveObject(BaseObject obj)
     {
-        // ±âÁ¸ÀÇ ÁÂÇ¥ Á¦°Å
+        // ê¸°ì¡´ì˜ ì¢Œí‘œ ì œê±°
         int extraCells = 0;
         if (obj != null)
             extraCells = obj.ExtraCells;
@@ -244,7 +249,7 @@ public class MapManager
 
                 BaseObject prev = GetObject(newCellPos);
                 if (prev != null && prev != obj)
-                    Debug.LogWarning($"AddObject ¼ö»óÇÔ");
+                    Debug.LogWarning($"AddObject ìˆ˜ìƒí•¨");
 
                 _cells[newCellPos] = obj;
             }
@@ -262,7 +267,7 @@ public class MapManager
             return Vector3Int.zero;
         else
         {
-            //delta¿¡ 0,0ÀÌ¾øÀ¸´Ï±î -1
+            //deltaì— 0,0ì´ì—†ìœ¼ë‹ˆê¹Œ -1
             return _delta[(int)dir - 1];
         }
     }
@@ -287,7 +292,7 @@ public class MapManager
 
     List<Vector3Int> _delta = new List<Vector3Int>()
     {
-		//EMoveDir ÀÌ¶û ¼ø¼­ ¸ÂÃã
+		//EMoveDir ì´ë‘ ìˆœì„œ ë§ì¶¤
 		new Vector3Int(1, 1, 0), // U
 		new Vector3Int(-1, -1, 0), // D
 		new Vector3Int(-1, 1, 0), // L
@@ -300,22 +305,22 @@ public class MapManager
 
     public List<Vector3Int> FindPath(BaseObject self, Vector3Int startCellPos, Vector3Int destCellPos, int maxDepth = 10)
     {
-        // Áö±İ±îÁö Á¦ÀÏ ÁÁÀº ÈÄº¸ ±â·Ï.
+        // ì§€ê¸ˆê¹Œì§€ ì œì¼ ì¢‹ì€ í›„ë³´ ê¸°ë¡.
         Dictionary<Vector3Int, int> best = new Dictionary<Vector3Int, int>();
-        // °æ·Î ÃßÀû ¿ëµµ.
+        // ê²½ë¡œ ì¶”ì  ìš©ë„.
         Dictionary<Vector3Int, Vector3Int> parent = new Dictionary<Vector3Int, Vector3Int>();
 
-        // ÇöÀç ¹ß°ßµÈ ÈÄº¸ Áß¿¡¼­ °¡Àå ÁÁÀº ÈÄº¸¸¦ ºü¸£°Ô »Ì¾Æ¿À±â À§ÇÑ µµ±¸.
+        // í˜„ì¬ ë°œê²¬ëœ í›„ë³´ ì¤‘ì—ì„œ ê°€ì¥ ì¢‹ì€ í›„ë³´ë¥¼ ë¹ ë¥´ê²Œ ë½‘ì•„ì˜¤ê¸° ìœ„í•œ ë„êµ¬.
         PriorityQueue<PQNode> pq = new PriorityQueue<PQNode>(); // OpenList
 
         Vector3Int pos = startCellPos;
         Vector3Int dest = destCellPos;
 
-        // destCellPos¿¡ µµÂø ¸øÇÏ´õ¶óµµ Á¦ÀÏ °¡±î¿î ¾Ö·Î.
+        // destCellPosì— ë„ì°© ëª»í•˜ë”ë¼ë„ ì œì¼ ê°€ê¹Œìš´ ì• ë¡œ.
         Vector3Int closestCellPos = startCellPos;
         int closestH = (dest - pos).sqrMagnitude;
 
-        // ½ÃÀÛÁ¡ ¹ß°ß (¿¹¾à ÁøÇà)
+        // ì‹œì‘ì  ë°œê²¬ (ì˜ˆì•½ ì§„í–‰)
         {
             int h = (dest - pos).sqrMagnitude;
             pq.Push(new PQNode() { H = h, CellPos = pos, Depth = 1 });
@@ -325,31 +330,31 @@ public class MapManager
 
         while (pq.Count > 0)
         {
-            // Á¦ÀÏ ÁÁÀº ÈÄº¸¸¦ Ã£´Â´Ù
+            // ì œì¼ ì¢‹ì€ í›„ë³´ë¥¼ ì°¾ëŠ”ë‹¤
             PQNode node = pq.Pop();
             pos = node.CellPos;
 
-            // ¸ñÀûÁö µµÂøÇßÀ¸¸é ¹Ù·Î Á¾·á.
+            // ëª©ì ì§€ ë„ì°©í–ˆìœ¼ë©´ ë°”ë¡œ ì¢…ë£Œ.
             if (pos == dest)
                 break;
 
-            // ¹«ÇÑÀ¸·Î ±íÀÌ µé¾î°¡Áø ¾ÊÀ½.
+            // ë¬´í•œìœ¼ë¡œ ê¹Šì´ ë“¤ì–´ê°€ì§„ ì•ŠìŒ.
             if (node.Depth >= maxDepth)
                 break;
 
-            // »óÇÏÁÂ¿ì µî ÀÌµ¿ÇÒ ¼ö ÀÖ´Â ÁÂÇ¥ÀÎÁö È®ÀÎÇØ¼­ ¿¹¾àÇÑ´Ù.
+            // ìƒí•˜ì¢Œìš° ë“± ì´ë™í•  ìˆ˜ ìˆëŠ” ì¢Œí‘œì¸ì§€ í™•ì¸í•´ì„œ ì˜ˆì•½í•œë‹¤.
             foreach (Vector3Int delta in _delta)
             {
                 Vector3Int next = pos + delta;
 
-                // °¥ ¼ö ¾ø´Â Àå¼Ò¸é ½ºÅµ.
+                // ê°ˆ ìˆ˜ ì—†ëŠ” ì¥ì†Œë©´ ìŠ¤í‚µ.
                 if (CanGo(self, next) == false)
                     continue;
 
-                // ¿¹¾à ÁøÇà
+                // ì˜ˆì•½ ì§„í–‰
                 int h = (dest - next).sqrMagnitude;
 
-                // ´õ ÁÁÀº ÈÄº¸ Ã£¾Ò´ÂÁö
+                // ë” ì¢‹ì€ í›„ë³´ ì°¾ì•˜ëŠ”ì§€
                 if (best.ContainsKey(next) == false)
                     best[next] = int.MaxValue;
 
@@ -361,7 +366,7 @@ public class MapManager
                 pq.Push(new PQNode() { H = h, CellPos = next, Depth = node.Depth + 1 });
                 parent[next] = pos;
 
-                // ¸ñÀûÁö±îÁö´Â ¸ø °¡´õ¶óµµ, ±×³ª¸¶ Á¦ÀÏ ÁÁ¾Ò´ø ÈÄº¸ ±â¾ï.
+                // ëª©ì ì§€ê¹Œì§€ëŠ” ëª» ê°€ë”ë¼ë„, ê·¸ë‚˜ë§ˆ ì œì¼ ì¢‹ì•˜ë˜ í›„ë³´ ê¸°ì–µ.
                 if (closestH > h)
                 {
                     closestH = h;
@@ -370,7 +375,7 @@ public class MapManager
             }
         }
 
-        // Á¦ÀÏ °¡±î¿î ¾Ö¶óµµ Ã£À½.
+        // ì œì¼ ê°€ê¹Œìš´ ì• ë¼ë„ ì°¾ìŒ.
         if (parent.ContainsKey(dest) == false)
             return CalcCellPathFromParent(parent, closestCellPos);
 

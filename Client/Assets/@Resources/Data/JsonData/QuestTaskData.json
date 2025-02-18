@@ -1,0 +1,51 @@
+{
+  "tasks": [
+    {
+      "TemplateId": 1,
+      "DescriptionTextId": "기술단장에게 말 걸기",
+      "TaskType": 3,
+      "ObjectiveDataIds": [
+        3
+      ],
+      "ObjectiveCounts": [
+        0
+      ],
+      "DialogueId": 1,
+      "TeleportPos": null,
+      "DialogueData": null,
+      "QuestObjectives": []
+    },
+    {
+      "TemplateId": 2,
+      "DescriptionTextId": "슬라임 처치",
+      "TaskType": 1,
+      "ObjectiveDataIds": [
+        4,
+        5
+      ],
+      "ObjectiveCounts": [
+        10,
+        15
+      ],
+      "DialogueId": 0,
+      "TeleportPos": null,
+      "DialogueData": null,
+      "QuestObjectives": []
+    },
+    {
+      "TemplateId": 3,
+      "DescriptionTextId": "기술단장에게 보고하기",
+      "TaskType": 3,
+      "ObjectiveDataIds": [
+        3
+      ],
+      "ObjectiveCounts": [
+        0
+      ],
+      "DialogueId": 2,
+      "TeleportPos": null,
+      "DialogueData": null,
+      "QuestObjectives": []
+    }
+  ]
+}

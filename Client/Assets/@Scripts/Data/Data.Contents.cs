@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Data
 {
-    //¿¢¼¿ ÆÄ½Ì¿¡ Á¦¿ÜÇÒ ¾îÆ®¸®ºäÆ® Á¤ÀÇ
+    //ì—‘ì…€ íŒŒì‹±ì— ì œì™¸í•  ì–´íŠ¸ë¦¬ë·°íŠ¸ ì •ì˜
     [AttributeUsage(AttributeTargets.Field)]
     public class ExcludeFieldAttribute : Attribute
     {
@@ -16,7 +16,7 @@ namespace Data
     public class BaseData
     {
         public int TemplateId;
-        public string Name; //°³¹ß¿ë
+        public string Name; //ê°œë°œìš©
         public string NameTextId;
         public string DescriptionTextID;
         public string IconImage;
@@ -25,24 +25,7 @@ namespace Data
 
     public class CreatureData : BaseData
     {
-        public int MaxHp;
-        public int HpRegen;
-        public int MaxMp;
-        public int MpRegen;
-        public int Attack;
-        public int Def;
-        public int Dodge;
-        public int AtkSpeed;
-        public int MoveSpeed;
-        public float CriRate;
-        public float CriDamage;
-        public int Str;
-        public int Dex;
-        public int Int;
-        public int Con;
-        public int Wis;
-
-        [ExcludeField]
+        [ExcludeField]   
         public StatInfo Stat;
         public virtual bool Validate()
         {
@@ -64,7 +47,7 @@ namespace Data
     public class NpcData : ScriptableObject
     {
         public int TemplateId;
-        public string Name; //°³¹ß¿ë
+        public string Name; //ê°œë°œìš©
         public string NameTextId;
         public string DescriptionTextID;
         public string IconImage;
@@ -76,6 +59,9 @@ namespace Data
         public int OwnerRoomId;
         public int SpawnPosX;
         public int SpawnPosY;
+
+        [ExcludeField]
+        public PositionInfo SpawnPosInfo;
     }
 
     #endregion
@@ -190,26 +176,6 @@ namespace Data
 
             foreach (var hero in heroes)
             {
-                hero.Stat = new StatInfo()
-                {
-                    MaxHp = hero.MaxHp,
-                    HpRegen = hero.HpRegen,
-                    MaxMp = hero.MaxMp,
-                    MpRegen = hero.MpRegen,
-                    Attack = hero.Attack,
-                    Defence = hero.Def,
-                    Dodge = hero.Dodge,
-                    AttackSpeed = hero.AtkSpeed,
-                    MoveSpeed = hero.MoveSpeed,
-                    CriRate = hero.CriRate,
-                    CriDamage = hero.CriDamage,
-                    Str = hero.Str,
-                    Dex = hero.Dex,
-                    Int = hero.Int,
-                    Con = hero.Con,
-                    Wis = hero.Wis
-                };
-
                 //Skill
                 for (int i = 0; i < hero.SkillDataIds.Count; i++)
                 {
@@ -217,7 +183,7 @@ namespace Data
                     {
                         hero.SkillDatas.Add(skillData);
 
-                        // ÀÚµ¿À¸·Î SkillMap¿¡ Ãß°¡
+                        // ìë™ìœ¼ë¡œ SkillMapì— ì¶”ê°€
                         if (i + 1 < Enum.GetValues(typeof(ESkillSlot)).Length)
                         {
                             hero.SkillMap[(ESkillSlot)i + 1] = skillData;
@@ -236,6 +202,23 @@ namespace Data
 
     public class MonsterData : CreatureData
     {
+        public int MaxHp;
+        public int HpRegen;
+        public int MaxMp;
+        public int MpRegen;
+        public int Attack;
+        public int Def;
+        public int Dodge;
+        public int AtkSpeed;
+        public int MoveSpeed;
+        public float CriRate;
+        public float CriDamage;
+        public int Str;
+        public int Dex;
+        public int Int;
+        public int Con;
+        public int Wis;
+
         public bool IsBoss = false;
         public bool IsAggressive;
         public int ExtraCells;
@@ -247,15 +230,15 @@ namespace Data
         public int PatrolCellDist;
 
         //Drop
-        public int DropTableId;
+        public int RewardTableId;
 
         [ExcludeField]
         public List<SkillData> SkillDatas = new List<SkillData>();
         [ExcludeField]
         public Dictionary<ESkillSlot, SkillData> SkillMap = new Dictionary<ESkillSlot, SkillData>();
         [ExcludeField]
-        public DropTableData DropTable;
-        //½ºÆù Á¤º¸
+        public RewardTableData RewardTable;
+        //ìŠ¤í° ì •ë³´
     }
 
     [Serializable]
@@ -307,7 +290,7 @@ namespace Data
                     {
                         monster.SkillDatas.Add(skillData);
 
-                        // ÀÚµ¿À¸·Î SkillMap¿¡ Ãß°¡
+                        // ìë™ìœ¼ë¡œ SkillMapì— ì¶”ê°€
                         if (i + 1 < Enum.GetValues(typeof(ESkillSlot)).Length)
                         {
                             monster.SkillMap[(ESkillSlot)i + 1] = skillData;
@@ -315,7 +298,7 @@ namespace Data
                     }
                 }
 
-                Managers.Data.DropTableDict.TryGetValue(monster.DropTableId, out monster.DropTable);
+                Managers.Data.RewardTableDict.TryGetValue(monster.RewardTableId, out monster.RewardTable);
             }
             return validate;
         }
@@ -416,10 +399,10 @@ namespace Data
 
     #endregion
 
-    #region DropTableData
+    #region RewardTableData
 
     [Serializable]
-    public class DropTableData
+    public class RewardTableData
     {
         public int TemplateId;
         public string Name;
@@ -432,16 +415,18 @@ namespace Data
     }
 
     [Serializable]
-    public class DropTableDataLoader : ILoader<int, DropTableData>
+    public class RewardTableDataLoader : ILoader<int, RewardTableData>
     {
-        public List<DropTableData> dropTables = new List<DropTableData>();
+        public List<RewardTableData> rewardTables = new List<RewardTableData>();
 
-        public Dictionary<int, DropTableData> MakeDict()
+        public Dictionary<int, RewardTableData> MakeDict()
         {
-            Dictionary<int, DropTableData> dict = new Dictionary<int, DropTableData>();
-            foreach (DropTableData dropTableData in dropTables)
+            Debug.Log("Make Dic RewardTableDataLoader");
+
+            Dictionary<int, RewardTableData> dict = new Dictionary<int, RewardTableData>();
+            foreach (RewardTableData rewardTableData in rewardTables)
             {
-                dict.Add(dropTableData.TemplateId, dropTableData);
+                dict.Add(rewardTableData.TemplateId, rewardTableData);
             }
 
             return dict;
@@ -449,15 +434,15 @@ namespace Data
 
         public bool Validate()
         {
-            foreach (var dropTable in dropTables)
+            foreach (var rewardTableData in rewardTables)
             {
-                dropTable.Rewards = new List<RewardData>();
-                foreach (var id in dropTable.RewardDataIds)
+                rewardTableData.Rewards = new List<RewardData>();
+                foreach (var id in rewardTableData.RewardDataIds)
                 {
                     RewardData reward;
                     if (Managers.Data.RewardDict.TryGetValue(id, out reward))
                     {
-                        dropTable.Rewards.Add(reward);
+                        rewardTableData.Rewards.Add(reward);
                     }
                 }
             }
@@ -474,7 +459,7 @@ namespace Data
         public int TemplateId;
         public string Name;
         public int ItemTemplateId;
-        public int Probability; // 100ºĞÀ²
+        public int Probability; // 100ë¶„ìœ¨
         public int Count;
 
         [ExcludeField]
@@ -506,7 +491,7 @@ namespace Data
                 }
                 else
                 {
-                    Debug.LogError($"¾ÆÀÌÅÛ µ¥ÀÌÅÍ¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+                    Debug.LogError($"ì•„ì´í…œ ë°ì´í„°ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
                     return false;
                 }
             }
@@ -530,7 +515,7 @@ namespace Data
         public string SoundLabel;
 
         public EEffectType EffectType;
-        // Áï¹ß vs ÁÖ±âÀû vs ¿µ±¸Àû.
+        // ì¦‰ë°œ vs ì£¼ê¸°ì  vs ì˜êµ¬ì .
         public EDurationPolicy DurationPolicy;
         public float Duration;
         // EFFECT_TYPE_DAMAGE
@@ -624,26 +609,26 @@ namespace Data
         public int SkillRange;
         public string AnimName;
         public int Cost;
-        // ¾Ö´Ï¸ŞÀÌ¼Ç ¸ğ¼Ç ±â´Ù¸®±â À§ÇÑ µô·¹ÀÌ.
+        // ì• ë‹ˆë©”ì´ì…˜ ëª¨ì…˜ ê¸°ë‹¤ë¦¬ê¸° ìœ„í•œ ë”œë ˆì´.
         public float DelayTime; // EventTime
 
-        // Åõ»çÃ¼¸¦ ³¯¸± °æ¿ì.
+        // íˆ¬ì‚¬ì²´ë¥¼ ë‚ ë¦´ ê²½ìš°.
         public int ProjectileId;
 
-        // ´©±¸ÇÑÅ× ½ÃÀü?
+        // ëˆ„êµ¬í•œí…Œ ì‹œì „?
         public EUseSkillTargetType UseSkillTargetType;
 
-        // È¿°ú ´ë»ó ¹üÀ§´Â? (0ÀÌ¸é ´ÜÀÏ ½ºÅ³)
+        // íš¨ê³¼ ëŒ€ìƒ ë²”ìœ„ëŠ”? (0ì´ë©´ ë‹¨ì¼ ìŠ¤í‚¬)
         public int GatherTargetRange;
         public string GatherTargetPrefabName; // AoE
 
-        // ÇÇ¾Æ½Äº°
+        // í”¼ì•„ì‹ë³„
         public ETargetFriendType TargetFriendType;
 
-        // ¾î¶² È¿°ú¸¦?
+        // ì–´ë–¤ íš¨ê³¼ë¥¼?
         public int EffectDataId;
 
-        // ´ÙÀ½ ·¹º§ ½ºÅ³.
+        // ë‹¤ìŒ ë ˆë²¨ ìŠ¤í‚¬.
         public int NextLevelSkillId;
 
         [ExcludeField]

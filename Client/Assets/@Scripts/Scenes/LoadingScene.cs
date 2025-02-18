@@ -1,9 +1,5 @@
-using Google.Protobuf.Protocol;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using static Define;
 
@@ -37,17 +33,17 @@ public class LoadingScene : BaseScene
         yield return null;
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(Managers.Scene.GetSceneName(_nextSceneType));
-        operation.allowSceneActivation = false; // ¾ÀÀÇ ÀÚµ¿ ÀüÈ¯ false
+        operation.allowSceneActivation = false; // ì”¬ì˜ ìžë™ ì „í™˜ false
 
         while (!operation.isDone)
         {
-            // ÁøÇà »óÅÂ¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù.
+            // ì§„í–‰ ìƒíƒœë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤.
             float progress = Mathf.Clamp01(operation.progress / 0.9f);
             Debug.Log(progress);
             // progressBar.value = progress;
             // progressText.text = progress * 100f + "%";
 
-            // ·ÎµùÀÌ ¿Ï·áµÇ¸é ¾ÀÀ» ÀüÈ¯ÇÕ´Ï´Ù.
+            // ë¡œë”©ì´ ì™„ë£Œë˜ë©´ ì”¬ì„ ì „í™˜í•©ë‹ˆë‹¤.
             if (operation.progress >= 0.9f)
             {
                 // progressBar.value = 1f;

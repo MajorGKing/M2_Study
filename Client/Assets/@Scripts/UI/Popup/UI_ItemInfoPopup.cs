@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Data;
 using Google.Protobuf.Protocol;
 using UnityEngine;
@@ -86,20 +84,20 @@ public class UI_ItemInfoPopup : UI_Popup
         GetText((int)Texts.StackInfotext).gameObject.SetActive(false);
         GetText((int)Texts.CoolTimeInfoText).gameObject.SetActive(false);
 
-        //¾ÆÀÌÅÛÀÌ¸§
+        //ì•„ì´í…œì´ë¦„
         GetText((int)Texts.ItemNameText).text = _item.TemplateData.NameTextId;
-        //¾ÆÀÌÅÛÁ¾·ù
+        //ì•„ì´í…œì¢…ë¥˜
         GetText((int)Texts.ItemTypeText).text = $"@@{_item.TemplateData.SubType}";
-        //¾ÆÀÌÅÛ µî±Ş
+        //ì•„ì´í…œ ë“±ê¸‰
         GetText((int)Texts.GradeInfoText).text = $"@@{_item.TemplateData.Grade}";
-        //»ó¼¼Á¤º¸
+        //ìƒì„¸ì •ë³´
         GetText((int)Texts.DescriptionInfoText).text = $"@@{_item.TemplateData.DescriptionTextID}";
-        //¿É¼Ç
+        //ì˜µì…˜
         switch (_item.TemplateData.Type)
         {
             case EItemType.Equipment:
                 EquipmentData equipmentData = _item.TemplateData as EquipmentData;
-                //TODO ÇÏµåÄÚµù
+                //TODO í•˜ë“œì½”ë”©
                 for (int i = 0; i < 3; i++)
                 {
                     GetText(((int)Texts.OptionInfoText1 + i)).gameObject.SetActive(false);
@@ -108,19 +106,19 @@ public class UI_ItemInfoPopup : UI_Popup
                 if (equipmentData.DefenceBonus > 0)
                 {
                     GetText((int)Texts.OptionInfoText1).gameObject.SetActive(true);
-                    GetText((int)Texts.OptionInfoText1).text = $"@@¹æ¾î·Â + {equipmentData.DefenceBonus}";
+                    GetText((int)Texts.OptionInfoText1).text = $"@@ë°©ì–´ë ¥ + {equipmentData.DefenceBonus}";
                 }
 
                 if (equipmentData.MaxHpBonus > 0)
                 {
                     GetText((int)Texts.OptionInfoText1).gameObject.SetActive(true);
-                    GetText((int)Texts.OptionInfoText1).text = $"@@Ã¼·Â + {equipmentData.MaxHpBonus}";
+                    GetText((int)Texts.OptionInfoText1).text = $"@@ì²´ë ¥ + {equipmentData.MaxHpBonus}";
                 }
 
                 if (equipmentData.AttackBonus > 0)
                 {
                     GetText((int)Texts.OptionInfoText1).gameObject.SetActive(true);
-                    GetText((int)Texts.OptionInfoText1).text = $"@@°ø°İ·Â + {equipmentData.AttackBonus}";
+                    GetText((int)Texts.OptionInfoText1).text = $"@@ê³µê²©ë ¥ + {equipmentData.AttackBonus}";
                 }
 
                 if (equipmentData.EffectData != null)
@@ -140,12 +138,12 @@ public class UI_ItemInfoPopup : UI_Popup
                 GetText((int)Texts.CoolTimeInfoText).gameObject.SetActive(true);
 
                 ConsumableData consumableData = _item.TemplateData as ConsumableData;
-                GetText((int)Texts.StackInfotext).text = $"@@{consumableData.MaxStack}°³";
-                GetText((int)Texts.CoolTimeInfoText).text = $"@@{consumableData.CoolTime}ÃÊ";
+                GetText((int)Texts.StackInfotext).text = $"@@{consumableData.MaxStack}ê°œ";
+                GetText((int)Texts.CoolTimeInfoText).text = $"@@{consumableData.CoolTime}ì´ˆ";
                 break;
         }
 
-        //±×¸®µå ÃÊ±âÈ­
+        //ê·¸ë¦¬ë“œ ì´ˆê¸°í™”
         ContentSizeFitter csf = GetObject((int)GameObjects.ItemInfoList).GetComponent<ContentSizeFitter>();
         LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)csf.transform);
     }
@@ -159,7 +157,7 @@ public class UI_ItemInfoPopup : UI_Popup
 
     private void OnClickDelete(PointerEventData eventData)
     {
-        //TODO È®ÀÎÃ¢
+        //TODO í™•ì¸ì°½
         Managers.Inventory.ReqDeleteItem(_item.ItemDbId);
     }
 

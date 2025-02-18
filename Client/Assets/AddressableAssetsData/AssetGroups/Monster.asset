@@ -17,24 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 04cc673bf546dc6419214cf325948f1f
   m_SerializeEntries:
-  - m_GUID: e09ba98ab20c5314baed4b8a48e767b7
-    m_Address: Goblin
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1c2ad1ad8ae65194aa075f32d95f3eae
-    m_Address: ScareCrow
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9fc1eaa307ebaac41a48635265560414
-    m_Address: WoodMan
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e5e5e458fc4b4094d8f105302d02b7bd
     m_Address: 001.slime_common
     m_ReadOnly: 0
@@ -175,6 +157,24 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0a5aa21f338ae9d46810c14651ae0961
     m_Address: elite_frog
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e09ba98ab20c5314baed4b8a48e767b7
+    m_Address: Goblin
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c2ad1ad8ae65194aa075f32d95f3eae
+    m_Address: ScareCrow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9fc1eaa307ebaac41a48635265560414
+    m_Address: WoodMan
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

@@ -69,7 +69,7 @@ class PacketHandler
         //Map
         if (Managers.Data.RoomDict.TryGetValue(enterGamePacket.MyHeroInfo.MapId, out RoomData roomData) == false)
             return;
-        Managers.Map.LoadMap(roomData.MapName);
+        Managers.Map.LoadMap(roomData.PrefabName);
 
         // Hero
         MyHero myHero = Managers.Object.Spawn(enterGamePacket.MyHeroInfo);

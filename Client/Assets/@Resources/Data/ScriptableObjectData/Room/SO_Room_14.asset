@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: SO_Room_14
   m_EditorClassIdentifier: 
   TemplateId: 14
-  PrefabName: Room14
+  PrefabName: Room14_Snow_c
   MapNameTextId: "\uBD81\uBD80 \uAC08\uB9BC\uAE38"
   MapName: "\uBD81\uBD80 \uAC08\uB9BC\uAE38"
-  StartPosX: 122
-  StartPosY: -25
+  StartPosX: 46
+  StartPosY: -14
   SpawningPoolData: {fileID: 0}
   Npcs: []

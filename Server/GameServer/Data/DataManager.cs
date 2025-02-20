@@ -36,11 +36,15 @@ namespace GameServer
 
         public static Dictionary<int, NpcData> NpcDict { get; private set; } = new Dictionary<int, NpcData>();
         public static Dictionary<int, PortalData> PortalDict { get; private set; } = new Dictionary<int, PortalData>();
+        public static Dictionary<int, NpcCommonData> CommonNpcDict { get; private set; } = new Dictionary<int, NpcCommonData>();
 
         public static Dictionary<int, ItemData> ItemDict { get; private set; } = new Dictionary<int, ItemData>();
         public static Dictionary<int, EquipmentData> EquipmentDict { get; private set; } = new Dictionary<int, EquipmentData>();
         public static Dictionary<int, ConsumableData> ConsumableDict { get; private set; } = new Dictionary<int, ConsumableData>();
+        public static Dictionary<int, CollectibleData> CollectibleDict { get; private set; } = new Dictionary<int, CollectibleData>();
 
+        public static Dictionary<int, QuestData> QuestDict { get; private set; } = new Dictionary<int, QuestData>();
+        public static Dictionary<int, QuestTaskData> QuestTaskDict { get; private set; } = new Dictionary<int, QuestTaskData>();
 
         public static void LoadData()
         {
@@ -59,6 +63,7 @@ namespace GameServer
             #region ItemData
             EquipmentDict = LoadJson<EquipmentDataLoader, int, EquipmentData>("EquipmentData").MakeDict();
             ConsumableDict = LoadJson<ConsumableDataLoader, int, ConsumableData>("ConsumableData").MakeDict();
+            CollectibleDict = LoadJson<CollectibleDataLoader, int, CollectibleData>("CollectibleData").MakeDict();
 
             ItemDict.Clear();
 
@@ -67,9 +72,13 @@ namespace GameServer
 
             foreach (var item in ConsumableDict)
                 ItemDict.Add(item.Key, item.Value);
+
+            foreach (var item in CollectibleDict)
+                ItemDict.Add(item.Key, item.Value);
             #endregion
 
             #region NpcData
+            CommonNpcDict = LoadJson<NpcCommonDataLoader, int, NpcCommonData>("NpcCommonData").MakeDict();
             PortalDict = LoadJson<PortalDataLoader, int, PortalData>("PortalData").MakeDict();
 
             NpcDict.Clear();
@@ -77,6 +86,15 @@ namespace GameServer
             {
                 NpcDict.Add(portal.Key, portal.Value);
             }
+            foreach (var common in CommonNpcDict)
+            {
+                NpcDict.Add(common.Key, common.Value);
+            }
+            #endregion
+
+            #region Quest
+            QuestDict = LoadJson<QuestDataLoader, int, QuestData>("QuestData").MakeDict();
+            QuestTaskDict = LoadJson<QuestTaskDataLoader, int, QuestTaskData>("QuestTaskData").MakeDict();
             #endregion
 
             Validate();

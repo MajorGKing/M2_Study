@@ -19,9 +19,11 @@ MonoBehaviour:
   IconImage: portal_image
   PrefabName: PortalPrefab
   NpcType: 1
-  ExtraSize: 0
+  ExtraCells: 0
   Range: 5
   OwnerRoomId: 1
-  SpawnPosX: 70
-  SpawnPosY: 35
+  SpawnPosX: 93
+  SpawnPosY: 55
+  DialogueId: 0
+  DialogueData: {fileID: 0}
   DestPotalId: 106

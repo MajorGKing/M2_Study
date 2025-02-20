@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: SO_Room_20
   m_EditorClassIdentifier: 
   TemplateId: 20
-  PrefabName: Room20
+  PrefabName: Room20_Red_Canyon
   MapNameTextId: "\uBD89\uC740 \uD611\uACE1"
-  MapName: "\uBD89\uC740 \uD611"
-  StartPosX: -63
-  StartPosY: -10
+  MapName: "\uBD89\uC740 \uD611\uACE1"
+  StartPosX: -89
+  StartPosY: -14
   SpawningPoolData: {fileID: 0}
   Npcs: []

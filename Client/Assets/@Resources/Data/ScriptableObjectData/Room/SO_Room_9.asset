@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: SO_Room_9
   m_EditorClassIdentifier: 
   TemplateId: 9
-  PrefabName: Room9
+  PrefabName: Room09_Farm_b
   MapNameTextId: "\uB18D\uACBD\uC9C0 \uAE4A\uC740 \uACF3 "
   MapName: "\uB18D\uACBD\uC9C0 \uAE4A\uC740 \uACF3"
-  StartPosX: 141
-  StartPosY: 30
+  StartPosX: 60
+  StartPosY: -23
   SpawningPoolData: {fileID: 0}
   Npcs: []

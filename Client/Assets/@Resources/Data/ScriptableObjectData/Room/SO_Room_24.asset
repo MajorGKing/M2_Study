@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: SO_Room_24
   m_EditorClassIdentifier: 
   TemplateId: 24
-  PrefabName: Room24
+  PrefabName: Room24_Night_Temple
   MapNameTextId: "\uBC24\uC758 \uC0AC\uC6D0"
   MapName: "\uBC24\uC758 \uC0AC\uC6D0"
-  StartPosX: -135
-  StartPosY: -73
+  StartPosX: -23
+  StartPosY: -67
   SpawningPoolData: {fileID: 0}
   Npcs: []

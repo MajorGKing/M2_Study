@@ -16,7 +16,7 @@ MonoBehaviour:
   _text: "\uBD80\uD0C1\uC774 \uC788\uB124."
   _textTemplateId: "@@\uBD80\uD0C1\uC774 \uC788\uB124."
   _children:
-  - 2c7d145d-2b86-4b5d-bc10-93a97aa69139
+  - cecbd8a9-5a68-4b9a-94c1-316e3a604b32
   x: 30
   y: 0
 --- !u!114 &-8129823127343240477
@@ -35,46 +35,8 @@ MonoBehaviour:
   _text: "\uACE0\uC0DD\uD558\uC2DC\uAC8C."
   _textTemplateId: "@@\uACE0\uC0DD\uD558\uC2DC\uAC8C."
   _children: []
-  x: 1080
-  y: 0
---- !u!114 &-5912272859646820311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0596f0a1c7f01cf48b7d54bcc16aa92f, type: 3}
-  m_Name: 4b61e184-5778-4bf1-9bc8-433245ee693f
-  m_EditorClassIdentifier: 
-  _isPlayerSpeaking: 1
-  _text: "\uB124"
-  _textTemplateId: "@@\uB124"
-  _children:
-  - c858476c-42af-4600-a18c-7e23d09c538e
-  x: 814
-  y: 0
---- !u!114 &-4931893859015278003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0596f0a1c7f01cf48b7d54bcc16aa92f, type: 3}
-  m_Name: 2c7d145d-2b86-4b5d-bc10-93a97aa69139
-  m_EditorClassIdentifier: 
-  _isPlayerSpeaking: 1
-  _text: "\uB124."
-  _textTemplateId: "@@\uB124."
-  _children:
-  - cecbd8a9-5a68-4b9a-94c1-316e3a604b32
-  x: 290
-  y: 0
+  x: 592
+  y: -3
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,12 +50,10 @@ MonoBehaviour:
   m_Name: SO_Dialogue_1
   m_EditorClassIdentifier: 
   TemplateId: 1
-  OwnerNameId: "GM\uD558\uB9AC\uBCF4"
+  OwnerNameId: "\uAE30\uC220\uAD50\uAD00 \uCE74\uC77C"
   _nodes:
   - {fileID: -8482436727247076681}
-  - {fileID: -4931893859015278003}
   - {fileID: 5964300362618252526}
-  - {fileID: -5912272859646820311}
   - {fileID: -8129823127343240477}
 --- !u!114 &5964300362618252526
 MonoBehaviour:
@@ -111,6 +71,6 @@ MonoBehaviour:
   _text: "\uB9C8\uC744 \uBC16\uC5D0 \uC2AC\uB77C\uC784 \uC7A1\uC544\uC8FC\uAC8C."
   _textTemplateId: "@@\uB9C8\uC744 \uBC16\uC5D0 \uC2AC\uB77C\uC784 \uC7A1\uC544\uC8FC\uAC8C."
   _children:
-  - 4b61e184-5778-4bf1-9bc8-433245ee693f
-  x: 553
-  y: 0
+  - c858476c-42af-4600-a18c-7e23d09c538e
+  x: 312
+  y: -1

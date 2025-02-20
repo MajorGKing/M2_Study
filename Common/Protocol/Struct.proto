@@ -94,3 +94,16 @@ message ItemInfo
 	int32 enchantCount = 5;
 	int32 remainingTicks = 6;
 }
+
+message QuestInfo 
+{
+	int32 templateId = 1;
+	EQuestState questState = 2;
+	repeated QuestTaskInfo taskInfos = 3;	
+    int64 nextResetTime = 4;
+}
+
+message QuestTaskInfo
+{
+    map<int32, int32> objectives = 1;
+}

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SO_Room_23
   m_EditorClassIdentifier: 
   TemplateId: 23
-  PrefabName: Room23
+  PrefabName: Room23_Jungle
   MapNameTextId: "\uC9D5\uAE00 \uC815\uAE00"
-  MapName: "\uC9D5\uAC80\uB2E4\uB9AC \uBC00\uB9BC"
+  MapName: "\uC9D5\uAE00 \uC815\uAE00"
   StartPosX: -69
   StartPosY: -12
   SpawningPoolData: {fileID: 0}

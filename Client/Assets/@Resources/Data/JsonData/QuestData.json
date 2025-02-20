@@ -1,7 +1,7 @@
 {
   "quests": [
     {
-      "TemplateId": 9,
+      "TemplateId": 1,
       "NameTextId": "메인퀘스트1. 마을 청소",
       "Type": 1,
       "TaskIds": [
@@ -11,6 +11,49 @@
       ],
       "Level": 1,
       "RewardTableId": 1000,
+      "RequiredQuestId": 0,
+      "QuestTasks": [],
+      "RewardTableData": {
+        "TemplateId": 0,
+        "Name": null,
+        "RewardGold": 0,
+        "RewardExp": 0,
+        "RewardDataIds": null,
+        "Rewards": null
+      }
+    },
+    {
+      "TemplateId": 2,
+      "NameTextId": "메인퀘스트 2. 거미알 수집",
+      "Type": 1,
+      "TaskIds": [
+        4,
+        5,
+        6
+      ],
+      "Level": 1,
+      "RewardTableId": 1000,
+      "RequiredQuestId": 1,
+      "QuestTasks": [],
+      "RewardTableData": {
+        "TemplateId": 0,
+        "Name": null,
+        "RewardGold": 0,
+        "RewardExp": 0,
+        "RewardDataIds": null,
+        "Rewards": null
+      }
+    },
+    {
+      "TemplateId": 3,
+      "NameTextId": "메인퀘스트 완료",
+      "Type": 0,
+      "TaskIds": [
+        7
+      ],
+      "Level": 1,
+      "RewardTableId": 1000,
+      "RequiredQuestId": 2,
       "QuestTasks": [],
       "RewardTableData": {
         "TemplateId": 0,

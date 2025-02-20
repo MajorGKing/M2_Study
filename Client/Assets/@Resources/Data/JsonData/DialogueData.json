@@ -2,14 +2,14 @@
   "dialogues": [
     {
       "TemplateId": 1,
-      "OwnerNameId": "GM하리보",
+      "OwnerNameId": "기술교관 카일",
       "_nodes": [
         {
           "_isPlayerSpeaking": false,
           "_text": "부탁이 있네.",
           "_textTemplateId": "@@부탁이 있네.",
           "_children": [
-            "2c7d145d-2b86-4b5d-bc10-93a97aa69139"
+            "cecbd8a9-5a68-4b9a-94c1-316e3a604b32"
           ],
           "x": 30.0,
           "y": 0.0,
@@ -17,39 +17,15 @@
           "hideFlags": 0
         },
         {
-          "_isPlayerSpeaking": true,
-          "_text": "네.",
-          "_textTemplateId": "@@네.",
-          "_children": [
-            "cecbd8a9-5a68-4b9a-94c1-316e3a604b32"
-          ],
-          "x": 290.0,
-          "y": 0.0,
-          "name": "2c7d145d-2b86-4b5d-bc10-93a97aa69139",
-          "hideFlags": 0
-        },
-        {
           "_isPlayerSpeaking": false,
           "_text": "마을 밖에 슬라임 잡아주게.",
           "_textTemplateId": "@@마을 밖에 슬라임 잡아주게.",
           "_children": [
-            "4b61e184-5778-4bf1-9bc8-433245ee693f"
-          ],
-          "x": 553.0,
-          "y": 0.0,
-          "name": "cecbd8a9-5a68-4b9a-94c1-316e3a604b32",
-          "hideFlags": 0
-        },
-        {
-          "_isPlayerSpeaking": true,
-          "_text": "네",
-          "_textTemplateId": "@@네",
-          "_children": [
             "c858476c-42af-4600-a18c-7e23d09c538e"
           ],
-          "x": 814.0,
-          "y": 0.0,
-          "name": "4b61e184-5778-4bf1-9bc8-433245ee693f",
+          "x": 312.0,
+          "y": -1.0,
+          "name": "cecbd8a9-5a68-4b9a-94c1-316e3a604b32",
           "hideFlags": 0
         },
         {
@@ -57,19 +33,19 @@
           "_text": "고생하시게.",
           "_textTemplateId": "@@고생하시게.",
           "_children": [],
-          "x": 1080.0,
-          "y": 0.0,
+          "x": 592.0,
+          "y": -3.0,
           "name": "c858476c-42af-4600-a18c-7e23d09c538e",
           "hideFlags": 0
         }
       ],
-      "OwnerName": null,
+      "OwnerName": "",
       "name": "SO_Dialogue_1",
       "hideFlags": 0
     },
     {
       "TemplateId": 2,
-      "OwnerNameId": "GM하리보",
+      "OwnerNameId": "기술교관 카일",
       "_nodes": [
         {
           "_isPlayerSpeaking": false,
@@ -118,8 +94,108 @@
           "hideFlags": 0
         }
       ],
-      "OwnerName": null,
+      "OwnerName": "",
       "name": "SO_Dialogue_2",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 3,
+      "OwnerNameId": "기술교관 카일",
+      "_nodes": [
+        {
+          "_isPlayerSpeaking": false,
+          "_text": "나는 카일.",
+          "_textTemplateId": "나는 카일.",
+          "_children": [],
+          "x": 4.0,
+          "y": -1.0,
+          "name": "5159be76-1e8f-4eed-8f86-3b0b4930b82d",
+          "hideFlags": 0
+        }
+      ],
+      "OwnerName": "",
+      "name": "SO_Dialogue_3",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 4,
+      "OwnerNameId": "",
+      "_nodes": [
+        {
+          "_isPlayerSpeaking": false,
+          "_text": "@@새끼거미도 좀 죽이고 와라",
+          "_textTemplateId": "@새끼거미도 좀 죽이고 와라",
+          "_children": [
+            "4f1968a9-694e-423e-a222-ca5ffdecae49"
+          ],
+          "x": 0.0,
+          "y": 0.0,
+          "name": "d7d2d0fb-a77e-4ce2-a061-9b7d09109d91",
+          "hideFlags": 0
+        },
+        {
+          "_isPlayerSpeaking": true,
+          "_text": "@@네",
+          "_textTemplateId": "@@네",
+          "_children": [],
+          "x": 250.0,
+          "y": 0.0,
+          "name": "4f1968a9-694e-423e-a222-ca5ffdecae49",
+          "hideFlags": 0
+        }
+      ],
+      "OwnerName": "",
+      "name": "SO_Dialogue_4",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 5,
+      "OwnerNameId": "",
+      "_nodes": [
+        {
+          "_isPlayerSpeaking": false,
+          "_text": "@@오. 이번엔 갑옷을 드리겠음",
+          "_textTemplateId": "@@오. 이번엔 갑옷을 드리겠음",
+          "_children": [
+            "5ba53dfe-af4c-47a2-a222-005e4e81c650"
+          ],
+          "x": 0.0,
+          "y": 0.0,
+          "name": "d7d2d0fb-a77e-4ce2-a061-9b7d09109d91",
+          "hideFlags": 0
+        },
+        {
+          "_isPlayerSpeaking": true,
+          "_text": "@@네",
+          "_textTemplateId": "@@네",
+          "_children": [],
+          "x": 250.0,
+          "y": 0.0,
+          "name": "5ba53dfe-af4c-47a2-a222-005e4e81c650",
+          "hideFlags": 0
+        }
+      ],
+      "OwnerName": "",
+      "name": "SO_Dialogue_5",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 6,
+      "OwnerNameId": "",
+      "_nodes": [
+        {
+          "_isPlayerSpeaking": false,
+          "_text": "@@세계평화를 지켰다. 다음 업데이트를 기다려라",
+          "_textTemplateId": "@@세계평화를 지켰다. 다음 업데이트를 기다려라",
+          "_children": [],
+          "x": -1.0,
+          "y": 0.0,
+          "name": "d7d2d0fb-a77e-4ce2-a061-9b7d09109d91",
+          "hideFlags": 0
+        }
+      ],
+      "OwnerName": "",
+      "name": "SO_Dialogue_6",
       "hideFlags": 0
     }
   ]

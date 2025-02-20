@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: SO_Room_1
   m_EditorClassIdentifier: 
   TemplateId: 1
-  PrefabName: Room1
+  PrefabName: Room01_City
   MapNameTextId: "\uC0AC\uC6B0\uC2A4 \uC2DC\uD2F0"
   MapName: "\uC0AC\uC6B0\uC2A4 \uC2DC\uD2F0"
-  StartPosX: 87
-  StartPosY: 27
+  StartPosX: 82
+  StartPosY: 32
   SpawningPoolData: {fileID: 11400000, guid: 34da926e9b906e5429b1952ba6f5666a, type: 2}
   Npcs:
+  - {fileID: 11400000, guid: ba6c1e3590ba0c34d93ddb803d0ad14a, type: 2}
   - {fileID: 11400000, guid: f3d28b4522e90cf4e92f537f01c7c9ba, type: 2}
   - {fileID: 11400000, guid: 10406243d9a39624bafe0893c3568280, type: 2}
   - {fileID: 11400000, guid: d280a731ffc3e7e418298ced10c110d9, type: 2}

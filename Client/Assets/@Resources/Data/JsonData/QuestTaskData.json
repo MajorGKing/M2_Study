@@ -2,50 +2,125 @@
   "tasks": [
     {
       "TemplateId": 1,
-      "DescriptionTextId": "기술단장에게 말 걸기",
+      "DescriptionTextIds": [
+        "기술단장에게 인사하기"
+      ],
       "TaskType": 3,
       "ObjectiveDataIds": [
-        3
+        50
       ],
       "ObjectiveCounts": [
-        0
+        1
       ],
       "DialogueId": 1,
       "TeleportPos": null,
       "DialogueData": null,
-      "QuestObjectives": []
+      "Objectives": {}
     },
     {
       "TemplateId": 2,
-      "DescriptionTextId": "슬라임 처치",
+      "DescriptionTextIds": [
+        "슬라임 처치",
+        "레드 슬라임 처치"
+      ],
       "TaskType": 1,
       "ObjectiveDataIds": [
         4,
         5
       ],
       "ObjectiveCounts": [
-        10,
-        15
+        2,
+        2
       ],
       "DialogueId": 0,
       "TeleportPos": null,
       "DialogueData": null,
-      "QuestObjectives": []
+      "Objectives": {}
     },
     {
       "TemplateId": 3,
-      "DescriptionTextId": "기술단장에게 보고하기",
+      "DescriptionTextIds": [
+        "기술단장에게 보고하기"
+      ],
       "TaskType": 3,
       "ObjectiveDataIds": [
-        3
+        50
       ],
       "ObjectiveCounts": [
-        0
+        1
       ],
       "DialogueId": 2,
       "TeleportPos": null,
       "DialogueData": null,
-      "QuestObjectives": []
+      "Objectives": {}
+    },
+    {
+      "TemplateId": 4,
+      "DescriptionTextIds": [
+        "기술단장과 대화"
+      ],
+      "TaskType": 3,
+      "ObjectiveDataIds": [
+        50
+      ],
+      "ObjectiveCounts": [
+        1
+      ],
+      "DialogueId": 4,
+      "TeleportPos": null,
+      "DialogueData": null,
+      "Objectives": {}
+    },
+    {
+      "TemplateId": 5,
+      "DescriptionTextIds": [
+        "새끼거미 를 처치하여 거미알 구하기"
+      ],
+      "TaskType": 2,
+      "ObjectiveDataIds": [
+        10000
+      ],
+      "ObjectiveCounts": [
+        2
+      ],
+      "DialogueId": 0,
+      "TeleportPos": null,
+      "DialogueData": null,
+      "Objectives": {}
+    },
+    {
+      "TemplateId": 6,
+      "DescriptionTextIds": [
+        "기술단장에게 거미알 가져다 주기"
+      ],
+      "TaskType": 3,
+      "ObjectiveDataIds": [
+        50
+      ],
+      "ObjectiveCounts": [
+        1
+      ],
+      "DialogueId": 5,
+      "TeleportPos": null,
+      "DialogueData": null,
+      "Objectives": {}
+    },
+    {
+      "TemplateId": 7,
+      "DescriptionTextIds": [
+        "다음 업데이트를 기다리며 성장하세요."
+      ],
+      "TaskType": 3,
+      "ObjectiveDataIds": [
+        50
+      ],
+      "ObjectiveCounts": [
+        1
+      ],
+      "DialogueId": 1,
+      "TeleportPos": null,
+      "DialogueData": null,
+      "Objectives": {}
     }
   ]
 }

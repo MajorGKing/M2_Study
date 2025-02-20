@@ -76,9 +76,11 @@ namespace Server.Data
         public int ExtraCells;
         public int Range;
 
-        public int OwnerRoomId { get; private set; }
-        public int SpawnPosX { get; private set; }
-        public int SpawnPosY { get; private set; }
+        public int OwnerRoomId;
+        public int SpawnPosX;
+        public int SpawnPosY;
+
+        public int DialogueId;
 
         [ExcludeField]
         public PositionInfo SpawnPosInfo;
@@ -426,6 +428,38 @@ namespace Server.Data
 
     #endregion
 
+    #region Collectible
+    public class CollectibleData : ItemData
+    { }
+
+    [Serializable]
+    public class CollectibleDataLoader : ILoader<int, CollectibleData>
+    {
+        public List<CollectibleData> items = new List<CollectibleData>();
+
+        public Dictionary<int, CollectibleData> MakeDict()
+        {
+            Dictionary<int, CollectibleData> dict = new Dictionary<int, CollectibleData>();
+            foreach (CollectibleData item in items)
+                dict.Add(item.TemplateId, item);
+
+            return dict;
+        }
+
+        public bool Validate()
+        {
+            bool validate = true;
+
+            foreach(CollectibleData item in items)
+            {
+                item.Stackable = true;
+            }
+
+            return validate;
+        }
+    }
+    #endregion
+
     #region RewardTableData
 
     [Serializable]
@@ -764,6 +798,9 @@ namespace Server.Data
         public string PrefabName;
         public string MapNameTextId;
         public string MapName;
+        public int StartPosX;
+        public int StartPosY;
+
         public SpawningPoolData SpawningPoolData;
         public List<NpcData> Npcs;
 
@@ -828,6 +865,159 @@ namespace Server.Data
                 portal.SpawnPosInfo.PosY = portal.SpawnPosY;
             }
             return true;
+        }
+    }
+    #endregion
+
+    #region NpcCommon
+    public class NpcCommonData : NpcData
+    { }
+
+    [Serializable]
+    public class NpcCommonDataLoader : ILoader<int, NpcCommonData>
+    {
+        public List<NpcCommonData> commons = new List<NpcCommonData>();
+
+        public Dictionary<int, NpcCommonData> MakeDict()
+        {
+            Dictionary<int, NpcCommonData> dict = new Dictionary<int, NpcCommonData>();
+            foreach (NpcCommonData portal in commons)
+            {
+                dict.Add(portal.TemplateId, portal);
+            }
+            return dict;
+        }
+
+        public bool Validate()
+        {
+            foreach (NpcCommonData npc in commons)
+            {
+                npc.SpawnPosInfo = new PositionInfo();
+                npc.SpawnPosInfo.RoomId = npc.OwnerRoomId;
+                npc.SpawnPosInfo.PosX = npc.SpawnPosX;
+                npc.SpawnPosInfo.PosY = npc.SpawnPosY;
+            }
+
+            return true;
+        }
+    }
+    #endregion
+
+    #region Quest
+    [Serializable]
+    public class QuestData
+    {
+        public int TemplateId;
+        public string NameTextId;
+        public EQuestType Type;
+        public List<int> TaskIds;
+        public int Level;
+        public int RewardTableId;
+        public int RequiredQuestId;
+
+        [ExcludeField]
+        public List<QuestTaskData> QuestTasks = new List<QuestTaskData>();
+        [ExcludeField]
+        public RewardTableData RewardTableData = new RewardTableData();
+    }
+
+    public class QuestDataLoader : ILoader<int, QuestData>
+    {
+        public List<QuestData> quests = new List<QuestData>();
+
+        public Dictionary<int, QuestData> MakeDict()
+        {
+            Dictionary<int, QuestData> dict = new Dictionary<int, QuestData>();
+            foreach (QuestData questData in quests)
+                dict.Add(questData.TemplateId, questData);
+
+            return dict;
+        }
+
+        public bool Validate()
+        {
+            bool validate = true;
+
+            //QuestTasks
+            foreach (var questData in quests)
+            {
+                foreach (var taskId in questData.TaskIds)
+                {
+                    if (DataManager.QuestTaskDict.TryGetValue(taskId, out QuestTaskData questTaskData) == false)
+                    {
+                        validate = false;
+                        continue;
+                    }
+                    questData.QuestTasks.Add(questTaskData);
+                }
+
+                if (DataManager.RewardTableDict.TryGetValue(questData.RewardTableId, out questData.RewardTableData) == false)
+                {
+                    validate = false;
+                }
+            }
+            return validate;
+        }
+
+        public class QuestTaskData
+        {
+            public int TemplateId;
+            public string DescriptionTextId;
+            public EQuestTaskType TaskType;
+
+            public List<int> ObjectiveDataIds;
+            public List<int> ObjectiveCounts;
+            public int DialogueId;
+
+            [ExcludeField]
+            public PositionInfo TeleportPos;
+            [ExcludeField]
+            public Dictionary</*목표 templateId*/int, /*Count*/int> Objectives = new Dictionary<int, int>();
+        }
+
+        public class QuestTaskDataLoader : ILoader<int, QuestTaskData>
+        {
+            public List<QuestTaskData> tasks = new List<QuestTaskData>();
+
+            public Dictionary<int, QuestTaskData> MakeDict()
+            {
+                Dictionary<int, QuestTaskData> dict = new Dictionary<int, QuestTaskData>();
+                foreach (QuestTaskData questData in tasks)
+                    dict.Add(questData.TemplateId, questData);
+
+                return dict;
+            }
+
+            public bool Validate()
+            {
+                bool validate = true;
+
+                foreach (var task in tasks)
+                {
+
+                    for (int i = 0; i < task.ObjectiveDataIds.Count; i++)
+                    {
+                        task.Objectives.Add(task.ObjectiveDataIds[i], task.ObjectiveCounts[i]);
+                    }
+
+                    // TODO : 텔레포트 포지션 찾기
+                    task.TeleportPos = new PositionInfo();
+                    switch (task.TaskType)
+                    {
+                        case EQuestTaskType.None:
+                            break;
+                        case EQuestTaskType.KillTarget:
+                            break;
+                        case EQuestTaskType.CollectItem:
+                            break;
+                        case EQuestTaskType.InteractWithNpc:
+                            break;
+                    }
+
+                }
+                return validate;
+            }
+
         }
     }
     #endregion

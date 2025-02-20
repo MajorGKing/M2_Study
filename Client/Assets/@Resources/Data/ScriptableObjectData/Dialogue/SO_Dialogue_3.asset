@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b83dfbc3bf73864b9bd7a738c96df2f, type: 3}
+  m_Name: SO_Dialogue_3
+  m_EditorClassIdentifier: 
+  TemplateId: 3
+  OwnerNameId: "\uAE30\uC220\uAD50\uAD00 \uCE74\uC77C"
+  _nodes:
+  - {fileID: 1579321646085102266}
+--- !u!114 &1579321646085102266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0596f0a1c7f01cf48b7d54bcc16aa92f, type: 3}
+  m_Name: 5159be76-1e8f-4eed-8f86-3b0b4930b82d
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _text: "\uB098\uB294 \uCE74\uC77C."
+  _textTemplateId: "\uB098\uB294 \uCE74\uC77C."
+  _children: []
+  x: 4
+  y: -1

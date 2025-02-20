@@ -1,0 +1,23 @@
+{
+  "commons": [
+    {
+      "TemplateId": 50,
+      "Name": "카일",
+      "NameTextId": "카일",
+      "DescriptionTextID": "전투훈련교관임",
+      "IconImage": "npc_captain_kyle",
+      "PrefabName": "KylePrefab",
+      "NpcType": 3,
+      "ExtraCells": 0,
+      "Range": 5,
+      "OwnerRoomId": 1,
+      "SpawnPosX": 78,
+      "SpawnPosY": 32,
+      "DialogueId": 3,
+      "SpawnPosInfo": null,
+      "DialogueData": null,
+      "name": "SO_Npc_Kyle",
+      "hideFlags": 0
+    }
+  ]
+}

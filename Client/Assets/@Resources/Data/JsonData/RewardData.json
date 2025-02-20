@@ -383,6 +383,14 @@
       "Probability": 20,
       "Count": 1,
       "Item": null
+    },
+    {
+      "TemplateId": 100,
+      "Name": "거미알",
+      "ItemTemplateId": 10000,
+      "Probability": 8000,
+      "Count": 1,
+      "Item": null
     }
   ]
 }

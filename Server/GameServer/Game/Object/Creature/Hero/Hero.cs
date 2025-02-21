@@ -25,6 +25,12 @@ namespace GameServer
         public HeroInfoComponent HeroInfoComp { get; private set; }
         public QuestComponent QuestComp { get; set; }
 
+        public void BroadcastEvent(EBroadcastEventType type, int targetId = 0, int count = 0)
+        {
+            HeroInfoComp.OnBroadcastEvent(type, targetId, count);
+            QuestComp.OnBroadcastEvent(type, targetId, count);
+        }
+
         //public StatInfo TotalStat { get; private set; } = new StatInfo();
 
         // DB의 고유 번호
@@ -47,8 +53,17 @@ namespace GameServer
             HeroDbId = heroDb.HeroDbId;
             //Pos
             ObjectInfo.PosInfo.State = EObjectState.Idle;
-            ObjectInfo.PosInfo.PosX = heroDb.PosX;
-            ObjectInfo.PosInfo.PosY = heroDb.PosY;
+            if (heroDb.PosX.HasValue && heroDb.PosY.HasValue)
+            {
+                ObjectInfo.PosInfo.PosX = heroDb.PosX.Value;
+                ObjectInfo.PosInfo.PosY = heroDb.PosY.Value;
+            }
+            else
+            {
+                RoomData room = DataManager.RoomDict.Values.FirstOrDefault();
+                ObjectInfo.PosInfo.PosX = room.StartPosX;
+                ObjectInfo.PosInfo.PosY = room.StartPosY;
+            }
 
             // MyHeroInfo.
             HeroInfoComp.Init(heroDb);

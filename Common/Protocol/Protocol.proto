@@ -223,3 +223,8 @@ message S_Blink
 	int32 objectId = 1;
 	PositionInfo posInfo = 2;
 }
+
+message S_AddOrUpdateQuest
+{
+	QuestInfo questInfo = 1;
+}

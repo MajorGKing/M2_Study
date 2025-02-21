@@ -36,9 +36,14 @@ namespace GameServer.Game
 			};
 		}
 
-		#region Level System
+        public void OnBroadcastEvent(EBroadcastEventType type, int targetId, int count)
+        {
 
-		public void AddExp(int amount)
+        }
+
+        #region Level System
+
+        public void AddExp(int amount)
 		{
 			if (IsMaxLevel())
 				return;

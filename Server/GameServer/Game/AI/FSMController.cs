@@ -253,6 +253,8 @@ namespace GameServer.Game
 
         protected abstract int GetSpawnRange();
 
+        protected abstract void RemoveAggro(int objectId);
+
         protected bool IsOutOfSpawnRange(Vector2Int? pos = null)
         {
             Vector2Int position = pos ?? Owner.CellPos;
@@ -261,6 +263,7 @@ namespace GameServer.Game
 
         private void GiveUpChaseTarget()
         {
+            RemoveAggro(_target.ObjectId);
             _chaseCount = 0;
             _target = null;
             _returnToSpawnPos = true;

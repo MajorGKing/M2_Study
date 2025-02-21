@@ -16,17 +16,27 @@ namespace GameServer.Game
 			return _attackers.OrderBy(x => x.Value).Select(x => x.Key).ToList();
 		}
 
-        public void OnDamaged(int objectId, float damage)
-        {
-            if(_attackers.ContainsKey(objectId))
-                _attackers[objectId] += damage;
-            else
-                _attackers.Add(objectId, damage);
-        }
+		public List<int> GetAllAttackers()
+		{
+			return _attackers.Keys.ToList();
+		}
 
-        public void Reset()
-        {
-            _attackers.Clear();
-        }
-    }
+		public void OnDamaged(int objectId, float damage)
+		{
+			if (_attackers.ContainsKey(objectId))
+				_attackers[objectId] += damage;
+			else
+				_attackers.Add(objectId, damage);
+		}
+
+		public void Remove(int key)
+		{
+			_attackers.Remove(key);
+		}
+
+		public void Reset()
+		{
+			_attackers.Clear();
+		}
+	}
 }

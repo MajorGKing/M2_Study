@@ -8,6 +8,7 @@ namespace GameServer.Game
     {
 		protected override Vector2Int GetSpawnPos() { return Owner.SpawnPosition; }
 		protected override int GetSpawnRange() { return Owner.SpawnRange; }
+        protected override void RemoveAggro(int objectId) { Owner.Aggro.Remove(objectId); }
 
 		public MonsterAIController(Monster owner) : base(owner)
         {

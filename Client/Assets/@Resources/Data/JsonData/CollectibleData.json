@@ -1,0 +1,17 @@
+{
+  "items": [
+    {
+      "Type": 3,
+      "SubType": 0,
+      "Grade": 1,
+      "MaxStack": 9999,
+      "Stackable": false,
+      "TemplateId": 10000,
+      "Name": "거미알",
+      "NameTextId": "@@거미알",
+      "DescriptionTextID": "@@새끼거미가 지키고 있는 알",
+      "IconImage": "forest_obj_spider_2",
+      "PrefabName": null
+    }
+  ]
+}

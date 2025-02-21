@@ -6,6 +6,11 @@ using Server.Game;
 
 namespace GameServer
 {
+    public interface IBroadcastEventListener
+    {
+        public void OnBroadcastEvent(EBroadcastEventType type, int targetId, int count);
+    }
+
     public class Hero : Creature
     {
         public HeroData HeroData { get; set; }
@@ -18,6 +23,7 @@ namespace GameServer
         public VisionCubeComponent Vision { get; protected set; }
         public InventoryComponent Inven { get; private set; }
         public HeroInfoComponent HeroInfoComp { get; private set; }
+        public QuestComponent QuestComp { get; set; }
 
         //public StatInfo TotalStat { get; private set; } = new StatInfo();
 

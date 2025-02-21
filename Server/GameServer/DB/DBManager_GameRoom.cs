@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
+﻿using Microsoft.EntityFrameworkCore;
 using Google.Protobuf.Protocol;
 using Server.Data;
-using System.Numerics;
 using Server.Game;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using System.Collections;
 
 namespace GameServer
 {
@@ -55,7 +47,7 @@ namespace GameServer
                     remainingAddCount -= stackCount;
 
                     // 1-3. 메모리 선적용 및 클라 전송.
-                    hero.Inven.AddCount(stackItem.ItemDbId, stackCount, sendToClient: false);
+                    hero.Inven.AddCount(stackItem.ItemDbId, stackCount, sendToClient: true);
                 }
             }
 

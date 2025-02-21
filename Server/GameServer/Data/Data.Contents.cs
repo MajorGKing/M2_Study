@@ -1,10 +1,5 @@
 ﻿using GameServer;
-using GameServer.Game;
 using Google.Protobuf.Protocol;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 
 namespace Server.Data
 {
@@ -958,67 +953,67 @@ namespace Server.Data
             }
             return validate;
         }
+    }
 
-        public class QuestTaskData
+    public class QuestTaskData
+    {
+        public int TemplateId;
+        public string DescriptionTextId;
+        public EQuestTaskType TaskType;
+
+        public List<int> ObjectiveDataIds;
+        public List<int> ObjectiveCounts;
+        public int DialogueId;
+
+        [ExcludeField]
+        public PositionInfo TeleportPos;
+        [ExcludeField]
+        public Dictionary</*목표 templateId*/int, /*Count*/int> Objectives = new Dictionary<int, int>();
+    }
+
+    public class QuestTaskDataLoader : ILoader<int, QuestTaskData>
+    {
+        public List<QuestTaskData> tasks = new List<QuestTaskData>();
+
+        public Dictionary<int, QuestTaskData> MakeDict()
         {
-            public int TemplateId;
-            public string DescriptionTextId;
-            public EQuestTaskType TaskType;
+            Dictionary<int, QuestTaskData> dict = new Dictionary<int, QuestTaskData>();
+            foreach (QuestTaskData questData in tasks)
+                dict.Add(questData.TemplateId, questData);
 
-            public List<int> ObjectiveDataIds;
-            public List<int> ObjectiveCounts;
-            public int DialogueId;
-
-            [ExcludeField]
-            public PositionInfo TeleportPos;
-            [ExcludeField]
-            public Dictionary</*목표 templateId*/int, /*Count*/int> Objectives = new Dictionary<int, int>();
+            return dict;
         }
 
-        public class QuestTaskDataLoader : ILoader<int, QuestTaskData>
+        public bool Validate()
         {
-            public List<QuestTaskData> tasks = new List<QuestTaskData>();
+            bool validate = true;
 
-            public Dictionary<int, QuestTaskData> MakeDict()
+            foreach (var task in tasks)
             {
-                Dictionary<int, QuestTaskData> dict = new Dictionary<int, QuestTaskData>();
-                foreach (QuestTaskData questData in tasks)
-                    dict.Add(questData.TemplateId, questData);
 
-                return dict;
-            }
-
-            public bool Validate()
-            {
-                bool validate = true;
-
-                foreach (var task in tasks)
+                for (int i = 0; i < task.ObjectiveDataIds.Count; i++)
                 {
-
-                    for (int i = 0; i < task.ObjectiveDataIds.Count; i++)
-                    {
-                        task.Objectives.Add(task.ObjectiveDataIds[i], task.ObjectiveCounts[i]);
-                    }
-
-                    // TODO : 텔레포트 포지션 찾기
-                    task.TeleportPos = new PositionInfo();
-                    switch (task.TaskType)
-                    {
-                        case EQuestTaskType.None:
-                            break;
-                        case EQuestTaskType.KillTarget:
-                            break;
-                        case EQuestTaskType.CollectItem:
-                            break;
-                        case EQuestTaskType.InteractWithNpc:
-                            break;
-                    }
-
+                    task.Objectives.Add(task.ObjectiveDataIds[i], task.ObjectiveCounts[i]);
                 }
-                return validate;
-            }
 
+                // TODO : 텔레포트 포지션 찾기
+                task.TeleportPos = new PositionInfo();
+                switch (task.TaskType)
+                {
+                    case EQuestTaskType.None:
+                        break;
+                    case EQuestTaskType.KillTarget:
+                        break;
+                    case EQuestTaskType.CollectItem:
+                        break;
+                    case EQuestTaskType.InteractWithNpc:
+                        break;
+                }
+
+            }
+            return validate;
         }
+
     }
     #endregion
 }

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Google.Protobuf.Protocol;
-using System.Collections.Concurrent;
+using Server.Data;
 
 namespace GameServer
 {
@@ -18,6 +14,9 @@ namespace GameServer
                 List<HeroDb> heroDbs = db.Heroes
                     .Where(h => h.AccountDbId == accountDbId)
                     .Include(h => h.Items)
+					.Include (h => h.Quests)
+                    .ThenInclude(q => q.QuestTasks) // Quests의 하위 엔티티인 QuestTasks 포함
+                    .AsSplitQuery()
                     .ToList();
 
                 return heroDbs;
@@ -42,6 +41,8 @@ namespace GameServer
                     MapId = 1,
                     Hp = -1,
                     Mp = -1,
+                    PosX = null,
+                    PosY = null,
                 };
 
                 db.Heroes.Add(heroDb);
@@ -68,6 +69,29 @@ namespace GameServer
             }
 
             return true;
+        }
+
+        public static QuestDb CreateQuestDb(int ownerDbid, int templateId)
+        {
+            using (GameDbContext db = new GameDbContext())
+            {
+                if (DataManager.QuestDict.TryGetValue(1, out QuestData questData) == false)
+                    return null;
+
+                QuestDb questDb = new QuestDb()
+                {
+                    TemplateId = questData.TemplateId,
+                    State = EQuestState.None,
+                    OwnerDbId = ownerDbid,
+                };
+
+                db.Quests.Add(questDb);
+
+                if (db.SaveChangesEx())
+                    return questDb;
+
+                return null;
+            }
         }
         #endregion
     }

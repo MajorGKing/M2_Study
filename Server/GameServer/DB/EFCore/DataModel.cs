@@ -3,6 +3,7 @@ using GameServer.Game;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace GameServer
 {
@@ -20,12 +21,13 @@ namespace GameServer
         public int Hp { get; set; }
         public int Mp { get; set; }
         public int Exp { get; set; }
-        public int MapId { get; set; }
-        public int PosX { get; set; }
-        public int PosY { get; set; }
+        public int MapId { get; set; } //TODO RoomId 로 바꾸기
+        public int? PosX { get; set; }
+        public int? PosY { get; set; }
         public int Gold { get; set; }
         public int Dia { get; set; }
         public ICollection<ItemDb> Items { get; set; } = new List<ItemDb>();
+        public ICollection<QuestDb> Quests { get; set; } = new List<QuestDb>();
     }
 
     [Table("Item")]
@@ -40,5 +42,28 @@ namespace GameServer
         // FK
         public int OwnerDbId { get; set; }
         public HeroDb OwnerDb { get; set; }
+    }
+
+    [Table("Quest")]
+    [PrimaryKey(nameof(OwnerDbId), nameof(TemplateId))]
+    public class QuestDb
+    {
+        // PK, FK
+        public int OwnerDbId { get; set; }
+        public int TemplateId { get; set; }
+        public EQuestState State { get; set; }
+
+        // JSON
+        public List<QuestTaskDb> QuestTasks { get; set; } = new List<QuestTaskDb>();
+
+        // FK        
+        public HeroDb OwnerDb { get; set; }
+    }
+
+    [Owned]
+    public class QuestTaskDb
+    {
+        public List<int> ObjectiveTemplateIds { get; set; } = new List<int>();
+        public List<int> ObjectiveCounts { get; set; } = new List<int>();
     }
 }

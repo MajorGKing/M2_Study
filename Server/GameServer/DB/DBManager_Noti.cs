@@ -1,11 +1,7 @@
 ﻿using Google.Protobuf.Protocol;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
+using Server.Data;
 using Server.Game;
-using System;
-using System.Collections.Generic;
-using System.Numerics;
-using System.Text;
 
 namespace GameServer
 {
@@ -140,6 +136,93 @@ namespace GameServer
                     {
                         db.Entry(itemDb).State = EntityState.Unchanged;
                         db.Entry(itemDb).Property(nameof(ItemDb.Count)).IsModified = true;
+                    }
+
+                    bool success = db.SaveChangesEx();
+                    if (success == false)
+                    {
+                        // 실패했으면 Kick
+                    }
+                }
+            });
+        }
+
+        public static void AddQuestNoti(Hero hero, QuestData questData)
+        {
+            // GameThread
+            if (hero == null || questData == null)
+                return;
+
+            QuestDb questDb = new QuestDb
+            {
+                TemplateId = questData.TemplateId,
+                State = EQuestState.Processing,
+                OwnerDbId = hero.HeroDbId,
+            };
+
+            foreach (QuestTaskData questTaskData in questData.QuestTasks)
+            {
+                QuestTaskDb taskDb = new QuestTaskDb();
+
+                foreach (int objectiveId in questTaskData.ObjectiveDataIds)
+                {
+                    taskDb.ObjectiveTemplateIds.Add(objectiveId);
+                    taskDb.ObjectiveCounts.Add(0);
+                }
+
+                questDb.QuestTasks.Add(taskDb);
+            }
+
+            // 메모리 선적용.
+            hero.QuestComp.AddQuestFromDb(questDb, sendToClient: true);
+
+            Push(hero.HeroDbId, () =>
+            {
+                // DBThread
+                using (GameDbContext db = new GameDbContext())
+                {
+                    db.Quests.Add(questDb);
+
+                    bool success = db.SaveChangesEx();
+                    if (success == true)
+                    {
+                    }
+                }
+            });
+        }
+
+        public static void SaveQuestNoti(Hero hero, QuestInfo questInfo)
+        {
+            if (hero == null)
+                return;
+
+            // DBThread
+            Push(hero.HeroDbId, () =>
+            {
+                using (GameDbContext db = new GameDbContext())
+                {
+                    QuestDb questDb = db.Quests
+                        .Include(q => q.QuestTasks) // QuestTasks를 명시적으로 포함하여 로드
+                        .Where(q => q.OwnerDbId == hero.HeroDbId && q.TemplateId == questInfo.TemplateId)
+                        .FirstOrDefault();
+
+                    if (questDb == null)
+                        return;
+
+                    // Quest 상태 업데이트
+                    questDb.State = questInfo.QuestState;
+                    questDb.QuestTasks.Clear();
+
+                    // 새로운 QuestTask 추가
+                    for (int i = 0; i < questInfo.TaskInfos.Count; i++)
+                    {
+                        QuestTaskInfo taskInfo = questInfo.TaskInfos[i];
+                        QuestTaskDb questTaskDb = new QuestTaskDb
+                        {
+                            ObjectiveTemplateIds = taskInfo.Objectives.Keys.ToList(),
+                            ObjectiveCounts = taskInfo.Objectives.Values.ToList()
+                        };
+                        questDb.QuestTasks.Add(questTaskDb);
                     }
 
                     bool success = db.SaveChangesEx();

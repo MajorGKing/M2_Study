@@ -7,8 +7,9 @@ namespace GameServer
 	{
 		public DbSet<HeroDb> Heroes { get; set; }
 		public DbSet<ItemDb> Items { get; set; }
+        public DbSet<QuestDb> Quests { get; set; }
 
-		static readonly ILoggerFactory _logger = LoggerFactory.Create(builder => { builder.AddConsole(); });
+        static readonly ILoggerFactory _logger = LoggerFactory.Create(builder => { builder.AddConsole(); });
 
 		public GameDbContext()
 		{
@@ -42,6 +43,16 @@ namespace GameServer
                 .WithMany(e => e.Items)
                 .HasForeignKey(e => e.OwnerDbId)
                 .IsRequired();
-        }
+
+            builder.Entity<QuestDb>()
+                .HasOne(e => e.OwnerDb)
+                .WithMany(e => e.Quests)
+                .HasForeignKey(e => e.OwnerDbId)
+                .IsRequired();
+
+            // Rookiss :)
+            builder.Entity<QuestDb>()
+                .OwnsMany(e => e.QuestTasks, builder => { builder.ToJson(); });
+		}
     }
 }

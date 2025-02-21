@@ -62,8 +62,11 @@ namespace Server.Game
                     break;
                 case EItemType.Consumable:
                     item = new Consumable(templateId);
+					break;
+                case EItemType.Collectible:
+                    item = new Collectible(templateId);
                     break;
-            }
+			}
 
             if (item != null)
             {

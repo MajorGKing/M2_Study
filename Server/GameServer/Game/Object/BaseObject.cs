@@ -14,7 +14,7 @@ namespace GameServer
 
         public int ExtraCells { get; protected set; } = 0;
 
-        public GameRoom Room { get; set; }
+        public GameRoom Room { get; set; } = GameRoom.S_EmptyRoom;
 
         public ObjectInfo ObjectInfo { get; set; } = new ObjectInfo();
         public PositionInfo PosInfo { get; private set; } = new PositionInfo();

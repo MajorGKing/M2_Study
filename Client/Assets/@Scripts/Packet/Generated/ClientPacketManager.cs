@@ -45,6 +45,7 @@ public enum MsgId
 	C_InteractionNpc = 37,
 	C_ReqTeleport = 38,
 	S_Blink = 39,
+	S_AddOrUpdateQuest = 40,
 }
 
 class PacketManager
@@ -113,7 +114,9 @@ class PacketManager
 		_onRecv.Add((ushort)MsgId.S_RewardValue, MakePacket<S_RewardValue>);
 		_handler.Add((ushort)MsgId.S_RewardValue, PacketHandler.S_RewardValueHandler);		
 		_onRecv.Add((ushort)MsgId.S_Blink, MakePacket<S_Blink>);
-		_handler.Add((ushort)MsgId.S_Blink, PacketHandler.S_BlinkHandler);
+		_handler.Add((ushort)MsgId.S_Blink, PacketHandler.S_BlinkHandler);		
+		_onRecv.Add((ushort)MsgId.S_AddOrUpdateQuest, MakePacket<S_AddOrUpdateQuest>);
+		_handler.Add((ushort)MsgId.S_AddOrUpdateQuest, PacketHandler.S_AddOrUpdateQuestHandler);
 	}
 
 	public void OnRecvPacket(PacketSession session, ArraySegment<byte> buffer)

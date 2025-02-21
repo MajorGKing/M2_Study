@@ -65,6 +65,8 @@ namespace Server.Game
                     break;
             }
 
+            Owner.BroadcastEvent(EBroadcastEventType.CollectItem, item.TemplateId, item.Count);
+
             if (sendToClient)
                 item.SendAddPacket(Owner);
         }
@@ -75,7 +77,9 @@ namespace Server.Game
             if (item == null)
                 return;
 
-            item.AddCount(Owner, count, sendToClient);
+			item.AddCount(Owner, count, sendToClient);
+
+            Owner.BroadcastEvent(EBroadcastEventType.CollectItem, item.TemplateId, count);
         }
 
         public void Remove(Item item, bool sendToClient = false)
@@ -96,8 +100,10 @@ namespace Server.Game
                     break;
             }
 
-            if(sendToClient)
-                item.SendDeletePacket(Owner);
+            Owner.BroadcastEvent(EBroadcastEventType.CollectItem, item.TemplateId, -item.Count);
+
+            if (sendToClient)
+               item.SendDeletePacket(Owner);
         }
         #endregion
 

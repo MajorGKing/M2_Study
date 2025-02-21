@@ -1,6 +1,7 @@
 ﻿using System.Net.Sockets;
 using System.Net;
 using Google.Protobuf.Protocol;
+using Server.Data;
 
 namespace GameServer
 {
@@ -45,8 +46,16 @@ namespace GameServer
             return EItemSlotType.None;
         }
 
+        public static T RandomElementByProbability<T>(this IEnumerable<T> sequence) where T : RewardData
+        {
+            return RandomElementByWeight<T>(sequence, e => e.Probability);
+        }
+
         public static T RandomElementByWeight<T>(this IEnumerable<T> sequence, Func<T, float> weightSelector)
         {
+            if (sequence == null || sequence.Count() == 0)
+                return default(T);
+
             float totalWeight = sequence.Sum(weightSelector);
             double itemWeightIndex = new Random().NextDouble() * Define.RANDOM_WEIGHT_SCALE;
             float currentWeightIndex = 0;

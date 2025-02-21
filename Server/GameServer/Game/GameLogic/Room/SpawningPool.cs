@@ -56,6 +56,9 @@ namespace GameServer.Game
 
                 switch (npcData.NpcType)
                 {
+                    case ENpcType.Common:
+                        npc = ObjectManager.Instance.Spawn<Npc>(npcData.TemplateId);
+                        break;
                     case ENpcType.Portal:
                         npc = ObjectManager.Instance.Spawn<Npc>(npcData.TemplateId);
                         break;

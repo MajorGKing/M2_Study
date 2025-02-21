@@ -46,7 +46,8 @@ namespace GameServer
             Vision = new VisionCubeComponent(this);
             Inven = new InventoryComponent(this);
             HeroInfoComp = new HeroInfoComponent(this);
-		}
+            QuestComp = new QuestComponent(this);
+        }
 
         public void Init(HeroDb heroDb)
         {
@@ -73,13 +74,8 @@ namespace GameServer
 			InitializeHeroData(heroDb);
             InitializeSkills();
             InitializeItems(heroDb);
-
-            //TODO
-            //InitCollections()
-            //InitBuffEffects()
-
-            //EffectComp.SendUpdateEffects();// 적용된 이펙트 패킷 보내기
-            //RefreshTotalStat();
+            
+            QuestComp.Init(heroDb);
         }
 
         public void RefreshStat()
@@ -155,7 +151,7 @@ namespace GameServer
 
             _respawnJob = room?.PushAfter(3000, () =>
             {
-                room.EnterGame(this, cellPos: CellPos);
+				room.EnterGame(this, cellPos: new Vector2Int(room.RoomData.StartPosX, room.RoomData.StartPosY));
             });
         }
 

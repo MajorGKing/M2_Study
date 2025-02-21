@@ -141,16 +141,30 @@ namespace Google.Protobuf.Protocol {
             "ChRFQ29uc3VtYWJsZUdyb3VwVHlwZRIfChtFQ09OU1VNQUJMRV9HUk9VUF9U",
             "WVBFX05PTkUQABIdChlFQ09OU1VNQUJMRV9HUk9VUF9UWVBFX0hQEAESHQoZ",
             "RUNPTlNVTUFCTEVfR1JPVVBfVFlQRV9NUBACEiEKHUVDT05TVU1BQkxFX0dS",
-            "T1VQX1RZUEVfQVRUQUNLEAMqSAoIRU5wY1R5cGUSEgoORU5QQ19UWVBFX05P",
+            "T1VQX1RZUEVfQVRUQUNLEAMqXgoIRU5wY1R5cGUSEgoORU5QQ19UWVBFX05P",
             "TkUQABIUChBFTlBDX1RZUEVfUE9SVEFMEAESEgoORU5QQ19UWVBFX1NIT1AQ",
-            "AiqQAQoKRUxlYXZlVHlwZRIUChBFTEVBVkVfVFlQRV9OT05FEAASFAoQRUxF",
-            "QVZFX1RZUEVfREVBRBABEhsKF0VMRUFWRV9UWVBFX1VTRVJfTE9HT1VUEAIS",
-            "HAoYRUxFQVZFX1RZUEVfRElTQ09OTkVDVEVEEAMSGwoXRUxFQVZFX1RZUEVf",
-            "Q0hBTkdFX1JPT00QBEIbqgIYR29vZ2xlLlByb3RvYnVmLlByb3RvY29sYgZw",
-            "cm90bzM="));
+            "AhIUChBFTlBDX1RZUEVfQ09NTU9OEAMqkAEKCkVMZWF2ZVR5cGUSFAoQRUxF",
+            "QVZFX1RZUEVfTk9ORRAAEhQKEEVMRUFWRV9UWVBFX0RFQUQQARIbChdFTEVB",
+            "VkVfVFlQRV9VU0VSX0xPR09VVBACEhwKGEVMRUFWRV9UWVBFX0RJU0NPTk5F",
+            "Q1RFRBADEhsKF0VMRUFWRV9UWVBFX0NIQU5HRV9ST09NEAQqTQoKRVF1ZXN0",
+            "VHlwZRIUChBFUVVFU1RfVFlQRV9OT05FEAASFAoQRVFVRVNUX1RZUEVfTUFJ",
+            "ThABEhMKD0VRVUVTVF9UWVBFX1NVQhACKngKC0VRdWVzdFN0YXRlEhUKEUVR",
+            "VUVTVF9TVEFURV9OT05FEAASGwoXRVFVRVNUX1NUQVRFX1BST0NFU1NJTkcQ",
+            "ARIaChZFUVVFU1RfU1RBVEVfQ09NUExFVEVEEAISGQoVRVFVRVNUX1NUQVRF",
+            "X1JFV0FSREVEEAMqmAEKDkVRdWVzdFRhc2tUeXBlEhkKFUVRVUVTVF9UQVNL",
+            "X1RZUEVfTk9ORRAAEiAKHEVRVUVTVF9UQVNLX1RZUEVfS0lMTF9UQVJHRVQQ",
+            "ARIhCh1FUVVFU1RfVEFTS19UWVBFX0NPTExFQ1RfSVRFTRACEiYKIkVRVUVT",
+            "VF9UQVNLX1RZUEVfSU5URVJBQ1RfV0lUSF9OUEMQAyr/AQoTRUJyb2FkY2Fz",
+            "dEV2ZW50VHlwZRIeChpFQlJPQURDQVNUX0VWRU5UX1RZUEVfTk9ORRAAEiUK",
+            "IUVCUk9BRENBU1RfRVZFTlRfVFlQRV9LSUxMX1RBUkdFVBABEiYKIkVCUk9B",
+            "RENBU1RfRVZFTlRfVFlQRV9DT0xMRUNUX0lURU0QAhIrCidFQlJPQURDQVNU",
+            "X0VWRU5UX1RZUEVfSU5URVJBQ1RfV0lUSF9OUEMQAxIiCh5FQlJPQURDQVNU",
+            "X0VWRU5UX1RZUEVfTEVWRUxfVVAQBBIoCiRFQlJPQURDQVNUX0VWRU5UX1RZ",
+            "UEVfQ09NUExFVEVfUVVFU1QQBUIbqgIYR29vZ2xlLlByb3RvYnVmLlByb3Rv",
+            "Y29sYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.EHeroGender), typeof(global::Google.Protobuf.Protocol.EHeroClass), typeof(global::Google.Protobuf.Protocol.ECreateHeroResult), typeof(global::Google.Protobuf.Protocol.EObjectState), typeof(global::Google.Protobuf.Protocol.EMoveDir), typeof(global::Google.Protobuf.Protocol.EGameObjectType), typeof(global::Google.Protobuf.Protocol.ECellCollisionType), typeof(global::Google.Protobuf.Protocol.EFindPathResult), typeof(global::Google.Protobuf.Protocol.ERespawnType), typeof(global::Google.Protobuf.Protocol.EOwnerStat), typeof(global::Google.Protobuf.Protocol.EStatType), typeof(global::Google.Protobuf.Protocol.ECreatureStateFlag), typeof(global::Google.Protobuf.Protocol.ESkillType), typeof(global::Google.Protobuf.Protocol.EUseSkillTargetType), typeof(global::Google.Protobuf.Protocol.ETargetFriendType), typeof(global::Google.Protobuf.Protocol.EEffectType), typeof(global::Google.Protobuf.Protocol.EDurationPolicy), typeof(global::Google.Protobuf.Protocol.EFontType), typeof(global::Google.Protobuf.Protocol.EItemType), typeof(global::Google.Protobuf.Protocol.EItemSubType), typeof(global::Google.Protobuf.Protocol.EItemGrade), typeof(global::Google.Protobuf.Protocol.EPotionType), typeof(global::Google.Protobuf.Protocol.EItemSlotType), typeof(global::Google.Protobuf.Protocol.EItemStatus), typeof(global::Google.Protobuf.Protocol.EUpdateItemReason), typeof(global::Google.Protobuf.Protocol.EItemCooltimeGroup), typeof(global::Google.Protobuf.Protocol.EErrorMessage), typeof(global::Google.Protobuf.Protocol.ECanUseSkillFailReason), typeof(global::Google.Protobuf.Protocol.ESkillSlot), typeof(global::Google.Protobuf.Protocol.EConsumableGroupType), typeof(global::Google.Protobuf.Protocol.ENpcType), typeof(global::Google.Protobuf.Protocol.ELeaveType), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.EHeroGender), typeof(global::Google.Protobuf.Protocol.EHeroClass), typeof(global::Google.Protobuf.Protocol.ECreateHeroResult), typeof(global::Google.Protobuf.Protocol.EObjectState), typeof(global::Google.Protobuf.Protocol.EMoveDir), typeof(global::Google.Protobuf.Protocol.EGameObjectType), typeof(global::Google.Protobuf.Protocol.ECellCollisionType), typeof(global::Google.Protobuf.Protocol.EFindPathResult), typeof(global::Google.Protobuf.Protocol.ERespawnType), typeof(global::Google.Protobuf.Protocol.EOwnerStat), typeof(global::Google.Protobuf.Protocol.EStatType), typeof(global::Google.Protobuf.Protocol.ECreatureStateFlag), typeof(global::Google.Protobuf.Protocol.ESkillType), typeof(global::Google.Protobuf.Protocol.EUseSkillTargetType), typeof(global::Google.Protobuf.Protocol.ETargetFriendType), typeof(global::Google.Protobuf.Protocol.EEffectType), typeof(global::Google.Protobuf.Protocol.EDurationPolicy), typeof(global::Google.Protobuf.Protocol.EFontType), typeof(global::Google.Protobuf.Protocol.EItemType), typeof(global::Google.Protobuf.Protocol.EItemSubType), typeof(global::Google.Protobuf.Protocol.EItemGrade), typeof(global::Google.Protobuf.Protocol.EPotionType), typeof(global::Google.Protobuf.Protocol.EItemSlotType), typeof(global::Google.Protobuf.Protocol.EItemStatus), typeof(global::Google.Protobuf.Protocol.EUpdateItemReason), typeof(global::Google.Protobuf.Protocol.EItemCooltimeGroup), typeof(global::Google.Protobuf.Protocol.EErrorMessage), typeof(global::Google.Protobuf.Protocol.ECanUseSkillFailReason), typeof(global::Google.Protobuf.Protocol.ESkillSlot), typeof(global::Google.Protobuf.Protocol.EConsumableGroupType), typeof(global::Google.Protobuf.Protocol.ENpcType), typeof(global::Google.Protobuf.Protocol.ELeaveType), typeof(global::Google.Protobuf.Protocol.EQuestType), typeof(global::Google.Protobuf.Protocol.EQuestState), typeof(global::Google.Protobuf.Protocol.EQuestTaskType), typeof(global::Google.Protobuf.Protocol.EBroadcastEventType), }, null, null));
     }
     #endregion
 
@@ -421,6 +435,7 @@ namespace Google.Protobuf.Protocol {
     [pbr::OriginalName("ENPC_TYPE_NONE")] None = 0,
     [pbr::OriginalName("ENPC_TYPE_PORTAL")] Portal = 1,
     [pbr::OriginalName("ENPC_TYPE_SHOP")] Shop = 2,
+    [pbr::OriginalName("ENPC_TYPE_COMMON")] Common = 3,
   }
 
   public enum ELeaveType {
@@ -429,6 +444,35 @@ namespace Google.Protobuf.Protocol {
     [pbr::OriginalName("ELEAVE_TYPE_USER_LOGOUT")] UserLogout = 2,
     [pbr::OriginalName("ELEAVE_TYPE_DISCONNECTED")] Disconnected = 3,
     [pbr::OriginalName("ELEAVE_TYPE_CHANGE_ROOM")] ChangeRoom = 4,
+  }
+
+  public enum EQuestType {
+    [pbr::OriginalName("EQUEST_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("EQUEST_TYPE_MAIN")] Main = 1,
+    [pbr::OriginalName("EQUEST_TYPE_SUB")] Sub = 2,
+  }
+
+  public enum EQuestState {
+    [pbr::OriginalName("EQUEST_STATE_NONE")] None = 0,
+    [pbr::OriginalName("EQUEST_STATE_PROCESSING")] Processing = 1,
+    [pbr::OriginalName("EQUEST_STATE_COMPLETED")] Completed = 2,
+    [pbr::OriginalName("EQUEST_STATE_REWARDED")] Rewarded = 3,
+  }
+
+  public enum EQuestTaskType {
+    [pbr::OriginalName("EQUEST_TASK_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("EQUEST_TASK_TYPE_KILL_TARGET")] KillTarget = 1,
+    [pbr::OriginalName("EQUEST_TASK_TYPE_COLLECT_ITEM")] CollectItem = 2,
+    [pbr::OriginalName("EQUEST_TASK_TYPE_INTERACT_WITH_NPC")] InteractWithNpc = 3,
+  }
+
+  public enum EBroadcastEventType {
+    [pbr::OriginalName("EBROADCAST_EVENT_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("EBROADCAST_EVENT_TYPE_KILL_TARGET")] KillTarget = 1,
+    [pbr::OriginalName("EBROADCAST_EVENT_TYPE_COLLECT_ITEM")] CollectItem = 2,
+    [pbr::OriginalName("EBROADCAST_EVENT_TYPE_INTERACT_WITH_NPC")] InteractWithNpc = 3,
+    [pbr::OriginalName("EBROADCAST_EVENT_TYPE_LEVEL_UP")] LevelUp = 4,
+    [pbr::OriginalName("EBROADCAST_EVENT_TYPE_COMPLETE_QUEST")] CompleteQuest = 5,
   }
 
   #endregion

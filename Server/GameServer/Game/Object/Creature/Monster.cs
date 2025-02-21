@@ -96,7 +96,10 @@ namespace GameServer
             // 1. 어그로 수치가 가장 높고, 같은 방에 있는 영웅한테 준다.
             GiveRewardToTopAttacker();
 
-            // 2. AI 매니저에 전달.
+            // 2. 모든 공격자들에게 킬 이벤트 준다(리니지랑 같은방식)
+            BroadcastKillEventToAllAttackers();
+
+            // 3. AI 매니저에 전달.
             AI.OnDead(attacker);
 
             base.OnDead(attacker);
@@ -105,8 +108,8 @@ namespace GameServer
         private void GiveRewardToTopAttacker()
         {
             // 어그로 수치가 가장 높고, 같은 방에 있는 영웅한테 준다.
-            List<int> attackerIds = Aggro.GetTopAttackers();
-            foreach (int attackerId in attackerIds)
+            List<int> sortedAttackerIds = Aggro.GetTopAttackers();
+            foreach (int attackerId in sortedAttackerIds)
             {
                 Hero hero = Room.GetHeroById(attackerId);
                 if (hero != null)
@@ -121,9 +124,20 @@ namespace GameServer
         {
             if(hero.Inven.IsInventoryFull() == false)
             {
-                RewardData rewardData = GetRandomReward();
+                // 퀘스트 아이템 드롭, 일반 아이템 드롭 따로 적용
+                // 1. 퀘스트 아이템을 제외한 Reward
+                RewardData rewardData = GetRandomRewardFromMonsterData(isQuestReward: false);
                 if (rewardData != null)
                     DBManager.RewardHero(hero, rewardData);
+
+                // 2. Hero가 퀘스트중이고, 몬스터 드롭 테이블에 퀘스트 아이템이 있으면.
+                List<RewardData> questRewards = hero.QuestComp.FilterNeededItemToProceedQuestTask(MonsterData.RewardTable.Rewards);
+                if (questRewards.Count > 0)
+                {
+                    RewardData questRewardData = questRewards.RandomElementByProbability();
+                    if (questRewardData != null)
+                        DBManager.RewardHero(hero, questRewardData);
+                }
             }
 
             // 나머지
@@ -131,13 +145,37 @@ namespace GameServer
                 hero.RewardExpAndGold(MonsterData.RewardTable);
         }
 
+        private void BroadcastKillEventToAllAttackers()
+        {
+            List<int> attackerIds = Aggro.GetAllAttackers();
+            foreach (int attackerId in attackerIds)
+            {
+                Hero hero = Room.GetHeroById(attackerId);
+                if (hero == null)
+                    continue;
+                    
+                hero.BroadcastEvent(EBroadcastEventType.KillTarget, TemplateId, 1);
+            }
+        }
+
         public override void Reset()
         {
             base.Reset();
             AI.Reset();
+            Aggro.Reset();
         }
 
-        private RewardData GetRandomReward()
+        #region Helpers
+
+        private RewardData GetRandomRewardFromMonsterData(bool isQuestReward = false)
+        {
+            if (isQuestReward)
+                return GetRandomRewardFromMonsterData(r => r.Item.Type == EItemType.Collectible);
+            else
+                return GetRandomRewardFromMonsterData(r => r.Item.Type != EItemType.Collectible);
+        }
+
+        private RewardData GetRandomRewardFromMonsterData(Func<RewardData, bool> condition)
         {
             if (MonsterData.RewardTable == null)
                 return null;
@@ -146,8 +184,13 @@ namespace GameServer
             if (MonsterData.RewardTable.Rewards.Count <= 0)
                 return null;
 
-            return MonsterData.RewardTable.Rewards.RandomElementByWeight(e => e.Probability);
+            var filteredRewards = MonsterData.RewardTable.Rewards
+                                  .Where(condition)
+                                  .ToList();
+
+            return filteredRewards.RandomElementByProbability();
         }
 
+        #endregion
     }
 }

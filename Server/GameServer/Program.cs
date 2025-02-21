@@ -41,14 +41,13 @@ namespace Server
 
             Console.WriteLine("Listening...");
 
-            // GameLogic
-            const int GameThreadCount = 2;//2;
-            GameLogic.LaunchGameThreads(GameThreadCount);
-            //GameLogic.LaunchRoomUpdateTasks();
+			// GameLogic
+			const int GameThreadCount = 1;
+			GameLogic.LaunchGameThreads(GameThreadCount);
 
-            // DB
-            const int DbThreadCount = 2; //2;
-            DBManager.LaunchDBThreads(DbThreadCount);
+			// DB
+			const int DbThreadCount = 1;
+			DBManager.LaunchDBThreads(DbThreadCount);
 
             //TestDatabaseConnection();
 

@@ -77,7 +77,7 @@ namespace GameServer
             // Thread 생성.
             for (int i = 0; i < threadCount; i++)
             {
-                Thread t = new Thread(new ParameterizedThreadStart(GameThreadJob_1));
+                Thread t = new Thread(new ParameterizedThreadStart(GameThreadJob_2));
                 t.Name = $"GameLogic_{i}";
                 t.Start(i);
             }

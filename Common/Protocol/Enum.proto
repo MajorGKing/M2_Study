@@ -175,7 +175,8 @@ enum EItemType
 {
 	EITEM_TYPE_NONE = 0;
 	EITEM_TYPE_EQUIPMENT = 1;
-	EITEM_TYPE_CONSUMABLE = 2;
+    EITEM_TYPE_CONSUMABLE = 2;
+    EITEM_TYPE_COLLECTIBLE = 3;
 }
 
 enum EItemSubType 
@@ -300,6 +301,7 @@ enum ENpcType
     ENPC_TYPE_NONE = 0;
     ENPC_TYPE_PORTAL = 1;
     ENPC_TYPE_SHOP = 2;
+    ENPC_TYPE_COMMON = 3;
 }
 
 enum ELeaveType

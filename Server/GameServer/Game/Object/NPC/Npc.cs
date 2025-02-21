@@ -41,6 +41,9 @@ namespace GameServer.Game
                     break;
                 case ENpcType.Shop:
                     break;
+                default:
+                    Interaction = new CommonInteraction();
+                    break;
             }
 
             Interaction?.SetInfo(this);

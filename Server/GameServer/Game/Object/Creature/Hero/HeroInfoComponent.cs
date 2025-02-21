@@ -3,8 +3,8 @@ using Server.Data;
 
 namespace GameServer.Game
 {
-	public class HeroInfoComponent
-	{
+	public class HeroInfoComponent : IBroadcastEventListener
+    {
 		// 남한테 보낼 때 사용하는 정보
 		public HeroInfo HeroInfo { get; set; } = new HeroInfo();
 		// 스스로한테 보낼 때 사용하는 정보
@@ -52,7 +52,10 @@ namespace GameServer.Game
 
 			bool levelUp = ReCalculateLevel();
 			if (levelUp)
+			{ 
 				Owner.RefreshStat();
+				Owner.BroadcastEvent(EBroadcastEventType.LevelUp);
+            }
 		}
 
 		private bool ReCalculateLevel()

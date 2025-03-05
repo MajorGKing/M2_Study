@@ -137,42 +137,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f7e58b433c879df45a8090071082e5ec
-    m_Address: HeroIcon_Rogue_Male
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1e55208f90a924643b45d6e4e23f10a1
-    m_Address: HeroIcon_Rogue_Female
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9410cb28bb4fd304f8c79b2af996ad09
-    m_Address: HeroIcon_Knight_Male
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cf16d5adf3694774182e223dc16fb0e4
-    m_Address: HeroIcon_Knight_Female
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e9dedf1cd538d1040ab4df1537d303a7
-    m_Address: HeroIcon_Archer_Male
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0193b9c14aa1aa84691247cb95f1add8
-    m_Address: HeroIcon_Archer_Female
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 665b38976c343504ab11120d4cdbaef2
     m_Address: archer_skill_b
     m_ReadOnly: 0
@@ -187,12 +151,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bf152704134565e4c9271edea793e39d
     m_Address: portal_image
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 91dabae6541b2f74b98724e012231468
-    m_Address: wood_common
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
@@ -433,6 +391,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 16644a110d806314daa46227fe9b8caa
     m_Address: spr_elite_frog
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f4bbbfcd31231004c8e2552d0362eff8
+    m_Address: bear_SkeletonData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

@@ -16,7 +16,151 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 759e34507732c2240b188030ec463fa6
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: e49f9511bbbdffe4a81222f639b8c671
+    m_Address: Room01_CityCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 480659ef0d7fc0c43a828688c80a0a14
+    m_Address: Room02_Forest_aCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 441bfa8ba6489bc45a738a7d62523d54
+    m_Address: Room03_Forest_bCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4b3188e11eec10643a2e0b7b00247270
+    m_Address: Room04_Fall_aCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a51871f0d0370454caa598750a9cb01a
+    m_Address: Room05_Fall_bCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bfe427e5e5a0ea343a6981b51dadbfe5
+    m_Address: Room06_WetCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3cf4a31bae010a943bda71ae36f855b4
+    m_Address: Room07_CemeteryCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 67f3287e8bba3da4b9881591f83a1168
+    m_Address: Room08_Farm_aCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1964faaca2e0fa84492886cc3eb14738
+    m_Address: Room09_Farm_bCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8266bead0cfedac44b308306c9330e71
+    m_Address: Room10_Castle_aCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4579c06dffd57f24f9161f9e64574eaa
+    m_Address: Room11_Castle_bCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 688666a7ff911d2479a1e56ff6302b08
+    m_Address: Room12_Snow_aCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3884f8d75be6e774ab6f0e7e90558dd2
+    m_Address: Room13_Snow_bCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 47a8d9d9ef8599547bc780619c4c15f0
+    m_Address: Room14_Snow_cCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4fcbf2b34a372414695e94ac3a828eeb
+    m_Address: Room15_Snow_dCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 63884b87eff3d94458baca8257ff1c4a
+    m_Address: Room16_Snow_eCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d13279eca4509b349baa73f26efc9082
+    m_Address: Room17_Black_mountainCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 77be8f852ca27c84dabdda5c75d93a8d
+    m_Address: Room18_VolcanoCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f25f00cb5b34b0a4797621b074cc561c
+    m_Address: Room19_Dragon_rareCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1ee496b0718ba9f49ba4561faa991d62
+    m_Address: Room20_Red_CanyonCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8a4b38cfce2ca64eaac8f1612cb486d
+    m_Address: Room21_White_CradleCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d10976e92bc39394096b744d40782b45
+    m_Address: Room22_OasisCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4c824d6b7105ee94a9c25ddc554d51e3
+    m_Address: Room23_JungleCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bfb5be9a783c6d4489bacbc98bf2dbcd
+    m_Address: Room24_Night_TempleCollision
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9094f0f0595c6e147aa68a6f81e2dcaf, type: 2}
   m_SchemaSet:

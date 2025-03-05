@@ -82,6 +82,8 @@ public class MyHero : Hero
 
     [SerializeField] private EJoystickState _joystickState;
 
+    public DialogueHandler DialogueHandler { get; set; }
+
     #region MyHeroInfo Values
     public int Level
     {
@@ -149,7 +151,9 @@ public class MyHero : Hero
 		// 미니맵
 		MinimapCamController mcc = Managers.Object.Spawn("RenderTextureCam", transform).GetComponent<MinimapCamController>();
 		mcc.SetInfo(this);
-	}
+
+        DialogueHandler = gameObject.GetOrAddComponent<DialogueHandler>();
+    }
 
 
 
@@ -763,16 +767,19 @@ public class MyHero : Hero
     #endregion
 
     #region MyHero INFO
-    public string GetIllustName()
+    public string GetIconName()
     {
-        string gender = "f";
-        if (MyHeroInfo.HeroInfo.Gender == EHeroGender.Male)
-            gender = "m";
+        //string gender = "f";
+        //if (MyHeroInfo.HeroInfo.Gender == EHeroGender.Male)
+        //    gender = "m";
 
-        string className = MyHeroInfo.HeroInfo.ClassType.ToString().ToLower();
-        string name = $"illust_{gender}_{className}_SkeletonData";
+        //string className = MyHeroInfo.HeroInfo.ClassType.ToString().ToLower();
+        //string name = $"illust_{gender}_{className}_SkeletonData";
 
-        return name;
+        //return name;
+
+        string iconName = $"HeroIcon_{MyHeroInfo.HeroInfo.ClassType}_{MyHeroInfo.HeroInfo.Gender}";
+        return iconName;
     }
     #endregion
 

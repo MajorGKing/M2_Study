@@ -2,6 +2,7 @@ using Data.SO;
 using Google.Protobuf.Protocol;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using static Define;
 
 public class UI_GameScene : UI_Scene
@@ -10,7 +11,8 @@ public class UI_GameScene : UI_Scene
     enum GameObjects
     {
         UI_QuickSlot,
-        MiniMap
+        MiniMap,
+        MiniMapImage,
     }
 
     enum Images
@@ -79,6 +81,9 @@ public class UI_GameScene : UI_Scene
         GetButton((int)Buttons.SkillButton).gameObject.BindEvent(OnClickSkillInfo);
         GetButton((int)Buttons.LobbyButton).gameObject.BindEvent(OnClickLobby);
         GetObject((int)GameObjects.MiniMap).BindEvent(OnClickMiniMap);
+        
+        RawImage RawImage = GetObject((int)GameObjects.MiniMapImage).GetComponent<RawImage>();
+        RawImage.texture = Managers.Resource.Load<RenderTexture>("MinimapRT");
     }
 
     private float elapsedTime;
@@ -101,14 +106,19 @@ public class UI_GameScene : UI_Scene
 
     public void SetInfo()
     {
-        MyHeroInfo info = Managers.Object.MyHero.MyHeroInfo;
-        string iconName = $"HeroIcon_{info.HeroInfo.ClassType}_{info.HeroInfo.Gender}";
+        string iconName = Managers.Object.MyHero.GetIconName();
         GetImage((int)Images.CharacterImage).sprite = Managers.Resource.Load<Sprite>(iconName);
         OnUpdatePosition();
         RefreshUI();
     }
 
     public void RefreshUI()
+    {
+        RefreshHeroInfo();
+        RefreshMapName();
+    }
+
+    private void RefreshHeroInfo()
     {
         MyHero myHero = Managers.Object.MyHero;
         MyHeroInfo info = Managers.Object.MyHero.MyHeroInfo;
@@ -134,7 +144,10 @@ public class UI_GameScene : UI_Scene
         GetSlider((int)Sliders.ExpSlider).minValue = 0;
         GetSlider((int)Sliders.ExpSlider).value = myHero.Exp;
         GetText((int)Texts.ExpText).text = $"{myHero.GetExpNormalized() * 100}%";
+    }
 
+    private void RefreshMapName()
+    {
         MyHero hero = Managers.Object.MyHero;
         if (Managers.Data.RoomDict.TryGetValue(hero.MyHeroInfo.MapId, out RoomData roomData))
             GetText((int)Texts.RoomNameText).text = roomData.MapName;

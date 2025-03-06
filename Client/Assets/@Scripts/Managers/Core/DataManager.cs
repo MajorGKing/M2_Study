@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Data;
 using Data.SO;
 using Newtonsoft.Json;
+using Scripts.Data.SO;
 using UnityEngine;
 
 public interface IValidate
@@ -32,14 +33,19 @@ public class DataManager
     public Dictionary<int, RespawnData> RespawnDict { get; private set; } = new Dictionary<int, RespawnData>();
     public Dictionary<int, SpawningPoolData> SpawningPoolDict { get; private set; } = new Dictionary<int, SpawningPoolData>();
     public Dictionary<int, RoomData> RoomDict { get; private set; } = new Dictionary<int, RoomData>();
-
+    public Dictionary<int, DialogueData> DialogueDict { get; private set; } = new Dictionary<int, DialogueData>();
 
     public Dictionary<int, NpcData> NpcDict { get; private set; } = new Dictionary<int, NpcData>();
     public Dictionary<int, PortalData> PortalDict { get; private set; } = new Dictionary<int, PortalData>();
-
+    public Dictionary<int, NpcCommonData> CommonNpcDict { get; private set; } = new Dictionary<int, NpcCommonData>();
+    
     public Dictionary<int, ItemData> ItemDict { get; private set; } = new Dictionary<int, ItemData>();
     public Dictionary<int, EquipmentData> EquipmentDict { get; private set; } = new Dictionary<int, EquipmentData>();
     public Dictionary<int, ConsumableData> ConsumableDict { get; private set; } = new Dictionary<int, ConsumableData>();
+    public Dictionary<int, CollectibleData> CollectibleDict { get; private set; } = new Dictionary<int, CollectibleData>();
+    
+    public Dictionary<int, QuestData> QuestDict { get; private set; } = new Dictionary<int, QuestData>();
+    public Dictionary<int, QuestTaskData> QuestTaskDict { get; private set; } = new Dictionary<int, QuestTaskData>();
 
     public void Init()
     {
@@ -57,11 +63,13 @@ public class DataManager
         RespawnDict = LoadJson<RespawnDataLoader, int, RespawnData>("RespawnData").MakeDict();
         SpawningPoolDict = LoadJson<SpawningPoolDataLoader, int, SpawningPoolData>("SpawningPoolData").MakeDict();
         RoomDict = LoadJson<RoomDataLoader, int, RoomData>("RoomData").MakeDict();
+        DialogueDict = LoadJson<DialogueDataLoader, int, DialogueData>("DialogueData").MakeDict();
 
         #region ItemData
         EquipmentDict = LoadJson<EquipmentDataLoader, int, EquipmentData>("EquipmentData").MakeDict();
         ConsumableDict = LoadJson<ConsumableDataLoader, int, ConsumableData>("ConsumableData").MakeDict();
-
+        CollectibleDict = LoadJson<CollectibleDataLoader, int, CollectibleData>("CollectibleData").MakeDict();
+        
         ItemDict.Clear();
 
         foreach (var item in EquipmentDict)
@@ -69,16 +77,21 @@ public class DataManager
 
         foreach (var item in ConsumableDict)
             ItemDict.Add(item.Key, item.Value);
+        
+        foreach (var item in CollectibleDict)
+            ItemDict.Add(item.Key, item.Value);
         #endregion
 
         #region NpcData
+        CommonNpcDict  = LoadJson<NpcCommonDataLoader, int, NpcCommonData>("NpcCommonData").MakeDict();
         PortalDict = LoadJson<PortalDataLoader, int, PortalData>("PortalData").MakeDict();
 
         NpcDict.Clear();
         foreach (var portal in PortalDict)
-        {
             NpcDict.Add(portal.Key, portal.Value);
-        }
+
+        foreach (var common in CommonNpcDict)
+            NpcDict.Add(common.Key, common.Value);
         #endregion
 
         Validate();

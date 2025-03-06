@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Reflection;
 using Data.SO;
 using Google.Protobuf.Protocol;
+using Scripts.Data.SO;
 
 
 public class DataTransformer : EditorWindow
@@ -29,6 +30,7 @@ public class DataTransformer : EditorWindow
 	    ParseExcelDataToJson<ProjectileDataLoader, ProjectileData>("Projectile");
 	    ParseExcelDataToJson<EquipmentDataLoader, EquipmentData>("Equipment");
 	    ParseExcelDataToJson<ConsumableDataLoader, ConsumableData>("Consumable");
+	    ParseExcelDataToJson<CollectibleDataLoader, CollectibleData>("Collectible");
 	    ParseExcelDataToJson<RewardDataLoader, RewardData>("Reward");
 	    ParseExcelDataToJson<RewardTableDataLoader, RewardTableData>("RewardTable");
 	    //
@@ -37,7 +39,8 @@ public class DataTransformer : EditorWindow
 	    ParseSODataToJson<SpawningPoolDataLoader, SpawningPoolData>("SpawningPool");
 	    ParseSODataToJson<RoomDataLoader, RoomData>("Room");
 	    ParseSODataToJson<PortalDataLoader, PortalData>("Portal");
-	    
+	    ParseSODataToJson<NpcCommonDataLoader, NpcCommonData>("NpcCommon");
+	    ParseSODataToJson<DialogueDataLoader, DialogueData>("Dialogue");	    
 
 	    Debug.Log("Complete DataTransformer");
     }

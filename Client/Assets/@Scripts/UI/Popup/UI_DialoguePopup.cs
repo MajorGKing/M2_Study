@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Scripts.Contents.Dialog;
 using UnityEngine;
 using UnityEngine.EventSystems;
 

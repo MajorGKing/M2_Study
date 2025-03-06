@@ -44,26 +44,6 @@ namespace Data
         public bool Stackable;
     }
 
-    public class NpcData : ScriptableObject
-    {
-        public int TemplateId;
-        public string Name; //개발용
-        public string NameTextId;
-        public string DescriptionTextID;
-        public string IconImage;
-        public string PrefabName;
-        public ENpcType NpcType;
-        public int ExtraSize;
-        public int Range;
-
-        public int OwnerRoomId;
-        public int SpawnPosX;
-        public int SpawnPosY;
-
-        [ExcludeField]
-        public PositionInfo SpawnPosInfo;
-    }
-
     #endregion
 
     #region TextData
@@ -397,6 +377,39 @@ namespace Data
         }
     }
 
+    #endregion
+
+    #region Collectible
+    public class CollectibleData : ItemData
+    {
+    }
+
+    [Serializable]
+    public class CollectibleDataLoader : ILoader<int, CollectibleData>
+    {
+        public List<CollectibleData> items = new List<CollectibleData>();
+
+        public Dictionary<int, CollectibleData> MakeDict()
+        {
+            Dictionary<int, CollectibleData> dict = new Dictionary<int, CollectibleData>();
+            foreach (CollectibleData item in items)
+                dict.Add(item.TemplateId, item);
+
+            return dict;
+        }
+
+        public bool Validate()
+        {
+            bool validate = true;
+
+            foreach (CollectibleData item in items)
+            {
+                item.Stackable = true;
+            }
+
+            return validate;
+        }
+    }
     #endregion
 
     #region RewardTableData

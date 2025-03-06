@@ -64,6 +64,9 @@ public class Item
             case EItemType.Consumable:
                 item = new Consumable(itemInfo.TemplateId);
                 break;
+            case EItemType.Collectible:
+                item = new Collectible(itemInfo.TemplateId);
+                break;
         }
 
         if (item != null)

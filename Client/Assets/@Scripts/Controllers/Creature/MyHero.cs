@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static Define;
+using Scripts.Contents.Dialog;
 
 public class MyHero : Hero
 {

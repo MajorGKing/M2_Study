@@ -96,6 +96,10 @@ public class UI_ItemSlot : UI_SubItem
                 _activeText.text = "@사용";
                 _countText.text = _item.Count.ToString();
                 break;
+            case EItemType.Collectible:
+                _countText.gameObject.SetActive(true);
+                _countText.text = _item.Count.ToString();
+                break;
             default:
                 _activeText.text = "@사용";
                 break;

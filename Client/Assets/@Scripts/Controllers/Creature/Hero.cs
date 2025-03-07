@@ -28,7 +28,6 @@ public class Hero : Creature
     protected override void Awake()
     {
         base.Awake();
-        transform.localScale = Vector3.one * 1.3f;
         GameObject icon = Managers.Object.Spawn("MinimapCreatureIcon", transform);
     }
 

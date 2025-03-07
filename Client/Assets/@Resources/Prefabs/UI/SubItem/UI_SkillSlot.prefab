@@ -235,7 +235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5168418584776171307}
   - component: {fileID: 5168418584776171305}
-  - component: {fileID: -8224318690043492109}
+  - component: {fileID: 4974467594568253303}
   m_Layer: 5
   m_Name: UI_SkillSlot
   m_TagString: Untagged
@@ -273,7 +273,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5168418584776171306}
   m_CullTransparentMesh: 1
---- !u!114 &-8224318690043492109
+--- !u!114 &4974467594568253303
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -282,6 +282,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5168418584776171306}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3428276bdc78c2d4caa22169e6e3d542, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d69967c166f7484bb4ce17c49b72027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _parentScrollRect: {fileID: 0}

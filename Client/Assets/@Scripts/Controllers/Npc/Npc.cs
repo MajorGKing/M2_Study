@@ -1,4 +1,5 @@
-using Data;
+using System.Collections;
+using Data.SO;
 using Google.Protobuf.Protocol;
 using UnityEngine;
 
@@ -54,7 +55,7 @@ public class Npc : BaseObject
 
         if (Managers.Data.NpcDict.TryGetValue(TemplateId, out NpcData npcData) == false)
             return;
-        ExtraCells = npcData.ExtraSize;
+        ExtraCells = npcData.ExtraCells;
 
         NpcData = npcData;
         SetSpineAnimation(SortingLayers.NPC, "SkeletonAnimation");
@@ -67,6 +68,9 @@ public class Npc : BaseObject
         // TODO UI
         switch (NpcData.NpcType)
         {
+            case ENpcType.Common:
+                Interaction = new CommonInteraction();
+                break;
             case ENpcType.Portal:
                 Interaction = new PortalInteraction();
                 break;
@@ -80,6 +84,36 @@ public class Npc : BaseObject
 
     public void OnClickEvent()
     {
+        if(_coWait != null)
+            return;
+            
         Interaction?.HandleOnClickEvent();
+        StartWait(0.5f);
     }
+
+    #region Wait
+
+    protected Coroutine _coWait;
+
+    protected void StartWait(float seconds)
+    {
+        CancelCoroutine();
+        _coWait = StartCoroutine(CoWait(seconds));
+    }
+    
+    private IEnumerator CoWait(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        CancelCoroutine();
+    }
+
+    protected void CancelCoroutine()
+    {
+        if (_coWait != null)
+            StopCoroutine(_coWait);
+        _coWait = null;
+    }
+    
+    #endregion
+
 }

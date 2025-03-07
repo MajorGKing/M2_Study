@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Temp
+  m_EditorClassIdentifier: 
+  m_GroupName: Temp
+  m_Data:
+    m_SerializedData: []
+  m_GUID: d49faf24b355d8f45ab46510855c72d9
+  m_SerializeEntries:
+  - m_GUID: 0193b9c14aa1aa84691247cb95f1add8
+    m_Address: HeroIcon_Archer_Female
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9dedf1cd538d1040ab4df1537d303a7
+    m_Address: HeroIcon_Archer_Male
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf16d5adf3694774182e223dc16fb0e4
+    m_Address: HeroIcon_Knight_Female
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9410cb28bb4fd304f8c79b2af996ad09
+    m_Address: HeroIcon_Knight_Male
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1e55208f90a924643b45d6e4e23f10a1
+    m_Address: HeroIcon_Rogue_Female
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f7e58b433c879df45a8090071082e5ec
+    m_Address: HeroIcon_Rogue_Male
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 24cd5bfabd4b6774aa817bbc37320625
+    m_Address: HeroIcon_Wizard_Female
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61dea01ab67b77c42bffcb3bd96b95d8
+    m_Address: HeroIcon_Wizard_Male
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d80926148f9a49847885795e06ea76c7
+    m_Address: npc_captain_kyle
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9094f0f0595c6e147aa68a6f81e2dcaf, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 7de63683ff0fd6048acfd195f28d383a, type: 2}
+    - {fileID: 11400000, guid: e9c0bd1318eefb949bd021cb2242dedf, type: 2}

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Google.Protobuf.Protocol;
+using Scripts.Data.SO;
 using UnityEngine;
 
 namespace Data
@@ -42,26 +43,6 @@ namespace Data
 
         [ExcludeField]
         public bool Stackable;
-    }
-
-    public class NpcData : ScriptableObject
-    {
-        public int TemplateId;
-        public string Name; //개발용
-        public string NameTextId;
-        public string DescriptionTextID;
-        public string IconImage;
-        public string PrefabName;
-        public ENpcType NpcType;
-        public int ExtraSize;
-        public int Range;
-
-        public int OwnerRoomId;
-        public int SpawnPosX;
-        public int SpawnPosY;
-
-        [ExcludeField]
-        public PositionInfo SpawnPosInfo;
     }
 
     #endregion
@@ -399,6 +380,39 @@ namespace Data
 
     #endregion
 
+    #region Collectible
+    public class CollectibleData : ItemData
+    {
+    }
+
+    [Serializable]
+    public class CollectibleDataLoader : ILoader<int, CollectibleData>
+    {
+        public List<CollectibleData> items = new List<CollectibleData>();
+
+        public Dictionary<int, CollectibleData> MakeDict()
+        {
+            Dictionary<int, CollectibleData> dict = new Dictionary<int, CollectibleData>();
+            foreach (CollectibleData item in items)
+                dict.Add(item.TemplateId, item);
+
+            return dict;
+        }
+
+        public bool Validate()
+        {
+            bool validate = true;
+
+            foreach (CollectibleData item in items)
+            {
+                item.Stackable = true;
+            }
+
+            return validate;
+        }
+    }
+    #endregion
+
     #region RewardTableData
 
     [Serializable]
@@ -673,36 +687,23 @@ namespace Data
     #endregion
 
     #region Quest
-    [CreateAssetMenu(fileName = "Assets/@Resources/Data/ScriptableObjectData/Quest/FILENAME", menuName = "Scriptable Objects/Quest", order = 0)]
-    public class QuestData : BaseData
-    {
-        public int QuestPeriodType;
-        public int RewardType;
-        public int RewardDataId;
-        public int RewardCount;
-        public string RewardIcon;
-        public List<QuestTaskData> QuestTasks;
-        public virtual bool Validate()
-        {
-            return true;
-        }
-
-    }
-
-    [Serializable]
-    public class QuestTaskData
+    public class QuestData
     {
         public int TemplateId;
-        public string DescriptionTextId;
-        public int ObjectiveType;
-        public string ObjectiveIcon;
-        public int ObjectiveDataId;
-        public int ObjectiveCount;
-        public string DialogueId;
-    }
+        public string NameTextId;
+        public EQuestType Type;
+        public List<int> TaskIds;
+        public int Level;
+        public int RewardTableId;
+        public int RequiredQuestId;
 
-    [Serializable]
-    public class QuestDataLoader : ScriptableObject, ILoader<int, QuestData>
+        [ExcludeField]
+        public List<QuestTaskData> QuestTasks = new List<QuestTaskData>();
+        [ExcludeField]
+        public RewardTableData RewardTableData = new RewardTableData();
+    }
+    
+    public class QuestDataLoader : ILoader<int, QuestData>
     {
         public List<QuestData> quests = new List<QuestData>();
 
@@ -715,24 +716,98 @@ namespace Data
             return dict;
         }
 
-        public void SetDataList(List<QuestData> dataList)
+        public bool Validate()
         {
-            quests = dataList;
+            bool validate = true;
+
+            //QuestTasks
+            foreach (var questData in quests)
+            {
+                foreach (var taskId in questData.TaskIds)
+                {
+                    if (Managers.Data.QuestTaskDict.TryGetValue(taskId, out QuestTaskData questTaskData) == false)
+                    {
+                        Debug.LogError($"No questTaskData found {taskId}");
+                        validate = false;
+                        continue;
+                    }
+                    questData.QuestTasks.Add(questTaskData);
+                }
+
+                if (Managers.Data.RewardTableDict.TryGetValue(questData.RewardTableId, out questData.RewardTableData) == false)
+                {
+                    Debug.LogError("No reward table found");
+                    validate = false;
+                }
+            }
+            return validate;
+        }
+    }
+
+    public class QuestTaskData
+    {
+        public int TemplateId;
+        public List<string> DescriptionTextIds;
+        public EQuestTaskType TaskType;
+
+        public List<int> ObjectiveDataIds;
+        public List<int> ObjectiveCounts;
+        public int DialogueId;
+
+        [ExcludeField]
+        public PositionInfo TeleportPos;
+        [ExcludeField]
+        public DialogueData DialogueData;
+        [ExcludeField]
+        public Dictionary</*목표 templateId*/int, /*Count*/int> Objectives = new Dictionary<int, int>();
+    }
+
+    public class QuestTaskDataLoader : ILoader<int, QuestTaskData>
+    {
+        public List<QuestTaskData> tasks = new List<QuestTaskData>();
+
+        public Dictionary<int, QuestTaskData> MakeDict()
+        {
+            Dictionary<int, QuestTaskData> dict = new Dictionary<int, QuestTaskData>();
+            foreach (QuestTaskData questData in tasks)
+                dict.Add(questData.TemplateId, questData);
+
+            return dict;
         }
 
         public bool Validate()
         {
             bool validate = true;
 
-            foreach (var hero in quests)
+            foreach (var task in tasks)
             {
-                if (hero.Validate() == false)
+                if (task.DialogueId != 0 && Managers.Data.DialogueDict.TryGetValue(task.DialogueId, out task.DialogueData) == false)
+                {
+                    Debug.LogError("No dialogue found");
                     validate = false;
-            }
+                }
 
+                for (int i = 0; i < task.ObjectiveDataIds.Count; i++)
+                {
+                    task.Objectives.Add(task.ObjectiveDataIds[i], task.ObjectiveCounts[i]);
+                }
+
+                // TODO : 텔레포트 포지션 찾기
+                task.TeleportPos = new PositionInfo();
+                switch (task.TaskType)
+                {
+                    case EQuestTaskType.None:
+                        break;
+                    case EQuestTaskType.KillTarget:
+                        break;
+                    case EQuestTaskType.CollectItem:
+                        break;
+                    case EQuestTaskType.InteractWithNpc:
+                        break;
+                }
+            }
             return validate;
         }
     }
-
     #endregion
 }

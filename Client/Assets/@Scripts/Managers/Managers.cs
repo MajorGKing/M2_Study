@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+using GameServer.Game;
+using Google.Protobuf.Protocol;
+using UnityEngine;
 
 public class Managers : MonoBehaviour
 {
@@ -19,6 +21,7 @@ public class Managers : MonoBehaviour
     private MapManager _map = new MapManager();
     private SkillManager _skill = new SkillManager();
     private InventoryManager _inven = new InventoryManager();
+    private QuestManager _quest = new QuestManager();
 
     public static GameManager Game { get { return Instance?._game; } }
     public static EventManager Event { get { return Instance?._event; } }
@@ -26,6 +29,7 @@ public class Managers : MonoBehaviour
     public static MapManager Map { get { return Instance?._map; } }
     public static SkillManager Skill { get { return Instance?._skill; } }
     public static InventoryManager Inventory { get { return Instance?._inven; } }
+    public static QuestManager Quest { get { return Instance?._quest; } }
 
     #endregion
 
@@ -78,6 +82,23 @@ public class Managers : MonoBehaviour
                 break;
         }
 
+        return textId;
+    }
+    
+    public static string GetErrorMsg(EErrorMessage msg)
+    {
+        switch (msg)
+        {
+            case EErrorMessage.Level:
+                return "TODO 감히 사용 할 수 없습니다.";
+            case EErrorMessage.Class:
+                return "TODO 현재 클래스에서 사용할 수 없습니다.";
+            case EErrorMessage.InventoryFull:
+                return "TODO 가방이 가득 찼습니다..";
+            case EErrorMessage.Etc:
+                return "사용할 수 없습니다.";
+        }
+
         return "";
     }
     #endregion
@@ -98,6 +119,7 @@ public class Managers : MonoBehaviour
             DontDestroyOnLoad(go);
             s_instance = go.GetComponent<Managers>();
             s_instance._sound.Init();
+            s_instance._quest.Init();
         }		
 	}
 
@@ -114,5 +136,6 @@ public class Managers : MonoBehaviour
         Pool.Clear();
         Map.Clear();
         Object.Clear();
+        Quest.Clear();
     }
 }

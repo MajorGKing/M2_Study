@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6f3fbb560bd6041a202ea918fa4f23, type: 3}
   m_Name: farm_obj_3
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 21300000, guid: c8291a80fe47ea24faaa75b8a1ef63ed, type: 3}
+  m_DefaultSprite: {fileID: 21300000, guid: cda450c3337633e41be103579e8f6754, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules:

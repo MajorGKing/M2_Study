@@ -1,9 +1,6 @@
 using Data.SO;
 using Google.Protobuf.Protocol;
 using Scripts.Data.SO;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class CommonInteraction : INpcInteraction
 {
@@ -17,10 +14,18 @@ public class CommonInteraction : INpcInteraction
             return;
     }
 
-    // TODO ILHAK 퀘스트 부분 추가 후 내용 추가
     public void HandleOnClickEvent()
     {
-        
+        // 1. Quest Dialogue 확인
+        DialogueData dialogueData = Managers.Quest.GetDialogue(EQuestTaskType.InteractWithNpc, _npcData.TemplateId);
+        if (dialogueData != null)
+        {
+            Managers.Game.StartDialogue(dialogueData, SendInteractionPacket, _npcData.IconImage);
+            return;
+        }
+
+        // 2. Npc가 가지고있는 Dialogue 확인
+        Managers.Game.StartDialogue(_npcData.DialogueId, SendInteractionPacket, _npcData.IconImage);
 
     }
 

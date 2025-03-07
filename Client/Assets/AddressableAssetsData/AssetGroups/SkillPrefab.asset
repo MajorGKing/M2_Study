@@ -18,25 +18,25 @@ MonoBehaviour:
   m_GUID: 39fe51a44c9389c4ebb609a9659766ba
   m_SerializeEntries:
   - m_GUID: cc064f7e6612ce14daf39a096986204c
-    m_Address: Wizard_attack_a_Trail
+    m_Address: Wizard_Attack_a_Trail
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0cc6960d871949e46a5ad5801852ed1f
-    m_Address: Wizard_attack_b_Trail
+    m_Address: Wizard_Attack_b_Trail
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2088c6b492e1d9d4d9190b1323f4d30d
-    m_Address: Wizard_attack_Ball
+    m_Address: Wizard_Attack_Ball
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b98e5a6fe95768a4c9e9b75bafeb69cb
-    m_Address: Wizard_attack_c_Trail
+    m_Address: Wizard_Attack_c_Trail
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

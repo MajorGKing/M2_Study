@@ -23,7 +23,6 @@ public class DataManager
     public Dictionary<string, TextData> TextDict { get; private set; } = new Dictionary<string, TextData>();
     public Dictionary<int, BaseStatData> BaseStatDict { get; private set; } = new Dictionary<int, BaseStatData>();
     public Dictionary<int, HeroData> HeroDict { get; private set; } = new Dictionary<int, HeroData>();
-    //public Dictionary<int, QuestData> QuestDic { get; private set; } = new Dictionary<int, QuestData>();
     public Dictionary<int, SkillData> SkillDict { get; private set; } = new Dictionary<int, SkillData>();
     public Dictionary<int, EffectData> EffectDict { get; private set; } = new Dictionary<int, EffectData>();
     public Dictionary<int, MonsterData> MonsterDict { get; private set; } = new Dictionary<int, MonsterData>();
@@ -94,6 +93,11 @@ public class DataManager
             NpcDict.Add(common.Key, common.Value);
         #endregion
 
+        #region Quest
+        QuestDict = LoadJson<QuestDataLoader, int, QuestData>("QuestData").MakeDict();
+        QuestTaskDict = LoadJson<QuestTaskDataLoader, int, QuestTaskData>("QuestTaskData").MakeDict();
+        #endregion
+        
         Validate();
     }
 

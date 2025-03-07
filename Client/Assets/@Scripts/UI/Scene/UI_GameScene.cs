@@ -1,5 +1,7 @@
 using Data.SO;
+using GameServer.Game;
 using Google.Protobuf.Protocol;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -17,7 +19,7 @@ public class UI_GameScene : UI_Scene
 
     enum Images
     {
-        CharacterImage
+        CharacterImage,
     }
 
     enum Buttons
@@ -30,15 +32,18 @@ public class UI_GameScene : UI_Scene
 
     enum Texts
     {
-        FpsText,
         LevelText,
         HpText,
         MpText,
         ExpText,
         GoldText,
         AutoText,
+        QuestNameText,
         PosValueText,
         RoomNameText,
+        QuestObjectiveText1,
+        QuestObjectiveText2,
+        QuestObjectiveText3,
     }
 
     enum Sliders
@@ -116,6 +121,7 @@ public class UI_GameScene : UI_Scene
     {
         RefreshHeroInfo();
         RefreshMapName();
+        RefreshCurrentQuest();
     }
 
     private void RefreshHeroInfo()
@@ -151,6 +157,45 @@ public class UI_GameScene : UI_Scene
         MyHero hero = Managers.Object.MyHero;
         if (Managers.Data.RoomDict.TryGetValue(hero.MyHeroInfo.MapId, out RoomData roomData))
             GetText((int)Texts.RoomNameText).text = roomData.MapName;
+    }
+
+    private void RefreshCurrentQuest()
+    {
+        // 진행 중인 퀘스트를 가져옴
+        Quest quest = Managers.Quest.GetProcessingQuests().FirstOrDefault();
+        if (quest == null)
+            return;
+
+        // 퀘스트 이름 설정
+        GetText((int)Texts.QuestNameText).text = quest.QuestData.NameTextId;
+
+        // Objective 텍스트 초기화
+        GetText((int)Texts.QuestObjectiveText1).gameObject.SetActive(false);
+        GetText((int)Texts.QuestObjectiveText2).gameObject.SetActive(false);
+        GetText((int)Texts.QuestObjectiveText3).gameObject.SetActive(false);
+
+        // 현재 퀘스트 태스크 가져오기
+        QuestTask task = quest.CurrentTask;
+
+        // 퀘스트 목표 텍스트 설정
+        for (int i = 0; i < task.TaskData.ObjectiveCounts.Count; i++)
+        {
+            var objectiveText = GetText((int)Texts.QuestObjectiveText1 + i);
+            objectiveText.gameObject.SetActive(true);
+
+            if (task.TaskData.ObjectiveCounts[i] == 1)
+            {
+                // 목표가 하나일 경우 설명 텍스트만 설정
+                objectiveText.text = task.TaskData.DescriptionTextIds.FirstOrDefault();
+            }
+            else
+            {
+                // 목표가 여러 개일 경우, 진행 상태 포함 텍스트 설정
+                var objectiveProgress = task.Objectives.Values.ToList();
+                int progressCount = Mathf.Min(objectiveProgress[i], task.TaskData.ObjectiveCounts[i]);
+                objectiveText.text = $"{task.TaskData.DescriptionTextIds[i]} ({progressCount}/{task.TaskData.ObjectiveCounts[i]})";
+            }
+        }
     }
 
     public void OnHpChanged()

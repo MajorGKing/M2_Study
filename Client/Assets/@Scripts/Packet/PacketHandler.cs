@@ -79,6 +79,7 @@ class PacketHandler
         //Init
         Managers.Inventory.HandleEnterGame(enterGamePacket);
         Managers.Skill.HandleEnterGame(enterGamePacket);
+        Managers.Quest.HandleEnterGame(enterGamePacket);
 
         //Scene
         GameScene scene = Managers.Scene.CurrentScene as GameScene;
@@ -201,30 +202,6 @@ class PacketHandler
             Managers.UI.GetSceneUI<UI_GameScene>()?.OnHpChanged();
         }
     }
-
-    //public static void S_ChangeHpHandler(PacketSession session, IMessage packet)
-    //{
-    //    //Debug.Log("S_ChangeHpHandler");
-
-    //    S_ChangeHp changePacket = packet as S_ChangeHp;
-
-    //    GameObject go = Managers.Object.FindById(changePacket.ObjectId);
-    //    if (go == null)
-    //        return;
-
-    //    Creature cc = go.GetComponent<Creature>();
-    //    if (cc != null)
-    //    {
-    //        int damage = (int)changePacket.Damage;
-    //        cc.Hp = changePacket.Hp;
-    //        cc.Mp = changePacket.Mp;
-    //        //Managers.Object.ShowDamageFont(cc.CenterPos, damage, cc.transform, changePacket.DamageType);
-    //        cc.DamageFontController.AddDamageFont(damage, cc.transform, changePacket.DamageType);
-    //    }
-
-    //    var gameScene = Managers.UI.GetSceneUI<UI_GameScene>();
-    //    gameScene.OnHpChanged();
-    //}
 
     public static void S_DieHandler(PacketSession session, IMessage packet)
     {
@@ -372,6 +349,7 @@ class PacketHandler
 
     public static void S_AddOrUpdateQuestHandler(PacketSession session, IMessage packet)
     {
-        S_AddOrUpdateQuest addOrUpdateQuest = packet as S_AddOrUpdateQuest;
+        S_AddOrUpdateQuest pkt = packet as S_AddOrUpdateQuest;        
+        Managers.Quest.HandeAddOrUpdateQuest(pkt);
     }
 }

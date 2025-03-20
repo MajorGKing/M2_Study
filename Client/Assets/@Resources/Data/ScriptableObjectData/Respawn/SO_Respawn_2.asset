@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb31881c4ffb40ce8a9c36ea1ddfccca, type: 3}
+  m_Script: {fileID: 11500000, guid: 390cf7e4d8cef2040951bc8dddc3cafb, type: 3}
   m_Name: SO_Respawn_2
   m_EditorClassIdentifier: 
   TemplateId: 2
-  Count: 5
-  MonsterDataId: 3
+  Count: 10
+  MonsterDataId: 5
   RespawnType: 0
   RespawnTime: 5
-  PivotPosX: -17
-  PivotPosY: 2
-  SpawnRange: 8
+  PivotPosX: 6
+  PivotPosY: 103
+  SpawnRange: 14

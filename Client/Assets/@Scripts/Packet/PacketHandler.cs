@@ -24,7 +24,12 @@ class PacketHandler
         sceneUI.OnAuthResHandler(resPacket);
     }
 
-    public static void S_HeroListResHandler(PacketSession session, IMessage packet)
+	public static void S_SystemEventHandler(PacketSession session, IMessage packet)
+	{
+		
+	}
+
+	public static void S_HeroListResHandler(PacketSession session, IMessage packet)
     {
         //Debug.Log("S_HeroListResHandler");
 
@@ -352,4 +357,10 @@ class PacketHandler
         S_AddOrUpdateQuest pkt = packet as S_AddOrUpdateQuest;        
         Managers.Quest.HandeAddOrUpdateQuest(pkt);
     }
+    
+    public static void S_UpdateCollectionHandler(PacketSession session, IMessage packet)
+    {
+       
+    }
+    
 }

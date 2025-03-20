@@ -1,0 +1,38 @@
+{
+  "collections": [
+    {
+      "Type": 1,
+      "Grade": 1,
+      "ItemIds": [
+        1500,
+        1600
+      ],
+      "RewardEffectId": 20001,
+      "ItemDatas": [],
+      "RewardEffectData": null,
+      "TemplateId": 1,
+      "Name": "사우스 시티 방어구 수집가 1",
+      "NameTextId": "@@사우스 시티 방어구 수집가 1",
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "Type": 1,
+      "Grade": 1,
+      "ItemIds": [
+        1700,
+        1800
+      ],
+      "RewardEffectId": 20002,
+      "ItemDatas": [],
+      "RewardEffectData": null,
+      "TemplateId": 2,
+      "Name": "사우스 시티 방어구 수집가 2",
+      "NameTextId": "@@사우스 시티 방어구 수집가 2",
+      "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    }
+  ]
+}

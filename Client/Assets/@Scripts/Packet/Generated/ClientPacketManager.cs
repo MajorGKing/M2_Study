@@ -40,12 +40,16 @@ public enum MsgId
 	S_ChangeItemSlot = 32,
 	C_DeleteItem = 33,
 	C_UseItem = 34,
-	S_UseItem = 35,
-	S_RewardValue = 36,
-	C_InteractionNpc = 37,
-	C_ReqTeleport = 38,
-	S_Blink = 39,
-	S_AddOrUpdateQuest = 40,
+	C_EnchantItem = 35,
+	S_UseItem = 36,
+	S_RewardValue = 37,
+	C_InteractionNpc = 38,
+	C_ReqTeleport = 39,
+	S_Blink = 40,
+	S_AddOrUpdateQuest = 41,
+	C_FillCollection = 42,
+	S_UpdateCollection = 43,
+	S_SystemEvent = 44,
 }
 
 class PacketManager
@@ -116,7 +120,11 @@ class PacketManager
 		_onRecv.Add((ushort)MsgId.S_Blink, MakePacket<S_Blink>);
 		_handler.Add((ushort)MsgId.S_Blink, PacketHandler.S_BlinkHandler);		
 		_onRecv.Add((ushort)MsgId.S_AddOrUpdateQuest, MakePacket<S_AddOrUpdateQuest>);
-		_handler.Add((ushort)MsgId.S_AddOrUpdateQuest, PacketHandler.S_AddOrUpdateQuestHandler);
+		_handler.Add((ushort)MsgId.S_AddOrUpdateQuest, PacketHandler.S_AddOrUpdateQuestHandler);		
+		_onRecv.Add((ushort)MsgId.S_UpdateCollection, MakePacket<S_UpdateCollection>);
+		_handler.Add((ushort)MsgId.S_UpdateCollection, PacketHandler.S_UpdateCollectionHandler);		
+		_onRecv.Add((ushort)MsgId.S_SystemEvent, MakePacket<S_SystemEvent>);
+		_handler.Add((ushort)MsgId.S_SystemEvent, PacketHandler.S_SystemEventHandler);
 	}
 
 	public void OnRecvPacket(PacketSession session, ArraySegment<byte> buffer)

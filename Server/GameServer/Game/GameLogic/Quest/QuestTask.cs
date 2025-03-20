@@ -4,12 +4,12 @@ using Server.Data;
 
 namespace GameServer.Game
 {
-    public class QuestTask : IBroadcastEventListener
-    {
-        public QuestTaskInfo TaskInfo { get; private set; }
-        public QuestTaskData TaskData { get; private set; }
-        public Quest Owner { get; private set; }
-
+    public class QuestTask : IHeroInternalEventListener
+	{
+		public QuestTaskInfo TaskInfo { get; private set; }
+		public QuestTaskData TaskData { get; private set; }
+		public Quest Owner { get; private set; }
+		public Hero Hero { get; private set; }
         public bool IsCompleted { get; private set; }
 
         // 진행 사항에 바뀐 내역이 있는지 확인하는 용도.
@@ -28,12 +28,13 @@ namespace GameServer.Game
 
             TaskData = taskData;
             Owner = owner;
+			Hero = Owner.Owner;
 
             // TaskState는 저장하지 않고 기존의 데이터로 다시 복원한다.
             TryCompleteTask();
         }
 
-        public void OnBroadcastEvent(EBroadcastEventType type, int targetId, int count)
+        public void OnBroadcastHeroInternalEvent(EHeroInternalEventType type, int targetId, int count)
         {
             // 현재 진행중인 태스크만 클리어 가능. (기획 사항)
             if (Owner.CurrentTask != this)
@@ -41,13 +42,13 @@ namespace GameServer.Game
 
             switch(type)
             {
-                case EBroadcastEventType.KillTarget:
+                case EHeroInternalEventType.KillTarget:
                     TryUpdateQuestTaskProgress(EQuestTaskType.KillTarget, targetId, count);
                     break;
-                case EBroadcastEventType.InteractWithNpc:
+                case EHeroInternalEventType.InteractWithNpc:
                     TryUpdateQuestTaskProgress(EQuestTaskType.InteractWithNpc, targetId, 1);
                     break;
-                case EBroadcastEventType.CollectItem:
+                case EHeroInternalEventType.CollectItem:
                     TryUpdateQuestTaskProgress(EQuestTaskType.CollectItem, targetId, count);
                     break;
             }

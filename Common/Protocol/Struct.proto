@@ -91,8 +91,7 @@ message ItemInfo
 	int32 templateId = 2;
 	EItemSlotType itemSlotType = 3;
 	int32 count = 4;	
-	int32 enchantCount = 5;
-	int32 remainingTicks = 6;
+	int32 remainingTicks = 5;
 }
 
 message QuestInfo 
@@ -106,4 +105,10 @@ message QuestInfo
 message QuestTaskInfo
 {
     map<int32, int32> objectives = 1;
+}
+
+message CollectionInfo 
+{
+	int32 templateId = 1;
+    int32 progressFlag = 2;
 }

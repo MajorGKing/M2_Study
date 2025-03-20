@@ -107,20 +107,46 @@ namespace GameServer.Game
 			SetTotalStat(statType, finalValue);
 		}
 
-		public void SetTotalStat(EStatType statType, float value)
-		{
-			switch (statType)
-			{
-				case EStatType.Hp:
-					value = Math.Min(value, GetTotalStat(EStatType.MaxHp));
-					break;
-				case EStatType.Mp:
-					value = Math.Min(value, GetTotalStat(EStatType.MaxMp));
-					break;
-			}
+        public void SetTotalStat(EStatType statType, float value)
+        {
+            float prevValue = 0;
+            float bonus = 0;
+            EStatType bonusType = EStatType.None;
 
-			StatSetters[statType](TotalStat, value);
-		}
+            switch (statType)
+            {
+                case EStatType.MaxHp:
+                    // 보너스 스탯 계산
+                    prevValue = GetTotalStat(EStatType.MaxHp);
+                    bonus = value - prevValue;
+                    bonusType = EStatType.Hp;
+                    break;
+
+                case EStatType.MaxMp:
+                    // 보너스 스탯 계산
+                    prevValue = GetTotalStat(EStatType.MaxMp);
+                    bonus = value - prevValue;
+                    bonusType = EStatType.Mp;
+                    break;
+
+                case EStatType.Hp:
+                    value = Math.Min(value, GetTotalStat(EStatType.MaxHp));
+                    break;
+
+                case EStatType.Mp:
+                    value = Math.Min(value, GetTotalStat(EStatType.MaxMp));
+                    break;
+            }
+
+            // 스탯 업데이트
+            StatSetters[statType](TotalStat, value);
+
+            // 최대 HP, MP 변경 시 현재 HP, MP도 변경
+            if (bonus != 0)
+            {
+                Owner.AddStat(bonusType, bonus, EFontType.Heal);
+            }
+        }
 
 		#region Regeneration
 		protected IJob _hpRegenJob;

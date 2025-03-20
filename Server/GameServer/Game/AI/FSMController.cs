@@ -114,7 +114,14 @@ namespace GameServer.Game
                 return false;
             }
 
-            // 3. 쫒는중인데 상대가 너무 멀면 포기
+            // 3. 정찰 중이고 destPos 가 스폰지역 벗어나면 
+            if (_patrolDest.HasValue && Owner.GetDistance(GetSpawnPos()) > 10)
+            {
+                _returnToSpawnPos = true;
+                return false;
+            }
+
+            // 4. 쫒는중인데 상대가 너무 멀면 포기
             if (_target != null && path.Count > _chaseCellDist)
             {
                 GiveUpChaseTarget();

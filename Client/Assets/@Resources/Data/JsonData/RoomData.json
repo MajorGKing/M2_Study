@@ -1,5 +1,5 @@
 {
-  "spawningPools": [
+  "roomDatas": [
     {
       "TemplateId": 1,
       "PrefabName": "Room01_City",
@@ -77,7 +77,6 @@
           "SpawnPosX": 78,
           "SpawnPosY": 32,
           "DialogueId": 3,
-          "SpawnPosInfo": null,
           "DialogueData": null,
           "name": "SO_Npc_Kyle",
           "hideFlags": 0
@@ -97,7 +96,6 @@
           "SpawnPosX": 45,
           "SpawnPosY": 32,
           "DialogueId": 0,
-          "SpawnPosInfo": null,
           "DialogueData": null,
           "name": "SO_Portal_1",
           "hideFlags": 0
@@ -117,7 +115,6 @@
           "SpawnPosX": 98,
           "SpawnPosY": 33,
           "DialogueId": 0,
-          "SpawnPosInfo": null,
           "DialogueData": null,
           "name": "SO_Portal_1_3",
           "hideFlags": 0
@@ -137,7 +134,6 @@
           "SpawnPosX": 93,
           "SpawnPosY": 55,
           "DialogueId": 0,
-          "SpawnPosInfo": null,
           "DialogueData": null,
           "name": "SO_Portal_1_4",
           "hideFlags": 0
@@ -157,7 +153,6 @@
           "SpawnPosX": 74,
           "SpawnPosY": 54,
           "DialogueId": 0,
-          "SpawnPosInfo": null,
           "DialogueData": null,
           "name": "SO_Portal_1_5",
           "hideFlags": 0
@@ -177,12 +172,13 @@
           "SpawnPosX": 77,
           "SpawnPosY": 17,
           "DialogueId": 0,
-          "SpawnPosInfo": null,
           "DialogueData": null,
           "name": "SO_Portal_1_6",
           "hideFlags": 0
         }
       ],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_1",
       "hideFlags": 0
     },
@@ -214,8 +210,8 @@
             "MonsterDataId": 4,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -33,
-            "PivotPosY": 92,
+            "PivotPosX": -35,
+            "PivotPosY": 90,
             "SpawnRange": 20,
             "name": "SO_Respawn_6",
             "hideFlags": 0
@@ -238,8 +234,8 @@
             "MonsterDataId": 5,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -57,
-            "PivotPosY": 33,
+            "PivotPosX": -12,
+            "PivotPosY": -1,
             "SpawnRange": 20,
             "name": "SO_Respawn_8",
             "hideFlags": 0
@@ -258,12 +254,12 @@
           },
           {
             "TemplateId": 10,
-            "Count": 15,
+            "Count": 10,
             "MonsterDataId": 5,
             "RespawnType": 0,
             "RespawnTime": 5,
-            "PivotPosX": -33,
-            "PivotPosY": 91,
+            "PivotPosX": -34,
+            "PivotPosY": 92,
             "SpawnRange": 20,
             "name": "SO_Respawn_10",
             "hideFlags": 0
@@ -324,7 +320,6 @@
           "SpawnPosX": 7,
           "SpawnPosY": 63,
           "DialogueId": 0,
-          "SpawnPosInfo": null,
           "DialogueData": null,
           "name": "SO_Portal_11",
           "hideFlags": 0
@@ -344,12 +339,13 @@
           "SpawnPosX": -74,
           "SpawnPosY": -24,
           "DialogueId": 0,
-          "SpawnPosInfo": null,
           "DialogueData": null,
           "name": "SO_Portal_12",
           "hideFlags": 0
         }
       ],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_2",
       "hideFlags": 0
     },
@@ -455,7 +451,6 @@
           "SpawnPosX": 53,
           "SpawnPosY": 50,
           "DialogueId": 0,
-          "SpawnPosInfo": null,
           "DialogueData": null,
           "name": "SO_Portal_13",
           "hideFlags": 0
@@ -475,7 +470,6 @@
           "SpawnPosX": -4,
           "SpawnPosY": -39,
           "DialogueId": 0,
-          "SpawnPosInfo": null,
           "DialogueData": null,
           "name": "SO_Portal_14",
           "hideFlags": 0
@@ -495,12 +489,13 @@
           "SpawnPosX": 66,
           "SpawnPosY": 39,
           "DialogueId": 0,
-          "SpawnPosInfo": null,
           "DialogueData": null,
           "name": "SO_Portal_3_1",
           "hideFlags": 0
         }
       ],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_3",
       "hideFlags": 0
     },
@@ -642,7 +637,6 @@
           "SpawnPosX": -2,
           "SpawnPosY": 75,
           "DialogueId": 0,
-          "SpawnPosInfo": null,
           "DialogueData": null,
           "name": "SO_Portal_15",
           "hideFlags": 0
@@ -662,7 +656,6 @@
           "SpawnPosX": -153,
           "SpawnPosY": -3,
           "DialogueId": 0,
-          "SpawnPosInfo": null,
           "DialogueData": null,
           "name": "SO_Portal_16",
           "hideFlags": 0
@@ -682,12 +675,13 @@
           "SpawnPosX": 13,
           "SpawnPosY": 76,
           "DialogueId": 0,
-          "SpawnPosInfo": null,
           "DialogueData": null,
           "name": "SO_Portal_4_1",
           "hideFlags": 0
         }
       ],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_4",
       "hideFlags": 0
     },
@@ -817,7 +811,6 @@
           "SpawnPosX": 41,
           "SpawnPosY": 86,
           "DialogueId": 0,
-          "SpawnPosInfo": null,
           "DialogueData": null,
           "name": "SO_Portal_17",
           "hideFlags": 0
@@ -837,7 +830,6 @@
           "SpawnPosX": -79,
           "SpawnPosY": -46,
           "DialogueId": 0,
-          "SpawnPosInfo": null,
           "DialogueData": null,
           "name": "SO_Portal_18",
           "hideFlags": 0
@@ -857,12 +849,13 @@
           "SpawnPosX": 55,
           "SpawnPosY": 85,
           "DialogueId": 0,
-          "SpawnPosInfo": null,
           "DialogueData": null,
           "name": "SO_Portal_5_1",
           "hideFlags": 0
         }
       ],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_5",
       "hideFlags": 0
     },
@@ -956,7 +949,6 @@
           "SpawnPosX": -10,
           "SpawnPosY": 70,
           "DialogueId": 0,
-          "SpawnPosInfo": null,
           "DialogueData": null,
           "name": "SO_Portal_19",
           "hideFlags": 0
@@ -976,12 +968,13 @@
           "SpawnPosX": 12,
           "SpawnPosY": 71,
           "DialogueId": 0,
-          "SpawnPosInfo": null,
           "DialogueData": null,
           "name": "SO_Portal_6_1",
           "hideFlags": 0
         }
       ],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_6",
       "hideFlags": 0
     },
@@ -994,6 +987,8 @@
       "StartPosY": -34,
       "SpawningPoolData": null,
       "Npcs": [],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_7",
       "hideFlags": 0
     },
@@ -1006,6 +1001,8 @@
       "StartPosY": 24,
       "SpawningPoolData": null,
       "Npcs": [],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_8",
       "hideFlags": 0
     },
@@ -1018,6 +1015,8 @@
       "StartPosY": -23,
       "SpawningPoolData": null,
       "Npcs": [],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_9",
       "hideFlags": 0
     },
@@ -1030,6 +1029,8 @@
       "StartPosY": 39,
       "SpawningPoolData": null,
       "Npcs": [],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_10",
       "hideFlags": 0
     },
@@ -1042,6 +1043,8 @@
       "StartPosY": -81,
       "SpawningPoolData": null,
       "Npcs": [],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_11",
       "hideFlags": 0
     },
@@ -1054,6 +1057,8 @@
       "StartPosY": 39,
       "SpawningPoolData": null,
       "Npcs": [],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_12",
       "hideFlags": 0
     },
@@ -1066,6 +1071,8 @@
       "StartPosY": -7,
       "SpawningPoolData": null,
       "Npcs": [],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_13",
       "hideFlags": 0
     },
@@ -1078,6 +1085,8 @@
       "StartPosY": -14,
       "SpawningPoolData": null,
       "Npcs": [],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_14",
       "hideFlags": 0
     },
@@ -1090,6 +1099,8 @@
       "StartPosY": -47,
       "SpawningPoolData": null,
       "Npcs": [],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_15",
       "hideFlags": 0
     },
@@ -1102,6 +1113,8 @@
       "StartPosY": 75,
       "SpawningPoolData": null,
       "Npcs": [],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_16",
       "hideFlags": 0
     },
@@ -1114,6 +1127,8 @@
       "StartPosY": 139,
       "SpawningPoolData": null,
       "Npcs": [],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_17",
       "hideFlags": 0
     },
@@ -1126,6 +1141,8 @@
       "StartPosY": 88,
       "SpawningPoolData": null,
       "Npcs": [],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_18",
       "hideFlags": 0
     },
@@ -1138,6 +1155,8 @@
       "StartPosY": 104,
       "SpawningPoolData": null,
       "Npcs": [],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_19",
       "hideFlags": 0
     },
@@ -1150,6 +1169,8 @@
       "StartPosY": -14,
       "SpawningPoolData": null,
       "Npcs": [],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_20",
       "hideFlags": 0
     },
@@ -1162,6 +1183,8 @@
       "StartPosY": 41,
       "SpawningPoolData": null,
       "Npcs": [],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_21",
       "hideFlags": 0
     },
@@ -1174,6 +1197,8 @@
       "StartPosY": 22,
       "SpawningPoolData": null,
       "Npcs": [],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_22",
       "hideFlags": 0
     },
@@ -1186,6 +1211,8 @@
       "StartPosY": -12,
       "SpawningPoolData": null,
       "Npcs": [],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_23",
       "hideFlags": 0
     },
@@ -1198,7 +1225,101 @@
       "StartPosY": -67,
       "SpawningPoolData": null,
       "Npcs": [],
+      "Monsters": [],
+      "DropItems": [],
       "name": "SO_Room_24",
+      "hideFlags": 0
+    },
+    {
+      "TemplateId": 25,
+      "PrefabName": "Room25_Forest_north_test",
+      "MapNameTextId": "[테스트] 평온숲 북쪽",
+      "MapName": "[테스트] 평온숲 북쪽",
+      "StartPosX": 63,
+      "StartPosY": 88,
+      "SpawningPoolData": {
+        "RoomId": 25,
+        "RespawnDatas": [
+          {
+            "TemplateId": 11,
+            "Count": 15,
+            "MonsterDataId": 4,
+            "RespawnType": 0,
+            "RespawnTime": 5,
+            "PivotPosX": 33,
+            "PivotPosY": 93,
+            "SpawnRange": 17,
+            "name": "SO_Respawn_11",
+            "hideFlags": 0
+          },
+          {
+            "TemplateId": 2,
+            "Count": 10,
+            "MonsterDataId": 5,
+            "RespawnType": 0,
+            "RespawnTime": 5,
+            "PivotPosX": 6,
+            "PivotPosY": 103,
+            "SpawnRange": 14,
+            "name": "SO_Respawn_2",
+            "hideFlags": 0
+          },
+          {
+            "TemplateId": 13,
+            "Count": 16,
+            "MonsterDataId": 5,
+            "RespawnType": 0,
+            "RespawnTime": 5,
+            "PivotPosX": -38,
+            "PivotPosY": 95,
+            "SpawnRange": 18,
+            "name": "SO_Respawn_13",
+            "hideFlags": 0
+          },
+          {
+            "TemplateId": 17,
+            "Count": 13,
+            "MonsterDataId": 6,
+            "RespawnType": 0,
+            "RespawnTime": 5,
+            "PivotPosX": -17,
+            "PivotPosY": 56,
+            "SpawnRange": 16,
+            "name": "SO_Respawn_17",
+            "hideFlags": 0
+          },
+          {
+            "TemplateId": 18,
+            "Count": 11,
+            "MonsterDataId": 7,
+            "RespawnType": 0,
+            "RespawnTime": 5,
+            "PivotPosX": 20,
+            "PivotPosY": 48,
+            "SpawnRange": 15,
+            "name": "SO_Respawn_18",
+            "hideFlags": 0
+          },
+          {
+            "TemplateId": 20,
+            "Count": 13,
+            "MonsterDataId": 7,
+            "RespawnType": 0,
+            "RespawnTime": 5,
+            "PivotPosX": 65,
+            "PivotPosY": 55,
+            "SpawnRange": 16,
+            "name": "SO_Respawn_20",
+            "hideFlags": 0
+          }
+        ],
+        "name": "SO_Spawn_Room25",
+        "hideFlags": 0
+      },
+      "Npcs": [],
+      "Monsters": [],
+      "DropItems": [],
+      "name": "SO_Room_25",
       "hideFlags": 0
     }
   ]

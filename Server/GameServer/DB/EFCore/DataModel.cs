@@ -1,9 +1,7 @@
 ﻿using Google.Protobuf.Protocol;
-using GameServer.Game;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace GameServer
 {
@@ -28,6 +26,7 @@ namespace GameServer
         public int Dia { get; set; }
         public ICollection<ItemDb> Items { get; set; } = new List<ItemDb>();
         public ICollection<QuestDb> Quests { get; set; } = new List<QuestDb>();
+        public ICollection<CollectionDb> Collections { get; set; } = new List<CollectionDb>();
     }
 
     [Table("Item")]
@@ -65,5 +64,18 @@ namespace GameServer
     {
         public List<int> ObjectiveTemplateIds { get; set; } = new List<int>();
         public List<int> ObjectiveCounts { get; set; } = new List<int>();
+    }
+
+    [Table("Collection")]
+    [PrimaryKey(nameof(OwnerDbId), nameof(TemplateId))]
+    public class CollectionDb
+    {
+        // PK, FK
+        public int OwnerDbId { get; set; }
+        public int TemplateId { get; set; }
+        public int ProgressFlag { get; set; }
+
+        // FK        
+        public HeroDb OwnerDb { get; set; }
     }
 }

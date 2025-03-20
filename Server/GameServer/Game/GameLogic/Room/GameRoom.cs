@@ -148,6 +148,12 @@ namespace GameServer
                         enterPacket.Quests.Add(info);
                     }
 
+                    // Collection
+                    foreach (var info in hero.CollectionComp.GetAllInfos())
+                    {
+                        enterPacket.Collections.Add(info);
+                    }
+
                     // Skill
                     List<SkillCoolTime> cooltimes = hero.SkillComp.GetRemainingTicks();
                     foreach (SkillCoolTime cooltime in cooltimes)

@@ -3,7 +3,7 @@ using Server.Data;
 
 namespace GameServer.Game
 {
-	public class HeroInfoComponent : IBroadcastEventListener
+	public class HeroInfoComponent : IHeroInternalEventListener
     {
 		// 남한테 보낼 때 사용하는 정보
 		public HeroInfo HeroInfo { get; set; } = new HeroInfo();
@@ -36,7 +36,7 @@ namespace GameServer.Game
 			};
 		}
 
-        public void OnBroadcastEvent(EBroadcastEventType type, int targetId, int count)
+        public void OnBroadcastHeroInternalEvent(EHeroInternalEventType type, int targetId, int count)
         {
 
         }
@@ -53,8 +53,7 @@ namespace GameServer.Game
 			bool levelUp = ReCalculateLevel();
 			if (levelUp)
 			{ 
-				Owner.RefreshStat();
-				Owner.BroadcastEvent(EBroadcastEventType.LevelUp);
+				Owner.BroadcastHeroInternalEvent(EHeroInternalEventType.LevelUp);
             }
 		}
 

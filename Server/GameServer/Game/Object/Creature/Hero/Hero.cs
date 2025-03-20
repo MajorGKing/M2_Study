@@ -6,9 +6,9 @@ using Server.Game;
 
 namespace GameServer
 {
-    public interface IBroadcastEventListener
+    public interface IHeroInternalEventListener
     {
-        public void OnBroadcastEvent(EBroadcastEventType type, int targetId, int count);
+        public void OnBroadcastHeroInternalEvent(EHeroInternalEventType type, int targetId, int count);
     }
 
     public class Hero : Creature
@@ -24,11 +24,14 @@ namespace GameServer
         public InventoryComponent Inven { get; private set; }
         public HeroInfoComponent HeroInfoComp { get; private set; }
         public QuestComponent QuestComp { get; set; }
+        public CollectionComponent CollectionComp { get; set; }
 
-        public void BroadcastEvent(EBroadcastEventType type, int targetId = 0, int count = 0)
+        public void BroadcastHeroInternalEvent(EHeroInternalEventType type, int targetId = 0, int count = 0)
         {
-            HeroInfoComp.OnBroadcastEvent(type, targetId, count);
-            QuestComp.OnBroadcastEvent(type, targetId, count);
+            OnBroadcastHeroInternalEvent(type, targetId, count);
+            HeroInfoComp.OnBroadcastHeroInternalEvent(type, targetId, count);
+            QuestComp.OnBroadcastHeroInternalEvent(type, targetId, count);
+            EffectComp.OnBroadcastHeroInternalEvent(type, targetId, count);
         }
 
         //public StatInfo TotalStat { get; private set; } = new StatInfo();
@@ -47,6 +50,7 @@ namespace GameServer
             Inven = new InventoryComponent(this);
             HeroInfoComp = new HeroInfoComponent(this);
             QuestComp = new QuestComponent(this);
+            CollectionComp = new CollectionComponent(this);
         }
 
         public void Init(HeroDb heroDb)
@@ -76,18 +80,14 @@ namespace GameServer
             InitializeItems(heroDb);
             
             QuestComp.Init(heroDb);
+            CollectionComp.Init(heroDb);
         }
 
         public void RefreshStat()
         {
-            // Temp 물약버프같은거는 clear X
-            EffectComp.Clear();
-			// BaseStat, TotalStat
-			StatComp.InitStat(HeroInfoComp.Level);
-         
-            // 장비아이템 refresh
-            Inven.ApplyEquipmentEffects();
-
+            // BaseStat, TotalStat
+            StatComp.InitStat(HeroInfoComp.Level);
+            CollectionComp.ApplyCollectionRewards();
             SendRefreshStat();
         }
 
@@ -124,9 +124,6 @@ namespace GameServer
         private void InitializeItems(HeroDb heroDb)
         {
             Inven.Init(heroDb.Items.ToList());
-
-            //장착한 아이템 이펙트 적용
-            Inven.ApplyEquipmentEffects();
         }
 
         public override void Update()
@@ -213,6 +210,23 @@ namespace GameServer
 			Session?.Send(changeStat);
 		}
 
-		#endregion
-	}
+        public void SendSystemEvent(ESystemEventType type)
+        {
+            S_SystemEvent systemEvent = new S_SystemEvent();
+            systemEvent.Type = type;
+            Session?.Send(systemEvent);
+        }
+
+        #endregion
+
+        public void OnBroadcastHeroInternalEvent(EHeroInternalEventType type, int targetId, int count)
+        {
+            switch (type)
+            {
+                case EHeroInternalEventType.LevelUp:
+                    RefreshStat();
+                    break;
+            }
+        }
+    }
 }

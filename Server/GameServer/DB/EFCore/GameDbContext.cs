@@ -8,6 +8,7 @@ namespace GameServer
 		public DbSet<HeroDb> Heroes { get; set; }
 		public DbSet<ItemDb> Items { get; set; }
         public DbSet<QuestDb> Quests { get; set; }
+        public DbSet<CollectionDb> Collections { get; set; }
 
         static readonly ILoggerFactory _logger = LoggerFactory.Create(builder => { builder.AddConsole(); });
 
@@ -53,6 +54,12 @@ namespace GameServer
             // Rookiss :)
             builder.Entity<QuestDb>()
                 .OwnsMany(e => e.QuestTasks, builder => { builder.ToJson(); });
-		}
+
+            builder.Entity<CollectionDb>()
+                .HasOne(e => e.OwnerDb)
+                .WithMany(e => e.Collections)
+                .HasForeignKey(e => e.OwnerDbId)
+                .IsRequired();
+        }
     }
 }

@@ -8,6 +8,7 @@ namespace GameServer
     public static class Utils
     {
         public static long TickCount { get { return System.Environment.TickCount64; } }
+        static Random _rand { get; } = new Random(DateTime.Now.Millisecond);
 
         public static IPAddress GetLocalIP()
         {
@@ -74,6 +75,12 @@ namespace GameServer
         public static int GetDistance(Vector2Int a, Vector2Int b)
         {
             return Math.Max(Math.Abs(a.x - b.x), Math.Abs(a.y - b.y));
+        }
+
+        public static bool CheckProbability(int percentage)
+        {
+            int randomValue = _rand.Next(1, 101);
+            return randomValue <= percentage;
         }
     }
 }

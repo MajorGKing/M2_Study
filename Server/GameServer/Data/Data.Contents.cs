@@ -77,8 +77,16 @@ namespace Server.Data
 
         public int DialogueId;
 
-        [ExcludeField]
-        public PositionInfo SpawnPosInfo;
+        public PositionInfo GetSpawnPosition()
+        {
+            PositionInfo positionInfo = new PositionInfo()
+            {
+                RoomId = OwnerRoomId,
+                PosX = SpawnPosX,
+                PosY = SpawnPosY
+            };
+            return positionInfo;
+        }
     }
     #endregion
 
@@ -299,14 +307,14 @@ namespace Server.Data
     public class EquipmentData : ItemData
     {
         public EItemSlotType SlotType;
-        public bool canTrade;
-        public bool canDelete;
-        public bool canStorable;
+        public bool CanTrade;
+        public bool CanDelete;
+        public bool CanStorable;
         public int MaxHpBonus;
         public int AttackBonus;
         public int DefenceBonus;
         public int EffectDataId;
-        public int SafeEnhancementLevel;
+        public int SafeEnchantLevel;
         public int NextLevelItemDataId;
 
         [ExcludeField]
@@ -314,7 +322,7 @@ namespace Server.Data
         [ExcludeField]
         public EffectData EffectData;
         [ExcludeField]
-        public ItemData NextLevelItem;
+        public EquipmentData NextLevelItem;
     }
 
     [Serializable]
@@ -338,45 +346,50 @@ namespace Server.Data
             foreach (var equipmentData in items)
             {
                 DataManager.EffectDict.TryGetValue(equipmentData.EffectDataId, out equipmentData.EffectData);
-                DataManager.ItemDict.TryGetValue(equipmentData.NextLevelItemDataId, out equipmentData.NextLevelItem);
+                DataManager.EquipmentDict.TryGetValue(equipmentData.NextLevelItemDataId, out equipmentData.NextLevelItem);
 
-                equipmentData.BaseItemDataId = FindBaseId(equipmentData);
+                //equipmentData.BaseItemDataId = FindBaseId(equipmentData);
             }
 
+			// Cache.
+			foreach (var equipmentData in items)
+            {
+                if (equipmentData.NextLevelItemDataId != 0)
+					_baseCache[equipmentData.NextLevelItemDataId] = equipmentData.TemplateId;
+            }
 
-            return validate;
+            // 실제로 찾기.
+			foreach (var equipmentData in items)
+				SetBaseItem(equipmentData);
+
+			return validate;
         }
 
-        private Dictionary<int, int> baseItemMemo = new Dictionary<int, int>();
-        private int FindBaseId(EquipmentData data)
-        {
-            if (baseItemMemo.ContainsKey(data.TemplateId))
-            {
-                return baseItemMemo[data.TemplateId];
-            }
+        private Dictionary<int, int> _baseCache = new Dictionary<int, int>();
 
-            if (DataManager.ItemDict.TryGetValue(data.TemplateId - 1, out ItemData prev))
-            {
-                EquipmentData prevItem = prev as EquipmentData;
+		private void SetBaseItem(EquipmentData data)
+		{
+            if (data == null)
+                return;
 
-                // 이전아이템의 NextLevelItemDataId가 0이면 다른아이템의 풀강화라고 판단
-                if (prevItem == null || prevItem.NextLevelItemDataId == 0)
-                {
-                    baseItemMemo[data.TemplateId] = data.TemplateId;
-                }
-                else
-                {
-                    baseItemMemo[data.TemplateId] = FindBaseId(prevItem);
-                }
+            if (_baseCache.ContainsKey(data.TemplateId) == false)
+            {
+                // 기본 아이템이라면, BaseItemDataId가 자기 자신이다.
+                _baseCache[data.TemplateId] = data.TemplateId;
+				data.BaseItemDataId = data.TemplateId;               
             }
             else
             {
-                // 이전아이템이 없으면 지금아이템이 base임
-                baseItemMemo[data.TemplateId] = data.TemplateId;
+                data.BaseItemDataId = _baseCache[data.TemplateId];
             }
 
-            return baseItemMemo[data.TemplateId];
-        }
+			// 다음 아이템의 기본 아이템을 설정.
+			if (DataManager.ItemDict.TryGetValue(data.NextLevelItemDataId, out ItemData next))
+			{
+				_baseCache[data.NextLevelItemDataId] = _baseCache[data.TemplateId];
+				SetBaseItem(next as EquipmentData);
+			}
+		}
     }
 
     #endregion
@@ -798,18 +811,81 @@ namespace Server.Data
 
         public SpawningPoolData SpawningPoolData;
         public List<NpcData> Npcs;
+        public List<MonsterData> Monsters = new List<MonsterData>();
+        public List<ItemData> DropItems = new List<ItemData>();
 
+        #region Helpers
+        public List<MonsterData> FindMonstersByDropItem(int itemId)
+        {
+            List<MonsterData> monsters = new List<MonsterData>();
+            foreach (var monster in Monsters)
+            {
+                foreach (var rewardData in monster.RewardTable.Rewards)
+                {
+                    if (rewardData.ItemTemplateId == itemId)
+                        monsters.Add(monster);
+                }
+            }
+
+            return monsters;
+        }
+
+        public PositionInfo FindDropItemPosition(int itemId)
+        {
+            List<MonsterData> monsters = FindMonstersByDropItem(itemId);
+            List<PositionInfo> positions = new List<PositionInfo>();
+            if (monsters.Count == 0)
+                return null;
+
+            foreach (var monster in monsters)
+            {
+                positions.Add(FindMonsterSpawnPos(monster.TemplateId));
+            }
+
+            if (positions.Count == 0)
+                return null;
+
+            positions.Shuffle();
+
+            return positions.FirstOrDefault();
+        }
+
+        public PositionInfo FindMonsterSpawnPos(int monsterId)
+        {
+            var respawnData = SpawningPoolData.RespawnDatas.FirstOrDefault(data => data.MonsterDataId == monsterId);
+
+            if (respawnData == null)
+                return null;
+
+            return new PositionInfo
+            {
+                PosX = respawnData.PivotPosX,
+                PosY = respawnData.PivotPosY,
+                RoomId = TemplateId
+            };
+        }
+
+        public PositionInfo FindNpcPos(int npcId)
+        {
+            var npcData = Npcs.FirstOrDefault(data => data.TemplateId == npcId);
+
+            if (npcData == null)
+                return null;
+
+            return npcData.GetSpawnPosition();
+        }
+        #endregion
     }
 
     [Serializable]
     public class RoomDataLoader : ILoader<int, RoomData>
     {
-        public List<RoomData> spawningPools = new List<RoomData>();
+        public List<RoomData> roomDatas = new List<RoomData>();
 
         public Dictionary<int, RoomData> MakeDict()
         {
             Dictionary<int, RoomData> dict = new Dictionary<int, RoomData>();
-            foreach (RoomData spawningPool in spawningPools)
+            foreach (RoomData spawningPool in roomDatas)
             {
                 dict.Add(spawningPool.TemplateId, spawningPool);
             }
@@ -818,6 +894,29 @@ namespace Server.Data
 
         public bool Validate()
         {
+            foreach (var roomData in roomDatas)
+            {
+                if (roomData.SpawningPoolData == null)
+                    continue;
+
+                // 1. Monster
+                foreach (var respawnData in roomData.SpawningPoolData.RespawnDatas)
+                {
+                    if (DataManager.MonsterDict.TryGetValue(respawnData.MonsterDataId, out var monsterData))
+                    {
+                        roomData.Monsters.Add(monsterData);
+                    }
+                }
+
+                // 2.Items 
+                foreach (var monsterData in roomData.Monsters)
+                {
+                    foreach (var rewardData in monsterData.RewardTable.Rewards)
+                    {
+                        roomData.DropItems.Add(rewardData.Item);
+                    }
+                }
+            }
             return true;
         }
     }
@@ -853,11 +952,6 @@ namespace Server.Data
             {
                 if (DataManager.PortalDict.TryGetValue(portal.DestPotalId, out PortalData portalData))
                     portal.DestPortal = portalData;
-
-                portal.SpawnPosInfo = new PositionInfo();
-                portal.SpawnPosInfo.RoomId = portal.OwnerRoomId;
-                portal.SpawnPosInfo.PosX = portal.SpawnPosX;
-                portal.SpawnPosInfo.PosY = portal.SpawnPosY;
             }
             return true;
         }
@@ -885,14 +979,6 @@ namespace Server.Data
 
         public bool Validate()
         {
-            foreach (NpcCommonData npc in commons)
-            {
-                npc.SpawnPosInfo = new PositionInfo();
-                npc.SpawnPosInfo.RoomId = npc.OwnerRoomId;
-                npc.SpawnPosInfo.PosX = npc.SpawnPosX;
-                npc.SpawnPosInfo.PosY = npc.SpawnPosY;
-            }
-
             return true;
         }
     }
@@ -909,11 +995,14 @@ namespace Server.Data
         public int Level;
         public int RewardTableId;
         public int RequiredQuestId;
+        public int OwnerRoomId;
 
         [ExcludeField]
         public List<QuestTaskData> QuestTasks = new List<QuestTaskData>();
         [ExcludeField]
         public RewardTableData RewardTableData = new RewardTableData();
+        [ExcludeField]
+        public RoomData OwnerRoomData = new RoomData();
     }
 
     public class QuestDataLoader : ILoader<int, QuestData>
@@ -950,6 +1039,11 @@ namespace Server.Data
                 {
                     validate = false;
                 }
+
+                if (DataManager.RoomDict.TryGetValue(questData.OwnerRoomId, out questData.OwnerRoomData) == false)
+                {
+                    validate = false;
+                }
             }
             return validate;
         }
@@ -964,6 +1058,7 @@ namespace Server.Data
         public List<int> ObjectiveDataIds;
         public List<int> ObjectiveCounts;
         public int DialogueId;
+        public List<int> ItemToRemoveIds;//삭제시켜야할 아이템
 
         [ExcludeField]
         public PositionInfo TeleportPos;
@@ -995,21 +1090,70 @@ namespace Server.Data
                 {
                     task.Objectives.Add(task.ObjectiveDataIds[i], task.ObjectiveCounts[i]);
                 }
+            }
+            return validate;
+        }
+    }
 
-                // TODO : 텔레포트 포지션 찾기
-                task.TeleportPos = new PositionInfo();
-                switch (task.TaskType)
+
+    #endregion
+
+    #region Collection
+    [Serializable]
+    public class CollectionData : BaseData
+    {
+        public ECollectionType Type;
+        public EItemGrade Grade;
+        public List<int> ItemIds;
+        public int RewardEffectId;
+
+        [ExcludeField]
+        public List<ItemData> ItemDatas = new List<ItemData>();
+
+        [ExcludeField]
+        public EffectData RewardEffectData;
+    }
+
+    public class CollectionDataLoader : ILoader<int, CollectionData>
+    {
+        public List<CollectionData> collections = new List<CollectionData>();
+
+        public Dictionary<int, CollectionData> MakeDict()
+        {
+            Dictionary<int, CollectionData> dict = new Dictionary<int, CollectionData>();
+            foreach (CollectionData questData in collections)
+                dict.Add(questData.TemplateId, questData);
+
+            return dict;
+        }
+
+        public bool Validate()
+        {
+            bool validate = true;
+
+            // Collections
+            foreach (var collectionData in collections)
+            {
+                // 1. Item
+                foreach (var itemId in collectionData.ItemIds)
                 {
-                    case EQuestTaskType.None:
-                        break;
-                    case EQuestTaskType.KillTarget:
-                        break;
-                    case EQuestTaskType.CollectItem:
-                        break;
-                    case EQuestTaskType.InteractWithNpc:
-                        break;
+                    if (DataManager.ItemDict.TryGetValue(itemId, out ItemData item) == false)
+                    {
+                        validate = false;
+                        continue;
+                    }
+
+                    collectionData.ItemDatas.Add(item);
                 }
 
+                // 2. RewardEffect
+                if (DataManager.EffectDict.TryGetValue(collectionData.RewardEffectId, out EffectData rewardEffectData) == false)
+                {
+                    validate = false;
+                    continue;
+                }
+
+                collectionData.RewardEffectData = rewardEffectData;
             }
             return validate;
         }

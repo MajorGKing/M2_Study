@@ -391,6 +391,22 @@
       "Probability": 8000,
       "Count": 1,
       "Item": null
+    },
+    {
+      "TemplateId": 49,
+      "Name": "무기 강화 주문서",
+      "ItemTemplateId": 7,
+      "Probability": 2000,
+      "Count": 3,
+      "Item": null
+    },
+    {
+      "TemplateId": 50,
+      "Name": "갑옷 강화 주문서",
+      "ItemTemplateId": 8,
+      "Probability": 2000,
+      "Count": 3,
+      "Item": null
     }
   ]
 }

@@ -27,7 +27,7 @@ namespace GameServer.Game
             if (_npcData == null)
                 return;
 
-            myHero.BroadcastEvent(EBroadcastEventType.InteractWithNpc, _npcData.TemplateId, 1);
+            myHero.BroadcastHeroInternalEvent(EHeroInternalEventType.InteractWithNpc, _npcData.TemplateId, 1);
         }
 
         public bool CanInteract(Hero myHero)

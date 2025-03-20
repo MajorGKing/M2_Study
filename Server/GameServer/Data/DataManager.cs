@@ -42,6 +42,7 @@ namespace GameServer
         public static Dictionary<int, EquipmentData> EquipmentDict { get; private set; } = new Dictionary<int, EquipmentData>();
         public static Dictionary<int, ConsumableData> ConsumableDict { get; private set; } = new Dictionary<int, ConsumableData>();
         public static Dictionary<int, CollectibleData> CollectibleDict { get; private set; } = new Dictionary<int, CollectibleData>();
+        public static Dictionary<int, CollectionData> CollectionDict { get; private set; } = new Dictionary<int, CollectionData>();
 
         public static Dictionary<int, QuestData> QuestDict { get; private set; } = new Dictionary<int, QuestData>();
         public static Dictionary<int, QuestTaskData> QuestTaskDict { get; private set; } = new Dictionary<int, QuestTaskData>();
@@ -59,6 +60,7 @@ namespace GameServer
             RespawnDict = LoadJson<RespawnDataLoader, int, RespawnData>("RespawnData").MakeDict();
             SpawningPoolDict = LoadJson<SpawningPoolDataLoader, int, SpawningPoolData>("SpawningPoolData").MakeDict();
             RoomDict = LoadJson<RoomDataLoader, int, RoomData>("RoomData").MakeDict();
+            CollectionDict = LoadJson<CollectionDataLoader, int, CollectionData>("CollectionData").MakeDict();
 
             #region ItemData
             EquipmentDict = LoadJson<EquipmentDataLoader, int, EquipmentData>("EquipmentData").MakeDict();

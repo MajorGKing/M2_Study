@@ -2,16 +2,15 @@
   "quests": [
     {
       "TemplateId": 1,
-      "NameTextId": "메인퀘스트1. 마을 청소",
+      "NameTextId": "1. 마을 앞 괴물(1)",
       "Type": 1,
       "TaskIds": [
-        1,
-        2,
-        3
+        1
       ],
       "Level": 1,
       "RewardTableId": 1000,
       "RequiredQuestId": 0,
+      "OwnerRoomId": 1,
       "QuestTasks": [],
       "RewardTableData": {
         "TemplateId": 0,
@@ -20,20 +19,33 @@
         "RewardExp": 0,
         "RewardDataIds": null,
         "Rewards": null
+      },
+      "OwnerRoomData": {
+        "TemplateId": 0,
+        "PrefabName": null,
+        "MapNameTextId": null,
+        "MapName": null,
+        "StartPosX": 0,
+        "StartPosY": 0,
+        "SpawningPoolData": null,
+        "Npcs": null,
+        "Monsters": [],
+        "DropItems": [],
+        "name": "",
+        "hideFlags": 0
       }
     },
     {
       "TemplateId": 2,
-      "NameTextId": "메인퀘스트 2. 거미알 수집",
+      "NameTextId": "2. 마을 앞 괴물(2)",
       "Type": 1,
       "TaskIds": [
-        4,
-        5,
-        6
+        2
       ],
       "Level": 1,
-      "RewardTableId": 1000,
+      "RewardTableId": 1001,
       "RequiredQuestId": 1,
+      "OwnerRoomId": 1,
       "QuestTasks": [],
       "RewardTableData": {
         "TemplateId": 0,
@@ -42,18 +54,33 @@
         "RewardExp": 0,
         "RewardDataIds": null,
         "Rewards": null
+      },
+      "OwnerRoomData": {
+        "TemplateId": 0,
+        "PrefabName": null,
+        "MapNameTextId": null,
+        "MapName": null,
+        "StartPosX": 0,
+        "StartPosY": 0,
+        "SpawningPoolData": null,
+        "Npcs": null,
+        "Monsters": [],
+        "DropItems": [],
+        "name": "",
+        "hideFlags": 0
       }
     },
     {
       "TemplateId": 3,
-      "NameTextId": "메인퀘스트 완료",
-      "Type": 0,
+      "NameTextId": "3. 마을 앞 괴물(3)",
+      "Type": 1,
       "TaskIds": [
-        7
+        3
       ],
       "Level": 1,
-      "RewardTableId": 1000,
+      "RewardTableId": 1002,
       "RequiredQuestId": 2,
+      "OwnerRoomId": 1,
       "QuestTasks": [],
       "RewardTableData": {
         "TemplateId": 0,
@@ -62,6 +89,125 @@
         "RewardExp": 0,
         "RewardDataIds": null,
         "Rewards": null
+      },
+      "OwnerRoomData": {
+        "TemplateId": 0,
+        "PrefabName": null,
+        "MapNameTextId": null,
+        "MapName": null,
+        "StartPosX": 0,
+        "StartPosY": 0,
+        "SpawningPoolData": null,
+        "Npcs": null,
+        "Monsters": [],
+        "DropItems": [],
+        "name": "",
+        "hideFlags": 0
+      }
+    },
+    {
+      "TemplateId": 4,
+      "NameTextId": "4. 기술 단장의 취향(1)",
+      "Type": 1,
+      "TaskIds": [
+        4
+      ],
+      "Level": 1,
+      "RewardTableId": 1003,
+      "RequiredQuestId": 3,
+      "OwnerRoomId": 1,
+      "QuestTasks": [],
+      "RewardTableData": {
+        "TemplateId": 0,
+        "Name": null,
+        "RewardGold": 0,
+        "RewardExp": 0,
+        "RewardDataIds": null,
+        "Rewards": null
+      },
+      "OwnerRoomData": {
+        "TemplateId": 0,
+        "PrefabName": null,
+        "MapNameTextId": null,
+        "MapName": null,
+        "StartPosX": 0,
+        "StartPosY": 0,
+        "SpawningPoolData": null,
+        "Npcs": null,
+        "Monsters": [],
+        "DropItems": [],
+        "name": "",
+        "hideFlags": 0
+      }
+    },
+    {
+      "TemplateId": 5,
+      "NameTextId": "5. 기술 단장의 취향(2)",
+      "Type": 1,
+      "TaskIds": [
+        5
+      ],
+      "Level": 1,
+      "RewardTableId": 1004,
+      "RequiredQuestId": 4,
+      "OwnerRoomId": 1,
+      "QuestTasks": [],
+      "RewardTableData": {
+        "TemplateId": 0,
+        "Name": null,
+        "RewardGold": 0,
+        "RewardExp": 0,
+        "RewardDataIds": null,
+        "Rewards": null
+      },
+      "OwnerRoomData": {
+        "TemplateId": 0,
+        "PrefabName": null,
+        "MapNameTextId": null,
+        "MapName": null,
+        "StartPosX": 0,
+        "StartPosY": 0,
+        "SpawningPoolData": null,
+        "Npcs": null,
+        "Monsters": [],
+        "DropItems": [],
+        "name": "",
+        "hideFlags": 0
+      }
+    },
+    {
+      "TemplateId": 6,
+      "NameTextId": "다음 업데이트를 기다리며 성장하세요.",
+      "Type": 1,
+      "TaskIds": [
+        6
+      ],
+      "Level": 1,
+      "RewardTableId": 1005,
+      "RequiredQuestId": 5,
+      "OwnerRoomId": 1,
+      "QuestTasks": [],
+      "RewardTableData": {
+        "TemplateId": 0,
+        "Name": null,
+        "RewardGold": 0,
+        "RewardExp": 0,
+        "RewardDataIds": null,
+        "Rewards": null
+      },
+      "OwnerRoomData": {
+        "TemplateId": 0,
+        "PrefabName": null,
+        "MapNameTextId": null,
+        "MapName": null,
+        "StartPosX": 0,
+        "StartPosY": 0,
+        "SpawningPoolData": null,
+        "Npcs": null,
+        "Monsters": [],
+        "DropItems": [],
+        "name": "",
+        "hideFlags": 0
       }
     }
   ]

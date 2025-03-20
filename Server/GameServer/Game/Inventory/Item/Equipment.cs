@@ -10,9 +10,6 @@ namespace Server.Game
         public EItemSubType EquipType { get; private set; }
         public EffectData EffectData { get; private set; }
 		public EquipmentData EquipmentData { get; private set; }
-        public int Damage { get; private set; }
-        public int Defence { get; private set; }
-        public int Speed { get; private set; }
 
         public Equipment(int templateId) : base(templateId)
         {
@@ -31,6 +28,22 @@ namespace Server.Game
             {
                 EquipType = EquipmentData.SubType;
                 EffectData = EquipmentData.EffectData;
+            }
+        }
+
+        public void ApplyEnchantLevel(InventoryComponent inventory, bool sendToClient = false)
+        {
+            if (EquipmentData.NextLevelItem == null)
+                return;
+
+            // 아이템 정보 교체 (메모리 적용).
+            TemplateId = EquipmentData.NextLevelItem.TemplateId;
+            Init();
+
+            // 아이템 정보 교체 패킷 전송.
+            if (sendToClient)
+            {
+                SendUpdatePacket(inventory.Owner, EUpdateItemReason.Enchant);
             }
         }
 
@@ -120,5 +133,89 @@ namespace Server.Game
 			SendChangeItemSlotPacket(owner);
 			owner.SendRefreshStat();
 		}
+
+		public bool TryEnchant(InventoryComponent inventory)
+        {
+			var scroll = inventory.GetEnchantScroll(SubType);
+			if (scroll == null || scroll.Count == 0)
+				return false;
+
+			int prob = GetEnchantProbability();
+			bool success = Utils.CheckProbability(prob);
+
+			// 1. 강화 재료 소모
+			DBManager.UseItemNoti(inventory.Owner, scroll);
+
+			// 2. 아이템 강화 or 파괴 진행
+			// 강화 성공시 EffectData, TemplateData변경
+			if (success)
+			{
+				DBManager.EnchantSuccessNoti(inventory.Owner, this);
+				inventory.Owner.SendSystemEvent(ESystemEventType.EnchantSuccess);
+			}	
+			else
+			{
+				DBManager.DeleteItemNoti(inventory.Owner, this);
+				inventory.Owner.SendSystemEvent(ESystemEventType.EnchantFail);
+			}
+			
+            return true;
+		}
+
+        #region Helpers
+        public bool CanEnchant(InventoryComponent inventory)
+        {
+			// 1. 최대 강화 레벨 확인. 
+			if (IsMaxEnchantLevel())
+				return false;
+
+			// 2. 장착중이면 리턴
+			if (IsEquipped())
+				return false;
+
+			// 3. 강화 재료 확인
+			if (inventory.GetEnchantScroll(SubType) == null)
+				return false;
+
+			return true;
+        }
+
+		private int GetEnchantCount()
+		{
+			return EquipmentData.TemplateId - EquipmentData.BaseItemDataId; 
+        }
+
+		private bool IsMaxEnchantLevel()
+		{
+			return EquipmentData.NextLevelItem == null ? true : false;
+		}
+
+		private bool IsSafeToEnchant()
+		{
+			return GetEnchantCount() < EquipmentData.SafeEnchantLevel;
+		}
+
+		private int GetEnchantProbability()
+		{
+			if (IsSafeToEnchant())
+				return 100;
+
+			// TODO : Config
+			int enchantCount = GetEnchantCount();
+			switch (enchantCount)
+			{
+				case 6:
+					return 70;
+				case 7:
+					return 50;
+				case 8:
+					return 30;
+				case 9:
+					return 20;
+				default:
+					return 0;
+			}
+        }
+        #endregion
     }
 }

@@ -154,7 +154,7 @@ namespace GameServer
                 if (hero == null)
                     continue;
                     
-                hero.BroadcastEvent(EBroadcastEventType.KillTarget, TemplateId, 1);
+                hero.BroadcastHeroInternalEvent(EHeroInternalEventType.KillTarget, TemplateId, 1);
             }
         }
 

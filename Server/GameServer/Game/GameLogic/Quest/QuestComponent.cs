@@ -7,7 +7,7 @@ namespace GameServer.Game
     // - Quest
     // -- Task
     // --- Objective
-    public class QuestComponent : IBroadcastEventListener
+    public class QuestComponent : IHeroInternalEventListener
     {
         public Dictionary</*TemplateId*/int, Quest> AllQuests = new Dictionary<int, Quest>();
         public Hero Owner { get; private set; }
@@ -26,15 +26,15 @@ namespace GameServer.Game
                 CheckAvailableQuests();
         }
 
-        public void OnBroadcastEvent(EBroadcastEventType type, int targetId, int count)
+        public void OnBroadcastHeroInternalEvent(EHeroInternalEventType type, int targetId, int count)
         {
             // 1. 조건 변화에 의한 퀘스트 추가 확인
             switch(type)
             {
-                case EBroadcastEventType.LevelUp:
+                case EHeroInternalEventType.LevelUp:
                     CheckAvailableQuests();
                     break;
-                case EBroadcastEventType.CompleteQuest:
+                case EHeroInternalEventType.CompleteQuest:
                     CheckAvailableQuests();
                     break;
             }
@@ -45,7 +45,7 @@ namespace GameServer.Game
                 if (quest.State != EQuestState.Processing)
                     continue;
 
-                quest.OnBroadcastEvent(type, targetId, count);
+                quest.OnBroadcastHeroInternalEvent(type, targetId, count);
             }
         }
 
@@ -71,13 +71,8 @@ namespace GameServer.Game
 
                 // TODO : 기타 조건 확인 (아이템 보유 수량 등)
 
-                availableQuests.Add(questData);
-            }
-
-            foreach(QuestData questData in availableQuests)
-            {
                 // 이미 있으면 스킵.
-                if (AllQuests.TryGetValue(questData.TemplateId, out Quest quest))
+                if (AllQuests.TryGetValue(questData.TemplateId, out Quest q))
                     continue;
 
                 // 퀘스트 추가

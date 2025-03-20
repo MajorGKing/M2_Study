@@ -3,6 +3,138 @@
     {
       "TemplateId": "RookieNameId",
       "KOR": "루키"
+    },
+    {
+      "TemplateId": "NicknameLabel",
+      "KOR": "닉네임"
+    },
+    {
+      "TemplateId": "AttackLabel",
+      "KOR": "공격력"
+    },
+    {
+      "TemplateId": "DefenceLabel",
+      "KOR": "방어력"
+    },
+    {
+      "TemplateId": "CriticalLabel",
+      "KOR": "치명타"
+    },
+    {
+      "TemplateId": "StaminaLabel",
+      "KOR": "스태미나"
+    },
+    {
+      "TemplateId": "SpeedLabel",
+      "KOR": "속도"
+    },
+    {
+      "TemplateId": "CreateLabel",
+      "KOR": "생성"
+    },
+    {
+      "TemplateId": "Main",
+      "KOR": "메인"
+    },
+    {
+      "TemplateId": "Achievement",
+      "KOR": "업적"
+    },
+    {
+      "TemplateId": "Event",
+      "KOR": "이벤트"
+    },
+    {
+      "TemplateId": "Quest",
+      "KOR": "퀘스트"
+    },
+    {
+      "TemplateId": "All",
+      "KOR": "전체"
+    },
+    {
+      "TemplateId": "Common",
+      "KOR": "일반"
+    },
+    {
+      "TemplateId": "Uncommon",
+      "KOR": "고급"
+    },
+    {
+      "TemplateId": "Rare",
+      "KOR": "희귀"
+    },
+    {
+      "TemplateId": "Epic",
+      "KOR": "에픽"
+    },
+    {
+      "TemplateId": "Legendary",
+      "KOR": "전설"
+    },
+    {
+      "TemplateId": "Mythic",
+      "KOR": "신화"
+    },
+    {
+      "TemplateId": "Collection",
+      "KOR": "수집"
+    },
+    {
+      "TemplateId": "Dungeon",
+      "KOR": "던전"
+    },
+    {
+      "TemplateId": "Register",
+      "KOR": "등록"
+    },
+    {
+      "TemplateId": "Exchange",
+      "KOR": "거래소"
+    },
+    {
+      "TemplateId": "Buy",
+      "KOR": "구매"
+    },
+    {
+      "TemplateId": "Sell",
+      "KOR": "판매"
+    },
+    {
+      "TemplateId": "SalesHistory",
+      "KOR": "판매 내역"
+    },
+    {
+      "TemplateId": "Weapon",
+      "KOR": "무기"
+    },
+    {
+      "TemplateId": "Armor",
+      "KOR": "방어구"
+    },
+    {
+      "TemplateId": "ItemInfo",
+      "KOR": "아이템 정보"
+    },
+    {
+      "TemplateId": "ViewMarketItems",
+      "KOR": "등록 물품"
+    },
+    {
+      "TemplateId": "Item",
+      "KOR": "아이템"
+    },
+    {
+      "TemplateId": "LowestPrice",
+      "KOR": "최저가"
+    },
+    {
+      "TemplateId": "SaleInfo",
+      "KOR": "판매 정보"
+    },
+    {
+      "TemplateId": "MarketList",
+      "KOR": "판매 목록"
     }
   ]
 }

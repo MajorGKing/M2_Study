@@ -49,17 +49,18 @@ namespace Google.Protobuf.Protocol {
             "IAEoCzISLlByb3RvY29sLkhlcm9JbmZvEgsKA2V4cBgCIAEoBRINCgVtYXBJ",
             "ZBgDIAEoBRIsCgxjdXJyZW5jeUluZm8YBSABKAsyFi5Qcm90b2NvbC5DdXJy",
             "ZW5jeUluZm8iOAoNU2tpbGxDb29sVGltZRIPCgdza2lsbElkGAEgASgFEhYK",
-            "DnJlbWFpbmluZ1RpY2tzGAIgASgFIpwBCghJdGVtSW5mbxIQCghpdGVtRGJJ",
+            "DnJlbWFpbmluZ1RpY2tzGAIgASgFIoYBCghJdGVtSW5mbxIQCghpdGVtRGJJ",
             "ZBgBIAEoAxISCgp0ZW1wbGF0ZUlkGAIgASgFEi0KDGl0ZW1TbG90VHlwZRgD",
             "IAEoDjIXLlByb3RvY29sLkVJdGVtU2xvdFR5cGUSDQoFY291bnQYBCABKAUS",
-            "FAoMZW5jaGFudENvdW50GAUgASgFEhYKDnJlbWFpbmluZ1RpY2tzGAYgASgF",
-            "Io0BCglRdWVzdEluZm8SEgoKdGVtcGxhdGVJZBgBIAEoBRIpCgpxdWVzdFN0",
-            "YXRlGAIgASgOMhUuUHJvdG9jb2wuRVF1ZXN0U3RhdGUSKgoJdGFza0luZm9z",
-            "GAMgAygLMhcuUHJvdG9jb2wuUXVlc3RUYXNrSW5mbxIVCg1uZXh0UmVzZXRU",
-            "aW1lGAQgASgDIn8KDVF1ZXN0VGFza0luZm8SOwoKb2JqZWN0aXZlcxgBIAMo",
-            "CzInLlByb3RvY29sLlF1ZXN0VGFza0luZm8uT2JqZWN0aXZlc0VudHJ5GjEK",
-            "D09iamVjdGl2ZXNFbnRyeRILCgNrZXkYASABKAUSDQoFdmFsdWUYAiABKAU6",
-            "AjgBQhuqAhhHb29nbGUuUHJvdG9idWYuUHJvdG9jb2xiBnByb3RvMw=="));
+            "FgoOcmVtYWluaW5nVGlja3MYBSABKAUijQEKCVF1ZXN0SW5mbxISCgp0ZW1w",
+            "bGF0ZUlkGAEgASgFEikKCnF1ZXN0U3RhdGUYAiABKA4yFS5Qcm90b2NvbC5F",
+            "UXVlc3RTdGF0ZRIqCgl0YXNrSW5mb3MYAyADKAsyFy5Qcm90b2NvbC5RdWVz",
+            "dFRhc2tJbmZvEhUKDW5leHRSZXNldFRpbWUYBCABKAMifwoNUXVlc3RUYXNr",
+            "SW5mbxI7CgpvYmplY3RpdmVzGAEgAygLMicuUHJvdG9jb2wuUXVlc3RUYXNr",
+            "SW5mby5PYmplY3RpdmVzRW50cnkaMQoPT2JqZWN0aXZlc0VudHJ5EgsKA2tl",
+            "eRgBIAEoBRINCgV2YWx1ZRgCIAEoBToCOAEiOgoOQ29sbGVjdGlvbkluZm8S",
+            "EgoKdGVtcGxhdGVJZBgBIAEoBRIUCgxwcm9ncmVzc0ZsYWcYAiABKAVCG6oC",
+            "GEdvb2dsZS5Qcm90b2J1Zi5Qcm90b2NvbGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Protocol.EnumReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -72,9 +73,10 @@ namespace Google.Protobuf.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.CurrencyInfo), global::Google.Protobuf.Protocol.CurrencyInfo.Parser, new[]{ "Gold", "Dia" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.MyHeroInfo), global::Google.Protobuf.Protocol.MyHeroInfo.Parser, new[]{ "HeroInfo", "Exp", "MapId", "CurrencyInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.SkillCoolTime), global::Google.Protobuf.Protocol.SkillCoolTime.Parser, new[]{ "SkillId", "RemainingTicks" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ItemInfo), global::Google.Protobuf.Protocol.ItemInfo.Parser, new[]{ "ItemDbId", "TemplateId", "ItemSlotType", "Count", "EnchantCount", "RemainingTicks" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ItemInfo), global::Google.Protobuf.Protocol.ItemInfo.Parser, new[]{ "ItemDbId", "TemplateId", "ItemSlotType", "Count", "RemainingTicks" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.QuestInfo), global::Google.Protobuf.Protocol.QuestInfo.Parser, new[]{ "TemplateId", "QuestState", "TaskInfos", "NextResetTime" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.QuestTaskInfo), global::Google.Protobuf.Protocol.QuestTaskInfo.Parser, new[]{ "Objectives" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.QuestTaskInfo), global::Google.Protobuf.Protocol.QuestTaskInfo.Parser, new[]{ "Objectives" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.CollectionInfo), global::Google.Protobuf.Protocol.CollectionInfo.Parser, new[]{ "TemplateId", "ProgressFlag" }, null, null, null, null)
           }));
     }
     #endregion
@@ -2293,7 +2295,6 @@ namespace Google.Protobuf.Protocol {
       templateId_ = other.templateId_;
       itemSlotType_ = other.itemSlotType_;
       count_ = other.count_;
-      enchantCount_ = other.enchantCount_;
       remainingTicks_ = other.remainingTicks_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -2347,19 +2348,8 @@ namespace Google.Protobuf.Protocol {
       }
     }
 
-    /// <summary>Field number for the "enchantCount" field.</summary>
-    public const int EnchantCountFieldNumber = 5;
-    private int enchantCount_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int EnchantCount {
-      get { return enchantCount_; }
-      set {
-        enchantCount_ = value;
-      }
-    }
-
     /// <summary>Field number for the "remainingTicks" field.</summary>
-    public const int RemainingTicksFieldNumber = 6;
+    public const int RemainingTicksFieldNumber = 5;
     private int remainingTicks_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int RemainingTicks {
@@ -2386,7 +2376,6 @@ namespace Google.Protobuf.Protocol {
       if (TemplateId != other.TemplateId) return false;
       if (ItemSlotType != other.ItemSlotType) return false;
       if (Count != other.Count) return false;
-      if (EnchantCount != other.EnchantCount) return false;
       if (RemainingTicks != other.RemainingTicks) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -2398,7 +2387,6 @@ namespace Google.Protobuf.Protocol {
       if (TemplateId != 0) hash ^= TemplateId.GetHashCode();
       if (ItemSlotType != global::Google.Protobuf.Protocol.EItemSlotType.None) hash ^= ItemSlotType.GetHashCode();
       if (Count != 0) hash ^= Count.GetHashCode();
-      if (EnchantCount != 0) hash ^= EnchantCount.GetHashCode();
       if (RemainingTicks != 0) hash ^= RemainingTicks.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -2429,12 +2417,8 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(32);
         output.WriteInt32(Count);
       }
-      if (EnchantCount != 0) {
-        output.WriteRawTag(40);
-        output.WriteInt32(EnchantCount);
-      }
       if (RemainingTicks != 0) {
-        output.WriteRawTag(48);
+        output.WriteRawTag(40);
         output.WriteInt32(RemainingTicks);
       }
       if (_unknownFields != null) {
@@ -2456,9 +2440,6 @@ namespace Google.Protobuf.Protocol {
       }
       if (Count != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Count);
-      }
-      if (EnchantCount != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(EnchantCount);
       }
       if (RemainingTicks != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(RemainingTicks);
@@ -2485,9 +2466,6 @@ namespace Google.Protobuf.Protocol {
       }
       if (other.Count != 0) {
         Count = other.Count;
-      }
-      if (other.EnchantCount != 0) {
-        EnchantCount = other.EnchantCount;
       }
       if (other.RemainingTicks != 0) {
         RemainingTicks = other.RemainingTicks;
@@ -2520,10 +2498,6 @@ namespace Google.Protobuf.Protocol {
             break;
           }
           case 40: {
-            EnchantCount = input.ReadInt32();
-            break;
-          }
-          case 48: {
             RemainingTicks = input.ReadInt32();
             break;
           }
@@ -2851,6 +2825,163 @@ namespace Google.Protobuf.Protocol {
             break;
           case 10: {
             objectives_.AddEntriesFrom(input, _map_objectives_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class CollectionInfo : pb::IMessage<CollectionInfo> {
+    private static readonly pb::MessageParser<CollectionInfo> _parser = new pb::MessageParser<CollectionInfo>(() => new CollectionInfo());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<CollectionInfo> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Google.Protobuf.Protocol.StructReflection.Descriptor.MessageTypes[12]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CollectionInfo() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CollectionInfo(CollectionInfo other) : this() {
+      templateId_ = other.templateId_;
+      progressFlag_ = other.progressFlag_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CollectionInfo Clone() {
+      return new CollectionInfo(this);
+    }
+
+    /// <summary>Field number for the "templateId" field.</summary>
+    public const int TemplateIdFieldNumber = 1;
+    private int templateId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int TemplateId {
+      get { return templateId_; }
+      set {
+        templateId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "progressFlag" field.</summary>
+    public const int ProgressFlagFieldNumber = 2;
+    private int progressFlag_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int ProgressFlag {
+      get { return progressFlag_; }
+      set {
+        progressFlag_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as CollectionInfo);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(CollectionInfo other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (TemplateId != other.TemplateId) return false;
+      if (ProgressFlag != other.ProgressFlag) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (TemplateId != 0) hash ^= TemplateId.GetHashCode();
+      if (ProgressFlag != 0) hash ^= ProgressFlag.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (TemplateId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(TemplateId);
+      }
+      if (ProgressFlag != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(ProgressFlag);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (TemplateId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TemplateId);
+      }
+      if (ProgressFlag != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ProgressFlag);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(CollectionInfo other) {
+      if (other == null) {
+        return;
+      }
+      if (other.TemplateId != 0) {
+        TemplateId = other.TemplateId;
+      }
+      if (other.ProgressFlag != 0) {
+        ProgressFlag = other.ProgressFlag;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            TemplateId = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            ProgressFlag = input.ReadInt32();
             break;
           }
         }

@@ -14,6 +14,7 @@ namespace GameServer
                 List<HeroDb> heroDbs = db.Heroes
                     .Where(h => h.AccountDbId == accountDbId)
                     .Include(h => h.Items)
+					.Include (h => h.Collections)
 					.Include (h => h.Quests)
                     .ThenInclude(q => q.QuestTasks) // Quests의 하위 엔티티인 QuestTasks 포함
                     .AsSplitQuery()

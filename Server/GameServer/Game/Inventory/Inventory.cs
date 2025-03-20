@@ -65,7 +65,7 @@ namespace Server.Game
                     break;
             }
 
-            Owner.BroadcastEvent(EBroadcastEventType.CollectItem, item.TemplateId, item.Count);
+            Owner.BroadcastHeroInternalEvent(EHeroInternalEventType.CollectItem, item.TemplateId, item.Count);
 
             if (sendToClient)
                 item.SendAddPacket(Owner);
@@ -79,7 +79,19 @@ namespace Server.Game
 
 			item.AddCount(Owner, count, sendToClient);
 
-            Owner.BroadcastEvent(EBroadcastEventType.CollectItem, item.TemplateId, count);
+            Owner.BroadcastHeroInternalEvent(EHeroInternalEventType.CollectItem, item.TemplateId, count);
+        }
+
+        public void RemoveCollectible(int templateId, bool sendToClient = false)
+        {
+            Item item = InventoryItems.Values
+                .Where(i => i.ItemType == EItemType.Collectible && i.TemplateId == templateId)
+                .FirstOrDefault();
+
+            if (item == null)
+                return;
+
+            DBManager.DeleteItemNoti(Owner, item);
         }
 
         public void Remove(Item item, bool sendToClient = false)
@@ -100,7 +112,7 @@ namespace Server.Game
                     break;
             }
 
-            Owner.BroadcastEvent(EBroadcastEventType.CollectItem, item.TemplateId, -item.Count);
+            Owner.BroadcastHeroInternalEvent(EHeroInternalEventType.CollectItem, item.TemplateId, -item.Count);
 
             if (sendToClient)
                item.SendDeletePacket(Owner);
@@ -198,6 +210,18 @@ namespace Server.Game
             DBManager.UseItemNoti(Owner, item);
         }
 
+        public void HandleEnchantItem(long itemDbId)
+        {
+            Equipment item = Owner.Inven.GetItemByDbId(itemDbId) as Equipment;
+            if (item == null)
+                return;
+
+            if (item.CanEnchant(this) == false)
+                return;
+
+            item.TryEnchant(Owner.Inven);
+        }
+
         public void HandleDeleteItem(long itemDbId)
         {
             Item item = GetInventoryItemByDbId(itemDbId);
@@ -260,6 +284,37 @@ namespace Server.Game
         public List<Item> GetAllItemsInWarehouse()
         {
             return WarehouseItems.Values.ToList();
+        }
+
+        public List<Consumable> GetAllConsumables()
+        {
+            return GetAllItemsInInventory()
+                .Where(i => i.ItemType == EItemType.Consumable)
+                .Cast<Consumable>()
+                .ToList();
+        }
+
+        public Item GetEnchantScroll(EItemSubType type)
+        {
+            switch (type)
+            {
+                case EItemSubType.Mainweapon:
+                case EItemSubType.Subweapon:
+                    return GetAllConsumables()
+                        .FirstOrDefault(c => c.ConsumableGroupType == EConsumableGroupType.WeaponScroll);
+                case EItemSubType.Helmet:
+                case EItemSubType.Chest:
+                case EItemSubType.Leg:
+                case EItemSubType.Shoes:
+                case EItemSubType.Gloves:
+                case EItemSubType.Shoulder:
+                case EItemSubType.Ring:
+                case EItemSubType.Amulet:
+                    return GetAllConsumables()
+                        .FirstOrDefault(c => c.ConsumableGroupType == EConsumableGroupType.AmorScroll);
+            }
+
+            return null;
         }
 
         #endregion

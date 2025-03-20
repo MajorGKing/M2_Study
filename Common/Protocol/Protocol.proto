@@ -64,6 +64,7 @@ message S_EnterGame
 	repeated SkillCoolTime cooltimes = 3;
     repeated ItemInfo items = 4;
     repeated QuestInfo quests = 5;
+    repeated CollectionInfo collections = 6;
 }
 
 message C_LeaveGame
@@ -197,6 +198,11 @@ message C_UseItem
 	int64 itemDbId = 1;
 }
 
+message C_EnchantItem
+{
+	int64 itemDbId = 1;
+}
+
 message S_UseItem
 {
 	int64 itemDbId = 1;
@@ -228,4 +234,21 @@ message S_Blink
 message S_AddOrUpdateQuest
 {
 	QuestInfo questInfo = 1;
+}
+
+message C_FillCollection
+{
+	int32 templateId = 1;
+	int64 itemDbId = 2;
+	int32 index = 3;
+}
+
+message S_UpdateCollection
+{
+	CollectionInfo CollectionInfo = 1;
+}
+
+message S_SystemEvent
+{
+	ESystemEventType type = 1;
 }

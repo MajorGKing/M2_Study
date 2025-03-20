@@ -1,7 +1,6 @@
 ﻿using GameServer.Game;
 using Google.Protobuf.Protocol;
 using Server.Data;
-using ServerCore;
 
 
 namespace GameServer
@@ -146,7 +145,6 @@ namespace GameServer
             PosInfo.State = EObjectState.Idle;
 
             ClearStateFlags();
-            EffectComp.Clear();
             CancelJobs();
         }
 

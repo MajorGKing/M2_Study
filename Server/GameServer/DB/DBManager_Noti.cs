@@ -5,44 +5,44 @@ using Server.Game;
 
 namespace GameServer
 {
-	// 게임 로직에서 완료 콜백을 받을 필요 없는 경우
-	public partial class DBManager : JobSerializer
-	{
-		public static void SaveHeroDbNoti(Hero hero)
-		{
-			if (hero == null)
-				return;
+    // 게임 로직에서 완료 콜백을 받을 필요 없는 경우
+    public partial class DBManager : JobSerializer
+    {
+        public static void SaveHeroDbNoti(Hero hero)
+        {
+            if (hero == null)
+                return;
 
             // DBThread
             Push(hero.HeroDbId, () =>
             {
-				using(GameDbContext db = new GameDbContext())
-				{
-					HeroDb heroDb = db.Heroes.Where(h => h.HeroDbId == hero.HeroDbId).FirstOrDefault();
-					if (heroDb == null)
-						return;
+                using (GameDbContext db = new GameDbContext())
+                {
+                    HeroDb heroDb = db.Heroes.Where(h => h.HeroDbId == hero.HeroDbId).FirstOrDefault();
+                    if (heroDb == null)
+                        return;
 
-					heroDb.Level = hero.HeroInfoComp.HeroInfo.Level;
-					heroDb.Exp = hero.HeroInfoComp.MyHeroInfo.Exp;
+                    heroDb.Level = hero.HeroInfoComp.HeroInfo.Level;
+                    heroDb.Exp = hero.HeroInfoComp.MyHeroInfo.Exp;
                     heroDb.Hp = (int)hero.StatComp.Hp;
                     heroDb.Mp = (int)hero.StatComp.Mp;
                     heroDb.PosX = hero.PosInfo.PosX;
-					heroDb.PosY = hero.PosInfo.PosY;
-					heroDb.Gold = hero.HeroInfoComp.MyHeroInfo.CurrencyInfo.Gold;
-					heroDb.Dia = hero.HeroInfoComp.MyHeroInfo.CurrencyInfo.Dia;
-					heroDb.MapId = hero.HeroInfoComp.MyHeroInfo.MapId;
+                    heroDb.PosY = hero.PosInfo.PosY;
+                    heroDb.Gold = hero.HeroInfoComp.MyHeroInfo.CurrencyInfo.Gold;
+                    heroDb.Dia = hero.HeroInfoComp.MyHeroInfo.CurrencyInfo.Dia;
+                    heroDb.MapId = hero.HeroInfoComp.MyHeroInfo.MapId;
 
                     bool success = db.SaveChangesEx();
-					if(success == false)
-					{
+                    if (success == false)
+                    {
                         // 실패했으면 Kick
                     }
                 }
-			});
-		}
+            });
+        }
 
-		public static void EquipItemNoti(Hero hero, Item item)
-		{
+        public static void EquipItemNoti(Hero hero, Item item)
+        {
             if (hero == null || item == null)
                 return;
 
@@ -55,17 +55,17 @@ namespace GameServer
             // DBThread
             Push(hero.HeroDbId, () =>
             {
-				using(GameDbContext db = new GameDbContext())
-				{
-					db.Entry(itemDb).State = EntityState.Unchanged;
-					db.Entry(itemDb).Property(nameof(ItemDb.EquipSlot)).IsModified = true;
+                using (GameDbContext db = new GameDbContext())
+                {
+                    db.Entry(itemDb).State = EntityState.Unchanged;
+                    db.Entry(itemDb).Property(nameof(ItemDb.EquipSlot)).IsModified = true;
 
                     bool success = db.SaveChangesEx();
                     if (success == false)
                     {
-						// 실패했으면 Kick
-					}
-				}
+                        // 실패했으면 Kick
+                    }
+                }
             });
         }
 
@@ -137,6 +137,46 @@ namespace GameServer
                         db.Entry(itemDb).State = EntityState.Unchanged;
                         db.Entry(itemDb).Property(nameof(ItemDb.Count)).IsModified = true;
                     }
+
+                    bool success = db.SaveChangesEx();
+                    if (success == false)
+                    {
+                        // 실패했으면 Kick
+                    }
+                }
+            });
+        }
+
+        public static void EnchantSuccessNoti(Hero hero, Item item)
+        {
+            if (hero == null || item == null || hero.Room == null || hero.Inven == null)
+                return;
+            if (item.Count <= 0)
+                return;
+            if (hero.Inven.GetInventoryItemByDbId(item.Info.ItemDbId) == null)
+                return;
+            Equipment equipment = item as Equipment;
+            if (equipment == null)
+                return;
+
+            // 1. 메모리 선적용 (TemplateId 교체)
+            equipment.ApplyEnchantLevel(hero.Inven, sendToClient: true);
+
+            // 2. DB 적용을 위해 세팅
+            ItemDb itemDb = new ItemDb
+            {
+                ItemDbId = item.Info.ItemDbId,
+                TemplateId = item.Info.TemplateId,
+            };
+
+            // DBThread
+            Push(hero.HeroDbId, () =>
+            {
+                using (GameDbContext db = new GameDbContext())
+                {
+
+                    db.Entry(itemDb).State = EntityState.Unchanged;
+                    db.Entry(itemDb).Property(nameof(ItemDb.TemplateId)).IsModified = true;
 
                     bool success = db.SaveChangesEx();
                     if (success == false)
@@ -224,6 +264,65 @@ namespace GameServer
                         };
                         questDb.QuestTasks.Add(questTaskDb);
                     }
+
+                    bool success = db.SaveChangesEx();
+                    if (success == false)
+                    {
+                        // 실패했으면 Kick
+                    }
+                }
+            });
+        }
+
+        public static void AddCollectionNoti(Hero hero, CollectionInfo info)
+        {
+            // GameThread
+            if (hero == null || info == null)
+                return;
+
+            CollectionDb collectionDb = new CollectionDb
+            {
+                OwnerDbId = hero.HeroDbId,
+                TemplateId = info.TemplateId,
+                ProgressFlag = info.ProgressFlag,
+            };
+
+            Push(hero.HeroDbId, () =>
+            {
+                // DBThread
+                using (GameDbContext db = new GameDbContext())
+                {
+                    db.Collections.Add(collectionDb);
+
+                    bool success = db.SaveChangesEx();
+                    if (success == true)
+                    {
+                    }
+                }
+            });
+        }
+
+        public static void SaveCollectionNoti(Hero hero, CollectionInfo collectionInfo)
+        {
+            if (hero == null)
+                return;
+
+            // TODO : Disconnected State Rookiss 2024/09/27
+
+            // DBThread
+            Push(hero.HeroDbId, () =>
+            {
+                using (GameDbContext db = new GameDbContext())
+                {
+                    CollectionDb collectionDb = db.Collections
+                        .Where(c => c.OwnerDbId == hero.HeroDbId && c.TemplateId == collectionInfo.TemplateId)
+                        .FirstOrDefault();
+
+                    if (collectionDb == null)
+                        return;
+
+                    // Quest 상태 업데이트
+                    collectionDb.ProgressFlag = collectionInfo.ProgressFlag;
 
                     bool success = db.SaveChangesEx();
                     if (success == false)

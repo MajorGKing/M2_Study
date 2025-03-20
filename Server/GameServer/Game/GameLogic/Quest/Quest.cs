@@ -3,7 +3,7 @@ using Server.Data;
 
 namespace GameServer.Game
 {
-    public class Quest : IBroadcastEventListener
+    public class Quest : IHeroInternalEventListener
     {
         public List<QuestTask> QuestTasks { get; private set; } = new List<QuestTask>();
 
@@ -11,18 +11,7 @@ namespace GameServer.Game
         public QuestData QuestData { get; private set; }
         public Hero Owner { get; set; }
 
-        private QuestTask _questTask;
-        public QuestTask CurrentTask
-        {
-            get { return _questTask; }
-            set
-            {
-                PrevTask = _questTask;
-                _questTask = value;
-            }
-        }
-
-        public QuestTask PrevTask { get; set; }
+        public QuestTask CurrentTask { get; private set; }
 
         public Quest(QuestDb questDb, Hero owner)
         {
@@ -56,7 +45,7 @@ namespace GameServer.Game
             SetCurrentProcessingTask();
         }
 
-        public void OnBroadcastEvent(EBroadcastEventType type, int targetId, int count)
+        public void OnBroadcastHeroInternalEvent(EHeroInternalEventType type, int targetId, int count)
         {
             // 0. 이미 보상 받았으면 끝.
             if (State != EQuestState.Processing)
@@ -64,7 +53,7 @@ namespace GameServer.Game
 
             // 1. 이벤트 전파를 통해 퀘스트 진행 확인.
             foreach (QuestTask task in QuestTasks)
-                task.OnBroadcastEvent(type, targetId, count);
+                task.OnBroadcastHeroInternalEvent(type, targetId, count);
 
             // 2. 바뀐게 없으면 아무 것도 안 함.
             if (CheckAndResetTaskDirtyFlag() == false)
@@ -75,7 +64,9 @@ namespace GameServer.Game
 
             // 4. 퀘스트 클리어라면 보상 지급.
             if (State == EQuestState.Completed)
-                GiveReward(); // State = EQuestState.Rewarded;
+            { 
+				GiveReward(); 
+            }
 
             // 5. DB 저장
             DBManager.SaveQuestNoti(Owner, Info);
@@ -101,17 +92,29 @@ namespace GameServer.Game
                 task.TryCompleteTask();
             }
 
-            foreach(var task in QuestTasks)
+            // 하나라도 완료되지 않았으면 퀘스트 미완성.
+            foreach (var task in QuestTasks)
             {
                 if (task.IsCompleted == false)
                     return;
+                // 아이템 회수가 필요하면 아이템 회수
+                if (task.TaskData.ItemToRemoveIds.Count > 0)
+                    RemoveQuestCollectibles(task);
             }
 
             // 퀘스트 완료.
             State = EQuestState.Completed;
 
             // 퀘스트 완료 이벤트 뿌리기.
-            Owner.BroadcastEvent(EBroadcastEventType.CompleteQuest, TemplateId, 1);
+            Owner.BroadcastHeroInternalEvent(EHeroInternalEventType.CompleteQuest, TemplateId, 1);
+        }
+
+        public void RemoveQuestCollectibles(QuestTask task)
+        {
+            foreach (int templateId in task.TaskData.ItemToRemoveIds)
+            {
+                Owner.Inven.RemoveCollectible(templateId, sendToClient: true);
+            }
         }
 
         public void GiveReward()

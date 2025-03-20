@@ -14,7 +14,7 @@
       "Name": "체력회복(소)",
       "NameTextId": "체력회복(소)",
       "DescriptionTextID": "체력회복(소)",
-      "IconImage": "temp_potion_red",
+      "IconImage": "red_potion_001",
       "PrefabName": null
     },
     {
@@ -31,7 +31,7 @@
       "Name": "체력회복(중)",
       "NameTextId": "체력회복(중)",
       "DescriptionTextID": "체력회복(중)",
-      "IconImage": "temp_potion_red",
+      "IconImage": "red_potion_001",
       "PrefabName": null
     },
     {
@@ -48,7 +48,7 @@
       "Name": "체력회복(대)",
       "NameTextId": "체력회복(대)",
       "DescriptionTextID": "체력회복(대)",
-      "IconImage": "temp_potion_red",
+      "IconImage": "red_potion_001",
       "PrefabName": null
     },
     {
@@ -65,7 +65,7 @@
       "Name": "마나회복(소)",
       "NameTextId": "마나회복(소)",
       "DescriptionTextID": "마나회복(소)",
-      "IconImage": "temp_potion_blue",
+      "IconImage": "blue_potion_001",
       "PrefabName": null
     },
     {
@@ -82,7 +82,7 @@
       "Name": "마나회복(중)",
       "NameTextId": "마나회복(중)",
       "DescriptionTextID": "마나회복(중)",
-      "IconImage": "temp_potion_blue",
+      "IconImage": "blue_potion_001",
       "PrefabName": null
     },
     {
@@ -99,7 +99,41 @@
       "Name": "마나회복(대)",
       "NameTextId": "마나회복(대)",
       "DescriptionTextID": "마나회복(대)",
-      "IconImage": "temp_potion_blue",
+      "IconImage": "blue_potion_001",
+      "PrefabName": null
+    },
+    {
+      "EffectId": 0,
+      "CoolTime": 0,
+      "ConsumableGroupType": 5,
+      "EffectData": null,
+      "Type": 2,
+      "SubType": 12,
+      "Grade": 1,
+      "MaxStack": 999,
+      "Stackable": false,
+      "TemplateId": 7,
+      "Name": "무기 강화 주문서",
+      "NameTextId": "무기 강화 주문서",
+      "DescriptionTextID": "무기 강화 주문서",
+      "IconImage": "icon_weapon_enhance_scroll",
+      "PrefabName": null
+    },
+    {
+      "EffectId": 0,
+      "CoolTime": 0,
+      "ConsumableGroupType": 4,
+      "EffectData": null,
+      "Type": 2,
+      "SubType": 12,
+      "Grade": 1,
+      "MaxStack": 999,
+      "Stackable": false,
+      "TemplateId": 8,
+      "Name": "방어구 강화 주문서",
+      "NameTextId": "방어구 강화 주문서",
+      "DescriptionTextID": "방어구 강화 주문서",
+      "IconImage": "icon_amor_enhance_scroll",
       "PrefabName": null
     }
   ]

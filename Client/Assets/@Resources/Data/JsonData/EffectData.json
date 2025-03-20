@@ -313,7 +313,7 @@
       "Duration": 0.0,
       "DamageValue": 0.0,
       "StatType": [
-        1
+        2
       ],
       "AddValue": [
         50.0
@@ -335,7 +335,7 @@
       "Duration": 0.0,
       "DamageValue": 0.0,
       "StatType": [
-        1
+        2
       ],
       "AddValue": [
         100.0
@@ -357,7 +357,7 @@
       "Duration": 0.0,
       "DamageValue": 0.0,
       "StatType": [
-        1
+        2
       ],
       "AddValue": [
         150.0
@@ -379,7 +379,7 @@
       "Duration": 0.0,
       "DamageValue": 0.0,
       "StatType": [
-        4
+        5
       ],
       "AddValue": [
         20.0
@@ -401,7 +401,7 @@
       "Duration": 0.0,
       "DamageValue": 0.0,
       "StatType": [
-        4
+        5
       ],
       "AddValue": [
         30.0
@@ -423,7 +423,7 @@
       "Duration": 0.0,
       "DamageValue": 0.0,
       "StatType": [
-        4
+        5
       ],
       "AddValue": [
         50.0
@@ -435,6 +435,72 @@
       "Name": "Mp회복(대)",
       "NameTextId": null,
       "DescriptionTextID": null,
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
+      "EffectType": 3,
+      "DurationPolicy": 2,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "StatType": [
+        1
+      ],
+      "AddValue": [
+        30.0
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 20001,
+      "Name": "사우스 시티 방어구 수집가 I",
+      "NameTextId": "@@ 사우스 시티 방어구 수집가 1",
+      "DescriptionTextID": "최대 체력 + 30",
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
+      "EffectType": 3,
+      "DurationPolicy": 2,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "StatType": [
+        1
+      ],
+      "AddValue": [
+        50.0
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 20002,
+      "Name": "사우스 시티 방어구 수집가 II",
+      "NameTextId": "@@ 사우스 시티 방어구 수집가 2",
+      "DescriptionTextID": "최대 체력 + 50",
+      "IconImage": null,
+      "PrefabName": null
+    },
+    {
+      "SoundLabel": null,
+      "EffectType": 3,
+      "DurationPolicy": 2,
+      "Duration": 0.0,
+      "DamageValue": 0.0,
+      "StatType": [
+        7
+      ],
+      "AddValue": [
+        10.0
+      ],
+      "LifeStealValue": 0.0,
+      "StunValue": 0.0,
+      "StatValues": [],
+      "TemplateId": 20003,
+      "Name": "사우스 시티 무기 수집가 I",
+      "NameTextId": "@@ 사우스 시티 무기 수집가 I",
+      "DescriptionTextID": "최대 공격력 + 10",
       "IconImage": null,
       "PrefabName": null
     }

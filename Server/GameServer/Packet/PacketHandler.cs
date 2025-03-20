@@ -177,6 +177,24 @@ class PacketHandler
         room.Push(room.HandleUseItem, hero, recvPkt.ItemDbId);
     }
 
+    public static void C_EnchantItemHandler(PacketSession session, IMessage packet)
+    {
+        Console.WriteLine("ILHAK C_EnchantItemHandler");
+
+        C_EnchantItem recvPkt = packet as C_EnchantItem;
+        ClientSession clientSession = session as ClientSession;
+
+        Hero hero = clientSession.MyHero;
+        if (hero == null)
+            return;
+
+        GameRoom room = hero.Room;
+        if (room == null)
+            return;
+
+        room.Push(room.HandleEnchantItem, hero, recvPkt.ItemDbId);
+    }
+
     public static void C_InteractionNpcHandler(PacketSession session, IMessage packet)
     {
         C_InteractionNpc recvPkt = packet as C_InteractionNpc;
@@ -195,13 +213,37 @@ class PacketHandler
 
     public static void C_ReqTeleportHandler(PacketSession session, IMessage packet)
     {
+        Console.WriteLine("ILHAK C_ReqTeleportHandler");
+
         C_ReqTeleport pkt = packet as C_ReqTeleport;
         ClientSession clientSession = session as ClientSession;
 
         Hero hero = clientSession.MyHero;
         if (hero == null)
             return;
+     
+        GameRoom room = hero.Room;
+        if (room == null)
+            return;
 
-        hero.Teleport(pkt.PosInfo);
+        room.Push(hero.Teleport, pkt.PosInfo);
+    }
+
+    public static void C_FillCollectionHandler(PacketSession session, IMessage packet)
+    {
+        Console.WriteLine("ILHAK C_FillCollectionHandler");
+
+		C_FillCollection pkt = packet as C_FillCollection;
+        ClientSession clientSession = session as ClientSession;
+
+        Hero hero = clientSession.MyHero;
+        if (hero == null)
+            return;
+
+        GameRoom room = hero.Room;
+        if (room == null)
+            return;
+
+        room.Push(room.HandleFillCollection, hero, pkt);
     }
 }

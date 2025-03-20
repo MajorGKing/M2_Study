@@ -113,7 +113,7 @@ namespace Server.Game
 
             if (Count == 0)
             {
-                owner.Inven.Remove(this, sendToClient);
+                DBManager.DeleteItemNoti(owner, this);
                 return;
             }
 

@@ -32,6 +32,14 @@ namespace GameServer
             myHero.Inven.HandleUseItem(itemDbId);
         }
 
+        public void HandleEnchantItem(Hero myHero, long itemDbId)
+        {
+            if (myHero.IsValid() == false)
+                return;
+
+            myHero.Inven.HandleEnchantItem(itemDbId);
+        }
+
         public void HandleDeleteItem(Hero myHero, long itemDbId)
         {
             if (myHero.IsValid() == false)

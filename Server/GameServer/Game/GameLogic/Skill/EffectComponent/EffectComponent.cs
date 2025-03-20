@@ -3,7 +3,7 @@ using Server.Data;
 
 namespace GameServer.Game
 {
-    public class EffectComponent
+    public class EffectComponent : IHeroInternalEventListener
     {
         public static int _effectIdGenerator = 1;
 
@@ -160,6 +160,15 @@ namespace GameServer.Game
             _effects.Clear();
         }
 
+        public void ClearExceptInfinity()
+        {
+            foreach (Effect effect in _effects.Values.ToList())
+            {
+                if (effect.EffectData.DurationPolicy == EDurationPolicy.Infinite)
+                    RemoveEffect(effect, false);
+            }
+        }
+
         private void SendApply(Effect effect)
         {
             S_ApplyEffect packet = new S_ApplyEffect();
@@ -189,6 +198,29 @@ namespace GameServer.Game
             if (Owner.ObjectType == EGameObjectType.Hero)
             {
                 (Owner as Hero).SendRefreshStat();
+            }
+        }
+
+        private void OnCollectionCompleted(int templateId)
+        {
+            if (DataManager.CollectionDict.TryGetValue(templateId, out CollectionData collectionData) == false)
+                return;
+
+            if (collectionData.RewardEffectData == null)
+                return;
+
+            ApplyEffect(collectionData.RewardEffectData, Owner);
+        }
+
+        public void OnBroadcastHeroInternalEvent(EHeroInternalEventType type, int targetId, int count)
+        {
+            switch (type)
+            {
+                case EHeroInternalEventType.CompleteQuest:
+                    break;
+                case EHeroInternalEventType.CompleteCollection:
+                    OnCollectionCompleted(targetId);
+                    break;
             }
         }
     }

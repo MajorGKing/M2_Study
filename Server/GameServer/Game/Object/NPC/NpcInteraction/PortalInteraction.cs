@@ -25,7 +25,7 @@ namespace GameServer.Game
             if (_portalData == null)
                 return;
 
-            myHero.Teleport(_portalData.DestPortal.SpawnPosInfo);
+            myHero.Teleport(_portalData.DestPortal.GetSpawnPosition());
         }
 
         public bool CanInteract(Hero myHero)

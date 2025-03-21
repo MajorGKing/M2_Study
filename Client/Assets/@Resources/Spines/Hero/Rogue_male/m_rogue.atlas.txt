@@ -26,7 +26,7 @@ hair_b
 bounds:959,220,34,63
 rotate:90
 hair_f_01
-bounds:439,24,25,20
+bounds:618,133,25,20
 hair_f_02
 bounds:446,68,26,54
 head
@@ -63,9 +63,8 @@ l_weapon
 bounds:514,163,83,27
 offsets:1,1,85,29
 r_calf
-bounds:446,46,20,28
+bounds:596,132,20,28
 offsets:1,1,22,30
-rotate:90
 r_lowerarm
 bounds:662,150,27,34
 offsets:1,1,29,36
@@ -90,3 +89,7 @@ rotate:90
 smog_2
 bounds:514,192,103,62
 offsets:115,31,221,162
+weapon_shoot
+bounds:578,125,36,16
+offsets:0,1,36,17
+rotate:90

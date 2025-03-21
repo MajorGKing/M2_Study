@@ -66,8 +66,9 @@ l_weapon
 bounds:514,163,83,27
 offsets:1,1,85,29
 r_calf
-bounds:779,146,20,28
+bounds:817,154,20,28
 offsets:1,1,22,30
+rotate:90
 r_lowerarm
 bounds:341,2,27,34
 offsets:1,1,29,36
@@ -93,3 +94,6 @@ rotate:90
 smog_2
 bounds:514,192,103,62
 offsets:115,31,221,162
+weapon_shoot
+bounds:779,158,36,16
+offsets:0,1,36,17

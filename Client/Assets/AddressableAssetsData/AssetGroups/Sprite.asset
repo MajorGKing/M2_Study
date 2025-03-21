@@ -41,18 +41,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 94cd0a28f21d2094baa9e3c3e636deb0
-    m_Address: temp_potion_blue
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c4dc71caa07b68d4c94879a06b854c6a
-    m_Address: temp_potion_red
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 96a597a59c7ce384b8ba3535793f0c59
     m_Address: temp_weapon
     m_ReadOnly: 0
@@ -77,50 +65,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8ac0c0a0210518b41a995987549bea34
-    m_Address: ItemSlot_Epic
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1d92bef1fec3e8446a3050d289623172
-    m_Address: ItemSlot_Selected
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d5abb888301726644b31d523472c6062
     m_Address: ItemSlot_Common
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9f24e35e4c6ea664fbd388e33525296a
-    m_Address: ItemSlot_Empty
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 16e354166ebce6749b21e010bbabf586
-    m_Address: ItemSlot_Legendary
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 24deaf968920af049800085656790ac8
-    m_Address: ItemSlot_Mythic
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: af9f114cc71becb4eb1048c2c64b98c6
-    m_Address: ItemSlot_Rare
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c28f67182b1928946bc3d1614abea8dd
-    m_Address: ItemSlot_Uncommon
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

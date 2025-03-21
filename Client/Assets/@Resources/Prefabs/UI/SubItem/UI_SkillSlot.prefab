@@ -235,7 +235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5168418584776171307}
   - component: {fileID: 5168418584776171305}
-  - component: {fileID: 4974467594568253303}
+  - component: {fileID: -8224318690043492109}
   m_Layer: 5
   m_Name: UI_SkillSlot
   m_TagString: Untagged
@@ -273,7 +273,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5168418584776171306}
   m_CullTransparentMesh: 1
---- !u!114 &4974467594568253303
+--- !u!114 &-8224318690043492109
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

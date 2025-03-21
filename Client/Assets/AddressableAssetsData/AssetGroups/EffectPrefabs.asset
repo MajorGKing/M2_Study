@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: EffectPrefabs
+  m_EditorClassIdentifier: 
+  m_GroupName: EffectPrefabs
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 5394d00462e0cab4bb050b84e069e1ee
+  m_SerializeEntries:
+  - m_GUID: ecd829f8e1c74f94fa699ee8a3d63692
+    m_Address: Teleportation_Effect
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9094f0f0595c6e147aa68a6f81e2dcaf, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b05447f2ac747a641972abb97f867f0a, type: 2}
+    - {fileID: 11400000, guid: a403ee65991c8394ab193b833a7a0145, type: 2}

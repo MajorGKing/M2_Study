@@ -17,50 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 9a3b2525873b55c458754d88c665857e
   m_SerializeEntries:
-  - m_GUID: 47a57eaac067fad4ca16192d358d4e9d
-    m_Address: EquipmentData
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1299755dd1681ad46bc884b5fdc06f40
-    m_Address: ConsumableData
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 31b22a4b19ab814428e387765123fb6f
-    m_Address: TextData
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1c79e37a70ae685439e8bc56477ddf1a
-    m_Address: ConfigData
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c0459f27552fa9e4e8033e773c7da48b
-    m_Address: PortalData
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c8f3cbb654e67064999bb9575294c00f
-    m_Address: RespawnData
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: fce25e96c50aae744a681aa74b27009a
-    m_Address: MonsterData
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 66e2f73034b4bca4c862e50374096a32
-    m_Address: RoomData
+  - m_GUID: adadc2f0a98832b4bb0dbd890523d7b7
+    m_Address: SpawningPoolData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
@@ -71,38 +29,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3e693195d6c74b84eac76e6eacd00065
-    m_Address: HeroData
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a5ed4ac31010c1348ace3401ba0865a6
-    m_Address: RewardData
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: adadc2f0a98832b4bb0dbd890523d7b7
-    m_Address: SpawningPoolData
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ab6d75ebdf304ba4b899af92007ffee2
-    m_Address: BaseStatData
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f76864ddb3ece67408b9c0dd9ad90a9a
-    m_Address: EffectData
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d044d3aef64ff3f4282c74ccf91b1815
-    m_Address: ProjectileData
+  - m_GUID: 66e2f73034b4bca4c862e50374096a32
+    m_Address: RoomData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
@@ -113,20 +41,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a00bcce42c769be4fa96103c6e36d795
-    m_Address: CollectibleData
+  - m_GUID: a5ed4ac31010c1348ace3401ba0865a6
+    m_Address: RewardData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7721182d07a87c0468969576981d0f71
-    m_Address: DialogueData
+  - m_GUID: c8f3cbb654e67064999bb9575294c00f
+    m_Address: RespawnData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: eba53479df9e93247b1efda1ca69b1d5
-    m_Address: NpcCommonData
+  - m_GUID: 5dafe860b4a9a2449a3d125bbaebaaa6
+    m_Address: QuestTaskData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
@@ -137,8 +65,86 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5dafe860b4a9a2449a3d125bbaebaaa6
-    m_Address: QuestTaskData
+  - m_GUID: d044d3aef64ff3f4282c74ccf91b1815
+    m_Address: ProjectileData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c0459f27552fa9e4e8033e773c7da48b
+    m_Address: PortalData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eba53479df9e93247b1efda1ca69b1d5
+    m_Address: NpcCommonData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fce25e96c50aae744a681aa74b27009a
+    m_Address: MonsterData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3e693195d6c74b84eac76e6eacd00065
+    m_Address: HeroData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 47a57eaac067fad4ca16192d358d4e9d
+    m_Address: EquipmentData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f76864ddb3ece67408b9c0dd9ad90a9a
+    m_Address: EffectData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7721182d07a87c0468969576981d0f71
+    m_Address: DialogueData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1299755dd1681ad46bc884b5fdc06f40
+    m_Address: ConsumableData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c79e37a70ae685439e8bc56477ddf1a
+    m_Address: ConfigData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 991f1c5d4b55afa43a1948e74855d5d7
+    m_Address: CollectionData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a00bcce42c769be4fa96103c6e36d795
+    m_Address: CollectibleData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ab6d75ebdf304ba4b899af92007ffee2
+    m_Address: BaseStatData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 31b22a4b19ab814428e387765123fb6f
+    m_Address: TextData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload

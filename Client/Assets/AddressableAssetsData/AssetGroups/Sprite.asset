@@ -347,6 +347,222 @@ MonoBehaviour:
     m_SerializedLabels:
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c30d5a055476b7c4ba3c1e5e0884cae6
+    m_Address: expIcon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72f4267c33d417e4bb2eccb8f852d3ab
+    m_Address: icon_amor_enhance_scroll
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 338099b965150924b8ba8124b4235192
+    m_Address: icon_weapon_enhance_scroll
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 66a1f90cbdfea204ea428455130233df
+    m_Address: ArcherIcon_Mini
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2a759cecdc4dc2c439731fdce0bf36d5
+    m_Address: blue_potion_001
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ccc739b6450c7af42b7ad202b76d869c
+    m_Address: AmuletSlotIcon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b8ef5505c252f9841a4fbc0e42477d61
+    m_Address: ChestSlotIcon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cdfa61a65d5cf7c4d86db8eea83c05aa
+    m_Address: GlovesSlotIcon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4028e646ef5cf9746a08a70f73efdd68
+    m_Address: HelmetSlotIcon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8ffced11d0af5e4498fa35e0bbe93075
+    m_Address: LegSlotIcon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ce81bd6e2bac47d43a4fae711c4834ad
+    m_Address: MainweaponSlotIcon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8cf4caa775a929e438355cdbf83ef690
+    m_Address: RingSlotIcon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5da26dd7b1e02874980bb5daf404e29e
+    m_Address: ShoesSlotIcon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9dfe7c25ab4542459630752f7432d87
+    m_Address: ShoulderSlotIcon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 27426bec996033246b01f41d06ccf60b
+    m_Address: SubweaponSlotIcon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c05a2c9fdb701ce45b050e7981962a77
+    m_Address: GoldIcon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3d3dfab9c7c5f1243adb3ea89b51d742
+    m_Address: KnightIcon_Mini
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72d9326045ffd9f49ac830eb84869fdf
+    m_Address: red_potion_001
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dc0f666002ccf694b89a9d86155df5fe
+    m_Address: RogueIcon_Mini
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1fd1a48834fa3c84791cc3440de1d693
+    m_Address: WizardIcon_Mini
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ec66ab9fb5105247a05e4574ffd93a8
+    m_Address: EquipmentSlot
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2f39fa37b3a0b28488fef241cbae3b12
+    m_Address: 01.common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: be61703945210834895fe41162549c91
+    m_Address: 02.Uncommon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 927299a385d27a646b5005f6f0d5ffc1
+    m_Address: 03.Rare
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6dad6cb1b05953246b859743bbd36c41
+    m_Address: 04.Epic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5871cf56309c174458e202cbe8468b36
+    m_Address: 05.Legendary
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ae2aa8c41abc2344c82550d3bfe8c32c
+    m_Address: 06.Mythic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb690a146e9ea4442a10e9f347f0220e
+    m_Address: ArcherFemale_Thumbnail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d6142f5927ee85a43be5b2ca2f5b2d0e
+    m_Address: ArcherMale_Thumbnail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c55959366437da3478e445035a71e1d0
+    m_Address: hero_portrait
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dbb97412ab42d4e4ba6c8845568ec26f
+    m_Address: KnightFemale_Thumbnail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d05f7e6b5998993468213c009eb6cafd
+    m_Address: KnightMale_Thumbnail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bbf58fad6a1f4ac449812b20281b4580
+    m_Address: RogueFemale_Thumbnail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9b5365daa63260439aaf39738c4eb54
+    m_Address: RogueMale_Thumbnail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6d0b97b68d3a4a441af560c0db39a84d
+    m_Address: WizardFemale_Thumbnail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7b3e78441eb3c7b429fb8198f42645f6
+    m_Address: WizardMale_Thumbnail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9094f0f0595c6e147aa68a6f81e2dcaf, type: 2}
   m_SchemaSet:

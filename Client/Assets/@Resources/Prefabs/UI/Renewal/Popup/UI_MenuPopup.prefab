@@ -189,7 +189,7 @@ MonoBehaviour:
   m_text: Exchange
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8739592404c872442bf3eec93effc13c, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: dcd9c7798e3d4e04e84c94aaee4e0f4b, type: 2}
+  m_sharedMaterial: {fileID: 6327707706146042653, guid: 8739592404c872442bf3eec93effc13c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -323,7 +323,7 @@ MonoBehaviour:
   m_text: Collection
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8739592404c872442bf3eec93effc13c, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: dcd9c7798e3d4e04e84c94aaee4e0f4b, type: 2}
+  m_sharedMaterial: {fileID: 6327707706146042653, guid: 8739592404c872442bf3eec93effc13c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -742,7 +742,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3897277969338703789}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc40d021545344b1aa4010e1af7933db, type: 3}
+  m_Script: {fileID: 11500000, guid: 0110ab3c802e2124081b070818cea884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5157689232008515052
@@ -1261,7 +1261,7 @@ MonoBehaviour:
   m_text: Lobby
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8739592404c872442bf3eec93effc13c, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: dcd9c7798e3d4e04e84c94aaee4e0f4b, type: 2}
+  m_sharedMaterial: {fileID: 6327707706146042653, guid: 8739592404c872442bf3eec93effc13c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1516,7 +1516,7 @@ MonoBehaviour:
   m_text: Pet
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8739592404c872442bf3eec93effc13c, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: dcd9c7798e3d4e04e84c94aaee4e0f4b, type: 2}
+  m_sharedMaterial: {fileID: 6327707706146042653, guid: 8739592404c872442bf3eec93effc13c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1650,7 +1650,7 @@ MonoBehaviour:
   m_text: Wings
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8739592404c872442bf3eec93effc13c, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: dcd9c7798e3d4e04e84c94aaee4e0f4b, type: 2}
+  m_sharedMaterial: {fileID: 6327707706146042653, guid: 8739592404c872442bf3eec93effc13c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

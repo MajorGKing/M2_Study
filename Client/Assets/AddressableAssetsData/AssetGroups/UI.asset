@@ -17,11 +17,11 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: bdf0684c0f42c9f43a11a6b597ad0e5c
   m_SerializeEntries:
-  - m_GUID: bff952442e109b24fa77cb0647517106
-    m_Address: UI_Joystick
+  - m_GUID: 849a4c8993f8fae4f8a5629ae1a974e2
+    m_Address: UI_QuickSlot
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Preload
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e052c04758e00424cade012b6df84375
     m_Address: UI_LoginPopup
@@ -85,6 +85,120 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e8b72e2a7865f6f4095104ec4c280791
     m_Address: UI_RoomItem
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f5003cbb6238e174caf7821233fbd53d
+    m_Address: UI_CharacterPopup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a591511a0e3de1241b7318a205b59933
+    m_Address: UI_CollectionPopup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 975af731cd567d34e810028a5e99b111
+    m_Address: UI_DialoguePopup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1bf1886b1ffbc494b8c51f8b7ecf9320
+    m_Address: UI_InventoryPopup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d682c12750b5a4740a9b11b9a599f572
+    m_Address: UI_SelectCharacterPopup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 02bfbf9482a4c1247a6001d15eaa957a
+    m_Address: UI_SelectServerPopup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 143a64a845026284da6d832bf75dfc6f
+    m_Address: UI_GameScene
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7264bde330097b0459ace469c3dc7178
+    m_Address: UI_Joystick
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eca6602176217a940bc0780b8df4d989
+    m_Address: UI_CharacterSlotItem
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1fb3d313e20343345b320b8b15568264
+    m_Address: UI_QuickSlotItem
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 25086e5a1d7ca11478f399a43dc72cc6
+    m_Address: UI_CreateCharacterPopup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 64eb315786e1da241bc167bde7f7428e
+    m_Address: UI_ItemUpgradePopup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 05a2a304981d1b74f99feff7683f4b62
+    m_Address: UI_MenuPopup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c6f29fbc7150bba418786e2f0dc71bc5
+    m_Address: UI_QuestPopup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0bebd0dde49b54e449f02c3af33e4250
+    m_Address: UI_CollectionItem
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 10057dfdd2035af4b835499a3c180504
+    m_Address: UI_CollectionTargetItem
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 078494db57662a647bfe1c205c19d6ff
+    m_Address: UI_CompareStatItem
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9694e192bc435048a3570ff155fd61d
+    m_Address: UI_ItemSlot
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 26d77d46cdc883740b5dca3a53c16fe9
+    m_Address: UI_QuestItem
     m_ReadOnly: 0
     m_SerializedLabels:
     - Preload
